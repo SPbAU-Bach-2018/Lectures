@@ -200,13 +200,14 @@ $\exists a\colon \forall b,
 	Не используйте псевдографику, не заменяйте одни символы другими. 
 	Не забывайте, что одни и те же команды имеют разный смысл в math-mode и в text-mode (и могут иметь разные пробелы, соответственно):
 	\begin{center}\begin{tabular}{|c|c|c|}
+		\hline Это... & ...верстается так & \\
 		\hline \verb!A --> B! & A --> B \bad \\
 		\hline \verb!A $-->$ B! & A $-->$ B \bad \\
 		\hline \verb!A \rightarrow B! & A \rightarrow B \bad \\
 		\hline \verb!A $\rightarrow$ B! & A $\rightarrow$ B \ok \\
 		\hline \verb!A ==> B! & A ==> B \bad \\
 		\hline \verb!A $==>$ B! & A $==>$ B \bad \\
-		\hline \verb!A \Rightarrow B! & A \Rightarrow B \bad \\
+		\hline \verb!A \Rightarrow B! & \bad \\
 		\hline \verb!A $\Rightarrow$ B! & A $\Rightarrow$ B \ok \\
 		\hline \verb!$\Sigma_l^r x_n$! & $\Sigma_l^r x_n$ \bad \\
 		\hline \verb!$\sum_l^r x_n$! & $\sum_l^r x_n$ \ok \\
@@ -219,6 +220,7 @@ $\exists a\colon \forall b,
 	Не используйте программистские обозначения в формулах, используйте математические:
 	\verb!\cdot! для умножения чисел, \verb!\times! для декартова произведения.
 	\begin{center}\begin{tabular}{|c|c|c|}
+		\hline Это... & ...верстается так & \\
 		\hline \verb!$2*n$! & $2*n$ \bad \\
 		\hline \verb!$2n$! & $2n$ \ok \\
 		\hline \verb!$2\cdot n$! & $2\cdot n$ \ok \\
@@ -289,7 +291,7 @@ $\exists a\colon \forall b,
 		\end{tabular}\end{center}
 
 	\item
-		Нестрогие равенства "--- \verb'\le' и \verb'\ge', а не \verb'\leq' и \verb'\geq' 
+		Нестрогие равенства "--- \verb'\le' и \verb'\ge', а не \verb'\leq' и \verb'\geq'.
 		Вообще говоря, мы переопределили \verb'\le', чтобы она делала \verb'\leqslant'.
 		Используем первую как короткую.
 		\begin{center}\begin{tabular}{|c|c|c|}
@@ -345,7 +347,7 @@ $\overline{z_1z_2} =
 	\end{itemize}
 
 \item
-	Используем команды \verb'\textbf{}' и \verb'\textit{}' вместо '{\bf ...}' и '{\it ...}'.
+	Используем команды \verb'\textbf{}' и \verb'\textit{}' вместо \verb'{\bf ...}' и \verb'{\it ...}'.
 
 \item
 	Чтобы в больших формулах скобки подстраивались по размеру под внутренности
