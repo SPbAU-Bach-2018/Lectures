@@ -1,5 +1,15 @@
 #!/bin/bash
-for i in `seq 3`
+if [ -e *.aux ]; then
+  old_hash=`md5sum *.aux`
+fi
+
+while true;
 do
-	xelatex -halt-on-error -8bit -shell-escape XeLaTeX.tex
+	echo -e "\n\e[33m ========== Running XeLaTeX ========== \e[0m"
+	xelatex -halt-on-error -8bit -shell-escape guidelines.tex
+	new_hash=`md5sum *.aux`
+	if [ "$old_hash" == "$new_hash" ]; then
+	  break;
+	fi
+	old_hash=$new_hash
 done
