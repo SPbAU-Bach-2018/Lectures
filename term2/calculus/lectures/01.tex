@@ -63,13 +63,13 @@ $\sigma(E) = \inf{\sum_{k = 1}^n |P_k|: E \subset \bigcup_{k = 1}^n P_k}$
 	берем покрытие из одного прямоугольника $\Ra \inf \leqslant (b - a)(d - c)$
 \item
 	$E_1 \subset E_2 \Ra \sigma(E_1) \leqslant \sigma(E_2); $
-	Пусть $E_2 \subset \bigcup P_k \Ra E_1 \subset \bigcup P_k \Ra$ класс покрытий $E_1$ шире класса покрытий $E_2 \Ra \inf $ меньше $\Ra \sigma(E_1) \leqslant \sigma(E_2)
+	Пусть $E_2 \subset \bigcup P_k \Ra E_1 \subset \bigcup P_k \Ra$ класс покрытий $E_1$ шире класса покрытий $E_2 \Ra \inf $ меньше $\Ra \sigma(E_1) \leqslant \sigma(E_2)$
 \item
 	$E = E_{-} \cup E_{+}; ! \sigma(E) = \sigma(E_{-}) + \sigma(E_{+}) \measuredangle \bigcup P_k^{\pm}:
 	\sum|P_k^{\pm}| \leqslant \sigma(E_{\pm}) + \varepsilon \Ra \sigma(E) \leqslant \sigma(E_{-}) + \sigma(E_{+}) + 2\varepsilon;
 	\varepsilon \ra 0; \measuredangle \bigcup P_k: E \subset \bigcup P_k; $
 	делим прямой, те, прямоугольники, которые пересеклись с ней, образуют два новых прямоугольника $\Ra$ получили покрытия $E_{\pm}$
-	Инфинум суммы не меньше суммы инфинумов $\Ra$ \sigma(E) \geqslant \sigma(E_{-}) + \sigma(E_{+})
+	Инфинум суммы не меньше суммы инфинумов $\Ra$ $\sigma(E) \geqslant \sigma(E_{-}) + \sigma(E_{+})$
 \end{enumerate}
 \end{proof}
 
@@ -92,7 +92,7 @@ $f \in C[a, b] \Ra P_f $ --- ограниченное множество
 \end{Rem}
 
 \begin{Def}
-$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]; \int_a^b f$ = \sigma (P_f_+) - \sigma (P_f_-) $
+$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]$; $\int_a^b f = \sigma (P_f_+) - \sigma (P_f_-) $
 Свойства:
 \begin{enumerate}
 \item $f \geqslant 0 \Ra \int_a^b f = \sigma(P_f) \geqslant 0$
@@ -124,14 +124,14 @@ $ \sigma (E) = \sigma (E_-) + \sigma (E_+) $ --- не испортится, ес
 $f \in C[a, b]; c \in [a, b] \Ra \int_a^b f = \int_a^c f + \int_c^b f$
 \end{theorem}
 \begin{proof}
-$ \int_a^b f$ = \sigma (P_f_+) - \sigma (P_f_-) = \sigma ((P_f_+)_+) - \sigma ((P_f_-)_+) + \sigma ((P_f_+)_-) - \sigma ((P_f_-)_-) = \int_a^c f + \int_c^b $
+$ \int_a^b f = \sigma (P_f_+) - \sigma (P_f_-) = \sigma ((P_f_+)_+) - \sigma ((P_f_-)_+) + \sigma ((P_f_+)_-) - \sigma ((P_f_-)_-) = \int_a^c f + \int_c^b $
 \end{proof}
 
 \begin{theorem}{Монотонность интеграла}
 $ f, g \in C[a, b]; f \geqslant g \Ra \int_a^b f \geqslant \int_a^b g $
 \end{theorem}
 \begin{proof}
-$ \int_a^b f$ = \sigma (P_f_+) - \sigma (P_f_-); \int_a^b g$ = \sigma (P_g_+) - \sigma (P_g_-);
+$ \int_a^b f = \sigma (P_f_+) - \sigma (P_f_-); \int_a^b g = \sigma (P_g_+) - \sigma (P_g_-);
 f \geqslant g \Ra f_+ \geqslant g_+ \Ra P_g_+ \subset P_f_+ \Ra \sigma(P_f_+) \geqslant \sigma(P_g_+);
--g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_f_- \subset P_g_- \Ra \sigma(P_f_-) \leqslant \sigma(P_g_-);
+-g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_f_- \subset P_g_- \Ra \sigma(P_f_-) \leqslant \sigma(P_g_-);$
 \end{proof}
