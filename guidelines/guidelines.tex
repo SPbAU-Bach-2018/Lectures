@@ -358,6 +358,24 @@ $\overline{z_1z_2} =
 	\end{tabular}\end{center}
 
 \item
+	Будьте осторожны с верхними и нижними индексами и фигурными скобками вокруг них:
+	\begin{center}\begin{tabular}{|c|c|c|}
+		\hline Это... & ...верстается так & \\
+		\hline \verb'a_f(x)'      & $a_f(x)$ \bad \\
+		\hline \verb'a_{f(x)}'    & $a_{f(x)}$ \ok \\
+		\hline \verb'a_f^(n)'     & $a_f^(n)$ \bad \\
+		\hline \verb'a_f^{(n)}'   & $a_f^{(n)}$ \bad \\
+		\hline \verb'a_{f^{(n)}}' & $a_{f^{(n)}}$ \ok \\
+		\hline \verb'a^5'         & $a^5$ \ok \\
+		\hline \verb'a^{5}'       & $a^{5}$ \ok \\
+		\hline \verb'a^100'       & $a^100$ \bad \\
+		\hline \verb'a^{100}'     & $a^{100}$ \ok \\
+		\hline \verb'F_g_+'       & \bad \\
+		\hline \verb'F_{g_+}'     & $F_{g_+}$ \ok \\
+		\hline
+	\end{tabular}\end{center}
+
+\item
 	Для выравнивания нескольких формул в столбики вокруг (не)равенства
 	мы используем окружения \texttt{align*}/\texttt{aligned}.
 	Последний может быть использован только в math mode, а окружение \texttt{align*}
