@@ -92,7 +92,7 @@ $f \in C[a, b] \Ra P_f $ --- ограниченное множество
 \end{Rem}
 
 \begin{Def}
-$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]$; $\int_a^b f = \sigma (P_f_+) - \sigma (P_f_-) $
+$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]$; $\int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) $
 Свойства:
 \begin{enumerate}
 \item $f \geqslant 0 \Ra \int_a^b f = \sigma(P_f) \geqslant 0$
@@ -124,14 +124,14 @@ $ \sigma (E) = \sigma (E_-) + \sigma (E_+) $ --- не испортится, ес
 $f \in C[a, b]; c \in [a, b] \Ra \int_a^b f = \int_a^c f + \int_c^b f$
 \end{theorem}
 \begin{proof}
-$ \int_a^b f = \sigma (P_f_+) - \sigma (P_f_-) = \sigma ((P_f_+)_+) - \sigma ((P_f_-)_+) + \sigma ((P_f_+)_-) - \sigma ((P_f_-)_-) = \int_a^c f + \int_c^b $
+$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) = \sigma ((P_{f_+})_+) - \sigma ((P_{f_-})_+) + \sigma ((P_{f_+})_-) - \sigma ((P_{f_-})_-) = \int_a^c f + \int_c^b $
 \end{proof}
 
 \begin{theorem}{Монотонность интеграла}
 $ f, g \in C[a, b]; f \geqslant g \Ra \int_a^b f \geqslant \int_a^b g $
 \end{theorem}
 \begin{proof}
-$ \int_a^b f = \sigma (P_f_+) - \sigma (P_f_-); \int_a^b g = \sigma (P_g_+) - \sigma (P_g_-);
-f \geqslant g \Ra f_+ \geqslant g_+ \Ra P_g_+ \subset P_f_+ \Ra \sigma(P_f_+) \geqslant \sigma(P_g_+);
--g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_f_- \subset P_g_- \Ra \sigma(P_f_-) \leqslant \sigma(P_g_-);$
+$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}); \int_a^b g = \sigma (P_{g_+}) - \sigma (P_{g_-});
+f \geqslant g \Ra f_+ \geqslant g_+ \Ra P_{g_+} \subset P_{f_+} \Ra \sigma(P_{f_+}) \geqslant \sigma(P_{g_+});
+-g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_{f_-} \subset P_{g_-} \Ra \sigma(P_{f_-}) \leqslant \sigma(P_{g_-});$
 \end{proof}
