@@ -6,7 +6,7 @@ fi
 while true;
 do
 	echo -e "\n\e[33m ========== Running XeLaTeX ========== \e[0m"
-	xelatex -halt-on-error -8bit -shell-escape guidelines.tex
+	xelatex -halt-on-error -8bit -shell-escape guidelines.tex || exit 1
 	new_hash=`md5sum *.aux`
 	if [ "$old_hash" == "$new_hash" ]; then
 	  break;
