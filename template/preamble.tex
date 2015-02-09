@@ -6,8 +6,8 @@
 \usepackage[russian]{hyperref}
 \usepackage{indentfirst}
 \usepackage{ifthen}
+\usepackage{datetime}
 \usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{minted}
 \usepackage[math-style=ISO,vargreek-shape=unicode]{unicode-math}
 
 \setdefaultlanguage[spelling=modern,babelshorthands=true]{russian}
@@ -134,15 +134,3 @@
 }
 
 \setcounter{MaxMatrixCols}{40}
-
-\newmintinline[cinl]{c}{} %\c is defined :(
-\newmintinline[cpp]{cpp}{}
-\newmintinline[python]{python}{}
-\newmintinline[bash]{bash}{}
-\newmintinline[make]{make}{}
-\setminted{obeytabs,tabsize=4,linenos,texcomments}
-\newminted{c}{}
-\newminted{cpp}{}
-\newminted{python}{}
-\newminted{bash}{}
-\newminted{make}{}

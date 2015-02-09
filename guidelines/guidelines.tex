@@ -1,142 +1,15 @@
-\documentclass[12pt,a4paper]{book}
-\usepackage{polyglossia}
-\usepackage{fontspec}
+\input{../template/preamble}
 \usepackage{metalogo}
-\usepackage{amsmath, amssymb}
-\usepackage{xcolor}
-\usepackage[russian]{hyperref}
-\usepackage{indentfirst}
-\usepackage{datetime}
-\usepackage{extarrows}
-\usepackage{fancyvrb}
-\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
-%% WARNING: latest minted is used. Download directly from github!
-%% Works fine, though
-%% Hard installation!
-%% \usepackage{minted}
-\usepackage[math-style=ISO,vargreek-shape=unicode]{unicode-math} %% MAGIC! INCLUDE AS LAST!
+\usepackage{verbatim}
 
-\setdefaultlanguage[spelling=modern,babelshorthands=true]{russian} %% Languages for polyglossia
-\setotherlanguage{english}
-
-% \RequirePackage{cm-unicode,lm-math}
-
-\frenchspacing %% One space before sentence, not two!
-
-\defaultfontfeatures{Ligatures={TeX}} %% Fonts and ligatures.
-\setmainfont{CMU Serif} %% There are original Knuth's fonts in Unicode, called Computer Modern Unicode. Download anywhere, just install them.
-\setsansfont{CMU Sans Serif}
-%\setmonofont{CMU Typewriter Text}  
-\setmonofont{Courier New}
-\newfontfamily\cyrillicfonttt{Courier New}
-\setmathfont{Latin Modern Math} %% Download too. Very close to original Computer Modern. You may change it :)
-\newcommand{\Setminus}{\mathbin{\backslash}} %% Latin Modern Math contains an Elder bug~--- no setminus(
-
-%% Magic as black as my working table
-%% Add cyrilic in math mode
-\DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
-\newcommand{\makecyrmathletter}[1]{%
-  \begingroup\lccode`a=#1\lowercase{\endgroup
-  \Umathcode`a}="0 \csname symcyrletters\endcsname\space #1
-}
-\count255="409
-\loop\ifnum\count255<"44F
-  \advance\count255 by 1
-  \makecyrmathletter{\count255}
-\repeat
-
-\def\la{\leftarrow}
-\def\ra{\rightarrow}
-\def\lra{\leftrightarrow}
-\def\La{\Leftarrow}
-\def\Ra{\Rightarrow}
-\def\Lra{\Leftrightarrow}
-\def\lrh{\leftrightharpoons}
-\def\btu{\bigtriangleup}
-
-\def\N{\mathbb{N}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-
-\def\d{\mathup{d}}
-
-\def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
-\def\eqDef{\stackrel{\mathrm{Def}}{=}}
-
-\renewcommand{\le}{\leqslant}
-\renewcommand{\ge}{\geqslant}
-
-%% Change Chapter and Section numeration style
-\renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\arabic{section}}
-
-%% Environment for theorem body
-\newcounter{theorem}[section]
-\renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
-\newcommand*{\theoremheader}[1]{\par\refstepcounter{theorem}%
-\textbf{Теорема \thetheorem.\ifthenelse{\equal{#1}{}}{}{ #1.}}}
-\newenvironment*{theorem}[1]{%
-\theoremheader{#1}%
-}{%
-\par%
-}
-
-%% Environment for consequence body
-\newcounter{conseq}[theorem]
-\renewcommand{\theconseq}{\arabic{conseq}}
-\newcommand*{\conseqheader}{\par\refstepcounter{conseq}%
-\textit{Следствие \thetheorem.} }
-\newenvironment*{conseq}{%
-\conseqheader%
-}{%
-\par%
-}
-
-%% Environment for proof body. I like this style, but you are free to change it.
-\newenvironment{proof}{%
-\par$\blacktriangleright$%
-}{%
-\hfill$\blacktriangleleft$\par%
-}
-
-%% Environment for definitions. Pretty raw one.
-\newenvironment{Def}{%
-\par$\mathfrak{Def\colon}$%
-}{%
-\par%
-}
-
-%% Environment for remarks.
-\newenvironment{Rem}{%
-\par\textit{REM: }%
-}{%
-\par%
-}
-
-%% In-line code highlighting. Using: \py|a = input()|
-% \newmintinline[cinl]{c}{} %\c is defined :(
-% \newmintinline[cpp]{cpp}{}
-% \newmintinline[python]{python}{}
-% \newmintinline[bash]{bash}{}
-% \newmintinline[make]{make}{}
-
-%% Escaped code highlighting. Using: \begin{cppcode} ... \end{cppcode}
-% \setminted{obeytabs,tabsize=4,linenos,texcomments}
-% \newminted{c}{}
-% \newminted{cpp}{}
-% \newminted{python}{}
-% \newminted{bash}{}
-% \newminted{make}{}
-
 \newcommand{\ok}{& \textcolor{green!60!black}{Правильно}}
 \newcommand{\bad}{& \textcolor{red}{Неправильно}}
 
 \begin{document}
 
 \begin{center}
-{\huge \bf Guideline} \\
+{\huge \bf Guidelines} \\
 {\Large \bf по вёрстке конспектов в \XeLaTeX} \\
 \vspace{0.5em}
 {\large \bf Авторы: Лапшин Дмитрий, Егор Суворов} \\
@@ -213,7 +86,7 @@
 	\begin{center}\begin{tabular}{|c|c|}
 	\hline
 		\begin{minipage}{8cm}
-			\begin{verbatim}
+\begin{verbatim}
 \begin{gather*}
 \int x \d x = \frac{x^2}{2} + c \\
 \int x^2 \d x = \frac{x^3}{3} + c
@@ -241,7 +114,7 @@
 		\hline
 		Это... \\\hline
 		\begin{minipage}{11.5cm}
-			\begin{verbatim}
+\begin{verbatim}
 \begin{theorem}{Теорема Больцано "--- Коши}
 $f\colon [a, b] \ra \R$, $f$ "--- непрерывна
 на $[a, b]$. Тогда:
@@ -265,21 +138,36 @@ c \in (a, b)\colon f(c) = C\]
 	Последовательности кванторов отделяем запятыми и \verb'\colon' (в зависимости от квантора):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}$\forall a \exists b
-\forall c P(A, B, C)$\end{verbatim}\end{minipage}
-		           & $\forall a \exists b \forall c: P(A, B, C)$ \bad \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}$\forall a: \exists b:
-\forall c: P(A, B, C)$\end{verbatim}\end{minipage}
-		           & $\forall a: \exists b: \forall c: P(A, B, C)$ \bad \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}$\forall a\colon \exists b\colon
-\forall c\colon P(A, B, C)$\end{verbatim}\end{minipage}
-		           & $\forall a\colon \exists b\colon \forall c\colon P(A, B, C)$ \bad \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}$\forall a, \exists b\colon
-\forall c, P(A, B, C)$\end{verbatim}\end{minipage}
-		           & $\forall a, \exists b\colon \forall c, P(A, B, C)$ \ok \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}$\exists a\colon \forall b,
-\exists c\colon P(A, B, C)$\end{verbatim}\end{minipage}
-		           & $\exists a\colon \forall b, \exists c\colon P(A, B, C)$ \ok \\
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+$\forall a \exists b 
+\forall c P(A, B, C)$
+\end{verbatim}
+		\end{minipage} & $\forall a \exists b \forall c: P(A, B, C)$ \bad \\
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+$\forall a: \exists b: 
+\forall c: P(A, B, C)$
+\end{verbatim}
+		\end{minipage} & $\forall a: \exists b: \forall c: P(A, B, C)$ \bad \\
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+$\forall a\colon \exists b\colon 
+\forall c\colon P(A, B, C)$
+\end{verbatim}
+		\end{minipage} & $\forall a\colon \exists b\colon \forall c\colon P(A, B, C)$ \bad \\
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+$\forall a, \exists b\colon
+\forall c, P(A, B, C)$
+\end{verbatim}
+		\end{minipage} & $\forall a, \exists b\colon \forall c, P(A, B, C)$ \ok \\
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+$\exists a\colon \forall b,
+\exists c\colon P(A, B, C)$
+\end{verbatim}
+		\end{minipage} & $\exists a\colon \forall b, \exists c\colon P(A, B, C)$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
@@ -358,7 +246,7 @@ c \in (a, b)\colon f(c) = C\]
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
 		\begin{minipage}{8cm}
-			\begin{verbatim}
+\begin{verbatim}
 Докажем по индукции:
 \begin{description}
 \item[База:] Для $n = 1$ всё 
@@ -420,7 +308,7 @@ c \in (a, b)\colon f(c) = C\]
 			\hline Это... & ...верстается так & \\
 			\hline
 			\begin{minipage}{10cm}
-				\begin{verbatim}
+\begin{verbatim}
 $\overline{z_1z_2} = 
 \overline{z_1}\overline{z_2}$
 \end{verbatim}
@@ -482,24 +370,28 @@ $\overline{z_1z_2} =
 
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline Это... & ...верстается так \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
 \[\begin{aligned}
     a &= b & c &= 0 + d \\
 0 + a &= b & c &= d \\
 \end{aligned}\]
-\end{verbatim}\end{minipage}
+\end{verbatim}
+		\end{minipage}
         &
 		\begin{minipage}{0.35\linewidth}
 \[\begin{aligned}
     a &= b & c &= 0 + d \\
 0 + a &= b & c &= d \\
 \end{aligned}\]\end{minipage} \\
-		\hline \begin{minipage}{0.5\linewidth}\begin{verbatim}
+		\hline \begin{minipage}{0.5\linewidth}
+\begin{verbatim}
 \begin{align*}
     a &= b + 0 & c &= 0 + d \\
 0 + a &= b & 0 + c &= d \\
 \end{align*}
-\end{verbatim}\end{minipage}
+\end{verbatim}
+		\end{minipage}
         &
 		\begin{minipage}{0.35\linewidth}
 \[\begin{aligned}
@@ -619,7 +511,7 @@ y &= \sin^2 ax \cos bx = \\
 	До \\
 	\hline
 	\begin{minipage}{0.9\textwidth}
-		\begin{verbatim}
+\begin{verbatim}
 Архимед родился в Сиракузах, греческой колонии на
 острове Сицилия. Отцом Архимеда был математик и
 астроном Фидий, состоявший, как утверждает Плутарх,
@@ -634,7 +526,7 @@ y &= \sin^2 ax \cos bx = \\
 	\hline После \\
 	\hline
 	\begin{minipage}{0.9\textwidth}
-		\begin{verbatim}
+\begin{verbatim}
 Архимед родился в Сиракузах, греческой колонии на острове Сицилия.
 Отцом Архимеда был математик и астроном Фидий, состоявший, как
 утверждает Плутарх, в близком родстве с Гиероном II, тираном Сиракуз.
