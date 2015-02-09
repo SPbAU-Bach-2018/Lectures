@@ -221,25 +221,26 @@
 	Если хотим поставить одну выключную формулу, то вместо \verb!$$...$$! используем \verb!\[...\]!.
 
 \item 
-	Математику в условии теоремы, утверждения пишем в тексте (\verb'$...$'), а вывод "--- уже выделенно (\verb'\begin{gather*}').
+	Математику в условии теоремы, утверждения пишем в тексте (\verb'$...$'), а вывод "--- уже выделенно (\verb'\begin{gather*}'):
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
-		\begin{minipage}{8.6cm}
+		Это... \\\hline
+		\begin{minipage}{11.5cm}
 			\begin{verbatim}
-\begin{theorem}{Теорема Больцано
-"--- Коши}
-$f\colon [a, b] \ra \R$, $f$ 
-"--- непрерывна на $[a, b]$. Тогда
-$$\forall C\in [f(a), f(b)]\: 
-\exists c \in (a, b)\colon f(c) = C$$
+\begin{theorem}{Теорема Больцано "--- Коши}
+$f\colon [a, b] \ra \R$, $f$ "--- непрерывна
+на $[a, b]$. Тогда:
+\[\forall C\in [f(a), f(b)], \exists
+c \in (a, b)\colon f(c) = C\]
 \end{theorem}
 \end{verbatim}
 		\end{minipage} 
-		& 
-		\begin{minipage}{8.4cm}
+		\\\hline
+		... верстается так \\\hline
+		\begin{minipage}{11.5cm}
 			\begin{theorem}{Теорема Больцано "--- Коши}
-				$f\colon [a, b] \ra \R$, $f$ "--- непрерывна на $[a, b]$. Тогда
-				\[ \forall C\in [f(a), f(b)]\: \exists c \in (a, b)\colon f(c) = C \]
+			$f\colon [a, b] \ra \R$, $f$ "--- непрерывна на $[a, b]$. Тогда:
+			\[\forall C\in [f(a), f(b)], \exists c \in (a, b)\colon f(c) = C\]
 			\end{theorem}
 		\end{minipage}
 		\\\hline
