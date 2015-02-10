@@ -91,12 +91,21 @@
 \renewcommand{\theconseq}{\arabic{conseq}}
 \newcommand*{\conseqheader}{%
 	\par\refstepcounter{conseq}%
-	\textit{Следствие \thetheorem.}%
+	\textit{Следствие \theconseq.}%
 }
-\newenvironment*{conseq}{
+\newcommand*{\conseqheaderstar}{%
+	\par%
+	\textit{Следствие.}%
+}
+\newenvironment*{conseq}{%
 	\conseqheader%
 }{%
-	\par
+	\par%
+}
+\newenvironment*{conseq*}{%
+	\conseqheaderstar%
+}{%
+	\par%
 }
 
 \newenvironment{assertion}{%
