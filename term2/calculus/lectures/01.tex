@@ -1,137 +1,162 @@
 ﻿\section{Определенный интеграл}
 
 \begin{Def}
-$\mathbb{F}$ --- множество ограниченных подмножеств $\R^2$
+	$\mathcal{F}$ --- множество ограниченных подмножеств $\R^2$
 \end{Def}
 
 \begin{Def}
-Площадь. $S: \mathbb{F} \ra [0; +\inf)$. Должны выполняться следующие свойства:
+	Площадь:
+	\[ S\colon \mathcal{F} \ra [0; +\inf) \]
+	Должны выполняться следующие свойства:
 
-\begin{enumerate}
-\item $E_1 \cap E_2 = \emptyset \Ra S(E_1 \cup E_2) = S(E_1) + S(E_2)$
-\begin{conseq}
-$E_1 \subset E_2 \Ra S(E_1) \leqslant S(E_2)$
-\end{conseq}
-\begin{proof}
-$E_2 = E_1 \cup (E_2 \setminus E_1); S(E_2) = S(E_1) + S(E_2 \setminus E_1); S(E_2 \setminus E_1) \geqslant 0$
-\end{proof}
-\item $E_1$ переводится движением в $E_2 \Ra S(E_1) = S(E_2)$
-\item $S$(прямоугольника) $=$ произведение длин сторон
-\end{enumerate} 
+	\begin{enumerate}
+	\item 
+		$E_1 \cap E_2 = \emptyset \Ra S(E_1 \cup E_2) = S(E_1) + S(E_2)$
+		\begin{conseq*}
+			$E_1 \subset E_2 \Ra S(E_1) \leqslant S(E_2)$
+		\end{conseq*}
+		\begin{proof}
+			$E_2 = E_1 \cup (E_2 \setminus E_1); S(E_2) = S(E_1) + S(E_2 \setminus E_1); S(E_2 \setminus E_1) \geqslant 0$
+		\end{proof}
+	
+	\item 
+		Если $E_1$ переводится движением в $E_2$, то $S(E_1) = S(E_2)$.
+
+	\item 
+		Площадь прямоугольника есть произведение длин сторон.
+	\end{enumerate} 
 \end{Def}
 
-\begin{theorem}{Банаха}
-Объект, обладающий такими свойствами существует, но не единственнен.
+\begin{theorem}{Теорема Банаха}
+	Объект, обладающий такими свойствами существует, но не единственнен.
 \end{theorem}
 
 \begin{theorem}{Хаусдорфа}
-$\forall n \geqslant 3$ в $\R^n$ аналогичным образом определенного объекта не существует.
+	Для любого $n \ge 3$ в $\R^n$ аналогичным образом определенного объекта не существует.
 \end{theorem}
 
 \begin{Def}
-$\sigma: \mathbb{F} \ra [0; +\inf)$ со свойствами:
-\begin{enumerate}
-\item $\sigma$(прямоугольника) $=$ произведение длин сторон
-\item $E_1 \subset E_2 \Ra \sigma(E_1) \leqslant \sigma(E_2)$
-\item Разрешаем разбивать множество на части только горизонтальными/вертикальными прямыми. Обозначаем: $E_{-}, E_{+}$
-\begin{enumerate}
-\item $E_{-} \cap E_{+} = \emptyset$
-\item $E_{-} \cup E_{+} = E$
-\end{enumerate}
-\end{enumerate} 
+	$\sigma\colon \mathcal{F} \ra [0; +\inf)$ со свойствами:
+	\begin{enumerate}
+	\item 
+		$\sigma$(прямоугольника) $=$ произведение длин сторон
+
+	\item 
+		$E_1 \subset E_2 \Ra \sigma(E_1) \leqslant \sigma(E_2)$
+	
+	\item 
+		Разрешаем разбивать множество на части только горизонтальными/вертикальными прямыми. Обозначаем: $E_{-}, E_{+}$
+		\begin{enumerate}
+			\item $E_{-} \cap E_{+} = \emptyset$
+			\item $E_{-} \cup E_{+} = E$
+		\end{enumerate}
+	\end{enumerate} 
 \end{Def}
 
 \begin{Def}
-$P$ --- прямоугольник. $|P| = \sigma(<a, b> \times <c, d>) = (b - a)(d - c)$
+	$P$ "--- прямоугольник. $|P| = \sigma(\left<a, b\right> \times \left<c, d\right>) = (b - a)(d - c)$
 \end{Def}
 
 \begin{Def}
-$\sigma(E) = \inf{\sum_{k = 1}^n |P_k|: E \subset \bigcup_{k = 1}^n P_k}$
+	$\sigma(E) = \inf{\sum_{k = 1}^n |P_k|: E \subset \bigcup_{k = 1}^n P_k}$
 \end{Def}
 
-\begin{theorem}{}
-\begin{enumerate}
-\item $\sigma$ --- площадь
-\item $\sigma$ не меняется при параллельном переносе
-\end{enumerate}
+\begin{theorem}{$\sigma$ есть площадь}
+	\begin{enumerate}
+		\item $\sigma$ --- площадь
+		\item $\sigma$ не меняется при параллельном переносе
+	\end{enumerate}
 \end{theorem}
 \begin{proof}
-\begin{enumerate}
-\item
-	$\sigma$(прямоугольника).
-	$\sum_{k = 1}^n |P_k| \geqslant P_0 \Ra \inf{\sum|P_k|} \geqslant (b - a)(d - c); $
-	берем покрытие из одного прямоугольника $\Ra \inf \leqslant (b - a)(d - c)$
-\item
-	$E_1 \subset E_2 \Ra \sigma(E_1) \leqslant \sigma(E_2); $
-	Пусть $E_2 \subset \bigcup P_k \Ra E_1 \subset \bigcup P_k \Ra$ класс покрытий $E_1$ шире класса покрытий $E_2 \Ra \inf $ меньше $\Ra \sigma(E_1) \leqslant \sigma(E_2)$
-\item
-	$E = E_{-} \cup E_{+}; ! \sigma(E) = \sigma(E_{-}) + \sigma(E_{+}) \measuredangle \bigcup P_k^{\pm}:
-	\sum|P_k^{\pm}| \leqslant \sigma(E_{\pm}) + \varepsilon \Ra \sigma(E) \leqslant \sigma(E_{-}) + \sigma(E_{+}) + 2\varepsilon;
-	\varepsilon \ra 0; \measuredangle \bigcup P_k: E \subset \bigcup P_k; $
-	делим прямой, те, прямоугольники, которые пересеклись с ней, образуют два новых прямоугольника $\Ra$ получили покрытия $E_{\pm}$
-	Инфинум суммы не меньше суммы инфинумов $\Ra$ $\sigma(E) \geqslant \sigma(E_{-}) + \sigma(E_{+})$
-\end{enumerate}
+	\begin{enumerate}
+	\item
+		$\sigma$(прямоугольника).
+		$\sum_{k = 1}^n |P_k| \geqslant P_0 \Ra \inf{\sum|P_k|} \geqslant (b - a)(d - c); $
+		берем покрытие из одного прямоугольника $\Ra \inf \leqslant (b - a)(d - c)$
+	
+	\item
+		$E_1 \subset E_2 \Ra \sigma(E_1) \leqslant \sigma(E_2); $
+		Пусть $E_2 \subset \bigcup P_k \Ra E_1 \subset \bigcup P_k \Ra$ класс покрытий $E_1$ шире класса покрытий $E_2 \Ra \inf $ меньше $\Ra \sigma(E_1) \leqslant \sigma(E_2)$
+
+	\item
+		$E = E_{-} \cup E_{+}; ! \sigma(E) = \sigma(E_{-}) + \sigma(E_{+}) \measuredangle \bigcup P_k^{\pm}:
+		\sum|P_k^{\pm}| \leqslant \sigma(E_{\pm}) + \varepsilon \Ra \sigma(E) \leqslant \sigma(E_{-}) + \sigma(E_{+}) + 2\varepsilon;
+		\varepsilon \ra 0; \measuredangle \bigcup P_k: E \subset \bigcup P_k; $
+		делим прямой, те, прямоугольники, которые пересеклись с ней, образуют два новых прямоугольника $\Ra$ получили покрытия $E_{\pm}$
+		Инфинум суммы не меньше суммы инфинумов $\Ra$ $\sigma(E) \geqslant \sigma(E_{-}) + \sigma(E_{+})$
+
+	\end{enumerate}
 \end{proof}
 
 \begin{Def}
-$f: E \ra \R ; f_+ = \max {f, 0}; f_- = \max {-f; 0}; f_\pm : E \ra [0; +\inf); $  Свойства:
-\begin{enumerate}
-\item $f = f_+ - f_- $
-\item $|f| = f_+ + f_- $
-\item $2f_\pm = |f| \pm f$
-\item $f$ --- непрерывна $ \Ra f_\pm $ непрерывна
-\end{enumerate}
+	$f: E \ra \R ; f_+ = \max {f, 0}; f_- = \max {-f; 0}; f_\pm : E \ra [0; +\inf); $  Свойства:
+	\begin{enumerate}
+		\item $f = f_+ - f_- $
+		\item $|f| = f_+ + f_- $
+		\item $2f_\pm = |f| \pm f$
+		\item $f$ --- непрерывна $ \Ra f_\pm $ непрерывна
+	\end{enumerate}
 \end{Def}
 
 \begin{Def}
-Подграфик функции. $ f \geqslant 0; P_f = {(x, y): x \in E, y \in [0; f(x)]} $
+	Подграфик функции. $ f \geqslant 0; P_f = {(x, y): x \in E, y \in [0; f(x)]} $
 \end{Def}
 
 \begin{Rem}
-$f \in C[a, b] \Ra P_f $ --- ограниченное множество
+	$f \in C[a, b] \Ra P_f $ --- ограниченное множество
 \end{Rem}
 
 \begin{Def}
-$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]$; $\int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) $
+	$f \in C[a, b]; \int_a^b f$ --- определенный интеграл функции $ f$ на $[a; b]$; $\int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) $
+\end{Def}
 Свойства:
 \begin{enumerate}
-\item $f \geqslant 0 \Ra \int_a^b f = \sigma(P_f) \geqslant 0$
-\item $\int_a^b f  = \int_a^b f_+ - \int_a^b f_- $
-\item $f \geqslant 0 \int_a^b f = 0 \Ra f \equiv 0$
-\begin{proof}
-от противного: пусть есть точка, значение в которой не ноль, тогда и в окрестности не ноль (по теореме о стабилизации знака.
-Выбираем в этой окрестности минимум по значениям и получаем прямоугольник с площадью, отличной от нуля.
-Площадь графика больше этой площади, но равна нулю --- противоречие.
-\end{proof} 
-\item $\int_a^b -f = - \int_a^b f$
-\begin{proof}
-$(-f)_+ = f_- ; (-f)_- = f_+ $
-\end{proof} 
-\item $\int_a^b C = C(b - a)$
+\item 
+	$f \geqslant 0 \Ra \int_a^b f = \sigma(P_f) \geqslant 0$
+	
+\item 
+	$\int_a^b f  = \int_a^b f_+ - \int_a^b f_- $
+
+\item 
+	$f \geqslant 0 \int_a^b f = 0 \Ra f \equiv 0$
+	\begin{proof}
+		от противного: пусть есть точка, значение в которой не ноль, тогда и в окрестности не ноль (по теореме о стабилизации знака.
+		Выбираем в этой окрестности минимум по значениям и получаем прямоугольник с площадью, отличной от нуля.
+		Площадь графика больше этой площади, но равна нулю --- противоречие.
+	\end{proof} 
+
+\item 
+	$\int_a^b -f = - \int_a^b f$
+	\begin{proof}
+		$(-f)_+ = f_- ; (-f)_- = f_+ $
+	\end{proof} 
+
+\item 
+	$\int_a^b C = C(b - a)$
+
 \end{enumerate}
-\end{Def}
 
 \section{Свойства интеграла}
 
 \begin{Rem}
-$ \sigma (E) = \sigma (E_-) + \sigma (E_+) $ --- не испортится, если убрать требование про непересечение, т.е. могут быть общие точки на прямой
+	$ \sigma (E) = \sigma (E_-) + \sigma (E_+) $ --- не испортится, если убрать требование про непересечение, т.е. могут быть общие точки на прямой
 \end{Rem}
 \begin{proof}
-Прямая --- вырожденный прямоугольник со стороной, равной нулю $ \Ra \sigma $ (прямоугольника) равна нулю $ \Ra $ не влияет на сумму.
+	Прямая --- вырожденный прямоугольник со стороной, равной нулю $ \Ra \sigma $ (прямоугольника) равна нулю $ \Ra $ не влияет на сумму.
 \end{proof}
 
 \begin{theorem}{Аддитивность интеграла}
-$f \in C[a, b]; c \in [a, b] \Ra \int_a^b f = \int_a^c f + \int_c^b f$
+	$f \in C[a, b]; c \in [a, b] \Ra \int_a^b f = \int_a^c f + \int_c^b f$
 \end{theorem}
 \begin{proof}
-$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) = \sigma ((P_{f_+})_+) - \sigma ((P_{f_-})_+) + \sigma ((P_{f_+})_-) - \sigma ((P_{f_-})_-) = \int_a^c f + \int_c^b $
+	$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}) = \sigma ((P_{f_+})_+) - \sigma ((P_{f_-})_+) + \sigma ((P_{f_+})_-) - \sigma ((P_{f_-})_-) = \int_a^c f + \int_c^b $
 \end{proof}
 
 \begin{theorem}{Монотонность интеграла}
-$ f, g \in C[a, b]; f \geqslant g \Ra \int_a^b f \geqslant \int_a^b g $
+	$ f, g \in C[a, b]; f \geqslant g \Ra \int_a^b f \geqslant \int_a^b g $
 \end{theorem}
 \begin{proof}
-$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}); \int_a^b g = \sigma (P_{g_+}) - \sigma (P_{g_-});
-f \geqslant g \Ra f_+ \geqslant g_+ \Ra P_{g_+} \subset P_{f_+} \Ra \sigma(P_{f_+}) \geqslant \sigma(P_{g_+});
--g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_{f_-} \subset P_{g_-} \Ra \sigma(P_{f_-}) \leqslant \sigma(P_{g_-});$
+	$ \int_a^b f = \sigma (P_{f_+}) - \sigma (P_{f_-}); \int_a^b g = \sigma (P_{g_+}) - \sigma (P_{g_-});
+	f \geqslant g \Ra f_+ \geqslant g_+ \Ra P_{g_+} \subset P_{f_+} \Ra \sigma(P_{f_+}) \geqslant \sigma(P_{g_+});
+	-g \geqslant -f \Ra  g_-  \geqslant f_- \Ra P_{f_-} \subset P_{g_-} \Ra \sigma(P_{f_-}) \leqslant \sigma(P_{g_-});$
 \end{proof}
