@@ -582,5 +582,25 @@ y &= \sin^2 ax \cos bx = \\
 	Любой файл должен заканчиваться переводом строки, чтобы было удобно выделять файл
 	методом <<поднялись наверх, зажали Shift, спустились вниз>>
 
+\item
+	Если у символа есть несколько имён, старайтесь использовать более точное в данном контексте,
+	используйте наши сокращения.
+	Это не только позволит избежать ошибок с похожими символами, но и сделает код более читаемым.
+	\begin{center}\begin{tabular}{|c|c|c|}
+		\hline Это... & ...верстается так & \\
+		\hline \verb'$f\colon A \xrightarrow{} B$' & $f\colon A \xrightarrow{} B$ \bad \\
+		\hline \verb'$f\colon A \rightarrow B$' & $f\colon A \rightarrow B$ \bad \\
+		\hline \verb'$f\colon A \ra B$' & $f\colon A \ra B$ \bad \\
+		\hline \verb'$f\colon A \to B$' & $f\colon A \to B$ \ok \\
+		\hline \verb'$a>0 \Leftarrow a \ge 0$' & $a>0 \Leftarrow a \ge 0$ \bad \\
+		\hline \verb'$a>0 \La a \ge 0$' & $a>0 \La a \ge 0$ \ok \\
+		\hline \verb'$a<b \Lra b>a$' & $a<b \Lra b>a$ \bad \\
+		\hline \verb'$a<b \iff b>a$' & $a<b \iff b>a$ \ok \\
+		\hline
+	\end{tabular}\end{center}
+	Если из имени символа понятно, что он предназначен для другой цели "--- не надо его использовать.
+	Например, не используйте \verb'\measuredangle' ($\measuredangle$) в качестве значка <<рассмотрим>>,
+	пишите это словами "--- лучше читается.
+
 \end{enumerate}
 \end{document}
