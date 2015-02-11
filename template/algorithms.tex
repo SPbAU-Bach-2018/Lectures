@@ -133,28 +133,26 @@
   \makeparindent\unskip
 }
 
-\begin{document}
+\newcommand{\Header}{
+  \pagestyle{empty}
 
-\pagestyle{empty}
+  \begin{center}
+    {\Large \bf Первый курс, весенний семестр} \\
+    \vspace{\sectionvskip} 
+    {\Large \bf Конспект по алгоритмам} \\
+    \vspace{\sectionvskip}
+    {Собрано {\today} в {\currenttime}}
+  \end{center}
 
-\begin{center}
-  {\Large \bf Первый курс, весенний семестр} \\
-  \vspace{\sectionvskip} 
-  {\Large \bf Конспект по алгоритмам} \\
-  \vspace{\sectionvskip}
-  {Собрано {\today} в {\currenttime}}
-\end{center}
+  \LINE
 
-\LINE
+  \vspace{1em}
+  \tableofcontents
+  \pagebreak
+}
 
-\vspace{1em}
-\tableofcontents
-\pagebreak
+\newcommand{\BeginConspect}{
+  \pagestyle{fancy}
+  \setcounter{page}{1}
+}
 
-\pagestyle{fancy}
-\setcounter{page}{1}
-
-\input{day01.tex}
-\input{day02.tex}
-
-\end{document}
