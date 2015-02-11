@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+
+% Автор: Сергей Копелиович
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage[russian]{hyperref}
+\usepackage{enumerate}
+\usepackage{datetime}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\sloppy
+\voffset=-20mm
+\textheight=235mm
+\hoffset=-25mm
+\textwidth=180mm
+\headsep=12pt
+\footskip=24pt
+
+% Основные математические символы
+\def\EPS{\varepsilon}    %
+\def\SO{\Rightarrow}     % =>
+\def\EQ{\Leftrightarrow} % <=>
+\def\t{\texttt}          %
+\def\O{\mathcal{O}}      %
+\def\NO{\t{\#}}          % #
+\newcommand{\q}[1]{\langle #1 \rangle}               % <x>
+\newcommand\URL[1]{{\footnotesize{\url{#1}}}}        %
+\newcommand{\sfrac}[2]{{\scriptstyle\frac{#1}{#2}}}  % Очень маленькая дробь
+\newcommand{\mfrac}[2]{{\textstyle\frac{#1}{#2}}}    % Небольшая дробь
+
+% Отступы
+\def\makeparindent{\hspace*{\parindent}}
+\def\up{\vspace*{-\baselineskip}}
+\def\down{\vspace*{\baselineskip}}
+\def\LINE{\vspace*{-1em}\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}}
+
+% Мелкий заголовок
+\newcommand{\THE}[1]{
+  \vspace*{0.5em}
+  {\bf \underline{#1}}%\hspace{0.5em}
+  \vspace*{0.2em}
+}
+% Другой тип мелкого заголовка
+\newcommand{\THEE}[1]{
+  \vspace*{0.5em} $\bullet$
+  {\bf #1}%\hspace{0.5em}
+  \vspace*{0.2em}
+}
+
+% Код с правильными отступами
+\newenvironment{code}{
+  \VerbatimEnvironment
+
+  \vspace{-1em}
+  \begin{minted}{c}}{
+  \end{minted}
+  \vspace{-1em}
+
+}
+
+% Формула с правильными отступами
+\newenvironment{formula}{
+ 
+  \vspace{-1.0em}
+}{
+  \vspace{-1.7em}
+  
+}
+
+% Определяем основные секции: \begin{LM}, \begin{THM}, \begin{DEF}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\theoremstyle{definition} % жирный заголовок, плоский текст
+\newtheorem{Lm}{Lemma}[subsection]
+\newtheorem{Thm}{Theorem}[subsection]
+
+\theoremstyle{plain} % жирный заголовок, курсивный текст
+\newtheorem{Def}{Def}[subsection]
+
+\theoremstyle{remark} % курсивный заголовок, плоский текст
+\newtheorem{Rem}[Thm]{Следствие} % Нумерация такая же, как и у теорем
+
+\newcommand{\Lmautorefname}{Lm}
+\newcommand{\Thmautorefname}{Thm}
+\newcommand{\Defautorefname}{Def}
+
+% Определяем ЗАГОЛОВКИ
+\def\SectionName{unknown}
+\def\AuthorName{unknown}
+
+\newlength{\sectionvskip}
+\setlength{\sectionvskip}{0.5em}
+\newcommand{\Section}[3]{
+  % Заголовок
+  \pagebreak
+  \refstepcounter{section}
+  \vspace{0.5em}
+  \addcontentsline{toc}{section}{\arabic{section}. #1}
+  \begin{center}
+    {\Large \bf Лекция по алгоритмам \NO{\arabic{section}}} \\ 
+    \vspace{\sectionvskip}
+    {\Large \bf #1} \\
+    \vspace{\sectionvskip}
+    {\large #2} \\
+  \end{center}
+
+  \LINE
+
+  % Запомнили название и автора главы
+  \gdef\SectionName{#1}
+  \gdef\AuthorName{#3}
+
+  % Заголовок страницы
+  \lhead{Алгоритмы, весна 2014/15}
+  \chead{}
+  \rhead{\SectionName}
+  \renewcommand{\headrulewidth}{0.4pt}
+
+  \lfoot{Глава \NO{\arabic{section}}}
+  \cfoot{\thepage/\pageref*{LastPage}}
+  \rfoot{Автор конспекта: \AuthorName}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+\newcommand{\Subsection}[1]{
+  \subsection{#1}
+  \vspace*{-1.5em}
+  \makeparindent\unskip
+}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+  {\Large \bf Первый курс, весенний семестр} \\
+  \vspace{\sectionvskip} 
+  {\Large \bf Конспект по алгоритмам} \\
+  \vspace{\sectionvskip}
+  {Собрано {\today} в {\currenttime}}
+\end{center}
+
+\LINE
+
+\vspace{1em}
+\tableofcontents
+\pagebreak
+
+\pagestyle{fancy}
+\setcounter{page}{1}
+
+\input{day01.tex}
+\input{day02.tex}
+
+\end{document}
