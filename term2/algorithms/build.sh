@@ -1,2 +1,4 @@
-bash ../../template/build-algorithms.sh main.tex
+#!/bin/bash
+templatedir=../../template
+TEXINPUTS=.:templatedir $templatedir/build-algorithms.sh main.tex
 
