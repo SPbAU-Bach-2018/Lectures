@@ -9,6 +9,16 @@ function get_md5cmd() {
 
 MD5CMD=$(get_md5cmd)
 ROOT_FILE=$1
+
+if [ ! -f "$ROOT_FILE.tex" ]; then
+	echo "File not found: $ROOT_FILE"
+	exit 1
+fi
+
+if [ "$OS" == "Windows_NT" ]; then
+	texify --pdf --engine=xetex --tex-option=-8bit --tex-option=-shell-escape $ROOT_FILE.tex
+fi
+
 if [ -e $ROOT_FILE.aux ]; then
   old_hash=`$MD5CMD $ROOT_FILE.aux`
 fi

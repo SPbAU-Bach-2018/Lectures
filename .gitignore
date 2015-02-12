@@ -5,3 +5,7 @@
 *.log
 *.jpg
 *.jpeg
+*.synctex.gz*
+*.pyg
+*.minted*
+_minted*

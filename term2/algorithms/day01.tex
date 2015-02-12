@@ -1,0 +1,172 @@
+\Section{Деревья поиска (начало)}{10 февраля}{Сергей Копелиович}
+
+\Subsection{Не сбалансированное дерево}
+              
+\begin{Def}{Search tree (дерево поиска)}
+ -- бинарное дерево, для каждого поддерева $t$ которого выполняется:
+\up
+\begin{formula}
+  $$(\forall z \in t.left \colon z < t.x) \vee (\forall z \in t.right \colon z > t.x)$$
+\end{formula}
+\end{Def}
+
+\up % Уменьшить вертикальный отступ
+\THE{Хранение дерева}
+
+\begin{code}
+  struct node {
+    int x;
+    node *l, *r;
+    node( int x, node *l, node *r ) : x(x), l(l), r(r) { }
+  };
+\end{code}
+
+\THE{Вставка ключа}
+
+  Первая версия:
+\begin{code}
+  bool add( node* &t, int x ) { // возвращает true, если элемент добавился 
+    if (!t) {
+      t = new node(x, 0, 0);
+      return 1;
+    }
+    if (t->x == x)
+      return 0;
+    return add(x < t->x ? t->l : t->r, x);
+  }
+\end{code}
+
+  Вторая версия, персистентная:
+\begin{code}
+  node* add( node* t, int x ) { // t без ссылки
+    if (!t) 
+      return new node(x, 0, 0);
+    if (t->x == x)
+      return t;
+    if (x < t->x)
+      return new node(t->x, add(t->l, x), t->r);
+    else
+      return new node(t->x, t->l, add(t->r, x));
+  }
+\end{code}
+
+\pagebreak\up
+\THE{Поиск вершины по ключу}
+
+\begin{code}
+  node* & lower_bound( node* &t, int x ) { // min y : y >= x
+    if (!t)
+      return t;
+    if (t->x < x)
+      return lower_bound(t->r, x);
+    node* &res = lower_bound(t->l, x);
+    return res ? res : t;
+  }
+\end{code}
+\begin{code}
+  node* & find( node* &t, int x ) { // находит элемент равный $x$
+    if (!t || t->x == x)
+      return t;
+    return find(x < t->x ? t->l : t->r, x);
+  }
+\end{code}
+  Заметим, что обе функции возвращают, ссылку, поэтому
+  следующий код находит $x$ и удаляет его вместе со всем поддеревом
+\begin{code}
+  find(root, x) = 0; // утечка памяти, возможно разименование нулевого указателя
+\end{code}
+
+\THE{Правый сосед}
+
+  Спускаемся один раз вправо, затем ``влево до упора''.
+\begin{code}
+  node*& down( node* &t ) { // возвращает ссылку на вершину
+    return t->l ? down(t->l) : t;
+  }
+  node*& right( node* &t ) { // возвращает ссылку на вершину
+    return down(t->r);
+  }
+\end{code}
+
+\THE{Удаление ключа}
+
+  Если у $v$ нет левого или правого поддерева, удалить вершину $v$ просто.
+  Если оба ребёнка присутствуют, находим ближайшего справа и делаем swap ключей с ним.
+\begin{code}
+  bool delete( node* &v ) { // удаляет конкретную вершину из дерева
+    if (!v) return 0;
+    if (!v->r) {
+      v = v->r; // утечка памяти
+    } else {
+      node* &neighbour = right(v);
+      swap(v->x, neighbour->x);
+      neighbour = neighbour->l; // утечка памяти
+    }
+    return 1;
+  }
+  bool delete( node* &t, int x ) { // удаляет по ключу
+    return delete(find(t, x));
+  }
+     
+\end{code}
+
+\begin{Thm}{Средняя глубина вершины дерева после добавления случайной перестановки из $n$ элементов равна $\O(\log n)$}.
+\label{Thm:DepthOfRandomTree}
+\begin{proof}
+  ?
+\end{proof}
+\end{Thm}
+
+\THE{Вывод дерева}
+
+Можно из дерева поиска получить за $\O(n)$ упорядоченный массив. Если обходить дерево
+слева направо, массив упорядоченный по возрастанию. Если справа налево, упорядоченный по убыванию.
+
+Обход дерева слева направо:
+  
+\begin{code}
+  void output( node* t, vector<int> &result ) { 
+    if (!t)
+      return;
+    output(t->l, result);
+    result.push_back(t->x);
+    output(t->r, result);
+  }
+\end{code}
+
+Можно дерево вывести в двухмерном, удобном для чтения виде:
+
+\begin{code}
+  void output( node* t, int dep = 0 ) { 
+    if (!t)
+      return;
+    output(t->l, dep + 1);
+    printf("%*s%d\n", 2 * dep, "", t->x);
+    output(t->r, dep + 1);
+  }
+\end{code}
+
+\Subsection{AVL-дерево}
+
+\Subsection{Дерево по неявному ключу}
+
+\Subsection{Персистентное дерево}
+
+\Subsection{Декартово дерево}
+
+\begin{Thm}{Если все $x_i$ различны, все $y_i$ различны, то декартово дерево единственно}
+\begin{proof}
+  По построению
+\end{proof}
+\end{Thm}
+
+\begin{Thm}{При выборе случайных $y_i$ средняя глубина вершины декартова дерева $\O(\log n)$}
+\begin{proof}
+  Воспользуемся \autoref{Thm:DepthOfRandomTree}
+\end{proof}
+\end{Thm}
+
+\begin{Thm}{При выборе случайных $y_i$ матожидание максимума глубин вершин декартова дерева равно $\O(\log n)$}
+
+Пока без доказательства.
+\end{Thm}
