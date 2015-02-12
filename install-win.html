@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lectures by SPbAU-Bach-2018</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/SPbAU-Bach-2018/Lectures">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/SPbAU-Bach-2018/Lectures/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/SPbAU-Bach-2018/Lectures/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Lectures</h1>
+          <p>Write once, have 5 forever</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/SPbAU-Bach-2018">SPbAU-Bach-2018</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h3><a id="Установка-под-Windows" class="anchor" href="" aria-hidden="true"><span class="octicon octicon-link"></span></a>Установка под Windows</h3>
+
+        <h4>TeX</h4>
+
+        <ul>
+          <li>Установите <a href="">MikTeX</a><li>
+          <li>Установите шрифты (скачайте, распакуйте, выберите в Проводнике все файлы и нажмите правой кнопкой Установить):
+          <ul>
+            <li><a href="">Computer Modern Unicode</a> (cm-unicode)
+            <li><a href="">Latin Modern Math</a> (lm-math)
+          </ul>
+          <li>Установите из менеджера пакетов (Пуск-&rt;MiKTeX-&rt;Maintainment-&rt;Package Manager) пакет minted. Замените файл <code>(MiKTeX)/tex/latex/minted.tex</code> на <a href="https://raw.githubusercontent.com/gpoore/minted/8353b8059010db64105dba856f7fab6ad78544c8/source/minted.sty">этот</a>.
+        </ul> 
+
+        <p>
+        Всё остальное MikTeX может установить сам &dash; когда он первый раз спросит, снимите галочку и нажмите OK. Верстайте с помощью команды
+        <pre><code>texify --pdf --engine=xetex --tex-option=-8bit --tex-option=-shell-escape &lt;ваш файл&rt;</code></pre>
+	Её можно поставить для сборки из Far по нажатию Enter (F9-&rt;Commands-&rt;File Assotiations-&rt;Insert, маска *.tex, в качестве файла укажите !.!). Аналогично, можно настроить эту команду в TeXworks в меню Правка-&rt;Настройка-&rt;Вёрстка.
+	</p>
+
+        <h4>Git</h4>
+
+        Если вы предпочитаете работу с визуальным приложением, которое, к сожалению, не даст хорошей настраиваемости, но с которым легко работать, ставьте <a href="">GitHub for Windows</a>. В ином случае, рекомендую связку Far + <a href="">консольный Git</a>
+    
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    </section>
+  </body>
+</html>
