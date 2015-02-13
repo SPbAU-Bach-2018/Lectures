@@ -45,24 +45,59 @@
 
         <ul>
           <li>Установите <a href="http://www.miktex.org/download">MikTeX</a>
-          <li>Установите шрифты (скачайте, распакуйте, выберите в Проводнике все файлы и нажмите правой кнопкой Установить):
-          <ul>
-            <li><a href="http://sourceforge.net/projects/cm-unicode/files/cm-unicode/0.7.0/cm-unicode-0.7.0-ttf.tar.xz/download">Computer Modern Unicode</a> (cm-unicode)
-            <li><a href="http://www.gust.org.pl/projects/e-foundry/lm-math/download/latinmodern-math-1959.zip">Latin Modern Math</a> (lm-math) Нужный вам файл в папке OTF.
-          </ul>
-          <li>Установите из менеджера пакетов (Пуск -&gt; MiKTeX -&gt; Maintainment -&gt; Package Manager) пакет minted. Замените файл <code>(MiKTeX)/tex/latex/minted.tex</code> на <a href="https://raw.githubusercontent.com/gpoore/minted/8353b8059010db64105dba856f7fab6ad78544c8/source/minted.sty">этот</a>.
-        </ul> 
+          <li>
+            Установите шрифты (скачайте, распакуйте, выберите в Проводнике все файлы и нажмите правой кнопкой Установить):
+            <ul>
+              <li><a href="http://sourceforge.net/projects/cm-unicode/files/cm-unicode/0.7.0/cm-unicode-0.7.0-ttf.tar.xz/download">
+                Computer Modern Unicode</a> (cm-unicode). Выберите все TTF файлы.</li>
+              <li><a href="http://www.gust.org.pl/projects/e-foundry/lm-math/download/latinmodern-math-1959.zip">
+                Latin Modern Math</a> (lm-math) Нужный вам файл в папке OTF.</li>
+            </ul>
+          </li>
+          <li>
+            Установите из менеджера пакетов (Пуск -&gt; MiKTeX -&gt; Maintainment -&gt; Package Manager) пакет minted.
+            Замените файл <code>(MiKTeX)/tex/latex/minted.tex</code> на
+            <a href="https://raw.githubusercontent.com/gpoore/minted/8353b8059010db64105dba856f7fab6ad78544c8/source/minted.sty">этот</a>.
+          </li>
+          <li>
+            Установите <a href="https://www.python.org/downloads/">Python 2</a>, если у вас его нет.
+            Пропишите его в PATH: Windows 7/8: Win+Break -&gt; Дополнительные параметры системы -&gt; Дополнитлеьно -&gt; Переменные среды.
+            Выберите PATH, допишите в него точку с запятой и путь до папки установки Python 2 (обычно <code>C:\Python27</code>),
+            а также ещё раз точку с запятой и подпапку Scripts.
+            В итоге, например, нужно дописать <pre><code>;C:\Python27;C:\Python27\Scripts</code></pre>
+          </li>
+          <li>
+            Выполните из консоли <pre><code>easy_install pygmets</code></pre>
+          </li>
+        </ul>
 
         <p>
-        Всё остальное MikTeX может установить сам &dash; когда он первый раз спросит, снимите галочку и нажмите OK. Верстайте с помощью команды
-        <pre><code>texify --pdf --engine=xetex --tex-option=-8bit --tex-option=-shell-escape &lt;ваш файл&gt;</code></pre>
-	Её можно поставить для сборки из Far по нажатию Enter (F9 -&gt; Commands -&gt; File Assotiations -&gt; Insert, маска *.tex, в качестве файла укажите !.!). Аналогично, можно настроить эту команду в TeXworks в меню Правка -&gt; Настройка -&gt; Вёрстка.
+          Всё остальное MikTeX может установить сам &ndash; когда он первый раз спросит, снимите галочку и нажмите OK.
+          Верстайте с помощью скрипта
+          <pre><code>build.cmd</code></pre>
+          Если у вас есть bash, можете вызывать <code>build.sh</code>, под Windows он тоже корректно отработает.
+	  Её можно поставить для сборки из Far по нажатию Enter: F9 -&gt; Commands -&gt; File Assotiations -&gt; F4;
+          маска *.tex, комманда &ndash; скрипт.
+          Аналогично, можно настроить эту команду в TeXworks в меню Правка -&gt; Настройка -&gt; Вёрстка.
 	</p>
 
         <h4>Git</h4>
 
-        Если вы предпочитаете работу с визуальным приложением, которое, к сожалению, не даст хорошей настраиваемости, но с которым легко работать, ставьте <a href="https://windows.github.com/">GitHub for Windows</a>. В ином случае, рекомендую связку Far + <a href="http://msysgit.github.io/">консольный Git</a>
-    
+        <p>
+          Если вы предпочитаете работу с визуальным приложением, которое, к сожалению, не даст хорошей настраиваемости, но с которым легко работать,
+          ставьте <a href="https://windows.github.com/">GitHub for Windows</a>.
+          В ином случае, ставьте <a href="http://msysgit.github.io/">консольный Git</a>.
+        </p>
+
+        <h4>Где работать.</h4>
+
+        <p>
+          Собственно, набирать TeX рекомендуется в TeXworks или Far <a href="http://acm.math.spbu.ru/~sk1/download/Far.7z">(тут уже с настройками)</a>.
+          Для просмотра PDF во время работы рекомендую Preview от TeXworks, поскольку эта программа не будет мешать менять PDF файл
+          при вёрстке и <code>git pull</code>.
+          Для работы с консольным Git рекомендуется Far или аналогичный файловый менеджер с доступом в консоль (Total Commander,...),
+          поскольку консоль Windows сама по себе не так удобна.
+        </p>
       <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     </section>
   </body>
