@@ -1,0 +1,29 @@
+2) Посчитаем сам итеграл.
+
+\begin{gather*}
+	\int\limits^{\pi/2}_0 \cos^{n} x \d x = \int \limits_0^{\pi/2} \cos^{n - 1}x(\sin x)'\d x =
+	\cos^{n - 1}x\sin x \biggr|_{0}^{\pi/2} - \int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = \\
+	= -\int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x\sin^2x\d x = \\
+	= (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x(1 - \cos^2x)\d x = (n - 1)(W_{n - 2} - W_n)
+\end{gather*}
+\[
+\begin{aligned}
+	&W_n = \frac{n - 1}{n}W_{n - 2}\\
+	&W_0 = \pi/2 \\
+	&W_1 = 1  \\
+	&W_{2n} = \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} \cdot \frac{2n - 5}{2n - 4} \cdot \dots \cdot \frac{1}{2} \cdot \pi/2 
+	= \frac{(2n - 1)!!}{(2n)!!} \cdot \pi/2 \\
+	&W_{2n + 1} = \frac{2n}{2n + 1} \cdot \frac{2n - 2}{2n - 1} \cdot \dots \cdot \frac{2}{3} \cdot 1 = \frac{(2n)!!}{(2n + 1)!!} \\
+	&\cos^{2n} x \ge \cos^{2n + 1}x \ge \cos^{2n + 2}x\text{ при }x\in[0, \pi/2] \\
+	&W_{2n} \ge W_{2n + 1} \ge W_{2n + 2} \\
+	&\frac{(2n - 1)!!}{(2n)!!}\cdot\pi/2 \ge \frac{(2n)!!}{(2n+1)(2n - 1)!!} \ge \frac{(2n + 1)!!}{(2n + 2)!!}\pi/2 \\
+	&\pi/2 \ge \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} \ge \frac{2n + 1}{2n + 2} \cdot \pi/2 \longrightarrow \pi/2 
+	\Ra \lim\limits_{n \rightarrow \infty} \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} = \pi/2 \\
+	&\textbf{Формула Валлиса:} \lim\limits_{n \rightarrow \infty} \frac{(2n)!!}{(2n - 1)!!}\cdot\frac{1}{\sqrt{2n + 1}} = \sqrt{\pi/2} \\
+	&(2n)!! = 2^nn! \\
+	&\frac{(2n)!!}{(2n - 1)!!} = \frac{((2n)!!)^2}{(2n)!} = \frac{(2^nn!)^2}{(2n)!} = 4^n\frac{n!n!}{(2n)!} = \frac{4^n}{C_{2n}^n} \\
+	&\frac{4^n}{C_{2n}^n}\cdot\frac{1}{\sqrt{2n + 1}} \sim \sqrt{\pi/2} \\
+	&C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi/2}}\cdot\underbrace{\frac{1}{\sqrt{2n + 1}}}_{\sim1/\sqrt{2n}} \sim \frac{4^n}{\sqrt{\pi n}} \Ra
+	C_{2n}^n \sim \frac{4^n}{\sqrt{\pi n}}
+\end{aligned} 
+\]
