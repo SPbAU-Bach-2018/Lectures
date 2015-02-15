@@ -1,4 +1,4 @@
 #!/bin/bash
 templatedir=../../../template
-TEXINPUTS=.:$templatedir: $templatedir/build.sh lectures
+TEXINPUTS=.:$templatedir: /bin/bash $templatedir/build.sh lectures
 
