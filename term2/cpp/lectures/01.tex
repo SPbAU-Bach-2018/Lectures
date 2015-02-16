@@ -1,0 +1,356 @@
+\section{Шаблоны}
+\subsection{Дальнейший план действий}
+
+{\bf Отчетность:}
+
+Баллы ставятся за домашние задания и практики, Домашних заданий будет больше. Что бы быть допущенным к экзамену нужно сдать все домашние задания не на ноль. 
+
+
+Чем позже язык был придуман, тем больше у него стандартная библиотека. 
+
+В С стандартная библиотека тоже есть, но в ней много чего не хватало. Прежде всего, структур данных. 
+
+Но перед  тем как изучать STL, нужно изучить еще две темы: шаблоны и исключения. 
+
+На следующем занятие(20.02.2015) большой тест на по темам прошлого семестра. Надо пересмотреть конспекты. 
+
+
+\subsection{Зачем нужны шаблоны?}
+Когда мы делали классы, мы сокрушались, что явно должны были указывать тип. 
+
+\begin{cppcode}
+class Array{
+     int *p;
+};
+\end{cppcode}
+
+И что бы хранить int и double нужно было сделать два различных класса: ArrayInt и ArrayDouble. 
+И нам бы пришлось два раза скопировать код. 
+
+Копировать код ~--- это не очень хорошо, поскольку надо читать в два раза больше кода и если нашлась ошибка в первом классе, то нужно исправлять ее и во втором.
+
+\subsection{Как люди пытались это решить в языке С?}
+
+Это делалось с помощью \#define
+
+{\bf array.h}
+
+\begin{cppcode}
+class Array{
+Type *a;
+...
+};
+
+inline Type Array::get(..){  
+...
+}
+\end{cppcode}
+
+Реализация методов должна быть в заголовочном файле, соответственно нужен inline. В отдельном файле не получится это реализовать.
+
+{\bf В основной программе} 
+\begin{cppcode}
+#define Type int;
+#include "array.h"
+
+int main() {
+    Array a;
+}
+\end{cppcode}
+         
+
+В данном примере можно использовать typedef и здесь это даже лучше, поскольку define обрабатывается в режиме препроцессора и работает со строками, ничего не зная о типах и так далее.
+
+Теперь пусть в одном и том же файле хотим иметь и массив элементов типа int и double. 
+
+{\bf main.c}
+\begin{cppcode}
+#define Type int
+#include "array.h"
+#undef Type
+#define Type double
+#include "array.h"
+#undef Type 
+
+int main() {
+}
+\end{cppcode}
+
+В результате в нас получилось что-то вроде: 
+
+\begin{cppcode}
+class Array{
+    int *a;
+};
+
+inline int Array::get...
+
+class Array{
+    double *a;
+};
+
+inline double Array::get...
+
+int main() {
+}
+\end{cppcode}
+
+Теперь у нас два объявления одинаковых классов. Такого быть не может. 
+
+Array ar; ~--- компилятор не сможет понять, что выбрать. 
+
+Нужно писать в {\bf array.h}
+\begin{cppcode}
+class Array#Type{
+    Type *a;
+}
+
+inline Array#Type::get(...) {
+
+}
+\end{cppcode}
+
+Тогда \#Type заменится на тип и получится Arrayint. Синтаксис позволяет, заменить подслово.
+
+My\#Type\#Array. Если хотим заменить слово посередине строки.
+
+\begin{cppcode}
+int main() {
+    Arrayint a;
+    Arraydouble b;
+}
+\end{cppcode}
+
+В define  проблема состоит еще в том, что мы видим не то, что видит компилятор, и ошибки выдаются уже в измененном коде.
+
+\subsection{Еще одна попытка сделать шаблоны в С} 
+
+{\bf array.h}
+
+\begin{cppcode}
+\#define DefineArray(name, type)\
+class name{\
+   type *date;\
+};
+\end{cppcode}
+
+Многострочный define. В многострочном define строчки разделяются \\
+
+Дальше идет полный код класса. 
+
+{\bf main.c}
+
+\begin{cppcode}
+#include "array.h"
+DefineArray(ArrayInt, int);
+
+main() {
+    ArrayInt a;
+}
+\end{cppcode}
+
+Подставится полный текст класса с заменой имени и типа. 
+
+\subsection{Шаблоны в С++. Синтаксис}
+         
+{\bf Array.h}
+\begin{cppcode}
+template <typename T>
+class A {
+    T* data;
+    T get(size_t index) {
+        return data[index];
+    }
+};
+\end{cppcode}
+
+{\bf Array.h}
+
+\begin{cppcode}
+template <typename T>
+class A {
+    T* data;
+    T get(size_t index);
+};
+
+template <typename T>
+T Array<T>::get(size_t index) {
+
+}
+\end{cppcode}
+
+template обозначает, что следующая единица зависит от параметров. Параметров может быть несколько. 
+
+Это должен быть один файл. Это важно. В разных файлах это быть не может, поскольку это не может быть скомпилированно. Этот код находится в h файле, но не в cpp файле.
+
+Иногда, чтобы код не разбухал, пишут несколько h файлов и в конце первого пишут \#include
+
+{\bf main.cpp}
+
+\begin{cppcode}
+#include "Array.h"
+Array <int> a;
+Array <double> b;
+Array < Array <int> > aa; 
+
+main() {
+    int c = a.get(3);
+    b.get(5);
+}
+\end{cppcode}
+
+Array < Array <int> > aa; ~--- здесь компилятор начинает путать шаблоны и сдвиг вправо, поэтому здесь лучше ставить пробел. 
+
+Препроцессор вставит весь кусок, потом компилятор создаст новое имя класса. Разница в том, что замена имени произойдет на другом этапе. 
+
+Нам ничто не мешает написать на место T любой тип. 
+
+\subsection{Требования к типу}
+
+Array< Array <int> > aa; Здесь у класса Array есть неявное требование.
+\begin{cppcode}
+Array(size_t size) {
+    data = new T[size];
+} 
+\end{cppcode}
+
+У T должен быть конструктор по умолчанию.
+
+Такие требования описаны только в документации или надо смотреть исходники.
+
+\subsection{Функции с template}
+
+\begin{cppcode}
+template <typename V>
+void reverse(Array <V> & a) {
+    for (size_t i = 0; i < a.size()/2; ++i) {
+        V t = a.get(i);
+        a.set(i, a.get(a.size() - i - 1));
+        a.set(a.size() - i - 1, t);
+    }
+} 
+
+Array <int> a;
+reverse <int> (a); 
+\end{cppcode}
+
+При вызове функции надо указать параметры шаблона. 
+
+Так делать муторно, если у функции много параметров, достаточно написать reverse(a) компилятор сам выведет нужный тип. 
+
+Задание на подумать к следующему тесту: "Приведите пример, когда компилятор не может вывести тип и его нужно указывать явно."
+
+\begin{cppcode}
+template <typename V, typename T>
+void copy(Array <V>& a, Array <T>& b);
+
+Copy <int, double> (c,d);
+Copy (c d);
+\end{cppcode}
+
+Компилятор может вывести тип, если о них можно догадаться по параметрам. 
+
+\subsection{Нужно написать функцию сортировки, которая может сортировать массивы любых типов.}
+
+sort(? array, int size)
+
+Раньше эта сортировка выглядела так:
+sort(void *array, size\_t elem\_size, size\_t size, int (*comp)(void *, void *));
+
+Теперь как сделать эту сортировку в стили ООП?
+
+\begin{cppcode}
+class compar{
+    virtal int cmp(const compar &) const = 0;
+};
+
+class Complex: public compar{
+    int cmp(...) {
+        if (....
+    }
+}
+\end{cppcode}
+
+То есть мы можем сортировать только те объекты, которые от наследованы от compar.
+
+\begin{cppcode}
+compar* array;
+
+class Complex:public compar{
+    int re;
+    int im;
+    int cmp(const compar * c) {
+        Complex * comp = (Complex)c;
+        if (re < comp -> re)
+    }
+}
+
+array[i] = new Cat();
+array[i + 1] = new Dog();
+\end{cppcode}
+
+Классы dog и cat наследуются от compar.
+
+Теперь у нас в массиве лежат разные типы, для которых по-разному определен оператор сравнения. Проблема. 
+
+compar** array;  Тип должен быть **.
+
+Мы сделали базовый класс compar(или интерфейс) и в итоге выяснили, что тип в sort должен быть compar **, что бы в памяти объекты занимали 4 байта и 
+можно было менять элементы местами. Потенциальная ошибка: наличие в массиве разных типов. 
+
+\begin{cppcode}
+template <typename T>
+void sort(T* array, size_t size) {
+}
+\end{cppcode}
+
+Здесь можно писать указатель, а не **, поскольку она будет скомпилирована, только когда у нас будет уже конкретный массив собак.
+
+\begin{cppcode}
+Dog *d = new Dog[100];
+sort <Dog> (d, 100);
+
+int *i = new int[100];
+sort <int> (i, 100);
+\end{cppcode}
+
+Неявное требование к типам, у типа должен быть оператор <.
+
+\subsection{Константы в шаблонах}
+
+В шаблонную переменную можно передавать константу. 
+
+\begin{cppcode}
+template <typename T, size_t Size>
+class Array{
+    public: 
+        T arr[Size];
+};
+\end{cppcode}
+
+Array <int, 100> a; ~--- значит а будет массив размера 100.
+
+\subsection{Cпециализация}
+
+Если мы хотим, например, сэкономить память и bool хранить в char.
+
+\begin{cppcode}
+template <typename T>
+class Array{ 
+
+}
+\end{cppcode}
+
+Отдельно выделяем класс bool  и его нужно написать целиком. То есть, если другой тип, будет использован первый вариант, второй специально для bool.
+
+\begin{cppcode}
+template <>
+class Array<bool>{ 
+    set(){
+    }
+    char *data
+}
+\end{cppcode}
+
+
+
