@@ -134,6 +134,9 @@
 }
 
 \setcounter{MaxMatrixCols}{40}
+\makeatletter
+\def\tableofcontents{\section*{\contentsname}\@starttoc{toc}}
+\makeatother
 
 \AtBeginDocument{\newcommand{\BigHeader}[3]{%
 	\begin{center}
@@ -144,4 +147,11 @@
 	\vspace{0.5em}
 	{Собрано: \today~\currenttime} \\
 	\end{center}
+
+    \hrulefill
+
+    {
+    \let\clearpage\relax
+    \tableofcontents
+    }
 }}
