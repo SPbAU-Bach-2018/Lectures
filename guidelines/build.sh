@@ -1,2 +1,3 @@
 #!/bin/bash
-/bin/bash ../template/build.sh guidelines
+templatedir=../template
+TEXINPUTS=.:$templatedir: $templatedir/build.sh guidelines
