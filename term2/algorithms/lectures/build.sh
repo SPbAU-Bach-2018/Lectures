@@ -1,3 +1,3 @@
 #!/bin/bash
-templatedir=../../template
+templatedir=../../../template
 TEXINPUTS=.:$templatedir /bin/bash $templatedir/build-algorithms.sh main.tex
