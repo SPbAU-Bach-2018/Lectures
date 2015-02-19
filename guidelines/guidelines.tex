@@ -325,11 +325,11 @@ $\overline{z_1z_2} =
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
 			\hline \verb'$<G, \cdot>$' & $<G, \cdot>$ \bad \\
-			\hline \verb'\langle G, \cdot \rangle' & $\langle G, \cdot \rangle$ \ok \\
-			\hline \verb'\left<G, \cdot \right>' & $\left<G, \cdot \right>$ \ok \\
+			\hline \verb'$\langle G, \cdot \rangle$' & $\langle G, \cdot \rangle$ \ok \\
+			\hline \verb'$\left<G, \cdot \right>$' & $\left<G, \cdot \right>$ \ok \\
 			\hline \verb'$<a, \cfrac23>$' & $<a, \cfrac23>$ \bad \\
-			\hline \verb'\langle a, \cfrac23\rangle' & $\langle a, \cfrac23\rangle$ \bad \\
-			\hline \verb'\left<a, \cfrac23\right>' & $\left<a, \cfrac23\right>$ \ok \\
+			\hline \verb'$\langle a, \cfrac23\rangle$' & $\langle a, \cfrac23\rangle$ \bad \\
+			\hline \verb'$\left<a, \cfrac23\right>$' & $\left<a, \cfrac23\right>$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 	
@@ -344,7 +344,7 @@ $\overline{z_1z_2} =
 		\end{tabular}\end{center}
 
 	\item
-		Используемые математические символы:
+		Используемые математические символы (обратите внимание, обычно они задаются наоборот, мы упростили жизнь):
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
 			\hline \verb'$\varepsilon$' & $\varepsilon$ \bad \\
@@ -353,6 +353,29 @@ $\overline{z_1z_2} =
 			\hline \verb'$\phi$' & $\phi$ \ok \\
 			\hline
 		\end{tabular}\end{center}
+
+	\item
+		Набор длинных стрелок с подписями идёт с помощью комманд \verb|\xlongrightarrow| и аналогичных:
+		\begin{center}\begin{tabular}{|c|c|c|}
+			\hline Это... & ...верстается так & \\
+			\hline \verb'$\stackrel{ab=1}{\Ra}$' & $\stackrel{ab=1}{\Ra}$ \bad \\
+			\hline \verb'$\xLongrightarrow{ab=1}$' & $\xLongrightarrow{ab=1}$ \ok \\
+			\hline \verb'$\xLongrightarrow[cd=3]{ab=1}$' & $\xLongrightarrow[cd=3]{ab=1}$ \ok \\
+			\hline
+		\end{tabular}\end{center}
+
+	\item
+		Сложные индексы (перед выражением или если их много) набираем с помощью \verb'\tensor':
+		\begin{center}\begin{tabular}{|c|c|c|}
+			\hline Это... & ...верстается так & \\
+			\hline \verb'$a {}_R \mid b$' & $a {}_R \mid b$ \bad \\
+			\hline \verb'$a \tensor[_R]{\mid}{} b$' & $a \tensor[_R]{\mid}{} b$ \ok \\
+			\hline \verb'${}_1^2_3^4 X_5^6_7^8$' & \bad \\
+			\hline \verb'$\tensor[_1^2_3^4]{X}{_5^6_7^8}$' & $\tensor[_1^2_3^4]{X}{_5^6_7^8}$ \ok \\
+			\hline \verb'$\tensor*{X}{*_5^{66}_{77}^8}$' & $\tensor*{X}{*_5^{66}_{77}^8}$ \ok \\
+			\hline
+		\end{tabular}\end{center}
+
 	\end{itemize}
 
 \item
