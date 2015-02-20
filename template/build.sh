@@ -17,6 +17,7 @@ fi
 
 if [ "$OS" == "Windows_NT" ]; then
 	texify --pdf --engine=xetex --tex-option=-8bit --tex-option=-shell-escape $ROOT_FILE.tex
+	exit $?
 fi
 
 if [ -e $ROOT_FILE.aux ]; then
