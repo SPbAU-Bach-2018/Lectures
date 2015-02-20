@@ -9,6 +9,8 @@ else
   win="0"
 fi
 
+export TEXINPUTS=$TEXINPUTS:$(cd `dirname $0`; pwd):
+
 for f in $1; do
   name=${f/.*}
   echo Compile $name
