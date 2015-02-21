@@ -15,8 +15,11 @@ if [ ! -f "$ROOT_FILE.tex" ]; then
 	exit 1
 fi
 
+export TEXINPUTS=$TEXINPUTS:$(cd `dirname $0`; pwd):
+
 if [ "$OS" == "Windows_NT" ]; then
 	texify --pdf --engine=xetex --tex-option=-8bit --tex-option=-shell-escape $ROOT_FILE.tex
+	exit $?
 fi
 
 if [ -e $ROOT_FILE.aux ]; then
