@@ -97,6 +97,18 @@
 	\par%
 }
 
+\newcounter{lemma}[section]
+\renewcommand{\thelemma}{\arabic{lemma}}
+\newcommand*{\lemmaheader}{%
+	\par\refstepcounter{lemma}%
+	\textit{Лемма \thelemma.}%
+}
+\newenvironment*{lemma}{%
+	\lemmaheader%
+}{%
+	\par%
+}
+
 \newenvironment{assertion}{%
 	\par%
 	\textbf{Утверждение.}%
