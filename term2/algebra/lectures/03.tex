@@ -1,0 +1,168 @@
+\section{Факториальные кольца}
+\begin{Def}
+    В кольце $R$ выполнена теорема об однозначном разложение на множетели.
+    \begin{enumerate}
+        \item $$a \in R^{*} \setminus \{0\}$$
+        $$a = \epsilon \prod_{i = 1}^n p_i $$
+        $$\epsilon \in R^{*}, n \ge 0, p_i \text{"--- неприв.}$$
+        Или эквивалентное условие
+        $$a \in R, a\notin \{0\} \cup R^{*}$$
+        $$a = \prod_{i = 1}^{n} p_i, n \ge 1$$
+
+        \item $$0 \ne a = \epsilon, \prod_{i = 1}^{n}p_i = \eta \prod_{j = 1}^{n} q_{j}$$
+        $$\epsilon, \eta \in R^{*}, p_i,q_i \text{ "--- неприв.} \Ra n = m$$
+        $$\text{и } \exists \sigma \in S_n \colon \forall i = 1 \ldots n \colon p_i \sim q_{\sigma(i)}$$
+    \end{enumerate}
+    Такое кольцо называется факториальным (unique factorization domain UFD)
+\end{Def}
+
+\textbf{Пример не факториального кольца}
+$$R = \Z[\sqrt{-5}] = \{a + b\sqrt{-5}\mid a, b \in \Z\}$$
+
+\textbf{Упражнение}
+
+$$6 = 2 \cdot 3 = (1 + \sqrt{5}i)(1 - sqrt{5}i)$$
+\begin{proof}
+$2, 3, 1 + \sqrt{5}i, 1 - \sqrt{5}i$ "--- неприводимые, попарно не ассоциированные. 
+$$N \colon \Z[\sqrt{-5}] \to \N \cup \{0\}$$
+$$N(a + b \sqrt{5}i) = |a + b\sqrt{5}i|^2 = a^2 + 5b^2$$
+$$N(z_1, z_2) = N(z_1)N(z_2)$$
+$$z_{1} \in R^{*}$$
+$$z_{1}z_{2} = 1$$
+$$N(z_1)N(z_2) = N(1) = 1$$
+$$x_1 = a + b\sqrt{5}i$$
+$$a^2 + 5b^2 \in \Z$$
+$$a^2 + 5b^2 = 1, b = 0, a = \pm 1$$
+$2, 3, 1 \pm \sqrt5i$ "--- неприводимые, попарно не ассоциированны.
+$$\Z[\sqrt5]^* = \{\pm1\} \Ra 2, 3, 1 \pm \sqrt{-5} \text{ "--- попарно не ассоц.}$$
+
+$$z_1z_2 = 1$$
+$$N(z_1) = 1, z_1 = \pm 1$$
+$$N(z_2) = 1, z_2 = \pm 1$$
+
+
+$$2 = z_1z_2$$
+$$4 = N(2) = N(z_1)N(z_2)$$
+$$N(z_1) = N(z_2) = 2 \text{"--- невозм.}$$
+$$z_1 = a + b\sqrt{-5}$$
+$$a^2 + 5b^2 = 2 \text{ нет решений в $\Z$}$$
+
+$$N(1 + \sqrt{5}i) = 6$$
+$$1 \pm \sqrt{5}i = z_1z_2$$
+
+6 1
+
+1 6
+
+2 3
+
+3 2
+
+Нет элементов нормы 2 $\Ra$ нет решений.
+
+$$9 = N(3) = N(z_1)N(z_2)$$
+
+9 1
+
+1 9
+
+3 3
+
+$a^2 + 5b^2 = 3$ "--- нет решений в целых $\Ra$ нет элементов нормы 3.
+
+\end{proof}
+
+\textbf{Замечание:} В этом же колце не для всех пар определен gcd.
+
+\textbf{Докажем:} ОГИ "--- факториальны.
+
+$K[x_1, \cdots, x_n]$ "--- факториально(но не ОГИ $n \ge 2$)
+
+$\Z[x_1, \cdots, x_n]$ "--- факториально(но не ОГИ, если $n \ge 1$)
+
+R "--- факториальная о.ц. $\Ra R[x]$ "--- факториальна.
+
+
+\section{Нёторовы кольца и условия обрыва возрастающих цепей идеалов}
+
+$R$ "--- комм. кольцо
+
+Выполнено условие обрыва возраст. цепей идеалов, если $I_1 \subset I_2 \cdots (I_j)$ "--- идеалы.
+
+$\exists n \colon I_n = I_{n + 1} = \cdots$
+
+(нет бесконечных строго возрастающих цепочек)
+
+$I_1 \subsetneq I_2 \subsetneq I_3 \cdots$ "--- такие цепочки невозможны. 
+
+\begin{Def}
+Кольцо, в котором выполняется условие обрыва возрастающей цепочки идеалов, называется Нётеровым.
+\end{Def}
+
+\begin{exmp}
+$\Z$ "--- нётерово.
+
+$(m)$
+
+$$(m_1) \subset (m_2) \subset \cdots $$
+
+$$m_1 \vdots m_2 \vdots m_3 \cdots m_i$$
+\end{exmp}
+
+\begin{theorem}{}
+Следующие условия равносильны
+\begin{enumerate}
+    \item $R$ "--- нётерово.
+    \item Всякий идеал в $R$ конечно поражден.
+\end{enumerate}
+\end{theorem}
+
+\begin{conseq}
+    R "--- ОГИ $\Ra$ R нётерово $\Ra$  в R выполнено условие обрыва возраст. цепей идеалов. 
+\end{conseq}
+
+\begin{proof}
+\textbf{$1) \Ra 2):$}
+
+$I$ "--- идеал в R
+
+$$a_1 \in I$$
+
+$$I = (a_1)\colon ok$$
+$$I \ne (a_1) \Ra \exists a_2 \in I \setminus (a_1)$$
+$$(a_1, a_2)$$
+$$I = (a_1, a_2)\colon ok$$
+$$I \ne (a_1, a_2) \Ra \exists a_3 \in I \setminus (a_1, a_2)$$
+$$(a_1) \subsetneq (a_1, a_2) \subsetneq (a_1, a_2, a_3) \cdots$$
+
+так как $R$ Нётерово, то цепочка обрывается. 
+
+$$\exists n \colon  I = (a_1, \cdots a_n)$$
+
+\textbf{$2) \Ra 1):$}
+
+$$I_{1} \subset I_2 \subset \cdots \subset I_{k} \subset \cdots$$
+$$I = \cup_{j = 1}^{\infty} I_{j} \text{"--- идеал в} R$$
+$$a, b \in I$$
+$$\exists i, j a \in I_{i}, b \in I_{j}$$
+$$m = max(i, j)$$
+$$I_j, I_i \subset I_{m} \Ra a, b \in I_{m}$$
+$$a\pm b \in I_m \Ra a \pm b \in \cup I_{j} = I$$
+$$a \in I, r \in R$$
+$$\exists j \colon a \in I_j, r \in R, ra \in I_{j} \Ra ra \in \cup_{j}I_j = I$$
+
+$I$ "--- идеал. 
+
+$I$ "--- конечно порожден $\exists a_1, \cdots, a_n$
+
+$$I = (a_1, \cdots, a_n)$$
+
+$$a_1 \cdots a_n \in \cup_{j} I_j$$
+$$\exists j_k\colon a_k \in I_{j_k} k = 1 \cdots n$$
+$$m =max(j_1, \cdots, j_k)$$
+$$I_{j_{k}} \subset I_m$$
+$$a_1, \cdots, a_k \subset I_{m}$$
+$$(a_1, \cdots, a_k) \subset I_m \subset I_{m + 1} \subset \cdots$$
+$$\subset \cup_{j} I_{j} = I = (a_1, \cdots, a_n)$$
+$$\Ra I_m = I_{m + 1} = \cdots$$
+\end{proof}

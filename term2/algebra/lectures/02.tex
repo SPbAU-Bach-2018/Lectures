@@ -189,6 +189,32 @@ $\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right
 	$\mathbb{Z}, K\left[x\right], \mathbb{Z}\left[i\right] $ "--- ОГИ ($K$ "--- поле)
 \end{conseq}
 
+\subsubsection{Алгоритм Евклида поиска НОД в Евклидовых кольцах}
+$R$ "--- евклидово кольцо. $a, b \in R$
+
+$b = 0\colon gcd(a, 0) = a = a \cdot 1 + 0 \cdot 0$
+
+$b \ne 0:$
+
+$$r_i, x_i, y_i$$
+$$r_i = ax_i + by_i$$
+$$r_0 = a, x_0 = 1, y_0 = 0$$
+$$r_1 = b, x_1 = 0, y_1 = 1$$
+$$r_{i - 1} = r_iq_i + r_{i + 1}$$
+$$r_{i + 1} = 0 \vee \lambda(r_{i + 1}) < \lambda(r_{i})$$
+Продолжаем до тех пор, пока не получим нулевой остаток. 
+$$\lambda(r_1) > \lambda(r_2) > \cdots > \lambda(r_i) > \cdots$$
+$$\exists n  r_{n + 1} = 0$$
+$$r_{i + 1} = r_{i - 1} - r_{i}q_{i} = $$
+$$= (ax_{i - 1} + by_{i - 1}) - (ax_{i} + by_{i})q_{i} = $$
+$$=a(x_{i - 1} - x_iq_i) + b(y_{i - 1} - y_iq_i)$$
+$$x_{i + 1} = x_{i - 1} - x_iq_i$$
+$$y_{i + 1} = y_{i - 1} - y_iq_i$$
+$$r_{n + 1} = 0, r_n \ne 0$$
+$$gcd(a, b) = r_n = ax_n + by_n$$
+$$gcd(r_{i + 1}, r_i) = gcd(r_iq_i + r_{i + 1}, r_i) = gcd(r_{i - 1}, r_i) = gcd(r_i, r_{i + 1})$$
+$$gcd(a, b) = gcd(r_0, r_1) = gcd(r_1, r_2) = \cdots = gcd(r_n, r_{n + 1}) = gcd(r_n, 0) = r_n$$
+
 \section{Неприводимый, состовные и простые элементы}
 $R$ "--- область целостности 
 \begin{Def}
@@ -205,3 +231,65 @@ $R$ "--- область целостности
 	\left(a \mid bc \Rightarrow a \mid b \text{ или } a \mid c \right)$ 
 \end{Def}
 
+$$p|ab \Ra p|a \vee p|b$$
+$R$ "--- область целостности
+
+$\{0\}\cup R^{*} \cup \{$ неприв. $\} \cup \{$ составные $\}$
+
+\begin{theorem}{}
+\begin{enumerate}
+    \item $R$ ~--- о.ц.
+
+    Всякий простой элемент неприводим.
+    \item $R$ ~--- ОГИ, всякий неприводимый простой. 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+    \item $p\in R, p$ "--- простой.
+    $$p = ab \Ra a|p, b|p$$
+    $$p|ab \xLongrightarrow[\text{p "--- простой}]{} p|a \cup p|b$$
+    $$
+    \begin{matrix}
+    p|a \wedge a|p \Ra a \sim p, b \in R^{*}\\
+    p|b \wedge b|p \Ra b \sim p, b \in R^{*}\\
+    \end{matrix} 
+     \Ra p \text{"--- неприводим}\\
+    $$
+    \item $R$ "--- ОГИ
+
+    $p$ "--- неприводимый.
+    $$p|ab$$
+    $p|a (ok)$
+   
+    $p \nmid a:$
+    $$(p, a) = (d)$$
+    $$p = dv$$
+    $$d \nsim p (\text{Если $d \sim p$, то $p|d|a !?$})$$
+    $$
+    \begin{matrix}
+    p = dv\\
+    p \nsim d\\
+    p \text{ "--- неприв.}\\
+    \end{matrix} 
+    \Ra d \in R^{*}
+    $$
+    $$(p, a) = (d) = (1)$$
+    $p, a$ "--- вз. просты.
+    $$
+    \begin{matrix}
+    p|ab\\
+    p \text{ вз. прост с } a\\
+    \end{matrix} 
+    \Ra p|b
+    $$
+    $$\Ra p \text{"--- простой}$$   
+\end{enumerate}
+\end{proof}
+
+prume "--- простой.
+
+irreducible "--- неприв.
+
+composite "--- состав.
