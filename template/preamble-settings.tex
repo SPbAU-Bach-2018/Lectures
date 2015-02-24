@@ -77,12 +77,18 @@
 \newtheorem{Rem}{Замечание}[section]
 \newtheorem{exmp}{Пример}[section]
 
+\newcommand{\proofbegin}{$\blacktriangleright$}
+\newcommand{\proofend}{$\blacktriangleleft$}
+
+% http://tex.stackexchange.com/a/67740
 \renewenvironment{proof}{%
-	\par%
-	$\blacktriangleright$%
+	\begin{adjustwidth}{0pt}{\widthof{\proofend}}%
+	\begin{description}[labelwidth=\widthof{\proofbegin},leftmargin=!]%
+	\item[\proofbegin]%
 }{%
-	\hfill$\blacktriangleleft$%
-	\par%
+    \hfill\makebox[0pt][l]{\proofend}
+	\end{description}%
+	\end{adjustwidth}%
 }
 
 \setcounter{MaxMatrixCols}{40}
