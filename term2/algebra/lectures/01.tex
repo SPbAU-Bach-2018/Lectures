@@ -5,13 +5,13 @@
 $R$ "--- кольцо.
 
 \begin{Def}
-	$a$ делит $b$ слева, если 
+	$a$ делит $b$ слева, если
 	\[  \exists c \in R \colon b = ac \]
 	$a$ "--- левый делитель $b$.
 \end{Def}
 
 \begin{Def}
-	$a$ делит $b$ справа, если 
+	$a$ делит $b$ справа, если
 	\[ \exists d \in R \colon b = da \]
 	$a$ "--- правый делитель $b$.
 \end{Def}
@@ -20,13 +20,13 @@ $R$ "--- кольцо.
 \[ a \mid b \Lra  b \vdots a \]
 
 Если $R$ не коммутативно:
-$a \mid_R b$ "--- $a$ делит $b$ слева, $a {}_R\mid b$ "--- $a$ делит $b$ справа.
+$a \mid_R b$ "--- $a$ делит $b$ слева, $a \tensor[_R]{\mid}{} b$ "--- $a$ делит $b$ справа.
 
 \textbf{Свойства:}
 \begin{enumerate}
 	\item $a \mid b \land b \mid c \Ra a \mid c$
 	\item $a \mid_R b \land b \mid_R c \Ra a \mid_R c$
-	\item $a_R \mid b \land  b_R \mid c \Ra a_R \mid c$
+	\item $a \tensor[_R]{\mid}{} b \land  b \tensor[_R]{\mid}{} c \Ra a \tensor[_R]{\mid}{} c$
 	\begin{proof}
 		\begin{gather*}
 			 b = da \\
@@ -34,7 +34,7 @@ $a \mid_R b$ "--- $a$ делит $b$ слева, $a {}_R\mid b$ "--- $a$ дел�
 		\end{gather*}
 		Для делимости слева аналогично, для двусторонней "--- показать обе выкладки
 	\end{proof}
-	\item Если $R$ "--- кольцо с единицей, то $a \mid a$, $a \mid_R a$, $a_R \mid a$.
+	\item Если $R$ "--- кольцо с единицей, то $a \mid a$, $a \mid_R a$, $a \tensor[_R]{\mid}{} a$.
 	\begin{proof}
 		\[ a = a \cdot 1 = 1 \cdot a \]
 	\end{proof}
@@ -70,14 +70,14 @@ $R^*$ "--- группа, док-во было в 1 семестре.
 
 \begin{proof}
 	\begin{enumerate}
-	\item 
+	\item
 			\[ a \sim a \La a = a \cdot 1 \La 1 \in R^* \]
 	\item
 		\begin{gather*}
 			a \sim b \Ra b \sim a \\
 			a = bc, c \in R^* \\
 			\exists d \colon cd = 1 \\
-			ad = bcd = b \Ra b \sim a			
+			ad = bcd = b \Ra b \sim a
 		\end{gather*}
 	\item
 		\begin{gather*}
@@ -115,7 +115,7 @@ $R^*$ "--- группа, док-во было в 1 семестре.
 \section{Идеалы в кольце}
 $R$ "--- произвольное кольцо
 
-\begin{Def} 
+\begin{Def}
 	$\emptyset \ne I \subseteq R$ "--- левый идеал в $R$, если:
 	\begin{enumerate}
 		\item $ \forall a, b \in I \colon a \pm b \in I $
@@ -160,34 +160,37 @@ $I + I \subseteq I$, $RI \subseteq I$, $I$ "--- подкольцо $I \cdot I \s
 	\[ I = m\Z = \left\{ a \mid m \text{ делит } a \right\} \]
 	$R = M(n, K)$, где $M$ "--- кольцо матриц размера $n$ над полем $K$.
 	
-	$S \subseteq \left\{ 1, ... , n \right\}$
+	$S \subseteq \left\{ 1, \dots , n \right\}$
 
-${}_SI$ "--- множество матриц, у которых: $ \forall j \in S$, $j$-ый столбец заполнен нулями
+$\tensor[_S]{I}{}$ "--- множество матриц, у которых: $ \forall j \in S$, $j$-ый столбец заполнен нулями
 
 $I_S$ "--- множество матриц, у которых: $ \forall j \in S$, $j$-ая строка заполнена нулями
 
-${}_SI$ "--- левые идеалы не являются правыми
+$\tensor[_S]{I}{}$ "--- левые идеалы не являются правыми
 
 $I_S$ "--- правые идеалы не являются левыми
 \end{exmp}
 
 \begin{Rem}
-	Далее <<идеал>> "--- двусторонний идеал
+	Далее <<идеал>> "--- двусторонний идеал.
 \end{Rem}
 
 \subsection{Операции над идеалами}
 
 \begin{enumerate}
-	\item $I_\alpha (\alpha \in A)$ "--- идеал в кольце $R$ (левый, правый, двусторонний)
-	$I = \cap_{\alpha \in A}$ "--- идеал (левый, правый, двусторонний)
-	\item $I_1, I_2$ - идеалы в $R$ (левый, правый, двусторонний)
-	$I_1 + I_2 = \left\{  a + b \mid a \in I_1, b \in I_2 \right\}$ (левый, правый, двусторонний)
-	\item $I_1, I_2$ - идеалы в $R$
-	$I_1 \cdot I_2 = \left\{  \sum_{i=1}^k a_i b_i \mid a_i \in I_1, b_i \in I_2, k \in \N \right\}$
-	
-	$I_1$, $I_2$ "--- левый, правый, двусторонний  $\Ra$ $I_1 \cdot I_2$ "--- левый, правый, двусторонний
-	
-	$I_1$ "--- левый, $I_2$ "--- правый $\Ra$ $I_1 \cdot I_2$ "--- двусторонний
+\item
+	$I_\alpha (\alpha \in A)$ "--- идеал в кольце $R$ (левый, правый, двусторонний).
+	$I = \bigcap_{\alpha \in A}$ "--- идеал (левый, правый, двусторонний).
+
+\item
+	$I_1, I_2$ "--- идеалы в $R$ (левые, правые, двусторонние).
+	$I_1 + I_2 = \left\{  a + b \mid a \in I_1, b \in I_2 \right\}$ "--- идеал (левый, правый, двусторонний).
+
+\item
+	$I_1, I_2$ "--- идеалы в $R$.
+	$I_1 \cdot I_2 = \left\{ \sum_{i=1}^k a_i b_i \mid a_i \in I_1, b_i \in I_2, k \in \N \right\}$
+	Если $I_1$, $I_2$ "--- левые, правые, двусторонние, то $I_1 \cdot I_2$ "--- левый, правый, двусторонний.
+	Если $I_1$ "--- левый, а $I_2$ "--- правый, то $I_1 \cdot I_2$ "--- двусторонний.
 \end{enumerate}
 
 \begin{proof}
@@ -224,27 +227,26 @@ $I_S$ "--- правые идеалы не являются левыми
 
 \subsection{Идеалы, порождённые семейством}
 
-$R$ "--- кольцо, $\left\{ a_\alpha \right\}_{\alpha \in A}, a_\alpha \in R$.
-
 \begin{Def}
-	Идеал (левый, правый, двусторонний), порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$ "--- наименьший по включению идеал (левый, правый, двусторонний) содержащий в себе это семейство.
-	
-	$ J = \cap I $
-	
-	$ \forall \alpha \in A \colon a_\alpha \in I, \exists$ (левый, правый, двусторонний) идеал
+	$R$ "--- кольцо, $\left\{ a_\alpha \right\}_{\alpha \in A}, a_\alpha \in R$.
+	Идеал (левый, правый, двусторонний), порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$ "--- наименьший по включению идеал (левый, правый, двусторонний), содержащий в себе это семейство.
+	\begin{gather*}
+	J = \bigcap_{\beta \in B} I_\beta \\
+	\forall \beta \in B, I_\beta \supset A \land \text{$B$ "--- идеал (левый, правый, двухсторонний)}
+	\end{gather*}
 \end{Def}
 
 \begin{Def}
+	Альтернативное определение
 	\begin{gather*}
-		J' = \left\{ r_1 a_{\alpha_1} + ... + r_k a_{\alpha_k} + n_1 a_{\beta_1} + ... + n_s a_{\beta_s} \right\} \\
-		k, s \in \N, \cup \left\{ 0 \right\}, r_i \in R, \alpha_i, \beta_i \in A, n_i \in \Z
+		J' = \left\{ r_1 a_{\alpha_1} + \dots + r_k a_{\alpha_k} + n_1 a_{\beta_1} + \dots + n_s a_{\beta_s} \right\} \\
+		k, s \in \N \cup \{0\}; r_i \in R; \alpha_i, \beta_i \in A; n_i \in \Z
 	\end{gather*}
 \end{Def}
 
 \begin{proof}
 	\begin{gather*}
-		J' = J = ? \\
-		J' \text{ "--- идеал}, a_\alpha \in J' \Ra J \subseteq J' \\
+		\text{$J'$ "--- идеал}, a_\alpha \in J' \Ra J \subseteq J' \\
 		a_{\alpha} \in J \Ra J' \subseteq J \\
 		r(r_1 a_{\alpha_1} + \dots + r_k a_{\alpha_k} + n_1 a_{\beta_1} + \dots + n_s a_{\beta_s}) = r r_1 a_{\alpha_1} + \dots + r r_k a_{\alpha_k} + r n_1 a_{\beta_1} + \dots + r n_s a_{\beta_s} \\
 		\sum_{i = 1}^k r_i a_{\alpha_i} \in J \\
@@ -257,29 +259,29 @@ $R$ "--- кольцо, $\left\{ a_\alpha \right\}_{\alpha \in A}, a_\alpha \in R
 \end{proof}
 
 \begin{exmp}
-$R = 2\Z$ - идеал порождённый $2$
-
-$r \cdot 2 \in 4 \Z$
-
-$r \in 2\Z$
+$R = 2\Z$ "--- идеал, порождённый 2.
+\[ \forall r \in 2\Z, r \cdot 2 \in 4\Z \]
 \end{exmp}
 
 \textbf{Обозначения:}
+\begin{itemize}
+\item
+	$\tensor[_R]{\{(a_\alpha \mid \alpha \in A)\}}{}$ "--- левый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
 
-${}_R \{(a_\alpha \mid \alpha \in A)\}$ "--- левый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$
+\item
+	$\{(a_\alpha \mid \alpha \in A)\}_R$ "--- правый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
 
-$(a_\alpha \mid \alpha \in A)_R$ "--- правый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$
-
-$(a_\alpha \mid \alpha \in A)$ "--- двусторонний идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$
+\item
+	$\{(a_\alpha \mid \alpha \in A)\}$ "--- двусторонний идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
+\end{itemize}
 
 \begin{Def}
 	Главный идеал "--- идеал, порождённый одним элементом.
 
-	\textbf{Обозначения:} 
 	\begin{gather*}
 		Ra, R(a), (a)R, aR, (a) \\
-		R^{(a_1, \dots, a_n)} = Ra_1 + \dots + Ra_n \\
-		{}^{(a_1, \dots, a_n)}R = a_1R + \dots + a_nR
+		\tensor[_R]{(a_1, \dots, a_n)}{} = Ra_1 + \dots + Ra_n \\
+		(a_1, \dots, a_n)q_R = a_1R + \dots + a_nR
 	\end{gather*}
 \end{Def}
 
@@ -288,23 +290,24 @@ $(a_\alpha \mid \alpha \in A)$ "--- двусторонний идеал, пор�
 	\begin{enumerate}
 	\item
 		\begin{itemize}
-			\item $a \mid _{R} b \iff \left(a\right)_{R} \supseteq \left(b\right)_{R}$
-			\item $a {}_{R} \mid b \iff {}_{R}\left(a\right) \supseteq {}_{R}\left(b\right)$
+			\item $a \mid _{R} b \Lra \left(a\right)_{R} \supseteq \left(b\right)_{R}$
+			\item $a \tensor[_R]{\mid}{} b \Lra \tensor[_R]{(a)}{} \supseteq \tensor[_R]{(b)}{}$
 		\end{itemize}
+
 	\item
 		$R$ "--- область целостности. \\
-			$\left(a\right) = \left(b\right) \iff a \sim b$
+			$\left(a\right) = \left(b\right) \Lra a \sim b$
 	\end{enumerate}
 	\begin{proof}
 		\begin{enumerate}
-			\item 
+			\item
 			\begin{description}
-				\item[$\Rightarrow$] 			
+				\item[$\Rightarrow$]
 				\begin{gather*}
 					a \mid_{R} b \Rightarrow \exists c \colon b=ac \\
-					\left(b\right)_{R} = \{br \mid r \in R\} = \{acr \mid r \in R\} \subseteq \left(a\right)_{R} 
+					\left(b\right)_{R} = \{br \mid r \in R\} = \{acr \mid r \in R\} \subseteq \left(a\right)_{R}
 				\end{gather*}
-				\item[$\Leftarrow$] 
+				\item[$\Leftarrow$]
 				\begin{gather*}
 					\left(b\right)_{R} \subseteq \left(a\right)_{R} \Rightarrow b \in \left(a\right)_{R} \\
 					\exists c \colon b = ac \\
@@ -313,44 +316,42 @@ $(a_\alpha \mid \alpha \in A)$ "--- двусторонний идеал, пор�
 			\end{description}
 			\item
 				\[
-				\begin{array}{rcl}
-					\begin{array}{l}
-						\left(a\right) \subseteq \left(b\right) \iff b \mid a\\
-						\left(a\right) \supseteq \left(b\right) \iff a \mid b
-					\end{array}
-					& \iff & a \sim b
-				\end{array}
+					\left\{\begin{aligned}
+						\left(a\right) \subseteq \left(b\right) &\Lra b \mid a\\
+						\left(a\right) \supseteq \left(b\right) &\Lra a \mid b
+					\end{aligned}\right.
+					\Lra a \sim b
 				\]
 		\end{enumerate}
 	\end{proof}
 \end{exmp}
 
 \begin{Def}
-	$R$ "--- коммутативное кольцо с единицей.\\
+	$R$ "--- коммутативное кольцо с единицей.
 	Всякий идеал порожденный одним элементом "--- главный.
 \end{Def}
 
 \begin{Def}
-	$R$ "--- область целостности.\\
+	$R$ "--- область целостности.
 	$R$ "--- область главных идеалов (ОГИ), если каждый идеал в нем главный.
 \end{Def}
 
 \begin{exmp}
-	$R = K\left[x, y\right]$ $R$ "--- не ОГИ
+	$R = K[x, y]$. Тогда $R$ "--- не ОГИ.
 	\begin{proof}
 		\begin{gather*}
-			I = \{f \in K\left[x,y\right] \mid f\left(0,0\right) = 0\} \\
-			\text{Если } I = \left(d\right), \text{то}
-			\begin{array}{rcccl}
-				\begin{array}{c} x \in d \\ y \in d \end{array}
-				& \Rightarrow & 
-				\begin{array}{c} d \mid x \\ d \mid y \end{array}
-				& \Rightarrow & 
-				d - const \neq 0
-			\end{array} \\
-			\text{но } d \notin I  \text{ "--- противоречие } \Rightarrow I \text{ "--- не главный идеал.}
+			I = \left\{f \in K\left[x,y\right] \mid f\left(0,0\right) = 0\right\} \\
+			I = \left(d\right) \Ra
+			\left\{\begin{aligned}
+				x \in d \\ y \in d
+			\end{aligned}\right.
+			\Ra
+			\left\{\begin{aligned}
+				d \mid x \\ d \mid y
+			\end{aligned}\right.
+			\Rightarrow
+				d = const \neq 0
 		\end{gather*}
+		но $d \notin I$ "--- противоречие. Поэтому $I$ "--- не главный идеал.
 	\end{proof}
 \end{exmp}
-
-
