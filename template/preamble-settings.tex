@@ -96,7 +96,10 @@
 \def\tableofcontents{\section*{\contentsname}\@starttoc{toc}}
 \makeatother
 
+\gdef\LectureName{}
+
 \AtBeginDocument{\newcommand{\BigHeader}[3]{%
+	\thispagestyle{plain}
 	\begin{center}
 	\textbf{\Huge #1} \\
 	\vspace{1.5em}
@@ -107,6 +110,8 @@
 	{Собрано: \today~\currenttime} \\
 	\end{center}
 
+	\gdef\LectureName{#1}
+
     \hrulefill
 
     {
@@ -115,3 +120,15 @@
     }
     \clearpage
 }}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\plainheadrulewidth}{0pt}
+\renewcommand{\plainfootrulewidth}{0.4pt}
+
+\lhead{\fancyplain{}{\LectureName}}
+\rhead{\fancyplain{}{\rightmark}}
+
+\cfoot{\thepage~из~\totalpages}
