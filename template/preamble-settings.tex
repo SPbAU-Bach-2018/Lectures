@@ -132,3 +132,8 @@
 \rhead{\fancyplain{}{\rightmark}}
 
 \cfoot{\thepage~из~\totalpages}
+\makeatletter
+\rfoot{\@ifundefined{currentauthor}{}{Автор: \currentauthor}}
+\makeatother
+
+\newcommand{\setauthor}[1]{\gdef\currentauthor{#1}}
