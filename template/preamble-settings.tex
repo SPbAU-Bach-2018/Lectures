@@ -23,44 +23,6 @@
 
 \frenchspacing
 
-\def\la{\leftarrow}
-\def\ra{\rightarrow}
-\def\lra{\leftrightarrow}
-\def\La{\Leftarrow}
-\def\Ra{\Rightarrow}
-\def\Lra{\Leftrightarrow}
-\def\lrh{\leftrightharpoons}
-\def\btu{\bigtriangleup}
-
-\def\N{\mathbb{N}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\C{\mathbb{C}}
-\def\d{\mathup{d}}
-
-\def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
-\def\eqDef{\stackrel{\mathrm{Def}}{=}}
-
-\renewcommand{\le}{\leqslant}
-\renewcommand{\ge}{\geqslant}
-\renewcommand{\leq}{\leqslant}
-\renewcommand{\geq}{\geqslant}
-
-\DeclareMathOperator{\Int}{int}
-\DeclareMathOperator{\cl}{cl}
-\DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\Dom}{Dom}
-\DeclareMathOperator{\coDom}{coDom}
-\DeclareMathOperator{\Char}{char}
-\DeclareMathOperator{\Arg}{Arg}
-\AtBeginDocument{\let\Re\relax}
-\AtBeginDocument{\newcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}}
-\AtBeginDocument{\let\Im\relax}
-\AtBeginDocument{\newcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}}
-\newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
-\newcommand{\Choose}[2]{{\left(#1 \atop #2\right)}}
-
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 
@@ -138,3 +100,5 @@
 \makeatother
 
 \newcommand{\setauthor}[1]{\gdef\currentauthor{#1}}
+
+\input{preamble-shortcuts}
