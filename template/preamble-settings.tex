@@ -7,7 +7,7 @@
 \setsansfont{CMU Sans Serif}
 \setmonofont{CMU Typewriter Text}  
 \setmathfont{Latin Modern Math}
-\newcommand{\Setminus}{\mathbin{\backslash}}
+\AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
 
 \DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
 \newcommand{\makecyrmathletter}[1]{%
