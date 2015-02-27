@@ -66,8 +66,8 @@ Node* make_balanced(Node* n) {
 			if (get_h(n->l->l) >= get_h(n->l->r)) {
 				n = right_rotation(n);
 			} else { //Это Big right rotation
-				n->l = left\_rotation(n->l); // поворот вокруг k1-k2
-				n = right\_rotation(n); //поворот вокруг k1-k3
+				n->l = left_rotation(n->l); // поворот вокруг k1-k2
+				n = right_rotation(n); //поворот вокруг k1-k3
 			}
 		} else {
 			if (get_h(n->r->r) >= get_h(n->r->l)) {
