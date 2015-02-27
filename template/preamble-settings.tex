@@ -91,12 +91,13 @@
 \renewcommand{\plainheadrulewidth}{0pt}
 \renewcommand{\plainfootrulewidth}{0.4pt}
 
-\lhead{\fancyplain{}{\LectureName}}
-\rhead{\fancyplain{}{\rightmark}}
+% We add \normalsize\rmfamily for all head/foot because of multi-page minted envs
+\lhead{\normalsize\rmfamily\fancyplain{}{\LectureName}}
+\rhead{\normalsize\rmfamily\fancyplain{}{\rightmark}}
 
-\cfoot{\thepage~из~\pageref*{LastPage}}
+\cfoot{\normalsize\rmfamily\thepage~из~\pageref*{LastPage}}
 \makeatletter
-\rfoot{\@ifundefined{currentauthor}{}{Автор: \currentauthor}}
+\rfoot{\normalsize\rmfamily\@ifundefined{currentauthor}{}{Автор: \currentauthor}}
 \makeatother
 
 \newcommand{\setauthor}[1]{\gdef\currentauthor{#1}}
