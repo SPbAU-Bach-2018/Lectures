@@ -1,110 +1,128 @@
-\section{НОД}
+\section{Наибольший общий делитель}
 \setauthor{Михаил Никонов}
 
-$R$ "--- коммутативное кольцо, $a_{1}, \dots, a_{n} \in R$
 \begin{Def}
-	$d \in R$ $d = GCD\left(a_{1}, \dots, a_{n}\right)$, если 
+	$R$ "--- коммутативное кольцо, $a_{1}, \dots, a_{n} \in R$, $d \in R$. $d$ называется наибольшим общим делителем, если
 	\begin{enumerate}
 		\item $d \mid a_{1}, \dots, d \mid a_{n}$
 		\item Если $\delta \mid a_{1}, \dots, \delta \mid a_{n}$, то $\delta \mid d$
 	\end{enumerate}
+	\[ d = \gcd \left(a_{1}, \dots, a_{n}\right) = НОД(a_1, \dots, a_n) \]
 \end{Def}
 
 \begin{Rem}
-	$R$ "--- область целостности $\Rightarrow GCD$ определен с точностью до ассоциированности. 
-	\begin{gather*}
-		\begin{array}{c}
-			\delta \mid d \\
-			d \mid \delta
-		\end{array}
-		\Rightarrow d \sim \delta
-	\end{gather*}
+	Если $R$ "--- область целостности, то $\gcd$ определен с точностью до ассоциированности.
 \end{Rem}
+\begin{proof}
+	\begin{gather*}
+		\left\{\begin{aligned}
+			\delta &\mid d \\
+			d &\mid \delta
+		\end{aligned}\right.
+		\Ra d \sim \delta
+	\end{gather*}
+\end{proof}
 
 \begin{Def}
-	$a_{1}, \dots, a_{n} \in R, 1 \in R$ \\
-	$\left(a_{1}, \dots, a_{n}\right)$ "--- взаимно просты, если $GCD\left(a_{1}, \dots, a_{n}\right) = 1$
+	$a_{1}, \dots, a_{n} \in R$, $1 \in R$.
+	$\left(a_{1}, \dots, a_{n}\right)$ "--- взаимно просты, если
+	\[ \gcd \left(a_{1}, \dots, a_{n}\right) = 1 \]
 \end{Def}
 
 \begin{conseq}
-	$GCD\left(a, b\right) = GCD\left(a - bq, b\right), q \in R$
+	$\gcd \left(a, b\right) = \gcd \left(a - bq, b\right), q \in R$
 \end{conseq}
 \begin{conseq}
-	$GCD\left(a, 0\right) = a$
+	$\gcd \left(a, 0\right) = a$
 \end{conseq}
 \begin{conseq}
-	$d = GCD\left(a_{1}, \dots, a_{n}\right), 1 \in R $ \\
-	$a_{1} = db_{1}, \dots, a_{n} = db_{n} \Rightarrow b_{1}, \dots, b_{n}$ "--- взаимно просты.
+	$d = \gcd \left(a_{1}, \dots, a_{n}\right)$, $1 \in R$, $a_{1} = db_{1}, \dots, a_{n} = db_{n}$.
+	Тогда $b_{1}, \dots, b_{n}$ "--- взаимно просты.
 \end{conseq}
 
 \begin{proof}
 	\begin{enumerate}
 	\item
-	\begin{gather*}
-		d = GCD\left(a, b\right) \\
-		\begin{array}{c} d \mid a\\ d \mid b \end{array} \Rightarrow d \mid a - bq \Rightarrow d 
-		\text{ "--- общий делитель } a-bq \text{ и } b \\
-		\text{Пусть существует } \delta \colon \begin{aligned} \delta \mid& a - bq \\ \delta \mid& b \end{aligned}
-		\text{, тогда } a = a - bq + bq \Rightarrow \delta \text{ "--- общий делитель } a \text{ и } b \Rightarrow \\
-		\Rightarrow \delta \mid d \Rightarrow d = GCD\left(a - bq, b\right)
-	\end{gather*}
+		\begin{gather*}
+			d = \gcd \left(a, b\right) \\
+			\left\{\begin{aligned}
+				d \mid a \\ d \mid b
+			\end{aligned}\right. \Ra d \mid a - bq \Ra \text{$d$ "--- общий делитель $a-bq$ и $b$}
+		\end{gather*}
+		Пусть $\exists \delta \colon \delta \mid a - bq \land \delta \mid b$. Тогда
+		\begin{gather*}
+			a = a - bq + bq \Ra \text{$\delta$ "--- общий делитель $a$ и $b$ }\Ra \\
+			\Ra \delta \mid d \Ra d = \gcd \left(a - bq, b\right)
+		\end{gather*}
+
 	\item
-	\begin{gather*}
-		\begin{array}{c} a \mid a \\ a \mid 0 \end{array} \Rightarrow a \text{ "--- общий делитель} \\
-		\begin{array}{c} \delta \mid a \\ \delta \mid 0 \end{array} \Rightarrow \delta \mid a \Rightarrow a = GCD\left(a, 0\right)
-	\end{gather*}
+		\begin{gather*}
+			\left\{\begin{aligned} a &\mid a \\ a &\mid 0 \end{aligned}\right. \Ra \text{$a$ "--- общий делитель} \\
+			\left\{\begin{aligned} \delta &\mid a \\ \delta &\mid 0 \end{aligned}\right. \Ra \delta \mid a \Ra a = \gcd \left(a, 0\right)
+		\end{gather*}
+
 	\item
-	\begin{gather*}
-		d = GCD\left(a_{1}, \dots, a_{n}\right), a_{i} = db_{i}, a_{i} \neq 0 \\
-		1 \mid b_{1}, \dots, b_{n} \\
-		\delta \mid b_{1}, \dots, b_{n} \\
-		d\delta \mid a_{1}, \dots, a_{n} \\
-		d\delta \mid d \Rightarrow \exists u \colon d\delta u = d, d \neq 0  \Rightarrow \delta u = 1 \Rightarrow \delta \mid 1
-	\end{gather*}
+		\begin{gather*}
+			d = \gcd \left(a_{1}, \dots, a_{n}\right), a_{i} = db_{i}, a_{i} \neq 0 \\
+			\begin{aligned}
+				1 &\mid b_{1}, \dots, b_{n} \\
+				\delta &\mid b_{1}, \dots, b_{n} \\
+				d\delta &\mid a_{1}, \dots, a_{n}
+			\end{aligned} \\
+			d\delta \mid d \Ra \exists u \colon d\delta u = d, d \neq 0  \Ra \delta u = 1 \Ra \delta \mid 1
+		\end{gather*}
 	\end{enumerate}
 \end{proof}
 
 \begin{theorem}{}
-	$R$ "--- коммутативное кольцо с единицей. $a_{1}, \dots, a_{n} \in R$
+	$R$ "--- коммутативное кольцо с единицей. $a_{1}, \dots, a_{n} \in R$.
 	\begin{enumerate}
-		\item Если $\left(a_{1}, \dots, a_{n}\right) = \left(d\right)$, то $d = GCD\left(a_{1}, \dots, a_{n}\right)$ и 
-		$\exists x_{1}, \dots, x_{n} \in R \colon d = a_{1}x_{1} + \dots + a_{n}x_{n}$
-		\item Если $R$ "--- ОГИ, то для $\forall a_{1}, \dots, a_{n} \exists GCD\left(a_{1}, \dots, a_{n}\right)$ и
-		допускается линейное представление
-		\item $R$ "--- ОГИ, $d = GCD\left(a_{1}, \dots, a_{n}\right) \Rightarrow \left(d\right) = \left(a_{1}, \dots, a_{n}\right)$
+	\item
+		Если $\left(a_{1}, \dots, a_{n}\right) = \left(d\right)$, то $d = \gcd \left(a_{1}, \dots, a_{n}\right)$ и
+		\[ \exists x_{1}, \dots, x_{n} \in R \colon d = a_{1}x_{1} + \dots + a_{n}x_{n} \]
+
+	\item
+		Если $R$ "--- ОГИ, то $\forall a_{1}, \dots, a_{n} \exists \gcd \left(a_{1}, \dots, a_{n}\right)$ и
+		допускается линейное представление.
+
+	\item
+		$R$ "--- ОГИ, $d = \gcd \left(a_{1}, \dots, a_{n}\right)$. Тогда
+		\[ \left(d\right) = \left(a_{1}, \dots, a_{n}\right) \]
 	\end{enumerate}
 \end{theorem}
 
 \begin{Rem}
-	Наибольший общий делитель, если и существует, то не всегда допускает линейное представление. 
+	Наибольший общий делитель, если и существует, то не всегда допускает линейное представление:
 	\begin{gather*}
-		K\left[X, Y\right], GCD\left(x, y\right) = 1\\
-		1 = xf\left(x, y\right) + yg\left(x, y\right)\\
-		\text{поставим } x = 0, y = 0 \text{ "--- противоречие}
+		K\left[X, Y\right]; \gcd \left(x, y\right) = 1\\
+		1 = xf\left(x, y\right) + yg\left(x, y\right)
 	\end{gather*}
+	Подставим $x = y = 0$ "--- противоречие.
 \end{Rem}
 
 \begin{proof}
 	\begin{enumerate}
-		\item 
-		\begin{gather*}
-			\left(a_{1}, \dots, a_{n}\right) = \left(d\right) \\
-			a_{1}, \dots, a_{n} \in \left(d\right) \\
-			a_{i} = db_{i} \Rightarrow d \mid a_{i} \Rightarrow d \text{ "--- общий делитель} \\
-			\text{С другой стороны } d \in \left(a_{1}, \dots, \right) \\
-			\exists x_{1}, \dots, x_{n} \in R \colon d = a_{1}x_{1} + \dots + a_{n}x_{n} = S \\
-			\delta \text{ "--- общй делитель } a_{1}, \dots, a_{n} \Rightarrow \delta \mid S \Rightarrow \delta \mid d
-		\end{gather*}
+		\item
+			\begin{gather*}
+				\left(a_{1}, \dots, a_{n}\right) = \left(d\right) \\
+				a_{1}, \dots, a_{n} \in \left(d\right) \\
+				a_{i} = db_{i} \Ra d \mid a_{i} \Ra \text{$d$ "--- общий делитель}
+			\end{gather*}
+			С другой стороны $d \in \left(a_{1}, \dots, a_n\right)$
+			\begin{gather*}
+				\exists x_{1}, \dots, x_{n} \in R \colon d = a_{1}x_{1} + \dots + a_{n}x_{n} = S \\
+				\delta \text{ "--- общй делитель } a_{1}, \dots, a_{n} \Ra \delta \mid S \Ra \delta \mid d
+			\end{gather*}
+
+		\item
+			Так как $d$ "--- ОГИ, то $\exists d \colon \left(d\right) = \left(a_{1}, \dots, a_{n}\right)$.
+			Значит по предыдущему пункту: $d = \gcd$ и существует линейное представление.
+
 		\item
 		\begin{gather*}
-			\exists d \colon \left(d\right) = \left(a_{1}, \dots, a_{n}\right) \text{ так как } R \text{ "--- ОГИ} \\
-			\text{значит по предыдущему пункту: } d = GCD \text{ и существует линейное представление}
-		\end{gather*}
-		\item
-		\begin{gather*}
-			d = GCD\left(a_{1}, \dots, a_{n}\right) \\
+			d = \gcd \left(a_{1}, \dots, a_{n}\right) \\
 			\left(a_{1}, \dots, a_{n}\right) = \left(\delta\right) \text{ так как ОГИ}\\
-			\text{Значит } \delta = GCD\left(a_{1}, \dots, a_{n}\right) \Rightarrow d \sim \delta \Rightarrow 
+			\text{Значит } \delta = \gcd \left(a_{1}, \dots, a_{n}\right) \Ra d \sim \delta \Ra
 			\left(d\right) = \left(a_{1}, \dots, a_{n}\right)
 		\end{gather*}
 	\end{enumerate}
@@ -115,13 +133,13 @@ $R$ "--- коммутативное кольцо, $a_{1}, \dots, a_{n} \in R$
 \end{Rem}
 
 \begin{theorem}{}
-	$R$ "--- ОГИ $a$ и $b$ "--- взаимно просты и $a \mid bc$, тогда $a \mid c$.
+	$R$ "--- ОГИ, $a$ и $b$ "--- взаимно просты и $a \mid bc$, тогда $a \mid c$.
 \end{theorem}
 \begin{proof}
 	\begin{gather*}
-		GCD\left(a, b\right) = 1 \\
-		\exists u, v \colon au+bv = 1 \mid c \Rightarrow auc + bcv = c \\
-		a \mid bc \Rightarrow a \mid c
+		\gcd \left(a, b\right) = 1 \\
+		\exists u, v \colon au+bv = 1 \mid c \Ra auc + bcv = c \\
+		a \mid bc \Ra a \mid c
 	\end{gather*}
 \end{proof}
 
@@ -129,9 +147,9 @@ $R$ "--- коммутативное кольцо, $a_{1}, \dots, a_{n} \in R$
 \section{Евклидовы кольца}
 
 \begin{Def}
-$R$ "--- область целостности, $\lambda\colon R\smallsetminus\{0\} \to \mathbb{N}$ 
-$\lambda$ "--- Евклидова функция (евклидова норма), елси $\forall a, \forall b \neq 0, \exists q, r \in R \colon a = bq + r$ и 
-$\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right)$
+	$R$ "--- область целостности, $\lambda\colon R \setminus\{0\} \to \mathbb{N}$
+	$\lambda$ "--- Евклидова функция (евклидова норма), елси $\forall a, \forall b \neq 0, \exists q, r \in R \colon a = bq + r$ и
+	$\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right)$
 \end{Def}
 
 \begin{Def}
@@ -152,14 +170,14 @@ $\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right
 		\mathbb{Z}\left[i\right] = \{u + vi \mid u, v \in \mathbb{Z}\} \\
 		\lambda\left(u + vi\right) = |u + vi|^{2} = u^{2} + v^{2}, \lambda \text{ "--- евклидова функция, что и будем доказывать.} \\
 		\text{Пусть } a = u + vi, b = s + ti, \; u,v,s,t \in \mathbb{Z}, \left(s, t\right) \neq \left(0, 0\right) \\
-		\frac{a}{b} = \frac{u + vi}{s + ti} = \frac{\left(u + vi\right)\left(s - ti\right)}{s^{2} + t^{2}} = \gamma + \delta i, 
+		\frac{a}{b} = \frac{u + vi}{s + ti} = \frac{\left(u + vi\right)\left(s - ti\right)}{s^{2} + t^{2}} = \gamma + \delta i,
 		\gamma, \delta \in \mathbb{Q} \\
 		\left<j\right> \text{ "--- ближайшее целое, } |j - \left<j\right>| \leq \frac{1}{2} \\
 		q = \left<\gamma\right> + \left<\delta\right>i, a = bq + r\\
-		r = a - vq = u + vi - \left(s + ti\right)\left(\left<\gamma\right> + \left<\delta\right>i\right) 
-		\Rightarrow r \in \mathbb{Z}\left[i\right] \\
-		\frac{\lambda\left(r\right)}{\lambda\left(b\right)} = \frac{|r|^{2}}{|b|^{2}} = \left|\frac{a - bq}{b}\right|^{2} = 
-		\left|\frac{a}{b} - q\right|^{2} = \left|\gamma + \delta i - \left<\gamma\right> - \left<\delta\right>i \right|^{2} = 
+		r = a - vq = u + vi - \left(s + ti\right)\left(\left<\gamma\right> + \left<\delta\right>i\right)
+		\Ra r \in \mathbb{Z}\left[i\right] \\
+		\frac{\lambda\left(r\right)}{\lambda\left(b\right)} = \frac{|r|^{2}}{|b|^{2}} = \left|\frac{a - bq}{b}\right|^{2} =
+		\left|\frac{a}{b} - q\right|^{2} = \left|\gamma + \delta i - \left<\gamma\right> - \left<\delta\right>i \right|^{2} =
 		\left| \gamma - \left<\gamma\right>\right|^{2} + \left|\delta - \left<\delta\right>\right|^{2} \leq \frac{1}{4} + \frac{1}{4} < 1\\
 		\lambda\left(r\right) < \lambda\left(b\right)
 		\end{gather*}
@@ -173,13 +191,13 @@ $\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right
 	\begin{gather*}
 		I \text{ "--- идеал в } R\\
 		I = \{0\} = \left(0\right) \text{ "--- главный. Пусть } I \neq \{0\}\\
-		\mathbb{N} \cup \{0\} \supseteq \Lambda = \{\lambda\left(a\right) \mid a \in I \smallsetminus \{0\} \} \neq \emptyset \Rightarrow 
+		\mathbb{N} \cup \{0\} \supseteq \Lambda = \{\lambda\left(a\right) \mid a \in I \smallsetminus \{0\} \} \neq \emptyset \Ra
 		\exists m \text{ "--- наименьший элемент в } \Lambda \\
 		\text{значит } \exists b \neq 0, b \in I \colon \lambda\left(b\right) = m\\
 		\text{Докажем, что } I = \left(b\right) \\
 		I \supseteq \left(b\right) \text{ очевидно} \\
 		a \in I, a = bq + r, r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right) = m\\
-		r = a - bq \in I, \text{ если } r \neq 0 \text{ то получаем противоречие с минимальностю } m \Rightarrow r = 0\\
+		r = a - bq \in I, \text{ если } r \neq 0 \text{ то получаем противоречие с минимальностю } m \Ra r = 0\\
 		a = bq \in\left(b\right) \\
 		I \in \left(b\right) \\
 		I = \left(b\right)
@@ -203,7 +221,7 @@ $$r_0 = a, x_0 = 1, y_0 = 0$$
 $$r_1 = b, x_1 = 0, y_1 = 1$$
 $$r_{i - 1} = r_iq_i + r_{i + 1}$$
 $$r_{i + 1} = 0 \vee \lambda(r_{i + 1}) < \lambda(r_{i})$$
-Продолжаем до тех пор, пока не получим нулевой остаток. 
+Продолжаем до тех пор, пока не получим нулевой остаток.
 $$\lambda(r_1) > \lambda(r_2) > \cdots > \lambda(r_i) > \cdots$$
 $$\exists n  r_{n + 1} = 0$$
 $$r_{i + 1} = r_{i - 1} - r_{i}q_{i} = $$
@@ -217,19 +235,19 @@ $$gcd(r_{i + 1}, r_i) = gcd(r_iq_i + r_{i + 1}, r_i) = gcd(r_{i - 1}, r_i) = gcd
 $$gcd(a, b) = gcd(r_0, r_1) = gcd(r_1, r_2) = \cdots = gcd(r_n, r_{n + 1}) = gcd(r_n, 0) = r_n$$
 
 \section{Неприводимый, состовные и простые элементы}
-$R$ "--- область целостности 
+$R$ "--- область целостности
 \begin{Def}
 	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{составной}, если $a = bc; \; b, c \notin R^{*}$
 \end{Def}
 
 \begin{Def}
-	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{неприводимый}, если из $a = bc$ следует, что 
+	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{неприводимый}, если из $a = bc$ следует, что
 	$b \in R^{*}$ или $c \in R^{*}$
 \end{Def}
 
 \begin{Def}
-	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{простой}, если $\forall b, c \in R 
-	\left(a \mid bc \Rightarrow a \mid b \text{ или } a \mid c \right)$ 
+	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{простой}, если $\forall b, c \in R
+	\left(a \mid bc \Ra a \mid b \text{ или } a \mid c \right)$
 \end{Def}
 
 \setauthor{Ольга Черникова}
@@ -243,7 +261,7 @@ $\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составны
     \item $R$ ~--- область целостности
 
     Всякий простой элемент неприводим.
-    \item $R$ ~--- ОГИ, всякий неприводимый простой. 
+    \item $R$ ~--- ОГИ, всякий неприводимый простой.
 \end{enumerate}
 \end{theorem}
 
@@ -255,8 +273,8 @@ $\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составны
     $$
     \begin{matrix}
     p|a \wedge a|p \Ra a \sim p, b \in R^{*}\\
-    p|b \wedge b|p \Ra b \sim p, b \in R^{*}\\
-    \end{matrix} 
+    p|b \wedge b|p \Ra b \sim p, b \in R^{*}
+    \end{matrix}
      \Ra p \text{"--- неприводим}\\
     $$
     \item $R$ "--- ОГИ
@@ -264,7 +282,7 @@ $\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составны
     $p$ "--- неприводимый.
     $$p|ab$$
     $p|a (ok)$
-   
+
     $p \nmid a:$
     $$(p, a) = (d)$$
     $$p = dv$$
@@ -273,8 +291,8 @@ $\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составны
     \begin{matrix}
     p = dv\\
     p \nsim d\\
-    p \text{ "--- неприводим}\\
-    \end{matrix} 
+    p \text{ "--- неприводим}
+    \end{matrix}
     \Ra d \in R^{*}
     $$
     $$(p, a) = (d) = (1)$$
@@ -282,11 +300,11 @@ $\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составны
     $$
     \begin{matrix}
     p|ab\\
-    p \text{ взаимно прост с } a\\
-    \end{matrix} 
+    p \text{ взаимно прост с } a
+    \end{matrix}
     \Ra p|b
     $$
-    $$\Ra p \text{"--- простой}$$   
+    $$\Ra p \text{"--- простой}$$
 \end{enumerate}
 \end{proof}
 
