@@ -56,18 +56,19 @@
           </li>
           <li>
             Установите из менеджера пакетов (Пуск -&gt; MiKTeX -&gt; Maintainment -&gt; Package Manager) пакет minted.
-            Замените файл <code>(MiKTeX)/tex/latex/minted.tex</code> на
+            Найдите файл <code>minted.sty</code> на компьютере и замените на
             <a href="https://raw.githubusercontent.com/gpoore/minted/8353b8059010db64105dba856f7fab6ad78544c8/source/minted.sty">этот</a>.
           </li>
           <li>
-            Установите <a href="https://www.python.org/downloads/">Python 2</a>, если у вас его нет.
+            Установите <a href="https://www.python.org/downloads/">Python 2</a>, если у вас его нет (даже если есть Python 3).
             Пропишите его в PATH: Windows 7/8: Win+Break -&gt; Дополнительные параметры системы -&gt; Дополнитлеьно -&gt; Переменные среды.
             Выберите PATH, допишите в него точку с запятой и путь до папки установки Python 2 (обычно <code>C:\Python27</code>),
             а также ещё раз точку с запятой и подпапку Scripts.
             В итоге, например, нужно дописать <pre><code>;C:\Python27;C:\Python27\Scripts</code></pre>
           </li>
           <li>
-            Выполните из консоли <pre><code>easy_install pygmets</code></pre>
+            Выполните из консоли, находясь в папке <code>C:\Python27\Scripts</code>:
+            <pre><code>easy_install pygmets</code></pre>
           </li>
         </ul>
 
