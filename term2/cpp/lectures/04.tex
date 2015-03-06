@@ -1,0 +1,206 @@
+\setauthor{Лапшин Дмитрий}
+
+Хотим перед каждым чётным числом вставить нолик.
+\begin{cppcode}
+vector<int> v;
+v.push_back();
+
+// ++it эффективнее ++it
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
+{
+	if (*it % 2 == 0)
+		v.insert(it, 0);
+}
+\end{cppcode}
+Тут возникает вопрос про инвалидацию итераторов.
+Итератор "--- некоторая абстракция над указателем, как мы помним.
+\cpp'insert' вставляет элемент ровно перед тем элементом, на который передали итератор.
+\begin{center}
+\begin{tabular}{c|cccccc}
+Было  & 0 & 2 & 1 & 3 & \\
+Стало & 0 & 0 & 2 & 1 & 3
+\end{tabular}
+\end{center}
+Как видно, после итерации цикла итератор всё ещё указывает на чётный элемент. Это не то, чего мы хотели.
+\begin{cppcode}
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
+{
+	if (*it % 2 == 0)
+	{
+		v.insert(it, 0);
+		++it;
+	}
+}
+\end{cppcode}
+Теперь работает, но инвалидация указателей всё ещё сломана.
+Если было перевыделение памяти, то итератор стал сломан и указывает на некорректную память. Поэтому стоит делать так:
+\begin{cppcode}
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
+{
+	if (*it % 2 == 0)
+	{
+		it = v.insert(it, 0);
+		++it;
+	}
+}
+\end{cppcode}
+
+\section{string}
+
+Есть строки. Есть строки с ASCII"---кодировкой
+\begin{cppcode}
+typedef basic_string<char> string;
+\end{cppcode}
+Можно объявить свою строку с Unicode через тип \cpp'wchar_t'.
+
+Строки очень удобно обрабатывать благодаря перегруженным операторам.
+\begin{cppcode}
+string s1 = "Hello, ", s2 = "World!";
+string s3 = s1 + s2;
+\end{cppcode}
+
+Строки работают по принципу Copy-on-Write (CoW).
+Это означает, что при копировании из одного контейнера в другой будет скопирован только указатель,
+и он будет так храниться до тех пор, пока контейнер не будет изменён.
+Только тогда произойдёт выделение новой памяти.
+\begin{cppcode}
+string s1 = "Hello"; // в памяти один раз "Hello"
+string s2 = s1; // в памяти один раз "Hello"
+s2 += "!"; // в памяти "Hello" и "Hello!"
+\end{cppcode}
+Но, например, такое не сможет сэкономтиь память (хотя в Java так работает):
+\begin{cppcode}
+string s1 = "Hello!"; // в памяти один раз "Hello!"
+string s2 = "Hello!"; // в памяти два раза "Hello!"
+\end{cppcode}
+
+\section{deque}
+\cpp'deque' "--- по-сути, такой же \cpp'vector' (добавление в конец, доступ к элементу), только ещё добавление и удаление из начала
+(\cpp'push_front' и \cpp'pop_front') за амортизированное $O(1)$.
+
+Типовая реализация такая: есть массив указателей на области памяти одинакого размера, а также указатель на начало и конец данных.
+Если нам нужно перевыделить память, то мы только копируем массив указателей и выделяем новые фрагменты, а старые не трогаем.
+
+\section{Работа с итераторами в шаблонах}
+
+\begin{cppcode}
+template <typename T>
+f(T* a, size_t n);
+
+vector<int> a;
+f(&(*T.begin()), v.size());
+\end{cppcode}
+
+Выглядит не очень. У \cpp'string' есть решение "--- метод \cpp'c_str()' вернёт чистую строчку \cpp'char *'.
+
+\section{pair}
+\cpp'pair' "--- шаблонный класс, позволяющий хранить два элеметна любого типа:
+\begin{cppcode}
+pair<int, string> a;
+a.first = 20;
+a.second = "Meaow!";
+\end{cppcode}
+
+\section{set}
+\cpp'set' представляет собой реализацию массива с поиком.
+Внутри он реализован как сбалансированное дерево поиска.
+Именно поэтому почти все операции работают за $O(\log n)$:
+\begin{itemize}
+	\item \verb'insert'
+	\item \verb'erase'
+	\item \verb'lower_bound'
+	\item \verb'upper_bound'
+	\item \verb'find'
+\end{itemize}
+
+Метод \cpp'insert' возвращает не просто итератор на добавленный элемент.
+\verb'set' хранит каждый элемент не более одного раза.
+Поэтому \cpp'insert' возвразщает \cpp'pair<set<T>::iterator, bool>', где второй элемент пары указывает, 
+был ли добавлен элемент, а не найден уже находящийся в контейнере.
+
+Итератор у \cpp'set' ассоциативен в том смысле, что идёт не в порядке добаления элементов, а в порядке их возрастания.
+\begin{cppcode}
+set<int> s;
+s.insert(10);
+s.insert(5);
+s.insert(1);
+// Здесь it++ гораздо менее эффективен
+for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
+	cout << *it << " "; //1 5 10
+\end{cppcode}
+
+С точки зрения инвалидации, итераторы у \cpp'set' аналогичны \cpp'list': итератор на элемент, лежащий в структуре, всегда корректен.
+Именно поэтому просто нельзя делать так (не компилируется, это бы нарушало свойства дерева):
+\begin{cppcode}
+for (set<int>::iterator it = s.begin(); it != s.end(); ++it)
+	if (*it == 5)
+		*it = 6;
+\end{cppcode}
+\cpp'set<T>::iterator::operator *' возвращает \cpp'T const &'.
+Если всё же нужно поменять значение в множестве, делаем \cpp'erase()' и \cpp'insert()'.
+
+Если нужно потроить \cpp'set()' от нашей структуры, в ней необходим оператор сравнения
+\begin{cppcode}
+bool operator <(T const &b) const
+\end{cppcode}
+Принято, что достаточно его одного. \cpp'set' сам реализует остальные сравнения через \cpp'<', хотя это не так эффективно:
+\cpp'a = b' через \cpp'!(a < b) && !(b < a)'.
+
+\section{multiset}
+
+\cpp'multiset' аналогичен \cpp'set', но может хранить равные значения сколь угодно много раз.
+
+Важное отличие: операция \cpp'multiset<T>::erase' может принимать как итератор, так и значение. Первый вариант удалит только одно значение, второй "--- все равные.
+
+\section{map}
+
+\cpp'map' реализует ассоциативный массив. На самом деле он является надстройкой над \cpp'set<key, value>'
+"--- мы ищем значение по ключу и храним некоторое значение:
+\begin{cppcode}
+map<string, int> age;
+age.insert(pair<string, int>("vaysa", 18));
+\end{cppcode}
+Чего-то грустно. В \verb'utility' есть крутая шаблонная функция, и компилятор попытается вывести типы:
+\begin{cppcode}
+age.insert(make_pair("vasya", 18));
+\end{cppcode}
+
+Как она устроена?
+\begin{cppcode}
+template <typename T1, typename T2>
+pair<T1, T2> make_pair(T1 a, T2 b);
+\end{cppcode}
+
+Ещё немного пар:
+\begin{cppcode}
+map<string, int> age;
+cout << age.begin()->first; // string const &
+\end{cppcode}
+
+Всё же, хочется работать удобнее. Есть такой оператор:
+\begin{cppcode}
+age["petya"] = 32;
+\end{cppcode}
+Он, если находит элемент, позволяет его изменить. При этом, если такого ключа не было, он его создаст:
+\begin{cppcode}
+int x = age["peter"]; // 0
+\end{cppcode}
+Поэтому \cpp'map::operator []' недоступен у \cpp'const map'.
+
+\section{Comparator-ы}
+
+У нас может возникнуть необходимость строить \cpp'set' или \cpp'map' от нашей струтуры, но с разными порядками.
+В Си мы это делали бы, передавая указатель на оракул сравнения (компаратор).
+В ООП мы бы создали наследника класса \verb'Comparator', и через передачу его экзмепляра и виртуальные методы сравнивать объекты.
+
+C шаблонами придумали несколько свой подход. Мы передаём функтор (объект-функция с перегруженным \cpp'operator ()'):
+\begin{cppcode}
+template <typename T>
+class less
+{
+	bool operator ()(T const &a, T const &b) const
+	{
+		return a < b;
+	}
+}
+\end{cppcode}
