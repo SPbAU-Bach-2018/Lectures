@@ -51,7 +51,7 @@ inline Type Array::get(...) {
 
 Реализация методов должна быть в заголовочном файле, соответственно нужен \verb'inline'. В отдельном файле не получится это реализовать.
 
-\textbf{main.c}
+\verb'main.c'
 \begin{cppcode}
 #define Type int;
 #include "array.h"
@@ -65,7 +65,7 @@ int main() {
 и работает со строками, ничего не зная о типах и так далее.
 
 Теперь пусть в одном и том же файле хотим иметь и массив элементов типа \cpp'int' и \cpp'double'.
-\textbf{main.c}
+\verb'main.c'
 \begin{cppcode}
 #define Type int
 #include "array.h"
@@ -149,7 +149,6 @@ main() {
 
 \section{Шаблоны в С++. Синтаксис}
          
-\verb'Array.h'
 \begin{cppcode}
 template <typename T>
 class A {
@@ -159,8 +158,6 @@ class A {
     }
 };
 \end{cppcode}
-
-{\bf Array.h}
 
 \begin{cppcode}
 template <typename T>
@@ -174,14 +171,15 @@ T Array<T>::get(size_t index) {
 
 }
 \end{cppcode}
+
 \cpp'template' обозначает, что следующая единица зависит от параметров. Параметров может быть несколько. 
 
 Это должен быть один файл.
 Это важно.
 В разных файлах это быть не может, поскольку это не может быть скомпилированно.
-Этот код находится в h файле, но не в cpp файле.
+Этот код находится в заголовочном (\verb'*.h') файле, но не в \verb'*.cpp' файле.
 
-Иногда, чтобы код не разбухал, пишут несколько h файлов и в конце первого пишут \cpp'#include'.
+Иногда, чтобы код не разбухал, пишут несколько \verb'*.h' файлов и в конце первого пишут \cpp'#include'.
 
 \verb'main.cpp'
 \begin{cppcode}
