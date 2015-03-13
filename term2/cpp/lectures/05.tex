@@ -1,0 +1,301 @@
+\chapter{Исключения. Больше исключений}
+\setauthor{Дмитрий Лапшин}
+
+Мы сейчас ещё поговорим о исключениях.
+Такая же лекция будет про шаблоны.
+К STL мы вернёмся позже.
+
+\section{Вспоминим пройденный материал}
+
+Вспомним, за что люди любят исключениях. Пусть есть класс
+\begin{cppcode}
+class NetworkConnection {
+	int* buffer;
+	
+	NetworkConnection() {
+		buffer = new int[1024];
+	}
+
+	~NetworkConnection() {
+		delete[] buffer;
+	}
+
+	void Connect(/*...*/);
+
+	//...
+};
+
+void startConnection() {
+	NetworkConnection nc();
+	nc.Connect(/*...*/);
+	//...
+}
+
+int main() {
+	try {
+		startConnection();
+	}
+	catch (NetworkException &e) {
+		//...
+	}
+}
+\end{cppcode}
+Как видим, есть класс \cpp'NetworkConnection', обслуживающий общение с сетью и содержащий буффер.
+Есть метод \cpp'startConnection()', создающий соединение.
+
+У метода \cpp'NetworkConnection::Connect()' могут возникнуть ошибки: адрес компьютера указан неверно или нужный компьютер недоступен.
+Он при ошибке кидает (\cpp'throw') \cpp'NetworkException'.
+Мы бросаем объект, так как тогда можно передать подробную информацию об ошибке,
+чтобы пользователь иди программа могла узнать, что произошло, и исправить ситуацию.
+
+Почему это любят?
+\begin{enumerate}
+	\item Ошибка передаётся с подробными сведениями
+	\item Ошибка может быть обработана не там, где произошла.
+\end{enumerate}
+
+При создании исключения начинается разкручивание стека (stack unwinding) до тех пор, пока не встретится обработчик (\cpp'try'):
+\begin{center}\begin{tabular}{|c|}
+	\hline \cpp'NetworkConnection::Connect()' \\
+	\hline \cpp'startConnection()' \\
+	\hline \cpp'main()' \\
+	\hline
+\end{tabular}\end{center}
+Так \cpp'NetworkConnection' может передавать сообщения об ошибке, не зная, где, кто и как его использует и как обрабатывает ошибки.
+
+Важно отметить, что при разкручивании стека вызываются деструкторы всех объектов на фреймах стека.
+Это поможет нам, например, избежать утечки памяти в \cpp'NetworkConnection::buffer'.
+
+Отметим, что блоки у \cpp'try catch finally' являются новыми областями видимости, и в них можно создавать локальные переменные.
+Также, если исключение объект, его лучше в \cpp'catch' ловить по ссылке, чтобы не копировать объект исключения лишний раз.
+
+\section{Разделение исключений}
+
+Если у нас большой проект (например, игра), то его часто полезно разделять на отдельные подсистемы, например:
+\begin{enumerate}
+	\item Сеть (Network)
+	\item Модель (Model)
+	\item Отображение (View)
+	\item Искусственный интеллект (AI)
+\end{enumerate}
+
+В каждой подсистеме логично создать свой тип исключения.
+Так можно разделить ошибки и их обработку.
+Сетевую ошибку можно попытаться разрешить, ошибку в модели чаще всего критическая.
+
+Где-то высоко в \cpp'main()' есть главный блок:
+\begin{cppcode}
+try {
+	connect();
+	//...
+	makeMove();
+	//...
+}
+catch (NetworkException &ne) {
+	//вывод сообщения об ошибке, переподключение, ...
+}
+catch (ModelException &me) {
+	//Послать BugReport
+	//Завершить работу
+}
+\end{cppcode}
+
+Но иногда мы хотим получить любую ошибку.
+Тогда можно сделать так: есть главный родитель \cpp'GameException', а остальных сделать его наследниками.
+%\begin{cppcode*}{linenos,firstline=17}
+\begin{cppcode}
+catch (GameException &ge) {
+	Log.Write(/* message */);
+}
+\end{cppcode}
+%\end{cppcode*}
+
+Важно заметить, что из всех блоков \cpp'catch' выбирается первый подходящий!
+Если написать \cpp'catch (GameException &ge)', первым, он перехватит все исключения!
+
+\section{Стандартная библиотека}
+
+В C++ есть базовый класс \cpp'std::exception', являющийся предком всех исключений, бросаемых стандартной библиотекой.
+У него всего один метод \cpp'virtual const char* std::exception::what();', который должен вернуть описание.
+Собственно, сам \cpp'std::exception' не кидают никогда, а кидают его различных наследников 
+(\cpp'std::ios::failure' у ввода-вывода, \cpp'std::runtime_exception' для критических ошибок, \cpp'std::logic_error' для логических и т. д.).
+
+\begin{cppcode}
+try {
+	vector.push_back(/*...*/);
+	file.open();
+}
+catch (failure &fe) {
+	//...
+}
+catch (exception &e) {
+	//...
+}
+\end{cppcode}
+
+В некоторых случаях решают, что пользовательская система исключений тоже наследуется от \cpp'std::exception'.
+
+\section{RAII}
+
+RAII (Resource Acquisition Is Initialization) "--- идеология, при которой для использования каждого ресурса создаётся объект.
+\begin{cppcode}
+while (/*...*/)
+	try {
+		Animal *pA = read();
+		pA->process();
+		delete pa;
+	}
+	catch (ios::failure &fe) {
+		//проблема с вводом
+	}
+\end{cppcode}
+
+Пусть мы обрабатываем два класса животных "--- кошечки и собачки.
+Виртуальная функция \cpp'Animal::process' решает, нужна ли вакцинация, и проводит её, если нужно.
+У каждого вида животного понимает она по-своему.
+
+Метод \cpp'read()' при чтении опознаёт, информацию о каком животном она сейчас читает, и возвращает указатель на соотвествующий новый объект.
+
+Есть проблема "--- если ошибка при чтении произошла, а объект был создан, то мы его не удалим!
+
+\begin{cppcode}
+while (/*...*/)
+	try {
+		shared_ptr<Animal> pA;
+		read(pA);
+		pA->process();
+	}
+	catch (ios::failure &fe) {
+		//проблема с вводом
+	}
+\end{cppcode}
+
+В этом и идея RAII "--- если ресурс внезапно не нужен, будет вызван его деструктор.
+
+\section{Исключения в деструкторах}
+
+\begin{cppcode}
+class NetworkConnection {
+	int* buffer;
+	NetworkConnection() {
+		buffer = new /*...*/;
+	}
+
+	void Connect() {
+		//...
+		throw NetworkException(/*...*/);
+		//...
+	}
+
+	~NetworkConnection() {
+		delete[] Buffer;
+		ofstream file;
+		file.exceptions(ios::badbit | ios::failbit);
+		file.open("log.txt");
+		//запись в файл
+	}
+}
+
+//...
+
+try {
+	NetworkConnection nc();
+	nc.Connect();
+}
+\end{cppcode}
+
+В чём скрывается проблема?
+Пусть произошло исключение.
+Нужно удалить объект \cpp'NetworkConnection', поскольку он на стеке.
+Но его деструктор может создать исключение (из \cpp'ostream').
+Тогда, если бы возникло два исклчения, не ясно, что делать.
+В C++ просто запрещено наличие более одного исключения, и поэтому из деструктора запрещено создавать исключения.
+
+\section{Исключения в конструкторе}
+
+\begin{cppcode}
+class BookEntry {
+	string name;
+	string phone;
+	Image *image;
+	Audio *track;
+	BookEntry();
+	~BookEntry();
+};
+
+BookEntry(/*...*/) {
+	image = new Image(fname);
+	image->Load();
+	track = new Track(tname);
+	track->Load();
+}
+
+~BookEntry() {
+	delete image;
+	delete track;
+}
+\end{cppcode}
+
+Пусть в конструкторе произошло исключение (в \cpp'Image::Load', например).
+Тогда деструктор не вызывается, так как объект не считается достроенным.
+Вот так не прокатит:
+\begin{cppcode}
+try {
+	BookEntry be("Vasya", "vasya.jpg", "vasya.mp3");
+}
+catch (/*...*/) {
+	//...
+}
+\end{cppcode}
+
+Необходимо в конструкторе освободить ресурсы обратно.
+\begin{cppcode}
+BookEntry(/*...*/) {
+	try {
+		image = new Image(fname);
+		image->Load();
+		track = new Track(tname);
+		track->Load();
+	}
+	catch (/*...*/) {
+		delete image;
+		delete track;
+	}
+}
+\end{cppcode}
+
+\section{Объявление возможных исключений}
+
+Были предприняты попытки указывать, какие исключения бросает метод
+\begin{cppcode}
+void C() throw (A, B) {
+//...
+}
+\end{cppcode}
+
+Оно просто проверяет, нужного ли типа исключения, и если нет, аварийно завершает работу. Имеенно из-за такого поведения эта практика не очень рекомендуется.
+
+\section{Гарантии стандарта}
+
+У стандарта есть три типа заявления о исключениях:
+\begin{description}
+\item[No throws:]
+	Исключения никогда не бросаются.
+
+\item[Strong:]
+	Если исключение и будет создано, объект останется в корректном состояни, в каком был после последней транзакции (последнее цельное состояние объекта).
+\begin{cppcode}
+template <typename T>
+T stack::pop() {
+	if (count == 0)
+		throw logic_error();
+	else
+		return data[--count];
+}
+\end{cppcode}
+	У этого кода нет гарантии Strong: если копирование при возвращении не удалось, состояние стека будет испорчено.
+	Для этого метод разделили на два: \cpp'stack<T>::top()' и \cpp'stack<T>::pop()'.
+
+\item[Basic:]
+	Если исключение и будет создано, объект останется в \textbf{некотором} корректном состояни.
+\end{description}
