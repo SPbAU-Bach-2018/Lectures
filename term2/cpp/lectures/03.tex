@@ -22,10 +22,8 @@ STL (Standart Template Library) состоит из:
 Ему нужен был класс \cpp'stoarge' "--- довольно распростронённое имя.
 Мы могли бы объявить его внутри класса \cpp'shared_ptr', не добавляя его в глобальное пространство имён:
 \begin{cppcode}
-class shared_ptr
-{
-	class stoarge
-	{
+class shared_ptr {
+	class stoarge {
 		//...
 	};
  
@@ -44,28 +42,23 @@ shared_ptr::stoarge a;
 \begin{cppcode}
 // Complex.h
  
-namespace au
-{
-	class Complex
-	{
+namespace au {
+	class Complex {
 		//...
 	};
 }
  
 //Comlex.cpp
  
-namespace au
-{
-	Complex::Complex(int Re = 0, int Im = 0)
-	{
+namespace au {
+	Complex::Complex(int Re = 0, int Im = 0) {
 		//...
 	}
 }
  
 // или
  
-au::Complex::Complex(int Re = 0, int Im = 0)
-{
+au::Complex::Complex(int Re = 0, int Im = 0) {
 	//...
 }
 \end{cppcode}
@@ -74,15 +67,13 @@ au::Complex::Complex(int Re = 0, int Im = 0)
 \begin{cppcode}
 #include "Complex.h"
  
-class Matrix
-{
+class Matrix {
 	au::Complex **data;
 }
 \end{cppcode}
 И в конструкторе тоже придётся писать
 \begin{cppcode}
-Matrix::Matrix(...)
-{
+Matrix::Matrix(...) {
 	data = new au::Complex[...];
 }
 \end{cppcode}
@@ -92,8 +83,7 @@ Matrix::Matrix(...)
 \begin{cppcode}
 using namespace au; //Всё из пространства имён стало доступно
  
-Matrix::Matrix(...)
-{
+Matrix::Matrix(...) {
 	data = new Complex[...];
 }
 \end{cppcode}
@@ -103,12 +93,9 @@ Matrix::Matrix(...)
  
 Пространства имён могут быть вложенны:
 \begin{cppcode}
-namespace ru
-{
-	namespace spb
-	{
-		namespace au
-		{
+namespace ru {
+	namespace spb {
+		namespace au {
 			class stack;
 		}
 	}

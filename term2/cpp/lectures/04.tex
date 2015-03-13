@@ -6,8 +6,7 @@ vector<int> v;
 v.push_back();
 
 // ++it эффективнее it++
-for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
-{
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
 	if (*it % 2 == 0)
 		v.insert(it, 0);
 }
@@ -23,10 +22,8 @@ for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
 \end{center}
 Как видно, после итерации цикла итератор всё ещё указывает на чётный элемент. Это не то, чего мы хотели.
 \begin{cppcode}
-for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
-{
-	if (*it % 2 == 0)
-	{
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+	if (*it % 2 == 0) {
 		v.insert(it, 0);
 		++it;
 	}
@@ -35,10 +32,8 @@ for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
 Теперь работает, но инвалидация указателей всё ещё сломана.
 Если было перевыделение памяти, то итератор стал сломан и указывает на некорректную память. Поэтому стоит делать так:
 \begin{cppcode}
-for (vector<int>::iterator it = v.begin(); it != v.end(); ++it)
-{
-	if (*it % 2 == 0)
-	{
+for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
+	if (*it % 2 == 0) {
 		it = v.insert(it, 0);
 		++it;
 	}
@@ -198,10 +193,8 @@ int x = age["peter"]; // 0
 C шаблонами придумали несколько свой подход. Мы передаём функтор (объект-функция с перегруженным \cpp'operator ()'):
 \begin{cppcode}
 template <typename T>
-class less
-{
-	bool operator ()(T const &a, T const &b) const
-	{
+class less {
+	bool operator ()(T const &a, T const &b) const {
 		return a < b;
 	}
 }
