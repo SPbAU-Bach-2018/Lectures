@@ -40,7 +40,7 @@ for (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {
 }
 \end{cppcode}
 
-\subsection{\texttt{string}}
+\subsection{\t{string}}
 
 Есть строки. Есть строки с ASCII"---кодировкой
 \begin{cppcode}
@@ -69,7 +69,7 @@ string s1 = "Hello!"; // в памяти один раз "Hello!"
 string s2 = "Hello!"; // в памяти два раза "Hello!"
 \end{cppcode}
 
-\subsection{\texttt{deque}}
+\subsection{\t{deque}}
 \cpp'deque' "--- по-сути, такой же \cpp'vector' (добавление в конец, доступ к элементу), только ещё добавление и удаление из начала
 (\cpp'push_front' и \cpp'pop_front') за амортизированное $O(1)$.
 
@@ -88,7 +88,7 @@ f(&(*T.begin()), v.size());
 
 Выглядит не очень. У \cpp'string' есть решение "--- метод \cpp'c_str()' вернёт чистую строчку \cpp'char *'.
 
-\section{\texttt{pair}}
+\section{\t{pair}}
 \cpp'pair' "--- шаблонный класс, позволяющий хранить два элеметна любого типа:
 \begin{cppcode}
 pair<int, string> a;
@@ -96,9 +96,9 @@ a.first = 20;
 a.second = "Meaow!";
 \end{cppcode}
 
-\section{Ассоциативные контейнеры (\texttt{set}, \texttt{multiset}, \texttt{map})}
+\section{Ассоциативные контейнеры (\t{set}, \t{multiset}, \t{map})}
 
-\subsection{\texttt{set}}
+\subsection{\t{set}}
 \cpp'set' представляет собой реализацию массива с поиком.
 Внутри он реализован как сбалансированное дерево поиска.
 Именно поэтому почти все операции работают за $O(\log n)$:
@@ -143,13 +143,13 @@ bool operator <(T const &b) const
 Принято, что достаточно его одного. \cpp'set' сам реализует остальные сравнения через \cpp'<', хотя это не так эффективно:
 \cpp'a = b' через \cpp'!(a < b) && !(b < a)'.
 
-\subsection{\texttt{multiset}}
+\subsection{\t{multiset}}
 
 \cpp'multiset' аналогичен \cpp'set', но может хранить равные значения сколь угодно много раз.
 
 Важное отличие: операция \cpp'multiset<T>::erase' может принимать как итератор, так и значение. Первый вариант удалит только одно значение, второй "--- все равные.
 
-\subsection{\texttt{map}}
+\subsection{\t{map}}
 
 \cpp'map' реализует ассоциативный массив. На самом деле он является надстройкой над \cpp'set<key, value>'
 "--- мы ищем значение по ключу и храним некоторое значение:
