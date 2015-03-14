@@ -1,0 +1,206 @@
+﻿\chapter{Euler Tour Trees, Heavy-Light Decompostion}
+\setauthor{Ольга Черникова}
+
+\section{Euler Tour Trees}
+\subsection{Определение.}
+Euler Tour Trees "--- это структура данных, которая в лесу обрабатывает запросы
+\begin{enumerate}
+\item Link(a, b) "--- провести ребро
+\item Cut(a, b) "--- удалить ребро
+\item IsConnected(a, b) "--- проверить, что две вершины лежат в одной компоненте
+\end{enumerate}
+за $\log n$.
+
+\subsection{Что нужно хранить.}                                                                             
+
+Для реализации этой структуры будем хранить Эйлеров обход по ребрам в декартовом дереве.
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_1.jpg} 
+\end{center}
+
+Так же необходимо хранить:
+\begin{enumerate}
+\item Для каждой вершины множество ребер($v \to set<edge>$).
+\item Для всех ребер хранить обратное($\leftrightarrow REV[e]$).
+\item Для ребра ссылку на узел в декартовом дереве.($edge \to Node$)
+\item В узле хранить указатель на правого и левого ребенка и на предка. 
+\end{enumerate}
+
+\subsection{Реализация.}
+\textbf{Get(v)(узнать, в какой компоненте вершина):} вершина $\to$ любое выходящее ребро $\to node *$ $\to$ корень дерева.
+\begin{enumerate}
+\item Для вершины хранится set<edge>, выбираем любое ребро
+\item по ребру переходим на node в декартовом дерве
+\item поднимаемся по предкам к корню дерева. 
+\end{enumerate}
+\textbf{MakeRoot(v)(сделать корнем вершину v):}  
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_2.jpg} 
+\end{center}
+
+Если корень вершина A: 1 2 3 4 5 6
+Если корень вершина B: 4 5 6 1 2 3 
+Для того, что бы сделать корнем другую вершину, нужно просто сделать циклический сдвиг. 
+
+вершина $\to$ любое выходящее ребро $\to$ node * $\to$ position $\to$ циклический сдвиг.
+
+\textbf{Link(a, b)(провести ребро):}
+    MakeRoot(a)
+    MakeRoot(b)
+    \begin{enumerate}
+    \item Выпишем компоненту вершины a
+    \item Проведем ребро ab 
+    \item Выпишем компоненту вершины b
+    \item Проведем ребро ba
+    \end{enumerate}
+
+\textbf{Cut(a, b)(удалить ребро):}
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_3.jpg} 
+\end{center}
+
+По ab находим позиции ребер в массиве. Разделяем массив на три части и склеиваем первую и последнюю. 
+
+\section{Haevy-Light Decomposition}
+\subsection{Определение.}
+Хотим покрыть дерево вертикальными путями так, что бы каждая вершина лежала ровно в одном.
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_4.jpg} 
+\end{center}
+
+LCA разбивает путь на два вертикальных. 
+
+Что бы посчитать функцию, нужно посчитать функцию на двух вертикальных путях. 
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_5.jpg} 
+\end{center}
+
+\begin{Def}
+Назовем прыжком переход от одного пути в разбиение к другому. 
+\end{Def}
+
+В Haevy-Light Decomposition k - количество прыжков на любом вертикальном пути. $k \le \log n$.
+
+\subsection{Конструкция.}
+\begin{Def}
+Ребро ba назовем тяжелым(b "--- предок а), если $size[a]>\frac{1}{2}size[b]$. 
+\end{Def}
+\begin{Def}
+Не тяжелые ребра называются легкими.
+\end{Def}
+
+У каждой вершины не более одного тяжелого ребра.
+Пути состоят только из тяжелых ребер.  И все тяжелые ребра лежат в путях. 
+
+Прыжков не более $\log$, когда мы делаем прыжок, мы переходим по легкому ребру, значит, размер поддерева удваивается. 
+
+\subsection{Реализация.}
+
+\begin{cppcode}
+build(v){ //no[v], pos[v], p[v] - отец
+    if (p[v] != -1 && 2*size[v] > size[p[v]])  {
+        no[v] = no[p[v], pos[v] = pos[p[v]] + 1;
+    } else {
+        top[cnt] = v;
+        no[v] = cnt++, pos[v] = 0;
+    }
+    for x - ребенок v: build(x);
+}
+
+get(a, LCA) {
+    while(no[a] != no[LCA]) {
+        Tree[no[a]].get(0, pos[a]);
+        a = p[top[no[a]]];
+    }
+    Tree[no[a]].get(pos[LCA], pos[a]);
+}                                                                                                                 
+\end{cppcode}
+
+
+Время работы $[\O(n), \O(\log^2 n)]$
+
+$Change(v, x): \O(\log n)$
+
+Замечание: когда мы решаем задачу, нужно сначала решить задачу на массиве, а потом обобщить. 
+
+Если нет change запросов, то heavy-light, чаще всего, не нужен. 
+
+\section{LA(level Ancestor)}
+
+\begin{Def}
+LA(v, k) = $parent^{(k)}(v)$
+
+Необходимо найти k-ого предка вершины v. 
+\end{Def}
+
+Теперь как мы уже умеем решать эту задачу.
+\begin{description}
+\item[offline:] O(n) Обходим дерево, когда мы находимся на вершине v, знаем для нее всех предков и все запросы.
+\item[online:] 
+       \begin{enumerate}
+       \item <$n\log n$, $\log n$> "--- двоичные подъемы.
+       \item <$n^2$, 1> "--- полный предподсчет.
+       \item <n, $\log n$> "--- heavy-light (нужно либо прыгнуть в следующий путь за $O(1)$, либо один раз взять соответствующий элемент в массиве на пути).
+     \end{enumerate}
+\end{description}
+
+\subsection{Решение за <$n\log n$, 1>.}
+
+Различные способы разбить на пути:
+\begin{enumerate}
+\item Heavy-Light
+\item Longest-Path (Будем продолжать путь в более глубокое поддерево)
+\item Ladder Из любой декомпозиции можно сделать лестницу. Есть путь длины L, продолжим этот путь на L наверх. Теперь пути перекрываются.
+\end{enumerate}
+
+LA = Двоичные подъемы + ladder --- Longest-Path
+
+Прыгнем на самый большой возможный прыжок k. $2^s \le k < 2^{s + 1}$
+
+Теперь достаточно сделать один прыжок в ladder --- Longest-Path.
+
+Вниз можем спуститься хотя бы на $2^s$, значит, наверх он продлен хотя бы на эту величину. Значит мы с предком на одном пути. 
+
+<$n\log n$, 1>
+
+\subsection{Решение за <$n$, 1>}
+Задача  соптимизировать двоичный подъем. 
+
+<$M\log n$, 1>
+M "--- количество листьев. Можем помнить любой лист в поддереве и теперь можем прыгать от этого листа. 
+
+<$M\log n$> прыжков в offline. <leaf, $2^k$>. От каждого листа посчитать на $2^k$ прыжков.
+ 
+<$M\log n + n, 1$>
+Наша цель сделать $M \le \O(\frac{n}{\log n})$
+Сжатие деревьев.
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_6.jpg} 
+\end{center}
+
+Хотим разбить вершины на поддеревья размера не больше k. Просто так это сделать сложно, поэтому разрешим корню поддерева не принадлежать данному куску. 
+
+$\frac{k}{2} < size \le k$. Верно для всех кусков кроме корня. Тогда количество кусков $\frac{n}{k/2} + 1$.
+
+\begin{center} 
+\includegraphics[width=2in, keepaspectratio]{im09_7.jpg} 
+\end{center}
+
+\begin{cppcode}
+Compress(v) {
+    for (v -> x) Compress(x)
+}
+\end{cppcode}
+
+$k \le \frac{\log n}{16}$
+
+Вершина лежит в куске. Знаем тип куска и позицию в куске. Различных типов мало. Для вершины за $\O(1)$ хотим прыгать на k вверх. Предподсчет.
+
+\includegraphics[width=2in, keepaspectratio]{im09_8.jpg} 
+
+$\lra 0010011101$
