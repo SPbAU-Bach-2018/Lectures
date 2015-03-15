@@ -7,5 +7,6 @@
 *.jpeg
 *.synctex.gz*
 *.pyg
+*.thm
 *.minted*
 _minted*
