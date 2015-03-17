@@ -10,3 +10,4 @@
 *.thm
 *.minted*
 _minted*
+*-gnuplottex-*
