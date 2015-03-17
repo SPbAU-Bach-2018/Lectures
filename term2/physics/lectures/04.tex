@@ -77,7 +77,21 @@
       По теореме Гаусса:
       \[E 4 \pi r^2 = 4\pi Q \Ra E = \frac{Q}{r^2}\]
       Так как сфера проводник, то внутри сферы (при $r<R$) поле равно нулю.
-      % график
+      \begin{center}
+      \begin{gnuplot}
+set size 0.5
+set xlabel "радиус"
+set ylabel "поле"
+set yrange [-0.2:3]
+unset key
+unset format
+unset tics
+set xtics ("R" 2) scale 0.8
+set ytics ("0" 0) scale 0.8
+set ytics add ("$\\frac Q {R^2}$" 10.0/4) scale 0.8
+plot [0:15] (x >= 1.9 ? 10/(x**2) : 0) every 0.1
+      \end{gnuplot}
+      \end{center}
     \subsubsection{Поле шара}
       В точке на расстоянии $r>R$ тоже можем воспользоваться теоремой Гаусса и получить $E=\frac{Q}{r^2}$.
       Интересно внутри, при $r<R$.
@@ -94,12 +108,26 @@
         = \frac{\Phi}{4\pi r^2} = \frac{4\pi Qr^3}{R^3} \cdot \frac{1}{4\pi r^2}
         = \frac{Q}{R^3} \cdot r
       \end{gather*}
+      \begin{center}
+      \begin{gnuplot}
+set size 0.5
+set xlabel "радиус"
+set ylabel "поле"
+set yrange [-0.2:3]
+unset key
+unset format
+unset tics
+set xtics ("R" 2) scale 0.8
+set ytics ("0" 0) scale 0.8
+set ytics add ("$\\frac Q {R^2}$" 10.0/4) scale 0.8
+plot [0:15] (x >= 1.9 ? 10/(x**2) : 10*x/(8)) every 0.1
+      \end{gnuplot}
+      \end{center}
       \begin{Exercise}
         Мы когда-то доказывали, что поля внутри проводника нет.
         А вот внутри шара, получается, есть.
         Как так?
       \end{Exercise}
-      % график
     \subsubsection{Потенциал сферы}
       Ищем потенциал сферы "--- это, по определению, разность потенциалов между  бесконечностью и поверхностью.
       То есть надо посчитать интеграл:
