@@ -17,18 +17,14 @@
 	\item Ответ будет таким: \cpp's[a] + s[b] - 2*s[LCA]'
 \end{enumerate}
 
-\begin{center}
-	\includegraphics[width=3in]{Lect8_1.jpg}
-\end{center}
+\cimg{Lect8_1.jpg}{0.5}
 
 \begin{Rem}
 	Когда мы пытаемся что-то сделать на дереве, сначала надо попытаться провести аналогию с массивом (частным случаем дерева),
 	разбив путь на два вертикальных отрезка.
 \end{Rem}
 
-\begin{center}
-	\includegraphics[width=4in]{Lect8_2.jpg}
-\end{center}
+\cimg{Lect8_2.jpg}{0.5}
 
 \section{Сумма на пути, дерево меняется}
 
@@ -69,9 +65,7 @@ go(v) {
 Будем использовать СНМ вершин, которые уже обошли, и множество вершин от корня до текущей.
 Таким образом, из любой вершины, из которой уже вышли, легко посчитать LCA с вершиной $v$ (стоим в ней сейчас).
 
-\begin{center}
-	\includegraphics[width=4in]{Lect8_3.jpg}
-\end{center}
+\cimg{Lect8_3.jpg}{}
 
 \begin{cppcode}
 void go(v) {
@@ -187,13 +181,11 @@ for (edge e: edges) {
 
 \section{Min-offline \texorpdfstring{$T =  O^*(1)$}{T = O*(1)}}
 
+\rimg{Lect8_4.jpg}{}
+
 Пути вертикальны, значит перебираем в порядке возрастания верхних границ, новый вес вершины "--- минимальный на соответствующем пути.
 Применяем эвристику сжатия путей, получаем $O(\log n)$.
 Преобразования корректны, так как $u$ возрастает.
-
-\begin{center}
-	\includegraphics[width=2in]{Lect8_4.jpg}
-\end{center}
 
 \begin{cppcode}
 for u in ascending // верхняя граница запроса
@@ -213,6 +205,4 @@ for u in ascending // верхняя граница запроса
 
 Если же $w[u] > w[x]$, то для поддерева $x$ ответ должен быть меньше и подвешивать надо по-особенному, подробно расскать об этом не успели.
 
-\begin{center}
-\includegraphics[width=3in]{Lect8_5.jpg}
-\end{center}
+\cimg{Lect8_5.jpg}{0.5}
