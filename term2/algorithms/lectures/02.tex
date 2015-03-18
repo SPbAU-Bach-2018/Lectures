@@ -23,7 +23,7 @@ AVL-дерево "--- это BST, у которого поддерживаетс
 Пока они различаются более, чем на 1, то совершаем один из четырех поворотов:
 Right rotation, Left rotation, Big right rotation и Big left rotation.
 
-\cimg{left_right_rotation.png}
+\cimg{left_right_rotation.png}{}
 
 Из картинки видно, что правый поворот мы совершаем тогда, когда высота левого поддерева больше, чем высота правого.
 Тем не менее, и этот случай делится на два.
@@ -33,7 +33,7 @@ Right rotation мы совершаем только в том случае, ес
 Остались случаи, когда $P.h > C.h \land A.h < B.h$ (и симметричный для Big Left Rotation).
 Здесь мы будем применять Big right rotation.
 
-\cimg{bigright.jpg}
+\cimg{bigright.jpg}{}
 
 То есть поворот здесь происходит, если $k_1.h > D.h \land k_2.h > A.h$.
 Аналогично делается Big left rotation.
@@ -205,8 +205,8 @@ Treap Merge(Node* n1, Node* n2) {
 }
 \end{cppcode}
 
-\cimg{treap-merge.png}
-\cimg{treap-merge1.png}
+\cimg{treap-merge.png}{}
+\cimg{treap-merge1.png}{}
 
 \begin{cppcode}
 TreapPair split(Node* n, int x) {
@@ -228,7 +228,7 @@ TreapPair split(Node* n, int x) {
 }
 \end{cppcode}
 
-\cimg{treap-split.png}
+\cimg{treap-split.png}{}
 
 \subsection{\t{Insert}/\t{Delete}}
 
@@ -238,9 +238,9 @@ Insert "--- разделил дерево на 2 "--- меньшее и боль
 Аналогично Delete "--- дважды разрезаем, чтобы получить нужную вершину, после чего мержим два других дерева без этой вершины.
 То есть
 \[ Insert = Split + Merge + Merge \]
-\cimg{treap-insert.png}
+\cimg{treap-insert.png}{}
 \[ Delete = Split + Split + Merge \]
-\cimg{treap-delete.png}
+\cimg{treap-delete.png}{}
 
 Теперь ускорим \t{Insert} в 2 раза.
 Сейчас мы делаем два спуска по дереву (один из Merge'й на самом деле работает за $O(1)$).
