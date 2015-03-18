@@ -27,3 +27,76 @@
 	C_{2n}^n \sim \frac{4^n}{\sqrt{\pi n}}
 \end{aligned} 
 \]
+
+3) $H_n = \frac{1}{n!}\int\limits^{\pi/2}_0({{(\pi/2)}^2 - x^2)}^n\cos x\d x$
+
+\begin{enumerate}
+	\item $H_n \longrightarrow 0$
+	\[ 0 < H_n \le \frac{1}{n!}\max\limits_{x \in [0, \pi/2]}{({(\pi/2)}^2 - x^2)}^n\cos x \le \frac{1}{n!}\pi/2{(\pi/2)}^{2n} \longrightarrow 0 \]
+	Так как показательная функция растёт медленнее факториала. 
+	\item $H_n = (4n - 2)H_{2n - 1} - n^2H_{n - 2} $ 
+
+	$H_0 = 1$ $H_1 = 2$
+
+	\underline{Пояснение:}
+	\begin{gather*}
+		n!H_n = \int\limits_{0}^{\pi/2}{({(\pi/2)}^2 - x^2)}^n(\sin x)' \d x = \\
+		= (\text{Подстановка, которая равна 0}) - \int\limits_{0}^{\pi/2}({({(\pi/2)}^2 - x^2)}^n)'\sin x \d x = \\
+		= -2n\int\limits_{0}^{\pi/2}{({(\pi/2)}^2 - x^2)}^{n - 1}x(\cos x)' \d x 
+	\end{gather*}
+	Затем ещё раз интегрируем по частям, используя равенство $x^2 = {(\pi/2)}^2 - ({(\pi/2)}^2 - x^2)$
+	\item $H_n = P_n(\pi^2)$, где $P_n$ - многочлен $n$-ой степени с целыми коэффициентами.
+\end{enumerate}
+\begin{theorem}
+	$\pi$ и $\pi^2$ иррациональны.
+\end{theorem}
+\begin{proof}
+От противного. Пусть $\pi = \frac{a}{b}$.
+
+\begin{gather*}
+	H_n = P_n\left(\frac{a^2}{b^2}\right) \Ra b^{2n}H_n = b^{2n}P_n\left(\frac{a^2}{b^2}\right) - \text{целое число.} \\
+	H_n > 0 \Ra b^{2n}H_n > 0                                                                     \\
+	1 \le b^{2n}H_n \le b^{2n}\pi/2{(\pi/2)}^{2n}\frac{1}{n!} = \pi/2\frac{{\left(b\pi/2\right)}^{2n}}{n!} \longrightarrow 0  \\
+\end{gather*}
+\end{proof}
+\begin{theorem}{Формула Тейлора с остатком в интегральной форме:}
+
+	$f \in C^{n + 1}<a, b>$ 
+	
+	$x_0\in<a, b>$
+
+	Тогда $f(x) = T_{n, x_0}f(x) + \frac{1}{n!}\int\limits_{x_0}^x(x - t)^nf^{(n + 1)}t \d t$
+\end{theorem}
+\begin{proof}
+	Докажем по индукции.
+	
+	\begin{description}
+		\item[База:] $n = 0$:
+		$$f(x) = f(x_0) + \int\limits_{x_0}^{x}f'(t)\d t = f(x_0) + f(x) - f(x_0)$$
+		\item[Переход:] 
+		\begin{gather*}
+			f(x) = T_{n, x_0}f(x) + \frac{1}{n!}\int\limits_{x_0}^x{(x - t)}^nf^{(n + 1)}(t)\d t = T_{n, x_0}f(x) - \frac{1}{(n + 1)!}
+			\int\limits_{x_0}^xf^{(n + 1)}(t)({(x - t)}^{n + 1})'\d t = \\
+			= T_{n, x_0}f(x) - \left(\frac{f^{(n + 1)}(t)}{(n + 1)!}(x - t)^{(n + 1)}\biggr|_{x_0}^{x} - \frac{1}{(n + 1)!}\int\limits_{x_0}^x(x - t)^{n + 1}f^{n + 2}(t)\d t \right) = \\
+			= T_{n, x_0}f(x) + \frac{f^{(n + 1)}x_0}{(n + 1)!}(x - x_0)^{(n + 1)} + \frac{1}{(n + 1)!}\int\limits_{x_0}^x{(x - t)}^{n + 1}f^{(n + 2)}(t)\d t
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\section{Интегральные суммы.}
+\begin{Def}
+	$f \colon X \ra Y$, $X, Y$ - метрические пространства.
+	$\omega_f(\delta) = \sup{\rho_y(f(x_1), f(x_2)): \rho_x(x_1, x_2) < \delta$
+	$\omega_f(\delta)$ - модуль непрерывности.
+\end{Def}
+
+\underline{Свойства:}
+\begin{enumerate}
+	\item $\omega_f(\delta) \ge 0$
+	\item $\omega_f(0) = 0$
+	\item $\omega_f(\delta)\nearrow$
+	\item $f$ равномерно непрерывно на $X \Leftrightarrow w_f$ непрерывна в 0.
+	\begin{proof}
+		\Rightarrow
+	\end{proof}
+\end{enumerate}
