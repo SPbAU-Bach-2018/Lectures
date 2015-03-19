@@ -98,7 +98,75 @@
 	\item $\omega_f(0) = 0$
 	\item $\omega_f(\delta)\nearrow$
 	\item $f$ равномерно непрерывно на $X \Leftrightarrow w_f$ непрерывна в 0.
+
 	\begin{proof}
-		\Rightarrow
+		\begin{itemize}
+			\item "$\Rightarrow$"
+
+			$f$ - равномерно непрерывно на $X$ $\Leftrightarrow \forall \epsilon > 0, \exists \delta > 0 \colon (\forall x_1, x_2 \in X) \wedge 
+			(\rho_x(x_1, x_2) \le \delta) \Rightarrow \rho_y(f(x_1), f(x_2)) < \epsilon$
+
+			$\Rightarrow \underbrace{\sup\{\rho_y(f(x_1, f(x_2))\colon \rho_x(x_1, x_2) \le \delta\}}_{= w_f(\delta)} \le \epsilon$
+   	
+			$\forall \epsilon > 0, \exists \delta > 0 \colon w_f(\delta) \le \epsilon \Rightarrow 0 \le w_f(\gamma) \le w_f(\delta) \le \epsilon$
+			при $\gamma \le \delta$   
+
+			$\Rightarrow w_f$ - непрерывна в 0
+
+			\item "$\Leftarrow$"
+
+			$\forall \epsilon < 0, \exists \delta > 0 \colon w_f(\delta) < \epsilon \Rightarrow$
+
+			$\Rightarrow$ Если $\rho_x(x_1, x_2) \le \delta$ $\rho_y(f(x_1), f(x_2) < \sup\{\rho_y(f(x_1), f(x_2))\colon \rho_x(x_1, x_2) \le \delta\} < \epsilon$
+		\end{itemize}
 	\end{proof}
+	\item $X$ - компактб $f$ - непрерывна на $X \Rightarrow w_f$ непрерывна в 0.
 \end{enumerate}
+
+\begin{Def} $[a, b]$
+	
+	\text{\bf Дробление отрезка} $\tau \colon x_0 = a < x_1 < x_2 < \dots < x_n = b$. (Иногда называют пунктиром)
+
+	\text{\bf Мелкость дробления} (ранг дробления) $ |\tau| = \max\limits_{k = 1, \dots, n}(x_k - x_{k - 1})$
+
+	\text{\bf Оснащение дробления} $\colon \xi_1, \xi_2, \dots, \xi_n$, где $\xi_k \in [x_{k - 1}, x_k]$
+
+\end{Def}
+
+\begin{Def}{Сумма Римона} $f \colon [a, b] \longrightarrow \R$
+
+	$\sigma(f, \tau, \xi) = \sum\limits_{k = 1}^n(x_k - x_{k - 1})$
+
+\end{Def}
+
+\begin{theorem}
+	$f \in C[a, b]$
+
+	$\forall \epsilon, \exists \delta > 0 \colon \forall$ дробления $(\tau, \xi), |\tau| < \delta| \Rightarrow |\sigma(f, \tau, \xi) -
+	\int\limits_a^bf(x)\d x| < \epsilon$
+
+	В частности, если $(\tau_n, \xi_n)$ - последовательность дроблений такая, что $|\tau_n| \longrightarrow 0$, то 
+	$\sigma(f, \tau_n, \xi_n) \longrightarrow \int\limits_a^bf(x)\d x$
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\Delta = \sigma(f, \tau, \xi) - \int\limits_a^bf(x)\d x = \sum\limits_{k = 1}^nf(\xi_k)(x_k - x_{k - 1}) - \sum\limits_{k = 1}^n
+		\int\limits_{x_{k - 1}}^{x_k}f(x) \d x = \\
+		= \sum\limits_{k = 1}^n\left(\int\limits_{x_{k - 1}}^{x_k}f(\xi_k)\d x - \int\limits_{x_{k - 1}}^{x_k} f(x) \d x\right) =
+		\sum\limits_{k = 1}^n\int\limits_{x_{k - 1}}^{x_k}(f(\xi_k) - f(x))\d x \\
+		|\Delta| \le \sum\limits_{k = 1}^n\left|\int\limits_{x_{k - 1}}^{x_k}(f(\xi_k) - f(x))\d x \right| \le \sum\limits_{x = 1}^n
+		\int\limits_{x_{k - 1}}^{x_k}|f(\xi_k) - f(x)|\d x \le \\
+		\le \sum\limits_{k = 1}^n\int\limits_{x_{k - 1}}^{x_k}w_f(|\tau|)\d x(\text{т.к. $|\xi_k - x| < \tau$}) = \sum\limits_{k = 1}^nw_f(|\tau|)(x_k - x_{k - 1}) \\
+		|\Delta| \le w_f(|\tau|)(b - a) < \epsilon(b - a)
+	\end{gather*}
+\end{proof}
+\begin{Def}
+	$f:[a, b] \longrightarrow \R$
+
+	$f$ - интегрируема по Риману, если $\exists I \colon \forall \epsilon, \exists \delta > 0\colon \forall |\tau| < \delta |\sigma(f, \tau, \xi) - I| < \epsilon$
+
+	и $I$ называется интегралом Римана. ($\int\limits_a^bf(x)\d x$)
+\end{Def}
+\begin{Rem}
+	В этом определении не обязательна непрерывность функции, но для не непрерывных будет непонятно, существует ли интеграл.
+\end{Rem}
