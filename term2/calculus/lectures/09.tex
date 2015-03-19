@@ -1,0 +1,164 @@
+\setauthor{Дмитрий Лапшин}
+
+\[f(a + h) = f(a) + Th + o(\|g\|) \text{при $h \ra \infty$}\]
+\[f\colon E \subset \R^n \ra \R^m\]
+\[T\colon \R^n \ra \R^m \text{"--- дифференциал в точке $a$}\]
+
+\[\d_a f \quad T h \quad \d_a f(h) \]
+
+\begin{exmp}
+	\begin{enumerate}
+	\item
+		$f$ "--- константа: $f(x) = v \in \R^m$.
+		Она дифференцируема во всех точках:
+		\begin{gather*}
+			f(a + h) = f(a) + \underbrace{\d_a f(h) + o(\|h\|)}_{=0} \\
+			\d_a f = 0 d
+		\end{gather*}
+		Как и раньше, производная константы "--- ноль.
+
+	\item
+		$f$ "--- линейное отображение: $f(x) = Tx$.
+		Оно также дифференцируемо везде:
+		\begin{gather*}
+			f(a + h) = T(a + h) = Ta + Th = f(a) + Th + 0
+			\d_a f = T
+		\end{gather*}
+
+	\end{enumerate}
+\end{exmp}
+
+\begin{theorem}[Линейность дифференциала]
+	$f, g\colon E \subset \R^n \ra \R^m$, $a \in \Int E$, $f$ и $g$ дифференциуремы в $a$, $\lambda \in \R$.
+	Тогда $f + g$ и $\lambda f$ дифференцируемы в $a$ и
+	\begin{gather*}
+		\d_a (f + g) = \d_a f + \d_a g \\
+		\d_a (\lambda f) = \lambda \d_a f
+	\end{gather*}
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		f(a + h) = f(a) + \d_a f(h) + o(\|h\|) \\
+		g(a + h) = g(a) + \d_a g(h) + o(\|h\|) \\
+		(f + g)(a + h) = f(a + h) + g(a + h) = \underbrace{f(a) + g(a)}_{(f+g)(a)}+\underbrace{d_a f(h) + \d_a g(h)}_{\text{линейно по $h$}}
+			+ o(\|h\|)
+	\end{gather*}
+	Получили, что
+	\[ \d_a(f + g) = \d_a f + \d_a g \]
+	Собственно, в этом рассуждении мы размерностью нигде не пользуемся. Эти рассуждения действуют и на одномерный случай без изменений.
+	\begin{gather*}
+		(\lambda f)(a + h) = \lambda f(a + h) = \lambda f(a) + \lambda \d_a f(h) + o(\|h\|)
+		\d_a (\lambda f) = \lambda \d_a f
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Дифференцируемость композиции]
+	$f\colon E \subset \R^n \ra \R^m$, $g\colon D \subset \R^m \ra \R^l$, $f(E) \subset D$,
+	$a \in \Int E$, $f$ дифференцируема в $a$, $g$ дифференцируема в $f(a)$.
+	Тогда $g \circ f$ тоже дифференцируема и
+	\[ \d_a (g \circ f) = \d_{f(a)} g \circ \d_a f \]
+\end{theorem}
+\begin{Rem}
+	\begin{gather*}
+		\d_a f\colon R^n \ra R^m \\
+		\d_{f(a)} g\colon R^m \ra R^l \\
+		\d_a (g \circ f)\colon \R^n \ra R^l
+	\end{gather*}
+	Все размерности сходятся.
+\end{Rem}
+\begin{proof}
+	$b \lrh f(a) \in D$
+	\begin{gather*}
+		\begin{aligned}
+			f(a + h) &= f(a) + \d_a f(h) + \alpha(h) \|h\| & \alpha &\colon E\ra R^m & \lim_{h \ra \vec 0} \alpha(h) &= \vec 0 \\
+			g(b + k) &= g(b) + \d_b g(k) + \beta(k) \|k\|  & \beta  &\colon D\ra R^l & \lim_{k \ra \vec 0} \beta(k)  &= \vec 0 \\
+		\end{aligned} \\
+		(g \circ f)(a) = (g \circ f)(a) + \d_{f(a)} g(k) + \beta(k) \|k\| =
+			(g \circ f)(a) + \d_{f(a)} g(d_a f(h) + \alpha(h) \|h\|) + \beta(k) \|k\| = \\
+		= (g \circ f)(a) + \underbrace{d_{f(a)} g(d_a f(h))}_{d_{a} (g \circ f)} + \d_{f(a)} g(\alpha(h)) \|h\| + \beta(k) \|k\|
+	\end{gather*}
+	Проверим, что <<хвост>> стремится к нулю при $h$, стремящемуся к нулю:
+	\begin{gather*}
+		\d_{f(a)} g(\alpha(h)) + \frac{\beta(k) \|k\|}{\|h\|} \\
+		\left\| \d_{f(a)} g(\alpha(h)) \right\| \le
+			\underbrace{\left\| \d_{f(a)} g \right\|}_{\text{конечно}} \circ \underbrace{\|\alpha(h)\|}_{\ra \vec 0} \ra \vec 0
+	\end{gather*}
+	Поймём, что $k \ra \vec 0$ при $h \ra \vec 0$
+	\begin{gather*}
+		k = \d_a f(h) + \alpha(h) \|h\| \\
+		\| k \| \le \|\d_a f(h)\| + \| \alpha(h) \| \|h\| \le \left( \|\d_a f\| + \|\alpha(h)\| \right) \|h\| \ra \vec 0
+	\end{gather*}
+	Значит при $h \ra \vec 0$ и $\beta(k) \ra \vec 0$. Осталось понять, что $\frac{\|k\|}{\|h\|}$ ограничено.
+	\begin{gather*}
+		\frac{\|k\|}{\|h\|} \le \frac{\left( \|\d_a f\| + \|\alpha(h)\| \right) \|h\|}{\|h\|} = \|\d_a f\| + \|\alpha(h)\| \text{ "--- ограниченно}
+	\end{gather*}
+\end{proof}
+
+Давайте задумауемся, что такое произведение векторных функций. Для начала обратимся к умножению на скаляр:
+
+\begin{theorem}[Дифференциал произведение векторной и скалярной функций]
+	$f\colon E \subset \R^n \ra \R^m$, $\lambda\colon E \ra \R$, $a \in \Int E$, $f$ и $\lambda$ дифференцируемы в $a$.
+	Тогда $\lambda f\colon E \ra \R^m$ дифференцируемо в $a$ и
+	\[ \d_a (\lambda f)(h) = \d_a \lambda(h) f(a) + \lambda(a) \d_a f(h) \]
+\end{theorem}
+\begin{Rem}
+	Размерности сходятся:
+	\begin{gather*}
+		\d_a f\colon \R^n \ra \R^m \\
+		\d_a \lambda\colon \R^n \ra \R \\
+		\d_a (\lambda f)\colon \R^n \ra \R^m
+	\end{gather*}
+\end{Rem}
+\begin{proof}
+	Перейдём к случаю $m = 1$, а потом воспользуемся дифференцируемостью координатных функций.
+	\begin{gather*}
+		(\lambda f)(a + h) = \lambda(a + h) f(a + h) = \left( \lambda(a) + \d_a \lambda(h) + o(\|h\|)\right)\left(f(a) + \d_a f(h) + o\|h\|\right) =\\
+		\lambda(a)f(a) + \d_a \lambda(h) f(a) + \lambda(a) \d_a f(h) + \\
+			+ \lambda(a) o(\|h\|) + f(a) o(\|h\|) + \d_a \lambda(h) \d_a f(h) + \\
+			+ \d_a \lambda(h) o(\|h\|) + \d_a f(h) o(\|h\|) + o(\|h\|)
+	\end{gather*}
+	Осталось увидеть, что последние шесть слагаемых есть $o(\|h\|)$
+	\begin{gather*}
+		|\d_a \lambda(h)| \le \|\d_a \lambda\| \|h\| \text{ "--- ограниченно при $h \ra \vec 0$}\\
+		|\d_a f(h)| \le \|\d_a f\| \|h\| \text{ "--- ограниченно при $h \ra \vec 0$}\\
+		|\d_a \lambda(h) \d_a f(h)| \le \|\d_a \lambda\| \|\d_a f\| \|h\|^2 = o(\|h\|)
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Дифференциал скалярного произведения]
+	$f, g\colon E \subset \R^n \ra \R^m$, $a \in \Int E$, $f$ и $g$ дифференцируемы в $a$.
+	Тогда $\left<f, g\right>$ дифференцируемо в $a$ и
+	\[ \d_a \left<f, g\right>(h) = \left<\d_a f(h), g(a)\right> + \left<f(a), \d_a g(h)\right>\]
+\end{theorem}
+\begin{proof}
+	Разложим покоординатно:
+	\[ \left<f, g\right> = f_1 g_1 + f_2 g_2 + \dots f_m g_m \]
+	Достаточно понять, что происходит с каждым слагаемым.
+	\begin{gather*}
+		f_k, g_k\colon E \ra \R \\
+		\d_a (f_k g_k)(h) = \d_a f_k(h) g_k(a) + f_k(a) \d_a g_k(h) \\
+		\d_a \left<f, g\right>(h) = \sum_{k=1}^m \d_a (f_k g_k)(h) = \sum_{k=1}^m \left(\d_a f_k(h) g_k(a) + f_k(a) \d_a g_k(h)\right) =
+			\left<\d_a f(h) g(a), f(a) \d_a g(h)\right>
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Теорема Лагранжа векторнозначных функций]
+	$f\colon [a, b] \ra \R^m$, $f$ непрерывна на $[a, b]$, дифференцируема на $(a, b)$.
+	Тогда
+	\[ \exists c \in (a, b)\colon \|f(b) - f(a)\| \le \|f'(c)\| (b - a) \]
+\end{theorem}
+\begin{proof}
+	$\phi(t) \lrh \left< f(t), f(b) - f(a) \right>$, $\phi\colon [a, b] \ra \R$.
+	\[ \phi(b) - \phi(a) = \left< f(b), f(b) - f(a) \right> - \left< f(a), f(b) - f(a) \right> = \|f(b) - f(a)\|^2 \]
+	Приеняем линейную теорему Лагранжа для $\phi$:
+	\begin{gather*}
+		\exists c\in(a, b)\colon \phi(b) - \phi(a) = \underbrace{\phi'(c)}_{\R \ra \R}(b - a) \\
+		\phi'(c) h = d_c \phi(h) = \left<\underbrace{\d_c f(h)}_{=f'(c)h}, f(b) - f(a)\right> \\
+		\phi(b) - \phi(a) = \phi'(c)(b - a) = \left<f'(c), f(b) - f(a)\right>(b-a) \le
+	\end{gather*}
+	Неравенство Коши-Буняковского:
+	\begin{gather*}
+		\le \|f'(c)\| \|f(b) - f(a)\| (b - a) \\
+		\|f(b) - f(a)\| \le \|f'(c)\| (b - a)
+	\end{gather*}
+\end{proof}
