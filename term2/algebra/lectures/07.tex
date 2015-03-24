@@ -1,0 +1,153 @@
+\section{Поле рациональных функций. Разложение на простые дроби}
+\setauthor{Саша Малышева}
+\begin{Def}
+Поле частных кольца $F[x]$ ($F$-поле) называется полем рациональных функций и обозначается $F(x)$.
+\end{Def}
+
+\begin{Def}
+Всякая дробь в $f(x)$ может быть единственным образом записан в виде $\frac{f}{g}$, $gcd(f, g) = 1$
+старший коэффицент g равен еденице.
+\end{Def}
+
+\begin{Def}                                                                      
+$\frac{f}{g} \in F(x)\, \frac{f}{g}$ - правильная дробь, если $deg f < deg g$ 
+\end{Def}
+
+\begin{Def}                                                                      
+$\frac{f}{g} \in F(x)\, \frac{f}{g}$ - примарная дробь, если $g = q^k$, где q - неприводима,
+а $deg f < deg q$  
+\end{Def}
+
+\begin{theorem}{}
+$\frac{f}{g} \in  F(x)$ может бфть представлена в виде многочлена и суммы простейших дробей,
+причем такое разложение единственно.
+$\frac{f}{g} = n (n \in F(x)) + сумма простейших$
+
+\begin{proof}
+План
+\begin{enumerate}
+\item Существует разложение $\frac{f}{g} = n + \frac{f'}{g}\, \frac{f'}{g}$ - правильная дробь.
+\item Всякая правильная дробь есть сумма примарных.
+\item Всякая примарная дробь - есть сумма простейших.
+\end{enumerate}
+
+\begin{Rem}
+По теореме о деление с остатком $f = n*g +f'$, $deg f' < deg g$;
+$\frac{f}{g} = n + \frac{f'}{g}$. При этом $n, f'\in F(x)\, \frac{f}{g}$ - правильная дробь.
+\end{Rem}
+
+ 
+\begin{lemma}
+Пусть есть правильная дробь $\frac{f}{g_1 g_2}$ $\Rightarrow$ Существуют $f_1, f_2$ такие, что
+$\frac{f}{g_1 g_2} = \frac{f_1}{g_1} + \frac{f_2}{g_2}$. При это
+$ \frac{f_1}{g_1}$, $\frac{f_2}{g_2}$ - правильные
+($g_1, g_2$ - взаимно простые. 
+\begin{proof}
+$g_1, g_2 \in F(x)$, $gcd(g_1, g_2) = 1$ $\Rightarrow$ $(g_1, g_2) = 1$ (Идеал порожденный $g_1$ и $g_2$
+совподает с идеалом порожденным еденицей), так как F(x) - ОГИ $\Rightarrow$ числитель можем представить через $g_1$ и $g_2$
+\begin{gather*}
+\exists n_1, n_2 \in F(x) : f = g_1 h_2 + g_2 h_1
+\end{gather*}
+Так как $f \in F(x)$, но $n_1, n_2$  в этом разложении определены не однозначно.
+Рассмотрим деление с остатком $h_1$ на $g_1$ $\Rightarrow$
+\begin{gather*}
+h_1 = g_1 u_1 + f_1\, \deg f_1 < \deg g_1 \Rightarrow \\
+f = g_1 h_2 + g_2 (g_1 u_1 + f_1)= g_1 (h_2 + g_2 u_1) + g_2 f_1 = g_1 f_2 + g_2 f_1 \\
+\deg f1 < deg g_1, g_1 f_2 = f - g_2 f_1
+\end{gather*}
+Степени:
+\begin{gather*}
+\deg g_1 + \deg f_2 \le \max (\deg f_1, \deg g_2 + \deg f_1) \\
+\deg f < \deg g_1 + \deg g_2 < \deg g_1 + \deg g_2 \Rightarrow \\
+\deg f_2 < \deg g_2 \Rightarrow \frac{f}{g_1 g_2} = \frac{f_1}{g_1} + \frac{f_2}{g_2}
+\end{gather*}
+и каждое из слогаемых - правильная дробь.
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+Любая правильна дробь является суммой примарных дробей, то есть таких, у котрых старший
+коэффициент равен еденице, $g = q_1^{a_1}\cdot\dots\cdot q_k^{a_k}$, где каждая $q$ "--- неприводимая,
+попарно ассоциируемые, со старшем коэффициентом равным еденице.  
+$\frac{f}{g} = \frac{f_1}{q_1^{a_1}} + \dots + \frac{f_(k-1)}{q_(k-1)^{a_(k-1)}}$
+Все слогаемые примарные.
+\begin{proof}
+Докажем по индукции:
+\begin{description}
+\item[База:] Для $k = 1$
+$frac{f}{g} = \frac{f_1}{q_1^{a_1}}$ и $\deg f < \deg g$ так как дробь правильная
+\item[Переход:] Пусть для $k >= 2$ и для $k - 1$ утверждение доказано, тогда
+$frac{f}{g} = \frac{f}{q_1^{a_1}\cdot\dots\cdot g_k^{a_k}}$, обозначим первые $k - 1$ множетели как $g_1$
+и соответственно $g_2 = g_k^{a_k}$. Тогда докажем, что $g_1$ и  $g_2$ взаимнопросты:
+Так как $g$ не ассоциирумое $\Rightarrow \gcd(g_1, g_2) = 1 \Rightarrow$
+$\frac{f}{g} = frac{f_(k-1)}{q_1^{a_1}\cdot\dots\cdot q_(k-1)^{a_(k-1)}} + \frac{f_k}{q_k^{a_k}}$,
+обе дроби правильные $\frac{f_k}{q_k^{a_k}}$ "--- примарная и по инукционному предположению
+$\frac{f_(k-1)}{q_1^{a_1}\cdot\dots\cdot q_(k-1)^{a_(k-1)}}$ можем разложить в сумму примарных дробей  
+\end{description}
+\end{proof}
+\end{lemma}
+
+\begin{lemma}
+Любая примарная дробь есть сумма простейших
+$g = q^a$; $\frac{f}{g}$ : $deg f < deg g$ $\Rightarrow$
+$\frac{f}{g} = \frac{f_1}{q^1} + \dots + \frac{f_k}{q^a}$
+ и для всех $f_i$ верно: $deg f_i < deg f$
+\begin{proof}
+Докажем по индукции, по степени $а$:
+\begin{description}
+\item[База:] Для $a = 1$ $\Rightarrow$ $\frac{f}{g} = \frac{f_1}{q^1}$
+$deg f < deg g = deg q$ $\Rightarrow$ $\frac{f}{g}$ - простая. 
+\item[Переход:] Пусть для $a >= 2$ и для $a - 1$ утверждение верно, тогда 
+$\frac{f}{g} = \frac{f_k}{q^a}$ $\Rightarrow$ По теореме о делении с остатком ($f$ на $g$) :
+$f = ug + f_a$, $deg f_a < deg g$ $\Rightarrow$ 
+$\frac{f}{g} = \frac{uq+f_a}{q^a} = \frac{u}{q^(a-1)}+\frac{f_a}{q^a}$
+$\Rightarrow$ $\frac{f_a}{q^a}$ - простейшая
+Осталось проверить, что $\frac{u}{g^(a-1)}$  - правильная дробь
+Опять применим "трюк" сравнение степеней:
+$u q = f - f_a$ $\Rightarrow$ $deg u + deg q = max(deg f, deg f_a)$
+так как $deg f < deg q^a$ и $deg f_a < deg q$ $\Rightarrow$
+$deg u + deg q <= deg (q^a)$ $\Rightarrow$ $deg u <= deg (q^(a - 1)$
+$\Rightarrow$ $\frac{u}{g^(a-1)}$  - правильная дробь $\Rightarrow$
+Индукционный переход совершон. 
+\end{description}
+\end{proof}
+\end{lemma}
+\end{proof}
+\end{theorem}
+
+\begin{Rem}
+$f = f_1g^(a-1) + f_2 g^(a-2) + \dots + f_(k-1)g + f_k$,
+$deg f_i < drg g$, разложение единственным оброзом.
+Алгоритм нахождения:
+Пусть $f_k$ остаток при деление $f$ на $g$ и так дале.
+($f = ug + f_k = (u_1g + f_(k-1))$
+\end{Rem}
+
+\begin{theorem}
+Единственность представления.
+\begin{proof}
+Пусть существует два разложения:
+$\frac{f}{g} = n + \sum_i=1^k\sum_j=1^a_k \frac{f_ij}{q_i^j}
+ = \bar{n} + \sum_i=1^k\sum_j=1^a_k \frac{\bar{f_ij}}{q_i^j}$ 
+При этом $deg f_ij < deg g_i$
+Хотим доказать, что $h = \bar{h}, f_ig = \bar{f_ij}$
+$k = a_1 + \dots + a_k$
+Индукция по $n$
+Докажем по индукции:
+\begin{description}
+\item[База:] Для $n = 0$ $n = \bar{n}$
+очевидно
+\item[Переход:] Пусть для $n >= 1$ и для $n - 1$ уже доказанно
+$\Rightarrow$ Существует такое $a_i > 0$ (НУО $a_k > 0$)
+$\Rightarrow$ Домножим $n + \sum_i=1^k\sum_j=1^a_k \frac{f_ij}{q_i^j}$ на
+$q_1^{a_1} + \dots + q_k^{a_k}$ и рассмотрим разность:
+$0 = n - \bar{n} + \sum_i=1^k\sum_j=1^a_k \frac{f_ij - \bar{f_ij}}{q_i^j}$
+Домножем на общий знаменатель $\Rightarrow$
+$0 = q_k (\dots) + (f_ka_k - \bar{f_ka_k})(g_1^{a_1}\cdot\dots\cdot q_{k-1}^{a_{k-1}}$
+$\Rightarrow$ последние слогаемое делится на $g_k$, но $g_1^{a_1}\cdot\dots\cdot q_{k-1}^{a_{k-1}}$
+взаимно прост с $q_k$ $\Rightarrow$ $f_ij - \bar{f_ij}$ делится на $q_k$, но
+$deg(f_ka_k - \bar{f_ka_k}) <= max(deg(f_ka_k), def(\bar{f_ka_k}) < deg(q_k))$
+$\Rightarrow$ $f_ka_k - \bar{f_ka_k} = 0$ $\Rightarrow$ $f_ka_k = \bar{f_ka_k}$ 
+\end{description}
+\end{proof}
+\end{theorem}
