@@ -1,0 +1,39 @@
+﻿\section{Евклидовы кольца}
+
+\begin{Def}
+	$R$ "--- область целостности, $\lambda\colon R \setminus\{0\} \to \mathbb{N}$
+	$\lambda$ "--- Евклидова функция (евклидова норма), елси $\forall a, \forall b \neq 0, \exists q, r \in R \colon a = bq + r$ и
+	$\left(r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right)\right)$
+\end{Def}
+
+\begin{Def}
+	$R$ "--- область целостности, $R$ "--- евклидово кольцо, если на нем можно задать евклидову функцию.
+\end{Def}
+
+\begin{exmp}
+	
+	\begin{enumerate}
+		\item $R = \mathbb{Z}, \lambda\left(r\right) = |x|$
+		\item $R = K\left[x\right], \lambda = deg\left(g\right), K$ "--- поле
+		\item $\mathbb{Z}\left[i\right]$
+		\item $\mathbb{Z}\left[\omega\right]$
+	\end{enumerate}
+\end{exmp}
+
+\begin{proof}
+	\begin{gather*}
+		\mathbb{Z}\left[i\right] = \{u + vi \mid u, v \in \mathbb{Z}\} \\
+		\lambda\left(u + vi\right) = |u + vi|^{2} = u^{2} + v^{2}, \lambda \text{ "--- евклидова функция, что и будем доказывать.} \\
+		\text{Пусть } a = u + vi, b = s + ti, \; u,v,s,t \in \mathbb{Z}, \left(s, t\right) \neq \left(0, 0\right) \\
+		\frac{a}{b} = \frac{u + vi}{s + ti} = \frac{\left(u + vi\right)\left(s - ti\right)}{s^{2} + t^{2}} = \gamma + \delta i,
+		\gamma, \delta \in \mathbb{Q} \\
+		\left<j\right> \text{ "--- ближайшее целое, } |j - \left<j\right>| \leq \frac{1}{2} \\
+		q = \left<\gamma\right> + \left<\delta\right>i, a = bq + r\\
+		r = a - bq = u + vi - \left(s + ti\right)\left(\left<\gamma\right> + \left<\delta\right>i\right)
+		\Ra r \in \mathbb{Z}\left[i\right] \\
+		\frac{\lambda\left(r\right)}{\lambda\left(b\right)} = \frac{|r|^{2}}{|b|^{2}} = \left|\frac{a - bq}{b}\right|^{2} =
+		\left|\frac{a}{b} - q\right|^{2} = \left|\gamma + \delta i - \left<\gamma\right> - \left<\delta\right>i \right|^{2} =
+		\left| \gamma - \left<\gamma\right>\right|^{2} + \left|\delta - \left<\delta\right>\right|^{2} \leq \frac{1}{4} + \frac{1}{4} < 1\\
+		\lambda\left(r\right) < \lambda\left(b\right)
+		\end{gather*}
+\end{proof}
