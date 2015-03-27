@@ -1,0 +1,55 @@
+\section{Отношение делимости, его свойства. Область целостности.}
+
+$R$ "--- кольцо.
+
+\begin{Def}
+	$a$ делит $b$ слева, если
+	\[  \exists c \in R \colon b = ac \]
+	$a$ "--- левый делитель $b$.
+\end{Def}
+
+\begin{Def}
+	$a$ делит $b$ справа, если
+	\[ \exists d \in R \colon b = da \]
+	$a$ "--- правый делитель $b$.
+\end{Def}
+
+Если $R$ коммутативно, то говорят просто о делителе:
+\[ a \mid b \Lra  b \vdots a \]
+
+Если $R$ не коммутативно:
+$a \mid_R b$ "--- $a$ делит $b$ слева, $a \tensor[_R]{\mid}{} b$ "--- $a$ делит $b$ справа.
+
+\textbf{Свойства:}
+\begin{enumerate}
+	\item $a \mid b \land b \mid c \Ra a \mid c$
+	\item $a \mid_R b \land b \mid_R c \Ra a \mid_R c$
+	\item $a \tensor[_R]{\mid}{} b \land  b \tensor[_R]{\mid}{} c \Ra a \tensor[_R]{\mid}{} c$
+	\begin{proof}
+		\begin{gather*}
+			 b = da \\
+			 c = fb = (fd)a
+		\end{gather*}
+		Для делимости слева аналогично, для двусторонней "--- показать обе выкладки
+	\end{proof}
+	\item Если $R$ "--- кольцо с единицей, то $a \mid a$, $a \mid_R a$, $a \tensor[_R]{\mid}{} a$.
+	\begin{proof}
+		\[ a = a \cdot 1 = 1 \cdot a \]
+	\end{proof}
+\end{enumerate}
+
+\begin{Def}
+	\[ ab = 0, a \ne 0 ,b \ne 0 \]
+	$a$ "--- левый нетривиальный делитель нуля, $b$ "--- правый нетривиальный делитель нуля.
+\end{Def}
+
+\begin{Def}
+	Коммутативное кольцо с единицей "--- область целостности, если в нём нет делителей нуля.
+	\[ \forall a, b \in R \colon ab = 0 \Ra a = 0 \vee b = 0 \]
+\end{Def}
+
+\begin{Def}
+	$R$ "--- кольцо с единицей. $R^*$ "--- мультипликативная группа кольца $R$
+	\[ R^* = \left\{ a \in R \mid \exists b \in R \colon ab = ba = 1 \right\} \]
+\end{Def}
+

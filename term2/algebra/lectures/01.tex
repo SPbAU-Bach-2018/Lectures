@@ -102,7 +102,10 @@ $R^*$ "--- группа, док-во было в 1 семестре.
 			a = bc, c \in R^* \Ra b \mid a \\
 			a \sim b \Ra b \sim a \Ra a \mid b
 		\end{gather*}
-		\item \begin{itemize}
+		\item 
+		$$a|b \Ra \exists u \colon b = au$$
+		$$b|a \Ra \exists v \colon a = bv$$
+		\begin{itemize}
 			\item \[ a = 0 \Ra b = 0, 0  = 0 \cdot 1 \Ra a \sim b \]
 			\item \begin{gather*}
 				a \ne 0, a = auv \\
@@ -181,7 +184,7 @@ $I_S$ "--- правые идеалы не являются левыми
 \begin{enumerate}
 \item
 	$I_\alpha (\alpha \in A)$ "--- идеал в кольце $R$ (левый, правый, двусторонний).
-	$I = \bigcap_{\alpha \in A}$ "--- идеал (левый, правый, двусторонний).
+	$I = \bigcap_{\alpha \in A} I_\alpha$ "--- идеал (левый, правый, двусторонний).
 
 \item
 	$I_1, I_2$ "--- идеалы в $R$ (левые, правые, двусторонние).
@@ -200,14 +203,14 @@ $I_S$ "--- правые идеалы не являются левыми
 	\item 	\begin{gather*}
 			 I = \cap_{\alpha \in A} I_\alpha, \forall a, b \in I \\
 			 \forall \alpha \in A \colon a, b \in I_\alpha \land \forall \alpha \in A \colon a \pm b \in I_\alpha \Ra a \pm b \in \cap_{\alpha \in A}I_\alpha \\
-			 \forall r \in R, a \in I \colon \forall \alpha \in A \colon a \in I_\alpha, r_a \in I_\alpha \Ra r_a \in \cap_{\alpha in A} I_\alpha
+			 \forall r \in R, a \in I \colon \forall \alpha \in A \colon a \in I_\alpha, ra \in I_\alpha \Ra ra \in \cap_{\alpha \in A} I_\alpha
 		 \end{gather*}
 	\item	\begin{gather*}
 			 I_1 + I_2 = \left\{ a + b \mid a \in I_1, b \in I_2 \right\} \\
 			a, c \in I_1 \land b, d \in I_2 \\
 			a + b = I_1 + I_2 \land c + d \in I_1 + I_2 \\
 			(a + b) \pm (c + d) = (a \pm c) + (b \pm d) \in I_1 + I_2 \\
-			r \in R, a + b \in I_1 + I_2,  a \in I-1, b \in I_2 \\
+			r \in R, a + b \in I_1 + I_2,  a \in I_1, b \in I_2 \\
 			r(a + b) = ra + rb \in I_1 + I_2
 		\end{gather*}
 	\item \begin{itemize}
@@ -218,8 +221,8 @@ $I_S$ "--- правые идеалы не являются левыми
 		\end{gather*}
 		\item \begin{gather*}
 			r \in R \\
-			r\left(\sum^k a_i b_i\right) = \sum^k (ra_i)b \in I_1 \cdot I_2 \\
-			\left(\sum^K a_i b_i\right)r = \sum^k a_i(b_ir) = I_1 \cdot I_2
+			r\left(\sum^k a_i b_i\right) = \sum^k (ra_i)b_i \in I_1 \cdot I_2 \\
+			\left(\sum^k a_i b_i\right)r = \sum^k a_i(b_ir) = I_1 \cdot I_2
 		\end{gather*}
 		$I_1$ "--- левый, $I_2$ "--- правый, $I_1 \cdot I_2$ "--- двусторонний
 		\end{itemize}
