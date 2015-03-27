@@ -1,0 +1,108 @@
+﻿\section{Расширение полей и присоеденение корней}
+\setauthor{Даниил Лиференко}
+\begin{Def}
+$F$ "--- подполе $K$, если $F$, $K$ "--- поля, $F \subseteq K$.
+\end{Def}
+\begin{Def}
+$K$ "--- расширение $F$, если $F$, $K$ "--- поля, $F \subseteq K$.
+\end{Def}
+\begin{theorem}
+$F$ "--- поле, $f \in F[x]$, $f$ "--- неприводимый многочлен, $K = F[x]_{/(f)}$. Тогда: 
+$$K \text{ "--- поле}, f \text{ имеет корень в} K$$
+\end{theorem}
+\begin{proof}
+$$f \text{ "--- неприводимый} \Rightarrow (f) \text{ "--- максимальный идеал} \Rightarrow$$
+$$F[x]_{/(f)} \text{ "--- поле}$$
+Введем гомоморфизм $\phi \colon F[x] \rightarrow F[x]_{/(f)}$, редукция по модулю идеала.
+По теореме о делении с остатком, каждый класс вычитов в $F[x]_{/(f)}$ содержит единственный многочлен степени $\leq n - 1$, где $n = \deg f$ $\Rightarrow$ сужение $\phi|_{F}$ на множество констант "--- инъективно.
+$$F_K \cong \phi(F) \subseteq K \text{ отождевствляем $F$ и $\phi(F)$, $[const] = const$}$$
+$$x \xrightarrow{\phi} [x] = \alpha$$
+$$f = a_0 + a_1x + a_2x^2 + \dots + a_nx^n, a_n \neq 0$$
+$$[f(x)] = 0_K, 0_K \text{ "--- класс нулевого многочлена в $K$}$$
+$$0_K = [a_0] + [a_1][x] + \dots + [a_n][x]^n = f(\alpha) \Rightarrow$$
+$$x \text{ "--- корень $f$ в поле $K$}$$
+\end{proof}
+\begin{Rem}
+В этом доказательстве сужение $\phi$ на множество многочленов степени $\leq n - 1$ инъективно $\Rightarrow$ всякий элемент поля $K$ единственным образом представляется в виде $$c_0 + c_1\alpha + \dots + c_{n - 1}\alpha^{n - 1} = [c_0 + c_1x + \dots + c_{n - 1}x^{n - 1}]$$
+\end{Rem}
+\begin{Def}
+$K$ "--- поле, полученное присоединением корня $f$.
+\end{Def}
+\begin{exmp}
+$\R, f = x^2 + 1$.
+$$\R[x]_{/(x^2 + 1)} = \{a + b[x] \mid a, b \in \R\}$$ 
+$$(a + b[x])(c + d[x]) = $$ 
+$$= ac + (ad + bx)[x] + bd[x^2] =$$ 
+$$= ac + (ad + bc)[x] + bd[-1] = $$
+$$= ac - bd + (ad + bc)[x] \text{ "--- напоминает умножение в $\C$} $$
+$$\R[x]_{/(x^2 + 1)} \rightarrow \C$$
+$$a + b[x] \rightarrow a + bi$$
+\end{exmp}
+\begin{Def}
+$F$ "--- поле, $f \in F[x], \deg f \geq 1$. Поле $K \supseteq F$ называется полем разложения $f$, если $f$ раскладывается в $K$ на линейные множители, но не разложим в любом подполе $K$.
+\end{Def}
+\begin{theorem}
+$\exists K$ "--- поле разложения $f$.
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $\exists L$, в котором $f$ раскладывается на линейные множетели.
+Докажем по индукции по суммарной степени нелинейных множителей $f$:
+\begin{description}
+\item[База:] Суммарной степени нелинейных множителей ноль. 
+Значит, $f$ разложим на линейные множители.
+\item[Переход:] 
+$$\exists f_1 | f, \deg f_1 \geq 2, f_1 \text{ "--- неприводим}$$
+$$F[x]_{(f_1)} = L_1, \text{ в } L_1, f_1 \text{имеет корень}$$
+
+$$F[x] \subseteq L_1[x]$$
+$$f_1 = (x - \alpha)g \text{ в } L_1[x]$$
+По индукционному предположению, $\exists L$ "--- расширение $L_1$, в котором $f$ раскладывается на линейные множители.
+$$F \subseteq L_1 \subseteq L$$
+\end{description}
+\item $K = \bigcap M$, $M \subset L$, $M$ "--- подполе $L$, $f$ "--- раскладывается на линейный члены.
+\end{enumerate}
+\end{proof}
+\section{Поле частных областей целостности}
+$R$ "--- область целостности.
+Задача: построить "наименьшее возможное" поле $F$, содержащие $R$:
+\begin{Def}
+$$X = \{(a, b) \mid a, b \in R, b \neq 0 \} \text{ "--- множество дробей}$$
+Введем отношение эквивалентности на $X$:
+$\sim \colon (a, b) \sim (a_1, b_1) \Leftrightarrow ab_1 = a_1b$
+Тогда, полем частных кольца $R$ называется фактор-множество $X$: $X_{/\sim}$
+\end{Def}
+\begin{Def}
+$\frac{a}{b} = [(a, b)]$ "--- дробь.
+\end{Def}
+Зададим на $X_{/\sim}$ сложение и умножение:
+\begin{Def}
+$$\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}$$
+\end{Def}
+\begin{Def}
+$$\frac{a}{b} \cdot \frac{c}{d} = \frac{ad + bc}{bd}$$
+\end{Def}
+\begin{assertion}
+$+, \cdot$ "--- операции на $X_{/\sim}$.
+\begin{enumerate}
+\item $b \neq 0, d \neq 0 \Rightarrow bd \neq 0$
+\item Корректность: $\forall$ представиль класса эквивалентности подходит.
+\end{enumerate}
+\end{assertion}
+\begin{assertion}
+$\{\frac{a}{1} \mid a \in R \}$ "--- подкольцо $K$, изоморфное R.
+\end{assertion}
+\begin{theorem}
+$K = (X_{/\sim}, +, \cdot)$ "--- поле.
+\end{theorem}
+\begin{proof}
+Очевидны все свойства, кроме дистрибутивности.
+$$\left(\frac{a}{b} + \frac{c}{d}\right) \frac{e}{f} = \frac{ad + bc}{bd} \frac{e}{f} = \frac{ade + bce}{bdf}$$
+$$\frac{a}{b} \cdot \frac{e}{f} + \frac{c}{d} \cdot \frac{e}{f} = \frac{ae}{bf} + \frac{ce}{df} = \frac{aedf + cbef}{bdf^2}$$
+$$\frac{ade + bce}{bdf} \sim \frac{aedf + cbef}{bdf^2}$$
+Нулевой и единичный элементы:
+$$0_K = \frac{0}{1}$$
+$$1_K = \frac{1}{1}$$
+Всякий ненулевой элемент обратим:
+$$\frac{a}{b} \cdot \frac{b}{a} = \frac{ab}{ba} = \frac{1}{1} = 1_K$$
+\end{proof}
