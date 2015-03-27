@@ -18,7 +18,7 @@ $$a_0 \text{"--- составное} \Ra a_0 = a_1b_1, a_1b_1 \notin R^{*}$$
 $$a_1 \text{"--- неприводимо} \colon ok$$
 $$a_1 \text{"--- составное} \Ra a_1 = a_2b_2, a_2b_2 \notin R^{*}$$
 $$a_0 \vdots a_1 \vdots a_2 \vdots \cdots$$
-$$(a_0) \subsetneq (a_1) \subsetneq (a_2) \subsetneq \cdots$$
+$$(a_0) \subset (a_1) \subset (a_2) \subset \cdots$$
 $$\text{По теореме об обрыве цепей, } \exists n \colon (a_n) = (a_{n+1}) = \cdots$$
 $$a_n \sim a_{n+1}$$
 $$a_n = a_{n+1}b_{n+1}; a_{n+1}b_{n+1} \notin R^{*} \Ra a_{n+1} \nsim a_n$$
@@ -28,7 +28,7 @@ $$a_n = a_{n+1}b_{n+1}; a_{n+1}b_{n+1} \notin R^{*} \Ra a_{n+1} \nsim a_n$$
 $$a = p_1b_1$$
 $$b_1 \in R^{*} \Ra \epsilon = b_1$$
 $$b_1  \notin R^{*} \Ra \exists p_2 = p_1b_2$$
-$$a \vdots b_1 \vdots b2 \vdots \cdots$$
+$$a \vdots b_1 \vdots b_2 \vdots \cdots$$
 $$\text{т.к. } p_i \notin R^{*},$$
 $$(a) \subsetneq (b_1) \subsetneq (b_2) \subsetneq \cdots$$
 $$\text{По теореме об обрыве цепей, } \exists n \colon b_n \in R^{*}, \epsilon = b_n$$
@@ -53,8 +53,8 @@ $$p_n \text{"--- неприводим}, R \text{"--- ОГИ} \Ra p_n \text{"--- 
 $$p_n \nmid \eta \Ra \exists j \colon p_n \mid q_j$$
 $$\text{Не умоляя общности, } p_n \mid q_m$$
 $$q_m = p_n \beta, q_m \text{"--- неприводим}, \beta \text{"--- обратимый}$$
-$$\epsilon (\prod \limits_{i=1}^{n-1}{p_i}) p_n = \eta \beta (\prod \limits_{j=1}^{m}{q_j})p_n$$
-$$\epsilon \prod \limits_{i=1}^{n-1}{p_i} = \eta \beta \prod \limits_{j=1}^{m}{q_j}$$
+$$\epsilon (\prod \limits_{i=1}^{n-1}{p_i}) p_n = \eta \beta (\prod \limits_{j=1}^{m - 1}{q_j})p_n$$
+$$\epsilon \prod \limits_{i=1}^{n-1}{p_i} = \eta \beta \prod \limits_{j=1}^{m - 1}{q_j}$$
 $$\text{По предположению, } n-1=m-1 \Ra n=m \text{ и } \exists \sigma \in S_{n-1} \colon \forall i=1..n-1, p_i \sim q_{\sigma(i)}$$
 $$p_n \sim q_m = q_n$$
 \end{description}
