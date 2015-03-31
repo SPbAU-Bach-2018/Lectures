@@ -1,0 +1,158 @@
+\section{Дерево отрезков снизу.}
+\setauthor{Бугакова Надежда}
+
+\begin{cppcode}
+for (L+=n, R+=n; L <= Rl L/=2, R/=2)
+{
+	if (L%2 == 1) sum += get(L++);
+	if (R%2 == 0) sum += get(R--);
+}
+\end{cppcode}
+
+За каждую итерацию цикла рассматриваемый отрезок становится $\ge$ в 2 раза короче $\Rightarrow$ цикл сделает $O(\log(R - L))$ операций.
+
+На каждой итерации цикла $L$ и $R$ - отрезок вершин, которые нужно обработать.
+
+\underline{Переход от запросов сверху к запросам снизу:}
+\begin{enumerate}
+	\item Одномерное: $\log n \rightarrow \log(R - L)$
+	\item Двумерное: $\log^2n \rightarrow \log(R - L)\cdot BS + \log n \rightarrow \log(R - L)\cdot BS + \log(R - L)$
+\end{enumerate}
+
+<<+>> дерева отрезков снизу:
+\begin{itemize}
+	\item Нет рекурсии
+	\item $O(\log(R - L))$
+\end{itemize} 
+
+\begin{center} \text{\bf Задачи.} \end{center}
+Можно сопоставить массиву точки: $(i, a_i)$. 
+\begin{equation*}
+	\text{Тогда, чтобы найти решение такой задачи:} 
+	\begin{cases}
+		L \le i \le R \\
+		X \le a_i \le Y
+	\end{cases}	,
+\end{equation*}
+достаточно найти точку в прямоугольнике. Для того, чтобы из точек получить массив, надо определить их порядок. Есть несколько способов.
+\begin{enumerate}
+	\item $P(p_x, p_y), Q(q_x, q_y)$
+		Можно задать два отношения:
+		\begin{itemize}
+			\item $P <_1 Q \text{, если } ((p_x < q_x) || (p_x == q_x \&\& p_y < q_y))$
+			\item $P <_2 Q \text{, если } p_y < q_y$
+		\end{itemize}
+		Тогда то, что точка $P$ лежит в прямоугольнике равносильно следующему:
+		\begin{equation*}
+			\begin{cases}
+				A \le_1 P \le_1 B \\
+				A \le_2 P \le_2 B
+			\end{cases}
+		\end{equation*}
+	\item Sort по $x$-координате, забивая на одинаковые. Тогда условие $L_x \le x \le R_x$ превратиться в условие на индекс 
+	$lower\_bound(L_x) \le i \le upper\_bound(R_x)$.
+\end{enumerate}
+
+Для многомерной задачи дерево отрезков нужно хранить в дереве отрезков. $x_1, \dots, x_d$ и  условия $L_i \le x_i \le R_i$. 
+Одним деревом отрезков мы понижаем размерность на 1: $d \rightarrow d - 1$
+
+Sort $x_d$. Строим на массиве дерево отрезков. В каждой вершине дерева отрезков, соответсвующей $[L..R]$, 
+хранится ещё одно дерево отрезков на точках, хранящихся c индексами c $L$ по $R$ на одну размерность меньше.
+
+\underline{Как посчитать ответ:} BS(находим L и R индексы в массиве) + Д.О. + Запросы к соответсвующим вершинам.
+  
+Д.О. $\rightarrow$ Д.О. $\rightarrow \dots \rightarrow$ Д.О. $\rightarrow$ массив. Каждый переход осуществляется за $O(\log n)$, но
+мы умеем последние два перехода делать за $O(\log n)$ при запросах.
+
+\underline{Итог:}
+\begin{itemize}
+	\item $O(n\log^{d - 1}n)$ памяти
+	\item $O(\log^d n)$ Change
+	\item $O(\log^{d - 1} n)$ Count, Sum, Min   
+\end{itemize}
+
+\section{Дерево Фенвика}
+
+\begin{cppcode}
+get(i) { //sum[0, i], $O(\log n)$
+		sum = 0;
+		for (; i >= 0; i &= (i + 1), i--)
+			sum += a[i];
+    return sum;
+}
+\end{cppcode}
+
+\begin{cppcode}
+add(i, x){
+	for (; i < n; i |= (i + 1))
+		a[i] += x;
+}
+\end{cppcode}
+
+<<+>> Дерева Фенвика:
+\begin{itemize}
+	\item Код короткий.
+	\item Нет дополнительной памяти(Inplace).
+	\item Константа меньше.
+\end{itemize}
+
+В ячейке массива $a[i]$ хранится сумма чисел с индексами $[i\&(i + 1) \dots i]$
+
+\begin{center} \text{\bf Корректность дерева Фенвика.} \end{center}
+
+будет чуть позже.
+
+\begin{center} \text{\bf Ещё один <<+>> дерева Фенвика: 2D-деревья.} \end{center}
+
+$O(\log^2 n)$
+
+\begin{cppcode}
+	get(i_0, j_0) { // sum [0, i_0][0, j_0]
+		sum = 0;
+		for (i = i_0; i >= 0; i &= (i + 1), i--)
+			for (j = j_0; j >= 0; j &= (j + 1), j--)
+				sum += a[i][j];
+		return sum;
+   }
+\end{cppcode}
+
+\begin{cppcode}
+	add(i_0, j_0, x) { 
+		for (i = i_0; i < n; i |= (i + 1))
+			for (j = j_0; j < n; j |= (j + 1))
+				a[i][j] += x;
+		return sum;
+   }
+\end{cppcode}
+
+$\sum(L \dots R] = $get($R$) - get($L$) одномерный случай.
+
+$\sum(x_1, x_2]\times(y_1, y_2] = $get($x_2$, $y_2$) - get($x_1$, $y_2$) - get($x_2$, $y_1$) + get($x_1$, $y_1$) двумерный случай
+
+$k$-мерное: $(\log n)^k2^k = O((\log n)^k)$. ($2^k$ - количество слагаемых)
+
+\section{SkanLine}
+
+\begin{enumerate}
+	\item $n$ точек, $m$ прямоугольников. Для каждого прямоугольника  $\sum$ значений точек/количество точек. За $\O((n + m)\log(n + m))$
+	\begin{enumerate}
+		\item Сжатие координат: $0 \le x, y \le n + 2m$
+		\item Переходим к полоскам(стаканам: $[-\inf; x]\times[y_1; y_2]$). Прямоугольник: 1 полоска - 2 полоска.
+		\item ScanLine: идём слева направо по $x$(Sort Events по $x$). Дерево отрезков или Фенвик по $y$.
+
+		События:
+
+		1) Встретили точку с координатой $y$: Add($y$);
+
+		2) sum($y_1$, $y_2$);
+
+		Приоритет: Add < Sum.
+	\end{enumerate}
+	\item Последовательность точек, возрастающая по обеим координатам, длиннейшая.
+
+	f[i] - максимальное количество точек у последовательности с концом в этой точке.
+
+	f[i] = $\max\limits_{y_j < y_i} f[j] + 1$; $\leftarrow$ Д.О. с max.
+
+	PS: есть решение с динамикой + BS.
+\end{enumerate}
