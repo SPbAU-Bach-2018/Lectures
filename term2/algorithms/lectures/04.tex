@@ -51,29 +51,29 @@ $[begin; to], [to, to + len), [to + len; end)$, после чего склеив
 
 \begin{cppcode}
 void decreaseRefCount(Node *v) {
-	if (v == Node::null)
-		return;
-	v->refCount--;
-	if (v->refCount == 0) {
-		decreaseRefCount(v->l);
-		decreaseRefCount(v->r);
-		delete v;
-	}	 
+    if (v == Node::null)
+        return;
+    v->refCount--;
+    if (v->refCount == 0) {
+        decreaseRefCount(v->l);
+        decreaseRefCount(v->r);
+        delete v;
+    }    
 }
 
 Node* memmove(Node *array, int from, int to, int len) {
-	Node *a1, *a2, *a3, *a4, *a5, *a6, *result;
-	a1, a2, a3 = split(array, from, len);
-	a4, a5, a6 = split(array, from, len);
-	result = merge(a4, a2, a6);
-	decreaseRefCount(array);
-	decreaseRefCount(a1);
-	decreaseRefCount(a2);
-	decreaseRefCount(a3);
-	decreaseRefCount(a4);
-	decreaseRefCount(a5);
-	decreaseRefCount(a6);
-	return result;		 
+    Node *a1, *a2, *a3, *a4, *a5, *a6, *result;
+    a1, a2, a3 = split(array, from, len);
+    a4, a5, a6 = split(array, from, len);
+    result = merge(a4, a2, a6);
+    decreaseRefCount(array);
+    decreaseRefCount(a1);
+    decreaseRefCount(a2);
+    decreaseRefCount(a3);
+    decreaseRefCount(a4);
+    decreaseRefCount(a5);
+    decreaseRefCount(a6);
+    return result;       
 }
 \end{cppcode}
 
@@ -145,7 +145,7 @@ $L_{rev}$ будем доставать элементы и класть их в
 \t{push, pop}.
                 
 Во-первых, надо понять, сколько дополнительных операций надо делать каждый раз, чтобы мы все успели перевернуть к моменту опустошения $L$.
-Всего нам надо сделать $|L| + |R| + |L| - \#$\t{push} операций, а, поскольку мы начинаем переворачивать стек в момент, когда $|L| = |R|$, то
+Всего нам надо сделать $|L| + |R| + |L| - \#$\t{pop} операций, а, поскольку мы начинаем переворачивать стек в момент, когда $|L| = |R|$, то
 надо сделать не более $3|L|$ операций, то есть, по 3 дополнительных операции на каждую операцию \t{push, pop}.
 
 Во-вторых, после того, как мы стек перевернем, должно выполняться $|R_rev| \ge |L|$, иначе получится, что мы уже опять должны были начать переворачивать
@@ -164,62 +164,62 @@ $|R_rev| = |R_{old}| + |L_{old}| - \#$\t{push}$, |L| = \#$\t{pop}.
 
 \begin{cppcode}
 void startReverse(){
-	isReversing = 1;
-	L' = new Stack();
-	swap(L, L');
-	R' = R; //такое присваивание в случае персистентного стека -- ОК
-	R_rev = new Stack();
-	L_rev = new Stack();	
-	popCount = 0;
+    isReversing = 1;
+    L' = new Stack();
+    swap(L, L');
+    R' = R; //такое присваивание в случае персистентного стека -- ОК
+    R_rev = new Stack();
+    L_rev = new Stack();    
+    popCount = 0;
 }
 
 void doSth(){
-	if (R'->size())
-		R_rev->push(R'->pop());
-	if (L'->size())
-		L_rev->push(L'->pop());
-	if (L'->size() == 0 && R'->size() == 0) 
-		if (L_rev->size() > popCount())
-			R_rev->push(L_rev->pop());
-		else{
-			isReversing = 0;
-			swap(L, R_rev);
-			delete R_rev;
-			delete L_rev;
-			delete R';
-			delete L';
-		}			
+    if (R'->size())
+        R_rev->push(R'->pop());
+    if (L'->size())
+        L_rev->push(L'->pop());
+    if (L'->size() == 0 && R'->size() == 0) 
+        if (L_rev->size() > popCount())
+            R_rev->push(L_rev->pop());
+        else{
+            isReversing = 0;
+            swap(L, R_rev);
+            delete R_rev;
+            delete L_rev;
+            delete R';
+            delete L';
+        }           
 }
 
 void push(int a){
-	R = R->push(a);
-	if (L->size() == R->size())
-		startReverse();
-	FOR(i, 3)
-		if (isReversing)
-			doSth();
+    R = R->push(a);
+    if (L->size() == R->size())
+        startReverse();
+    FOR(i, 3)
+        if (isReversing)
+            doSth();
 }
 
 int pop(int a){
-	int res = L->pop();
-	if (L->size() == R->size())
-		startReverse();
-	FOR(i, 3)
-		if (isReversing)
-		{
-		    popCount++;
-			doSth();
-		}
+    int res = L->pop();
+    if (L->size() == R->size())
+        startReverse();
+    FOR(i, 3)
+        if (isReversing)
+        {
+            popCount++;
+            doSth();
+        }
 }
 \end{cppcode}
 
 \begin{Rem}
-	Функция \cpp'doSth' делает каждый раз либо одну, либо две дополнительных операции, поэтому, чтобы
-	все работало корректно, ее надо вызвать 3 раза. 
-	Так же стоит заметить, что приведенная реализация, на самом деле, работает за амортизированное $O(1)$, так как
-	\cpp'delete L_rev' будет работать за $O(popCount)$. 
-	Этого можно избежать, добавив в \cpp'doSth()' еще и простое опустошение стека $L_{rev}$, от этого может лишь несколько
-	увеличиться константа, но зато очередь гарантированно будет работать за $O(1)$.
+    Функция \cpp'doSth' делает каждый раз либо одну, либо две дополнительных операции, поэтому, чтобы
+    все работало корректно, ее надо вызвать 3 раза. 
+    Так же стоит заметить, что приведенная реализация, на самом деле, работает за амортизированное $O(1)$, так как
+    \cpp'delete L_rev' будет работать за $O(popCount)$. 
+    Этого можно избежать, добавив в \cpp'doSth()' еще и простое опустошение стека $L_{rev}$, от этого может лишь несколько
+    увеличиться константа, но зато очередь гарантированно будет работать за $O(1)$.
 
 \end{Rem}
 
@@ -232,14 +232,14 @@ int pop(int a){
 Пусть у нас была такая реализация \t{merge}:
 \begin{cppcode}
 Node *merge(Node *a, Node *b){
-	if (a->y >= b->y) {
-		a->r = merge(a->r, b);
-		return a;
-	} else {
-		b->l = merge(a, b->l);
-		return b;
-	}
-}	
+    if (a->y >= b->y) {
+        a->r = merge(a->r, b);
+        return a;
+    } else {
+        b->l = merge(a, b->l);
+        return b;
+    }
+}   
 \end{cppcode}
 То после повторения в цикле такой операции: \cpp'r=merge(r, r)', мы получим бамбук, направленный вправо.
 Пусть мы повторили эту операцию $m$ раз, тогда размер дерева стал $2^m$, и его глубина тоже стала $2^m$ 
@@ -253,14 +253,14 @@ Node *merge(Node *a, Node *b){
 
 \begin{cppcode}
 Node *merge(Node *a, Node *b){
-	if (a->size / (a->size + b->size) >= rand() / RAND_MAX) {
-		a->r = merge(a->r, b);
-		return a;
-	} else {
-		b->l = merge(a, b->l);
-		return b;
-	}
-}	
+    if (a->size / (a->size + b->size) >= rand() / RAND_MAX) {
+        a->r = merge(a->r, b);
+        return a;
+    } else {
+        b->l = merge(a, b->l);
+        return b;
+    }
+}   
 \end{cppcode}
 
 Рассмотрим все вершины, входящие в $a$ и $b$. 
