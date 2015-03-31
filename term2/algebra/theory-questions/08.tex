@@ -1,0 +1,27 @@
+﻿\section{Евклидово кольцо является ОГИ}
+\begin{theorem}
+	Если $R$ евклидово, то $R$ "--- ОГИ.
+\end{theorem}
+
+\begin{proof}
+	\begin{gather*}
+		I \text{ "--- идеал в } R\\
+		I = \{0\} = \left(0\right) \text{ "--- главный. Пусть } I \neq \{0\}\\
+		\mathbb{N} \cup \{0\} \supseteq \Lambda = \{\lambda\left(a\right) \mid a \in I \smallsetminus \{0\} \} \neq \emptyset \Ra
+		\exists m \text{ "--- наименьший элемент в } \Lambda \\
+		\text{значит } \exists b \neq 0, b \in I \colon \lambda\left(b\right) = m\\
+		\text{Докажем, что } I = \left(b\right) \\
+		I \supseteq \left(b\right) \text{ очевидно} \\
+		a \in I, a = bq + r, r = 0 \text{ или } \lambda\left(r\right) < \lambda\left(b\right) = m\\
+		r = a - bq \in I, \text{ если } r \neq 0 \text{ то получаем противоречие с минимальностю } m \Ra r = 0\\
+		a = bq \in\left(b\right) \\
+		I \in \left(b\right) \\
+		I = \left(b\right)
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$\mathbb{Z}, K\left[x\right], \mathbb{Z}\left[i\right] $ "--- ОГИ ($K$ "--- поле)
+
+        В частности, любой идел в $\mathbb{Z}$ имеет вид $m\mathbb{Z}$.
+\end{conseq}

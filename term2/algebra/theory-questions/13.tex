@@ -1,0 +1,38 @@
+﻿\section{\texorpdfstring{Разложение на неприводимые множители в $\C[x]$ и $\R[x]$}{Разложение на неприводимые множители в C[x] и R[x]}}
+$K[x], K$ "--- поле.
+$$x-c \text{ всегда неприводим}$$
+$$x-c=fg \Ra \deg f = 0, \text{ либо } \deg q = 0$$
+$$f \in K^{*}=K[x]^{*} \text{ или } g \in K^{*}=K[x]^{*} $$
+Если $K$ "--- алгебраически замкнутое поле, то других неприводимых в $K[x]$ нет (всякий многочлен степени $\ge 1$ делится на линейный).
+\begin{theorem}
+$\C$ "--- алгебраически замкнуто
+$$f \in \C[x] \Ra f = a \prod\limits_{i=1}^{m}{(x-c_i)^{a_i}}, a_i \ge 1, a \in \C$$
+(без доказательства)
+\end{theorem}
+Вообще говоря, отсутствие корней не влечет неприводимости многочлена, но, если $\deg f = 2$ или $\deg f =3$, то $f$ "--- неприводим $\Leftrightarrow f$ не имеет корней.
+$$f = gh \text{ и } g, h \notin K^{*}$$
+$$\deg f = 2 \Leftrightarrow \deg g = \deg h = 1$$
+$$\deg f = 3 \Leftrightarrow \deg g = 1, \deg h = 2 \text{ или } \deg g = 2, \deg h = 1$$
+\begin{theorem}
+$$f \in \R[x], f \ne 0$$
+$$f=a\prod\limits_{i=1}^{n}{(x-c_i)^{a_i}} \prod\limits_{j=1}^{m}{(x^2+b_jx+c_j)^{d_j}}, b_j^2-4c_j<0$$
+\end{theorem}
+\begin{proof}
+$$f \in \R[x], z \in \C \setminus \R, z \text{"--- корень } f$$
+Докажем, что $\bar z$ "--- тоже корень $f$, причем той же кратности, что и $z$.
+$$f \in \R[x]$$
+$$f(x) = a_n x^n + \dots + a_0$$
+$$0 = f(z) = a_n z^n + \dots + a_0$$
+$$0 = \bar 0 = \bar{a_n}(\bar{z})^n + \dots + \bar{a_0} = a_n(\bar{z})^n + \dots + a_0 = f(\bar{z})$$
+Если $z$ "--- корень $f$ кратности $k$, то
+$$f(z) = f'(z) = \dots = f^{(k-1)}(z) = 0, f^{(k)}(z) \ne 0$$
+$$f(\bar z) = f'(\bar z) = \dots = f^{(k-1)}(\bar z) = 0, f^{(k)}(\bar z) \ne 0$$
+Значит $\bar z$ "--- корень той же кратности.
+$$f \in R[x] \subset \C[x]$$
+$$f = q \prod\limits_{i=1}^{n}{(x-z_i)^{\alpha_i}}, z_i \in \C$$
+отдельно вещественные корни,
+отдельно комплексные $z_i \in C \setminus R$
+$$(x - z)^{\alpha_i}(x - \bar z)^{\alpha_i} = ((x - z)(x - \bar z))^{\alpha_i}$$
+$$(x - z_i)(x - \bar z_i) = x^2 - 2\Re(z_i)x + |z_i|^2$$
+$$D = 4\Re(z_i)^2 - 4|z_i|^2 = -4\Im(z_i)^2 < 0$$
+\end{proof}

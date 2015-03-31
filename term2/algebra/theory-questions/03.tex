@@ -1,0 +1,131 @@
+﻿
+\section{Идеалы, порождённые семейством}
+
+\begin{Def}
+	$R$ "--- кольцо, $\left\{ a_\alpha \right\}_{\alpha \in A}, a_\alpha \in R$.
+	Идеал (левый, правый, двусторонний), порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$ "--- наименьший по включению идеал (левый, правый, двусторонний), содержащий в себе это семейство.
+	\begin{gather*}
+	J = \bigcap_{\beta \in B} I_\beta \\
+	\forall \beta \in B, I_\beta \supset A \land \text{$B$ "--- идеал (левый, правый, двухсторонний)}
+	\end{gather*}
+\end{Def}
+
+\begin{Def}
+	Альтернативное определение
+	\begin{gather*}
+		J' = \left\{ r_1 a_{\alpha_1} + \dots + r_k a_{\alpha_k} + n_1 a_{\beta_1} + \dots + n_s a_{\beta_s} \right\} \\
+		k, s \in \N \cup \{0\}; r_i \in R; \alpha_i, \beta_i \in A; n_i \in \Z
+	\end{gather*}
+\end{Def}
+
+\begin{proof}
+	\begin{gather*}
+		\text{$J'$ "--- идеал}, a_\alpha \in J' \Ra J \subseteq J' \\
+		a_{\alpha} \in J \Ra J' \subseteq J \\
+		r(r_1 a_{\alpha_1} + \dots + r_k a_{\alpha_k} + n_1 a_{\beta_1} + \dots + n_s a_{\beta_s}) = r r_1 a_{\alpha_1} + \dots + r r_k a_{\alpha_k} + r n_1 a_{\beta_1} + \dots + r n_s a_{\beta_s} \\
+		\sum_{i = 1}^k r_i a_{\alpha_i} \in J \\
+		\sum_{i = 1}^s n_i a_{\beta_i} \in J
+	\end{gather*}
+	\begin{Rem}
+		Если $1 \in R$, то слагаемые $n_i a_{\beta_i}$ можно опустить
+		\[n_i > 0, n_i a_{\beta_i} = \underbrace{a_{\beta_i} + \dots + a_{\beta_i}}_{n \text{ раз}} = \underbrace{(1 + \dots + 1)}_{\in R} a_{\beta_i} \]
+	\end{Rem}
+\end{proof}
+
+\begin{exmp}
+$R = 2\Z$ "--- идеал, порождённый 2.
+\[ \forall r \in 2\Z, r \cdot 2 \in 4\Z \]
+\end{exmp}
+
+\textbf{Обозначения:}
+\begin{itemize}
+\item
+	$\tensor[_R]{\{(a_\alpha \mid \alpha \in A)\}}{}$ "--- левый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
+
+\item
+	$\{(a_\alpha \mid \alpha \in A)\}_R$ "--- правый идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
+
+\item
+	$\{(a_\alpha \mid \alpha \in A)\}$ "--- двусторонний идеал, порождённый $\left\{ a_\alpha \right\}_{\alpha \in A}$.
+\end{itemize}
+
+\begin{Def}
+	Главный идеал "--- идеал, порождённый одним элементом.
+
+	\begin{gather*}
+		Ra, R(a), (a)R, aR, (a) \\
+		\tensor[_R]{(a_1, \dots, a_n)}{} = Ra_1 + \dots + Ra_n \\
+		(a_1, \dots, a_n)q_R = a_1R + \dots + a_nR
+	\end{gather*}
+\end{Def}
+
+\begin{exmp}
+	$R$ "--- кольцо с единицей.
+	\begin{enumerate}
+	\item
+		\begin{itemize}
+			\item $a \mid _{R} b \Lra \left(a\right)_{R} \supseteq \left(b\right)_{R}$
+			\item $a \tensor[_R]{\mid}{} b \Lra \tensor[_R]{(a)}{} \supseteq \tensor[_R]{(b)}{}$
+		\end{itemize}
+
+	\item
+		$R$ "--- область целостности. \\
+			$\left(a\right) = \left(b\right) \Lra a \sim b$
+	\end{enumerate}
+	\begin{proof}
+		\begin{enumerate}
+			\item
+			\begin{description}
+				\item[$\Rightarrow$]
+				\begin{gather*}
+					a \mid_{R} b \Rightarrow \exists c \colon b=ac \\
+					\left(b\right)_{R} = \{br \mid r \in R\} = \{acr \mid r \in R\} \subseteq \left(a\right)_{R}
+				\end{gather*}
+				\item[$\Leftarrow$]
+				\begin{gather*}
+					\left(b\right)_{R} \subseteq \left(a\right)_{R} \Rightarrow b \in \left(a\right)_{R} \\
+					\exists c \colon b = ac \\
+					c \in R \Rightarrow a \mid_{R} b
+				\end{gather*}
+			\end{description}
+			\item
+				\[
+					\left\{\begin{aligned}
+						\left(a\right) \subseteq \left(b\right) &\Lra b \mid a\\
+						\left(a\right) \supseteq \left(b\right) &\Lra a \mid b
+					\end{aligned}\right.
+					\Lra a \sim b
+				\]
+		\end{enumerate}
+	\end{proof}
+\end{exmp}
+
+\begin{Def}
+	$R$ "--- коммутативное кольцо с единицей.
+	Всякий идеал порожденный одним элементом "--- главный.
+\end{Def}
+
+\begin{Def}
+	$R$ "--- область целостности.
+	$R$ "--- область главных идеалов (ОГИ), если каждый идеал в нем главный.
+\end{Def}
+
+\begin{exmp}
+	$R = K[x, y]$. Тогда $R$ "--- не ОГИ.
+	\begin{proof}
+		\begin{gather*}
+			I = \left\{f \in K\left[x,y\right] \mid f\left(0,0\right) = 0\right\} \\
+			I = \left(d\right) \Ra
+			\left\{\begin{aligned}
+				x \in d \\ y \in d
+			\end{aligned}\right.
+			\Ra
+			\left\{\begin{aligned}
+				d \mid x \\ d \mid y
+			\end{aligned}\right.
+			\Rightarrow
+				d = const \neq 0
+		\end{gather*}
+		но $d \notin I$ "--- противоречие. Поэтому $I$ "--- не главный идеал.
+	\end{proof}
+\end{exmp}

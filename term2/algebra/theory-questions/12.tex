@@ -1,0 +1,61 @@
+﻿\section{Факториальность ОГИ}
+\begin{theorem}
+$R$ "--- ОГИ $\Ra$ $R$ факториально.
+\begin{enumerate}
+\item Всякий ненулевой необратимый элемент делится хотя бы на один неприводимый.
+\item Всякий ненулевой необратимый элемент раскладывается в произведение неприводимых.
+\item Единственность.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $$R \text{"--- ОГИ}, a \in R, a \notin \{0\} \cup R^{*}$$
+$$a=a_0$$
+$$a_0 \text{"--- неприводимо} \colon ok$$
+$$a_0 \text{"--- составное} \Ra a_0 = a_1b_1, a_1b_1 \notin R^{*}$$
+$$a_1 \text{"--- неприводимо} \colon ok$$
+$$a_1 \text{"--- составное} \Ra a_1 = a_2b_2, a_2b_2 \notin R^{*}$$
+$$a_0 \vdots a_1 \vdots a_2 \vdots \cdots$$
+$$(a_0) \subset (a_1) \subset (a_2) \subset \cdots$$
+$$\text{По теореме об обрыве цепей, } \exists n \colon (a_n) = (a_{n+1}) = \cdots$$
+$$a_n \sim a_{n+1}$$
+$$a_n = a_{n+1}b_{n+1}; a_{n+1}b_{n+1} \notin R^{*} \Ra a_{n+1} \nsim a_n$$
+Либо на каком-то шаге $a_i$ неприводим $\Ra a_i \mid a$, либо процесс никогда не обрывается (противоречие с теоремой об обрыве цепей).
+\item $$R \text{"--- ОГИ}, a \in R, a \notin \{0\} \cup R^{*}$$
+По пункту 1, $\exists p_1$ "--- неприводимый
+$$a = p_1b_1$$
+$$b_1 \in R^{*} \Ra \epsilon = b_1$$
+$$b_1  \notin R^{*} \Ra \exists p_2 = p_1b_2$$
+$$a \vdots b_1 \vdots b_2 \vdots \cdots$$
+$$\text{т.к. } p_i \notin R^{*},$$
+$$(a) \subsetneq (b_1) \subsetneq (b_2) \subsetneq \cdots$$
+$$\text{По теореме об обрыве цепей, } \exists n \colon b_n \in R^{*}, \epsilon = b_n$$
+$$a = \epsilon p_1p_2 \dots p_n$$
+\begin{conseq}
+В ОГИ теорема об однозначности разложения на множители справедлива в части существования.
+\end{conseq}
+\item $$R \text{"--- ОГИ}, a = \epsilon \prod \limits_{i=1}^{n}{p_i} = \eta \prod \limits_{j=1}^{m}{q_j}$$ 
+$$\epsilon, \eta \in R^{*}, p_i, q_j \text{"--- неприводимы.}$$
+$$n \le m$$
+Индукция по $n$.
+\begin{description}
+\item[База:]
+$$ n=0$$
+$$\epsilon = \eta \prod \limits_{j=1}^{m}{q_j}$$
+Если бы $m \ge 1$, то справа "--- необратимо $\Ra m = 0$
+\item[Переход:]
+$$n \ge 1$$
+$$\epsilon \prod \limits_{i=1}^{n}{p_i} = \eta \prod \limits_{j=1}^{m}{q_j}$$
+$$p_n \mid \eta \prod \limits_{j=1}^{m}{q_j}$$
+$$p_n \text{"--- неприводим}, R \text{"--- ОГИ} \Ra p_n \text{"--- простой}$$
+$$p_n \nmid \eta \Ra \exists j \colon p_n \mid q_j$$
+$$\text{Не умоляя общности, } p_n \mid q_m$$
+$$q_m = p_n \beta, q_m \text{"--- неприводим}, \beta \text{"--- обратимый}$$
+$$\epsilon (\prod \limits_{i=1}^{n-1}{p_i}) p_n = \eta \beta (\prod \limits_{j=1}^{m - 1}{q_j})p_n$$
+$$\epsilon \prod \limits_{i=1}^{n-1}{p_i} = \eta \beta \prod \limits_{j=1}^{m - 1}{q_j}$$
+$$\text{По предположению, } n-1=m-1 \Ra n=m \text{ и } \exists \sigma \in S_{n-1} \colon \forall i=1..n-1, p_i \sim q_{\sigma(i)}$$
+$$p_n \sim q_m = q_n$$
+\end{description}
+\end{enumerate}
+\end{proof}

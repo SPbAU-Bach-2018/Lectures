@@ -1,0 +1,59 @@
+﻿\section{Ассоциированность}
+
+\begin{Def}
+	$R$ "--- кольцо с  единицей. Введём $\sim$ "--- отношение ассоциированности:
+	\[ a \sim b \Lra \exists c \in R^* \colon a = bc \]
+\end{Def}
+
+$R^*$ "--- группа, док-во было в 1 семестре.
+
+\begin{Rem}
+	Ассоциированность "--- отношение эквивалентности.
+\end{Rem}
+
+\begin{proof}
+	\begin{enumerate}
+	\item
+			\[ a \sim a \La a = a \cdot 1 \La 1 \in R^* \]
+	\item
+		\begin{gather*}
+			a \sim b \Ra b \sim a \\
+			a = bc, c \in R^* \\
+			\exists d \colon cd = 1 \\
+			ad = bcd = b \Ra b \sim a
+		\end{gather*}
+	\item
+		\begin{gather*}
+			a \sim b, b \sim c \Ra a \sim c \\
+			\exists u \in R^* \colon a = bu \\
+			\exists v \in R^* \colon b = cv	\\
+			a = c(uv) \Ra a \sim c, uv \in R^* \text{ (так как $R$ "--- группа)}
+		\end{gather*}
+	\end{enumerate}
+\end{proof}
+
+\textbf{Свойства:}
+\begin{enumerate}
+	\item Если $a \sim b$, то $a \mid b \land b \mid a$.
+	\item Если $R$ "--- область целостности и $a \mid b$ и $b \mid a$, то $a \sim b$.
+\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+		\item \begin{gather*}
+			a = bc, c \in R^* \Ra b \mid a \\
+			a \sim b \Ra b \sim a \Ra a \mid b
+		\end{gather*}
+		\item 
+		$$a|b \Ra \exists u \colon b = au$$
+		$$b|a \Ra \exists v \colon a = bv$$
+		\begin{itemize}
+			\item \[ a = 0 \Ra b = 0, 0  = 0 \cdot 1 \Ra a \sim b \]
+			\item \begin{gather*}
+				a \ne 0, a = auv \\
+				a(1 - uv) = 0 \xLongrightarrow{\text{$R$ "--- область целостности}} 1 - uv = 0 \\
+				\Ra u \in R^*, v \in R^* \Ra a \sim b
+			\end{gather*}
+		\end{itemize}
+	\end{enumerate}
+\end{proof}

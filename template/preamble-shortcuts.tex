@@ -30,9 +30,13 @@
 \DeclareMathOperator{\coDom}{coDom}
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\rot}{rot}
 \AtBeginDocument{\let\Re\relax}
 \AtBeginDocument{\newcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}}
 \AtBeginDocument{\let\Im\relax}
 \AtBeginDocument{\newcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}}
 \newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
 \newcommand{\Choose}[2]{{\left(#1 \atop #2\right)}}
+
+\newcommand{\partd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\partdd}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}

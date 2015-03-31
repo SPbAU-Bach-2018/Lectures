@@ -1,0 +1,64 @@
+﻿\section{Сравнимость по модулю двусторонних идеалов}
+
+\begin{Def}
+$R$ "--- кольцо,	
+$I$ "--- двусторонний идеал $R$.
+
+\[a \equiv b (\mod I)\], если
+\[a - b \in I\]
+Также обозначается
+\[a \equiv b (I)\]
+\[a \equiv_I b\]
+\end{Def}
+
+\begin{Rem}
+	$\equiv$ "--- отношение эквивалентности.
+\end{Rem}
+	
+\begin{proof}
+	$ \forall a, b \in R$
+	\begin{enumerate}
+		\item Рефлексивность.
+			\[a - a = 0 \in I \Ra a \equiv a\]
+		\item Симметричность. 
+			\[a \equiv b \Ra (a - b) \in I \Ra -(a - b) \in I \Ra b \equiv a\]
+		\item Транзитивность: 
+			\[a \equiv b, b \equiv c \Ra (a - b) \in I, (b - c) \in I 
+			\Ra ((a - b) - (b - c)) \in I \Ra (a - c) \in I \Ra a \equiv c\]
+	\end{enumerate}
+\end{proof}
+
+\begin{Def}
+	$a \in R$,
+	$[a]$ "--- класс эквивалентности $R$
+	\[ [a] = \{b \in R \colon a \equiv b (I) \} \]
+	\begin{center}
+		$R/ \equiv$ или $R/I$ "--- множество классов эквивалентости
+	\end{center}
+\end{Def}
+
+\textbf{Свойства сравнения}
+
+Пусть $a \equiv b (I)$, $c \equiv d (I)$. Тогда
+\begin{enumerate}
+	\item $a \pm c \equiv b \pm d$
+	\item $ac \equiv bd$
+\end{enumerate}
+	
+\begin{proof}
+	\[a - b \in I\]
+	\[c - d \in I\]
+	\begin{enumerate}
+		\item $(a - b) \pm (c - d) \in I \Ra
+			(a \pm c) - (b \pm d) \in I \Ra a \pm c \equiv b \pm d$
+		\item $(a - b) c \in I,$
+		$b (c - d) \in I$
+		\[(a - b) c + b (c - d) = ac - bd \in I \Ra ac \equiv bd (I)\]
+	\end{enumerate}
+\end{proof}
+	
+\begin{conseq}	
+	$a \equiv b (I)$, тогда
+	$ac \equiv bc (I)$, $ca \equiv cb (I)$	.
+	Так как $c \equiv c (I)$.
+\end{conseq}

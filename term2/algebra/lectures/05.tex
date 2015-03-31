@@ -1,0 +1,269 @@
+﻿\setauthor{Дима Розплохас}
+
+\begin{Def}
+	$a \in R$,
+	$[a]$ "--- класс эквивалентности $R$
+	\[ [a] = \{b \in R \colon a \equiv b (I) \} \]
+	\begin{center}
+		$R/ \equiv$ или $R/I$ "--- множество классов эквивалентости
+	\end{center}
+\end{Def}
+
+\textbf{Свойства сравнения}
+
+Пусть $a \equiv b (I)$, $c \equiv d (I)$. Тогда
+\begin{enumerate}
+	\item $a \pm c \equiv b \pm d$
+	\item $ac \equiv bd$
+\end{enumerate}
+	
+\begin{proof}
+	\begin{gather*}
+		a - b \in I \\
+		c - d \in I \\
+	\end{gather*}
+	\begin{enumerate}
+		\item $(a - b) \pm (c - d) \in I \Ra
+			(a \pm c) - (b \pm d) \in I \Ra a \pm c \equiv b \pm d$
+		\item $(a - b) c \in I,$
+		$b (c - d) \in I$
+		\[(a - b) c + b (c - d) = ac - bd \in I \Ra ac \equiv bd (I)\]
+	\end{enumerate}
+\end{proof}
+	
+\begin{conseq}	
+	$a \equiv b (I)$, тогда
+	$ac \equiv bc (I)$, $ca \equiv cb (I)$.
+	Так как $c \equiv c (I)$.
+\end{conseq}
+
+\section{Факторкольцо}
+
+$R$ "--- кольцо, $I$ "--- двусторонний идеал $R$.
+
+$R / I$ хотим превратить в кольцо.
+
+\textbf{Определим операции:}
+\begin{enumerate}
+	\item $[a] + [b] = [a + b]$
+	\item $[a] \cdot [b] = [a \cdot b]$
+\end{enumerate}	
+\[+, \cdot \colon R/I \times R/I \to R/I\]
+	
+\textbf{Проблема:}
+результат может зависеть от выбора представителей класса
+\begin{gather*}
+	[a] = [a'] \\
+	[b] = [b'] \\
+	[a + b] \overset{?}{=} [a' + b'] \\
+	[ab] \overset{?}{=} [a'b']
+\end{gather*}
+	
+\textbf{Проверка корректности операций}
+\begin{gather*}
+	a \equiv a' (I) \\
+	b \equiv b' (I) \\
+	a + b \equiv a' + b' (I) \Ra [a + b] = [a' + b'] \\
+	ab \equiv a'b' (I) \Ra [ab] = [a'b'] \\
+\end{gather*}
+
+\begin{theorem}
+	$(R/I, +, \times)$ "--- кольцо.
+	Если $R$ "--- коммутативное, то $R/I$ "--- коммутативное.
+	Если $R$ содержит $1$,  то и $R/I$ содержит $1$.
+\end{theorem}
+
+\begin{proof}
+	 \begin{enumerate}
+	 	\item $([a] + [b]) + [c] = [a + b] + [c] = [(a + b) + c] =
+	 		[a + (b + c)] = [a] + [b + c] = [a] + ([b] + [c])$
+	 	\item $[a] + [b] = [a + b] = [b + a] = [b] + [a]$
+		\item $0_{R/I} = [0]$ 
+			\begin{gather*}
+			[0] + [a] = [0 + a] = [a] \\
+	 		[a] + [0] = [a + 0] = [a] \\
+	 		b \in [0] \Lra b - 0 \in I \Lra b \in I \\
+	 		[0] = I
+	 		\end{gather*}
+	 	\item $-[a] = [-a]$
+	 		\begin{gather*}
+	 		[a] + [-a] = [a + (-a)] = [0] \\
+	 		[-a] + [a] = [(-a) + a] = [0]
+	 		\end{gather*}
+	 	\item $([a] \cdot [b]) \cdot [c] = [a \cdot b] \cdot [c] =
+	 		[(a \cdot b) \cdot c] = [a \cdot (b \cdot c)] =
+	 		[a] \cdot [b \cdot c] = [a] \cdot ([b] \cdot [c])$
+	 	\item $[a] \cdot ([b] + [c]) = [a] \cdot [b + c] = 
+	 		[a \cdot (b + c)] = [(a \cdot b + a \cdot c)] = 
+	 		[a \cdot b] + [a \cdot c] = [a] \cdot [c] + [a] \cdot [b]$
+	 		$([b] + [c]) \cdot [a]  = [b + c] \cdot [a] = 
+	 		[(b + c)  \cdot a] = [(b \cdot a + c \cdot a)] = 
+	 		[b \cdot a] + [c \cdot a] = [b] \cdot [a] + [c] \cdot [a]$
+	 	\item Если $R$ "--- коммутативное
+	 		\[[a] \cdot [b] = [a \cdot b] = [b \cdot a] = [b] \cdot [a]\]
+	 	\item Если $R$ содержит $1$
+	 		\begin{gather*}
+	 		1_{R/I} = [1_R] \\
+			[a] \cdot [1_R] = [a \cdot 1_R] = [a] \\
+	 		[1_R] \cdot [a] = [1_R \cdot a] = [a]
+	 		\end{gather*}
+	\end{enumerate}
+\end{proof}
+	 
+\begin{Def}
+	$(R, +, \cdot)$ "--- факторкольцо кольца $R$ по двустороннему идеалу $I$ (факторкольцо $R$ по $I$)
+\end{Def}	 
+
+\begin{exmp}
+	\begin{gather*}
+		R = \Z \\
+		I = m \Z, m > 1 \\
+		\Z /m \Z \overset{\text{def}}{=} R/I \\
+		x \in \Z/m\Z \\
+		x = [a] = {b \in \Z \colon b = a (m)}
+	\end{gather*}
+	В один класс попадают числа, дающие один остаток при делении на $m$.	 
+\end{exmp}
+	 
+\begin{gather*}
+	\phi \colon R \to R/I \\
+	a \mapsto [a] \\
+	\phi(a + b) = [a + b] = [a] + [b] = \phi(a) + \phi(b) \\
+	\phi(a \cdot b) = [a \cdot b] = [a] \cdot [b] = \phi(a) \cdot \phi(b) \\
+	\phi \text{ "--- гомоморфизм} \\
+	\ker \phi = \phi^{-1}(0_{R/I}) = \phi^{-1}([0]) = I
+\end{gather*}
+	
+Значит каждый идеал "--- ядро некоторого гомоморфизма.
+Вместе с доказанным ранее, ядра гомоморфизмов "--- в точности двусторонние идеалы.
+	 
+\begin{theorem} (о гомоморфизме)
+	$f \colon R \to R'$ "--- гомоморфизм.
+	Тогда  $f(R)$ изоморфно $R / \ker f$.	
+\end{theorem}
+
+\begin{proof}
+	Построим $\phi \colon f(R) \to R / \ker f$, следующим образом:
+	\begin{gather*}
+		\forall x \in f(R),  \exists a \colon f(a) = x \\
+		\phi(x) = [a]
+	\end{gather*}
+	Докажем, что это изоморфизм.
+	
+	\begin{description}
+		\item[Проверка корректности]
+			\begin{gather*}
+				\text{Доказать:  }f(a) = f(a') \Ra [a] = [a'] \\
+				f(a - a') = f(a) - f(a') = x - x = 0 \\
+				(a - a') \in \ker f \\
+				a \equiv a' (\ker f) \\
+				[a] = [a']
+			\end{gather*}
+		\item[$\phi$ "--- гомоморфизм]
+			\begin{gather*}
+				x, y \in f(R) \\
+				a \in f^{-1}(x) \\
+				b \in f^{-1}(y) \\
+				f(a + b) = f(a) + f(b) = x + y \\
+				(a + b) \in f^{-1}(\{x + y\}) \\
+				\phi(x + y) = [a + b] = [a] + [b] = \phi(x) + \phi(y) \\
+				f(ab) = f(a)f(b) = xy \\
+				(ab) \in f^{-1}(\{xy\}) \\
+				\phi(xy) = [ab] = [a] \cdot [b] = \phi(x) \cdot \phi(y)
+			\end{gather*}
+		\item[$\phi$ "--- биекция]	
+			\begin{gather*}
+				\text{Пусть } [a] \in R / \ker f \\
+				a \in R \\
+				f(a) \in f(R) \\
+				a \in f^{-1}(\{f(a)\}) \\
+				\phi(f(a)) = [a] \Ra \phi\text{ "--- сюрьекция} \\
+				x, y \in f(R) \\
+				a \in f^{-1}(\{x\}) \\
+				b \in f^{-1}(\{y\}) \\
+				\text{Пусть } \phi(x) = \phi(y) \\
+	 			[a] = [b] \\
+				a \equiv b (\ker f) \\
+				(b - a) \in \ker f \\
+	 			x = f(a) = f(a) + 0 = f(a) + f(b - a) = f(a + b - a) = f(b) = y \\
+	 			\text{Значит }\phi\text{ "--- инъекция.}
+	 		\end{gather*}
+	\end{description}
+\end{proof}
+
+\section{Максимальные идеалы}
+
+\begin{Def}
+	$R$ "--- кольцо.
+	Двусторонний идеал $I$ называется максимальным, если
+	\begin{enumerate}
+		\item $R \neq I$
+		\item Если $I \subseteq J \subseteq R$, где $J$ "---  двусторонний идеал, то 
+			\[J = I \text{ или }J = R\]
+	\end{enumerate}
+\end{Def}
+
+Иначе говоря, возьмем множество всех идеалов $R$, кроме самого $R$ и упорядочим их по включению.
+Максимальный идеал "--- максимальный элемент множества.
+
+\begin{theorem}
+	$R$ "--- коммутативное кольцо с $1$.
+	$I$ "--- идеал $R$.
+	\[R / I \text{  "--- поле } \Lra I \text{ "--- максимальный идеал}\]
+\end{theorem}
+
+\begin{proof}
+	\begin{description}
+		\item[Влево]
+		\begin{gather*}
+			I \text{ "--- максимальный идеал} \\
+			1_R \notin I \\
+			(1) = R \supsetneq I \\
+			[1] \neq [0] \\
+			x \in R/I \colon x \neq 0_{R/I} \\
+			x = [a], a \notin I \\
+			I \subsetneq I + (a) \subset R \\
+			I + (a) = R \\
+			I + (a) = \{b + a \cdot c \mid  b \in I, c \in R \} \\
+			\exists b \in I, c \in R \colon  1 = b + a \cdot c \\
+			[1] = [b + ac] = [b] + [a] \cdot [c] = x \cdot [c] = [c] \cdot x \\
+			c \text{ "--- обратный к } x \\
+		\end{gather*}
+
+		\item[Вправо]
+		\begin{gather*}
+			R/I \text{ "---  поле} \\
+			\text{Пусть } I \subset J \subset R \\
+			\text{Пусть } I \neq J \\
+			\text{Докажем, что }J = R \\
+			J \neq I \Ra \exists a \in J \colon a \notin I \\
+			[a]_I \neq [0]_I \\
+			R/I \text{ "---  поле } \Ra \exists [b]_I \colon [b]_I \cdot [a]_I = [1]_I \\
+			1 = ba (I) \\
+			1 = ba + c, c \in J \\
+			ba \in J, c \in J \Ra 1 \in J \Ra 
+			r = r \dot 1 \in J \forall r \in R \Ra J = R
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{assertion}
+Пусть $R$ "--- ОГИ.
+$a \not \sim 1$
+\[(a) \text{ "---  максимальный} \Lra a \text{ "---  неприводим}\]
+\end{assertion}
+
+\begin{proof}
+ Пусть $a = \epsilon p_1 p_2 \dots p_k$, $p_i$ "---  неприводим
+\[(a) \subsetneq (p_i) \subsetneq R\]
+\end{proof}
+
+\begin{conseq}
+	$R = \Z$
+	\[\Z/m\Z \text{ "--- поле} \Lra m \text{ "--- простое}\]
+\end{conseq}
+
+\begin{conseq}
+	$R = K[x]$, $K$ "--- поле.
+	\[K[x]/f \text{  "--- поле } \Lra f \text{ "--- неприводим над } K\]
+\end{conseq}

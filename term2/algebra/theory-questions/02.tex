@@ -1,0 +1,112 @@
+﻿\section{Идеалы, их свойства}
+$R$ "--- произвольное кольцо
+
+\begin{Def}
+	$\emptyset \ne I \subseteq R$ "--- левый идеал в $R$, если:
+	\begin{enumerate}
+		\item $ \forall a, b \in I \colon a \pm b \in I $
+		\item $ \forall a \in I, \forall r \in R \colon ra \in I $
+	\end{enumerate}
+\end{Def}
+
+\begin{Rem}
+$I + I \subseteq I$, $RI \subseteq I$, $I$ "--- подкольцо $I \cdot I \subseteq I$
+\end{Rem}
+
+\begin{Def}
+	$I$ "--- правый идеал, если:
+	\begin{enumerate}
+		\item $ \forall a, b \in I \colon a \pm b \in I $
+		\item $ \forall a \in I \forall r \in R \colon ar \in I, (IR \subseteq I)) $
+	\end{enumerate}
+\end{Def}
+
+\begin{Def}
+	Двусторонний идеал, если $I$ "--- левый $(IR \subseteq I)$ и правый $(RI \subseteq I)$
+\end{Def}
+
+\begin{Rem}
+	в первом условии достаточно требовать: $\forall a, b \in I \colon a - b \in I$
+\end{Rem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item $\exists a \in I \Ra 0 = a - a \in I, 0 \in I$
+		\item $a + I \Ra 0 - a \in I \Ra -a \in I$
+		\item $a, b, -b \in I$. $a + b = a - (-b) \in I$
+	\end{enumerate}
+\end{proof}
+
+\begin{Rem}
+	$R$ "--- кольцо. $I = \left\{ 0 \right\}$, $I = R$ "--- двусторонние идеалы.
+\end{Rem}
+
+\begin{exmp}
+	Рассмотрим кольцо $\Z$.
+	\[ I = m\Z = \left\{ a \mid m \text{ делит } a \right\} \]
+	$R = M(n, K)$, где $M$ "--- кольцо матриц размера $n$ над полем $K$.
+	
+	$S \subseteq \left\{ 1, \dots , n \right\}$
+
+$\tensor[_S]{I}{}$ "--- множество матриц, у которых: $ \forall j \in S$, $j$-ый столбец заполнен нулями
+
+$I_S$ "--- множество матриц, у которых: $ \forall j \in S$, $j$-ая строка заполнена нулями
+
+$\tensor[_S]{I}{}$ "--- левые идеалы не являются правыми
+
+$I_S$ "--- правые идеалы не являются левыми
+\end{exmp}
+
+\begin{Rem}
+	Далее <<идеал>> "--- двусторонний идеал.
+\end{Rem}
+
+\subsection{Операции над идеалами}
+
+\begin{enumerate}
+\item
+	$I_\alpha (\alpha \in A)$ "--- идеал в кольце $R$ (левый, правый, двусторонний).
+	$I = \bigcap_{\alpha \in A} I_\alpha$ "--- идеал (левый, правый, двусторонний).
+
+\item
+	$I_1, I_2$ "--- идеалы в $R$ (левые, правые, двусторонние).
+	$I_1 + I_2 = \left\{  a + b \mid a \in I_1, b \in I_2 \right\}$ "--- идеал (левый, правый, двусторонний).
+
+\item
+	$I_1, I_2$ "--- идеалы в $R$.
+	$I_1 \cdot I_2 = \left\{ \sum_{i=1}^k a_i b_i \mid a_i \in I_1, b_i \in I_2, k \in \N \right\}$
+	Если $I_1$, $I_2$ "--- левые, правые, двусторонние, то $I_1 \cdot I_2$ "--- левый, правый, двусторонний.
+	Если $I_1$ "--- левый, а $I_2$ "--- правый, то $I_1 \cdot I_2$ "--- двусторонний.
+\end{enumerate}
+
+\begin{proof}
+	Все док-ва для левых, для правых аналогично, для двусторонних "--- обе выкладки.
+	\begin{enumerate}
+	\item 	\begin{gather*}
+			 I = \cap_{\alpha \in A} I_\alpha, \forall a, b \in I \\
+			 \forall \alpha \in A \colon a, b \in I_\alpha \land \forall \alpha \in A \colon a \pm b \in I_\alpha \Ra a \pm b \in \cap_{\alpha \in A}I_\alpha \\
+			 \forall r \in R, a \in I \colon \forall \alpha \in A \colon a \in I_\alpha, ra \in I_\alpha \Ra ra \in \cap_{\alpha \in A} I_\alpha
+		 \end{gather*}
+	\item	\begin{gather*}
+			 I_1 + I_2 = \left\{ a + b \mid a \in I_1, b \in I_2 \right\} \\
+			a, c \in I_1 \land b, d \in I_2 \\
+			a + b = I_1 + I_2 \land c + d \in I_1 + I_2 \\
+			(a + b) \pm (c + d) = (a \pm c) + (b \pm d) \in I_1 + I_2 \\
+			r \in R, a + b \in I_1 + I_2,  a \in I_1, b \in I_2 \\
+			r(a + b) = ra + rb \in I_1 + I_2
+		\end{gather*}
+	\item \begin{itemize}
+		\item \begin{gather*}
+			\sum_{i = 1}^k a_i b_i, a_i \in I_1, b_i \in I_2 \\
+			\sum_{i = 1}^s c_i d_i, c_i \in I_1, d_i \in I_2 \\
+			a_1 b_1 + \dots + a_k b_k + (\pm c_1)d_1 + \dots + (\pm c_s)d_s = a_1 b_1 + \dots a_k b_k + (\pm \dots \pm c_s d_s) \in I_1 I_2
+		\end{gather*}
+		\item \begin{gather*}
+			r \in R \\
+			r\left(\sum^k a_i b_i\right) = \sum^k (ra_i)b_i \in I_1 \cdot I_2 \\
+			\left(\sum^k a_i b_i\right)r = \sum^k a_i(b_ir) = I_1 \cdot I_2
+		\end{gather*}
+		$I_1$ "--- левый, $I_2$ "--- правый, $I_1 \cdot I_2$ "--- двусторонний
+		\end{itemize}
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,149 @@
+\setauthor{Игорь Лабутин}
+\section{Факториальность ОГИ}
+\begin{theorem}
+$R$ "--- ОГИ $\Ra$ $R$ факториально.
+\begin{enumerate}
+\item Всякий ненулевой необратимый элемент делится хотя бы на один неприводимый.
+\item Всякий ненулевой необратимый элемент раскладывается в произведение неприводимых.
+\item Единственность.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $$R \text{"--- ОГИ}, a \in R, a \notin \{0\} \cup R^{*}$$
+$$a=a_0$$
+$$a_0 \text{"--- неприводимо} \colon ok$$
+$$a_0 \text{"--- составное} \Ra a_0 = a_1b_1, a_1b_1 \notin R^{*}$$
+$$a_1 \text{"--- неприводимо} \colon ok$$
+$$a_1 \text{"--- составное} \Ra a_1 = a_2b_2, a_2b_2 \notin R^{*}$$
+$$a_0 \vdots a_1 \vdots a_2 \vdots \cdots$$
+$$(a_0) \subset (a_1) \subset (a_2) \subset \cdots$$
+$$\text{По теореме об обрыве цепей, } \exists n \colon (a_n) = (a_{n+1}) = \cdots$$
+$$a_n \sim a_{n+1}$$
+$$a_n = a_{n+1}b_{n+1}; a_{n+1}b_{n+1} \notin R^{*} \Ra a_{n+1} \nsim a_n$$
+Либо на каком-то шаге $a_i$ неприводим $\Ra a_i \mid a$, либо процесс никогда не обрывается (противоречие с теоремой об обрыве цепей).
+\item $$R \text{"--- ОГИ}, a \in R, a \notin \{0\} \cup R^{*}$$
+По пункту 1, $\exists p_1$ "--- неприводимый
+$$a = p_1b_1$$
+$$b_1 \in R^{*} \Ra \epsilon = b_1$$
+$$b_1  \notin R^{*} \Ra \exists p_2 = p_1b_2$$
+$$a \vdots b_1 \vdots b_2 \vdots \cdots$$
+$$\text{т.к. } p_i \notin R^{*},$$
+$$(a) \subsetneq (b_1) \subsetneq (b_2) \subsetneq \cdots$$
+$$\text{По теореме об обрыве цепей, } \exists n \colon b_n \in R^{*}, \epsilon = b_n$$
+$$a = \epsilon p_1p_2 \dots p_n$$
+\begin{conseq}
+В ОГИ теорема об однозначности разложения на множители справедлива в части существования.
+\end{conseq}
+\item $$R \text{"--- ОГИ}, a = \epsilon \prod \limits_{i=1}^{n}{p_i} = \eta \prod \limits_{j=1}^{m}{q_j}$$ 
+$$\epsilon, \eta \in R^{*}, p_i, q_j \text{"--- неприводимы.}$$
+$$n \le m$$
+Индукция по $n$.
+\begin{description}
+\item[База:]
+$$ n=0$$
+$$\epsilon = \eta \prod \limits_{j=1}^{m}{q_j}$$
+Если бы $m \ge 1$, то справа "--- необратимо $\Ra m = 0$
+\item[Переход:]
+$$n \ge 1$$
+$$\epsilon \prod \limits_{i=1}^{n}{p_i} = \eta \prod \limits_{j=1}^{m}{q_j}$$
+$$p_n \mid \eta \prod \limits_{j=1}^{m}{q_j}$$
+$$p_n \text{"--- неприводим}, R \text{"--- ОГИ} \Ra p_n \text{"--- простой}$$
+$$p_n \nmid \eta \Ra \exists j \colon p_n \mid q_j$$
+$$\text{Не умоляя общности, } p_n \mid q_m$$
+$$q_m = p_n \beta, q_m \text{"--- неприводим}, \beta \text{"--- обратимый}$$
+$$\epsilon (\prod \limits_{i=1}^{n-1}{p_i}) p_n = \eta \beta (\prod \limits_{j=1}^{m - 1}{q_j})p_n$$
+$$\epsilon \prod \limits_{i=1}^{n-1}{p_i} = \eta \beta \prod \limits_{j=1}^{m - 1}{q_j}$$
+$$\text{По предположению, } n-1=m-1 \Ra n=m \text{ и } \exists \sigma \in S_{n-1} \colon \forall i=1..n-1, p_i \sim q_{\sigma(i)}$$
+$$p_n \sim q_m = q_n$$
+\end{description}
+\end{enumerate}
+\end{proof}
+
+\section{Разложение на неприводимые множители в C[x] и R[x]}
+$K[x], K$ "--- поле.
+$$x-c \text{ всегда неприводим}$$
+$$x-c=fg \Ra \deg f = 0, \text{ либо } \deg q = 0$$
+$$f \in K^{*}=K[x]^{*} \text{ или } g \in K^{*}=K[x]^{*} $$
+Если $K$ "--- алгебраически замкнутое поле, то других неприводимых в $K[x]$ нет (всякий многочлен степени $\ge 1$ делится на линейный).
+\begin{theorem}
+$C$ "--- алгебраически замкнуто
+$$f \in C[x] \Ra f = a \prod\limits_{i=1}^{m}{(x-c_i)^{a_i}}, a_i \ge 1, a \in C$$
+(без доказательства)
+\end{theorem}
+Вообще говоря, отсутствие корней не влечет неприводимости многочлена, но, если $\deg f = 2$ или $\deg f =3$, то $f$ "--- неприводим $\Leftrightarrow f$ не имеет корней.
+$$f = gh \text{ и } g, h \notin K^{*}$$
+$$\deg f = 2 \Leftrightarrow \deg g = \deg h = 1$$
+$$\deg f = 3 \Leftrightarrow \deg g = 1, \deg h = 2 \text{ или } \deg g = 2, \deg h = 1$$
+\begin{theorem}
+$$f \in R[x], f \ne 0$$
+$$f=a\prod\limits_{i=1}^{n}{(x-c_i)^{a_i}} \prod\limits_{j=1}^{m}{(x^2+b_jx+c_j)^{d_j}}, b_j^2-4c_j<0$$
+\end{theorem}
+\begin{proof}
+$$f \in R[x], z \in C \setminus R, z \text{"--- корень } f$$
+Докажем, что $\bar z$ "--- тоже корень $f$, причем той же кратности, что и $z$.
+$$f \in R[x]$$
+$$f(x) = a_n x^n + \dots + a_0$$
+$$0 = f(z) = a_n z^n + \dots + a_0$$
+$$0 = \bar 0 = \bar{a_n}(\bar{z})^n + \dots + \bar{a_0} = a_n(\bar{z})^n + \dots + a_0 = f(\bar{z})$$
+Если $z$ "--- корень $f$ кратности $k$, то
+$$f(z) = f'(z) = \dots = f^{(k-1)}(z) = 0, f^{(k)}(z) \ne 0$$
+$$f(\bar z) = f'(\bar z) = \dots = f^{(k-1)}(\bar z) = 0, f^{(k)}(\bar z) \ne 0$$
+Значит $\bar z$ "--- корень той же кратности.
+$$f \in R[x] \subset C[x]$$
+$$f = q \prod\limits_{i=1}^{n}{(x-z_i)^{\alpha_i}}, z_i \in C$$
+отдельно вещественные корни,
+отдельно комплексные $z_i \in C \setminus R$
+$$(x - z)^{\alpha_i}(x - \bar z)^{\alpha_i} = ((x - z)(x - \bar z))^{\alpha_i}$$
+$$(x - z_i)(x - \bar z_i) = x^2 - 2\Re(z_i)x + |z_i|^2$$
+$$D = 4\Re(z_i)^2 - 4|z_i|^2 = -4\Im(z_i)^2 < 0$$
+\end{proof}
+
+\section{Гомоморфизм колец и двусторонние идеалы}
+R "--- произвольное кольцо, не обязательно коммутативное.
+$$f: R \to R'$$
+\begin{Def}
+f - гомоморфизм колец, если
+$$\forall a, b \in R$$
+$$f(a±b) = f(a) ± f(b), f(ab) = f(a) f(b), f(0_R) = 0_{R'}$$
+\end{Def}
+\begin{Def}
+$$f^{-1}(0_{R'}) \text{"--- ядро гомоморфизма}, \ker f (kernel)$$
+\end{Def}
+\begin{theorem}
+$\ker f$ "--- двусторонний идеал в $R$.
+\end{theorem}
+\begin{proof}
+$$\ker f \ne 0, 0_R \in \ker f$$
+$$a, b \in \ker f$$
+$$f(a ± b) = f(a) ± f(b) = 0 + 0 = 0$$
+$$a ± b \in \ker f$$
+$$a \in \ker f$$
+$$r \in R$$
+$$f(ra) = f(r)f(a) = f(r) \cdot 0 = 0$$
+$$ra \in \ker f$$
+$$f(ar) = f(a)f(r) = 0 \cdot f(r) = 0$$
+$$ar \in \ker f$$
+\end{proof}
+Двусторонние идеалы "--- в точности ядра гомоморфизмов.
+\section{Сравнение по модулю двустороннего идеала}
+$R$ - кольцо, $I$ - двусторонний идеал.
+$$a \equiv b (mod I), \text{если } a - b \in I$$
+\textbf{Пример}
+$$Z, a \equiv b (mod m)$$
+$$a - b \vdots m$$
+$$a - b \in mZ = (m)$$
+\begin{theorem}
+Сравнимость "--- отношение эквивалентности.
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Рефлексивность.
+$$a \equiv a (mod I) \Leftrightarrow a - a = 0 \in I$$
+\item Симметричность.
+$$a \equiv b (mod I) \Ra a - b \in I \Ra -(a-b) \in I \Ra b - a \in I \Ra b \equiv a (mod I)$$
+\item Транзитивность.
+$$a \equiv b (mod I), b \equiv c (mod I) \Ra a - b \in I, b - c \in I \Ra a - c \in I \Ra a \equiv c (mod I)$$
+\end{enumerate}
+\end{proof}

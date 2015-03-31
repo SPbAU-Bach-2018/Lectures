@@ -1,0 +1,43 @@
+﻿\section{Поле частных областей целостности}
+$R$ "--- область целостности.
+Задача: построить "наименьшее возможное" поле $F$, содержащие $R$:
+\begin{Def}
+$$X = \{(a, b) \mid a, b \in R, b \neq 0 \} \text{ "--- множество дробей}$$
+Введем отношение эквивалентности на $X$:
+$\sim \colon (a, b) \sim (a_1, b_1) \Leftrightarrow ab_1 = a_1b$
+Тогда, полем частных кольца $R$ называется фактор-множество $X$: $X_{/\sim}$
+\end{Def}
+\begin{Def}
+$\frac{a}{b} = [(a, b)]$ "--- дробь.
+\end{Def}
+Зададим на $X_{/\sim}$ сложение и умножение:
+\begin{Def}
+$$\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}$$
+\end{Def}
+\begin{Def}
+$$\frac{a}{b} \cdot \frac{c}{d} = \frac{ad + bc}{bd}$$
+\end{Def}
+\begin{assertion}
+$+, \cdot$ "--- операции на $X_{/\sim}$.
+\begin{enumerate}
+\item $b \neq 0, d \neq 0 \Rightarrow bd \neq 0$
+\item Корректность: $\forall$ представиль класса эквивалентности подходит.
+\end{enumerate}
+\end{assertion}
+\begin{assertion}
+$\{\frac{a}{1} \mid a \in R \}$ "--- подкольцо $K$, изоморфное R.
+\end{assertion}
+\begin{theorem}
+$K = (X_{/\sim}, +, \cdot)$ "--- поле.
+\end{theorem}
+\begin{proof}
+Очевидны все свойства, кроме дистрибутивности.
+$$\left(\frac{a}{b} + \frac{c}{d}\right) \frac{e}{f} = \frac{ad + bc}{bd} \frac{e}{f} = \frac{ade + bce}{bdf}$$
+$$\frac{a}{b} \cdot \frac{e}{f} + \frac{c}{d} \cdot \frac{e}{f} = \frac{ae}{bf} + \frac{ce}{df} = \frac{aedf + cbef}{bdf^2}$$
+$$\frac{ade + bce}{bdf} \sim \frac{aedf + cbef}{bdf^2}$$
+Нулевой и единичный элементы:
+$$0_K = \frac{0}{1}$$
+$$1_K = \frac{1}{1}$$
+Всякий ненулевой элемент обратим:
+$$\frac{a}{b} \cdot \frac{b}{a} = \frac{ab}{ba} = \frac{1}{1} = 1_K$$
+\end{proof}

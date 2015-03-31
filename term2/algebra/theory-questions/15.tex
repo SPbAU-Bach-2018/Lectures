@@ -1,0 +1,77 @@
+﻿\section{Факторкольцо}
+
+$R$ "--- кольцо, $I$ "--- двусторонний идеал $R$.
+
+$R / I$ хотим превратить в кольцо.
+
+\textbf{Определим операции:}
+\begin{enumerate}
+	\item $[a] + [b] = [a + b]$
+	\item $[a] \cdot [b] = [a \cdot b]$
+\end{enumerate}	
+\[+, \cdot \colon R/I \times R/I \to R/I\]
+	
+\textbf{Проблема:}
+результат может зависеть от выбора представителей класса
+\[[a] = [a']\]
+\[[b] = [b']\]
+\[[a + b] \overset{?}{=} [a' + b']\]
+\[[ab] \overset{?}{=} [a'b']\]
+	
+\textbf{Проверка корректности операций}
+\[a \equiv a' (I)\]
+\[b \equiv b' (I)\]
+\[a + b \equiv a' + b' (I) \Ra [a + b] = [a' + b']\]
+\[ab \equiv a'b' (I) \Ra [ab] = [a'b']\]
+	
+\begin{theorem}
+	$(R/I, +, \times)$ "--- кольцо.
+	Если $R$ "--- коммутативное, то $R/I$ "--- коммутативное.
+	Если $R$ содержит $1$,  то и $R/I$ содержит $1$.
+\end{theorem}
+
+\begin{proof}
+	 \begin{enumerate}
+	 	\item $([a] + [b]) + [c] = [a + b] + [c] = [(a + b) + c] =
+	 		[a + (b + c)] = [a] + [b + c] = [a] + ([b] + [c])$
+	 	\item $[a] + [b] = [a + b] = [b + a] = [b] + [a]$
+		\item $0_{R/I} = [0]$
+			$[0] + [a] = [0 + a] = [a]$
+	 		$[a] + [0] = [a + 0] = [a]$
+	 		$b \in [0] \Lra b - 0 \in I \Lra b \in I$
+	 		$[0] = I$
+	 	\item $-[a] = [-a]$
+	 		$[a] + [-a] = [a + (-a)] = [0]$
+	 		$[-a] + [a] = [(-a) + a] = [0]$
+	 	\item $([a] \cdot [b]) \cdot [c] = [a \cdot b] \cdot [c] =
+	 		[(a \cdot b) \cdot c] = [a \cdot (b \cdot c)] =
+	 		[a] \cdot [b \cdot c] = [a] \cdot ([b] \cdot [c])$
+	 	\item $[a] \cdot ([b] + [c]) = [a] \cdot [b + c] = 
+	 		[a \cdot (b + c)] = [(a \cdot b + a \cdot c)] = 
+	 		[a \cdot b] + [a \cdot c] = [a] \cdot [c] + [a] \cdot [b]$
+	 		$([b] + [c]) \cdot [a]  = [b + c] \cdot [a] = 
+	 		[(b + c)  \cdot a] = [(b \cdot a + c \cdot a)] = 
+	 		[b \cdot a] + [c \cdot a] = [b] \cdot [a] + [c] \cdot [a]$
+	 	\item Если $R$ "--- коммутативное
+	 		$[a] \cdot [b] = [a \cdot b] = [b \cdot a] = [b] \cdot [a]$
+	 	\item Если $R$ содержит $1$
+	 		$1_{R/I} = [1_R]$
+			$[a] \cdot [1_R] = [a \cdot 1_R] = [a]$
+	 		$[1_R] \cdot [a] = [1_R \cdot a] = [a]$
+	\end{enumerate}
+\end{proof}
+	 
+\begin{Def}
+	$(R, +, \cdot)$ "--- факторкольцо кольца $R$ по двустороннему
+	идеалу $I$ (факторкольцо $R$ по $I$)
+\end{Def}	 
+
+\begin{exmp}
+	 \[R = \mathbb{Z}\]
+	 \[I = m \mathbb{Z}, m > 1\]
+	 \[\mathbb{Z} /m \mathbb{Z} \overset{\text{def}}{=} R/I\]
+	 \[x \in \mathbb{Z}/m\mathbb{Z}\]
+	 \[x = [a] = {b \in \mathbb{Z} \colon b = a (m)}\]
+	 В один класс попадают числа, 
+	 дающие один остаток при делении на $m$.	 
+\end{exmp}

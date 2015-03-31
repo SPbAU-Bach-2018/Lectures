@@ -1,0 +1,58 @@
+\chapter{Функторы и \t{typename}}
+\section{Функторы}
+
+\begin{cppcode}
+class Person {
+	int age;
+	string name;
+}
+\end{cppcode}
+
+Для того, чтобы построить \cpp'set<Person>', нужен порядок.
+Мы могли бы написать:
+\begin{cppcode}
+class Person {
+	//...
+	bool operator <(Person const& b) const {
+		return name < p.name;
+	}
+}
+\end{cppcode}
+
+В чём неприятность? Мы теперь можем сравнивать структуру только по имени.
+Для избежания этого мы бы могли создать две структуры, но это неинтересно.
+Вместо этого мы передадим функтор "--- объект с перегруженным \cpp'operator ()':
+\begin{cppcode}
+class by_age {
+	bool operator ()(Person const& a, Person const &b) const {
+		return a.age < b.age;
+	}
+}
+
+//...
+
+Person p1, p2;
+by_age ba;
+ba(p1, p2); // == ba.operator ()
+\end{cppcode}
+
+У \cpp'std::set' есть дополнительный параметр "--- класс функтора:
+\begin{cppcode}
+// STL
+template<typename T, typename Comparator = typename std::less<T>> set;
+
+// Наш код
+std::set<Person, by_age> s;
+\end{cppcode}
+
+\section{\t{typename}}
+
+Иногда, при написании шаблонов, внезапно компилятор требует слово \cpp'typename':
+\begin{cppcode}
+template <typename T>
+void f(T& container) {
+	typename T::iterator *it;
+}
+\end{cppcode}
+Для того, чтобы компилятор не подумал, что \cpp'T::iterator' "--- статическая переменная в классе \t{T}, нужно писать это слово.
+Сам догадаться он, в большинстве случаев, не может.

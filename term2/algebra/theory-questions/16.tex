@@ -1,0 +1,71 @@
+﻿
+\section{Максимальные идеалы}
+
+\begin{Def}
+	$R$ "--- кольцо.
+	Двусторонний идеал $I$ называется максимальным, если
+	\begin{enumerate}
+		\item $R \neq I$
+		\item Если $I \subseteq J \subseteq R$, где $J$ "---  двусторонний идеал, то 
+			\[J = I \text{ или }J = R\]
+	\end{enumerate}
+\end{Def}
+
+Иначе говоря, возьмем множество всех идеалов $R$,
+кроме самого $R$ и упорядочим их по включению.
+Максимальный идеал "--- максимальный элемент множества.
+
+\begin{theorem}
+	$R$ "--- коммутативное кольцо с $1$.
+	$I$ "--- идеал $R$.
+	\[R / I \text{  "--- поле } \Lra I \text{ "--- максимальный идеал}\]
+\end{theorem}
+
+\begin{proof}
+Влево.
+\[I \text{ "--- максимальный идеал}\]
+\[1_R \notin I\]
+\[(1) = R \supsetneq I\]    
+\[[1] \neq [0]\]
+\[x \in R/I \colon x \neq 0_{R/I}\]
+\[x = [a], a \notin I\]
+\[I \subsetneq I + (a) \subset R\]
+\[\Ra^{I - max} I + (a) = R\]
+\[I + (a) = \{b + a \cdot c \mid  b \in I, c \in R \}\]
+\[\exists b \in I, c \in R \colon  1 = b + a \cdot c\]
+\[[1] = [b + ac] = [b] + [a] \cdot [c] = x \cdot [c] = [c] \cdot x\]
+\[c \text{ "--- обратный к } x\]
+
+Вправо
+\[R/I \text{ "---  поле}\]
+\[\text{Пусть } I \subset J \subset R\]
+\[\text{Пусть } I \neq J\]
+\[\text{Докажем, что }J = R\]
+\[J \neq I \Ra \exists a \in J \colon a \notin I\]
+\[[a]_I \neq [0]_I\]
+\[R/I \text{ "---  поле } \Ra \exists [b]_I \colon [b]_I \cdot [a]_I = [1]_I\]
+\[1 = ba (I)\]
+\[1 = ba + c, c \in J\]
+\[ba \in J, c \in J \Ra 1 \in J \Ra 
+r = r \dot 1 \in J \forall r \in R \Ra J = R\]
+\end{proof}
+
+Пусть $R$ "--- ОГИ
+
+$a \not \sim 1$
+
+$(a)$ "---  максимальный $\Lra$ $a$ "---  неприводим
+
+$a = \epsilon p_1 p_2 \dots p_k$, $p_i$ "---  неприводим
+
+$(a) \subsetneq (p_i) \subsetneq R$
+
+\begin{conseq}
+	$R = Z$
+	\[Z/mZ \text{ "--- поле} \Lra m \text{ "--- простое}\]
+\end{conseq}
+
+\begin{conseq}
+	$R = K[x]$, $K$ "--- поле.
+	\[K[x]/f \text{  "--- поле } \Lra f \text{ "--- неприводим над } K\]
+\end{conseq}

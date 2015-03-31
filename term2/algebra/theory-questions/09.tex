@@ -1,0 +1,44 @@
+﻿\section{Неприводимый, состовные и простые элементы}
+$R$ "--- область целостности
+\begin{Def}
+	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{составной}, если $a = bc; \; b, c \notin R^{*}$
+\end{Def}
+
+\begin{Def}
+	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{неприводимый}, если из $a = bc$ следует, что
+	$b \in R^{*}$ или $c \in R^{*}$
+\end{Def}
+
+\begin{Def}
+	$a \in R \smallsetminus \left(\{0\} \cup R^{*}\right)$, $a$ "--- \textbf{простой}, если $\forall b, c \in R
+	\left(a \mid bc \Ra a \mid b \text{ или } a \mid c \right)$
+\end{Def}
+$$p|ab \Ra p|a \vee p|b$$
+$R$ "--- область целостности
+
+$\{0\}\cup R^{*} \cup \{$ неприводимые $\} \cup \{$ составные $\}$
+
+\begin{theorem}{}
+    $R$ ~--- область целостности
+
+    Всякий простой элемент неприводим.
+\end{theorem}
+
+\begin{proof}
+     $p\in R, p$ "--- простой.
+    $$p = ab \Ra a|p, b|p$$
+    $$p|ab \xLongrightarrow[\text{p "--- простой}]{} p|a \cup p|b$$
+    $$
+    \begin{matrix}
+    p|a \wedge a|p \Ra a \sim p, b \in R^{*}\\
+    p|b \wedge b|p \Ra b \sim p, a \in R^{*}
+    \end{matrix}
+     \Ra p \text{"--- неприводим}\\
+    $$
+\end{proof}
+
+prume "--- простой.
+
+irreducible "--- неприводимый
+
+composite "--- составной
