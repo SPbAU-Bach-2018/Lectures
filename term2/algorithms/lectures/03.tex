@@ -1,0 +1,208 @@
+\chapter{Операции на отрезке, Rope, SkipList, 2-3-Tree, B-Tree, RB-Tree, AA-Tree}
+\setauthor{Степанов Владимир}
+
+\section {Неявный ключ: операции на отрезке $[L, R]$}
+
+\begin{enumerate}
+	\item \cpp'Sum(L, R)'
+	\item \cpp'Min/Max(L, R)'
+	\item \cpp'Reverse(l, R)'
+	\item \cpp'Add(L, R, d)'
+	\item \cpp'Set(L, R, val)'
+\end{enumerate}
+
+$[L, R]$, $L \le x \le R$
+
+<<Выспличиваем отрезок>> от $L$ до $R$.
+\cimg{image03_01.jpg}{}
+
+В вершине храним флаг, присвоено ли что-нибудь, если да, то храним значение, иначе None.
+
+\cpp'Root->value = ...'
+
+\subsection{pushDown}
+\begin{cppcode}
+pushDown(v)
+{
+	if (v->value != None)
+	{
+		v->l->value = v->value;
+		v->r->value = v->value;
+		v->value = None;
+		x = v->value;
+		v->value = None;
+	}
+}
+\end{cppcode}
+
+Update:
+\begin{cppcode}
+	v->sum = v->value != None ? v->value * v.size :
+	v->l->sum + v->r->sum + v->x;
+\end{cppcode}
+
+\begin{Rem}
+	Update не нужен, если перед заходом в сыновей всегда делать \cpp'pushDown()'.
+\end{Rem}
+
+\subsection{Reverse}
+\begin{cppcode}
+if (Rev == 1)
+{
+	L->Rev ^= 1;
+	R->Rev ^= 1;
+	swap(L, R);
+	Rev = 0;
+}
+\end{cppcode}
+
+\subsection{Sum}
+
+\begin{cppcode}
+getSum(v, vL, vR, L, R) //v, [vL, vR] -- отрезок соответствующий v, [L, R]
+{
+	if (v == NULL)
+		return 0;
+	if (vL > R || vR <  L)
+		return 0;
+	if (vL >= L && vR <= R)
+		return v->sum;
+	return getSum(v->L, vL, v->x - 1, L, R)
+		+ getSum(v->R, v->x + 1, vR, L, R)
+			+ (L <= v->x <= R ? v-> x : 0);
+}
+\end{cppcode}
+
+Асимптотика $O(\log N)$, так как на каждом уровне рассмотрим не более 4 отрезков.
+
+\section{Rope}
+
+\cimg{image03_02.jpg}{}
+
+\begin{Def}
+	Rope -- интерфейс.
+	\begin{enumerate}
+		\item \cpp'Access(i)'
+		\item \cpp'Link'
+		\item \cpp'Cut'
+	\end{enumerate}
+\end{Def}
+
+Реализация: treap+ reverse, так как чтобы сделалть правильный Link нужно уметь переворачивать отрезки,
+потому что можем соединять любой конец одного отрезка с любым концом другого.
+
+\cimg{image03_03.jpg}{}
+ 
+\section{SkipList}
+ 
+\cimg{image03_04.jpg}{}
+
+\subsection{Operations}
+ 
+\begin{enumerate}
+	\item \cpp'Find = O(k)'
+	\item \cpp'Add = Find + O(1)'
+	\item \cpp'Delete = Find + O(1)'
+	\item \cpp'Split = Find + O(1)'
+\end{enumerate}
+
+\subsection{Find = $O(\sqrt{N})$}
+
+Разобьем массив на $\sqrt{N}$ кусочков и будем хранить в первом элементе отрезка ссылку на первый элемент следующего отрезка, также запомним $L_{i}$ -- на сколько элементов мы при этом прыгаем. При добавлении элемента просто изменяем $L_{i}$ для начала текущего отрезка. Если $L_{i} \geqslant 2 \sqrt{N}$, тогда Rebuild. Теперь Fnd за $O(\sqrt{N})$\\
+
+\cimg{image03_05.jpg}{}
+
+
+\subsection{Ideal Model}
+
+\cimg{image03_06.jpg}{}
+
+Всего $\log{N}$ уровней и на каждом уровне не более одного раза мы идем в право, значит Find = $O(\log{N})$. Остальные операции не работают.
+
+
+\subsection{Skip-List}
+
+Храним $\log{N}$ списков, в первом лежат все элементы, во втором каждый элемент из первого листа присутствует с вероятностью $\frac{1}{2}$, на третьем каждый элемент из второго списка лежит с вероятностью $\frac{1}{2}$ и т.д.
+
+$M_{i, k}$ "--- Мат. ождиание того, что элемент $i$ окажется на $k$-ом уровне.$ P = \frac{1}{2^{k}}$, \xi = 1, значит $M_{i,k} = P \xi = \frac{1}{2^{k}}$.
+Значит, матожидание количества вершин на $k$-ом уровне равно $\frac{N}{2^{k}}$, т.к. матожидания складываются.
+
+Всего $\log{N}$ переходов вниз и на каждом уровне Мат. ожидание на ход вправо $O(1)$.
+
+Если мы сделаем $k$ прыжков в право, значит $k$ элементов подряд не смогли прыгнуть на уровень выше, вероятность этого $\frac{1}{2^{k}}$. Мат. ожиание $k$ прыжков в право равно $\frac{1}{2^{k}}$.
+
+$X = \frac{1}{2} + \frac{1}{4} + \dots = 1$. Сложили мат. ожидания.
+
+\section{2-3-Tree}
+
+\cimg{image03_07.jpg}{}
+
+Все ключи различны. $A < X < B < Y < C$. Все листья имеют одинаковую глубину.
+
+Добавление: спускаемся по дереву до листа и приклеиваем вершину. Могли получить 4-вершину.
+
+\cimg{image03_08.jpg}{}
+
+Возможно, придется сделать так и выше, возможно изменится корень.
+
+Удаление: избавляемся от пустых вершин.
+
+\cimg{image03_09.jpg}{}
+
+
+\section{B-Tree}
+
+K-Tree == B-Tree.\\
+
+$[2-3] \longrightarrow [k, 2k)$\\
+
+Пусть $k$ = 1024, тогда получим очень маленькую высоту дерева.
+
+$\log_{2k}{N} \leqslant h \leqslant \log_{k}{N}$
+\[ \frac{\log_{k}{N}}{\log_{2k}{N}} = \frac{N/\log{k}}{\log{N}/\log{2k}} = \frac{\log{k} + \log{2}}{\log{k}} = 1 + \log_{k}{2} \]
+$k = 1024$, $h \leqslant 3$, $N = 1e9$
+
+Легче хранить на диске, можно читать вершины с диска.
+
+Диск: $\log_{k}{N}$. Время: $k\log_{k}{N} \longrightarrow \log_{2}{k} \log_{k}{N}$.
+
+\section{RB-Tree}
+
+\subsection{Описание}
+\begin{enumerate}
+	\item Бинарное дерево.
+	\item Вершины покрашены в красные и черный цвет, причем нет двух красных вершин соединенных ребром.
+	\item Все фиктивные листья имеют одинаковую черную глубину.
+	\item $2^{h} - 1 \leqslant size \leqslant 2^{2h} - 1$, где h "--- черная глубина дерева.
+\end{enumerate}
+
+\cimg{image03_10.jpg}{0.5}
+
+\subsection{RB-Tree и 2-3-4-Tree}
+
+RB-Tree $\longleftrightarrow$ 2-3-4-Tree\\
+Объединим красные вершины с их родителями и получим RB $\longrightarrow$ 2-3-4.
+
+\cimg{image03_11.jpg}{0.5}
+
+Следующими преобразованиями получим RB $\longleftarrow$ 2-3-4.
+
+\cimg{image03_12.jpg}{0.5}
+
+\subsection{AA-Tree}
+
+AA-Tree "--- вид RB-Tree, так же  AA-Tree $\longleftrightarrow$ 2-3-Tree, т.к. есть только такие конструкции:
+
+\cimg{image03_13.jpg}{}
+
+$2^{h} - 1 \leqslant size \leqslant sqrt{3}^{h} - 1$, где $h$ "--- черная высота дерева.\\
+
+\subsection{$B^{+}$-Tree}
+
+Является 2-3-Tree.
+
+Все ключи хранятся в листьях, а в вершинах храним Max/Min в поддереве.\\
+
+\subsection{$B^{*}$-Tree}
+
+$[2-3] \longrightarrow [k, 1.5k )$

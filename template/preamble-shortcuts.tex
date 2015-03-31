@@ -40,3 +40,31 @@
 
 \newcommand{\partd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\partdd}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+
+\newcommand{\img}[2]{%
+	\ifthenelse{\equal{#2}{}}{%
+		\includegraphics[width=0.5\linewidth]{#1}
+	}{%
+		\includegraphics[width=#2\linewidth]{#1}
+	}%
+}
+\newcommand{\cimg}[2]{%
+	\begin{center}%
+		\ifthenelse{\equal{#2}{}}{%
+			\includegraphics[width=0.75\linewidth]{#1}
+		}{%
+			\includegraphics[width=#2\linewidth]{#1}
+		}%
+	\end{center}%
+}
+\newcommand{\rimg}[2]{%
+	\ifthenelse{\equal{#2}{}}{%
+		\begin{wrapfigure}{r}{0.3\linewidth}
+			\includegraphics[width=1.0\linewidth]{#1}
+		\end{wrapfigure}
+	}{%
+		\begin{wrapfigure}{r}{#2\linewidth}
+			\includegraphics[width=1.0\linewidth]{#1}
+		\end{wrapfigure}
+	}
+}

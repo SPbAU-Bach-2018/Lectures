@@ -15,9 +15,7 @@ Euler Tour Trees "--- это структура данных, которая в 
 
 Для реализации этой структуры будем хранить Эйлеров обход по ребрам в декартовом дереве.
 
-\begin{center}
-\includegraphics[width=2in]{im09_1.jpg}
-\end{center}
+\cimg{im09_1.jpg}{0.3}
 
 Так же необходимо хранить:
 \begin{enumerate}
@@ -40,9 +38,7 @@ Euler Tour Trees "--- это структура данных, которая в 
 
 \subsubsection{\texttt{MakeRoot(v)} "--- сделать корнем вершину}
 
-\begin{center}
-\includegraphics[width=2in]{im09_2.jpg}
-\end{center}
+\cimg{im09_2.jpg}{0.3}
 
 Если корень вершина $A$, то ейлеров обход выглдяит так: 1 2 3 4 5 6.
 Если корень вершина $B$: 4 5 6 1 2 3.
@@ -63,9 +59,7 @@ Euler Tour Trees "--- это структура данных, которая в 
 
 \subsubsection{\texttt{Cut(a, b)} "--- удалить ребро}
 
-\begin{center}
-\includegraphics[width=2in]{im09_3.jpg}
-\end{center}
+\cimg{im09_3.jpg}{0.3}
 
 По $ab$ находим позиции ребер (прямого и обратного) в массиве.
 Разделяем массив на три части и склеиваем первую и последнюю.
@@ -76,17 +70,13 @@ Euler Tour Trees "--- это структура данных, которая в 
 
 Хотим покрыть дерево вертикальными путями так, что бы каждая вершина лежала ровно в одном.
 
-\begin{center}
-\includegraphics[width=2in]{im09_4.jpg}
-\end{center}
+\cimg{im09_4.jpg}{0.3}
 
 LCA разбивает путь на два вертикальных.
 
 Что бы посчитать функцию, нужно посчитать функцию на двух вертикальных путях.
 
-\begin{center}
-\includegraphics[width=2in]{im09_5.jpg}
-\end{center}
+\cimg{im09_5.jpg}{0.3}
 
 \begin{Def}
 	Назовем прыжком переход от одного пути в разбиении к другому.
@@ -202,9 +192,7 @@ $\left<M\log n + n, 1\right>$
 Наша цель сделать $M \le O(\frac{n}{\log n})$
 Сжатие деревьев.
 
-\begin{center}
-\includegraphics[width=2in]{im09_6.jpg}
-\end{center}
+\cimg{im09_6.jpg}{0.3}
 
 Хотим разбить вершины на поддеревья размера не больше $k$.
 Просто так это сделать сложно, поэтому разрешим корню поддерева не принадлежать данному куску.
@@ -212,9 +200,7 @@ $\left<M\log n + n, 1\right>$
 $\frac{k}{2} < size \le k$. Верно для всех кусков кроме корня.
 Тогда количество кусков $\frac{n}{k/2} + 1$.
 
-\begin{center}
-\includegraphics[width=2in]{im09_7.jpg}
-\end{center}
+\cimg{im09_7.jpg}{0.3}
 
 \begin{cppcode}
 Compress(v) {
@@ -230,6 +216,6 @@ Compress(v) {
 Для вершины за $O(1)$ хотим прыгать на $k$ вверх.
 Предподсчет.
 
-\includegraphics[width=2in]{im09_8.jpg}
+\cimg{im09_8.jpg}{0.3}
 
 $\lra 0010011101$
