@@ -13,15 +13,14 @@
 
 Картинка про сечение.
 
-Если есть функия от многих переменных, мы можем взять сечение её графика плоскостью,
-и рассматривать производную оставшейся функции.
+Если есть функия от многих переменных, мы можем взять сечение её графика плоскостью, и рассматривать производную оставшейся функции.
 
 \begin{Def}
-	Пусть есть функция $f\colon D \ra \R$, точка $a \in \Int D$ и вектор $\vec h\colon \|h\| = 1$.
+	Пусть есть функция $f\colon D \ra \R$, точка $a \in \Int D$ и вектор направления $\vec h\colon \|h\| = 1$.
 	Рассмотрим функцию
 	\[ F(t) = f(a + th), t \in \R \]
 	Тогда производной $f$ по направлению $h$ в точке $a$ называют
-	\[ \frac{\partial f}{\partial h}(a) = F'(0) \]
+	\[ \partd{f}{h}(a) = F'(0) \]
 \end{Def}
 
 \begin{Rem}
@@ -31,39 +30,41 @@
 
 \begin{assertion}
 	$f\colon D \ra \R$, $a \in \Int D$, $f$ дифференцируема в $a$, $h$ "--- ненулевой вектор.
-	\[ \frac{\partial f}{\partial h}(a) = \d_a f(h) \]
+	\[ \partd{f}{h}(a) = \d_a f(h) \]
 \end{assertion}
 \begin{proof}
 	\begin{gather*}
-		\frac{\partial f}{\partial h}(a) = F'(0) \\
-		\d_0 F = \d_a f \circ \underbrace{\d_0 (a + th)}_{t \mapsto ht} \\
-		F'(0) = d_a f(h)
+		\partd{f}{h}(a) = F'(0) \\
+		\d_a f\colon t \mapsto Tt \\
+		\d_0 F = \underbrace{\d_a f}_{t \mapsto Tt} \circ \underbrace{\d_0 (a + th)}_{t \mapsto ht} = (t \mapsto Tht) \\
+		\d_0 F = (t \mapsto F'(0) \cdot t) \\
+		F'(0) = Th = (t \mapsto Tt)(h) = \d_a f(h)
 	\end{gather*}
 \end{proof}
 То есть градиент указывает, где производная максимальна.
 \begin{theorem}[Экстремальное свойство градиента]
 	$f\colon D \ra \R$, $a \in \Int D$, $f$ дифференцируема в $a$, $h$ "--- напралвение, $\nabla f(a) \ne 0$.
 	Тогда
-	\[ \left|\frac{\partial f}{\partial h}(a)\right| \le \|\nabla f(a) \| \]
+	\[ \left|\partd{f}{h}(a)\right| \le \|\nabla f(a) \| \]
 	и равенство достигается только в случае $h \parallel \nabla f(a)$
 \end{theorem}
-...
+%% ... %%
 \begin{proof}
 	\begin{gather*}
-		\left|\frac{\partial f}{\partial h}(a)\right| = |\left< \nabla f(a), h\right>| \le \|\nabla f(a)\| \|h\| = \|\nabla f(a) \|
+		\left|\partd{f}{h}(a)\right| = |\left< \nabla f(a), h\right>| \le \|\nabla f(a)\| \|h\| = \|\nabla f(a) \|
 	\end{gather*}
 	В неревенстве Коши"---Буняковского равенство было как раз в случае параллельности векторов $\nabla f(a)$ и $h$.
 \end{proof}
 
-Физический смысл градиента такой: пусть есть поверхность. Положим на неё шарик. Градиент покатится туда, куда указывает градиент.
+Физический смысл градиента такой: пусть есть поверхность. Положим на неё шарик. Он покатится туда, куда указывает градиент.
 
 \begin{Def}
 	Частная производная "--- производная по направлению базисных векторов $e_k = (0, \dots, \underbrace{1}_{k}, \dots, 0)$.
-	\[ \frac{\partial f}{\partial e_k} (a) \]
+	\[ \partd{f}{e_k} (a) \]
 \end{Def}
 \begin{Rem}
 	\begin{gather*}
-		\frac{\partial f}{\partial e_k} (a) = \lim_{t \ra 0} \frac{f(a_1, \dots, a_k + t, \dots, a_n) - f(a_1, \dots, a_k, \dots, a_n)}t = \\
+		\partd{f}{e_k} (a) = \lim_{t \ra 0} \frac{f(a_1, \dots, a_k + t, \dots, a_n) - f(a_1, \dots, a_k, \dots, a_n)}t = \\
 		= \lim_{t \ra 0} \frac{g(a_k + t) - g(a_k)}t = \frac{\d g}{\d x} (a_k) \quad g(x) \lrh f(a_1, \dots, x, \dots, a_n)
 	\end{gather*}
 	Таким образом, частная производная "--- производная всей функции по одной координате.
@@ -71,36 +72,36 @@
 Обозначения:
 \[
 	\begin{matrix}
-		\frac{\partial f}{\partial x_k} & D_{x_k} f & f'_{x_k}
+		\partd{f}{x_k} & D_{x_k} f & f'_{x_k}
 	\end{matrix}
 \]
 
 \begin{exmp}
 	$f(x, y) = x^y$:
 	\begin{gather*}
-		\frac{\partial f}{\partial x} (x, y) = y \cdot x^{y - 1} \\
-		\frac{\partial f}{\partial y} (x, y) = \ln x \cdot x^y \\
+		\partd{f}{x} (x, y) = y \cdot x^{y - 1} \\
+		\partd{f}{y} (x, y) = \ln x \cdot x^y \\
 	\end{gather*}
 \end{exmp}
 
 \begin{conseq}
 	$f\colon D \subset R^n \ra \R$, $a \in \Int D$, $f$ дифференцируема в $a$.
-	\[ \frac{\partial f}{\partial e_k} (a) = \left<\nabla f(a), e_k\right> = (\nabla f(a))_k \]
+	\[ \partd{f}{e_k} (a) = \left<\nabla f(a), e_k\right> = (\nabla f(a))_k \]
 	Таким образом,
-	\[ \nabla f(a) = \left( \frac{\partial f}{\partial e_1} (a), \dots, \frac{\partial f}{\partial e_n} (a) \right) \]
+	\[ \nabla f(a) = \left( \partd{f}{e_1} (a), \dots, \partd{f}{e_n} (a) \right) \]
 \end{conseq}
 
 \begin{conseq}
 	$f\colon \R^n \ra \R^m$, $a \in \Int D$, $f$ дифференцируема в $a$.
 	Тогда матрица Якоби (матрица дифференциала)
 	\[\left(\begin{matrix}
-		\frac{\partial f_1}{\partial e_1}(a) & \frac{\partial f_1}{\partial e_2}(a)
-			&\cdots& \frac{\partial f_1}{\partial e_n}(a) \\
-		\frac{\partial f_2}{\partial e_1}(a) & \frac{\partial f_2}{\partial e_2}(a) 
-			&\cdots& \frac{\partial f_2}{\partial e_n}(a) \\
+		\partd{f_1}{e_1}(a) & \partd{f_1}{e_2}(a)
+			&\cdots& \partd{f_1}{e_n}(a) \\
+		\partd{f_2}{e_1}(a) & \partd{f_2}{e_2}(a)
+			&\cdots& \partd{f_2}{e_n}(a) \\
 		\vdots & \vdots & \ddots & \vdots \\
-		\frac{\partial f_m}{\partial e_1}(a) & \frac{\partial f_m}{\partial e_2}(a) 
-			&\cdots& \frac{\partial f_m}{\partial e_n}(a)
+		\partd{f_m}{e_1}(a) & \partd{f_m}{e_2}(a)
+			&\cdots& \partd{f_m}{e_n}(a)
 	\end{matrix}\right)\]
 \end{conseq}
 \begin{proof}
@@ -127,24 +128,24 @@
 	\[ \d_a(g \circ f) = \d_f(n) g \circ \d_a f \]
 	то есть матрица $\d_a (g \circ f)$ есть
 	\[\left(\begin{matrix}
-		\frac{\partial g_1}{\partial e_1}(a) & \frac{\partial g_1}{\partial e_2}(a)
-			&\cdots& \frac{\partial g_1}{\partial e_n}(a) \\
-		\frac{\partial g_2}{\partial e_1}(a) & \frac{\partial g_2}{\partial e_2}(a) 
-			&\cdots& \frac{\partial g_2}{\partial e_n}(a) \\
+		\partd{g_1}{e_1}(a) & \partd{g_1}{e_2}(a)
+			&\cdots& \partd{g_1}{e_n}(a) \\
+		\partd{g_2}{e_1}(a) & \partd{g_2}{e_2}(a)
+			&\cdots& \partd{g_2}{e_n}(a) \\
 		\vdots & \vdots & \ddots & \vdots \\
-		\frac{\partial g_l}{\partial e_1}(a) & \frac{\partial g_l}{\partial e_2}(a) 
-			&\cdots& \frac{\partial g_l}{\partial e_m}(a) \\
+		\partd{g_l}{e_1}(a) & \partd{g_l}{e_2}(a)
+			&\cdots& \partd{g_l}{e_m}(a) \\
 	\end{matrix}\right)\left(\begin{matrix}
-		\frac{\partial f_1}{\partial e_1}(a) & \frac{\partial f_1}{\partial e_2}(a)
-			&\cdots& \frac{\partial f_1}{\partial e_n}(a) \\
-		\frac{\partial f_2}{\partial e_1}(a) & \frac{\partial f_2}{\partial e_2}(a) 
-			&\cdots& \frac{\partial f_2}{\partial e_n}(a) \\
+		\partd{f_1}{e_1}(a) & \partd{f_1}{e_2}(a)
+			&\cdots& \partd{f_1}{e_n}(a) \\
+		\partd{f_2}{e_1}(a) & \partd{f_2}{e_2}(a)
+			&\cdots& \partd{f_2}{e_n}(a) \\
 		\vdots & \vdots & \ddots & \vdots \\
-		\frac{\partial f_m}{\partial e_1}(a) & \frac{\partial f_m}{\partial e_2}(a) 
-			&\cdots& \frac{\partial f_m}{\partial e_n}(a) \\
+		\partd{f_m}{e_1}(a) & \partd{f_m}{e_2}(a)
+			&\cdots& \partd{f_m}{e_n}(a) \\
 	\end{matrix}\right)\]
 	и
-	\[ \frac{\partial (g \circ f)_i}{\partial e_k} = \sum_{j = 1}^m \frac{\partial g_i}{\partial e_j} (f(a)) \frac{\partial f_j}{\partial e_k} (a) \]
+	\[ \partd{(g \circ f)_i}{e_k} = \sum_{j = 1}^m \partd{g_i}{e_j} (f(a)) \partd{f_j}{e_k} (a) \]
 \end{conseq}
 
 \begin{Rem}
