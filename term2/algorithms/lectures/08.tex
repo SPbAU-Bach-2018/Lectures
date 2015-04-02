@@ -9,7 +9,7 @@
 Биекция: каждой вершине сопоставляем ребро в отца.
 Для корня можем сделать фиктивное ребро.
 
-\section{Сумма на пути, дерево не меняется. $T = O\left(1\right)$}
+\section{Сумма на пути, дерево не меняется. \texorpdfstring{$T = O(1)$}{T = O(1)}}
 
 \begin{enumerate}
 	\item Ищем LCA за $O\left(1\right)$.
@@ -60,7 +60,7 @@ go(v) {
 }
 \end{cppcode}
 
-\section{LCA-Offline. \texorpdfstring{$T = O\left(A^{-1}(m, n)\right) = O^*\left(1\right)$}{T = O(A^-1(m, n)) = O*(1)}}
+\section{LCA-Offline. \texorpdfstring{$T = O\left(A^{-1}(m, n)\right) = O^*\left(1\right)$}{T = O(A\^{}-1(m, n)) = O*(1)}}
 
 Будем использовать СНМ вершин, которые уже обошли, и множество вершин от корня до текущей.
 Таким образом, из любой вершины, из которой уже вышли, легко посчитать LCA с вершиной $v$ (стоим в ней сейчас).

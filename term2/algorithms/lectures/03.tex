@@ -1,7 +1,7 @@
 \chapter{Операции на отрезке, Rope, SkipList, 2-3-Tree, B-Tree, RB-Tree, AA-Tree}
 \setauthor{Степанов Владимир}
 
-\section {Неявный ключ: операции на отрезке $[L, R]$}
+\section{Неявный ключ: операции на отрезке \texorpdfstring{$[L, R]$}{[L, R]}}
 
 \begin{enumerate}
 	\item \cpp'Sum(L, R)'
@@ -106,7 +106,7 @@ getSum(v, vL, vR, L, R) //v, [vL, vR] -- отрезок соответствую
 	\item \cpp'Split = Find + O(1)'
 \end{enumerate}
 
-\subsection{Find = $O(\sqrt{N})$}
+\subsection{Find = \texorpdfstring{$O(\sqrt{N})$}{O(Sqrt(N))}}
 
 Разобьем массив на $\sqrt{N}$ кусочков и будем хранить в первом элементе отрезка ссылку на первый элемент следующего отрезка, также запомним $L_{i}$ -- на сколько элементов мы при этом прыгаем. При добавлении элемента просто изменяем $L_{i}$ для начала текущего отрезка. Если $L_{i} \geqslant 2 \sqrt{N}$, тогда Rebuild. Теперь Fnd за $O(\sqrt{N})$\\
 
@@ -197,12 +197,12 @@ AA-Tree "--- вид RB-Tree, так же  AA-Tree $\longleftrightarrow$ 2-3-Tree
 
 $2^{h} - 1 \leqslant size \leqslant sqrt{3}^{h} - 1$, где $h$ "--- черная высота дерева.\\
 
-\subsection{$B^{+}$-Tree}
+\subsection{\texorpdfstring{$B^+$}{B+}-Tree}
 
 Является 2-3-Tree.
 
 Все ключи хранятся в листьях, а в вершинах храним Max/Min в поддереве.\\
 
-\subsection{$B^{*}$-Tree}
+\subsection{\texorpdfstring{$B^*$}{B*}-Tree}
 
 $[2-3] \longrightarrow [k, 1.5k )$
