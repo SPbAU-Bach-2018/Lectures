@@ -1,0 +1,201 @@
+\setauthor{Денис Галеев}
+
+\chapter{Алгоритмы и приведение типов}
+\section{Алгоритмы}
+
+\cpp"#include <algorithm>"
+
+Вся идеология STL построена на обобщенном програмированнии. 
+
+Все алгоритмы, которые работают с контейнерами, построены на итераторах (итератор --- черная коробочка над указателем).
+
+Базовые требования от итераотора:
+\begin{enumerate}
+	\item Наличие операций: перемещение вправа/влево \cpp{--, ++}, разыменование \cpp{*->, *}. 
+	\item \t{begin()} на начало.
+	\item \t{end()} на следующий после конца.
+\end{enumerate}
+
+Почему \t{end()} должен указывать на следующий после конца? 
+Если будет один элемент или ни одного, то итераторы будут указывать на одно и тоже место, и будет непонятно сколько элементов в контейнере, для этого потребуется дополнительная проверка. 
+
+\subsection{Постановка задач}
+
+Рассмотрим следующий код:
+\begin{cppcode}
+void foo (It q){
+	T t = *q;
+}
+
+int main () {
+	vector<int> v;
+	foo (v.begin ());
+	return 0; 
+}
+\end{cppcode}
+Он не скомпилируется, так как компилятор не знает, что должно быть вместо \t{T}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Итераторы}
+Вернемся к итераторам.
+Для начала рассмотрим различные типы итераторов в стандартной библиотеке:
+\begin{enumerate}
+\item 
+	Random Access Iterator 
+
+	Наличие операций: \cpp{*->, ++, --, -, +=, -=}.
+
+	Примеры: \t{vector}, \t{deque}.
+\item
+	Bidirectional Iterator
+
+	Наличие операций: \cpp{*->, ++, --}.
+
+	Примеры: \t{list}, \t{map}, \t{multimap}, \t{multiset}.
+\item
+	Forward Iterator 
+	\begin{enumerate}
+	\item
+		Output Iterator
+
+		Наличие операций: \cpp{++, write}.
+	\item
+		Inptut Iterator
+
+		Наличие операций: \cpp{++, read}.
+	\end{enumerate}
+\end{enumerate}
+
+А теперь поймем, что мы хотим получить.
+На примере функции \cpp{advance} из стандартной библиотеки.
+\begin{cppcode}
+template<class It>
+It advance (It q, size_t n) {
+	/* хотим :*/
+	/* если q --- RA, то */
+		q += n;
+	/* если q --- Bi, Fi, то */
+		for (size_t i = 0; i < n; i++)
+			q++;
+	return q;
+}
+
+int main () {
+	std::list<int> l (10, 1); 
+	std::list<int>::iterator 	it1 = advance (l.begin (), 5); // за линию 
+
+	std::vector<int> v (10, 2);
+	std::vector<int>::iterator 	it2 = advance (v.begin (), 5); // за const
+
+	return 0;
+}
+\end{cppcode}
+
+Рассмотрим, что для этого есть в \t{STL}. 
+Там написано примерно следующее:
+\begin{cppcode}
+struct bidirectional_iterator_tag {};
+struct random_access_iterator_tag {};
+struct input_iterator_tag {};
+struct output_iterator_tag {};
+struct forward_iterator_tag {};
+
+template<class T> 
+class myContainer {
+public:
+	class iterator {
+		typedef bidirectional_iterator_tag iterator_category;
+		...
+	}
+	...
+}
+\end{cppcode}
+
+Используя это, перепишем нашу функцию.
+По-крутому будет так:
+\begin{cppcode}
+template<class Iter>
+Iter advance (Iter q, size_t n, std::random_access_iterator_tag) {
+	return q + n;
+}
+
+template<class Iter>
+Iter advance (Iter q, size_t n, std::bidirectional_iterator_tag) {
+	for (int i = 0; i < n; ++i)
+		q++;
+	return q;
+} 
+
+template<class Iter>
+Iter advance (Iter q, size_t n) {
+	typename Iter::iterator_category tag;
+	advance (q, n, tag);
+	/* можно просто: advance (q, n, Iter::iterator_category ()); */
+}
+\end{cppcode}
+
+\subsection{\t{iterator\_traits}}
+Мы написали код, и вроде все работает. 
+Но давайте вспомним про простые указатели ведь код \cpp"sort (a, a + n)", где \cpp"a" --- массив, тоже работает. 
+В нашей же реализации это получит ошибку компиляции, попробуем это исправить.
+
+Для начала вспомним про частичную специализацию, на примере \cpp"vector<bool>".
+\begin{cppcode}
+/* основное описание */
+template<class T>
+class vector {
+	T* array;
+};
+
+/* частичная специализация */
+template<>
+class vector<bool> {
+	int* array;
+};
+\end{cppcode}
+
+
+
+Теперь сделаем класс \cpp"class iterator_traits", и у него сделаем частичную специализацию для указателей.
+Идеально это выглядит так:
+\begin{cppcode}
+/* тут например будет работать iterator_traits<vector<int>::iterator> */
+template<class Iter>
+class iterator_traits {
+public:
+	typedef typename Iter::value_type value_type;
+	typedef typename Iter::iterator_category iterator_category;
+};
+
+/* а тут будет работать iterator_traits<T*> */
+template <class Iter> 
+class iterator_traits<Iter*> {
+public:
+	typedef Iter value_type;
+	typedef std::random_access_iterator_tag iterator_category;
+};
+
+template<class Iter>
+Iter advance (Iter q, size_t n) {
+	advance (q, n, typename iterator_traits<Iter>::iterator_category ());
+}
+\end{cppcode}
+В стандартной реализации кроме полей \t{value\_type} и \t{iterator\_category}, есть и другие например \t{pointer}.
+
+\section{Приведение типов}
+Не дошли. 
