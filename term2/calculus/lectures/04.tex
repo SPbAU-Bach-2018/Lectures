@@ -32,7 +32,7 @@
 	$y_k = \frac{x_{k-1} + x_k}2$
 	\begin{gather*}
 		\Delta \lrh \left(\int\limits_a^b f(x)\d x - \sum_{k=1}^n \frac{f(x_{k-1}) + f(x_k)}{2}(x_k - x_{k-1}) \right) = \\
-		= \sum_{k=1}^n \left(\int\limits_{x_{k-1}}^{x_k} f(x)\d x - \frac{f(x_{k-1}) - f(x_k)}{2}(x_k - x_{k-1}) \right)
+		= \sum_{k=1}^n \left(\int\limits_{x_{k-1}}^{x_k} f(x)\d x - \frac{f(x_{k-1}) + f(x_k)}{2}(x_k - x_{k-1}) \right)
 			= \sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} \left(f(x) - \frac{f(x_{k-1}) - f(x_k)}{2}\right)\d x \\
 		\int\limits_{x_{k-1}}^{x_k} f(x) \d x = \int\limits_{x_{k-1}}^{x_k} f(x)(x - y_k)'\d x = f(x) (x-y_k) \biggr|_{x=x_{k-1}}^{x_k} - \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \\
 		= f(x_k) \frac{x_k - x_{k-1}}2 - f(x_{k-1}) \frac{x_{k-1} - x_k}2 - \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \\
@@ -41,9 +41,9 @@
 	\begin{gather*}
 		\Delta = -\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x \\
 		((x - x_{k-1})(x_k - x))' = (x_k - x)(1) + (x - x_{k-1})(-1) = x_{k-1} + x_k - 2x = 2(y_k - x) \\
-		\int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \int\limits_{x_{k-1}}^{x_k} f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\d x = \\
-		= \underbrace{\left(f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\right)\biggr|_{x = x_{k-1}}^{x_k}}_{=0} - \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
-		\Delta = +\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
+		-\int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \int\limits_{x_{k-1}}^{x_k} f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\d x = \\
+		= \underbrace{\left(f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)\right)\biggr|_{x = x_{k-1}}^{x_k}}_{=0} - \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
+		\Delta = -\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
 		\frac{(x - x_{k-1})(x_k - x)}2 \le \left(\frac{x_k - x_{k-1}}2\right)^2 \le \frac{|\tau^2|}4 \\
 		|\Delta| \le \sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} \left|f''(x)\right| \d x \cdot \frac{|\tau|^2}8 = \frac{|\tau|^2}8 \int\limits_a^b \left|f''(x)\right|\d x
 	\end{gather*}
@@ -66,7 +66,7 @@
 	\end{gather*}
 \end{proof}
 
-\begin{theorem}[Формула Ейлера-Макларена]
+\begin{theorem}[Формула Эйлера-Маклорена]
 	\[ \sideset{}{'}\sum_{k=m}^n f(k) = \int\limits_m^n f(x) \d x + \frac12 \int\limits_n^m f''(x) \{x\}(1-\{x\}) \d x \]
 \end{theorem}
 \begin{proof}
