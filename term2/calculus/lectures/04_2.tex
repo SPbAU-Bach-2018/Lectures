@@ -33,7 +33,7 @@ $$a_n \le a_{n + 1}$$
 
 Поймем, что $a_n$ ограничено
 $$a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx \le 
-\int_1^{n}\frac{dx}{x^3} = -\frac{1}{2x^2}\left |_{x = 1}^{x = n} \right . = 
+\int_1^{n}\frac{dx}{x^3} = \left. -\frac{1}{2x^2}\right |_{x = 1}^{x = n} = 
 \frac{1}{2} - \frac{1}{2n} \le \frac{1}{2}$$
 
 $$\Ra \exists \lim_{n \to \infty} a_n \Ra \exists \lim_{n \to \infty}(H_n - \ln n) = \gamma$$ 
@@ -41,6 +41,37 @@ $$\Ra \exists \lim_{n \to \infty} a_n \Ra \exists \lim_{n \to \infty}(H_n - \ln 
 $\gamma = 0,57721566\ldots$ "--- постоянная Эйлера.
 
 Итог: $H_n = \ln n + \gamma + o(1)$
+\item Формула Стирлинга.
+
+$$\ln n! = \ln 1 + \ln 2 + \ldots = \ln n$$
+$$\ln n! = \sum_{k = 1}^{n}\ln k + \frac{\ln n}{2} =
+\int_{1}^{n}\ln xdx - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx + \frac{\ln n}{2} =$$
+$$= n\ln n - n + \frac{\ln n}{2} + 1 - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx $$
+$$\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx = b_n$$
+$$b_n \le b_{n + 1}$$
+$$b_n = \int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx  \le \int_1^{n}\frac{dx}{x^2} = \left. -\frac{1}{x} \right|_{x = 1}^{x = n} = 1 -\frac{1}{n} \le 1$$
+$$\Ra \exists \lim_{n \to \infty} b_n$$
+
+$$\ln n! = n \ln n + \frac{\ln n}{2} - n + C + o(1)$$
+$$n! = n^n e^{-n}\sqrt{n}e^ce^{o(1)} = n^{n}e^{-n}\sqrt{n}e^c(1 + o(1)) \sim 
+n^n e^{-n}\sqrt{n}e^c$$
+$$\frac{4^n}{\sqrt{\pi n}} = C_{2n}^n = \frac{(2n)!}{(n!)^2} \sim 
+\frac{(2n)^{2n}e^{-2n}\sqrt{2n}e^c}{(n^ne^{-n}\sqrt{n}e^c)^2} = 
+\frac{4^n n^{2n}e^{-2n}\sqrt(2n)e^c}{n^{2n}e^{-2n}ne^{2c}} = \frac{4^n\sqrt{2n}}{ne^c}$$
+
+$$\frac{4^n}{\sqrt{\pi n}} \sim \frac{4^n \sqrt{2n}}{n e^c}$$
+$$e^c \sim \sqrt{2\pi} \Ra e^c = \sqrt{2\pi} $$
+
+\textbf{Формула Стирлинга:}
+$$n! \sim n^ne^{-n}\sqrt{2\pi n} $$
+
+\begin{Rem}
+    Можно использовать для биномиальных коэффициентов. Записать их через
+    факториал и расписать.
+\end{Rem}
+
+
+
 \end{enumerate}                                                                           
 
 \end{exmp}
