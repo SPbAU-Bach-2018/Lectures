@@ -42,7 +42,7 @@
 		\Delta = -\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x \\
 		((x - x_{k-1})(x_k - x))' = (x_k - x)(1) + (x - x_{k-1})(-1) = x_{k-1} + x_k - 2x = 2(y_k - x) \\
 		\int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \int\limits_{x_{k-1}}^{x_k} f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\d x = \\
-		= \underbrace{\left(f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\right)\biggr|_{x = x_{k-1}}^{x_k}}_{=0} - \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x
+		= \underbrace{\left(f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\right)\biggr|_{x = x_{k-1}}^{x_k}}_{=0} - \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x\\
 		\Delta = +\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
 		\frac{(x - x_{k-1})(x_k - x)}2 \le \left(\frac{x_k - x_{k-1}}2\right)^2 \le \frac{|\tau^2|}4 \\
 		|\Delta| \le \sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} \left|f''(x)\right| \d x \cdot \frac{|\tau|^2}8 = \frac{|\tau|^2}8 \int\limits_a^b \left|f''(x)\right|\d x
