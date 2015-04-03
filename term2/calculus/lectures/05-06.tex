@@ -281,7 +281,7 @@
 
     \begin{proof}
     
-        Рассмотрим какой-то подотрезок $\Delta$, лежащий в отрезке $[a,b]$, и сужение $\gamma|_{\Delta} \colon \Delta \rightarrow \mathbb{R}$.
+        Рассмотрим какой-то подотрезок $\Delta$, лежащий в отрезке $[a,b]$, и сужение $\gamma|_{\Delta} \colon \Delta \rightarrow \mathbb{R}^d$.
 
         $m_{\Delta}^{(i)} = \min\limits_{t \in \Delta} |\gamma_i'(t)|$, $m_{\Delta}^2 = \sum\limits_{i=1}^d(m_{\Delta}^{(i)})^2$
 
@@ -348,7 +348,7 @@
 
         $\sum\limits_{i = 1}^n \|\gamma'(\xi_i)\| (t_i - t_{i - 1})$
 
-        $\|\gamma'(\xi_i)\|^2 = \|\gamma_1'(\xi_i)\|^2 + \|\gamma_2'(\xi_i)\|^2 + \dots + \|\gamma_d'(\xi_i)\|^2$
+        $\|\gamma'(\xi_i)\|^2 = |\gamma_1'(\xi_i)|^2 + |\gamma_2'(\xi_i)|^2 + \dots + |\gamma_d'(\xi_i)|^2$
 
         $\|\gamma_i'(\xi_i)\|^2 \le (M_{[t_{i - 1}, t_i]}^{(i)})^2$
 
@@ -379,7 +379,7 @@
 
         Знаем, что $\gamma_j'$ непрерывно на $[a, b]$, а значит равномерно непрерывно (по теореме Кантора).
 
-        $\forall \epsilon > 0, \exists \delta > 0: \forall \eta, \xi \colon |\eta - \xi| < \delta \Rightarrow |\gamma_j(\eta) - \gamma_j(\xi)| < \epsilon$
+        $\forall \epsilon > 0, \exists \delta > 0: \forall \eta, \xi \colon |\eta - \xi| < \delta \Rightarrow |\gamma_j'(\eta) - \gamma_j'(\xi)| < \epsilon$
 
         Если наше разбиение ${t_i}$ имеет мелкость $< \delta$, то верно, что $|\gamma_j'(\eta_i) - \gamma_j'(\xi_i)| < \epsilon$.
 
@@ -452,7 +452,7 @@
 
     \begin{theorem}
 
-        У всякой спрямляемой кривой существует натуральная параметризация.
+        У всякой гладкой спрямляемой кривой существует натуральная параметризация.
 
     \end{theorem}
 
