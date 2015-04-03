@@ -162,10 +162,10 @@
 \end{Def}
 
 \begin{theorem}[Замена переменных в определённом интеграле]
-	$f \in C\langle a, b \rangle$,  $\Phi \in C^1[ \alpha, \beta]$, $\Phi([\alpha, \beta]) \subset \langle a, b \rangle$, тогда
-	\[ \int\limits_{\alpha}^{\beta} f(\Phi(t)) \Phi'(t) \d t = \int\limits_{\Phi(\alpha)}^{\Phi(\beta)} f(x) \d x\]
+	$f \in C\langle a, b \rangle$,  $\phi \in C^1[ \alpha, \beta]$, $\phi([\alpha, \beta]) \subset \langle a, b \rangle$, тогда
+	\[ \int\limits_{\alpha}^{\beta} f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^{\phi(\beta)} f(x) \d x\]
 \end{theorem}
 \begin{proof}
-	$F$ "--- первообразная $f$, $F(\Phi(t))$ "--- первообразная $f(\Phi (t)) \cdot \Phi'(t)$.
-	\[ \int\limits_{\alpha}^{\beta} f(\Phi (t)) \Phi'(t) \d t = F(\Phi (\beta)) - F(\Phi (\alpha)) = \int\limits_{\Phi(\alpha)}^{\Phi(\beta)} f(x) dx \]
+	$F$ "--- первообразная $f$, $F(\phi(t))$ "--- первообразная $f(\phi (t)) \cdot \phi'(t)$.
+	\[ \int\limits_{\alpha}^{\beta} f(\phi (t)) \phi'(t) \d t = F(\phi (\beta)) - F(\phi (\alpha)) = \int\limits_{\phi(\alpha)}^{\phi(\beta)} f(x) dx \]
 \end{proof}
