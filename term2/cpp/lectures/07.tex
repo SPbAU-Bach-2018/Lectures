@@ -5,32 +5,32 @@
 
 \cpp"#include <algorithm>"
 
-Вся идеология STL построена на обобщенном програмированнии. 
+Вся идеология STL построена на обобщенном программировании. 
 
 Все алгоритмы, которые работают с контейнерами, построены на итераторах (итератор --- черная коробочка над указателем).
 
-Базовые требования от итераотора:
+Базовые требования от итератора:
 \begin{enumerate}
-	\item Наличие операций: перемещение вправа/влево \cpp{--, ++}, разыменование \cpp{*->, *}. 
-	\item \t{begin()} на начало.
-	\item \t{end()} на следующий после конца.
+    \item Наличие операций: перемещение вправо/влево \cpp{--, ++}, разыменование \cpp{*->, *}. 
+    \item \t{begin()} на начало.
+    \item \t{end()} на следующий после конца.
 \end{enumerate}
 
 Почему \t{end()} должен указывать на следующий после конца? 
-Если будет один элемент или ни одного, то для того чтобы узнать количество элементов в контейнере, потребуется дополнительная проверка, что увеличит время работы. 
+Если будет один элемент или ни одного, то для того, чтобы узнать количество элементов в контейнере, потребуется дополнительная проверка, что увеличит время работы. 
 
 \subsection{Постановка задач}
 
 Рассмотрим следующий код:
 \begin{cppcode}
 void foo (It q){
-	T t = *q;
+    T t = *q;
 }
 
 int main () {
-	vector<int> v;
-	foo (v.begin ());
-	return 0; 
+    vector<int> v;
+    foo (v.begin ());
+    return 0; 
 }
 \end{cppcode}
 Он не скомпилируется, так как компилятор не знает, что должно быть вместо \t{T}.
@@ -39,22 +39,22 @@ int main () {
 
 Задача 2: разная реализация в зависимости от типа итератора.
 Спрашивается зачем нужна разная реализация. 
-Например нам захотелось написать свой бинпоиск на итераторах. 
+Например, нам захотелось написать свой бинпоиск на итераторах. 
 Понятно, что нам не хватит стандартных операций интеретора. 
-Но например для \cpp"std::lits" мы ничего быстрее чем просто перебирать все элементы контейнера сделать не можем, а для обычного вектора, в котором все элементы упорядочены по возрастанию/убыванию, хочется сделать быстрее чем просто тупой перебор. 
+Но например для \cpp"std::list" мы ничего быстрее, чем просто перебирать все элементы контейнера сделать не можем, а для обычного вектора, в котором все элементы упорядочены по возрастанию/убыванию, хочется сделать быстрее, чем просто тупой перебор. 
 
 Начнем решать задачу с контейнеров. 
 \begin{cppcode}
 template<template<class> V, class T>
 void foo (const V<T> &V) {
-	T temp = V.begin ();
+    T temp = V.begin ();
 }
 
 int main () {
-	list<int> l; 
-	vector<int> v;
-	foo (l);
-	foo (v); 
+    list<int> l; 
+    vector<int> v;
+    foo (l);
+    foo (v); 
 }
 \end{cppcode}
 
@@ -64,20 +64,20 @@ int main () {
 template<class T, class allocator = std::allocator>
 class vector {
 public:
-	typedef T value_type; 
+    typedef T value_type; 
 ...
 }
 
 
 template <class Container>
 foo (Container& C) {
-	typename Container::value_type
-		t = *C.back ();
+    typename Container::value_type
+        t = *C.back ();
 }
 \end{cppcode}
 
 Сейчас требования для контейнера это, \cpp"typedef" и наличие \cpp"back()". 
-Внимание! без \cpp"typename" не скомпилируется, компилятор может подумать что это статическая переменная.
+Внимание! без \cpp"typename" не скомпилируется, компилятор может подумать, что это статическая переменная.
 
 
 \subsection{Итераторы}
@@ -85,29 +85,29 @@ foo (Container& C) {
 Для начала рассмотрим различные типы итераторов в стандартной библиотеке:
 \begin{enumerate}
 \item 
-	Random Access Iterator 
+    Random Access Iterator 
 
-	Наличие операций: \cpp{*->, ++, --, -, +=, -=}.
+    Наличие операций: \cpp{*->, ++, --, -, +=, -=}.
 
-	Примеры: \t{vector}, \t{deque}.
+    Примеры: \t{vector}, \t{deque}.
 \item
-	Bidirectional Iterator
+    Bidirectional Iterator
 
-	Наличие операций: \cpp{*->, ++, --}.
+    Наличие операций: \cpp{*->, ++, --}.
 
-	Примеры: \t{list}, \t{map}, \t{multimap}, \t{multiset}.
+    Примеры: \t{list}, \t{map}, \t{multimap}, \t{multiset}.
 \item
-	Forward Iterator 
-	\begin{enumerate}
-	\item
-		Output Iterator
+    Forward Iterator 
+    \begin{enumerate}
+    \item
+        Output Iterator
 
-		Наличие операций: \cpp{++, write}.
-	\item
-		Inptut Iterator
+        Наличие операций: \cpp{++, write}.
+    \item
+        Inptut Iterator
 
-		Наличие операций: \cpp{++, read}.
-	\end{enumerate}
+        Наличие операций: \cpp{++, read}.
+    \end{enumerate}
 \end{enumerate}
 
 А теперь поймем, что мы хотим получить.
@@ -115,23 +115,23 @@ foo (Container& C) {
 \begin{cppcode}
 template<class It>
 It advance (It q, size_t n) {
-	/* хотим :*/
-	/* если q --- RA, то */
-		q += n;
-	/* если q --- Bi, Fi, то */
-		for (size_t i = 0; i < n; i++)
-			q++;
-	return q;
+    /* хотим :*/
+    /* если q --- RA, то */
+        q += n;
+    /* если q --- Bi, Fi, то */
+        for (size_t i = 0; i < n; i++)
+            q++;
+    return q;
 }
 
 int main () {
-	std::list<int> l (10, 1); 
-	std::list<int>::iterator 	it1 = advance (l.begin (), 5); // за линию 
+    std::list<int> l (10, 1); 
+    std::list<int>::iterator    it1 = advance (l.begin (), 5); // за линию 
 
-	std::vector<int> v (10, 2);
-	std::vector<int>::iterator 	it2 = advance (v.begin (), 5); // за const
+    std::vector<int> v (10, 2);
+    std::vector<int>::iterator  it2 = advance (v.begin (), 5); // за const
 
-	return 0;
+    return 0;
 }
 \end{cppcode}
 
@@ -147,11 +147,11 @@ struct forward_iterator_tag {};
 template<class T> 
 class myContainer {
 public:
-	class iterator {
-		typedef bidirectional_iterator_tag iterator_category;
-		/* ... */
-	}
-	/* ... */
+    class iterator {
+        typedef bidirectional_iterator_tag iterator_category;
+        /* ... */
+    }
+    /* ... */
 }
 \end{cppcode}
 
@@ -160,21 +160,21 @@ public:
 \begin{cppcode}
 template<class Iter>
 Iter advance (Iter q, size_t n, std::random_access_iterator_tag) {
-	return q + n;
+    return q + n;
 }
 
 template<class Iter>
 Iter advance (Iter q, size_t n, std::bidirectional_iterator_tag) {
-	for (int i = 0; i < n; ++i)
-		q++;
-	return q;
+    for (int i = 0; i < n; ++i)
+        q++;
+    return q;
 } 
 
 template<class Iter>
 Iter advance (Iter q, size_t n) {
-	typename Iter::iterator_category tag;
-	advance (q, n, tag);
-	/* можно просто: advance (q, n, Iter::iterator_category ()); */
+    typename Iter::iterator_category tag;
+    advance (q, n, tag);
+    /* можно просто: advance (q, n, Iter::iterator_category ()); */
 }
 \end{cppcode}
 
@@ -188,17 +188,17 @@ Iter advance (Iter q, size_t n) {
 /* основное описание */
 template<class T>
 class vector {
-	T* array;
+    T* array;
 
-	/* ... */
+    /* ... */
 };
 
 /* частичная специализация */
 template<>
 class vector<bool> {
-	int* array;
+    int* array;
 
-	/* ... */
+    /* ... */
 };
 \end{cppcode}
 
@@ -211,21 +211,21 @@ class vector<bool> {
 template<class Iter>
 class iterator_traits {
 public:
-	typedef typename Iter::value_type value_type;
-	typedef typename Iter::iterator_category iterator_category;
+    typedef typename Iter::value_type value_type;
+    typedef typename Iter::iterator_category iterator_category;
 };
 
 /* а тут будет работать iterator_traits<T*> */
 template <class Iter> 
 class iterator_traits<Iter*> {
 public:
-	typedef Iter value_type;
-	typedef std::random_access_iterator_tag iterator_category;
+    typedef Iter value_type;
+    typedef std::random_access_iterator_tag iterator_category;
 };
 
 template<class Iter>
 Iter advance (Iter q, size_t n) {
-	advance (q, n, typename iterator_traits<Iter>::iterator_category ());
+    advance (q, n, typename iterator_traits<Iter>::iterator_category ());
 }
 \end{cppcode}
 В стандартной реализации кроме полей \t{value\_type} и \t{iterator\_category}, есть и другие например \t{pointer}.
