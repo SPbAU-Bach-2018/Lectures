@@ -1,0 +1,51 @@
+\setauthor{Анастасия Старкова}
+\begin{exmp}
+	\begin{gather*}
+		S_p(n) = 1^p + 2^p + \cdots + n^p \\
+		S_p(n) < n \cdot n^p = n^{p+1} \\
+		S_p(n) > \left(\frac{n}{2}\right)^p + \cdots + n^p > \frac{n}{2} \cdot \left(\frac{n}{2}\right)^p = \frac{n^{p+1}}{2^{p+1}} \\
+		\lim_{n \ra \infty} \frac{S_p(n)}{n^{p+1}} = ? \\
+		\frac{S_p(n)}{n^{p+1}} = \frac{1}{n} \cdot \left(\left(\frac{1}{n}\right)^p + \left(\frac{2}{n}\right)^p + \left(\frac{3}{n}\right)^p + \cdots + \left(\frac{n}{n}\right)^p \right)
+	\end{gather*}
+	$f(x) = x^p$ на $[0, 1]$, $p\ge 0$.
+	\[x_0 = 0, x_1 = \frac{1}{n} (\xi_1), x_2 = \frac{2}{n} (\xi_2), \dots, x_n = 1 (\xi_n) \]
+	Мелкость равна $\frac{1}{n}$
+	\begin{gather*}
+		\sigma(f, \tau, \xi) \ra \int\limits_0^1 x^p \d x = (\frac{x^{p+1}}{p + 1})\biggr|_0^1 = \frac1{p + 1} \\
+		\sigma(f, \tau, \xi) = \sum_{k=1}^n f(\xi_k)(x_k - x_{k-1}) = \frac{1}{n} \sum_{k=1}^n \left(\frac{k}{n}\right)^p \\
+		\lim_{n \ra \infty} \frac{S_p(n)}{n^{p+1}} = \frac{1}{p+1} \Rightarrow S_p(n) \backsim \frac{n^{p+1}}{p+1} \\
+	\end{gather*}
+\end{exmp}
+
+Оценим модуль непрерывности дифференцируемой функции:
+\begin{gather*}
+	f(x_1 ) - f(x_2) = f'(c)(x_1 - x_2) \\
+	|f(x_1) - f(x_2) \le \max f'|x_1 - x_2|| \\
+	\omega_f(\delta) \le \max f' \cdot \delta
+\end{gather*}
+
+\begin{theorem}{Оценка погрешности в формуле трапеций}
+	$f \in C^2[a, b]$.
+	\[ \left| \int\limits_a^b f(x)\d x - \sum_{k=1}^n \frac{f(x_{k-1}) - f(x_k)}{2}(x_k - x_{k-1}) \right| \le \frac{|\tau|^2}8 \int\limits_a^b \left|f''(x)\right|\d x \]
+\end{theorem}
+\begin{proof}
+	$y_k = \frac{x_{k-1} + x_k}2$
+	\begin{gather*}
+		\Delta \lrh \left(\int\limits_a^b f(x)\d x - \sum_{k=1}^n \frac{f(x_{k-1}) + f(x_k)}{2}(x_k - x_{k-1}) \right) = \\
+		= \sum_{k=1}^n \left(\int\limits_{x_{k-1}}^{x_k} f(x)\d x - \frac{f(x_{k-1}) - f(x_k)}{2}(x_k - x_{k-1}) \right)
+			= \sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} \left(f(x) - \frac{f(x_{k-1}) - f(x_k)}{2}\right)\d x \\
+		\int\limits_{x_{k-1}}^{x_k} f(x) \d x = \int\limits_{x_{k-1}}^{x_k} f(x)(x - y_k)'\d x = f(x) (x-y_k) \biggr|_{x=x_{k-1}}^{x_k} - \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \\
+		= f(x_k) \frac{x_k - x_{k-1}}2 - f(x_{k-1}) \frac{x_{k-1} - x_k}2 - \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \\
+		= \frac{f(x_k) + f(x_{k-1})}2 (x_k - x_{k-1}) - \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x \\
+	\end{gather*}
+	\begin{gather*}
+		\Delta = -\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x \\
+		((x - x_{k-1})(x_k - x))' = (x_k - x)(1) + (x - x_{k-1})(-1) = x_{k-1} + x_k - 2x = 2(y_k - x) \\
+		\int\limits_{x_{k-1}}^{x_k} f'(x)(x-y_k)\d x = \int\limits_{x_{k-1}}^{x_k} f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\d x = \\
+		= \underbrace{\left(f'(x)\left(\frac{(x - x_{k-1})(x_k - x)}2\right)'\right)\biggr|_{x = x_{k-1}}^{x_k}}_{=0} - \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x
+		\Delta = +\sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} f''(x) \frac{(x - x_{k-1})(x_k - x)}2 \d x \\
+		\frac{(x - x_{k-1})(x_k - x)}2 \le \left(\frac{x_k - x_{k-1}}2\right)^2 \le \frac{|\tau^2|}4 \\
+		|\Delta| \le \sum_{k=1}^n \int\limits_{x_{k-1}}^{x_k} \left|f''(x)\right| \d x \cdot \frac{|\tau|^2}8 = \frac{|\tau|^2}8 \int\limits_a^b \left|f''(x)\right|\d x
+	\end{gather*}
+\end{proof}
+
