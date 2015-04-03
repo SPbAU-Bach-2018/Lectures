@@ -1,0 +1,583 @@
+\section {Длина кривой}
+\setauthor{Никита Подгузов}
+    \begin{Def}
+   
+        Путь --- непрерывное отображение $\gamma \colon [a,b] \rightarrow \mathbb{R}^d$.
+    
+    \end{Def}   
+    
+    \begin{Def}
+    
+        Начало пути --- $\gamma(a)$.
+    
+    \end{Def}   
+    
+    \begin{Def}
+
+        Конец пути --- $\gamma(b)$.
+
+    \end{Def}   
+        
+    \begin{Def}
+
+        Носитель пути --- $\gamma([a,b])$.
+    
+    \end{Def}   
+
+    \begin{Def}
+  
+        Замкнутый путь --- путь, в котором $\gamma(a) = \gamma(b)$.
+    
+    \end{Def}   
+
+    \begin{Def}
+ 
+        Несамопересекающийся (простой) путь --- путь, в котором
+        $\gamma(t_1) = \gamma(t_2) \Rightarrow
+        \left[ 
+            \begin{gathered} 
+                t_1 = t_2 \\
+                t_1 = a, t_2 = b \\
+                t_1 = b, t_2 = a \\
+            \end{gathered} 
+        \right.$
+    
+    \end{Def}   
+
+    \begin{Def}
+  
+        $C^r$-гладкий путь --- путь 
+        $\gamma = 
+        \begin{pmatrix}
+            \gamma_1 \\
+            \gamma_2 \\
+            \vdots \\
+            \gamma_d
+        \end{pmatrix}$, в котором $\forall i \colon 1 \le i \le d$ $\gamma_i \in C^r[a, b]$.
+    
+    \end{Def}
+
+    \begin{Def}
+    
+        Гладкий путь --- $C^1$-гладкий путь.
+    
+    \end{Def}   
+
+    \begin{Def}
+  
+        Кусочно-гладкий путь --- путь $\gamma \colon [a, b] \rightarrow \mathbb{R}^d$ такой, что $\exists c_0=a \le c_1 \le c_2 \le \dots \le c_{n-1} \le c_n = b \colon \gamma|_{[c_i, c_{i+1}]}$ --- гладкий путь.
+    
+    \end{Def}   
+
+    \begin{figure}[h]
+        \begin{center}
+            \begin{minipage}[h]{0.15\linewidth}
+                \includegraphics[width=1\linewidth]{curve.png}
+                \caption{Простой путь}
+            \end{minipage}
+            \begin{minipage}[h]{0.3\linewidth}
+                \includegraphics[width=1\linewidth]{closedCurve.png}
+                \caption{Замкнутый путь}
+            \end{minipage}
+            \begin{minipage}[h]{0.3\linewidth}
+                \includegraphics[width=1\linewidth]{semicircle.png}
+                \caption{Кусочно-гладкий путь}
+            \end{minipage}
+        \end{center}
+    \end{figure}
+
+    \begin{Def}
+
+        Эквивалентные пути
+
+        $\gamma \colon [a, b] \rightarrow \mathbb{R}^d$
+
+        $\widetilde{\gamma} \colon [c, d] \rightarrow \mathbb{R}^d$
+
+        Если $\exists \tau \colon [a, b] \rightarrow [c, d]$, $\tau(a) = c$, $\tau(b)=d$, $\tau$ строго монотонно и непрерывно, $\gamma = \widetilde{\gamma} \circ \tau$, то
+        $\gamma$ и $\widetilde{\gamma}$ --- эквивалентные пути.
+    
+    \end{Def}
+
+    \begin{exmp}
+    
+        $\gamma(t) = (\cos t, \sin t)$, $0 \le t \le \pi$
+
+        $\widetilde{\gamma}(x) = (-x, \sqrt{1 - x^2})$, $-1 \le x \le 1$
+    
+        $\tau(t) = -\cos t$
+    
+    \end{exmp}
+
+    Свойства:
+    \begin{enumerate}
+    
+        \item Носители эквивалентных путей одинаковы
+
+        \item Это отношение эквивалентности
+
+        \item Одинаковый порядок точек
+
+    \end{enumerate}
+
+    \begin{Def}
+
+        Кривая --- класс эквивалентности путей.
+   
+    \end{Def}
+
+    \begin{Def}
+  
+        Параметризация кривой --- конкретный представитель класса.
+    
+    \end{Def}
+
+    \begin{Def}
+  
+        Носитель кривой --- носитель пути из класса эквивалентности.
+    
+    \end{Def}
+
+    \begin{Def}
+  
+        Гладкая ($C^r$-гладкая) кривая --- кривая, у которой существует гладкая ($C^r$-гладкая) параметризация.
+    
+    \end{Def}
+
+    \begin{Def}
+    
+        Кусочно-гладкая кривая --- кривая, у которой существует кусочно-гладкая параметризация.
+    
+    \end{Def}
+    
+    \begin{exmp}
+   
+        $\gamma(t) = (\cos t, \sin t)$, $0 \le t \le 2\pi$ --- гладкая параметризация.
+
+        $\widetilde{\gamma}(x) = (\cos \sqrt{t}, \sin\sqrt{t})$, $0 \le t \le (2\pi)^2$ --- негладкая параметризация.
+    
+    \end{exmp}
+
+    \begin{Def}
+    
+        Ориентация кривой
+
+        $\gamma \colon [a, b] \rightarrow \mathbb{R}^d$ --- параметризация
+
+        $\widetilde{\gamma} \colon [a, b] \rightarrow \mathbb{R}^d$
+
+        $\widetilde{\gamma}(t) = \gamma(b + a - t)$
+
+        $\widetilde{\gamma}(a) = \gamma(b)$, $\widetilde{\gamma}(b) = \gamma(a)$
+    
+    \end{Def}
+
+    \begin{Rem}
+   
+        У разных кривых может быть один и тот же носитель.
+    
+        $\gamma(t) = (\cos t, \sin t)$, $0 \le t \le 2\pi$
+
+        $\widetilde{\gamma}(t) = (\cos t, \sin t)$, $0 \le t \le 3\pi$
+
+        Для простых путей верно, что разным кривым соответствуют разные носители.
+    
+    \end{Rem}
+
+    \begin{Def}
+    
+        $\gamma \colon [a, b] \rightarrow \mathbb{R}^d$
+
+        Разобьем отрезок $[a, b]$ на $n$ кусков.
+
+        $t_0 = a \le t_1 \le t_2 \le \dots \le t_{n-1} \le t_n = b$
+
+        Проведем ломаную через точки $\gamma(t_0), \gamma(t_1), \dots, \gamma(t_{n-1}), \gamma(t_n)$.
+        
+        Длина кривой $l(\gamma)$ --- $\sup$ длин таких вписанных ломаных.
+    
+    \end{Def}
+
+    Свойства:
+    
+    \begin{enumerate}
+    
+        \item Длина не зависит от параметризации.
+
+        \item Длины противоположных путей (кривых) равны.
+
+        \item $l(\gamma) \ge \|\gamma(b) - \gamma(a)\|$ --- длина отрезка, соединяющего концы.
+
+        \item $l(\gamma) \ge$ длины любой вписанной в $\gamma$ ломаной.
+    
+    \end{enumerate}
+
+    \begin{theorem}
+    
+        $\gamma \colon [a, b] \rightarrow \mathbb{R}^d$
+
+        $c \in (a,b)$, $\gamma_1 = \gamma|_{[a,c]}$, $\gamma_2 = \gamma|_{[c,b]}$
+
+        Тогда $l(\gamma) = l(\gamma_1) + l(\gamma_2)$
+    
+    \end{theorem}
+
+    \begin{proof}
+    
+        \begin{enumerate}
+        
+            \item $l(\gamma) \ge l(\gamma_1) + l(\gamma_2)$
+
+            $l(\gamma_1) = \sup$ вписанных в $\gamma_1$ ломаных.
+
+            $l(\gamma_2) = \sup$ вписанных в $\gamma_2$ ломаных.
+
+            Объединение этих ломаных --- ломаная, вписанная в $\gamma$.
+
+            $l_1 \cup l_2$ --- ломаная, вписанная в $\gamma_1 \cup \gamma_2 = \gamma$.
+
+            Длина $l_1 \cup l_2 \le l(\gamma)$
+
+            Переходим к $\sup$ по $l_1$, а затем к $\sup$ по $l_2$.
+
+            \item $l(\gamma) \le l(\gamma_1) + l(\gamma_2)$
+
+            Берем ломаную $l$, вписанную в $\gamma$.
+            Делаем из нее ломаную $\widetilde{l}$ = $l_1 \cup l_2$, добавляя точку разбиения $c$. 
+
+            Длина $\widetilde{l} \ge$ длина $l$.
+
+            $l(\gamma_1) + l(\gamma_2) \ge $ длина $l_1 +$ длина $l_2$ = длина $\widetilde{l} \ge$ длина $l$.
+
+            Переходим к $\sup$ по $l$.
+        
+        \end{enumerate}
+    
+    \end{proof}
+
+    \begin{Def}
+    
+        Кривая спрямляемая, если её длина конечна.
+    
+    \end{Def}
+
+    \begin{theorem}
+    
+        $\gamma \colon [a,b] \rightarrow \mathbb{R}^d$ --- гладкая кривая
+
+        $\|x\| = \sqrt{x_1^2 + \dots + x_d^2}$
+
+        $\gamma' = 
+        \begin{pmatrix}
+            \gamma_1' \\
+            \gamma_2' \\
+            \vdots \\
+            \gamma_d'
+        \end{pmatrix}$
+
+        Тогда $l(\gamma) = \int\limits_a^b \|\gamma'(t)\|dt = \int\limits_a^b \sqrt{\gamma_1'(t)^2 + \gamma_2'(t)^2 + \dots + \gamma_d'(t)^2} dt$
+    
+    \end{theorem}
+
+    \begin{proof}
+    
+        Рассмотрим какой-то подотрезок $\Delta$, лежащий в отрезке $[a,b]$, и сужение $\gamma|_{\Delta} \colon \Delta \rightarrow \mathbb{R}$.
+
+        $m_{\Delta}^{(i)} = \min\limits_{t \in \Delta} |\gamma_i'(t)|$, $m_{\Delta}^2 = \sum\limits_{i=1}^d(m_{\Delta}^{(i)})^2$
+
+        $M_{\Delta}^{(i)} = \max\limits_{t \in \Delta} |\gamma_i'(t)|$, $M_{\Delta}^2 = \sum\limits_{i=1}^d(M_{\Delta}^{(i)})^2$
+
+        \begin{lemma}
+        
+            $m_{\Delta}$ длина$_{\Delta}$ $\le l(\gamma|_{\Delta}) \le$ $M_{\Delta}$ длина$_{\Delta}$.
+        
+        \end{lemma}
+
+        \begin{proof}
+        
+            Обозначим отрезок $\Delta$ за $[\alpha, \beta]$.
+
+            Рассмотрим разбиение $\Delta$: $t_0 = \alpha, t_1, t_2, \dots, t_{n-1}, t_n = \beta$ и ломаную, 
+            построенную на точках $\gamma(t_0), \gamma(t_1), \dots, \gamma(t_n)$.
+
+            Пусть длина $i$-го звена равна $a_i$.
+            Длина ломаной $= \sum\limits_{i=1}^n a_i$.
+
+            $a_i^2 = (\gamma_1(t_i) - \gamma_1(t_{i - 1}))^2 + \dots + (\gamma_d(t_i) - \gamma_d(t_{i - 1}))^2$
+
+            $\gamma_1(t_i) - \gamma_1(t_{i - 1}) = \gamma_1'(\xi_{i1})(t_i - t_{i-1}) \le M_{\Delta}^{(1)} (t_i - t_{i-1})$
+
+            \dots
+
+            $\gamma_d(t_i) - \gamma_d(t_{i - 1}) = \gamma_d'(\xi_{id})(t_i - t_{i-1}) \le M_{\Delta}^{(d)} (t_i - t_{i-1})$
+
+            $a_i^2 \le (M_{\Delta}^{(1)}(t_i - t_{i-1}))^2 + \dots + (M_{\Delta}^{(d)}(t_i - t_{i-1}))^2 = (M_{\Delta}^{2}(t_i - t_{i-1}))^2$
+
+            $a_i^2 \ge (m_{\Delta}^{2}(t_i - t_{i-1}))^2$ аналогично.
+
+            $m_{\Delta}(t_i-t_{i-1}) \le a_i \le M_{\Delta}(t_i-t_{i-1})$
+
+            Просуммируем по всем $i$.
+
+            $m_{\Delta}\sum(t_i-t_{i-1}) \le \sum a_i \le M_{\Delta}\sum(t_i-t_{i-1})$
+
+            $m_{\Delta}(\beta - \alpha) \le \sum a_i \le M_{\Delta}(\beta - \alpha)$
+
+            Переходим к $\sup$.
+
+            $m_{\Delta}$ длина$_{\Delta}$ $\le l(\gamma|_{\Delta}) \le$ $M_{\Delta}$ длина$_{\Delta}$           
+        
+        \end{proof}
+
+        Разобьем отрезок $[a, b]$ на $n$ кусков.
+
+        $t_0 = a, t_1, t_2, \dots, t_{n-1}, t_n = b$
+
+        Обозначим $m_i = m_{[t_{i-1}, t_i]}$, $M_i = M_{[t_{i-1}, t_i]}$.
+        
+        $l(\gamma) = l(\gamma|_{[t_0, t_1]}) + l(\gamma|_{[t_1, t_2]}) + \dots + l(\gamma|_{[t_{n - 1}, t_n]})$
+
+        $m_i(t_i - t_{i - 1}) \le l(\gamma|_{[t_1, t_2]}) \le M_i(t_i - t_{i - 1})$
+
+        Просуммируем:
+        $\sum\limits_{i = 1}^n m_i(t_i - t_{i - 1}) \le l(\gamma) \le \sum\limits_{i = 1}^n M_i(t_i - t_{i - 1})$
+
+        Посмотрим на сумму Римана для интеграла $\int\limits_a^b \|\gamma'(t)\|dt$.
+        
+        $\xi_i \in [t_{i - 1}, t_i]$
+
+        $\sum\limits_{i = 1}^n \|\gamma'(\xi_i)\| (t_i - t{i - 1})$
+
+        $\|\gamma'(\xi_i)\|^2 = \|\gamma_1'(\xi_i)\|^2 + \|\gamma_2'(\xi_i)\|^2 + \dots + \|\gamma_d'(\xi_i)\|^2$
+
+        $\|\gamma_i'(\xi_i)\|^2 \le (M_{[t_{i - 1}, t_i]}^{(i)})^2$
+
+        Просуммируем по всем $i \colon 1 \le i \le d$.
+
+        $\|\gamma'(\xi_i)\|^2 \le M_{[t_{i - 1}, t_i]}^2 = M_i^2$
+        
+        $m_i \le \|\gamma'(\xi_i)\| \le M_i$
+
+        Просуммируем: $\sum\limits_{i = 1}^n m_i(t_i - t_{i - 1}) \le 
+        \sum\limits_{i = 1}^n \|\gamma'(\xi_i)\| (t_i - t_{i - 1}) \le 
+        \sum\limits_{i = 1}^n M_i(t_i - t_{i - 1})$
+
+        Хотим доказать, что $\sum\limits_{i = 1}^n (M_i - m_i)(t_i - t_{i - 1}) \rightarrow 0$.
+
+        $M_i - m_i = \frac{M_i^2 - m_i^2}{M_i + m_i} = 
+        \frac{\sum\limits_{j = 1}^d ((M_{[t_{i - 1}, t_{i}]}^{(j)})^2 - (m_{[t_{i - 1}, t_{i}]}^{(j)})^2)}{M_i + m_i} = 
+        \sum\limits_{j = 1}^d (M_{[t_{i - 1}, t_{i}]}^{(j)} - m_{[t_{i - 1}, t_{i}]}^{(j)}) 
+        \frac{M_{[t_{i - 1}, t_{i}]}^{(j)} + m_{[t_{i - 1}, t_{i}]}^{(j)}}{M_i + m_i}$
+
+        $\frac{M_{[t_{i - 1}, t_{i}]}^{(j)} + m_{[t_{i - 1}, t_{i}]}^{(j)}}{M_i + m_i} \le 1$, значит
+
+        $M_i - m_i \le \sum\limits_{j = 1}^d (M_{[t_{i - 1}, t_{i}]}^{(j)} - m_{[t_{i - 1}, t_{i}]}^{(j)}) \le \epsilon d$
+
+        Осталось доказать последнее неравенство.
+
+        $|M_{[t_{i - 1}, t_{i}]}^{(j)} - m_{[t_{i - 1}, t_{i}]}^{(j)}| = |\gamma_j'(\eta_i) - \gamma_j'(\xi_i)|$
+
+        Знаем, что $\gamma_j'$ непрерывно на $[a, b]$, а значит равномерно непрерывно (по теореме Кантора).
+
+        $\forall \epsilon > 0, \exists \delta > 0: \forall \eta, \xi \colon |\eta - \xi| < \delta \Rightarrow |\gamma_j(\eta) - \gamma_j(\xi)| < \epsilon$
+
+        Если наше разбиение ${t_i}$ имеет мелкость $< \delta$, то верно, что $|\gamma_j'(\eta_i) - \gamma_j'(\xi_i)| < \epsilon$.
+
+        $M_i - m_i < \epsilon d$
+
+        $\sum\limits_{i = 1}^n (M_i - m_i)(t_i - t_{i - 1}) < \epsilon d \sum\limits_{i = 1}^n (t_i - t_{i - 1}) = \epsilon d (b - a) \rightarrow 0$
+
+    \end{proof}
+
+    Следствия:
+
+    \begin{enumerate}
+
+        \item $f: [a,b] \rightarrow \mathbb{R}$, $f \in C^1[a,b]$
+    
+        Длина графика = $\int\limits_a^b \sqrt{1 + f'(x)^2} dx$
+
+        \begin{proof}
+
+            Кривая с параметризацией $(x, f(x)), a \le x \le b$.    
+
+        \end{proof}
+
+        \item Длина кривой в полярных координатах = $\int\limits_\alpha^\beta \sqrt{r(\phi)^2 + r'(\phi)^2} d\phi$
+
+        \begin{proof}
+
+            $\gamma(\phi) = (r(\phi) \cos \phi, r(\phi) \sin \phi)$
+
+            $(r(\phi) \cos \phi)' = r' \cos \phi - r \sin \phi$
+
+            $(r(\phi) \sin \phi)' = r' \sin \phi + r \cos \phi$
+
+            $((r(\phi) \cos \phi)')^2 + ((r(\phi) \sin \phi)')^2 = r(\phi)^2 + r'(\phi)^2$
+
+        \end{proof}
+
+        \item $l(\gamma) \le (b-a) \max\limits_{t \in [a,b]} \|\gamma'(t)\|$
+    
+    \end{enumerate}
+
+    \begin{exmp}
+    
+        Посчитаем длину эллипса $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, a < b$
+
+        $x(t) = a\cos t$, $x'(t) = -a\sin t$
+
+        $y(t) = b\sin t$, $y'(t) = b\cos t$
+
+        $0 \le t < 2\pi$
+
+        $x'(t)^2 + y(t)'^2 = a^2\sin^2(t) + b^2\cos^2(t) = b^2 - (b^2 - a^2)\sin^2(t)$
+
+        $l = \int\limits_0^{2\pi} \sqrt{b^2 - (b^2 - a^2)\sin^2t} dt = b\int\limits_0^{2\pi}\sqrt{1 - \epsilon^2\sin^2t}dt$,
+        где $\epsilon = \frac{\sqrt{b^2-a^2}}{b}$ и называется эксцентриситетом эллипса.
+
+    \end{exmp}
+
+    \begin{Def}
+
+        $\gamma$ --- спрямляемая кривая.
+
+        Параметризация называется натуральной, если 
+    
+        $\gamma \colon [0, S] \rightarrow \mathbb{R}^d$
+
+        $l(\gamma|_{[0, s]}) = s \: \forall s \in [0, S]$
+
+    \end{Def}
+
+    \begin{theorem}
+
+        У всякой спрямляемой кривой существует натуральная параметризация.
+
+    \end{theorem}
+
+    \begin{proof}
+
+        $\widetilde{\gamma}[a, b] \rightarrow \mathbb{R}^d$ --- произвольная параметризация.
+
+        $\tau \colon [a, b] \rightarrow [0, l(\widetilde{\gamma})]$
+
+        $\tau(t) = l(\widetilde{\gamma}|_{[a, t]})$ --- строго монотонна.
+
+        $\tau$ непрерывна, т.к. $\widetilde{\gamma}(s_2) - \widetilde{\gamma}(s_1) \le \|\widetilde{\gamma}'\|(s_2 - s_1) \rightarrow 0$
+
+        $\tau^{-1} \colon [0, l(\widetilde{\gamma})] \rightarrow [a, b]$ непрерывна и строго монотонна.
+
+        $\gamma = \widetilde{\gamma} \circ \tau^{-1}$ --- натуральная параметризация.
+
+    \end{proof}
+
+    \begin{Rem}
+
+        Для кусочно-гладких кривых теоремы и следствия тоже верны.
+
+    \end{Rem}
+
+\section {Формулы для вычисления площади}
+
+    \begin{Def}
+
+        Ограниченное множество $E \subset \mathbb{R}^2$ квадрируемо, если площадь $E$ определена однозначно (то есть не зависит от $\sigma$ из определения площади).
+
+    \end{Def}
+
+    \begin{Rem}
+
+        Подграфики непрерывных функций квадрируемы.
+        
+        $S = \int\limits_a^b f(x) dx$
+    
+    \end{Rem}
+
+    \cimg{area_trapecia.png}{0.5}
+   
+    Введем два дополнительных обозначения: точки $A_0 = (a, 0)$ и $B_0 = (b, 0)$.
+
+    \begin{assertion}
+
+        $f, g \in C[a,b]$, $f \ge g$
+
+       Рассмотрим криволинейную трапецию --- множество ${(x,y) \colon a \le x \le b, g(x) \le y \le f(x)}$.
+
+       Криволинейная трапеция квадрируема и $S = \int\limits_a^b (f(x)-g(x))dx$
+
+    \end{assertion}
+
+    \begin{proof}
+
+        $S = S_f - S_g = \int\limits_a^b f(x) dx - \int\limits_a^b g(x) dx = \int\limits_a^b (f(x) - g(x)) dx$, 
+        где $S_f$ --- площадь фигуры $A_0A_2B_2B_0$, а $S_g$ --- площадь фигуры $A_0A_1B_1B_0$
+
+    \end{proof}
+
+    \begin{theorem}
+
+        $E$ --- множество, ограниченное замкнутой простой кусочно-гладкой кривой.
+
+        $S_E = \int\limits_a^b x(t)y'(t)dt = -\int\limits_a^b y(t)x'(t) dt = \frac{1}{2} \int\limits_a^b (x(t)y'(t) - y(t)x'(t))dt$
+
+        $\gamma \colon [a,b] \rightarrow \R^2$, $\gamma(t) = (x(t), y(t))$
+
+    \end{theorem}
+
+    \begin{proof}
+
+        \begin{enumerate}
+
+            \item Все формулы дают один и тот же результат.
+
+            $\int\limits_a^b x(t)y'(t) dt + \int\limits y(t)x'(t) dt = x(t)y(t) \bigg|_a^b = x(b)y(b) - x(a)y(a) = 0$, т.к. $(x(a), y(a)) = (x(b), y(b))$.
+
+            \item Формула верна для криволинейной трапеции.
+
+            Обратимся к картинке.
+
+            $A_1B_1 \colon x(t) = t, y(t) = g(t)$
+
+            $B_1B_2 \colon x(t) = b$
+
+            $B_2A_2 \colon x(t) = t + c, y(t) = f(t + c)$
+
+            $A_2A_1 \colon x(t) = a$
+
+            $-\int\limits_a^b y(t)x'(t) dt = -\int\limits_a^b g(t) dt + \int\limits_a^b f(t) dt$
+
+            \item Теперь мы умеем делать вертикальные и горизонтальные разрезы, покажем это. 
+            Пусть было какое-то множество, мы его разделили вертикальным разрезом. 
+            Но тогда $\int y x' dt$ даст 0 на этом вертикальном отрезке (две части сократятся).
+
+            С горизонтальным аналогично, только рассматривать надо интеграл $\int x y' dt$.
+
+            На самом деле, это нам дает еще и способность объединять множества по общему вертикальному/горизонтальному отрезку.
+
+            \item Имеется кусочно-гладкая кривая. 
+            Проведем через все точки, где меняется монотонность $x$, + все точки, где меняется монотонность $y$, + все негладкие точки горизонтальные и вертикальные разрезы.
+            
+            Получили много криволинейных трапеций, на каждой из которых формула работает. После чего склеиваем все обратно.
+
+        \end{enumerate}
+
+    \end{proof}
+
+    \begin{conseq}
+
+        Площадь в полярных координатах.
+
+        $S = \frac{1}{2}\int\limits_\alpha^\beta r^2(\phi) d\phi$
+
+        \cimg{area_for_polar.png}{0.5}
+        
+        \begin{proof}
+
+            $\gamma(\phi) = (r(\phi)\cos(\phi), r(\phi)\sin(\phi))$
+
+            $\frac{1}{2} \int\limits_\alpha^\beta (y'(\phi)x(\phi) - x'(\phi)y(\phi)) d\phi = \frac{1}{2} \int\limits_\alpha^\beta r^2(\phi) d\phi$
+
+        \end{proof}
+
+    \end{conseq}
