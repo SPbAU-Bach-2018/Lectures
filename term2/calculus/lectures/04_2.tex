@@ -1,0 +1,46 @@
+﻿\begin{exmp}
+\begin{enumerate}
+\item 
+$$S_p(n) = 1^p + 2^p + \ldots + n^p$$
+$$S_p(n) = {\sum_{k = 1}^{n}}' k^p + \frac{1^p + n^p}{2} = 
+\int_1^n x^p dx + \frac{1}{2}\int_1^n p(p - 1)x^{p - 2}\{x\}(1 - \{x\}) + \frac{1 + n^p}{2}$$
+$$= \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{p(p - 1)}\int_1^n x^{p - 2}\{x\}(1 - \{x\})$$
+
+Пусть $p \in (-1, 1)$, тогда
+$$0 \le \int_1^n x^{p - 2}{x}(1 - {x})dx \le \int_1^{n}x^{p - 2} = 
+\frac{n^{p - 1} - 1}{p - 1} = O(1)$$
+
+$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(1)$$
+
+
+Если $p = 1$, тогда
+$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(\log n)$$
+
+Если $p > 1$, тогда
+$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(n^{p - 1})$$
+
+\item
+Рассмотрим гармонические числа.
+$$H_n = {\sum_{k = 1}^n}' \frac{1}{k} + \frac{1 + \frac{1}{n}}{2} =
+\frac{1 + \frac{1}{n}}{2} + \int_1^{n}\frac{dx}{x} + \frac{1}{2}\int_1^n\frac{2\{x\}(1 - \{x\})}{x^3}dx =$$
+$$= \frac{1}{2} + \frac{1}{2n} + \ln n + \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx$$
+
+$$H_n = \ln n + O(1)$$
+
+$$H_n - \ln n = \frac{1}{2} + \frac{1}{2n} + a_n$$
+$$a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx$$
+$$a_n \le a_{n + 1}$$
+
+Поймем, что $a_n$ ограничено
+$$a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx \le 
+\int_1^{n}\frac{dx}{x^3} = -\frac{1}{2x^2}\left |_{x = 1}^{x = n} \right . = 
+\frac{1}{2} - \frac{1}{2n} \le \frac{1}{2}$$
+
+$$\Ra \exists \lim_{n \to \infty} a_n \Ra \exists \lim_{n \to \infty}(H_n - \ln n) = \gamma$$ 
+
+$\gamma = 0,57721566\ldots$ "--- постоянная Эйлера.
+
+Итог: $H_n = \ln n + \gamma + o(1)$
+\end{enumerate}                                                                           
+
+\end{exmp}
