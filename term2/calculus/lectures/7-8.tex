@@ -262,4 +262,72 @@ a_{m, n}\\
 	\[ \|A(\lambda x_0)\| = |\lambda| \cdot \|Ax_0\| \]
 	"--- противоречие
 \end{proof}
+
+\begin{theorem}
+$A \colon X \rightarrow Y$ --- линеыный оператор\\
+$X, Y$ --- нормированное пространство\\
+Тогда
+\[\sup_{||x||_x \le 1} ||A(x)||_y = \sup_{||x||_x < 1} ||A(x)||_y = \sup_{||x||_x = 1} ||A(x)||_y = \sup_{x \neq 0} \frac{||A(x)||_y}{||x||_x} = \inf \{c \colon ||A(x)||_y \le c||A(x)||_x,  x \in X \}\]
+\end{theorem}
+\begin{proof}
+Для удобства обозначим части равенств $N_1, N_2, N_3, N_4, N_5$ соответственно\\
+$N_1 \ge N_2$ очевидно\\
+$N_1 \ge N_3$ очевидно\\
+\[N_3 = N_4\]
+$\frac{||A_x||_y}{||x||_x} = \frac{1}{||x||_x} \cdot ||A(x)||_y = ||\frac{1}{||x||_x \cdot A(x)}|| = ||A(\frac{x}{||x||_x})||_y$ \\
+$\frac{x}{||x||_x}$ --- единичный вектор\\
+почему это что-то доказывает? пока не знаю...\\
+\[N_4 = N_5\]
+$\inf\{c\dots ||A(x)||_y \le c||x||_x, x \in X\} = \inf \{c\colon ||A(x)||_y \le c||x||_x, x \in X, x \neq 0\} = \inf \{c\colon \frac{||A(x)||_y}{||x||_x} \le c, x \in X, x \neq 0\}$ --- наименьшая из верхних границ для $\frac{||A(x)||_y}{||x||_x}$ при $x \neq 0$, что является $\sup$ по определению\\
+\[N_1 \ge N_2\]
+Докажем, что \\
+$(1+ \epsilon)N_2 \ge N_1,  \forall \epsilon > 0$
+$(1+ \epsilon)N_2 = sup_{||x||_x < 1} ||A(x)||_y \cdots (1 + \epsilon)$ \\
+Зафиксируем $x \in X, ||x||_x \le 1$
+$\widetilde{x} = \frac{x}{1 + \epsilon}$\\
+$||\widetilde{x}||_x = ||\frac{x}{1 + \epsilon}||_x = \frac{1}{1 + \epsilon} ||x||_x \le \frac{1}{1 + \epsilon} < 1$\\
+$||A(x)||_y = ||A((1 + \epsilon)\widetilde)||_y = (1 + \epsilon)||A(\widetilde{x}||_y \le (1+\epsilon)N_2$
+\[N_3 \ge N_1 \]
+$||A(x)||_y = ||A(||x||_x \cdot \frac{x}{||x||_x})||_y = ||x||_x \cdot ||A(\frac{x}{||x||_x})||_y \le ||A(\frac{x}{||x||_x}||_y \le N_3$
+\end{proof}
+\begin{conseq} 
+\begin{enumerate}
+\item $||A(x)|| _ y \le ||A|| \cdot ||x||_x, \forall x \in X$ \\
+\begin{proof}
+$||A|| = \sup_{x \neq 0} \frac{||A(x)||_y}{||x||_x}$
+\end{proof}
+\item $||B \circ A|| \le ||B|| \cdot ||A||$\\
+\begin{proof}
+$||(B \circ A)(x)||_z = ||B(A(x))||_z \le ||B|| \cdot ||A(x)||_y \le ||B|| \cdot ||A|| \cdot ||x||_x$ \\
+$||B \circ A|| = \sup_{||x||_x \le 1} ||(B\circ A)(x)||_z \le ||B|| \cdot ||A||$
+\end{proof}
+\end{enumerate}
+\end{conseq}
+\begin{theorem}
+$A \colon X \rightarrow Y$ --- линейный оператор\\
+Следующие условия равносильны:
+\begin{enumerate}
+\item $A$ ограниченный оператор
+\item $A$ непрерывен в 0
+\item $A$ непрерывен
+\item $A$ равномерно непрерывен
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$4\Rightarrow 3 \Rightarrow 2$ --- очевидно\\
+\[1 \Rightarrow 4\]
+$||A(x_1) - A(x_2)||_y = ||A(x_1 - x_2)||_y \le ||A|| \cdot ||x_1 - x_2||_x$ \\
+$\forall \epsilon > 0, \exists \delta > 0 \colon \forall x_1, x_2, ||x_1 - x_2||_x < \delta \Rightarrow ||A(x) - A(y)||_y < \epsilon$ \\
+Возьмём $\delta = \frac{\epsilon}{||A||} $\\
+$||x_1 - x_2||_x < \frac{\epsilon}{||A||} \Rightarrow ||A(x_1) - A(x_2)||_y \le ||A|| \cdot ||x_1 - x_2||_x < ||A|| \cdot \frac{\epsilon}{||A||} = \epsilon$
+\[2 \Rightarrow 1\]
+$\forall \epsilon > 0, \exists \delta > 0 \colon ||x - 0||_x < \delta \Rightarrow ||A(x) - A(0)||_y < \epsilon$ \\
+Возьмём $\epsilon = 1$ и соответствующий ему $\delta$\\
+$||x - 0||_x < \delta \Rightarrow ||A(x) - A(0)||_y < 1$
+Возьмём $x\in X \colon ||x||_x ||x||_x - 1$ ШТА?\\
+$\widetilde{x} = \delta x$\\
+$||\widetilde{x}||_x < \delta \Rightarrow 1 > ||A \widetilde{x}||_y = ||A(\delta x)||_y = \delta ||A(x)||_y$\\
+$||A(x)||_y < \frac{1}{\delta}, \forall x \in X \colon ||x||_x < 1$\\
+$\sup_{||x||_x < 1} ||A(x)||_y \le \frac{1}{\delta}$
+\end{proof}
 coming soon
