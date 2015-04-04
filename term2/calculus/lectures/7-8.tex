@@ -274,7 +274,7 @@ a_{m, n}\\
 $A \colon X \rightarrow Y$ --- линейный оператор\\
 $X, Y$ --- нормированное пространство\\
 Тогда
-\[\sup_{||x||_x \le 1} ||A(x)||_y = \sup_{||x||_x < 1} ||A(x)||_y = \sup_{||x||_x = 1} ||A(x)||_y = \sup_{x \neq 0} \frac{||A(x)||_y}{||x||_x} = \inf \{c \colon ||A(x)||_y \le c||A(x)||_x,  x \in X \}\]
+\[\sup_{||x||_x \le 1} ||A(x)||_y = \sup_{||x||_x < 1} ||A(x)||_y = \sup_{||x||_x = 1} ||A(x)||_y = \sup_{x \neq 0} \frac{||A(x)||_y}{||x||_x} = \inf \{c \colon ||A(x)||_y \le c||x||_x, \forall x \in X \}\]
 \end{theorem}
 \begin{proof}
 Для удобства обозначим части равенств $N_1, N_2, N_3, N_4, N_5$ соответственно\\
@@ -284,17 +284,17 @@ $N_1 \ge N_3$ очевидно\\
 $\frac{||A_x||_y}{||x||_x} = \frac{1}{||x||_x} \cdot ||A(x)||_y = ||A(\frac{x}{||x||_x})||_y$ \\
 $\frac{x}{||x||_x}$ --- единичный вектор\\
 \[N_4 = N_5\]
-$\inf\{c\colon ||A(x)||_y \le c||x||_x, x \in X\} = \inf \{c\colon ||A(x)||_y \le c||x||_x, x \in X, x \neq 0\} = \inf \{c\colon \frac{||A(x)||_y}{||x||_x} \le c, x \in X, x \neq 0\}$ --- наименьшая из верхних границ для $\frac{||A(x)||_y}{||x||_x}$ при $x \neq 0$, что является $\sup$ по определению\\
+$\inf\{c\colon ||A(x)||_y \le c||x||_x,\forall x \in X\} = \inf \{c\colon ||A(x)||_y \le c||x||_x, \forall x \in X, x \neq 0\} = \inf \{c\colon \frac{||A(x)||_y}{||x||_x} \le c, \forall x \in X, x \neq 0\}$ --- наименьшая из верхних границ для $\frac{||A(x)||_y}{||x||_x}$ при $x \neq 0$, что является $\sup$ по определению\\
 \[N_2 \ge N_1\]
 Докажем, что \\
 $(1+ \epsilon)N_2 \ge N_1,  \forall \epsilon > 0$
-$(1+ \epsilon)N_2 = sup_{||x||_x < 1} ||A(x)||_y \cdots (1 + \epsilon)$ \\
+$(1+ \epsilon)N_2 = sup_{||x||_x < 1} ||A(x)||_y \cdot (1 + \epsilon)$ \\
 Зафиксируем $x \in X, ||x||_x \le 1$
 $\widetilde{x} = \frac{x}{1 + \epsilon}$\\
 $||\widetilde{x}||_x = ||\frac{x}{1 + \epsilon}||_x = \frac{1}{1 + \epsilon} ||x||_x \le \frac{1}{1 + \epsilon} < 1$\\
 $||A(x)||_y = ||A((1 + \epsilon)\widetilde{x})||_y = (1 + \epsilon)||A(\widetilde{x})||_y \le (1+\epsilon)N_2$
 \[N_3 \ge N_1 \]
-$||A(x)||_y = ||A(||x||_x \cdot \frac{x}{||x||_x})||_y = ||x||_x \cdot ||A(\frac{x}{||x||_x})||_y \le ||A(\frac{x}{||x||_x}||_y \le N_3$
+$||A(x)||_y = ||A(||x||_x \cdot \frac{x}{||x||_x})||_y = ||x||_x \cdot ||A(\frac{x}{||x||_x})||_y \le ||A(\frac{x}{||x||_x})||_y \le N_3$
 \end{proof}
 \begin{conseq} 
 \begin{enumerate}
