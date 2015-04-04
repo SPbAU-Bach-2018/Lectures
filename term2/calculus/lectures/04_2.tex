@@ -4,7 +4,7 @@
 $$S_p(n) = 1^p + 2^p + \ldots + n^p$$
 $$S_p(n) = {\sum_{k = 1}^{n}}' k^p + \frac{1^p + n^p}{2} = 
 \int_1^n x^p dx + \frac{1}{2}\int_1^n p(p - 1)x^{p - 2}\{x\}(1 - \{x\}) + \frac{1 + n^p}{2}$$
-$$= \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{p(p - 1)}\int_1^n x^{p - 2}\{x\}(1 - \{x\})$$
+$$= \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{p(p - 1)}{2}\int_1^n x^{p - 2}\{x\}(1 - \{x\})$$
 
 Пусть $p \in (-1, 1)$, тогда
 $$0 \le \int_1^n x^{p - 2}{x}(1 - {x})dx \le \int_1^{n}x^{p - 2} = 
@@ -43,7 +43,7 @@ $\gamma = 0,57721566\ldots$ "--- постоянная Эйлера.
 Итог: $H_n = \ln n + \gamma + o(1)$
 \item Формула Стирлинга.
 
-$$\ln n! = \ln 1 + \ln 2 + \ldots = \ln n$$
+$$\ln n! = \ln 1 + \ln 2 + \ldots + \ln n$$
 $$\ln n! = \sideset{}{'}\sum_{k = 1}^{n} \ln k + \frac{\ln n}{2} =
 \int_{1}^{n}\ln xdx - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx + \frac{\ln n}{2} =$$
 $$= n\ln n - n + \frac{\ln n}{2} + 1 - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx $$
