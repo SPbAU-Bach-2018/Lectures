@@ -50,11 +50,11 @@
 \begin{enumerate}
 \item
 	$H_n \ra 0$
-	\[ 0 < H_n \le \frac{1}{n!}\max_{x \in [0, \pi/2]} \left(\left(\frac\pi2\right)^2 - x^2\right)^n\cos x \le \frac{1}{n!} \frac\pi2 \left(\frac\pi2\right)^{2n} \ra 0 \]
+	\[ 0 < H_n \le \frac{1}{n!}\frac\pi2\max_{x \in [0, \pi/2]} \left(\left(\frac\pi2\right)^2 - x^2\right)^n\cos x \le \frac{1}{n!} \frac\pi2 \left(\frac\pi2\right)^{2n} \ra 0 \]
 	Так как показательная функция растёт медленнее факториала.
 
 \item
-	$H_n = (4n - 2)H_{2n - 1} - \pi^2H_{n - 2}$, $H_0 = 1$, $H_1 = 2$.
+	$H_n = (4n - 2)H_{n - 1} - \pi^2H_{n - 2}$, $H_0 = 1$, $H_1 = 2$.
 
 	\underline{Пояснение:}
 	\begin{gather*}
