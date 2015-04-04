@@ -99,7 +99,7 @@ $\begin{pmatrix}
 \underline{Свойства:}
 \begin{enumerate}
 \item
-	$\exists O \colon \forall x \in X, O(x) = 0_y$
+	$\forall A, A(0_x) = 0_y$
 	\begin{proof}
 		$\lambda = 0, A(0x) = 0A(x)$
 	\end{proof}
@@ -136,7 +136,7 @@ $\begin{pmatrix}
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
-		\item $(B \circ A)(x + y)  = B(A(x + y)) = B(A(x) + A(y) = B(A(x)) + B(A(y))  = (B \circ A)(x) + (B \circ A)(y)$
+		\item $(B \circ A)(x + y)  = B(A(x + y)) = B(A(x) + A(y)) = B(A(x)) + B(A(y))  = (B \circ A)(x) + (B \circ A)(y)$
 		\item $(B \circ A)(\lambda x) = B(A(\lambda x)) = B(\lambda A(x)) = \lambda B(A(x)) = \lambda (A \circ B) (x)$
 	\end{enumerate}
 \end{proof}
@@ -156,13 +156,16 @@ $\begin{pmatrix}
 	\item Если обратный оператор существует, то он единственный
 	\item $(\lambda A)^{-1} = \frac{1}{\lambda}A^{-1}$
 	\begin{proof}
-		\[ \left(\frac{1}{\lambda}A^{-1}\right)\left(\left(\lambda A\right) ^ {-1} \right)(x) = \frac{1}{\lambda} \lambda\left(A^{-1} \circ A\right)(x) = x \]
+		\[ \left(\frac{1}{\lambda}A^{-1}\right) \circ \left(\lambda A\right)(x) = \frac{1}{\lambda} \lambda\left(A^{-1} \circ A\right)(x) = x \]
 	\end{proof}
 \end{enumerate}
 
-Теперь рассмотрим случай $Y = X$.
 \begin{theorem}
-	Множество обратимых операторов образует группу относительно композиции
+	Теперь рассмотрим случай $Y = X$.
+
+	$A \colon X \to X$
+	 
+	Множество обратимых операторов образует группу относительно композиции.
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
@@ -240,7 +243,11 @@ a_{m, n}\\
 \item
 	$\|A\| = 0 \Ra A$ "--- нулевой оператор
 	\begin{proof}
-		coming soon
+		$||A|| = 0 \Ra \sup ||A(x)||_y = 0 \Ra ||A(x)||_y = 0, \forall x \colon ||x||_x \le 1$
+		
+		Пусть $||\widetilde{x}||_x > 1$, тогда возьмём $x = \frac{\widetilde{x}}{||\widetilde{x}||_x}$ и $||x||_x = 1$
+		
+		$A(\widetilde{x}) = A(||\widetilde{x}||_x \cdot x) = ||\widetilde{x}||_x \cdot A(x) = 0$
 	\end{proof}
 
 \item
@@ -264,7 +271,7 @@ a_{m, n}\\
 \end{proof}
 
 \begin{theorem}
-$A \colon X \rightarrow Y$ --- линеыный оператор\\
+$A \colon X \rightarrow Y$ --- линейный оператор\\
 $X, Y$ --- нормированное пространство\\
 Тогда
 \[\sup_{||x||_x \le 1} ||A(x)||_y = \sup_{||x||_x < 1} ||A(x)||_y = \sup_{||x||_x = 1} ||A(x)||_y = \sup_{x \neq 0} \frac{||A(x)||_y}{||x||_x} = \inf \{c \colon ||A(x)||_y \le c||A(x)||_x,  x \in X \}\]
@@ -274,19 +281,18 @@ $X, Y$ --- нормированное пространство\\
 $N_1 \ge N_2$ очевидно\\
 $N_1 \ge N_3$ очевидно\\
 \[N_3 = N_4\]
-$\frac{||A_x||_y}{||x||_x} = \frac{1}{||x||_x} \cdot ||A(x)||_y = ||\frac{1}{||x||_x \cdot A(x)}|| = ||A(\frac{x}{||x||_x})||_y$ \\
+$\frac{||A_x||_y}{||x||_x} = \frac{1}{||x||_x} \cdot ||A(x)||_y = ||A(\frac{x}{||x||_x})||_y$ \\
 $\frac{x}{||x||_x}$ --- единичный вектор\\
-почему это что-то доказывает? пока не знаю...\\
 \[N_4 = N_5\]
-$\inf\{c\dots ||A(x)||_y \le c||x||_x, x \in X\} = \inf \{c\colon ||A(x)||_y \le c||x||_x, x \in X, x \neq 0\} = \inf \{c\colon \frac{||A(x)||_y}{||x||_x} \le c, x \in X, x \neq 0\}$ --- наименьшая из верхних границ для $\frac{||A(x)||_y}{||x||_x}$ при $x \neq 0$, что является $\sup$ по определению\\
-\[N_1 \ge N_2\]
+$\inf\{c\colon ||A(x)||_y \le c||x||_x, x \in X\} = \inf \{c\colon ||A(x)||_y \le c||x||_x, x \in X, x \neq 0\} = \inf \{c\colon \frac{||A(x)||_y}{||x||_x} \le c, x \in X, x \neq 0\}$ --- наименьшая из верхних границ для $\frac{||A(x)||_y}{||x||_x}$ при $x \neq 0$, что является $\sup$ по определению\\
+\[N_2 \ge N_1\]
 Докажем, что \\
 $(1+ \epsilon)N_2 \ge N_1,  \forall \epsilon > 0$
 $(1+ \epsilon)N_2 = sup_{||x||_x < 1} ||A(x)||_y \cdots (1 + \epsilon)$ \\
 Зафиксируем $x \in X, ||x||_x \le 1$
 $\widetilde{x} = \frac{x}{1 + \epsilon}$\\
 $||\widetilde{x}||_x = ||\frac{x}{1 + \epsilon}||_x = \frac{1}{1 + \epsilon} ||x||_x \le \frac{1}{1 + \epsilon} < 1$\\
-$||A(x)||_y = ||A((1 + \epsilon)\widetilde)||_y = (1 + \epsilon)||A(\widetilde{x}||_y \le (1+\epsilon)N_2$
+$||A(x)||_y = ||A((1 + \epsilon)\widetilde{x})||_y = (1 + \epsilon)||A(\widetilde{x})||_y \le (1+\epsilon)N_2$
 \[N_3 \ge N_1 \]
 $||A(x)||_y = ||A(||x||_x \cdot \frac{x}{||x||_x})||_y = ||x||_x \cdot ||A(\frac{x}{||x||_x})||_y \le ||A(\frac{x}{||x||_x}||_y \le N_3$
 \end{proof}
@@ -324,10 +330,190 @@ $||x_1 - x_2||_x < \frac{\epsilon}{||A||} \Rightarrow ||A(x_1) - A(x_2)||_y \le 
 $\forall \epsilon > 0, \exists \delta > 0 \colon ||x - 0||_x < \delta \Rightarrow ||A(x) - A(0)||_y < \epsilon$ \\
 Возьмём $\epsilon = 1$ и соответствующий ему $\delta$\\
 $||x - 0||_x < \delta \Rightarrow ||A(x) - A(0)||_y < 1$
-Возьмём $x\in X \colon ||x||_x ||x||_x - 1$ ШТА?\\
+Возьмём $x\in X \colon ||x||_x < 1$, тогда \\
 $\widetilde{x} = \delta x$\\
 $||\widetilde{x}||_x < \delta \Rightarrow 1 > ||A \widetilde{x}||_y = ||A(\delta x)||_y = \delta ||A(x)||_y$\\
 $||A(x)||_y < \frac{1}{\delta}, \forall x \in X \colon ||x||_x < 1$\\
 $\sup_{||x||_x < 1} ||A(x)||_y \le \frac{1}{\delta}$
 \end{proof}
-coming soon
+\begin{theorem}
+$A \colon \R^n \rightarrow \R^m$\\
+\[||A|| \le (\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2)^{\frac{1}{2}}\]
+\end{theorem}
+\begin{proof}
+$x = x_1e_1 + \dots + x_n e_n$ \\
+$||x||^2 = x_1^2 + \dots + x_n^2$ \\
+$||A(x)|| = ||A(x_1e_1 + \dots + x_n e_n)|| = ||x_1A(e_1) + \dots + x_nA(e_n)|| \le |x_1| \cdot ||A(e_1)|| + \dots + |x_n| \cdot ||A(e_n)||$ \\
+$||A(x)||^2 \le (|x_1| \cdot ||A(e_1)|| + \dots + |x_n| \cdot ||A(e_n)||) ^ 2 \le (|x_1| ^ 2 + \dots + |x_n|^2) \cdot (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x^2|| (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x||^2$\\
+$A(e_k) = 
+\begin{pmatrix}
+a_{1, 1} & \dots & a_{1, n}\\
+\vdots & \ddots & \vdots\\
+a_{m, 1} & \dots & a_{m, n}\\
+\end{pmatrix}
+\begin{pmatrix}
+0\\
+\vdots\\
+0\\
+1\\
+0\\
+\vdots\\
+0\\
+\end{pmatrix} = 
+\begin{pmatrix}
+a_{1, k}\\
+\vdots\\
+a_{m, k}\\
+\end{pmatrix}$\\
+$||A(e_k)||^2 = a_{1, k}^2 + \dots + a_{m, k}^2$\\
+$||A(x)|| \le ||x||(\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2)^{\frac{1}{2}} \le (\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2)^{\frac{1}{2}}$ при $||x|| \le 1$\\
+$\sup_{||x|| \le 1}||A(x)|| \le (\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2)^{\frac{1}{2}}$
+\end{proof}
+\begin{Def}
+$X$ --- линейное пространство\\
+Две нормы называются эквивалентными, если $\exists c_1, c_2 > 0 \colon$\\
+$c_1||x||_1 \le ||x||_2 \le c_2||x||_1 \forall x \in X$\\
+\end{Def}
+\begin{Rem}
+
+
+\begin{enumerate}
+\item Если нормы эквивалентны, то сходимости по этим нормам означают одно и то же
+
+Пусть $x_n \rightarrow x_0$ по норме  $1$, тогда
+
+$||x_n - x_0||_2 \le c_2||x_n - x_0||_1$, но $x_n - x_0 \rightarrow 0 \Rightarrow x_n \rightarrow x_0$ по норме 2
+
+\item Непрерывности относительно эквивалентных норм совпадают
+\end{enumerate}
+\end{Rem}
+
+\begin{theorem}
+В  $R^d$ все нормы эквивалентны
+\end{theorem}
+
+\begin{proof}
+$||x|| = \sqrt{x_1^2 + \dots + x_n^2}$
+
+Докажем, что все нормы эквивалентны данной
+
+Пусть $p$ --- другая норма
+
+$p(x) = p(\sum_{k = 1}^d x_k e_k) \le \sum_{k = 1}^d |x_k| p(e_k) \le (\sum_{k = 1}^d |x_k|^2)^frac{1}{2} (\sum_{k = 1}^d p(e_k)^2)^frac{1}{2} = ||x|| \cdot (\sum_{k = 1}^d p(e_k)^2)^frac{1}{2}$
+
+Возьмём $c_2 = (\sum_{k = 1}^d p(e_k)^2)^frac{1}{2}$
+
+$p(x) \le c_2 ||x||$
+
+$|p(x) - p(y)| \le p(x - y) \le c_2 ||x - y|| \Ra p$ --- непрерывная функция
+
+$S^{d - 1} = \{x\in \R^d \colon ||x|| = 1\}$ --- сфера в $n$-мерном пространстве $\Ra$ компакт (ограничена и замкнута) $\Ra$ по теореме Вейерштрасса, $p$ достигает наименьшее значение $p(y)$
+
+$p(y) \neq 0$, потому что иначе $y = 0 \Ra y \notin S^{d - 1}$
+
+Пусть $c_1 = p(y) > 0$, тогда
+
+$с_1 \le p(\frac{x}{||x||}) = p(\frac{1}{||x||} \cdot x) = \frac{1}{||x||} \cdot p(x)$
+
+$c_1||x|| \le p(x)$
+\end{proof}
+
+\section{Дифференцируемость в $\R^n$}
+
+\begin{Def}
+$f \colon D \subset \R^n \ra \R^m, a \in \Int D$
+
+$f$ дифференцируема в точке а, если
+
+$\exists T \colon \R^n \ra \R^m$ --- линейный оператор, такой что
+
+$f(a + h)_{h \ra 0} = f(a) + T(h) + o(||h||)$
+\end{Def}
+\begin{Rem}
+$T$ определим однозначно, зафиксируем $h$, $t > 0$
+
+$f(a + th)_{t \ra 0} = f(a) + T(th) + o(||th||) = f(a) + T(th) + o(t)$
+
+$T(h) + o(1) = \frac{f(a + th) - f(a)}{t}$
+
+$T(h) = \lim_{t \ra 0} \frac{f(a + th) - f(a)}{t}$
+\end{Rem}
+\begin{Def}
+Матрица, соответствующая оператору $T$ "--- матрица Якоби
+\end{Def}
+Частный случай $m = 1$
+
+$f \colon D \subset R^n \ra R$
+
+$f(a + h) = f(a) + T(h) + o(||h||)$
+
+$T \colon \R^n \ra \R$
+
+$T(h) = 
+\begin{pmatrix}
+t_1 & \dots & t_n)
+\end{pmatrix}
+\begin{pmatrix}
+h_1\\
+\vdots \\
+h_n
+\end{pmatrix} = t_1h_1 + \dots + t_nh_n = \left< V, h \right>$
+
+$V = 
+\begin{pmatrix}
+t_1\\
+\vdots \\
+t_n
+\end{pmatrix}$
+
+$\exists V \in \R^n \colon f(a + h) = f(a) + \left< V, h \right> + o(||h||)$
+
+\begin{Def}
+$V$ "--- градиент функции $f$
+
+$V = grad f = \nabla f$
+\end{Def}
+
+\begin{theorem}
+$f \colon D \subset \R^n \ra \R^m, a \in \Int D$
+
+$f = 
+\begin{pmatrix}
+f_1\\
+\vdots\\
+f_m
+\end{pmatrix}$
+
+\[f \text{ дифференцируема в точке } a \Leftrightarrow f_k \text{ дифференцируема в точке } a \forall k = 1, \dots, m\]
+\end{theorem} 
+
+\begin{proof}
+$f(a + h) = f(a) + T(h) + o(||h||)$
+
+$\Ra$
+
+$f_k(a + h) = f_k(a) + (T(h))_k + o(||h||)$
+
+$\La$
+
+$\alpha_k(h) = f_k(a+h) - f_k(a) - \left<V_k, h\right> = o(||h||)$
+
+$\frac{\alpha_k(h)}{||h||} \ra 0$
+
+$\alpha(h) = f(a+h) - f(a) - T(h) = o(||h||)$
+
+$\alpha(h) = 
+\begin{pmatrix}
+\alpha_1(h)\\
+\vdots\\
+\alpha_n(h)
+\end{pmatrix}$
+
+$||\alpha(h)|| = \sqrt{\alpha_1^2(h) +\dots + \alpha_n^2(h)}$
+
+$\frac{||\alpha(h)||}{||h||} = \sqrt{(\frac{||\alpha_1(h)||}{||h||}) ^ 2 + \dots + (\frac{||\alpha_n(h)||}{||h||}) ^ 2} \ra 0$, потому что
+
+$\frac{\alpha_k(h)}{||h||} \ra 0$
+\end{proof}
+{\LARGE ВСЕГО УЖЕ ХВАТАЕТ!}
+
