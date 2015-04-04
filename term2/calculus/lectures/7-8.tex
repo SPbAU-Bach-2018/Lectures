@@ -344,7 +344,7 @@ $A \colon \R^n \rightarrow \R^m$\\
 $x = x_1e_1 + \dots + x_n e_n$ \\
 $||x||^2 = x_1^2 + \dots + x_n^2$ \\
 $||A(x)|| = ||A(x_1e_1 + \dots + x_n e_n)|| = ||x_1A(e_1) + \dots + x_nA(e_n)|| \le |x_1| \cdot ||A(e_1)|| + \dots + |x_n| \cdot ||A(e_n)||$ \\
-$||A(x)||^2 \le (|x_1| \cdot ||A(e_1)|| + \dots + |x_n| \cdot ||A(e_n)||) ^ 2 \le (|x_1| ^ 2 + \dots + |x_n|^2) \cdot (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x^2|| (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x||^2$\\
+$||A(x)||^2 \le (|x_1| \cdot ||A(e_1)|| + \dots + |x_n| \cdot ||A(e_n)||) ^ 2 \le (|x_1| ^ 2 + \dots + |x_n|^2) \cdot (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x^2|| (||A(e_1)||^2 + \dots + ||A(e_n)||^2) = ||x||^2 \cdot \sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2$\\
 $A(e_k) = 
 \begin{pmatrix}
 a_{1, 1} & \dots & a_{1, n}\\
