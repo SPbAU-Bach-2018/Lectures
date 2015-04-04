@@ -1,77 +1,74 @@
 ﻿\begin{exmp}
-\begin{enumerate}
-\item 
-$$S_p(n) = 1^p + 2^p + \ldots + n^p$$
-$$S_p(n) = {\sum_{k = 1}^{n}}' k^p + \frac{1^p + n^p}{2} = 
-\int_1^n x^p dx + \frac{1}{2}\int_1^n p(p - 1)x^{p - 2}\{x\}(1 - \{x\}) + \frac{1 + n^p}{2}$$
-$$= \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{p(p - 1)}{2}\int_1^n x^{p - 2}\{x\}(1 - \{x\})$$
+	\begin{enumerate}
+	\item
+		\begin{gather*}
+			S_p(n) = 1^p + 2^p + \ldots + n^p \\
+			S_p(n) = \sideset{}{'}\sum_{k = 1}^{n} k^p + \frac{1^p + n^p}{2} =
+				\int_1^n x^p \d x + \frac{1}{2}\int_1^n p(p - 1)x^{p - 2}\{x\}(1 - \{x\}) + \frac{1 + n^p}{2} \\
+			= \frac{1 + n^p}{2} + \frac{n^{p + 1} - 1}{p + 1} + \frac{p(p - 1)}{2}\int_1^n x^{p - 2}\{x\}(1 - \{x\})
+		\end{gather*}
 
-Пусть $p \in (-1, 1)$, тогда
-$$0 \le \int_1^n x^{p - 2}{x}(1 - {x})dx \le \int_1^{n}x^{p - 2} = 
-\frac{n^{p - 1} - 1}{p - 1} = O(1)$$
+		Пусть $p \in (-1, 1)$, тогда
+		\begin{gather*}
+			0 \le \int_1^n x^{p - 2}\{x\}(1 - \{x\})\d x \le \int_1^{n}x^{p - 2} =
+				\frac{n^{p - 1} - 1}{p - 1} = O(1) \\
+			S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(1)
+		\end{gather*}
 
-$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(1)$$
+		Если $p = 1$, тогда
+		\[ S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(\log n) \]
 
+		Если $p > 1$, тогда
+		\[ S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(n^{p - 1}) \]
 
-Если $p = 1$, тогда
-$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(\log n)$$
+	\item
+		Рассмотрим гармонические числа.
+		\begin{gather*}
+			H_n = \sideset{}{'}\sum_{k = 1}^n \frac{1}{k} + \frac{1 + \frac{1}{n}}{2} =
+				\frac{1 + \frac{1}{n}}{2} + \int_1^{n}\frac{\d x}{x} + \frac{1}{2}\int_1^n\frac{2\{x\}(1 - \{x\})}{x^3}\d x = \\
+			= \frac{1}{2} + \frac{1}{2n} + \ln n + \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}\d x \\
+			H_n = \ln n + O(1) \\
+			H_n - \ln n = \frac{1}{2} + \frac{1}{2n} + a_n \\
+			a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}\d x \\
+			a_n \le a_{n + 1}
+		\end{gather*}
+		Поймем, что $a_n$ ограничено
+		\begin{gather*}
+			a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}\d x \le
+				\int_1^{n}\frac{\d x}{x^3} = \left. -\frac{1}{2x^2}\right |_{x = 1}^{x = n} =
+				\frac{1}{2} - \frac{1}{2n} \le \frac{1}{2} \\
+			\Ra \exists \lim_{n \to \infty} a_n \Ra \exists \lim_{n \to \infty}(H_n - \ln n) = \gamma
+		\end{gather*}
+		$\gamma = 0,57721566\ldots$ "--- постоянная Эйлера.
 
-Если $p > 1$, тогда
-$$S_p(n) = \frac{n^{p + 1}}{p + 1} + \frac{n^p}{2} + O(n^{p - 1})$$
+		Итог: $H_n = \ln n + \gamma + o(1)$
 
-\item
-Рассмотрим гармонические числа.
-$$H_n = {\sum_{k = 1}^n}' \frac{1}{k} + \frac{1 + \frac{1}{n}}{2} =
-\frac{1 + \frac{1}{n}}{2} + \int_1^{n}\frac{dx}{x} + \frac{1}{2}\int_1^n\frac{2\{x\}(1 - \{x\})}{x^3}dx =$$
-$$= \frac{1}{2} + \frac{1}{2n} + \ln n + \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx$$
+	\item
+		Формула Стирлинга.
+		\begin{gather*}
+			\ln n! = \ln 1 + \ln 2 + \ldots + \ln n \\
+			\ln n! = \sideset{}{'}\sum_{k = 1}^{n} \ln k + \frac{\ln n}{2} =
+				\int_{1}^{n}\ln x\d x - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}\d x + \frac{\ln n}{2} = \\
+			= n\ln n - n + \frac{\ln n}{2} + 1 - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}\d x \\
+			\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}\d x = b_n \\
+			b_n \le b_{n + 1} \\
+			b_n = \int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}\d x  \le \int_1^{n}\frac{\d x}{x^2} = \left. -\frac{1}{x} \right|_{x = 1}^{x = n} = 1 -\frac{1}{n} \le 1 \\
+			\Ra \exists \lim_{n \to \infty} b_n \\
+			\ln n! = n \ln n + \frac{\ln n}{2} - n + C + o(1) \\
+			n! = n^n e^{-n}\sqrt{n}e^ce^{o(1)} = n^{n}e^{-n}\sqrt{n}e^c(1 + o(1)) \sim
+				n^n e^{-n}\sqrt{n}e^c \\
+			\frac{4^n}{\sqrt{\pi n}} = C_{2n}^n = \frac{(2n)!}{(n!)^2} \sim
+				\frac{(2n)^{2n}e^{-2n}\sqrt{2n}e^c}{(n^ne^{-n}\sqrt{n}e^c)^2} =
+				\frac{4^n n^{2n}e^{-2n}\sqrt{2n}e^c}{n^{2n}e^{-2n}ne^{2c}} = \frac{4^n\sqrt{2n}}{ne^c} \\
+			\frac{4^n}{\sqrt{\pi n}} \sim \frac{4^n \sqrt{2n}}{n e^c} \\
+			e^c \sim \sqrt{2\pi} \Ra e^c = \sqrt{2\pi} \\
+		\end{gather*}
 
-$$H_n = \ln n + O(1)$$
-
-$$H_n - \ln n = \frac{1}{2} + \frac{1}{2n} + a_n$$
-$$a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx$$
-$$a_n \le a_{n + 1}$$
-
-Поймем, что $a_n$ ограничено
-$$a_n = \int_1^n\frac{\{x\}(1 - \{x\})}{x^3}dx \le 
-\int_1^{n}\frac{dx}{x^3} = \left. -\frac{1}{2x^2}\right |_{x = 1}^{x = n} = 
-\frac{1}{2} - \frac{1}{2n} \le \frac{1}{2}$$
-
-$$\Ra \exists \lim_{n \to \infty} a_n \Ra \exists \lim_{n \to \infty}(H_n - \ln n) = \gamma$$ 
-
-$\gamma = 0,57721566\ldots$ "--- постоянная Эйлера.
-
-Итог: $H_n = \ln n + \gamma + o(1)$
-\item Формула Стирлинга.
-
-$$\ln n! = \ln 1 + \ln 2 + \ldots + \ln n$$
-$$\ln n! = \sideset{}{'}\sum_{k = 1}^{n} \ln k + \frac{\ln n}{2} =
-\int_{1}^{n}\ln xdx - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx + \frac{\ln n}{2} =$$
-$$= n\ln n - n + \frac{\ln n}{2} + 1 - \frac{1}{2}\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx $$
-$$\int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx = b_n$$
-$$b_n \le b_{n + 1}$$
-$$b_n = \int_{1}^{n}\frac{\{x\}(1 - \{x\})}{x^2}dx  \le \int_1^{n}\frac{dx}{x^2} = \left. -\frac{1}{x} \right|_{x = 1}^{x = n} = 1 -\frac{1}{n} \le 1$$
-$$\Ra \exists \lim_{n \to \infty} b_n$$
-
-$$\ln n! = n \ln n + \frac{\ln n}{2} - n + C + o(1)$$
-$$n! = n^n e^{-n}\sqrt{n}e^ce^{o(1)} = n^{n}e^{-n}\sqrt{n}e^c(1 + o(1)) \sim 
-n^n e^{-n}\sqrt{n}e^c$$
-$$\frac{4^n}{\sqrt{\pi n}} = C_{2n}^n = \frac{(2n)!}{(n!)^2} \sim 
-\frac{(2n)^{2n}e^{-2n}\sqrt{2n}e^c}{(n^ne^{-n}\sqrt{n}e^c)^2} = 
-\frac{4^n n^{2n}e^{-2n}\sqrt(2n)e^c}{n^{2n}e^{-2n}ne^{2c}} = \frac{4^n\sqrt{2n}}{ne^c}$$
-
-$$\frac{4^n}{\sqrt{\pi n}} \sim \frac{4^n \sqrt{2n}}{n e^c}$$
-$$e^c \sim \sqrt{2\pi} \Ra e^c = \sqrt{2\pi} $$
-
-\textbf{Формула Стирлинга:}
-$$n! \sim n^ne^{-n}\sqrt{2\pi n} $$
-
-\begin{Rem}
-    Можно использовать для биномиальных коэффициентов. Записать их через
-    факториал и расписать.
-\end{Rem}
-
-
-
-\end{enumerate}                                                                           
-
+		\textbf{Формула Стирлинга:}
+		\[ n! \sim n^ne^{-n}\sqrt{2\pi n} \]
+		\begin{Rem}
+			Можно использовать для биномиальных коэффициентов. Записать их через
+			факториал и расписать.
+		\end{Rem}
+	\end{enumerate}
 \end{exmp}
