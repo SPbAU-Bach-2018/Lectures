@@ -99,7 +99,7 @@ $\begin{pmatrix}
 \underline{Свойства:}
 \begin{enumerate}
 \item
-	$\forall A, A(0) = 0_y$
+	$\forall A, A(0_x) = 0_y$
 	\begin{proof}
 		$\lambda = 0, A(0x) = 0A(x)$
 	\end{proof}
@@ -136,7 +136,7 @@ $\begin{pmatrix}
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
-		\item $(B \circ A)(x + y)  = B(A(x + y)) = B(A(x) + A(y) = B(A(x)) + B(A(y))  = (B \circ A)(x) + (B \circ A)(y)$
+		\item $(B \circ A)(x + y)  = B(A(x + y)) = B(A(x) + A(y)) = B(A(x)) + B(A(y))  = (B \circ A)(x) + (B \circ A)(y)$
 		\item $(B \circ A)(\lambda x) = B(A(\lambda x)) = B(\lambda A(x)) = \lambda B(A(x)) = \lambda (A \circ B) (x)$
 	\end{enumerate}
 \end{proof}
@@ -156,13 +156,16 @@ $\begin{pmatrix}
 	\item Если обратный оператор существует, то он единственный
 	\item $(\lambda A)^{-1} = \frac{1}{\lambda}A^{-1}$
 	\begin{proof}
-		\[ \left(\frac{1}{\lambda}A^{-1}\right)\left(\left(\lambda A\right) ^ {-1} \right)(x) = \frac{1}{\lambda} \lambda\left(A^{-1} \circ A\right)(x) = x \]
+		\[ \left(\frac{1}{\lambda}A^{-1}\right) \circ \left(\lambda A\right)(x) = \frac{1}{\lambda} \lambda\left(A^{-1} \circ A\right)(x) = x \]
 	\end{proof}
 \end{enumerate}
 
-Теперь рассмотрим случай $Y = X$.
 \begin{theorem}
-	Множество обратимых операторов образует группу относительно композиции
+	Теперь рассмотрим случай $Y = X$.
+
+	$A \colon X \to X$
+	 
+	Множество обратимых операторов образует группу относительно композиции.
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
