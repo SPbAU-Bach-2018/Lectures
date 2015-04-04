@@ -337,7 +337,7 @@
         
         $l(\gamma) = l(\gamma|_{[t_0, t_1]}) + l(\gamma|_{[t_1, t_2]}) + \dots + l(\gamma|_{[t_{n - 1}, t_n]})$
 
-        $m_i(t_i - t_{i - 1}) \le l(\gamma|_{[t_1, t_2]}) \le M_i(t_i - t_{i - 1})$
+        $m_i(t_i - t_{i - 1}) \le l(\gamma|_{[t_{i - 1}, t_i]}) \le M_i(t_i - t_{i - 1})$
 
         Просуммируем:
         $\sum\limits_{i = 1}^n m_i(t_i - t_{i - 1}) \le l(\gamma) \le \sum\limits_{i = 1}^n M_i(t_i - t_{i - 1})$
