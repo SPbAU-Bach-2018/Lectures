@@ -23,16 +23,21 @@
 			W_{2n + 1} &= \frac{2n}{2n + 1} \cdot \frac{2n - 2}{2n - 1} \cdot \dots \cdot \frac{2}{3} \cdot 1 = \frac{(2n)!!}{(2n + 1)!!}
 		\end{aligned}
 	\end{gather*}
-	\begin{gather*}
-		\cos^{2n} x \ge \cos^{2n + 1}x \ge \cos^{2n + 2}x \quad\text{ при $x\in[0, \pi/2]$} \\
-		W_{2n} \ge W_{2n + 1} \ge W_{2n + 2} \\
-		\frac{(2n - 1)!!}{(2n)!!}\cdot\frac\pi2 \ge \frac{(2n)!!}{(2n+1)(2n - 1)!!} \ge \frac{(2n + 1)!!}{(2n + 2)!!}\frac\pi2 \\
-		\frac\pi2 \ge \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} \ge \frac{2n + 1}{2n + 2} \cdot \frac\pi2 \ra \frac\pi2 \\
-		\lim_{n \ra \infty} \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} = \frac\pi2
-	\end{gather*}
 	\begin{assertion}[Формула Валлиса]
 		\[ \lim_{n \ra \infty} \frac{(2n)!!}{(2n - 1)!!}\cdot\frac{1}{\sqrt{2n + 1}} = \sqrt{\frac\pi2} \]
 	\end{assertion}
+	\begin{proof}
+		\begin{gather*}
+			\cos^{2n} x \ge \cos^{2n + 1}x \ge \cos^{2n + 2}x \quad\text{ при $x\in[0, \pi/2]$} \\
+			W_{2n} \ge W_{2n + 1} \ge W_{2n + 2} \\
+			\frac{(2n - 1)!!}{(2n)!!}\cdot\frac\pi2 \ge \frac{(2n)!!}{(2n+1)(2n - 1)!!} \ge \frac{(2n + 1)!!}{(2n + 2)!!}\frac\pi2 \\
+			\frac\pi2 \ge \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} \ge \frac{2n + 1}{2n + 2} \cdot \frac\pi2 \ra \frac\pi2 \\
+			\lim_{n \ra \infty} \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} = \frac\pi2
+		\end{gather*}
+	\end{proof}
+	\begin{conseq}
+		$C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi n}}$
+	\end{conseq}
 	\begin{proof}
 		\begin{gather*}
 			(2n)!! = 2^nn! \quad (2n-1)!! (2n) !! = (2n)! \\
