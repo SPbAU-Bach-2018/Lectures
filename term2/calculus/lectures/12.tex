@@ -1,0 +1,148 @@
+\setauthor{Дмитрий Лапшин}
+\begin{theorem}
+	$f\colon D \subset \R^2 \ra \R$, $(x_0, y_0) \in D$, $D$ "--- открыто, $f''_{xy}$ и $f''_{xy}$ существуют в окрестности $(x_0, y_0)$ и непрерывны в $(x_0, y_0)$.
+	Тогда
+	\[ f''_{xy} (x_0, y_0) = f''_{yx} (x_0, y_0) \]
+\end{theorem}
+\begin{proof}
+	\[ \Delta = f(x_0 + h, y_0 + k) - f(x_0 + h, y_0) - f(x_0, y_0 + k) + f(x_0, y_0) \]
+	Два раза применяем теорему Лагранжа
+	\begin{gather*}
+		\phi(s) = f(s, y_0 + k) - f(s, y_0) \quad \text{$\phi$ дифференцируема на $[x_0, x_0 + h]$} \\
+		\Delta = \phi(x_0 + h) - \phi(x_0) = \phi'(x_0 + \theta_1 h) h \quad \theta_1 \in (0, 1) \\
+		\Delta = \phi'(x_0 + \theta_1 h) h = (f'_x(x_0 + \theta_1 h, y_0 + k) - f'_x(x_0 + \theta_1 h, y_0)) h \\
+		\tilde \phi(t) = f'_x(x_0 + \theta_1 h, t) \quad \text{$\tilde \phi$ дифференцируема на $[y_0, y_0 + k]$} \\
+		\Delta = (\tilde \phi(y_0 + k) - \tilde \phi(y_0)) h = \tilde \phi' (y_0 + \theta_2 k) kh \quad \theta_2 \in (0, 1) \\
+		\Delta = f''_{xy} (x_0 + \theta_1 h, y_0 + \theta_2 k) hk
+	\end{gather*}
+	Теперь всё в другом порядке
+	\begin{gather*}
+		\psi(t) = f(x_0 + h, t) - f(x_0, t) \quad \text{$\psi$ дифференцируема на $[y_0, y_0 + k]$} \\
+		\Delta = \psi(y_0 + k) - \psi(y_0) = \psi'(y_0 + \theta_3 k) k \quad \theta_3 \in (0, 1) \\
+		\Delta = \psi'(y_0 + \theta_3 k) k = (f'_y(x_0 + h, y_0 + \theta_3 k) - f'_x(x_0, y_0 + \theta_3 k)) k \\
+		\tilde \psi(s) = f'_y(s, y_0 + \theta_3 k) \quad \text{$\tilde \psi$ дифференцируема на $[x_0, x_0 + h]$} \\
+		\Delta = (\tilde \psi(x_0 + h) - \tilde \psi(x_0)) k = \tilde \psi' (x_0 + \theta_4 k) kh \quad \theta_4 \in (0, 1) \\
+		\Delta = f''_{yx} (x_0 + \theta_4 h, y_0 + \theta_3 k) hk \\
+		f''_{xy} (x_0 + \theta_1 h, y_0 + \theta_2 k) hk = f''_{yx} (x_0 + \theta_4 h, y_0 + \theta_3 k) hk \\
+	\end{gather*}
+	Устремим $h$ и $k$ к нулю
+	\[ f''_{xy} (x_0, y_0) = f''_{yx} (x_0, y_0) \]
+\end{proof}
+
+\begin{Def}
+	$f\colon D \subset \R^n \ra \R$, $D$ открыто.
+	Говорим, что $f$ непрерывно дифференцируема $r$ раз ($r$"---гладкая), если у $f$ существуют все частные производные порядка не более $r$ и они все непрерывны.
+
+	Или, что равносильно:\\
+	Говорим, что $f$ непрерывно дифференцируема $r$ раз ($r$"---гладкая), если у $f$ координатные функции непрерывно дифференцируемы $r$ раз.
+	\[ f \in C^r(D) \]
+\end{Def}
+
+\begin{Rem}
+	Свойства $r$"---гладкости сохраняются при арифметических операциях и композиции.
+\end{Rem}
+
+\begin{theorem}
+	$f\colon D \subset \R^n \ra \R$, $D$ открыто, $f \in C^r(D)$, $(i_1, i_2, \dots, i_r)$ и $(j_1, j_2, \dots, j_r)$ "--- перестановки.
+	Тогда
+	\[ \frac{\partial^r f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_r}} = \frac{\partial^r f}{\partial x_{j_1} \partial x_{j_2} \dots \partial x_{j_r}} \]
+\end{theorem}
+\begin{proof}
+	$(i_1, i_2, \dots, i_r)$ и $(j_1, j_2, \dots, j_r)$. Тогда перестановка из одного в другое получается через несколько транспозиций (на алгебре было). Достаточно доказать теорему для транспозиции:
+	\[ \frac{\partial^r f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k} \partial x_{i_{k+1}} \dots \partial x_{i_r}}
+		\stackrel{(!)}{=} \frac{\partial^r f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_{k+1}} \partial x_{i_k} \dots \partial x_{i_r}} \]
+	Возьмём функцию
+	\[ g(s, t) = \frac{\partial^{k-1} f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_{k-1}}}
+		(\dots, \underbrace{s}_{k}, \underbrace{t}_{k+1}, \dots) \]
+	По предыдущей теореме знаем, что
+	\begin{gather*}
+		g''_{st} = g''_{ts} \\
+		\frac{\partial^{k+1} f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_k} \partial x_{i_{k+1}}}
+			= \frac{\partial^{k+1} f}{\partial x_{i_1} \partial x_{i_2} \dots \partial x_{i_{k+1}} \partial x_{i_k}}
+	\end{gather*}
+	Додифференцируем это дальше по всем оставшимся переменным.
+\end{proof}
+\begin{Rem}
+	Если очень надо, можно строго записать порядок производных:
+	\[ \partd{}{x} \partd{}{y} f \]
+\end{Rem}
+
+\section{Формула Тейлора}
+
+Много обозначений:
+\begin{Def}
+	Мультииндекс "--- вектор из целых неотрицательных чисел
+	\[ k = (k_1, k_2, \dots, k_r) \]
+\end{Def}
+
+\begin{Def}
+	Высота мультииндекса $|k|$ "--- сумма его координат.
+\end{Def}
+
+\begin{Def}
+	Факториал мультииндекса:
+	\[ k! = k_1! k_2! \dots k_n! \]
+\end{Def}
+
+\begin{Def}
+	$h \in \R^n$, $k$ "--- мультииндекс.
+	\[ h^k = h_1^{k_1} h_2^{k_2} \dots h_n^{k_n} \]
+	$0^0 = 1$
+\end{Def}
+
+\begin{Def}
+	Производная порядка мультииндекса:
+	\[ f^{(k)}(x) = \frac{\partial^{|k|} f}{\partial x_1^{k_1} \partial x_2^{k_2} \dots \partial x_r^{k_r}} \]
+\end{Def}
+
+\begin{lemma}
+	$f\colon D \subset \R^n \ra \R$, $D$ открыто, $f \in \C^r(D)$, $[x_0, x_0 + h] \subset D$ (отрезок).
+	$F(t) \lrh f(x_0 + th)$, $t \in [0,1]$.
+	\[ F^{(r)}(t) = r! \sum_{\substack{|k| = r \\ \text{$k$ "--- мультииндекс}}} \frac{f^{(k)}(x_0 + th)}{k!} h^k \]
+\end{lemma}
+\begin{Rem}
+	Рассмотрим для прояснения двумерный случай:
+	\begin{gather*}
+		f = (i, r - i) \\
+		f^{(k)} = \frac{\partial^r f}{\partial x^i \partial y^{r-i}} \\
+		h = (u, v) \\
+		h^k = u^i v^{r-i} \\
+		\frac{r!}{k!} = \frac{r!}{i! (r-i)!} = \Choose{r}{i} \\
+		f(x, y) \quad F(t) = f(x_0 + tu, y_0 + tv) \\
+		F^{(r)} (t) = \sum_{i = 0}^r \Choose{r}{i} \frac{\partial^r f}{\partial x^i \partial y^{r-i}} (x_0 + tu, y_0 + tv) u^i v^{r-i}
+	\end{gather*}
+\end{Rem}
+\begin{proof}
+	Докажем индукцией по $r$:
+	\begin{description}
+	\item[База $n = 0$:]
+		Написано, что $F(t) = f(x_0 + th)$.
+	\item[Переход:]
+		Возьмём и продифференцируем ещё раз:
+		\begin{gather*}
+			\left(F^{(r)}(t)\right)' = \left(r! \sum_{|k| = r} \frac{f^{(k)}(x_0 + th)}{k!} h^k\right)'_t
+				= r! \sum_{|k| = r} \frac{\left(f^{(k)}(x_0 + th)\right)'_t}{k!} h^k \\
+			g \lrh f^{(k)} \\
+			g(x_0+ht)'_t = \partd{g}{x_1}(x_0+th)h_1 + \partd{g}{x_2}(x_0+th)h_2 + \dots + \partd{g}{x_n}(x_0+th)h_n
+				= \sum_{i=1}^n \partd{g}{x_i}(x_0+th) h_i \\
+			k + e_i = (k_1, k_2, \dots, k_i + 1, \dots, k_n) \\
+			\left(F^{(r)}(t)\right)' = r! \sum_{|k|=r} \sum_{i=1}^n \frac{f^{(k + e_i)} (x_0 + th)}{k!} \underbrace{h^k h_i}_{=h^{k + e_i}}
+				= r! \sum_{|k|=r} \sum_{i=1}^n \frac{f^{(k + e_i)} (x_0 + th)}{(k+e_i)!} h^{k + e_i} \frac{(k+e_i)!}{k!} = \\
+			\frac{(k+e_i)!}{k!} = \frac{k_1! k_2! \dots (k_i + 1)! \dots k_n!}{k_1! k_2! \dots k_i! \dots k_n!} = k_i + 1\\
+			= (r+1)! \sum_{i=1}^n \sum_{|k|=r} \frac{f^{(k + e_i)} (x_0 + th)}{(k+e_i)!} h^{k + e_i} \cdot \frac{k_i + 1}{r + 1} = \\
+			\frac{k_i + 1}{r + 1} = \frac{l_i}{r + 1}
+		\end{gather*}
+		Заметим, что под двумя суммами мы считаем производные по всем мультииндексам вида $k + e_i$, где $|k| = r$.
+		Все они "--- мультииндексы высоты $r + 1$.
+		Каждый мультииндекс мы могли получить несколько раз.
+		Рассмотрим мультииндекс $l$ высоты $r + 1$.
+		Мы его могли получить его, прибавив к некоторому $k$ $e_i$.
+		Это могло произойти если только $l_i \ne 0$.
+		Как теперь видно, последний множитель ($\frac{k_i + 1}{r + 1}$) или равен нулю для заданного $l$,
+		которое таким прибавлением всё равно не удалость получить, или как раз характеризует, сколько раз могли получить $l$ из $x$.
+
+		Осталось заметить, что все $l_i$ просуммируются в $|l| = r + 1$.
+		Таким образом,
+		\[ = (r+1)! \sum_{|l|=r + 1} \frac{f^{l} (x_0 + th)}{l!} h^l \]
+	\end{description}
+\end{proof}
