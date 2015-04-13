@@ -9,7 +9,7 @@ Please note that minted >= 2.0 is required, you probably should install it manua
 
 You will also need additional fonts:
 * Computer Modern Unicode: http://sourceforge.net/projects/cm-unicode/files/cm-unicode/0.7.0/cm-unicode-0.7.0-ttf.tar.xz/download
-* Latin Modern Math: http://www.gust.org.pl/projects/e-foundry/lm-math/download/latinmodern-math-1959.zip
+* XITS: http://mirrors.ctan.org/fonts/xits.zip
 
 Some PDFs use images, we store them separately to avoid huge size of the repository, you should perform the following steps to make them available:
 * Download https://yadi.sk/d/hyoCoEx0eptKS to some folder (you can also use Yandex.Disk's synchronization)
