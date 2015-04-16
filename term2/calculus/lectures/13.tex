@@ -4,7 +4,7 @@
 	Пусть есть многомерная функция $f \colon D \subseteq \R^n \to \R$.
 	$f$ $(r+1)$ раз непрерывно дифференцируема в $D$.
 	Также есть отрезок $[x, x_0] \subseteq D$ (отрезок по прямой).
-	% картинка загогулины, отрезок попадает внутрь, не попадает внутрь
+	\cautoimg{13_segment}
 	Тогда можно написать формулу (здесь $k$ "--- мультииндексы):
 	\[ f(x) = \sum_{|k| \le r} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k + \sum_{|k| = r + 1} \frac{f^{(k)}(x_0+\theta(x-x_0))}{k!} (x-x_0)^k\]
 \end{theorem}
@@ -19,7 +19,8 @@
 	\begin{align*}
 		F^{(l)}(0) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0) h^k \\
 		F^{(l)}(\theta) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0 + \theta h) h^k \\
-		\vdots
+		F(1) &= \sum_{l=0}^r \sum_{|k| = l} \frac{1}{k!} f^{(k)}(x_0) h^k + \sum_{|k| = r + 1} \frac{1}{k!} f^{(k)}(x_0 + \theta h) h^k \\
+		     &= \sum_{|k| \le r} \frac{f^{(k)}(x_0)}{k!} h^k + \sum_{|k| = r + 1} \frac{f^{(k)}(x_0 + \theta h)}{k!} h^k \\
 	\end{align*}
 \end{proof}
 \begin{Rem}
@@ -42,12 +43,12 @@
 			&+ \frac12\left(
 				\partdd{f}{x}{x} (x_0, y_0) h^2
 				+ 2\partdd{f}{x}{y} (x_0, y_0) hk
-				+  \partdd{f}{y}{y} (x_0, y_0) k^2)
+				+  \partdd{f}{y}{y} (x_0, y_0) k^2
 			\right) + \\
 			&+ \dots
-			+ \frac{1}{    l!} \sum_{i=0}^l     \Choose{l  }{i} \frac{\partial^l     f}{\partial x^i \partial y^{l  -i}} (x_0, y_0)                   h^i k^{l  -i} + \\
-			&+ \dots
-			+ \frac{1}{(r+1)!} \sum_{i=0}^{r+1} \Choose{r+1}{i} \frac{\partial^{r+1} f}{\partial x^i \partial y^{r+1-i}} (x_0+\theta h, y_0+\theta k) h^i k^{r+1-i}
+			 + \frac{1}{    l!} \sum_{i=0}^l     \Choose{l  }{i} \frac{\partial^l     f}{\partial x^i \partial y^{l  -i}} (x_0, y_0)                   h^i k^{l  -i}
+			 + \dots + \\
+			&+ \frac{1}{(r+1)!} \sum_{i=0}^{r+1} \Choose{r+1}{i} \frac{\partial^{r+1} f}{\partial x^i \partial y^{r+1-i}} (x_0+\theta h, y_0+\theta k) h^i k^{r+1-i}
 	\end{align*}
 \end{Rem}
 
@@ -81,7 +82,7 @@
 
 \begin{theorem}[Полиномиальная формула]
 	\[
-		\left(\sum_{i=1}^n x_i\right)^r = \sum_{|k|=r} \frac{r!}{k!} x^k = \sum_{k_1+k_2+\dots+k_n=r}\Choose{r}{k1, \dots, k_n}
+		\left(\sum_{i=1}^n x_i\right)^r = \sum_{|k|=r} \frac{r!}{k!} x^k = \sum_{k_1+k_2+\dots+k_n=r}\Choose{r}{k_1, \dots, k_n}
 			x_1^{k_1}x_2^{k_2}\dots x_n^{k_n}
 	\]
 	где
@@ -111,7 +112,6 @@
 			= \sum_{|k|=r} \frac{r!}{k!} h^k
 	\]
 \end{proof}
-% конец параграфа
 
 \section{Экстремумы функций}
 \begin{Def}
@@ -187,9 +187,10 @@
 \end{proof}
 Теперь надо убедиться, что остаток везде имеет одинаковый знак.
 
+\subsection{Квадратичные формы}
 \begin{Def}
 	Пусть $C$ "--- симметричная матрица $n \times n$.
-	Тогда квадратичная форма $Q(h) \colon \R^n \to n$ по матрице $C$ есть:
+	Тогда квадратичная форма $Q(h) \colon \R^n \to \R$ по матрице $C$ есть:
 	\[ Q(h) = \sum_{i,j=1}^n c_{i,j} h_i h_j \]
 \end{Def}
 \begin{Rem}
@@ -252,6 +253,7 @@
 	Определители поменяют знаки в зависимости от чётности размера аргумента.
 \end{Rem}
 
+\subsection{Связь экстремумов и квадратичных форм}
 \begin{theorem}
 	$f \colon D \subseteq \R^n \to \R$ и $a \in \Int D$.
 	Пусть $f$ дважды непрерывно дифференцируема в окрестности точки $a$.
