@@ -137,38 +137,39 @@
   Заметка: считаем $\vec I \upuparrows \vec \d l$, поэтому можно писать вектор только в одном из двух.
   Интегрируем по длине провода:
   \[
-    \vec B = \frac I C \int \frac{\d \vec l \times (\vec r - \vec r')}{|\vec r - \vec r'|^3}
+    \vec B = \frac I c \int \frac{\d \vec l \times (\vec r - \vec r')}{|\vec r - \vec r'|^3}
   \]
 
   \subsection{Пример: прямой провод}
   Пусть есть провод длины $2L$, по которому течёт ток $I$.
   Хотим найти магнитое поле в точке на серединном перпендикуляре к проводу на расстоянии $R$ от него.
-  % картинка, слева направо течёт ток, точка внизу
+  \cautoimg{06/08}
   По формуле нужно разбить провод на много маленьких кусочков $\d \vec l$,
   вычислить расстояния от них до искомой точки и посчитать интеграл.
-  % картинка, на которой видны направления, и угол \theta между куском и направлением на точку
-  Направление для всех кусочков будет одно: в доску.
+  \cautoimg{06/09}
+  Направление для всех кусочков будет одно: в страницу.
   Надо только посчитать модуль поля.
   \begin{gather*}
   | \vec r - \vec r' | = \frac R{\sin \theta} \\
-  | \d \vec l \times (\vec r - \vec r') | = \d l \cdot \frac{R}{\sin \theta} \cdot \sin \theta = \d l \cdot R
-  B = \frac I C \int \frac{\d l \cdot R}{\left(\frac R{\sin \theta}\right)^3}
+  | \d \vec l \times (\vec r - \vec r') | = \d l \cdot \frac{R}{\sin \theta} \cdot \sin \theta = \d l \cdot R \\
+  B = \frac I c \int \frac{\d l \cdot R}{\left(\frac R{\sin \theta}\right)^3}
     = \frac I {CR^2} \int \sin^3 \theta \d l
   \end{gather*}
   Хотим проинтегрировать, да не можем сразу "--- там разные переменные $\theta$ и $l$, надо установить зависимость между ними.
   
   Давайте считать, что $l$ меняется от $0$ до $2L$.
-  % картинка для вычисления угла
+  \cautoimg{06/10}
   Отсюда наглядно видно, что
   \begin{gather*}
     \ctg \theta = \frac{L-l}{R} \\
     - \frac 1 {\sin^2\theta} \d \theta = -\frac{\d l}{R} \\
    \d l = \frac{R}{\sin^2 \theta} \d \theta \\
-    B = \frac{I}{CR^2} \int \frac{R}{\sin^2 \theta} \d \theta \cdot \sin^3 \theta
+    B = \frac{I}{CR^2} \int \sin^3 \theta \cdot \frac{R}{\sin^2 \theta} \d \theta
       = \frac{I}{CR} \int \sin \theta \d \theta
   \end{gather*}
   Теперь разберёмся с границей интегрирования.
-  Интегрируем от $\alpha$ до $-\alpha$
-  % картинка, слева угол \alpha, справа - в другую сторону
-  \[ B = \frac{I}{CR} (\cos \alpha - \cos(\pi-\alpha)) = \frac{2I}{CR} \cos \alpha\]
+  Интегрируем от $\alpha$ до $\pi-\alpha$
+  \cautoimg{06/11}
+  \[ B = \frac{I}{CR} (-\cos(\pi-\alpha) + \cos(\alpha)) = \frac{2I}{CR} \cos \alpha\]
   Можно пойти дальше: выразить $\cos \alpha$ через $R$ и $L$.
+  Но мы этим уже заниматься не будем.
