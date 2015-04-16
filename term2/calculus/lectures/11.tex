@@ -49,8 +49,8 @@
 	\end{align*}
 	По Коши-Буняковскому:
 	\begin{gather*}
-	|R(h)| \le \left( \sum_{k=1}^n \left( \partd{f}{e_k} (b_{k-1}+\theta_k h_k e_k) - \partd{f}{e_k}(a) \right)^2 \right)^{1/2} ||h|| \\
-	R(h) \stackrel?= o(||h||) \iff \frac{|R(h)|}{||h||} \stackrel{?}{\to} 0 \\
+	|R(h)| \le \left( \sum_{k=1}^n \left( \partd{f}{e_k} (b_{k-1}+\theta_k h_k e_k) - \partd{f}{e_k}(a) \right)^2 \right)^{1/2} \|h\| \\
+	R(h) \stackrel?= o(\|h\|) \iff \frac{|R(h)|}{\|h\|} \stackrel{?}{\to} 0 \\
 	\sum_{k=1}^n \left( \partd{f}{e_k} (b_{k-1}+\theta_k h_k e_k) - \partd{f}{e_k}(a) \right)^2 \stackrel{?}{\to} 0
 	\end{gather*}
 	Осталось понять, что каждое слагамое стремится к нулю:
@@ -151,7 +151,7 @@
 
 \begin{Def}
 	$f\colon D \to \R$ ($D \subset \R^n$), $a \in \Int D$ и $f$ дифференцируема в окрестности точки $a$.
-	Если $||\d_x f - \d_a f|| \to 0$ при $x \to a$, то $f$ "--- непрерывно дифференцируема в точке $a$.
+	Если $\|\d_x f - \d_a f\| \to 0$ при $x \to a$, то $f$ "--- непрерывно дифференцируема в точке $a$.
 	Перефразируя: есть дифференциал и он непрерывен.
 \end{Def}
 
@@ -175,7 +175,7 @@
 			 \left| \partd{f}{e_k}(x) - \partd{f}{e_k}(a) \right|
 					 = |\d_x f(e_k) - \d_a f(e_k)| = \\
 					 = |(\d_x f - \d_a f)(e_k)|
-					 \le \underbrace{||\d_x f - \d_a f||}_{\to 0\text{, при~}x \to a} \cdot \underbrace{||e_k||}_{= 1}
+					 \le \underbrace{\|\d_x f - \d_a f\|}_{\to 0\text{, при~}x \to a} \cdot \underbrace{\|e_k\|}_{= 1}
 		\end{gather*}
 	\item[$\La$]
 		Возьмём точку $a$.
@@ -186,7 +186,7 @@
 
 		Распишем в лоб:
 		\[
-		||\d_x f - \d_a f||^2 \le \sum_{k=1}^n \left( \partd{f}{e_k}(x) - \partd{f}{e_k}(a)	\right)^2 \to 0
+		\|\d_x f - \d_a f\|^2 \le \sum_{k=1}^n \left( \partd{f}{e_k}(x) - \partd{f}{e_k}(a)	\right)^2 \to 0
 		\]
 		Стремится к нулю, так как частные производные непрерывны $\Ra$ каждое слагаемое непрерывно.
 	\end{description}
