@@ -17,9 +17,9 @@
 	\[ F^{(l)}(t) = \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0+th) h^k\]
 	Теперь подставим это дело в формулу Тейлора для $F$:
 	\begin{align*}
-	F^{(l)}(0) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0) h^k \\
-	F^{(l)}(\theta) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0 + \theta h) h^k \\
-	\dots
+		F^{(l)}(0) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0) h^k \\
+		F^{(l)}(\theta) &= \sum_{|k| = l} \frac{l!}{k!} f^{(k)}(x_0 + \theta h) h^k \\
+		\vdots
 	\end{align*}
 \end{proof}
 \begin{Rem}
@@ -45,20 +45,20 @@
 				+  \partdd{f}{y}{y} (x_0, y_0) k^2)
 			\right) + \\
 			&+ \dots
-			+ \frac{1}{    l!} \sum_{i=0}^l     \binom{l  }{i} \frac{\partial^l     f}{\partial x^i \partial y^{l  -i}} (x_0, y_0)                   h^i k^{l  -i} + \\
+			+ \frac{1}{    l!} \sum_{i=0}^l     \Choose{l  }{i} \frac{\partial^l     f}{\partial x^i \partial y^{l  -i}} (x_0, y_0)                   h^i k^{l  -i} + \\
 			&+ \dots
-			+ \frac{1}{(r+1)!} \sum_{i=0}^{r+1} \binom{r+1}{i} \frac{\partial^{r+1} f}{\partial x^i \partial y^{r+1-i}} (x_0+\theta h, y_0+\theta k) h^i k^{r+1-i}
+			+ \frac{1}{(r+1)!} \sum_{i=0}^{r+1} \Choose{r+1}{i} \frac{\partial^{r+1} f}{\partial x^i \partial y^{r+1-i}} (x_0+\theta h, y_0+\theta k) h^i k^{r+1-i}
 	\end{align*}
 \end{Rem}
 
 \begin{theorem}
 	Формула Тейлора с остатком в форме Пеано:
-	\[ f(x_0+h) = \sum_{|k|\le r} \frac{f^{(k)}(x_0)}{k!} h^k + o(||h||^r) \text{~при~} ||h|| \to 0\]
+	\[ f(x_0+h) = \sum_{|k|\le r} \frac{f^{(k)}(x_0)}{k!} h^k + o(\|h\|^r) \text{~при~} \|h\| \to 0\]
 \end{theorem}
 \begin{proof}
 	Выпишем формулу из последней теоремы (только уменьшим $r$ на единицу для удобства):
 	\begin{align*}
-		f(x+h) &= \sum_{|k|\le r-1} \frac{f^{(k)}(x_0)}{k!} h^k + \sum_{|k|=r}\frac{f^{(k)}(x_0+\theta h}{k!}h^k = \\
+		f(x+h) &= \sum_{|k|\le r-1} \frac{f^{(k)}(x_0)}{k!} h^k + \sum_{|k|=r}\frac{f^{(k)}(x_0+\theta h)}{k!}h^k = \\
 		       &= \sum_{|k|\le r  } \frac{f^{(k)}(x_0)}{k!} h^k + \sum_{|k|=r}\frac{f^{(k)}(x_0+\theta h)-f^{(k)}(x_0)}{k!}h^k
 	\end{align*}
 	Надо оценить вторую сумму.
@@ -66,23 +66,26 @@
 	Пусть у нас имеется мультииндекс $(k_1, \dots, k_n)$, причём $\sum k_i = r$.
 	На $k!$ тоже забьём, это константа:
 	\begin{gather*}
-		\left(f^{(k)}(x_0+\theta h) - f^{(k)} (x_0)\right) \frac{h^k}{||h||^r} \stackrel{?}{\to} 0 \text{~при~} h \to 0 \\
+		\left(f^{(k)}(x_0+\theta h) - f^{(k)} (x_0)\right) \frac{h^k}{\|h\|^r} \stackrel{?}{\to} 0 \text{~при~} h \to 0 \\
 		\left(f^{(k)}(x_0+\theta h) - f^{(k)} (x_0)\right) \to 0 \\
-		\frac{h^k}{||h||^r}
-			= \frac{h_1^{k_1}h_2^{k_2}\dots h_n^{k_n}}{||h||^r}
-			= \frac{h_1^{k_1}h_2^{k_2}\dots h_n^{k_n}}{||h||^{k_1}||h||^{k_2}\dots||h||^{k_n}}
-			= \prod_{i=1}^{n} \frac{h_i^{k_i}}{||h||^{k_i}} \\
-		\frac{|h^k|}{||h||^r}
-			= \prod_{i=1}^{n} \frac{|h_i|^{k_i}}{||h||^{k_i}}
+		\frac{h^k}{\|h\|^r}
+			= \frac{h_1^{k_1}h_2^{k_2}\dots h_n^{k_n}}{\|h\|^r}
+			= \frac{h_1^{k_1}h_2^{k_2}\dots h_n^{k_n}}{\|h\|^{k_1}\|h\|^{k_2}\dots\|h\|^{k_n}}
+			= \prod_{i=1}^{n} \frac{h_i^{k_i}}{\|h\|^{k_i}} \\
+		\frac{|h^k|}{\|h\|^r}
+			= \prod_{i=1}^{n} \frac{|h_i|^{k_i}}{\|h\|^{k_i}}
 			\le 1 \\
 		(\to 0) \cdot (\le 1) \to 0
 	\end{gather*}
 \end{proof}
 
 \begin{theorem}[Полиномиальная формула]
-	\[ \left(\sum_{i=1}^n x_i\right)^r = \sum_{|k|=r} \frac{r!}{k!} x^k = \sum_{k_1+k_2+\dots+k_n=r}\binom{r}{k1, \dots, k_n} x_1^{k_1}x_2^{k_2}\dots x_n^{k_n}\]
+	\[
+		\left(\sum_{i=1}^n x_i\right)^r = \sum_{|k|=r} \frac{r!}{k!} x^k = \sum_{k_1+k_2+\dots+k_n=r}\Choose{r}{k1, \dots, k_n}
+			x_1^{k_1}x_2^{k_2}\dots x_n^{k_n}
+	\]
 	где
-	\[ \frac{r!}{k!} = \frac{r!}{k_1!k_2!\dots k_n!} = \binom{r}{k_1, k_2, \dots, k_n}\]
+	\[ \frac{r!}{k!} = \frac{r!}{k_1!k_2!\dots k_n!} = \Choose{r}{k_1, k_2, \dots, k_n}\]
 	(мультиномиальный коэффициент).
 \end{theorem}
 \begin{proof}
@@ -101,10 +104,12 @@
 	А при $l=r$ остаток получится равен $r!$.
 
 	Подставляем в формулу Тейлора с остатком в форме Лагранжа ($x_0=0$):
-	\begin{align*}
-		f(h) &= \underbrace{\sum_{|k| \le r} \frac{f^{(k)}(0)}{k!} h^k}_{=0\text{~при~}|k|<r} + \underbrace{\sum_{|k|=r+1} \frac{f^{(k)}(\theta h)}{k!} h^k}_{=0} = \\
-			&= \sum_{|k|=r} \frac{r!}{k!} h^k
-	\end{align*}
+	\[
+		f(h)
+			= \underbrace{\sum_{|k| \le r} \frac{f^{(k)}(0)}{k!} h^k}_{=0\text{~при~}|k|<r}
+			+ \underbrace{\sum_{|k|=r+1} \frac{f^{(k)}(\theta h)}{k!} h^k}_{=0}
+			= \sum_{|k|=r} \frac{r!}{k!} h^k
+	\]
 \end{proof}
 % конец параграфа
 
@@ -137,7 +142,7 @@
 \begin{Rem}
 	На самом деле, если $f$ дифференцируема, то у нас частная производная по
 	любому направлению обращается в ноль.
-	Но они все выражаются через $\partd{f}{x_i}$, поэтому про них говорить лишнее.
+	Но они все выражаются через $\partd{f}{x_i}$, поэтому про них говорить излишне.
 \end{Rem}
 \begin{proof}
 	Пусть $a$ "--- максимум.
@@ -163,10 +168,10 @@
 Давайте возьмём стационарную точку и напишем многочлен Тейлора до второго слагаемого.
 Выглядит она вот так:
 \[
-	f(a+h) = f(a) + \frac12 \sum_{i,j=1}^n \partdd{f}{x_i}{x_j} (a) h_i h_j + o(||h||^2)
+	f(a+h) = f(a) + \frac12 \sum_{i,j=1}^n \partdd{f}{x_i}{x_j} (a) h_i h_j + o(\|h\|^2)
 \]
 \begin{proof}
-	\[ f(a+h) = f(a) + \sum_{|k|=2} \frac{f^{(k)}(a)h^k}{k!} + o(||h||^2)\]
+	\[ f(a+h) = f(a) + \sum_{|k|=2} \frac{f^{(k)}(a)h^k}{k!} + o(\|h\|^2)\]
 	У нас бывают мультииндексы двух типов:
 	\begin{enumerate}
 	\item
@@ -278,7 +283,7 @@
 	Рассмотирм $Q$ на единичной сфере. Получим непрерывную на компакте функцию, поэтому
 	\begin{gather*}
 		\exists h_0\colon \underbrace{Q(h_0)}_{>0} = \min \{Q(h)\} \lrh c \\
-		Q(h) = Q\left(\|h\| \cdot \frac{h}{\|h\|}\right) = \|h\|^2 Q(\frac{h}{\|h\|}) \ge \|h\|^2 c
+		Q(h) = Q\left(\|h\| \cdot \frac{h}{\|h\|}\right) = \|h\|^2 Q\left(\frac{h}{\|h\|}\right) \ge \|h\|^2 c
 	\end{gather*}
 \end{proof}
 
@@ -416,7 +421,7 @@
 \end{Rem}
 
 \begin{Rem}
-	Это самая адовая теорема курса!
+	Это самая адовая теорема курса! Доказателсьтво длинное, разбито на важные шаги.
 \end{Rem}
 
 \begin{proof}
