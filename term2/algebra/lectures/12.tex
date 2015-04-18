@@ -353,3 +353,148 @@ $f \to A$
 \begin{conseq}
 $$\mathcal{L}(U, V) \cong M(n, m, K)$$
 \end{conseq}
+
+\subsection{Матрица композиции линейных отображений}
+\begin{theorem}
+$U\overset{g}{\rightarrow}V\overset{f}{\rightarrow}W$, g, f "--- линейные отображения
+
+$U, V, W$ "--- конечномерные.
+
+$\{u_{i}\}_{i = 1 \cdots n}, \{v_{i}\}_{i = 1 \cdots n}, \{w_{i}\}_{i = 1 \cdots n}$ "--- базисы $U, V, W$.
+
+$[f \circ g]_{\{u_i\}, \{w_i\}} = [f]_{\{v_i\}, \{w_i\}}[g]_{\{u_i\}, \{v_i\}}$
+\end{theorem}
+
+\begin{proof}
+$$A = (a_{ij}) = [f], B = (b_{js}) = [g]$$
+$$C = (c_{is}) = [f \circ g] $$
+$$C = m \times k$$
+$$(f \circ g)(u_{s}) = f(g(u_s)) = f(\sum_{j = 1}^{n}b_{js}v_j) = \sum_{j = 1}^{n}b_{js}f(v_j) = $$
+$$ = \sum_{j = 1}^{n}b_{js}\sum_{i = 1}^{k}a_{ij}w_i = \sum_{i = 1}^k(\sum_{j = 1}^{n}b_{js}a_{ij}) w_{i} = \sum_{i = 1}^{k}(\underbrace{\sum_{j = 1}^{n}a_{ij}b_{js}}_{c_{is}})w_i$$
+$$\Ra c_{is} = \sum_{j = 1}^{n}a_{ij}b_{js} \Ra C = AB$$
+\end{proof}
+
+\subsection{Преобразование матрицы линейного отображения при замене базисов}
+
+\begin{theorem}
+$U, V$ "--- конечномерные векторные пространства, $f: U \to V$ "--- линейное отображение.
+
+$\{u_1, \cdots, u_m\}, \{u'_1, \cdots, u'_m\}$  "--- базисы U.
+
+$\{v_1, \cdots, v_m\}, \{v'_1, \cdots, v'_m\}$  "--- базисы V.
+
+$C$ "--- матрица перехода от $\{u_j\}$ к $\{u'_j\}$
+
+$D$ "--- матрица перехода от $\{v_i\}$ к $\{v'_i\}$
+
+$A$ "--- матрица f в базисах $\{u_j\}$, $\{v_i\}$
+
+$A'$ "--- матрица f в базисах $\{u'_j\}$, $\{v'_i\}$
+
+Тогда $A' = D^{-1}AC$
+
+\end{theorem}
+
+\begin{Rem}
+$$\dim U = m, \dim V = n$$
+$$A, A' \in M(n, m, K)$$
+$$C \in M(m, m, K)$$
+$$D \in M(n, n, K)$$
+\end{Rem}
+\begin{proof}
+$A = (a_{ij}), A'=(a'_{ij}), C = (c_{js})$
+
+$D^{-1}$ "--- матрица перехода от $\{v_{r}'\}$ к $\{v_r\}$.
+
+$D^{-1}=(\check{d_{ri}})$
+
+$$f(u'_{s}) = \sum_{r}a'_{rs}v'_r$$
+$$f(u'_s) = f(\sum_{j = 1}^{m}c_{js}u_j) = \sum_{j = 1}^{m}c_{js}f(u_j) = $$
+$$=\sum_{j = 1}^{m}c_{js}\sum_{i = 1}^{n}a_{ij}v_i = \sum_{j = 1}^{m}c_{js}\sum_{i = 1}^{n}a_{ij}\sum_{r = 1}^{n}\check{d_{ri}} v_r' =$$
+$$=\sum_{r = 1}^{n}(\sum_{j = 1}^{m}\sum_{i = 1}^{n}c_{js}a_{ij}\check{d_{ri}})v_{r}'
+=\sum_{r = 1}^{n}(\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js})v_{r}' $$
+$$ (\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js}) = a'_{rs}$$
+$$(A')_{rs} = a'_{rs} = (\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js}) = 
+(\sum_{j = 1}^{m}(D^{-1}A)_{rj}c_{js})$$
+$$ = (D^{-1}AC)_{rs} \Ra A' = D^{-1}AC$$
+\end{proof}
+
+\begin{theorem}
+$U, V$ "--- конечномерные векторные пространства над K.
+
+$\dim U = m, \dim V = n$
+
+$f: U \to V$ "--- линейное отображение.
+
+Тогда существуют базисы $U$ и $V\colon [f] = 
+\begin{pmatrix}
+E_r&0\\
+0&0\\
+\end{pmatrix}$
+
+$E_r$ "--- единичная матрица размера r.
+\end{theorem}
+
+\begin{proof}
+Пусть $\dim ker(f) = m - r$ для некоторого $0 \le r \le m, (r = m - \dim(ker(f)))$
+
+$u_{r + 1}, \cdots, u_{m}$ "--- базис $ker(f)$
+
+Дополним до базисы U: $u_1, \cdots, u_r, \underbrace{u_{r + 1}, \cdots, u_{m}}_{\text{базис ker(f)}}$
+
+$ker(f) \subset U$
+
+$i = 1, \cdots, r, v_{i} = f(u_i)$
+Утверждаем, что $v_i$ "--- линейно независимые.
+$$0 = \sum_{i = 1}^{r}\alpha_{i}v_{i} = \sum_{i = 1}^{r} \alpha_{i}f(u_{i})= f(\sum_{i = 1}^{r}\alpha_{i}u_{i})$$
+$$\sum_{i = 1}^{r}\alpha_{i}u_{i} \in ker(f) \Ra \sum_{i = 1}^{r}\alpha_{i}u_{i} = \sum_{i = r + 1}^{m}\beta_i u_i$$
+$$\sum_{i = 1}^{r}\alpha_{i}u_{i} - \sum_{i = r + 1}^{m}\beta_{i}u_{i} = 0$$
+$u_1, \cdots, u_m$ "--- базисы U $\Ra \alpha_i \beta_{i} = 0 \Ra f(u_i)$ "--- линейно независимы.
+
+$\Ra v_1, \cdots, v_{r}$ "--- линейно независимы.
+
+Дополним до базисы V:
+$$v_{1}, \cdots, v_{r}, v_{r + 1}, \cdots, v_{n}$$
+$$1 \le j \le r, f(u_{j}) = v_{j}$$
+$j$-ый столбец [f]: $\begin{pmatrix} 0\\0\\1\\0\\0\\ \end{pmatrix}$                            
+$$v_{j} = 0v_{1} + \cdots + 0v_{j - 1} + 1v_{j} + 0 \cdots$$
+$$r < j \le m, f(u_{j}) = 0 = 0 v_1 + \cdots + 0v_n $$
+$\Ra j$-ый столбец $[f] = \begin{pmatrix} 0\\ 0\\ 0\\ \end{pmatrix}$
+
+$$\Ra [f] = 
+\begin{pmatrix}
+E_r&0\\
+0&0\\
+\end{pmatrix}$$
+\end{proof}
+
+\begin{conseq}
+\begin{enumerate}
+\item $A \in M(n, m, K)$, тогда существуют обратимые матрицы $C \in M(m, m, K), D \in M(n, n, K)$
+
+$D^{-1}AC = 
+\begin{pmatrix}
+E_r&0\\
+0&0\\
+\end{pmatrix}$
+
+$$U = K^{m}$$
+$$V = K^n$$
+$$f\colon U \to V$$
+$$x \to Ax$$
+\item $U, V$ "--- векторные конечномерные пространства над $K$.
+$f \colon U \to V$ "--- линейное отображение. 
+$$\dim Im(f) + \dim ker(f) = \dim U$$
+\end{enumerate}
+\end{conseq}
+\begin{proof}
+В обозначениях из доказательства теоремы $\dim(ker(f)) = m - r$
+$$Im(f) = \{f(u)\colon u \in U\} = \{f(\sum_{j = 1}^{m})|\alpha_{i} \in K\} =$$
+$$= \{\sum_{j = 1}^{m}\alpha_{i}f(u_j)| \alpha_j \in K\} = \{\sum_{j = 1}^{r}\alpha_{j}f(u_j)|\alpha_{j} \in K\} $$
+$$\Ra Im(f) = <f(u_1), \cdots, f(u_r)> = <v_1, \cdots, v_r>$$
+Доказываем линейную независимость $v_1, \cdots, v_r$.
+
+$v_1, \cdots, v_r$ "--- базисы $Im(f)$.
+$\dim Im(f) = r$
+$$\dim Im(f) + \dim ker(f) = r + m - r = m = \dim U$$
+\end{proof}
