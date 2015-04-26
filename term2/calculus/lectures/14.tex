@@ -150,32 +150,29 @@
 \end{Rem}
 
 \begin{proof}
-	\begin{enumerate}
-	\item
-		$A = \d_a f$. Выберем $\lambda\colon 4\lambda \|A^{-1}\| = 1$.
-		В качестве $U$ возьмём шар с центром в $a$, что
-		\[ \forall x \in U, \|\d_x f - \d_a f\| \le 2\lambda \]
-		\begin{description}
-		\item[Шаг 1:]
-			Докажем, что $f$ инъективна на $U$.
-			Возьмём две точки $x, x + h \in U$.
-			Покажем, что значения $f(x)$ и $f(x + h)$ различны.
-			В шаре содержится отрезок $[x, x + h]$.
-			\begin{gather*}
-				F\colon [0,1] \ra \R^n; F(t) = f(x+th) - tAh \\
-				F'(t) = \d_{x+th} f(h) - Ah \\
-				\|F(1) - F(0)\| \le \|F'(t)\| = \| \d_{x+th} f(h) - Ah\| \le \quad \text{при некотором $t$ по теореме Лагранжа} \\
-				\le \underbrace{\|\d_{x+th} f - A\|}_{x + th \in U} \|h\| < 2\lambda \|h\| \\
-				\begin{aligned}
-					F(0) &= f(x) \\
-					F(1) &= f(x + th) - Ah
-				\end{aligned}\\
-				\|f(x + th) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
-				\|f(x + th) - f(x) \| = \|f(x+th) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
-				\ge \|Ah\| - \frac{\|Ah\|}2 = \frac{\|Ah\|}2 \\
-				f(x+h) = f(x) \Ra 0 \ge \frac{\|Ah\|}2 \Ra \|Ah\| = 0 \Ra h = 0
-			\end{gather*}
-			Таким образом, $f(x+h) \ne f(x)$.
-		\end{description}
-	\end{enumerate}
-\end{proof}
+	$A = \d_a f$. Выберем $\lambda\colon 4\lambda \|A^{-1}\| = 1$.
+	В качестве $U$ возьмём шар с центром в $a$, что
+	\[ \forall x \in U, \|\d_x f - \d_a f\| \le 2\lambda \]
+	\begin{description}
+	\item[Шаг 1:]
+		Докажем, что $f$ инъективна на $U$.
+		Возьмём две точки $x, x + h \in U$.
+		Покажем, что значения $f(x)$ и $f(x + h)$ различны.
+		В шаре содержится отрезок $[x, x + h]$.
+		\begin{gather*}
+			F\colon [0,1] \ra \R^n; F(t) = f(x+th) - tAh \\
+			F'(t) = \d_{x+th} f(h) - Ah \\
+			\|F(1) - F(0)\| \le \|F'(t)\| = \| \d_{x+th} f(h) - Ah\| \le \quad \text{при некотором $t$ по теореме Лагранжа} \\
+			\le \underbrace{\|\d_{x+th} f - A\|}_{x + th \in U} \|h\| < 2\lambda \|h\| \\
+			\begin{aligned}
+				F(0) &= f(x) \\
+				F(1) &= f(x + th) - Ah
+			\end{aligned}\\
+			\|f(x + th) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
+			\|f(x + th) - f(x) \| = \|f(x+th) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
+			\ge \|Ah\| - \frac{\|Ah\|}2 = \frac{\|Ah\|}2 \\
+			f(x+h) = f(x) \Ra 0 \ge \frac{\|Ah\|}2 \Ra \|Ah\| = 0 \Ra h = 0
+		\end{gather*}
+		Таким образом, $f(x+h) \ne f(x)$.
+%%	\end{description}
+%%\end{proof}
