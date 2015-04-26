@@ -43,4 +43,119 @@ rk A "--- ранг A, rank.
 У обычного ранга $A \sim A^{T}$.
 
 \end{enumerate}
+
+\begin{enumerate}
+\item Ранг по строкам не меняется при элементарных преобразованиях.
+$$A = \begin{pmatrix}
+A_1\\                                         
+A_2\\
+\cdots\\
+A_n\\
+\end{pmatrix}$$
+
+$A_1,\cdots, A_n$ "--- строки.
+
+$$dim<A_1, \cdots, A_n>$$ 
+Пространство $<A_1, \cdots, A_n>$ не меняется при элементарных преобразованиях.
+
+\begin{enumerate}
+\item $A_i \lra A_j$ (Поменять две строки местами).
+\item $A_i \ra cA_i$ (Домножить строчку на константу).
+\item $A_1 \ra A_i + \lambda A_j$  (Прибвить к строке другую строчку).
+      \begin{proof}
+      $$v = \sum_{k = 1}^{n} c_k A_k = \sum_{k \ne i, j}c_kA_k + c_iA_i + c_jA_j = $$  
+      $$= \sum_{k \ne i, j}c_kA_k + c_i(A_i + \lambda A_j) + (c_j + c_i\lambda)A_j$$
+      \end{proof}
+\end{enumerate}
+\item Ранг не меняестя при элементарных преобразованиях. 
+Подробно было доказано в книге Боревича "определители и матрицы" страница 67.
+\item  
+Строковый ранг и обычный совпадают. 
+
+Любую матрицу можно привести к степенчитаму виду.
+$$ 
+A \ra
+\begin{pmatrix}
+1&0&x&x&0&x&0&\cdots&x\\
+0&1&x&x&0&x&0&\cdots&x\\
+0&0&0&0&1&x&0&\cdots&x\\
+\cdot&\cdot&\cdot&\cdot&\cdot&\cdot&\cdot&\cdot\\
+0&0&0&0&0&0&0&\cdots&0\\
+\end{pmatrix} = B
+$$
+
+Достаточно показать, что строковый ранг B и ранг B совпадают.
+
+В B r ненулевых строк. Строковый ранг $\le r$.
+
+$$0 = \lambda_1 B_1 + \cdots + \lambda_rB_r = (x, \lambda_1, x, x, \lambda_2, \cdots, \lambda_r) \Ra \lambda_1 = \cdots = \lambda_r = 0$$
+$$\Ra dim<B_1, \cdots, B_r, 0, \cdots, 0> = \dim <B_1, \cdots, B_r> = r$$
+
+$$rk B \ge r$$
+
+Выбираем строки $1 \cdots r$, и соответствующие им столбцы. 
+
+$$
+\begin{bmatrix}
+1&\cdots&0\\
+\cdot&\cdot&\cdot\\
+0&\cdots&1\\
+\end{bmatrix} = 1 \ne 0
+$$
+
+Если $min\{$число строк B, число столбцов B$\} = r$, тогда ранг, очевидно, равен r.
+
+Если $min\{$число строк B, число столбцов B$\} > r \Ra$ любая квадратная 
+подматрица B размера r + 1 содержит 0 строку $\Ra$ все миноры размера $r + 1$ равны 0.
+$\Ra rk B = r \Ra$ строковой и обычный ранги совпадают. 
+
+\item столбцовый ранг A = строковой ранг $А^T$ = ранг $A^T$ = ранг A = строковой ранг A.
+\end{enumerate}
 \end{proof}
+
+\begin{conseq}
+Строковой ранг не меняется при элементарных преобразованиях столбцов. 
+\end{conseq}
+
+\begin{Rem}
+Из доказательства следует, что rk A "--- число ненулевых  строк после приведения
+к ступенчатому виду. 
+\end{Rem}
+
+\begin{Rem}
+$A \in M(n, m, k)$
+
+\begin{alignat*}{2}
+f\colon& K^m \to K^n\\
+       & x \to Ax\\
+\end{alignat*}
+
+
+$rk A = \dim \Im f$
+$$A = (A_1, \cdots, A_m), A_i \text{--- столбцы}$$
+
+$$Im f = \{Ax| x \in K^{m} \} = \{A \begin{pmatrix}x_1\\ \cdots\\ x_m\\ \end{pmatrix} \colon x_i \in K \} = $$
+$$= \{A_1 x_1 + \cdots + A_m x_m| x_i \in K\} = $$
+$$= \{x_1 A_1 + \cdots + x_m A_m| x_i \in K\} = <A_1, \cdots, A_m> $$
+$\dim \Im f = $ столбцовый ранг A = rk A.
+\end{Rem}
+
+\begin{Def}
+U, V "--- конечномерные векторные пространства над K.
+
+$f \colon U \to V$ f "--- линейное преобразование.
+
+$rk f = \dim Im f$
+
+$rk f = rk[f]_{\{u_1, \cdots, u_m\}, \{v_1, \cdots, v_n\}}$ 
+\end{Def}
+
+\begin{conseq}
+$$
+rk \begin{pmatrix} 1 & *\\ 0 & C\\ \end{pmatrix} = 1 + rk C
+$$
+
+$$
+rk \begin{pmatrix} 1 & 0\\ * & C\\ \end{pmatrix} = 1 + rk C
+$$
+\end{conseq}
