@@ -1,500 +1,456 @@
 ﻿\section{Линейные отображения}
+
 \begin{Def}
-$U, V$ "--- векторное пространство над $K$.
-
-$f\colon U \to V$ называется линейным отображением, если $\forall u_1, u_2 \in U, c_1, c_2 \in K$
-
-$f(c_1u_1 + c_2u_2) = c_1f(u_1) + c_2f(u_2)$ "--- линейность.
+	$U$, $V$ "--- векторные пространства над $K$.
+	$f\colon U \to V$ называется линейным отображением, если
+	\[ \forall u_1, u_2 \in U, c_1, c_2 \in K, f(c_1u_1 + c_2u_2) = c_1f(u_1) + c_2f(u_2) \]
+	"--- линейность.
 \end{Def}
+
 \begin{Rem}
-$\forall u_1, u_2 \in U$
-
-$f(u_1 + u_2) = f(u_1) + f(u_2)$ "--- адитивность. 
-
-$\forall c \in K \forall u \in U, f(cU) = cf(U)$ "--- однородность степени 1.
+	\begin{itemize}
+		\item $\forall u_1, u_2 \in U, f(u_1 + u_2) = f(u_1) + f(u_2)$ "--- адитивность.
+		\item $\forall c \in K, \forall u \in U, f(cU) = cf(U)$ "--- однородность степени 1.
+	\end{itemize}
 \end{Rem}
 
 \begin{Def}
-$f \colon U \to V, f$ "--- линейное отображение. 
-
-$f(U) = Im(F)$ "--- образ f.
-
-$f^{-1}(0_v) = \{u \in U\colon f(u) = 0_v\} = ker(f)$ "--- ядро f.
+	$f \colon U \to V$ "--- линейное отображение.
+	$f(U) = \Im(F)$ "--- образ $f$.
+	\[ f^{-1}(0_v) = \{u \in U \mid f(u) = 0_v\} = \ker f \]
+	"--- ядро $f$.
 \end{Def}
 
-\textbf{Упражнение:} 
-$Im(f) \subset V$
-
-$ker(f) \subset U$
+\textbf{Упражнение:}
+\[ \Im f \subset V \quad \ker f \subset U \]
 
 \begin{conseq}{Свойства линейного отображения}
-$$f(0_u) = 0_v$$
-
-$$f(0_k u) = 0_kf(u) = 0_v$$
-
-Ядро не пусто (всегда содержит ноль).
+	\begin{enumerate}
+		\item $f(0_u) = 0_v$
+		\item $f(0_k u) = 0_kf(u) = 0_v$: ядро не пусто (всегда содержит ноль).
+	\end{enumerate}
 \end{conseq}
 
 \begin{lemma}
-$f\colon u \to v, f$ "--- линейное отображение.
-
-$f$ "--- инъективно $\Lra ker(f) = \{0_u\}$ 
+	$f\colon u \to v$ "--- линейное отображение.
+	\[ \text{$f$ "--- инъективно} \Lra \ker f = \{0_u\} \]
 \end{lemma}
 
 \begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		$f$ "--- инъективно.
+		\[ \forall x \in V \left|f^{-1}(V)\right| \le 1 \Ra |f^{-1}(0)| \le 1 \]
+		но $0 \subset f^{-1}(0) \Ra \ker f = \{0\}$
 
-$\Ra$
-
-$f$ "--- инъективно: $\forall x \in V |f^{-1}(V)| \le 1 \Ra 
-|f^{-1}(0)| \le 1$, но $0 \subset f^{-1}(0) \Ra ker(f) = \{0\}$
-
-$\La$
-$$u_1, u_2 \in U$$
-$$f(u_1) = f(u_2)$$
-$$f(u_1 - u_2) = f(u_1) - f(u_2) = 0 $$
-$$u_1 - u_2 \in ker(f) = \{0\} \Ra u_1 = u_2$$
-
-В силу произвольности $u_1$ и $u_2$, f "--- инъективно. 
+	\item[$\La$:]
+		\begin{gather*}
+			u_1, u_2 \in U: f(u_1) = f(u_2) \\
+			f(u_1 - u_2) = f(u_1) - f(u_2) = 0 \\
+			u_1 - u_2 \in \ker f = \{0\} \Ra u_1 = u_2
+		\end{gather*}
+		В силу произвольности $u_1$ и $u_2$, $f$ инъективно.
+	\end{description}
 \end{proof}
 
 \begin{Def}
-U, V "--- векторные пространства над K.
-$f \colon U \to V$, f "--- изоморфизм, если
-\begin{enumerate}
-\item f "--- линейное отображение.
-\item f "--- биекция. 
-
-Говорим, что U и V изоморфны $U \cong V$.
-\end{enumerate}
+	$U$, $V$ "--- векторные пространства над $K$.
+	$f \colon U \to V$ "--- изоморфизм, если
+	\begin{enumerate}
+		\item $f$ "--- линейное отображение.
+		\item $f$ "--- биекция.
+	\end{enumerate}
+	Говорим, что $U$ и $V$ изоморфны: $U \cong V$.
 \end{Def}
 
 \begin{Rem}
-Линейное отображение $f:U \to V$ "--- изоморфизм, если 
-\begin{enumerate}
-\item $ker(f) = \{0\}$
-\item $Im(f) = f(U) = V$
-\end{enumerate}
+	Линейное отображение $f\colon U \to V$ "--- изоморфизм, если
+	\begin{enumerate}
+		\item $\ker f = \{0\}$
+		\item $\Im f = f(U) = V$
+	\end{enumerate}
 \end{Rem}
 
 \begin{Def}
-$U, V$ "--- векторное пространство.
-
-$Hom(U, V), \mathcal{L}(U, V)$ "--- пространство линейных отображений из U в V.
+	$U, V$ "--- векторное пространство.
+	$Hom(U, V)$, $\mathcal{L}(U, V)$ "--- пространство линейных отображений из $U$ в $V$.
 \end{Def}
 
 \begin{theorem}
-$\mathcal{L}(U, V)$ "--- векторное пространство над K/
-
-$f, g \in \mathcal{L}(U, V)$
-
-$u \in U, (f + g)(u) = f(u) + g(u)$
-
-$(\alpha f)(u) = \alpha f(u)$
-
-$f + g, \alpha f$ "--- линейные отображения.
+	$\mathcal{L}(U, V)$ "--- векторное пространство над $K$: \\
+	$f, g \in \mathcal{L}(U, V)$
+	\begin{gather*}
+		\forall u \in U, (f + g)(u) = f(u) + g(u) \\
+		(\alpha f)(u) = \alpha f(u)
+	\end{gather*}
+	$f + g, \alpha f$ "--- линейные отображения.
 \end{theorem}
 
 \begin{proof}
-$$(f + g)(\beta_{1}u_{1} + \beta_2u_{2}) = f(\beta_1 u_1 + \beta_{2}u_{2})+
-g(\beta_1u_1 + \beta_2u_2) =$$
-$$=\beta_1f(u_1) + \beta_2f(u_2) + \beta_1g(u_1) + \beta_2g(u_2) = $$
-$$=\beta_1(f(u_1) + g(u_1)) + \beta_{2}(f(u_2) + g(u_2)) =$$
-$$=\beta_1(f + g)(u_1) + \beta_2(f + g)(u_2) \Ra f + g \in \mathcal{L}(U, V)$$
+	\begin{alignat*}{2}
+		(f + g)(\beta_1u_1 + \beta_2u_2) &= f(\beta_1 u_1 + \beta_2u_2)+
+			g(\beta_1u_1 + \beta_2u_2) = \\
+		&=\beta_1f(u_1) + \beta_2f(u_2) + \beta_1g(u_1) + \beta_2g(u_2) = \\
+		&=\beta_1(f(u_1) + g(u_1)) + \beta_2(f(u_2) + g(u_2)) = \\
+		&=\beta_1(f + g)(u_1) + \beta_2(f + g)(u_2) \Ra f + g \in \mathcal{L}(U, V)
+	\end{alignat*}
 \end{proof}
 
 Когда два конечномерных векторных пространства изоморфны?
 \begin{lemma}
-$U \cong V, f \colon U \to V$ "--- изоморфизм.
-$\dim U < \infty$
-$u_1, \cdots, u_n$ "--- базис U, 
-тогда $f(u_1), \cdots, f(u_n)$ "--- базис V.
+	$U \cong V, f \colon U \to V$ "--- изоморфизм, $\dim U < \infty$, $u_1, \cdots, u_n$ "--- базис $U$.
+	Тогда $f(u_1), \dots, f(u_n)$ "--- базис $V$.
 \end{lemma}
 \begin{proof}
-$$\alpha_1 f(U_1) + \cdots + \alpha_nf(U_n) = 0$$
-$$f(\underbrace{\alpha_1 u_1 + \cdots + \alpha_nU_n}_{\in ker(f) = \{0\}}) = 0$$
+	\begin{gather*}
+		\alpha_1 f(u_1) + \dots + \alpha_nf(u_n) = 0 \\
+		f(\underbrace{\alpha_1 u_1 + \dots + \alpha_nu_n}_{\in\ker f = \{0\}}) = 0 \\
+	\end{gather*}
+	$\alpha_1u_1 + \dots + \alpha_nU_n = 0$ и $u_1, \dots, u_n$ "--- базис $U$, поэтому
+	\[ \alpha_1 = \dots = \alpha_n = 0 \]
+	откуда $f(u_1), \dots, f(u_n)$ "--- линейно независимы.
 
-$\alpha_1u_1 + \cdots + \alpha_nU_n = 0, u_1 + \cdots + u_n$ "--- базис U $\Ra \alpha_1 = \cdots = \alpha_n = 0$
-
-$\Ra f(u_1), \cdots, f(u_n)$ "--- линейно независимы.
-
-$v \in V$, так как f "--- сюръекция, то $\exists u \in U, f(u) = v$
-
-$$\exists \alpha_1, \cdots, \alpha_n \in  K, u = \alpha_1 u_1 + \cdots + \alpha_nu_n$$ 
-$$v = f(u) = \alpha_1f(u_1) + \cdots + \alpha_nf(u_n)$$
-Верно $\forall v \in V, f(u_1), \cdots, f(u_n)$ "--- семейство порождающих.
-
-$\Ra f(u_1), \cdots, f(u_n)$ "--- базис V.
+	Рассмотрим $v \in V$: так как $f$ "--- сюръекция, то $\exists u \in U, f(u) = v$.
+	Говорим, что $U$ и $V$ изоморфны $U \cong V$.
+	\begin{gather*}
+		\exists \alpha_1, \dots, \alpha_n \in  K, u = \alpha_1 u_1 + \dots + \alpha_nu_n \\
+		v = f(u) = \alpha_1f(u_1) + \dots + \alpha_nf(u_n) \\
+	\end{gather*}
+	Верно, что $\forall v \in V, f(u_1), \dots, f(u_n)$ "--- семейство порождающих.
+	Значит, $f(u_1), \dots, f(u_n)$ "--- базис V.
 \end{proof}
 
 \begin{conseq}
-U, V "--- векторное пространство над K, конечномерное. 
-
-$U \cong V \Lra \dim U = \dim V$
+	$U$, $V$ "--- векторное пространство над $K$, конечномерное.
+	\[ U \cong V \Lra \dim U = \dim V \]
 \end{conseq}
-
 \begin{proof}
-$\Ra$ базис в базис $\Ra \dim U = \dim V$
+	\begin{description}
+	\item[$\Ra$:]
+		Переводим базис в базис, получаем $\dim U = \dim V$.
 
-$\La$
+	\item[$\La$:]
+		$\dim U = \dim V$.
+		Рассмотрим функцию $f: U \to V$:
+		$u_1, \dots, u_n$ "--- базис $U$, $v_1, \dots, v_n$ "--- базис $V$.
+		\begin{gather*}
+			u = \alpha_1u_1 + \dots + \alpha_nu_n \\
+			f(u) = \alpha_1 v_1 + \cdots + \alpha_n v_n
+		\end{gather*}
+		$f$ "--- линейно (упражнение).
 
-$\dim U = \dim V$
+		Покажем, что $f$ сюръективно:
+		\begin{gather*}
+			\exists \alpha_1, \dots, \alpha_n\colon v = \alpha_1 v_1 + \dots + \alpha_n v_n \\
+			v = f(\alpha_1 u_1 + \dots + \alpha_n u_n) \\
+		\end{gather*}
+		$f$ "--- сюръективно.
 
-$f: U \to V$ 
-
-$u_1, \cdots, u_n$ "--- базис U.
-
-$v_1, \cdots, v_n$ "--- базис V.
-
-$u \in U$
-
-$$u = \alpha_1u_1 + \cdots + \alpha_nu_n$$
-$$f(u) = \alpha_1 v_1 + \cdots + \alpha_n v_n$$
-
-f "--- линейно(упражнение)
-
-f "--- сюръективно.
-
-$$v \in V$$
-$$\exists \alpha_1, \cdots, \alpha_n, v = \alpha_1 v_1 + \cdots + \alpha_n v_n$$
-$$v = f(\alpha_1 u_1 + \cdots + \alpha_n u_n)$$
-f "--- сюръективно.
-f "--- инъективно.
-
-$$u \in ker(f) = \alpha_1 u_1 + \cdots + \alpha_nu_n, f(u) = 0, 
-\alpha v_1 + \cdots + \alpha_nv_n = 0 $$
-$v_1, \cdots, v_n$ "--- базис V $\Ra \alpha_1 = \cdots = \alpha_n = 0$
-$\Ra ker(f) = \{0\} \Ra$ f "--- инъективно.
-
+		Покажем, что $f$ инъективно:
+		\[
+			u \in \ker f = \alpha_1 u_1 + \cdots + \alpha_nu_n, f(u) = 0,
+				\alpha v_1 + \cdots + \alpha_nv_n = 0 \\
+		\]
+		$v_1, \dots, v_n$ "--- базис $V$, значит $\alpha_1 = \dots = \alpha_n = 0$, откуда
+		$\ker f = \{0\}$, и $f$ "--- инъективно.
+	\end{description}
 \end{proof}
 
 \begin{conseq}
-$\dim U = n \Ra U \cong K^n$
-
-Фиксируем базис в $U\colon u_1 \cdots u_n$
-$$ u = \alpha_1 u_1 + \cdots + \alpha_n u_n \to 
-\begin{pmatrix}
-\alpha_1\\
-\vdots\\
-\alpha_n\\
-\end{pmatrix}$$
-
-Зависит от выбора базиса.
+	$\dim U = n \Ra U \cong K^n$
 \end{conseq}
+\begin{proof}
+	Фиксируем базис в $U$: $u_1, \dots, u_n$:
+	\[
+		u = \alpha_1 u_1 + \dots + \alpha_n u_n \to
+		\begin{pmatrix}
+			\alpha_1 \\
+			\vdots \\
+			\alpha_n \\
+		\end{pmatrix}
+	\]
+	Зависит от выбора базиса.
+\end{proof}
 
 \begin{Rem}
-В общем случае два векторных пространства изоморфны 
-$\Ra$ мощность их базисов совпадает. 
+	В общем случае, если два векторных пространства изоморфны, то мощность их базисов совпадает.
 \end{Rem}
 
 \begin{Rem}
-$U, V, \{u_{i}\}_{i \in I}$ "--- базис U.
-
-$f \in \mathcal{L}(U, V)$
-
-Тогда f полностью определяется своими значениями на базисных векторах.
-
-$f(u_i) i \in I$
-
-$u = \sum_{i \in I}\alpha_i u_i$, почти все $\alpha_i = 0$
-
-$f(u) = \sum_{i \in I}\alpha_if(u_i)$
+	$U$, $V$, $\{u_i\}_{i \in I}$ "--- базис $U$, $f \in \mathcal{L}(U, V)$.
+	Тогда $f$ полностью определяется своими значениями на базисных векторах:
+	\begin{align*}
+		u &= \sum_{i \in I} \alpha_i u_i \quad \text{почти все $\alpha_i = 0$} \\
+		f(u) &= \sum_{i \in I}\alpha_if(u_i)
+	\end{align*}
 \end{Rem}
 
 \begin{exmp}
-$$U = K^n, V = K^m$$
-$$A \in M(n, m, K)$$
-$$f \colon U \to V$$
-$$ u \to Au$$
+	$U = K^n$, $V = K^m$, $A \in M(n, m, K)$.
+	$f \colon U \to V; u \mapsto Au$.
+	$f$ "--- линейное отображение:
+	\[ A(\alpha_1 u_1 + \alpha_2 u_2) = \alpha_1Au_1 + \alpha_2 A u_2 \]
 
-f "--- линейное отображение $A(\alpha_1 u_1 + \alpha_2 u_2) = \alpha_1Au_1 + \alpha_2 A u_2$
-
-Общая ситуация $\dim U = m, \dim V = n$.
-
-Фиксируем $u_1, \cdots, u_m$ "--- базисы u, $v_1, \cdots, v_n$ "--- базисы V/
-
-\begin{Rem}
-Если U = V, то базисы могут быть различными.
-\end{Rem}
-
-$f \in \mathcal{L}(U,V)$
+	Общая ситуация $\dim U = m$, $\dim V = n$.
+	Фиксируем $u_1, \dots, u_m$ "--- базисы $U$, $v_1, \dots, v_n$ "--- базисы $V$
+	\begin{Rem}
+		Если $U = V$, то базисы могут быть различными.
+	\end{Rem}
+	\[ f \in \mathcal{L}(U,V) \]
 \end{exmp}
 
 \begin{Def}
-Матрицей f в базисах $\{u_1 \cdots, u_m\}, \{v_1, \cdots, v_n\}$
-называется следующая матрица $A \in M(n, m, K)$
-
-$$u_j, f(u_j) = \sum\alpha_{ij}v_i$$
-$$A = (\alpha_{ij})_{i = 1 \cdots n, j = 1 \cdots m}$$
+	Матрицей $f$ в базисах $\{u_1 \dots, u_m\}$, $\{v_1, \dots, v_n\}$ называется следующая матрица $A \in M(n, m, K)$:
+	\begin{gather*}
+		f(u_j) = \sum\alpha_{ij}v_i \\
+		A = (\alpha_{ij})_{i = 1..n, j = 1..m}
+	\end{gather*}
 \end{Def}
 
 
 \begin{exmp}
-$$\R^2$$
-Поворот на угол $\Phi$ вокруг начала координат "--- линейное отображение.
-
-$$u_1 = 
-\begin{pmatrix}
-1\\
-0\\
-\end{pmatrix}, u_2 = 
-\begin{pmatrix}
-0\\
-1\\
-\end{pmatrix}$$
-
-
-$$v_1 = 
-\begin{pmatrix}
-1\\
-0\\
-\end{pmatrix}, 
-v_2 = 
-\begin{pmatrix}
-0\\
-1\\
-\end{pmatrix}$$
-
-$$ 
-f(u_1) = 
-\begin{pmatrix}
-\cos \Phi\\
-\sin \Phi\\
-\end{pmatrix}
-$$
-
-$$ 
-f(u_2) = 
-\begin{pmatrix}
--\sin \Phi\\
-\cos \Phi\\
-\end{pmatrix}
-$$
-
-Матрица поворота на $\Phi$ в этих базисах 
-$$ 
-\begin{pmatrix}
-\cos \Phi & -\sin \Phi\\
-\sin \Phi & \cos \Phi\\
-\end{pmatrix}
-$$
+	$\R^2$.
+	Поворот на угол $\phi$ вокруг начала координат "--- линейное отображение.
+	\begin{gather*}
+		\begin{array}{cc}
+			u_1 = \begin{pmatrix}
+				1 \\
+				0 \\
+			\end{pmatrix}
+			&
+			u_2 = \begin{pmatrix}
+				0 \\
+				1 \\
+			\end{pmatrix}
+			\\
+			v_1 =
+			\begin{pmatrix}
+				1 \\
+				0 \\
+			\end{pmatrix}
+			&
+			v_2 =
+			\begin{pmatrix}
+				0 \\
+				1 \\
+			\end{pmatrix}
+		\end{array} \\
+		\begin{array}{cc}
+			f(u_1) = \begin{pmatrix}
+				\cos \phi \\
+				\sin \phi \\
+			\end{pmatrix}
+			&
+			f(u_2) = \begin{pmatrix}
+				-\sin \Phi \\
+				\cos \Phi \\
+			\end{pmatrix}
+		\end{array}
+	\end{gather*}
+	Матрица поворота на $\Phi$ в этих базисах
+	\[
+		\begin{pmatrix}
+			\cos \Phi & -\sin \Phi \\
+			\sin \Phi & \cos \Phi \\
+		\end{pmatrix}
+	\]
 \end{exmp}
+
 \begin{exmp}
-$$U = \{f \in \R[x], deg f \le n\}$$
-$$\dim_{\R}U = n + 1$$
-$$\frac{d}{dx}\colon U \to V = \{f \in \R[x]\colon \deg f \le n - 1\}$$
-$$u_0 = 1, \cdots, u_n = x^n$$
-$$v_0 = 1, \cdots, v_{n - 1} = x^{n - 1}$$
-$$
-\begin{pmatrix}
-0&1&0&\cdots&0\\
-0&0&2&\cdots&0\\
-\cdots&\cdots&\cdots&\cdots&\cdots\\
-0&0&0&\cdots&n\\
-\end{pmatrix} 
-$$
-$$A = [f]_{\{u_1, \cdots, u_m\}, \{v_1, \cdots, v_n\}}$$
+	$U = \{f \in \R[x] \mid \deg f \le n\}$, $\dim_{\R}U = n + 1$.
+	\begin{gather*}
+		\frac{\d}{\d x}\colon U \to V = \{f \in \R[x] \mid \deg f \le n - 1\} \\
+		u_0 = 1, \dots, u_n = x^n \\
+		v_0 = 1, \dots, v_{n - 1} = x^{n - 1} \\
+		\begin{pmatrix}
+			0 & 1 & 0 & \cdots & 0 \\
+			0 & 0 & 2 & \cdots & 0 \\
+			\vdots&\vdots&\vdots&\ddots&\vdots \\
+			0 & 0 & 0 & \cdots & n \\
+		\end{pmatrix} \\
+		A = [f]_{\{u_1, \cdots, u_m\}, \{v_1, \cdots, v_n\}}
+	\end{gather*}
 \end{exmp}
 
 \begin{Rem}
-$$u \in U, u \to 
-\begin{pmatrix}
-\beta_1\\
-\vdots\\
-\beta_m\\
-\end{pmatrix}, u = \sum_{j = 1}^{m}\beta_{j}u_{j}$$
-
-$$f(u) = \sum_{i = 1}^{n}\gamma_{i}v_{i}, f(u) \to 
-\begin{pmatrix}
-\gamma_1\\
-\vdots\\
-\gamma_n\\
-\end{pmatrix}$$
-
-$$
-\begin{pmatrix}
-\gamma_1\\
-\vdots\\
-\gamma_n\\
-\end{pmatrix}
-= A
-\begin{pmatrix}
-\beta_1\\
-\vdots\\
-\beta_m\\
-\end{pmatrix} 
-$$
-
-$$f(u) = f(\sum_{j = 1}^{n}\beta_ju_i) = \sum_{j = 1}^{n}\beta_{j}f(u_j) = $$
-$$= \sum_{j = 1}^{m}\beta_j \sum_{i = 1}^{n}\alpha_{ij}v_i = \sum_{i = 1}^{n}(\sum_{j = 1}^{m}\alpha_{ij}\beta_{j}) v_{i}$$
-
-$$\gamma_{i} = \sum_{j = 1}^{m}\alpha_{ij}\beta_{j}$$
+	\begin{gather*}
+		u \in U, u \to \begin{pmatrix}
+			\beta_1 \\
+			\vdots \\
+			\beta_m \\
+		\end{pmatrix}, u = \sum_{j = 1}^m\beta_ju_j \\
+		f(u) = \sum_{i = 1}^n\gamma_iv_i, f(u) \to \begin{pmatrix}
+			\gamma_1 \\
+			\vdots \\
+			\gamma_n \\
+		\end{pmatrix} \\
+		\begin{pmatrix}
+			\gamma_1 \\
+			\vdots \\
+			\gamma_n \\
+		\end{pmatrix}
+		= A
+		\begin{pmatrix}
+			\beta_1 \\
+			\vdots \\
+			\beta_m \\
+		\end{pmatrix} \\
+		f(u) = f\left(\sum_{j = 1}^n\beta_ju_i\right) = \sum_{j = 1}^n\beta_jf(u_j)
+		= \sum_{j = 1}^m\beta_j \sum_{i = 1}^n\alpha_{ij}v_i = \sum_{i = 1}^n\left(\sum_{j = 1}^m\alpha_{ij}\beta_j\right) v_i \\
+		\gamma_i = \sum_{j = 1}^m\alpha_{ij}\beta_j \\
+	\end{gather*}
 \end{Rem}
-$$U, V \dim U = m < \infty, \dim V = n < \infty$$
 
-Фиксируем базис 
-$\mathcal{L}(U, V) \to M(n, m, K)$
-
-$f \to [f]_{\{u_{j}\}, \{v_{i}\}}$ "--- линейное отображение.
-
-$$[f_1 + f_2] = [f_1] + [f_2]$$
-$$[\alpha f] = \alpha[f]$$
- 
-$j$-ый столбец $[f_1 + f_2]$ координаты разложения $(f_1 + f_2)(u_j)$ в базисе $v_1, \cdots, v_n$
-
-$$f_1(u_j) + f_2(u_j)$$
-$$A = (\alpha_{ij}) $$
-                       
-Определим $f \colon f(u_j) = \sum_{i = 1}^{n}\alpha_{ij}v_i$
-
-$f \to A$
-
-Нулевой матрице соответствует нулевое отображение $f \colon U \to V$, $u \to 0_v$
-
+$U$, $V$, $\dim U = m < \infty$, $\dim V = n < \infty$.
+Фиксируем базис. Хотим рассмотреть переход $\mathcal{L}(U, V) \to M(n, m, K)$.
+$f \to [f]_{\{u_j\}, \{v_i\}}$ "--- линейное отображение.
+\begin{gather*}
+	[f_1 + f_2] = [f_1] + [f_2] \\
+	[\alpha f] = \alpha[f] \\
+\end{gather*}
+$j$-ый столбец $[f_1 + f_2]$ "--- координаты разложения $(f_1 + f_2)(u_j)$ в базисе $v_1, \dots, v_n$.
+\begin{gather*}
+	f_1(u_j) + f_2(u_j) \\
+	A = (\alpha_{ij}) \\
+	f(u_j) = \sum_{i = 1}^n\alpha_{ij}v_i
+\end{gather*}
+Получили отображение $f \to A$.
+Нулевой матрице соответствует нулевое отображение $f\colon U \to V\colon u \mapsto 0_v$.
 \begin{conseq}
-$$\mathcal{L}(U, V) \cong M(n, m, K)$$
+	\[ \mathcal{L}(U, V) \cong M(n, m, K) \]
 \end{conseq}
 
 \subsection{Матрица композиции линейных отображений}
+
 \begin{theorem}
-$U\overset{g}{\rightarrow}V\overset{f}{\rightarrow}W$, g, f "--- линейные отображения
-
-$U, V, W$ "--- конечномерные.
-
-$\{u_{i}\}_{i = 1 \cdots n}, \{v_{i}\}_{i = 1 \cdots n}, \{w_{i}\}_{i = 1 \cdots n}$ "--- базисы $U, V, W$.
-
-$[f \circ g]_{\{u_i\}, \{w_i\}} = [f]_{\{v_i\}, \{w_i\}}[g]_{\{u_i\}, \{v_i\}}$
+	$U \stackrel{g}{\to} V \stackrel{f}{\to}W$, $g$, $f$ "--- линейные отображения,
+	$U$, $V$, $W$ "--- конечномерные.
+	$\{u_i\}_{i=1..m}$, $\{v_i\}_{i=1..n}, \{w_i\}_{i = 1..k}$ "--- базисы $U$, $V$, $W$.
+	\[ [f \circ g]_{\{u_i\}, \{w_i\}} = [f]_{\{v_i\}, \{w_i\}}[g]_{\{u_i\}, \{v_i\}} \]
 \end{theorem}
 
 \begin{proof}
-$$A = (a_{ij}) = [f], B = (b_{js}) = [g]$$
-$$C = (c_{is}) = [f \circ g] $$
-$$C = m \times k$$
-$$(f \circ g)(u_{s}) = f(g(u_s)) = f(\sum_{j = 1}^{n}b_{js}v_j) = \sum_{j = 1}^{n}b_{js}f(v_j) = $$
-$$ = \sum_{j = 1}^{n}b_{js}\sum_{i = 1}^{k}a_{ij}w_i = \sum_{i = 1}^k(\sum_{j = 1}^{n}b_{js}a_{ij}) w_{i} = \sum_{i = 1}^{k}(\underbrace{\sum_{j = 1}^{n}a_{ij}b_{js}}_{c_{is}})w_i$$
-$$\Ra c_{is} = \sum_{j = 1}^{n}a_{ij}b_{js} \Ra C = AB$$
+	\begin{gather*}
+		A = (a_{ij}) = [f], B = (b_{js}) = [g] \\
+		C = (c_{is}) = [f \circ g] \\
+		C = m \times k \\
+		(f \circ g)(u_s) = f(g(u_s)) = f\left(\sum_{j = 1}^nb_{js}v_j\right) = \sum_{j = 1}^nb_{js}f(v_j) = \\
+		= \sum_{j = 1}^nb_{js}\sum_{i = 1}^ka_{ij}w_i = \sum_{i = 1}^k\left(\sum_{j = 1}^nb_{js}a_{ij}\right) w_i
+			= \sum_{i = 1}^k\underbrace{\left(\sum_{j = 1}^na_{ij}b_{js}\right)}_{c_{is}}w_i \\
+		\Ra c_{is} = \sum_{j = 1}^na_{ij}b_{js} \Ra C = AB
+	\end{gather*}
 \end{proof}
 
 \subsection{Преобразование матрицы линейного отображения при замене базисов}
 
 \begin{theorem}
-$U, V$ "--- конечномерные векторные пространства, $f: U \to V$ "--- линейное отображение.
-
-$\{u_1, \cdots, u_m\}, \{u'_1, \cdots, u'_m\}$  "--- базисы U.
-
-$\{v_1, \cdots, v_m\}, \{v'_1, \cdots, v'_m\}$  "--- базисы V.
-
-$C$ "--- матрица перехода от $\{u_j\}$ к $\{u'_j\}$
-
-$D$ "--- матрица перехода от $\{v_i\}$ к $\{v'_i\}$
-
-$A$ "--- матрица f в базисах $\{u_j\}$, $\{v_i\}$
-
-$A'$ "--- матрица f в базисах $\{u'_j\}$, $\{v'_i\}$
-
-Тогда $A' = D^{-1}AC$
-
+	$U$, $V$ "--- конечномерные векторные пространства, $f\colon U \to V$ "--- линейное отображение.
+	$\{u_1, \dots, u_m\}$, $\{u'_1, \dots, u'_m\}$  "--- базисы $U$,
+	$\{v_1, \dots, v_m\}$, $\{v'_1, \dots, v'_m\}$  "--- базисы $V$.
+	$C$ "--- матрица перехода от $\{u_j\}$ к $\{u'_j\}$,
+	$D$ "--- матрица перехода от $\{v_i\}$ к $\{v'_i\}$,
+	$A$ "--- матрица $f$ в базисах $\{u_j\}$, $\{v_i\}$,
+	$A'$ "--- матрица $f$ в базисах $\{u'_j\}$, $\{v'_i\}$.
+	Тогда
+	\[ A' = D^{-1}AC \]
 \end{theorem}
-
 \begin{Rem}
-$$\dim U = m, \dim V = n$$
-$$A, A' \in M(n, m, K)$$
-$$C \in M(m, m, K)$$
-$$D \in M(n, n, K)$$
+	$\dim U = m$, $\dim V = n$.
+	$A, A' \in M(n, m, K)$,
+	$C \in M(m, m, K)$,
+	$D \in M(n, n, K)$.
 \end{Rem}
 \begin{proof}
-$A = (a_{ij}), A'=(a'_{ij}), C = (c_{js})$
-
-$D^{-1}$ "--- матрица перехода от $\{v_{r}'\}$ к $\{v_r\}$.
-
-$D^{-1}=(\check{d_{ri}})$
-
-$$f(u'_{s}) = \sum_{r}a'_{rs}v'_r$$
-$$f(u'_s) = f(\sum_{j = 1}^{m}c_{js}u_j) = \sum_{j = 1}^{m}c_{js}f(u_j) = $$
-$$=\sum_{j = 1}^{m}c_{js}\sum_{i = 1}^{n}a_{ij}v_i = \sum_{j = 1}^{m}c_{js}\sum_{i = 1}^{n}a_{ij}\sum_{r = 1}^{n}\check{d_{ri}} v_r' =$$
-$$=\sum_{r = 1}^{n}(\sum_{j = 1}^{m}\sum_{i = 1}^{n}c_{js}a_{ij}\check{d_{ri}})v_{r}'
-=\sum_{r = 1}^{n}(\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js})v_{r}' $$
-$$ (\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js}) = a'_{rs}$$
-$$(A')_{rs} = a'_{rs} = (\sum_{j = 1}^{m}\sum_{i = 1}^{n}(\check{d_{ri}}a_{ij})c_{js}) = 
-(\sum_{j = 1}^{m}(D^{-1}A)_{rj}c_{js})$$
-$$ = (D^{-1}AC)_{rs} \Ra A' = D^{-1}AC$$
+	$A = (a_{ij})$, $A'=(a'_{ij})$, $C = (c_{js})$.
+	$D^{-1}$ "--- матрица перехода от $\{v_r'\}$ к $\{v_r\}$, $D^{-1}=(\check d_{ri})$.
+	\begin{gather*}
+		f(u'_s) = \sum_ra'_{rs}v'_r \\
+		f(u'_s) = f(\sum_{j=1}^m c_{js}u_j) = \sum_{j=1}^m c_{js}f(u_j)
+			= \sum_{j=1}^m c_{js} \sum_{i=1}^n a_{ij}v_i = \sum_{j=1}^m c_{js}\sum_{i=1}^n a_{ij} \sum_{r=1}^n\check d_{ri} v_r' = \\
+		= \sum_{r=1}^n \left(\sum_{j=1}^m \sum_{i=1}^n c_{js}a_{ij}\check d_{ri}\right) v_r'
+			= \sum_{r=1}^n \left(\sum_{j=1}^m \sum_{i=1}^n \check d_{ri}a_{ij}c_{js}\right)v_r' \\
+		\sum_{j=1}^m \sum_{i=1}^n \check d_{ri}a_{ij} c_{js} = a'_{rs} \\
+		(A')_{rs} = a'_{rs} = \left(\sum_{j=1}^m \sum_{i=1}^n (\check d_{ri}a_{ij})c_{js}\right)
+			= \sum_{j = 1}^m(D^{-1}A)_{rj}c_{js} = (D^{-1}AC)_{rs} \Ra A' = D^{-1}AC
+	\end{gather*}
 \end{proof}
 
 \begin{theorem}
-$U, V$ "--- конечномерные векторные пространства над K.
-
-$\dim U = m, \dim V = n$
-
-$f: U \to V$ "--- линейное отображение.
-
-Тогда существуют базисы $U$ и $V\colon [f] = 
-\begin{pmatrix}
-E_r&0\\
-0&0\\
-\end{pmatrix}$
-
-$E_r$ "--- единичная матрица размера r.
+	$U, V$ "--- конечномерные векторные пространства над $K$, $\dim U = m$, $\dim V = n$,
+	$f\colon U \to V$ "--- линейное отображение.
+	Тогда существуют базисы $U$ и $V$, что
+	\[
+		[f] = \begin{pmatrix}
+			E_r & 0 \\
+			0   & 0
+		\end{pmatrix}
+	\]
+	$E_r$ "--- единичная матрица размера r.
 \end{theorem}
 
 \begin{proof}
-Пусть $\dim ker(f) = m - r$ для некоторого $0 \le r \le m, (r = m - \dim(ker(f)))$
+	Пусть $\dim \ker f = m - r$ для некоторого $0 \le r \le m$.
+	$u_{r+1}, \dots, u_m$ "--- базис $\ker f$.
+	Дополним до базиса $U$:
+	\[ u_1, \dots, u_r, \underbrace{u_{r+1}, \dots, u_m}_{\text{базис $\ker f$}} \]
+	Для $i = 1..r$ возьмём $v_i = f(u_i)$.
+	Утверждаем, что $v_i$ "--- линейно независимые.
+	\begin{gather*}
+		0 = \sum_{i=1}^r \alpha_iv_i = \sum_{i=1}^r \alpha_if(u_i)= f\left(\sum_{i=1}^r \alpha_iu_i\right) \\
+		\sum_{i=1}^r \alpha_iu_i \in \ker f \Ra \sum_{i=1}^r \alpha_iu_i = \sum_{i=r+1}^m \beta_i u_i \\
+		\sum_{i=1}^r \alpha_iu_i - \sum_{i=r+1}^m \beta_iu_i = 0
+	\end{gather*}
+	$u_1, \dots, u_m$ "--- базис $U$, значит $\alpha_i - \beta_i = 0$ и $f(u_i)$ линейно независимы.
+	Значит $v_1, \dots, v_r$ линейно независимы.
 
-$u_{r + 1}, \cdots, u_{m}$ "--- базис $ker(f)$
-
-Дополним до базисы U: $u_1, \cdots, u_r, \underbrace{u_{r + 1}, \cdots, u_{m}}_{\text{базис ker(f)}}$
-
-$ker(f) \subset U$
-
-$i = 1, \cdots, r, v_{i} = f(u_i)$
-Утверждаем, что $v_i$ "--- линейно независимые.
-$$0 = \sum_{i = 1}^{r}\alpha_{i}v_{i} = \sum_{i = 1}^{r} \alpha_{i}f(u_{i})= f(\sum_{i = 1}^{r}\alpha_{i}u_{i})$$
-$$\sum_{i = 1}^{r}\alpha_{i}u_{i} \in ker(f) \Ra \sum_{i = 1}^{r}\alpha_{i}u_{i} = \sum_{i = r + 1}^{m}\beta_i u_i$$
-$$\sum_{i = 1}^{r}\alpha_{i}u_{i} - \sum_{i = r + 1}^{m}\beta_{i}u_{i} = 0$$
-$u_1, \cdots, u_m$ "--- базисы U $\Ra \alpha_i \beta_{i} = 0 \Ra f(u_i)$ "--- линейно независимы.
-
-$\Ra v_1, \cdots, v_{r}$ "--- линейно независимы.
-
-Дополним до базисы V:
-$$v_{1}, \cdots, v_{r}, v_{r + 1}, \cdots, v_{n}$$
-$$1 \le j \le r, f(u_{j}) = v_{j}$$
-$j$-ый столбец [f]: $\begin{pmatrix} 0\\0\\1\\0\\0\\ \end{pmatrix}$                            
-$$v_{j} = 0v_{1} + \cdots + 0v_{j - 1} + 1v_{j} + 0 \cdots$$
-$$r < j \le m, f(u_{j}) = 0 = 0 v_1 + \cdots + 0v_n $$
-$\Ra j$-ый столбец $[f] = \begin{pmatrix} 0\\ 0\\ 0\\ \end{pmatrix}$
-
-$$\Ra [f] = 
-\begin{pmatrix}
-E_r&0\\
-0&0\\
-\end{pmatrix}$$
+	Дополним до базиса $V$:
+	\begin{gather*}
+		v_1, \dots, v_r, v_{r+1}, \dots, v_n \\
+		\forall j=1..r, f(u_j) = v_j
+	\end{gather*}
+	Покажем, что для $j=1..r$ $j$-ый столбец $[f]$ есть $\begin{pmatrix} 0 \\0 \\1 \\0 \\0 \\ \end{pmatrix}$,
+	а для прочих $j$ "--- нулевой столбец:
+	\begin{gather*}
+		v_j = 0u_1 + \dots + 0u_{j-1} + 1u_j + 0u_{j+1} + \dots \\
+		\forall j\colon r < j \le m, f(u_j) = 0 = 0 v_1 + \dots + 0v_n
+	\end{gather*}
+	Откуда
+	\[
+		[f] = \begin{pmatrix}
+			E_r & 0 \\
+			0   & 0
+		\end{pmatrix}
+	\]
 \end{proof}
 
 \begin{conseq}
-\begin{enumerate}
-\item $A \in M(n, m, K)$, тогда существуют обратимые матрицы $C \in M(m, m, K), D \in M(n, n, K)$
+	\begin{enumerate}
+	\item
+		$A \in M(n, m, K)$.
+		Тогда существуют обратимые матрицы $C \in M(m, m, K)$ и  $D \in M(n, n, K)$, что
+		\begin{gather*}
+			D^{-1}AC = \begin{pmatrix}
+				E_r & 0 \\
+				0   & 0
+			\end{pmatrix} \\
+			U = K^m, V = K^n \\
+			f\colon U \to V\colon x \mapsto Ax
+		\end{gather*}
 
-$D^{-1}AC = 
-\begin{pmatrix}
-E_r&0\\
-0&0\\
-\end{pmatrix}$
-
-$$U = K^{m}$$
-$$V = K^n$$
-$$f\colon U \to V$$
-$$x \to Ax$$
-\item $U, V$ "--- векторные конечномерные пространства над $K$.
-$f \colon U \to V$ "--- линейное отображение. 
-$$\dim Im(f) + \dim ker(f) = \dim U$$
-\end{enumerate}
+	\item
+		$U, V$ "--- векторные конечномерные пространства над $K$.
+		$f\colon U \to V$ "--- линейное отображение.
+		\[ \dim \Im f + \dim \ker f = \dim U \]
+	\end{enumerate}
 \end{conseq}
 \begin{proof}
-В обозначениях из доказательства теоремы $\dim(ker(f)) = m - r$
-$$Im(f) = \{f(u)\colon u \in U\} = \{f(\sum_{j = 1}^{m})|\alpha_{i} \in K\} =$$
-$$= \{\sum_{j = 1}^{m}\alpha_{i}f(u_j)| \alpha_j \in K\} = \{\sum_{j = 1}^{r}\alpha_{j}f(u_j)|\alpha_{j} \in K\} $$
-$$\Ra Im(f) = <f(u_1), \cdots, f(u_r)> = <v_1, \cdots, v_r>$$
-Доказываем линейную независимость $v_1, \cdots, v_r$.
-
-$v_1, \cdots, v_r$ "--- базисы $Im(f)$.
-$\dim Im(f) = r$
-$$\dim Im(f) + \dim ker(f) = r + m - r = m = \dim U$$
+	В обозначениях из доказательства теоремы $\dim \ker f = m - r$.
+	\begin{gather*}
+		\Im f = \{f(u) \mid u \in U\} = \left\{f\left(\sum_{j=1}^m \alpha_i u_j\right) \mid \alpha_i \in K\right\} = \\
+		= \left\{\sum_{j=1}^m\ \alpha_i f(u_j) \mid \alpha_j \in K\right\} = \left\{\sum_{j=1}^r \alpha_j f(u_j) \mid \alpha_j \in K\right\} \\
+		\Ra \Im f = \left<f(u_1), \dots, f(u_r)\right> = \left<v_1, \dots, v_r\right>
+	\end{gather*}
+	Доказываем линейную независимость $v_1, \dots, v_r$:
+	$v_1, \dots, v_r$ "--- базис $\Im f$, $\dim \Im f = r$.
+	\[ \dim \Im f + \dim \ker f = r + m - r = m = \dim U \]
 \end{proof}
