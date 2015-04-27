@@ -1,0 +1,35 @@
+﻿\section{Прямая сумма векторных подпространств}
+$V$ "--- векторное пространство над K, $U, W \subset V$
+\begin{Def}
+Сумма U+W называется прямой суммой, если $U \cap W = \{0\}$
+
+$U \oplus W$ "--- прямая сумма.
+\end{Def}
+
+\begin{theorem}{}
+Если пространство конечномерно, то $U + W$ "--- 
+прямая сумма $\Lra dim(U + W) = dim(U) + dim(W)$
+
+Сумма $U + W$ прямая $\Lra$ всякий $v \in U + W$ 
+единственным образом представляется в виде $v = u + w$.
+\end{theorem}
+
+\begin{proof}
+$\Ra$
+
+$v \in U + W, v = u + w$
+
+$v = u + w = u' + w'(u \in U, w \in W, u' \in U, w' \in W)$
+
+$u - u' = w - w'$
+
+$u - u' \in U, w - w' \in W \Ra (u - u') \in (U \cap W), (w - w') \in (U \cap W) \Ra  u = u', w = w'$ 
+
+$\La$
+
+$v \in U \cap W$
+
+$v = (v \in U) + (0 \in W) = (0 \in U) + (v \in W)$
+
+В силу единственности v = 0 $\Ra$ пересечение тривиально.
+\end{proof}

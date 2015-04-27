@@ -1,0 +1,92 @@
+﻿\section{Двойственное пространство}
+
+$V$ "--- векторное пространство над K.
+
+$\{\Phi| \Phi\colon V \to K, \Phi$ "--- линейное отображение $\}$ "--- множество 
+линейных отображений из V в K(пространство над K).
+
+$V^{*}$ "--- двойственное к V пространство линейных отображений со значением в K = $K^{1}$
+называется линейным функционалами.
+
+$V^*$ "--- пространство линейных функционалов на V.
+
+Всякий линейный функционал полностью определяется своими значениями на базисных элементах V.
+
+$\{v_i\}_{i \in I}$ "--- базис V.
+
+$\Phi \in V^{*}$
+$$v \in V, v = \sum_{i \in I}\alpha_i v_{i}(\text(почти все \alpha_i = 0))$$
+$$\Phi(v) = \Phi(\sum_{i \in I}\alpha_i v_{i}) = \sum_{i \in I}\alpha_{i}\Phi_{i}(v_i)$$
+
+Пусть $dim(V) = n < \infty$
+
+Зафиксируем базис $v_1, \cdots, v_n$
+
+$v_i^{*} \in v^{*}$
+$$v_{i}^{*} = \begin{cases}1, & i = j\\ 0, & i \ne j\\ \end{cases} $$
+$$v = \sum_{i = 1}^{n}\alpha_i v_i$$
+$$v_i^{*}(v) = \alpha_i$$
+
+\begin{theorem}{}
+$dim(V) = n < \infty$
+
+В указанных выше обозначениях $v_1^*, \cdots, v_n^*$ "--- базисы $V^{*}$
+\end{theorem}
+
+\begin{proof}
+$\Phi \in V^{*}$
+
+$\Phi \colon V \to K, \Phi$ "--- линейное отображение. 
+
+$\beta_{i} = \Phi(v_i)$
+
+Нужно проверить, что $\Phi = \sum_{i = 1}^{w} \beta_{i}v_i^{*}$
+$$\forall v \in V, \Phi(v) \ne (\sum_{i = 1}^{n} \beta_{i}v_i^{*})(v)$$
+
+Достаточно проверить это равенство для $v = v_1, \cdots, v_n$
+
+$\Phi(v_j) = \beta_j$
+$$(\sum_{i = 1}^{n} \beta_i v_i^{*})(v_j) = \sum_{i = 1}^{n}\beta_iv_i^{*}(v_j) = \beta_j$$
+
+$$\forall j = 1 \cdots n, \Phi(v_j) = (\sum_{i = 1}^{n}\beta_{i}v_{i}^{*})(v_j) \Ra$$
+$$\Ra \Phi = \sum_{i = 1}^{n}\beta_i v_i^{*}$$
+
+$v_1^{*}, \cdots, v_n^{*}$ "--- семейство образующих.
+
+Необходимо проверить линейную независимость. 
+ 
+$$\sum_{i = 1}^{n}\beta_{i}v_{i}^{*} = 0 \in V^{*}$$
+$$\forall j,  (\sum_{i = 1}^{n} \beta_i v_{i}^{*})(v_j) = 0$$
+$$\sum_{i = 1}^{n} \beta_{i}v_{i}^*(v_j) = \beta_j$$
+$\Ra \forall j, \beta_j = 0 \Ra v_1^{*} \cdots v_n^{*}$ "--- линейно независимые. 
+\end{proof}
+
+\begin{conseq}
+$$dim(V) < \infty \Ra V \simeq v^{*}$$
+
+Изоморфизм может быть построен следующим образом:
+
+$\Psi\colon v \to v^*$
+
+$v_1, \cdots, c_n$ "--- базис V.
+
+$\alpha_1 v_1 + \cdots + \alpha_n v_n \to \alpha_1 v_1^* + \cdots \alpha_n v_n^*$
+
+является изоморфизмом. 
+\end{conseq}
+
+\begin{proof}
+$\dim(V^*) = n = \dim V \Ra V^* \cong V$
+
+$\Psi$ "--- линейно
+
+$\Phi \in V^*, \Phi$ "--- линейная комбинация $v_1^*, \cdots, v_n^* \Ra \Psi$ сюръективно. 
+
+$\Psi(\alpha_1 v_1 + \cdots + \alpha_n v_n) = 0 \Lra \alpha_1 v_1^* + \cdots + \alpha_n v_n^* = 0 \Lra \alpha_1 = \cdots = \alpha_n = 0$
+
+$ker(\Psi) = \{0\} \Ra \Psi$ инъективно.
+$\Psi$ "--- биекция.
+\end{proof}
+\begin{Rem}
+Построенный изоморфизм зависит от выбора базиса в V.
+\end{Rem}
