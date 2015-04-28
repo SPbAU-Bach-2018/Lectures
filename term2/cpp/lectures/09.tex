@@ -1,42 +1,42 @@
 \chapter{c++11}
 \section{Новые ключевые слова}
-\subsection{Ключевое слово default}
+
+\subsection{Ключевое слово \t{default}}
 
 \begin{cppcode}
 class A {
 public:
-	A (int); 
-	A () = default;	
+	A (int);
+	A () = default;
 };
 \end{cppcode}
 
-Разумное использование: 
+Разумное использование:
 \begin{cppcode}
 class B {
 public:
-	B (int); 
+	B (int);
 protected:
-	B (const &B) = default;	
+	B (const &B) = default;
 };
 \end{cppcode}
 
+\subsection{Ключевое слово \t{delete}}
 
-
-\subsection{Ключевое слово delete}
-Предназаначение удалять что-то из класса, чтобы это нельзя было использовать. 
-Следующий код запретит не все:  
+Предназаначение удалять что-то из класса, чтобы это нельзя было использовать.
+Следующий код запретит не все:
 \begin{cppcode}
 class A {
 public:
 	A (const &A);
 	f ();
 
-	friend g (); 
+	friend g();
 };
 \end{cppcode}
-В функциях g и f все еще можно будет использовать приведение типов. 
+В функциях \t{g} и \t{f} все еще можно будет использовать приведение типов.
 
-Поэтому надо использовать \cpp"=delete".
+Поэтому надо использовать \cpp"= delete":
 \begin{cppcode}
 class A {
 public:
@@ -44,8 +44,8 @@ public:
 };
 \end{cppcode}
 
-
 \subsection{Ключевое слово override}
+
 \cpp"override" строго говорит что функция будет перекрыта.
 
 \begin{cppcode}
@@ -53,7 +53,7 @@ public:
 class Base {
 public:
 	virtual void f (int);
-	virtual int g () const; 
+	virtual int g () const;
 	void h () {
 		g ();
 	}
@@ -66,44 +66,44 @@ public:
 	virtual int g () = override; // Error
 };
 \end{cppcode}
-Функции f "--- одинаковые и вторая перекрывает первую, Функции g "--- разные, так как одна реализована для const класса.
+Функции \t{f} "--- одинаковые и вторая перекрывает первую, функции \t{g} "--- разные, так как одна реализована для \cpp'const' класса.
 
+\subsection{Ключевое слово \t{final}}
 
-\subsection{Ключевое слово final}
-Вспомним пример про рабочих и их зарплату. 
-Слово final говорит что функцию уже нельзя будет перекрывать.
-Можно писать где первая строка описания класса. 
+Вспомним пример про рабочих и их зарплату.
+Слово \cpp'final' говорит что функцию уже нельзя будет перекрывать.
+Можно писать где первая строка описания класса.
 \begin{cppcode}
 
 class Worker {
-	virtual int getSalary () = 0; 
+	virtual int getSalary () = 0;
 };
 
 class Developer: public Worker {
 	virtual int getSalary () = override, final {
 		return 100;
-	}	
+	}
 };
 
 int main () {
-	Worker *w; 
+	Worker *w;
 	/* считываем n */
 	/* динамическое связывание */
 
-	if (n > 1) 
-		w = Developer (); 
+	if (n > 1)
+		w = Developer ();
 	else
 		w = Tester ();
-	w -> getSalary ();
+	w->getSalary ();
 
 	/* статическое связывание */
 	Developer *d = new Developer;
-	d -> getSalary ();
+	d->getSalary ();
 }
 \end{cppcode}
 
+\subsection{Ключевое слово \t{nullptr}}
 
-\subsection{Ключевое слово nullptr}
 \begin{cppcode}
 f(long);
 f(char *);
@@ -118,6 +118,7 @@ int main () {
 \end{cppcode}
 
 \subsection{Конструкторы}
+
 \begin{cppcode}
 class Board {
 public:
@@ -129,6 +130,7 @@ public:
 \end{cppcode}
 
 \subsection{constructor chaining}
+
 Позволяет использовать нормально в одном контрукторе другие.
 
 Как могли бы написатью
@@ -179,8 +181,8 @@ public:
 \subsection{Списки инициализации}
 \begin{cppcode}
 stuct Point {
-	int x; 
-	int y;	
+	int x;
+	int y;
 };
 
 int main () {
@@ -200,20 +202,16 @@ public:
 		size_t size = l.size ();
 		const T* it = l.begin ();
 		for (int i = 0; i < size; ++i)
-			cout << *(it++); //it[i] 
-	}	
+			cout << *(it++); //it[i]
+	}
 };
 \end{cppcode}
 
-
-
-
-
-
 \section{Еще нововведения}
 
-\subsection{auto}
-Во время комипляции. 
+\subsection{\t{auto}}
+
+Во время комипляции.
 \begin{cppcode}
 std::vector<int>::iterator it = v.begin ();
 auto it = v.begin ();
@@ -221,16 +219,16 @@ int x = 3;
 auto y = x;
 \end{cppcode}
 
-\subsection{decltype}
+\subsection{\t{decltype}}
 \begin{cppcode}
-template<typename T, typename V> 
+template<typename T, typename V>
 void multiply (const T& t, const V& v) {
 	typedef decltype (t * v) res_t;
 	res_t r = t * v;
 }
 
 //хотелось, но нельзя, так как t, v раньше объявления находятся
-template<typename T, typename V> 
+template<typename T, typename V>
 decltype (t * v) multiply (const T& t, const V& v) {
 	auto r = t * v;
 	return r;
@@ -242,4 +240,3 @@ auto multiply (const T& t, const V& v) -> decltype (t * v) {
 	return r;
 }
 \end{cppcode}
-
