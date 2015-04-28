@@ -1,55 +1,46 @@
-﻿\section{Ранг произведения матриц}
+﻿	\section{Ранг произведения матриц}
+
 \begin{theorem}
-$$A \in M(n, m, K), B \in M(m, l, k)$$
-$$rk(A) + rk(B) - m \le rk(AB) \le min\{rk(A), rk(B)\}$$
+	$A \in M(n, m, K)$, $B \in M(m, l, k)$.
+	\[\rang A + \rang B - m \le \rang AB \le \min\{\rang A, \rang B\} \]
 \end{theorem}
-
 \begin{proof}
-\begin{enumerate}
-\item
-$$A \cdot B = 
-\begin{pmatrix}
-a_{11}&\cdots&a_{1m}\\
-\cdots&\cdots&\cdots\\
-a_{n1}&\cdots&a_{nm}\\
-\end{pmatrix} \cdot
-\begin{pmatrix}
-B_1\\
-\vdots\\
-B_m\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-a_{11}B_1 + \cdots + a_{1m}B_m\\
-a_{21}B_1 + \cdots + a_{2m}B_m\\
-\cdots\\
-a_{n1}B_1 + \cdots + a_{nm}B_m\\
-\end{pmatrix}$$
+	\begin{enumerate}
+	\item
+	\[
+		A \cdot B = \begin{pmatrix}
+			a_{11} & \cdots & a_{1m} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \cdots & a_{nm}
+		\end{pmatrix} \cdot \begin{pmatrix}
+			B_1    \\
+			\vdots \\
+			B_m
+		\end{pmatrix} = \begin{pmatrix}
+			a_{11}B_1 + \cdots + a_{1m}B_m \\
+			a_{21}B_1 + \cdots + a_{2m}B_m \\
+			\vdots \\
+			a_{n1}B_1 + \cdots + a_{nm}B_m
+		\end{pmatrix}
+	\]
+	Строки произведения "--- это линейные комбинации строк $B$.
+	Следовательно, пространство, порожденное $AB$, не больше пространства, порожденного строками $B$, и $\rang AB \le \rang B$.
+	Столбцы $AB$ "--- линейная комбинация столбцов $A$, откуда $\rang AB \le \rang A$ и
+	\[ \rang AB \le \min\{\rang A, \rang B\} \]
 
-Строки произведения "--- это линейная комбинация строк B. $\Ra$
-пространство порожденное $AB \le$ пространства порожденного строками B.
-$\Ra rk(AB) \le rk(B)$
-
-Столбцы AB "--- линейная комбинация столбцов A.
-$\Ra rk(AB) \le rk(A) \Ra rk(AB) \le min\{rk(A), rk(B)\}$
-\item
-$$f \colon K^{l} \to K^{m}$$
-$$x \to Bx$$
-
-$$g \colon K^{m} \to K^{n}$$
-$$y \to Ay$$
-
-$$[g \circ f]  = A \cdot B$$
-
-$$U = Im(f), h = g|_{Im(f)}$$
-$h\colon U \to V$, h "--- линейное преобразование.
-
-$$\dim(Im(h)) + \dim(ker(h)) = \dim U$$
-
-$$ker g|_{Im(f)} = ker(g \cap Im(f)) \subset ker(g)$$ 
-
-$$rk(AB) = dim(Im(g \circ f)) = dim(Im(g \colon_{Im(f)})) = 
-\dim(Im(f)) - dim(ker(g |_{Im(f)})) \ge \dim(Im(f)) - \dim(ker(g)) = $$
-$$= \dim(Im(f)) - (m - \dim Im(g)) = \dim(Im(f)) + \dim(Im(g)) - m = rk(A) + rk(B) - m$$
-\end{enumerate}
+	\item
+		$f\colon K^l \to K^m\colon x \mapsto Bx$, $g\colon K^m \to K^n\colon y \mapsto Ay$.
+		\begin{gather*}
+			[g \circ f] = A \cdot B \\
+			U = \Im f, h = g\bigr|_{\Im f}
+		\end{gather*}
+		$h\colon U \to V$ "--- линейное преобразование.
+		\begin{gather*}
+			\dim \Im h + \dim \ker h = \dim U \\
+			\rang AB = \dim \Im (g \circ f) = \dim \Im \left(g \bigr|_{Im(f)}\right)
+				= \dim \Im f - \dim \ker \left(g \bigr|_{\Im f}\right) \ge \\
+			\ge \dim \Im f - \dim \ker g = \dim \Im f - (m - \dim \Im g) = \\
+			= \dim \Im f + \dim \Im g - m = \rang A + \rang B - m
+		\end{gather*}
+	\end{enumerate}
 \end{proof}
