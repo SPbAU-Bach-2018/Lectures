@@ -96,7 +96,7 @@
 \begin{conseq}
 	$f\colon \R^n \ra \R^m$, $a \in \Int D$, $f$ дифференцируема в $a$.
 	Тогда матрица Якоби (матрица дифференциала)
-	\[\left(\begin{matrix}
+	\[\begin{pmatrix}
 		\partd{f_1}{e_1}(a) & \partd{f_1}{e_2}(a)
 			&\cdots& \partd{f_1}{e_n}(a) \\
 		\partd{f_2}{e_1}(a) & \partd{f_2}{e_2}(a)
@@ -104,7 +104,7 @@
 		\vdots & \vdots & \ddots & \vdots \\
 		\partd{f_m}{e_1}(a) & \partd{f_m}{e_2}(a)
 			&\cdots& \partd{f_m}{e_n}(a)
-	\end{matrix}\right)\]
+	\end{pmatrix}\]
 \end{conseq}
 \begin{proof}
 	\begin{gather*}
@@ -113,12 +113,12 @@
 	\end{gather*}
 	Отсюда видим, что $i$-я строка матрицы есть вектор частных производных:
 	\begin{gather*}
-		\left(\begin{matrix}
+		\begin{pmatrix}
 			\nabla f_1(a) \\
 			\nabla f_2(a) \\
 			\vdots \\
 			\nabla f_m(a)
-		\end{matrix}\right)
+		\end{pmatrix}
 	\end{gather*}
 \end{proof}
 
@@ -129,7 +129,7 @@
 	Тогда
 	\[ \d_a(g \circ f) = \d_f(n) g \circ \d_a f \]
 	то есть матрица $\d_a (g \circ f)$ есть
-	\[\left(\begin{matrix}
+	\[(\begin{pmatrix}
 		\partd{g_1}{e_1}(a) & \partd{g_1}{e_2}(a)
 			&\cdots& \partd{g_1}{e_n}(a) \\
 		\partd{g_2}{e_1}(a) & \partd{g_2}{e_2}(a)
@@ -137,7 +137,7 @@
 		\vdots & \vdots & \ddots & \vdots \\
 		\partd{g_l}{e_1}(a) & \partd{g_l}{e_2}(a)
 			&\cdots& \partd{g_l}{e_m}(a) \\
-	\end{matrix}\right)\left(\begin{matrix}
+	\end{pmatrix}\begin{pmatrix}
 		\partd{f_1}{e_1}(a) & \partd{f_1}{e_2}(a)
 			&\cdots& \partd{f_1}{e_n}(a) \\
 		\partd{f_2}{e_1}(a) & \partd{f_2}{e_2}(a)
@@ -145,7 +145,7 @@
 		\vdots & \vdots & \ddots & \vdots \\
 		\partd{f_m}{e_1}(a) & \partd{f_m}{e_2}(a)
 			&\cdots& \partd{f_m}{e_n}(a) \\
-	\end{matrix}\right)\]
+	\end{pmatrix}\]
 	и
 	\[ \partd{(g \circ f)_i}{e_k} = \sum_{j = 1}^m \partd{g_i}{e_j} (f(a)) \partd{f_j}{e_k} (a) \]
 \end{conseq}
