@@ -1,0 +1,200 @@
+\setauthor{Дмитрий Лапшин}
+
+\begin{theorem}
+	$V$ "--- конечномерное векторное пространство над $K$, $f \in \End(V)$, $H \in K[t]$.
+	Тогда $\ker H(f)$ и $\Im H(f)$ есть $f$ "--- инвариантные подпространства $V$.
+\end{theorem}
+
+\begin{proof}
+	\begin{gather*}
+		H(t) = a_0 + a_1 t + \dots + d_n t^n \\
+		H(f) = a_0 id + a_1 f + \dots + d_n f^n \\
+		f^k = \underbrace{f \circ f \circ \dots \circ f}_{k}
+	\end{gather*}
+	\begin{lemma}
+		$H_1, H_2 \in K[x]$
+		\[ H_1(f)H_2(f) = H_2(f)H_1(f) \]
+	\end{lemma}
+	\begin{proof}
+		\begin{enumerate}
+		\item
+			\[ f^k \circ f^e = f^e \circ f^k = f^{k+e} \]
+
+		\item
+			\begin{gather*}
+				H(f) \circ f^l = \left( \sum_{i=0}^n a_k f^k \right) f^l = \sum_{i=0}^n a_k f^k f^l = \\
+				= \sum_{i=0}^n a_k f^l f^k = f^l \sum_{i=0}^n a_k f^k = f^l \circ H(f)
+			\end{gather*}
+
+		\item
+			\begin{gather*}
+				H_1(f) H_2(f) = H_1(f) \left( \sum_{i=0}^m b_k f^k \right) \stackrel{=}{2} \sum_{i=0}^m b_k H_1(f) f^k = \\
+				= \sum_{i=0}^m b_k f^k H_1(f) = ...
+			\end{gather*}
+		\end{enumerate}
+	\end{proof}
+	\begin{gather*}
+		U = \Im H(f) = \left\{ v \in V \mid \exists w \in V\colon H(t)w = v\right\} \\
+		f(U) \stackrel{\subset}{?} U
+	\end{gather*}
+	$u \in U$, $w, \in V$, $H(f)w = u$
+	\begin{gather*}
+		f(u) = f(H(t)(w)) = (f \circ H(t))(w) = (H(t) \circ f)(w) = H(t) (f(w)) \in \Im H(t) = U
+	\end{gather*}
+	Про $U$ доказали.
+
+	$f \in \End (V)$, $H(f) \in \End(V)$, $V \xlongrightarrow{H(f)} V$.
+	\begin{gather*}
+		U = \ker H(f) = \{v \in V \mid H(f)(v) = 0\} \\
+	\end{gather*}
+	$u \in U$
+	\begin{gather*}
+		H(f)(f(u)) = (H(f) \circ f)(u) = (f \circ H(f))(u) = f (\underbrace{H(f)(u)}_{u \in U = \ker H(f)}) = f(0) = 0
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	$f$ "--- обратим, $\Im f = V$, $\ker f = \{0\}$.
+	Если $H(f)$ "--- обратимый оператор, то $\Im H(f) = V$, $\ker H(f) = \{0\}$.
+\end{Rem}
+
+\section{Теорема Гамильтона"---Кэли}
+
+Вопрос: найти $H$ такое, чтобы $\ker H(f)$ было <<как можно больше>>.
+\[ \ker H(f) = V \Lra H(f) = 0 \]
+\begin{theorem}[Гамильтона"---Кэли]
+	$\dim V = n < \infty$, $f \in \End(V)$.
+	Тогда
+	\[ \chi_f(f) = 0_{\text{в кольце операторов}} \]
+\end{theorem}
+\begin{proof}
+	Зафиксируем базис $V$.
+	$A = [f]$ "--- матрица $f$ в этом базисе.
+	\[ H[f] = H(A) \]
+	Нулевому оператору отвечает нулевая матрица.
+	\[ \chi_f = \chi_A \]
+	Перешли к равносильному утверждению в матрицах:
+	\[ \chi_A (A) = 0 \]
+	Докажем его:
+	\begin{gather*}
+		\chi_A = \det (A - tE) \\
+		A - te \in M(n, n, K[t]) \\
+		B = (A - tE)^{\text{взаимная}} \in M(n, n, K[t]) \\
+		(A - te) B = B(A - te) = \det (A - tE) E
+	\end{gather*}
+	При вычислении алгебраического дополниния считаем определитель размера $n - 1$ и каждый элемент "--- многочлен от $t$ степени не более 1.
+	Таким образом, каждое алгебраическое дополение есть многочлен от $t$ степени не более $n - 1$.
+	Разложим $B$ как многочлен по степеням $t$:
+	\begin{gather*}
+		B(t) \equiv B_0 + t B_1 + \dots + t^{n-1} B_{n-1} \\
+		B_i \in M(n, n, K) \\
+		(A - tE)(B_0 + t B_1 + \dots + t^{n-1} B_{n-1}) = \det (A - tE) E = (a_0 + a_1 t + \dots + a_n t^n) E \\
+		\begin{alignedat}{3}
+			AB_0 &      &= a_0 E \\
+			AB_1 &- B_0 &= a_1 E \\
+			&\vdots \\
+			AB_k &- B_{k-1} &= a_k E \\
+			&\vdots \\
+			     &- B_{n-1} &= a_n E
+		\end{alignedat}
+	\end{gather*}
+	Сложив эти строки с коэффицентами $E, A^1, \dots, A^n$, получим
+	\begin{gather*}
+		AB_0 + (A^2 B_1 - AB_0) + (A^3 B_2 - A^2B_1) + \dots + (A^{k+1} B_k - A^kB_{k-1}) + \dots + (0 - A^nB_{n-1}) = \\
+		= a_0 E + a_1 A + \dots + a_n A^n = \chi_A(A) \\
+		0 = \chi_A(A)
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	$f \in \End(V)$.
+	Аннулятор:
+	\[ \Ann(f) = \{H \in K[t] \mid H(f) = 0\} \]
+	Это множество замкнуто по сумме, разности и умножение на произвольный многочлен, то есть идеал в кольце $K[t]$.
+	$K[t]$ "--- область главных идеалов.
+	Тогда
+	\[ \Ann(f) = \left( \mu_f(t) \right) \]
+	$\mu_f$ "--- минимальный аннулятор.
+
+	Как мы знаем, $\chi_f \in \Ann(f)$, тогда $\mu_f \mid \chi_f$.
+\end{Rem}
+
+\begin{exmp}
+	$f = \lambda id$.
+	Тогда
+	\begin{gather*}
+		\chi_f = (\lambda - t)^n \\
+		\mu_f = t - \lambda
+	\end{gather*}
+\end{exmp}
+
+\section{Разложение в прямую сумму корневых}
+
+\begin{theorem}
+	$H_1, H_2 \in K[t]$, $f \in \End(V)$, $H_1$ и $H_2$ взаимно просты.
+	Тогда 
+	\[  \ker (H_1H_2)(f) = \ker H_1(f) \oplus \ker H_2(f) \]
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		$v \in \ker H_i(f)$, $H_i(f)(v) = 0$.
+		\[ (H_1H_2(f))(v) = (H_1(f) \circ H_2(f))(v) = (H_2(f) \circ H_1(f))(v) \]
+		Если $H_i(f)(v) = 0$, то и $(H_1H_2(f))(v) = 0$.
+		Получили, что $\ker H_i(f) \subset \ker (H_1H_2)(f)$
+
+	\item
+		$v \in \ker H_1(f) \cap \ker H_2(f)$.
+		\begin{gather*}
+			1 = G_1 H_1 + G_2 H_2 \\
+			id = G_1(f) \circ H_1(f) + G_2(f) \circ H_2(f) \\
+			v = id(v) = G_1(f) \circ H_1(f)(v) + G_2(f) \circ H_2(f)(v) = G_1(f)(0) + G_2(f)(0) = 0
+		\end{gather*}
+		Таким образом, $\ker H_1(f) \cap \ker H_2(f) = \{0\}$ и сумма "--- прямая.
+
+	\item
+		$v \in \ker(H_1H_2)(f)$.
+		\begin{gather*}
+			1 = H_1 G_1 + H_2 G_2 \\
+			id = H_1(f) \circ G_1(f) + H_2(f) \circ G_2(f) \\
+			v = id(v) = \underbrace{(G_1(f) \circ H_1(f))(v)}_{v_2} + \underbrace{(G_2(f) \circ H_2(f))(v)}_{v_1} \\
+			v = v_2 + v_1
+		\end{gather*}
+		Проверим, что $v_1 \in \ker H_1(f)$
+		\[ H_1(f)(v_1) = (H_1H_2G_2)(f)(v) = (G_2(f) \circ (H_1H_2)(f))(v) = G_2(f)(\underbrace{(H_1H_2)(f)(v)}_{=0}) = 0 \]
+		Аналогично $v_2 \in \ker H_2(f)$.
+	\end{enumerate}
+\end{proof}
+
+\begin{conseq}
+	$H(t) = H_i(t) \circ \dots \circ H_k(t)$, $H_i$ попарно взаимно просты.
+	Тогда
+	\[ \ker H(f) = \bigoplus_{i=1}^k \ker H_1(f) \]
+\end{conseq}
+
+$\dim V = n < \infty$, $K$ алгебраически замкнуто.
+Тогда
+\begin{gather*}
+	V = \ker \mathbb{0} = \ker \chi_f(f) \\
+	\chi_f(f) = \prod_{i=1}^k (t-\lambda_i)^{a_i} \quad \lambda_i \ne \lambda_j \\
+	V = \bigoplus_{i=1}^k \ker (f - \lambda id)^{a_i}
+\end{gather*}
+
+\begin{Def}
+	$k$-корневое пространство, отвечающее $\lambda$
+	\[ U_k(\lambda) = \ker (f - \lambda id)^k \]
+	Соотвественно, $U_1(\lambda)$ есть собственные вектора $f$.
+\end{Def}
+
+Как можно заметить,
+\[ U_1(\lambda) \subset U_2(\lambda) \subset \dots \]
+Причём оно стабилизируется.
+\begin{Def}
+	Корневое пространство, отвечающее $\lambda$
+	\[ U(\lambda) = \bigcup_{k=1}^\infty \ker (f - \lambda id)^k \]
+\end{Def}
+
+\begin{Def}
+	Корневой вектор "--- вектор корневого пространства.
+	Если он при этом лежит в $U_{k}(\lambda)$, но не лежит в $U_{k-1}(\lambda)$, его называют корневым вектором высоты $k$.
+\end{Def}
