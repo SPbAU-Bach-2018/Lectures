@@ -95,7 +95,7 @@
 			\partd{\Phi_1}{y_1} & \partd{\Phi_1}{y_2} & \cdots & \partd{\Phi_1}{y_m} \\
 			\partd{\Phi_2}{y_1} & \partd{\Phi_2}{y_2} & \cdots & \partd{\Phi_2}{z_m} \\
 			\vdots & \vdots & \ddots & \vdots \\
-			\partd{\Phi_m}{y_1} & \partd{\Phi_m}{y_2} & \cdots & \partd{\Phi_m}{z_m} \\
+			\partd{\Phi_m}{y_1} & \partd{\Phi_m}{y_2} & \cdots & \partd{\Phi_m}{z_m}
 		\end{pmatrix} \ne 0
 	\]
 	Проверим условие теоремы об обратной функции:
@@ -107,7 +107,7 @@
 	Таким образом $b$ "--- локальный минимум функции $H(x) = f(x, g(x))$, $b \in \Int W$.
 	Значит
 	\begin{gather*}
-		\nabla H = 0 \\
+		\nabla H(b) = 0 \\
 		\partd{H}{x_k}(b) = \partd{f}{x_k}(a) + \sum_{i=1}^{m} \partd{f}{y_i}(a) \partd{g_i}{x_k}(b) \\
 		\Phi(x, g(x)) = 0 \\
 		0 = \partd{\Phi_j}{x_k}(a) + \sum_{i=1}^{m} \partd{\Phi_j}{y_i}(a) \partd{g_i}{x_k}(b)
@@ -115,4 +115,4 @@
 
 	Анонс: домножим последнее равенство на $\lambda_j$ и сложим их для разных $j$ так,
 	чтобы всё ненужное "--- $g_i$ "--- сократилось. Это система уравнений, которая разрешима, потому что её определитель написан наверху и не ноль.
-\end{proof}
+%%\end{proof}
