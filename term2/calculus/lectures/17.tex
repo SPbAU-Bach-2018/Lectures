@@ -1,0 +1,173 @@
+%%\begin{proof}
+	Мы хотим
+	\[ \nabla f(a) = \lambda_1 \nabla \Phi_1(a) + \lambda_2 \nabla \Phi_2(a) + \dots
+	+ \lambda_n \nabla \Phi_m(a) \]
+	То есть хотим
+	\begin{gather*}
+		\nabla F = 0 \\
+		\partd{F}{y_k}(a) = \partd{f}{y_k}(a) - \sum_{j=1}^m \lambda_j \partd{\Phi_j}{y_k}(a) \\
+	\end{gather*}
+	Получили матрицу:
+	\begin{gather*}
+		\underbrace{\begin{pmatrix}
+			\partd{\Phi_1}{y_1} & \partd{\Phi_1}{y_2} & \cdots & \partd{\Phi_1}{y_m} \\
+			\partd{\Phi_2}{y_1} & \partd{\Phi_2}{y_2} & \cdots & \partd{\Phi_2}{z_m} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			\partd{\Phi_m}{y_1} & \partd{\Phi_m}{y_2} & \cdots & \partd{\Phi_m}{z_m}
+		\end{pmatrix}}_{\det \ne 0}
+		\begin{pmatrix}
+			\lambda_1 \\
+			\lambda_2 \\
+			\vdots \\
+			\lambda_m
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			\partd{f}{y_1} \\
+			\partd{f}{y_2} \\
+			\vdots \\
+			\partd{f}{y_m}
+		\end{pmatrix}
+	\end{gather*}
+	Эта линейная система имеет решение для $\lambda_i$. Возьмём его. Так все частные производные по $y_k$ уже нули, проверим по $x_k$:
+	\begin{gather*}
+		\partd{F}{x_k} = \partd{f}{x_k} - \sum_{j=1}^m \lambda_j \partd{\Phi_j}{x_k}
+			= -\sum_{i=1}^m \partd{f}{y_i} \partd{g_i}{x_k} - \sum_{j=1}^m \lambda_j \sum_{i=1}^m \partd{\Phi_j}{y_i} \partd{g_i}{x_k} = \\
+		= -\sum_{i=1}^m \left( \partd{f}{y_i} \partd{g_i}{x_k} - \sum_{j=1}^m \lambda_j \partd{\Phi_j}{y_i} \partd{g_i}{x_k} \right)
+			= -\sum_{i=1}^m \underbrace{\left(\partd{f}{y_i} - \sum_{j=1}^m \lambda_j \partd{\Phi_j}{y_i}\right)}_{=0}\partd{g_i}{x_k} = 0
+	\end{gather*}
+\end{proof}
+
+\begin{exmp}
+	$Q(c) = \left< Ax, x \right>$ "--- квадратичная форма. Найдём экстремумы квадратичной формы на единичной сфере.
+	\begin{gather*}
+		f(x) = \sum_{i,j = 1}^n a_{ij} x_i x_j \\
+		\Phi(x) = x_1^2 + x_2^2 + \dots + x_n^2 - 1 \\
+		\rang \begin{pmatrix} \partd{\Phi}{x_1} & \partd{\Phi}{x_2} & \cdots & \partd{\Phi}{x_n} \end{pmatrix} = 1 \\
+		F(x) = f(x) - \lambda \Phi(x) \\
+		\text{$a$ "--- точка условного экстремума} \Ra \exists \lambda \in \R\colon \nabla F(a) = 0 \\
+		\partd{F}{x_k} = a_{kk} 2x_k + \sum_{i \ne k} a_{ik} x_i + \sum_{j \ne k} a_{kj} x_j - \lambda 2x_k
+			= 2\left( \sum_{i=1}^n a_{ik} x_i - \lambda x_k \right) \\
+		\sum_{i=1}^n a_{ik} x_i = \lambda x_i \\
+		A \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
+	\end{gather*}
+	Итого, $\lambda$ "--- собственное число $A$, $x$ "--- отнормированный собственный вектор.
+	\[ Q(x) = \left< Ax, x \right> = \left< \lambda x, x \right> = \lambda \|x\|^2 = \lambda \]
+\end{exmp}
+
+\begin{theorem}
+	Наибольшее и наименьшее значения квадратичной формы на единичной сфере "--- наибольшее и наименьшее её собственное число,
+	и достигаются в соотвествующих собственных векторах.
+\end{theorem}
+Доказательство выше.
+\begin{conseq}
+	\[ \|A\| = \max \left\{\sqrt{\lambda} \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$} \right\} \]
+\end{conseq}
+\begin{assertion}
+	\textit{Из алгебры:}
+	\[ \left<Ax, y\right> = \left<x, A^T y\right> \]
+	Для доказательства заметим, что достаточно проверить для базиса, так как всё линейно.
+	\begin{alignat*}{3}
+		\left<Ae_i, e_j\right> &= \left< \begin{pmatrix} a_{1i} \\ \vdots \\ a_{mi} \end{pmatrix}, e_j \right> &= a_{ji} \\
+		\left<e_i, A^Te_j\right> &= \left< e_i, \begin{pmatrix} a_{j1} \\ \vdots \\ a_{jn} \end{pmatrix} \right> &= a_{ji}
+	\end{alignat*}
+\end{assertion}
+
+\begin{proof}
+	\begin{gather*}
+		\|A\| = \max_{\|x\| = 1} \|Ax\| \\
+		\|A\|^2 = \max_{\|x\| = 1} \|Ax\|^2 \\
+		\|Ax\|^2 = \left< Ax, Ax \right> = \left<x, A^TAx\right> = \left<A^TAx\right>
+	\end{gather*}
+	Получили квадратичную форму
+	\begin{gather*}
+		\|A\|^2 = \max \{\lambda \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$}\} \\
+		\|A\| = \max \left\{\sqrt{\lambda} \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$} \right\}
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	Внезапно, все собственные числа матрицы $A^TA$ неотрицательны.
+\end{Rem}
+
+\chapter{Кратные интегралы}
+
+\section{Мера Жордана}
+
+\begin{Def}
+	Живём в $R^n$. Ячейка (полуоткрытый параллелепипед):
+	\[ (a_1, b_1] \times (a_2, b_2] \times \dots \times (a_n, b_n] \]
+	Мера ячейки "--- её объём:
+	\begin{gather*}
+		\mu P = (b_1 - a_1) (b_2 - a_2) \dots (b_n - a_n) \\
+		\mu \emptyset = 0
+	\end{gather*}
+\end{Def}
+Свойства меры:
+\begin{enumerate}
+\item
+	$\mu P \ge 0$
+
+\item
+	$\mu$ аддитивна для дизъюнктного объединения:
+	\begin{gather*}
+		P = \bigcup_{k=1}^m P_k \quad P_i \cap P_j = \emptyset \\
+		P = \bigsqcup_{k=1}^m \\
+		\mu P = \sum_{i=1}^m \mu P_k
+	\end{gather*}
+	\begin{proof}
+		Продлим все разделяющие координаты, разрежем по всем координатам. При каждом разрезе равенство сумм мер сохраняется.
+	\end{proof}
+\end{enumerate}
+
+\begin{Def}
+	Конечное объединение непересекающихся ячеек называется клеточным множеством.
+\end{Def}
+\begin{lemma}
+	Объединение, пересечение и разность клеточных множеств "--- клеточное множество.
+\end{lemma}
+\begin{proof}
+	\[ A = \bigsqcup_{k=1}^m P_k \quad B = \bigsqcup_{j=1}^l Q_j \]
+	Далее везде всё дизъюнктное:
+	\begin{description}
+	\item[Пересечение:]
+		\begin{gather*}
+			A \cap B = \left(\bigcup_{k=1}^m P_k\right) \cap \left(\bigcup_{j=1}^l Q_j\right)
+				= \bigcup_{k=1}^m \bigcup_{j=1}^l P_k \cap Q_j \\
+			P = (a_1, b_1] \times \dots \times (a_n, b_n] \quad Q = (a_1', b_1'] \times \dots \times (a_n', b_n'] \\
+			P \cap Q = (\max{a_1, a_1'}, \min{b_1, b_1'}] \times \dots \times (\max{a_n, a_n'}, \min{b_n, b_n'}]
+		\end{gather*}
+
+	\item[Разность:]
+		\begin{gather*}
+			A \setminus B = \left(\bigcup_{k=1}^m P_k\right) \setminus \left(\bigcup_{j=1}^l Q_j\right)
+				= \bigcup_{k=1}^m \left( P_k \cap \bigcup_{j=1}^l Q_j \right) = \bigcup_{k=1}^m \left( \bigcap_{j=1}^l P_k \setminus Q_j \right)
+		\end{gather*}
+		Разность двух ячеек "--- клеточное множество (продлим границы, переразрежем, объединим).
+
+	\item[Объединение:]
+		\[ A \cap B = (A \setminus B) \cup B \]
+	\end{description}
+\end{proof}
+
+\begin{Def}
+	Мера клеточного множества "--- сумма мер его ячеек.
+\end{Def}
+\begin{assertion}
+	\begin{enumerate}
+		\item На ячейках ничего нового.
+		\item Определение корректно.
+	\end{enumerate}
+\end{assertion}
+\begin{proof}
+	\[ A = \bigsqcup_{k=1}^m P_k = \bigsqcup_{j=1}^l Q_j \]
+	Надо показать, что
+	\[ \sum_{k=1}^m \mu P_k = \sum_{j=1}^l \mu Q_j \]
+	Покажем:
+	\begin{gather*}
+		\mu P_k = \sum_{j=1}^l \mu (P_k \cap Q_j) \text{ "--- дизъюнктивное} \\
+		\mu Q_j = \sum_{k=1}^m \mu (P_k \cap Q_j) \text{ "--- дизъюнктивное} \\
+		\sum_{k=1}^m \mu P_k = \sum_{k=1}^m \sum_{j=1}^l \mu (P_k \cap Q_j)
+			= \sum_{j=1}^l \sum_{k=1}^m \mu (P_k \cap Q_j) = \sum_{j=1}^l \mu Q_j
+	\end{gather*}
+\end{proof}
