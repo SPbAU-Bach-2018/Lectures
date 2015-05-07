@@ -1,0 +1,40 @@
+\begin{theorem}
+	Пусть $A$ и $B$ "--- клеточные множества.
+	Тогда
+	\begin{enumerate}
+		\item (монотонность меры) $A \subset B \Ra 0 \le \mu A \le \mu B$
+		\item (полуаддитивность меры) $\mu (A \cup B) \le \mu A + \mu B$
+		\item (аддитивность меры) $A \cap B = \emptyset \Ra \mu(A + B) = \mu A + \mu B$
+		\item $A \subset B \Ra \mu(B \setminus A) = \mu B - \mu A$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\[ A = \bigsqcup_{k=1}^m P_k \quad B = \bigsqcup_{j=1}^l Q_j \]
+	\begin{enumerate}
+	\item[3.]
+		\begin{gather*}
+			A \cap B = \emptyset \Ra P_k \cap Q_j = \emptyset \\
+			A \cup B = \bigsqcup_{k=1}^m P_k \sqcup \bigsqcup_{j=1}^l Q_j \text{ "--- дизъюнктное} \\
+			\mu A = \sum_{k=1}^m \mu P_k \quad \mu B = \sum_{j=1}^l \mu Q_l \\
+			\mu (A \cup B) = \sum_{k=1}^m \mu P_k + \sum_{j=1}^l \mu Q_l
+		\end{gather*}
+
+	\item[4.]
+		\begin{gather*}
+			B = (B \setminus A) \sqcup A \\
+			\mu B = \mu (B \setminus A) + \mu A
+		\end{gather*}
+
+	\item[1.]
+		\[ \mu B - \mu A = \mu (B \setminus A) \ge 0 \]
+
+	\item[2.]
+		\begin{gather*}
+			A \cup B = (B \setminus (A \cap B)) \sqcup A \\
+			\mu (A \cup B) = \mu (B \setminus (A \cap B)) + \mu A \le \mu B + \mu A
+		\end{gather*}
+	\item[2'.]
+		\[ \mu (A \cup B) + \mu (A \cap B) = \mu A + \mu B \]
+	\end{enumerate}
+\end{proof}
+
