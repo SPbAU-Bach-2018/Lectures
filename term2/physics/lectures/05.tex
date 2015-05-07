@@ -70,17 +70,17 @@
 			= 4\pi\sigma - 4\pi\sigma_p
 			= 4\pi(\sigma - \sigma_p)
 			= 4\pi\frac{\sigma - \sigma_p}{\sigma}\sigma
-			= \frac{4\pi\sigma}{\varepsilon}
+			= \frac{4\pi\sigma}{\epsilon}
 		\]
 		\begin{Def}
-			$\varepsilon = \frac{\sigma - \sigma_p}{\sigma}$ "--- \textit{диэлектрическая проницаемость}.
+			$\epsilon = \frac{\sigma - \sigma_p}{\sigma}$ "--- \textit{диэлектрическая проницаемость}.
 		\end{Def}
 		\begin{Rem}
-			Пока верим, что $\varepsilon$ "--- константное свойство вещества.
+			Пока верим, что $\epsilon$ "--- константное свойство вещества.
 		\end{Rem}
-		\begin{exmp}$\varepsilon_\text{фарфора} = 6$\end{exmp}
-		\begin{exmp}$\varepsilon_\text{стекла} = 10$\end{exmp}
-		\begin{exmp}$\varepsilon_\text{дерева} = 4$\end{exmp}
+		\begin{exmp}$\epsilon_\text{фарфора} = 6$\end{exmp}
+		\begin{exmp}$\epsilon_\text{стекла} = 10$\end{exmp}
+		\begin{exmp}$\epsilon_\text{дерева} = 4$\end{exmp}
 		\begin{Rem}
 			Полностью погасить поле диэлектрик не может "--- заряды-то несильно перемещаются.
 			А если сильно "--- это уже проводник.
@@ -89,27 +89,27 @@
 	\subsection{Диэлектрик в конденсаторе}
 		\subsubsection{Задача}
 			Пусть есть плоский конденсатор ёмкостью $C_0$.
-			Внесли внутрь диэлектрик с известным $\varepsilon$, который полностью заполнил пространство между пластинами:
+			Внесли внутрь диэлектрик с известным $\epsilon$, который полностью заполнил пространство между пластинами:
 			\cautoimg{05/06}
 			Вопрос: что будет?
 
 		\subsubsection{Без батарейки}
-			У нас в $\varepsilon$ раз уменьшилось поле, а заряды остались прежними.
-			То есть разность потенциалов уменьшилась в $\varepsilon$ раз ($U=Ed$).
-			А ёмкость из формулы $C=\frac{Q}{U}$ увеличилась в $\varepsilon$ раз.
+			У нас в $\epsilon$ раз уменьшилось поле, а заряды остались прежними.
+			То есть разность потенциалов уменьшилась в $\epsilon$ раз ($U=Ed$).
+			А ёмкость из формулы $C=\frac{Q}{U}$ увеличилась в $\epsilon$ раз.
 
 		\subsubsection{Добавили батарейку}
 			Пусть изначально был заряд $Q_0=C_0U$.
 			Внесли диэлектрик.
 			Напряжение остаётся прежним (его сохраняет батарейка), то есть из формулы $U=Ed$ (где $d$ "--- расстояние между пластинами)
 			знаем, что суммарное поле внутри конденсатора (с учётом диэлектрика) должно остаться прежним.
-			Но у нас есть диэлектрик, он всегда уменьшает порождаемое обкладками поле в $\varepsilon$ раз.
-			То есть это порождаемое поле должно увеличиться в $\varepsilon$ раз для компенсации этого эффекта,
-			единственный способ "--- увеличить заряды в $\varepsilon$ раз.
-			То есть $Q_1=\varepsilon Q_0$, заряд обкладок поменялся.
+			Но у нас есть диэлектрик, он всегда уменьшает порождаемое обкладками поле в $\epsilon$ раз.
+			То есть это порождаемое поле должно увеличиться в $\epsilon$ раз для компенсации этого эффекта,
+			единственный способ "--- увеличить заряды в $\epsilon$ раз.
+			То есть $Q_1=\epsilon Q_0$, заряд обкладок поменялся.
 			\begin{Rem}
 				Заряд мог поменяться только через батарейку.
-				Через неё протекло $\Delta Q = Q_1 - Q_0 = (\varepsilon - 1)C_0U$.
+				Через неё протекло $\Delta Q = Q_1 - Q_0 = (\epsilon - 1)C_0U$.
 			\end{Rem}
 
 		\subsubsection{Считаем заряды на диэлектрике внутри конденсатора}
@@ -120,7 +120,7 @@
 			\cautoimg{05/07}
 			С одной стороны, поле всё еще $\frac U d = \mathrm{const}$, а с другой есть формула $E = 4\pi \sigma$:
 			\[ \frac U d = E = 4\pi \frac{Q_1-Q_p}{S}\]
-			Таким образом $Q_1-Q_p=Q_0 \iff Q_p=Q_1-Q_0=\Delta Q = (\varepsilon-1)C_0U$.
+			Таким образом $Q_1-Q_p=Q_0 \iff Q_p=Q_1-Q_0=\Delta Q = (\epsilon-1)C_0U$.
 
 	\subsection{Неполное заполнение диэлектриком}
 		Пусть конденсатор подключен к батарейке и в него частично внесли диэлектрик:
@@ -148,9 +148,9 @@
 		\cautoimg{05/09}
 		\begin{gather*}
 		C_1=\frac{S_1}{4\pi d} = \frac{xH}{4\pi d} \\
-		C_2=\varepsilon\frac{S_2}{4\pi d} = \varepsilon\frac{(L-x)H}{4\pi d} \\
-		C(X) = \frac{H}{4\pi d}(x+\varepsilon(L-x)) \\
-		F(X) = -\frac{U^2}{2} \cdot \frac{H}{4\pi d} \cdot \frac{\partial}{\partial x}(x + \varepsilon(L-x))
-		     = \frac{U^2}{2} \cdot \frac{H}{4\pi d}(\varepsilon-1)
-		     = \frac{U^2H}{8\pi d} (\varepsilon-1)
+		C_2=\epsilon\frac{S_2}{4\pi d} = \epsilon\frac{(L-x)H}{4\pi d} \\
+		C(X) = \frac{H}{4\pi d}(x+\epsilon(L-x)) \\
+		F(X) = -\frac{U^2}{2} \cdot \frac{H}{4\pi d} \cdot \frac{\partial}{\partial x}(x + \epsilon(L-x))
+		     = \frac{U^2}{2} \cdot \frac{H}{4\pi d}(\epsilon-1)
+		     = \frac{U^2H}{8\pi d} (\epsilon-1)
 		\end{gather*}
