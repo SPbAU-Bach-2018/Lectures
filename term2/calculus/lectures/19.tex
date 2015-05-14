@@ -1,0 +1,213 @@
+\setauthor{Дмитрий Лапшин}
+
+\begin{Def}
+	$A$ "--- множество, $x$ "--- точка.
+	\[ \rho(x, A) = \inf \{\rho(x, y) \mid y \in A \} \]
+\end{Def}
+
+\begin{Def}
+	$\delta$-окрестность множества $U_\delta(A)$ (иногда обозначается $A_\delta$):
+	\[ U_\delta(A) = \{ x \mid \rho(x, A) < \delta\} = \{x \mid \exists y \in A\colon \rho(x, y) < \delta\} \]
+\end{Def}
+
+\begin{theorem}
+	$E$ "--- измерима, тогда $\mu^*(U_\delta(E)) \ra \mu E$ при $\delta \ra 0$.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$E$ "--- ячейка:]
+		\begin{gather*}
+			E = (a_1, b_1] \times \dots \times (a_n, b_n] \\
+			E \subset U_\delta(A) \subset (a_1 - \delta, b_1 + \delta] \times (a_n - \delta, a_n + \delta] \\
+			\prod_{k=1}^n (b_k - a_k) = \mu E \le \mu^* U_\delta(E) \le \mu((a_1 - \delta, b_1 + \delta] \times (a_n - \delta, a_n + \delta])
+			= \prod_{k=1}^n (b_k - a_k + 2\delta)
+		\end{gather*}
+
+	\item[$E$ "--- клеточное множество:]
+		\begin{gather*}
+			E = \bigcup_{k=1}^m P_k \\
+			U_\delta(E) = \bigcup_{k=1}^m U_\delta(P_k) \\
+			\mu E = \mu^* U_\delta(E) \le \sum_{k=1}^m \mu^*(U_\delta(P_k)) \ra \sum_{k=1}^m \mu P_k
+		\end{gather*}
+
+	\item[$E$ "--- измеримое:]
+		\begin{gather*}
+			\forall \epsilon > 0, \exists B_\epsilon \supset E\colon \mu B_\epsilon < \mu E + \epsilon \\
+			U_\delta(B_\epsilon) \supset U_\delta(E) \\
+			\mu^*(U_\delta(B_\epsilon)) \ra \mu B_\epsilon \\
+			\exists \delta_0 > 0\colon \forall \delta < \delta_0, \mu E \le \mu^* U_\delta(E) \le \mu^* U_\delta(B_\epsilon) < \mu B_\epsilon + \epsilon < \mu E + 2 \epsilon
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{conseq}
+	$E$ "--- множество нулевой меры.
+	Тогда существует клеточное множество $C_\epsilon$, что $\mu C_\epsilon < \epsilon$ и $E \subset \Int C_\epsilon$.
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		\mu^*(U_\delta(E)) \ra \mu E = 0 \\
+		\exists \delta > 0\colon \mu^*(U_\delta(E)) < \frac\epsilon2
+			\Ra \exists C_\epsilon \supset U_\delta(E)\colon \mu C_\epsilon < \mu^* U_\delta(E) + \frac\epsilon2 < \epsilon \\
+		\Int C_\epsilon \supset U_\delta(E) \text{ "--- открытое}
+	\end{gather*}
+\end{proof}
+
+\begin{Def}
+	$\partial E$ "--- граница множества:
+	\[ \partial E = \{ x \mid \forall r > 0, B_r(x) \cap E \ne \emptyset \land B_r(x) \setminus E \ne \emptyset \} \]
+\end{Def}
+\begin{Rem}
+	Можно показать, что $\partial E = \cl E - \Int E$.
+\end{Rem}
+
+\begin{lemma}
+	$x \in E$, $y \notin E$.
+	Тогда на $[x, y]$ есть точка из границы $E$.
+\end{lemma}
+\begin{proof}
+	$x_0 = x$, $y_0 = y$. Возьмём $m = \frac{x+y}2$. Если она в $E$, то перейдём к $x_1 = m$, $y_1 = y_0$, иначе к $x_1 = x_0$, $y_1 = m$.
+	Получим сходящуюся последовательность вложенных отрезков.
+	В их пересечении лежит одна точка $c$.
+	Тогда для каждой окрестности этой точки есть отрезок $[x_i, y_i]$, начало которого лежит в $E$, а конец "--- не лежит.
+\end{proof}
+
+\begin{lemma}
+	Пусть $D$ "--- клетчатое множество, а ограниченное множество $E$ такое, что $\partial E \subset D$.
+	Тогда $E \cup D$ тоже клетчатое.
+\end{lemma}
+\begin{proof}
+	$Q$ "--- ячейка, $Q \supset E \cup D$.
+	\[ Q \setminus D = \bigcup_{i=1}^m P_k \]
+	\begin{description}
+	\item[$P_k \cap E \ne \emptyset$:]
+		Проверим, что $E \supset P_k$.
+		Пусть $P_k \setminus E \ne \emptyset$.
+		$x \in P_k \cap E$, $y \in P_k \setminus E$, значит на отрезке $[x, y]$ есть граничная точка $E$.
+		Этот отрезок, а значит и точка, лежат в ячейке.
+		Тогда $P_k \cap \partial E \ne \emptyset$, что неверно, так как $P_k \cap D = \emptyset$.
+
+	\item[$P_k \cap E = \emptyset$:]
+		Ничего интересного.
+	\end{description}
+
+	Получили, что
+	\[ E \cup D = D \cup \bigcup_{P_k \subset E} P_k \]
+	<<$\supset$>> очевидно, <<$\subset$>>: взяли точку $x \in E \setminus D$, тогда $x \in Q \setminus D$, значит $\exists k\colon x \in P_k$.
+\end{proof}
+
+\begin{theorem}[Критерий измеримости]
+	$E$ "--- ограниченное множество.
+	Тогда $E$ измеримо тогда и только тогда, когда граница имеет нулевую меру.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		$E$ "--- измеримо, значит
+		\begin{gather*}
+			\forall \epsilon > 0, \exists A_\epsilon, B_\epsilon \text{ "--- клеточные}\colon A_\epsilon \subset E \subset B_\epsilon
+				\land\mu B_\epsilon - \mu A_\epsilon < \epsilon \\
+			\partial E = \cl E \setminus \Int E \subset \cl B_\epsilon \setminus \Int A_\epsilon
+				\subset \tilde B_\epsilon \setminus \tilde A_\epsilon \\
+			\mu \tilde B_\epsilon < \mu B_\epsilon + \epsilon \quad \mu \tilde A_\epsilon > \mu A_\epsilon - \epsilon \\
+			\mu (\tilde B_\epsilon \setminus \tilde A_\epsilon) \le \mu \tilde B_\epsilon - \mu \tilde A_\epsilon
+				< \mu B_\epsilon + \epsilon - \mu A_\epsilon + \epsilon < 3\epsilon \\
+			\Ra \mu^* \partial E = 0 \Ra \mu (\partial E) = 0
+		\end{gather*}
+	\item[$\La$:]
+		\begin{gather*}
+			\mu (\partial E) = 0 \Ra \exists C_\epsilon \text{"--- клеточное}\colon
+				\mu C_\epsilon < \epsilon \land C_\epsilon \supset \partial E \\
+			\Ra \text{$E \cup C_\epsilon$ "--- клеточное} \\
+			B_\epsilon = E \cup C_\epsilon \quad A_\epsilon = B_\epsilon \setminus C_\epsilon = E \setminus C_\epsilon \\
+			B_\epsilon \supset E \supset A_\epsilon \\
+			\mu B_\epsilon = \mu((B_\epsilon \setminus C_\epsilon) \sqcup C_\epsilon)
+				= \mu (A_\epsilon \cup C_\epsilon) \le \mu A_\epsilon + \mu C_\epsilon < \mu A_\epsilon + \epsilon
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{lemma}
+	$E, F \subset \R^n$.
+	Тогда
+	\begin{align*}
+		\partial (E \cup F) &\subset \partial E \cup \partial F \\
+		\partial (E \cap F) &\subset \partial E \cup \partial F \\
+		\partial (E \setminus F) &\subset \partial E \cup \partial F
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	Возьмём $x \in \partial(E \cup F)$, но $x \notin \partial F$.
+	Покажем, что она в $\partial E$.
+	Хотим увидеть это:
+	\begin{align*}
+		B_r(x) \cap (E \cup F) &\ne \emptyset & (B_r(x) \cap E) \cup (B_r(x) \cap F) &\ne \emptyset \\
+		B_r(x) \setminus (E \cup F) &\ne \emptyset & (B_r(x) \setminus E) \cup (B_r(x) \setminus F) &\ne \emptyset
+	\end{align*}
+	Покажем:
+	\begin{gather*}
+		B_r(x) \setminus F \ne \emptyset \quad B_r(x) \setminus E \ne \emptyset \\
+		x \notin \partial F \Ra B_r(x) \cap F = \emptyset \quad \text{для некоторого $r$} \Ra B_r(X) \cap E \ne \emptyset
+	\end{gather*}
+
+	Остальное аналогично можно поупражняться.
+\end{proof}
+
+\begin{conseq}
+	$E$, $F$ измеримы.
+	Тогда измеримы $\Int E$, $\cl F$, $E \cup F$, $E \cap F$, $E \setminus F$.
+\end{conseq}
+\begin{proof}
+	Хотим понять, что
+	\begin{align*}
+		\partial (\Int E) &\subset \partial E \\
+		\partial (\cl  E) &\subset \partial E
+	\end{align*}
+	Тогда победим из того, что $\mu (\partial E) = 0$.
+	\begin{alignat*}{8}
+		\partial (\Int E) &= \cl \Int E \setminus \Int \Int E &=& \cl \Int E \setminus \Int E &\subset& \cl E \setminus \Int E &=& \partial E \\
+		\partial (\cl  E) &= \cl \cl  E \setminus \Int \cl  E &=& \cl  E \setminus \Int \cl E &\subset& \cl E \setminus \Int E &=& \partial E \\
+	\end{alignat*}
+
+	Если $E$ и $F$ имзеримы, то мера объединения их границ нулевая, а тогда по лемме всё остальное тоже имеет нулевую меру границы.
+\end{proof}
+
+\begin{theorem}
+	$E$, $F$ измеримы.
+	Тогда
+	\begin{enumerate}
+		\item (монотонность меры) $E \subset F \Ra 0 \le \mu E \le \mu F$
+		\item (полуаддитивность меры) $\mu (E \cup F) \le \mu E + \mu F$
+		\item (аддитивность меры) $E \cap F = \emptyset \Ra \mu(E + F) = \mu E + \mu F$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		Знаем для $\mu^*$ и $\mu = \mu^*$.
+
+	\item
+		Знаем для $\mu^*$ и $\mu = \mu^*$.
+
+	\item
+		$A \subset E$, $B \subset F$ "--- клеточные, $A \cap F \ne \emptyset$.
+		Тогда $A \sqcup B \subset E \sqcup F$.
+		\begin{gather*}
+			\mu E + \mu F \ge \mu(E \cup F) \ge \mu(A \cup B) = \mu A + \mu B \\
+			\mu A + \mu B \le \mu (E \cup F) \le \mu E + \mu F
+		\end{gather*}
+		Перешли к супремумам по $A$ и $B$.
+		\[
+			\mu E + \mu F = \mu_* E + \mu_* F \le \mu (E \cup F) \le \mu E + \mu F
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{Rem}
+	Аддитивности верхней и нижней меры нет.
+	\begin{gather*}
+		E = [0, 1] \cap \Q \quad [0, 1] \setminus Q \\
+		\mu^* E = \mu^* F = 1 \quad \mu_* E = \mu_* F = 0 \\
+		\mu_*(E \cup F) = \mu^* (E \cup F) = 1
+	\end{gather*}
+\end{Rem}
