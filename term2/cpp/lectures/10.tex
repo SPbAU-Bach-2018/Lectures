@@ -1,0 +1,121 @@
+\subsection{Различия \t{auto} и \t{decltype}}
+Пример $1$: 
+\begin{cppcode}
+int main () {
+  int x = 5; 
+  int& rx = x;
+  auto y1 = rx; // int
+} 
+\end{cppcode}
+Будет непонятно, чем является \cpp"y1", ссылкой или обычным переменной типа \cpp"int". 
+На самом деле \cpp"auto" снимает ссылку. 
+Но если мы четко хотим указать, что хотим получить ссылку, то надо просто написать \cpp"auto& y1 = rx".
+
+Пример $2$:
+\begin{cppcode}
+int main () {
+	int x = 5; 
+	const int& crx = x; 
+	auto y1 = crx; // int
+	auto &y2 = crx; // const int &
+}
+\end{cppcode}
+Компилятор всегда пробует снять константность.
+
+
+
+\subsection{rvalue references}
+\begin{enumerate}
+	\item rvalue "--- тольков  в правой части выражения. 
+	\item lvalue "--- и в левой и в правой части выражения.
+\end{enumerate}
+\begin{cppcode}
+int main () {
+  int a = 3; // l = r 
+  int b = 5; // l = r
+  a = b; // l = l
+  b = a; // l = l
+  a = a * b; // l = r
+}
+\end{cppcode}
+Так же \cpp"rvalue" "--- являются все временные значения
+Но все же \cpp"const int" "--- \cpp"lvalue".
+
+Объект \cpp"x", он имеет:
+\begin{enumerate}
+  \item constructor
+  \item copy
+  \item destructor
+\end{enumerate}
+
+Как работает конструктор копий \cpp"a = b":
+\begin{enumerate}
+  \item освободить
+  \item выделить память
+  \item скопировать
+\end{enumerate}
+
+Как работает следующий код:
+\begin{cppcode}
+X foo () {
+	//...
+}
+
+int main () {
+	X a = foo (); // copy constructor
+}
+\end{cppcode}
+Внутри есть какая-то переменная \cpp"tmp", в которую присвоется результат \cpp"foo". 
+А потом скопируется в \cpp"a".
+
+Но можно в принципе сделать быстрее, просто поменяв указатели на память у \cpp"a" и \cpp"tmp". 
+Научимся делать так. 
+Теперь у нас будет два конструктора копий первый когда в правой части выражения стоит \t{lvalue}, а второй когда в правой части стоит \t{rvalue}.
+\begin{cppcode}
+X& operator= (X&& rhs) {
+  T* tmp = this = -> pRes; 
+  this-> pRes = this.pRes; 
+  rhs.pRes = tmp;
+  /* или swap (this.pRes, rhs.pRes) */
+  return this; 
+}
+\end{cppcode}
+
+Написали сейчас следующие методы:
+\begin{cppcode}
+  X (const X&); 
+  X (X&&);
+  X& operator= (const X&);
+  X& operator= (X&&);
+\end{cppcode}
+
+Теперь вспомним про обычный \cpp"swap". 
+\begin{cppcode}
+template<class T>
+void swap (T& a, T& b) {
+  T tmp (a);
+  a = b;
+  b = tmp;
+}
+\end{cppcode}
+Но это не будет использовать наши новые конструкторы. 
+Поэтому надо использовать \cpp"std::move", которое возвращает \cpp"rvalue". 
+Перепишем теперь наш \cpp"swap".
+\begin{cppcode}
+template<class T>
+void swap (T& a, T& b) {
+  T tmp (std::move (a));
+  a = std::move (b);
+  b = std::move (tmp);
+}
+\end{cppcode}
+
+Пример:
+\begin{cppcode}
+	vector<string> v;
+	v.push_back (string ("Hello"));
+	string s ("World");
+	v.push_back (std::move (v));
+\end{cppcode}
+
+\subsection{move semantic}
