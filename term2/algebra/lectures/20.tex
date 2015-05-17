@@ -1,3 +1,59 @@
+\section{Инвариантные подпространства}
+
+$V$ "--- векторное пространства над K, $\dim V = n < \infty$, $f(u) \in U$
+
+\begin{exmp}
+$\lambda$ "--- собственное число f, $U_1(\lambda)$ "--- f-инвариант
+
+$\{0\}, V$ "--- также f-инвариантны. 
+
+\end{exmp} 
+
+\begin{theorem}{}
+Пусть $v = U + W$ и U "--- f-инвариантное, тогда
+$\exists$ базис $u_1, \cdots, u_k \in U$, 
+$w_1, \cdots, w_{n - k} \in W$, в котором матрица f
+имеет вид 
+$\begin{pmatrix}
+*&*\\
+0&*\\
+\end{pmatrix}$
+(Первый квадрат $k \times k$).
+
+Если же оба U и W инвариантны, то матрица f в этом базисе имеет вид:
+$
+\begin{pmatrix}
+*&0\\
+0&*\\
+\end{pmatrix}
+$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+    \item
+     $$[f]_{u_1, \cdots,u_k, w_1, \cdots w_{n - k}}$$
+     $$f(u_i) \in U$$
+     $$f(u_i) = \sum_{j = 1}^{k} \alpha_{ji}u_j + 0w_1 + \cdots + 0w_{n - k}$$
+     \item Если и W инвариантно
+     $$f(w_i) = 0u_1 + \cdots + 0u_n + \sum_{j = 1}^{n - k}B_{ji}w_j$$
+\end{enumerate}
+\end{proof}
+\begin{conseq}
+Если пространство V раскладывается в прямую сумму подпространств
+
+$f$"--- инвариант подпространств, то выбрав в каждом из
+подпространств по базису, получаем, что матрица f в этом
+базисе блочно-диагональная.
+\end{conseq}
+\begin{proof}
+индукция по число инвариантных подпространств.(упражнение)
+\end{proof}
+
+$$f \in End(V)$$
+$$f^{k} = f\circ f \circ \cdots \circ f$$
+$$H \in K[t], H = a_0 + a_1t + \cdots + a_kt^{k}$$
+$$H(f) = a_0 id + a_1f + \cdots + a_kf^k \in End(v)$$
+
 \setauthor{Дмитрий Лапшин}
 
 \begin{theorem}
