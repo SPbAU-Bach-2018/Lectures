@@ -1,0 +1,62 @@
+﻿\section{Диагонализуемый оператор}
+\setauthor{Черникова Ольга}
+\begin{Def}
+$f \in End(v), \dim(V) < \infty$
+
+$f$ "--- диагонализуем, если существует базис V, в котором
+матрица f имеет диагональный вид. 
+\end{Def}
+
+\begin{theorem}{}
+f "--- диагонализуем $\Lra$ существует базис V, состоящий из собственных
+векторов f.
+\end{theorem}
+\begin{proof}
+$\Ra$ 
+
+f "--- диагонализуем.
+
+Существует базис $v_1, \cdots, v_n \colon [f]_{v_1, \cdots, v_n} = 
+\begin{pmatrix}
+\lambda_1&0&\cdots&0\\
+\vdots&\ddots&\vdots&\vdots\\
+0&0&\cdots&\lambda_n\\
+\end{pmatrix}$
+
+($\lambda$ не обязательно различные).
+
+$f(v_i) = 0\cdot v_1 + \cdots + 0\cdot v_{n - 1} + \lambda_i v_i + 0\cdots v_{i + 1} +  \cdots + 0v_{n} = \lambda_i v_i \Ra
+v_i$ собственный вектор отвечающий $\lambda_i \Ra$ базис $v_1, \cdots, v_n$ состоит из собственных векторов.
+
+$\La$
+
+$\exists v_1, \cdots, v_n\ colon f(v_i) = \lambda_i v_i$
+
+$[f]_{v_1, \cdots, v_n} = 
+\begin{pmatrix}
+\lambda_1&0&\cdots&0\\
+\vdots&\ddots&\vdots&\vdots\\
+0&0&\cdots&\lambda_n\\
+\end{pmatrix}$
+
+То есть в базисе $v_1, \cdots, v_n$ матрица $[f]$ диагоналная, то есть f "--- диагонализуемая.
+\end{proof}
+
+\begin{Rem}
+Не всякий оператор диагонализуем.
+
+Если у f лишь одно собственное число(K "--- алгебраически замкнуто), то геометрическая кратность меньше алгебраической кратности
+
+$$\dim U_1(\lambda) < \dim V$$
+$$U_1 \lneqq V$$
+
+$\Ra f$ не диагонализуем.
+
+$$End(V)$$
+$$\dim_{\C}(V) = n < \infty$$
+$$M(n, n, \C)$$
+$$\dim_{\C}(M(n, n, \C)) = n^2$$
+$$\dim_{\R}(M(n, n, \C)) = 2n^2$$
+
+Множество недиагонализуемых операторов есть множество меры 0.
+\end{Rem}
