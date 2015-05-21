@@ -1,0 +1,228 @@
+﻿\section[Коор-ты вектора. Матрица перехода. Замена коор-т]{Координаты вектора. Матрица перехода. Замена координат.}
+
+\begin{Def}
+	$K$ "---  поле, $V$ "--- вектороное пространство над $K$.
+	$\{V_{\alpha}\}_{\alpha \in I}$ "--- базис $V$.
+	\[ v \in V \Ra v = \sum_{\alpha \in I}a_{\alpha}v_{\alpha} \]
+	почти все $a_{\alpha} = 0$ и такое разложение единственно.
+	$\{a_{\alpha}\}_{\alpha \in I}$ "--- набор координат вектора $v$ в базисе $\{v_{\alpha}\}$.
+\end{Def}
+
+\begin{Def}
+	$\dim V = n < +\infty$, $v_1, \dots, v_n$ "--- базис $V$.
+	$
+		\begin{pmatrix}
+			a_1\\
+			\vdots\\
+		a_n\\
+		\end{pmatrix}
+	$ "--- столбец координат $v$ в базисе $v_1, \dots, v_n$.
+\end{Def}
+
+\begin{exmp}
+	$\C$ над $\R$. Базис "--- $\{1, i\}$
+	\[
+		z \mapsto
+		\begin{pmatrix}
+			\Re z\\
+			\Im z\\
+		\end{pmatrix}
+	\]
+\end{exmp}
+
+\begin{Def}
+	$\{v_1, \dots, v_n\}$, $\{v_1', \dots, v_n'\}$ "--- базисы $V$.
+	\begin{gather*}
+		v'_j = \sum_{i = 1}^{n}a_{ij}v_i, a_{ij}\in K \\
+		A = (a_{ij})_{i, j = 1, \dots n}
+	\end{gather*}
+	$j$-й столбец $A$ "--- столбец координат $v_j'$.
+
+	$A$ "--- матрица перехода от $v_1, \dots, v_n$ к базису $v_1', \dots, v_n'$
+	\[ A = [A]_{\{v_i\} \to \{v_i'\}} \]
+\end{Def}
+
+\begin{exmp}
+	$\R^2$, рассмотрим стандартный базис и базис повернутый на угол $\phi$.
+	\begin{gather*}
+		\begin{aligned}
+			v_1' &\to
+				\begin{pmatrix}
+					\cos \phi\\
+					\sin \phi\\
+				\end{pmatrix} \\
+			v_2' &\to
+				\begin{pmatrix}
+					-\sin \phi\\
+					\cos \phi\\
+				\end{pmatrix}
+		\end{aligned} \\
+		A =
+		\begin{pmatrix}
+			\cos \phi & -\sin \phi\\
+			\sin \phi & \cos \phi\\
+		\end{pmatrix}
+	\end{gather*}
+\end{exmp}
+
+\begin{theorem}
+	$V$ "--- векторное пространство над $K$, $\dim V = n$,\\
+	$\{v_1, \dots, v_n\}$, $\{v_1', \dots, v_n'\}$, $\{v_1'', \dots, v_n''\}$  "--- базисы $V$.
+	$A$ "--- матрица перехода $\{v_i\} \to \{v_i'\}$,
+	$B$ "--- матрица перехода $\{v'_i\} \to \{v_i''\}$,
+	$C$ "--- матрица перехода от $\{v_i\} \to \{v_i''\}$.
+	Тогда $C = A \cdot B$.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\begin{alignedat}{3}
+			v_j'' &= \sum_{i = 1}^{n}c_{ij}v_i &\\
+			v_j'' &= \sum_{r = 1}^{n}b_{rj}v_r' &= \sum_{r = 1}^{n}b_{rj}\left(\sum_{i = 1}^{n}a_{ir}v_i\right) = \\
+			      &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}(b_{rj}a_{ir})v_i &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}a_{ir}b_{ri}v_i = \\
+			      &= \sum_{i = 1}^{n}\underbrace{\left(\sum_{r = 1}^{n}a_{ir} b_{rj}\right)}_{c_{ij}} v_i
+			        &\Ra c_{ij} = \sum_{r = 1}^{n}a_{ir}b_{rj}
+		\end{alignedat} \\
+		C = AB
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	Матрица перехода от базиса к базису является обратимой и обратная к ней
+	"--- это матрица перехода от $\{v_i'\}$ к $\{v_i\}$.
+\end{conseq}
+\begin{proof}
+	\[ \{v_i\} \underbrace{\to}_{A} \{v_i'\} \underbrace {\to}_{B} \{v_i\} \]
+	$A \cdot B$ "--- матрица перехода от $\{v_i\}$ к $\{v_i\}$.
+	\[ v_i = 0\cdot v_1 + \dots + 1\cdot v_i + \dots + 0\cdot v_n \]
+	т.е. единичная матрица.
+	$AB = E \land BA = E \Ra B = A^{-1}$
+\end{proof}
+
+\begin{exmp}
+	$\R^2$, стандартный базис и базис повернутый на $\phi$.
+	Матрица перехода от $\{v_1', v_2'\}$ к $\{v_1, v_2\}$:
+	\[
+		\begin{pmatrix}
+			\cos \phi & -\sin \phi\\
+			\sin \phi & \cos \phi\\
+		\end{pmatrix}^{-1}
+		=
+		\begin{pmatrix}
+			\cos \phi & \sin \phi\\
+			-\sin \phi & \cos \phi\\
+		\end{pmatrix}
+	\]
+	Получили поворот на $-\phi$.
+\end{exmp}
+
+\begin{theorem}
+	$V$ "--- векторное пространства над $K$.
+	$v_1, \dots, v_n$, $v_1', \dots, v_n'$ "--- базисы $V$. \\
+	$
+		\begin{pmatrix}
+			b_1\\
+			\vdots\\
+			b_n\\
+		\end{pmatrix}
+	$ "--- координаты $v$ в базисе $\{v_1, \cdots, v_n\}$,
+	$
+		\begin{pmatrix}
+			b_1'\\
+			\vdots\\
+			b_n'\\
+		\end{pmatrix}
+	$ "--- координаты $v$ в базисе $\{v_1', \cdots, v_n'\}$.
+	Тогда
+	\[
+		\begin{pmatrix}
+			b_1\\
+			\vdots\\
+			b_n\\
+		\end{pmatrix}
+		= A \cdot
+		\begin{pmatrix}
+			b_1'\\
+			\vdots\\
+			b_n'\\
+		\end{pmatrix}
+	\]
+\end{theorem}
+
+\begin{proof}
+	\begin{gather*}
+		v = \sum_{i = 1}^{n}b_i v_i \\
+		v = \sum_{j = 1}^{n}b_{j}'v_{j}' = \sum_{j = 1}^{n}b_j'\left(\sum_{i = 1}^{n}a_{ij}v_i\right)
+			=\sum_{i = 1}^{n}\underbrace{\left(\sum_{j = 1}^{n}a_{ij}b_j'\right)}_{b_i}v_i \\
+		b_i = \sum_{j = 1}^{n}a_{ij}b_{j}'
+	\end{gather*}
+\end{proof}
+
+\section{Сумма и пересечение подпространств}
+
+\begin{theorem}
+	$V$ "--- векторное пространство над $K$,
+	$U, W \subset V$.
+	Тогда
+	\begin{enumerate}
+	\item
+		$U \cap W \subset V$ (упражнение).
+
+	\item
+		\begin{gather*}
+			U + W = \{u + w \mid u \in U, w \in W\} \\
+			U + W \subset V
+		\end{gather*}
+	\end{enumerate}
+	Объединение подпространством быть не обязано.
+\end{theorem}
+
+\begin{proof}
+	Достаточно проверить замкнутость относительно операций.
+	\begin{gather*}
+		(\underbrace{u}_{\in U} + \underbrace{w}_{\in W}) + (\underbrace{u'}_{\in U} + \underbrace{w'}_{\in W})
+			= (\underbrace{u+u'}_{\in W}) + (\underbrace{w+w'}_{\in U}) \in U + W \\
+		c(\underbrace{u}_{\in U} + \underbrace{w}_{\in W}) = \underbrace{cu}_{\in U} + \underbrace{cw}_{\in W} \in U + W \\
+		U + W \ne \emptyset \\
+		0_v = 0_{u} + 0_{w} \in U + W
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	Пусть в обозначениях выше $\dim U = n < \infty$, $\dim W = m < \infty$
+	Тогда $U + W$ и $U \cap W$ конечномерны и
+	\[ \dim(U + W) + \dim(U \cap W) = \dim U + \dim W \]
+\end{theorem}
+\begin{proof}
+	\[ U \cap W \subset U \quad U \cap W \subset W \]
+	Так как $\dim U < \infty$, то и $\dim (U \cap W) < \infty$.
+
+	$v_1, \dots, v_r$ "--- базис  $U \cap W$.
+	$\{v_1, \dots, v_r\} \subset U$, дополним до базиса $U$:
+	\[ \{v_1, \dots, v_r, u_{r + 1}, \dots, u_{n}\} \quad n = \dim U \]
+	Аналогично дополним до базиса $W$:
+	\[ \{v_1, \dots, v_r, w_{r + 1}, \dots, w_{m}\} \quad m = \dim W \]
+	Утверждаем, что
+	\[ v_1, \dots, v_r, u_{r + 1}, \dots, u_n, w_{r + 1}, \dots, w_{m} \]
+	"--- базис $U + W$.
+	\begin{gather*}
+		v \in U + W \\
+		v = u + w, u \in U, w \in W \\
+		u = \sum_{i = 1}^{r}a_iv_i + \sum_{i = r + 1}^{n}b_iu_i \\
+		w = \sum_{i = 1}^{r}c_iv_i + \sum_{i = r + 1}^{m}d_iw_i \\
+		v = \sum_{i = 1}^{r}(a_i + c_i)v_i + \sum_{i = r + 1}^{n}b_iu_i + \sum_{i = r + 1}^{m}d_iw_i
+	\end{gather*}
+	Таким образом, это "--- система образующих $U + W$.
+	Проверим линейную независимость.
+	\begin{gather*}
+		\sum_{i = 1}^{r}a_iv_i + \sum_{i = r + 1}^{n}b_iu_i + \sum_{i = r + 1}^{m}c_iw_i = 0 \\
+		v = \underbrace{\sum_{i = 1}^{r}a_iv_i + \sum_{i = r + 1}^{n}b_iu_i}_{\in U} = \underbrace{-\sum_{i = r + 1}^{m}c_iw_i}_{\in W} \\
+		v = U \cap W \Ra v = \sum_{i = 1}^{r}d_iv_i = \sum_{i = 1}^{r}d_iv_i + \sum_{i = r + 1}^{n}0u_i
+	\end{gather*}
+	$\{v_i, u_i\}$ "--- базис $U$, следовательно разложение должно быть единственным, значит $b_i = 0$.
+	\[ \sum_{i = 1}^{n}a_iv_i + \sum_{i = r + 1}^{m}c_iw_i = 0 \]
+	$\{v_i, w_i\}$ "--- базис $W$, значит $a_i = 0$ и $c_i = 0$.
+
+	Таким образом, $v_1, \dots, v_r, u_{r + 1}, \dots, u_n, w_{r + 1}, \dots, w_{m}$ "--- линейно независимы,
+	а значит они "--- базис $U + W$.
+	\[ \dim(U + W) + \dim(U \cap W) = r + (n - r) + (m  - r) + r = n + m = \dim(U) + \dim(W) \]
+\end{proof}

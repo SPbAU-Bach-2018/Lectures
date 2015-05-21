@@ -1,79 +1,100 @@
-2) Посчитаем сам итеграл.
+\setauthor{Надежда Бугакова}
 
-\begin{gather*}
-	\int\limits^{\pi/2}_0 \cos^{n} x \d x = \int \limits_0^{\pi/2} \cos^{n - 1}x(\sin x)'\d x =
-	\cos^{n - 1}x\sin x \biggr|_{0}^{\pi/2} - \int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = \\
-	= -\int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x\sin^2x\d x = \\
-	= (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x(1 - \cos^2x)\d x = (n - 1)(W_{n - 2} - W_n)
-\end{gather*}
-\[
-\begin{aligned}
-	&W_n = \frac{n - 1}{n}W_{n - 2}\\
-	&W_0 = \pi/2 \\
-	&W_1 = 1  \\
-	&W_{2n} = \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} \cdot \frac{2n - 5}{2n - 4} \cdot \dots \cdot \frac{1}{2} \cdot \pi/2 
-	= \frac{(2n - 1)!!}{(2n)!!} \cdot \pi/2 \\
-	&W_{2n + 1} = \frac{2n}{2n + 1} \cdot \frac{2n - 2}{2n - 1} \cdot \dots \cdot \frac{2}{3} \cdot 1 = \frac{(2n)!!}{(2n + 1)!!} \\
-	&\cos^{2n} x \ge \cos^{2n + 1}x \ge \cos^{2n + 2}x\text{ при }x\in[0, \pi/2] \\
-	&W_{2n} \ge W_{2n + 1} \ge W_{2n + 2} \\
-	&\frac{(2n - 1)!!}{(2n)!!}\cdot\pi/2 \ge \frac{(2n)!!}{(2n+1)(2n - 1)!!} \ge \frac{(2n + 1)!!}{(2n + 2)!!}\pi/2 \\
-	&\pi/2 \ge \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} \ge \frac{2n + 1}{2n + 2} \cdot \pi/2 \longrightarrow \pi/2 
-	\Ra \lim\limits_{n \rightarrow \infty} \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} = \pi/2 \\
-	&\textbf{Формула Валлиса:} \lim\limits_{n \rightarrow \infty} \frac{(2n)!!}{(2n - 1)!!}\cdot\frac{1}{\sqrt{2n + 1}} = \sqrt{\pi/2} \\
-	&(2n)!! = 2^nn! \\
-	&\frac{(2n)!!}{(2n - 1)!!} = \frac{((2n)!!)^2}{(2n)!} = \frac{(2^nn!)^2}{(2n)!} = 4^n\frac{n!n!}{(2n)!} = \frac{4^n}{C_{2n}^n} \\
-	&\frac{4^n}{C_{2n}^n}\cdot\frac{1}{\sqrt{2n + 1}} \sim \sqrt{\pi/2} \\
-	&C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi/2}}\cdot\underbrace{\frac{1}{\sqrt{2n + 1}}}_{\sim1/\sqrt{2n}} \sim \frac{4^n}{\sqrt{\pi n}} \Ra
-	C_{2n}^n \sim \frac{4^n}{\sqrt{\pi n}}
-\end{aligned} 
-\]
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_\alpha^\beta \frac{t}{1+t^4} \d t = \\
+		f(x) = \frac1{x^2} \quad \phi(t) \lrh t^2 \\
+		= \int\limits_\alpha^\beta \frac12 f(\phi(t))\phi'(t) = \int\limits_{\phi(\alpha)}^{\phi(\beta)} f(x) \d x = \frac12 \int_{\alpha^2}^{\beta^2} \frac{1}{1+x^2} \d x = \frac12 (\arctg t)\bigr|_{\alpha^2}^{\beta^2} = \frac{\arctg \beta^2 - \arctg \alpha^2}2
+	\end{gather*}
+\end{exmp}
 
-3) $H_n = \frac{1}{n!}\int\limits^{\pi/2}_0({{(\pi/2)}^2 - x^2)}^n\cos x\d x$
+\begin{exmp}
+	\begin{gather*}
+		W_n = \int\limits_0^{\pi / 2} \sin^n x \d x = \int\limits_0^{\pi / 2} \cos^n \d x \\
+		\int\limits^{\pi/2}_0 \cos^{n} x \d x = \int \limits_0^{\pi/2} \cos^{n - 1}x(\sin x)'\d x =
+		\cos^{n - 1}x\sin x \biggr|_{0}^{\pi/2} - \int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = \\
+		= -\int\limits_0^{\pi/2}(\cos^{n - 1}x)'\sin x \d x = (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x\sin^2x\d x = \\
+		= (n - 1)\int\limits_0^{\pi/2}\cos^{n - 2}x(1 - \cos^2x)\d x = (n - 1)(W_{n - 2} - W_n)
+		W_n = \frac{n - 1}{n}W_{n - 2} \\
+		\begin{aligned}
+			W_0 &= \frac\pi2 \\
+			W_1 &= 1 \\
+			W_{2n} &= \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} \cdot \frac{2n - 5}{2n - 4} \cdot \dots \cdot \frac{1}{2} \cdot \frac\pi2 = \frac{(2n - 1)!!}{(2n)!!} \cdot \frac\pi2 \\
+			W_{2n + 1} &= \frac{2n}{2n + 1} \cdot \frac{2n - 2}{2n - 1} \cdot \dots \cdot \frac{2}{3} \cdot 1 = \frac{(2n)!!}{(2n + 1)!!}
+		\end{aligned}
+	\end{gather*}
+	\begin{assertion}[Формула Валлиса]
+		\[ \lim_{n \ra \infty} \frac{(2n)!!}{(2n - 1)!!}\cdot\frac{1}{\sqrt{2n + 1}} = \sqrt{\frac\pi2} \]
+	\end{assertion}
+	\begin{proof}
+		\begin{gather*}
+			\cos^{2n} x \ge \cos^{2n + 1}x \ge \cos^{2n + 2}x \quad\text{ при $x\in[0, \pi/2]$} \\
+			W_{2n} \ge W_{2n + 1} \ge W_{2n + 2} \\
+			\frac{(2n - 1)!!}{(2n)!!}\cdot\frac\pi2 \ge \frac{(2n)!!}{(2n+1)(2n - 1)!!} \ge \frac{(2n + 1)!!}{(2n + 2)!!}\frac\pi2 \\
+			\frac\pi2 \ge \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} \ge \frac{2n + 1}{2n + 2} \cdot \frac\pi2 \ra \frac\pi2 \\
+			\lim_{n \ra \infty} \frac{((2n)!!)^2}{(2n + 1)((2n - 1)!!)^2} = \frac\pi2
+		\end{gather*}
+	\end{proof}
+	\begin{conseq}
+		$C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi n}}$
+	\end{conseq}
+	\begin{proof}
+		\begin{gather*}
+			(2n)!! = 2^nn! \quad (2n-1)!! (2n) !! = (2n)! \\
+			\frac{(2n)!!}{(2n - 1)!!} = \frac{((2n)!!)^2}{(2n)!} = \frac{(2^nn!)^2}{(2n)!} = 4^n\frac{n!n!}{(2n)!} = \frac{4^n}{C_{2n}^n} \\
+			\frac{4^n}{C_{2n}^n}\cdot\frac{1}{\sqrt{2n + 1}} \sim \sqrt{\frac\pi2} \\
+			C_{2n}^{n} \sim \frac{4^n}{\sqrt{\pi/2}}\cdot\underbrace{\frac{1}{\sqrt{2n + 1}}}_{\sim\frac1{\sqrt{2n}}} \sim \frac{4^n}{\sqrt{\pi n}} \Ra
+				C_{2n}^n \sim \frac{4^n}{\sqrt{\pi n}}
+		\end{gather*}
+	\end{proof}
+\end{exmp}
 
+\begin{exmp}
+	\[ H_n = \frac{1}{n!}\int\limits_0^{\pi/2} \left(\left(\frac\pi2\right)^2 - x^2\right)^n\cos x\d x \]
+\end{exmp}
 \begin{enumerate}
-	\item $H_n \longrightarrow 0$
-	\[ 0 < H_n \le \frac{1}{n!}\max\limits_{x \in [0, \pi/2]}{({(\pi/2)}^2 - x^2)}^n\cos x \le \frac{1}{n!}\pi/2{(\pi/2)}^{2n} \longrightarrow 0 \]
-	Так как показательная функция растёт медленнее факториала. 
-	\item $H_n = (4n - 2)H_{2n - 1} - \pi^2H_{n - 2} $ 
+\item
+	$H_n \ra 0$
+	\[ 0 < H_n \le \frac{1}{n!}\frac\pi2\max_{x \in [0, \pi/2]} \left(\left(\frac\pi2\right)^2 - x^2\right)^n\cos x \le \frac{1}{n!} \frac\pi2 \left(\frac\pi2\right)^{2n} \ra 0 \]
+	Так как показательная функция растёт медленнее факториала.
 
-	$H_0 = 1$ $H_1 = 2$
+\item
+	$H_n = (4n - 2)H_{n - 1} - \pi^2H_{n - 2}$, $H_0 = 1$, $H_1 = 2$.
 
 	\underline{Пояснение:}
 	\begin{gather*}
 		n!H_n = \int\limits_{0}^{\pi/2}{({(\pi/2)}^2 - x^2)}^n(\sin x)' \d x = \\
 		= (\text{Подстановка, которая равна 0}) - \int\limits_{0}^{\pi/2}({({(\pi/2)}^2 - x^2)}^n)'\sin x \d x = \\
-		= -2n\int\limits_{0}^{\pi/2}{({(\pi/2)}^2 - x^2)}^{n - 1}x(\cos x)' \d x 
+		= -2n\int\limits_{0}^{\pi/2}{({(\pi/2)}^2 - x^2)}^{n - 1}x(\cos x)' \d x
 	\end{gather*}
 	Затем ещё раз интегрируем по частям, используя равенство $x^2 = {(\pi/2)}^2 - ({(\pi/2)}^2 - x^2)$
 	\item $H_n = P_n(\pi^2)$, где $P_n$ - многочлен $n$-ой степени с целыми коэффициентами.
 \end{enumerate}
+
 \begin{theorem}
 	$\pi$ и $\pi^2$ иррациональны.
 \end{theorem}
 \begin{proof}
-От противного. Пусть $\pi = \frac{a}{b}$.
-
-\begin{gather*}
-	H_n = P_n\left(\frac{a^2}{b^2}\right) \Ra b^{2n}H_n = b^{2n}P_n\left(\frac{a^2}{b^2}\right) - \text{целое число.} \\
-	H_n > 0 \Ra b^{2n}H_n > 0                                                                     \\
-	1 \le b^{2n}H_n \le b^{2n}\pi/2{(\pi/2)}^{2n}\frac{1}{n!} = \pi/2\frac{{\left(b\pi/2\right)}^{2n}}{n!} \longrightarrow 0  \\
-\end{gather*}
+	От противного. Пусть $\pi = \frac{a}{b}$.
+	\begin{gather*}
+		H_n = P_n\left(\frac{a^2}{b^2}\right) \Ra b^{2n}H_n = b^{2n}P_n\left(\frac{a^2}{b^2}\right) - \text{целое число.} \\
+		H_n > 0 \Ra b^{2n}H_n > 0 \\
+		1 \le b^{2n}H_n \le b^{2n}\frac\pi2\left(\frac\pi2\right)^{2n} \frac{1}{n!} = \frac\pi2\frac{{\left(b\cdot\pi/2\right)}^{2n}}{n!} \ra 0
+	\end{gather*}
 \end{proof}
-\begin{theorem}{Формула Тейлора с остатком в интегральной форме:}
 
-	$f \in C^{n + 1}<a, b>$ 
-	
-	$x_0\in<a, b>$
-
-	Тогда $f(x) = T_{n, x_0}f(x) + \frac{1}{n!}\int\limits_{x_0}^x(x - t)^nf^{(n + 1)}t \d t$
+\begin{theorem}[Формула Тейлора с остатком в интегральной форме]
+	$f \in C^{n + 1}\left<a, b\right>$, $x_0 \in \left<a, b\right>$.
+	Тогда
+	\[ f(x) = T_{n, x_0}f(x) + \frac{1}{n!}\int\limits_{x_0}^x (x - t)^n f^{(n + 1)}(t) \d t \]
 \end{theorem}
 \begin{proof}
 	Докажем по индукции.
-	
 	\begin{description}
-		\item[База:] $n = 0$:
-		$$f(x) = f(x_0) + \int\limits_{x_0}^{x}f'(t)\d t = f(x_0) + f(x) - f(x_0)$$
-		\item[Переход:] 
+	\item[База $n = 0$:]
+		\[f(x) = f(x_0) + \int\limits_{x_0}^{x}f'(t)\d t = f(x_0) + f(x) - f(x_0) \]
+
+	\item[Переход:]
 		\begin{gather*}
 			f(x) = T_{n, x_0}f(x) + \frac{1}{n!}\int\limits_{x_0}^x{(x - t)}^nf^{(n + 1)}(t)\d t = T_{n, x_0}f(x) - \frac{1}{(n + 1)!}
 			\int\limits_{x_0}^xf^{(n + 1)}(t)({(x - t)}^{n + 1})'\d t = \\
@@ -84,69 +105,67 @@
 \end{proof}
 
 \section{Интегральные суммы.}
-\begin{Def}{}
-	$f \colon X \ra Y$, $X, Y$ - метрические пространства.
-
-	$\omega_f(\delta) = \sup\{\rho_y(f(x_1), f(x_2)): \rho_x(x_1, x_2) < \delta\}$
-
-	$\omega_f(\delta)$ - модуль непрерывности.
+\begin{Def}
+	$f \colon X \ra Y$, $X, Y$ "--- метрические пространства.
+	\[ \omega_f(\delta) = \sup\{\rho_y(f(x_1), f(x_2)) \mid \rho_x(x_1, x_2) < \delta\} \]
+	$\omega_f(\delta)$ "--- модуль непрерывности.
 \end{Def}
 
 \underline{Свойства:}
 \begin{enumerate}
-	\item $\omega_f(\delta) \ge 0$
-	\item $\omega_f(0) = 0$
-	\item $\omega_f(\delta)\nearrow$
-	\item $f$ равномерно непрерывно на $X \Leftrightarrow w_f$ непрерывна в 0.
+\item
+	$\omega_f(\delta) \ge 0$
 
+\item
+	$\omega_f(0) = 0$
+
+\item
+	$\omega_f(\delta)\nearrow$
+
+\item
+	$f$ равномерно непрерывно на $X$ тогда и только тогда, когда $w_f$ непрерывна в 0.
 	\begin{proof}
-		\begin{itemize}
-			\item "$\Rightarrow$"
+		\begin{description}
+		\item[$\Ra$:]
+			$f$ равномерно непрерывно на $X$:
+			\begin{gather*}
+				\forall \epsilon > 0, \exists \delta > 0 \colon \forall x_1, x_2 \in X\colon \rho_x(x_1, x_2) \le \delta, \rho_y(f(x_1), f(x_2)) < \epsilon \Ra \\
+				\Ra \underbrace{\sup\{\rho_y(f(x_1, f(x_2)) \mid \rho_x(x_1, x_2) \le \delta\}}_{= w_f(\delta)} \le \epsilon \\
+				\forall \epsilon > 0, \exists \delta > 0 \colon w_f(\delta) \le \epsilon \Ra 0 \le w_f(\gamma) \le w_f(\delta) \le \epsilon \quad\text{при $\gamma \le \delta$}
+			\end{gather*}
+			Таким образом $w_f$ непрерывна в 0.
 
-			$f$ - равномерно непрерывно на $X$ $\Leftrightarrow \forall \epsilon > 0, \exists \delta > 0 \colon (\forall x_1, x_2 \in X) \wedge 
-			(\rho_x(x_1, x_2) \le \delta) \Rightarrow \rho_y(f(x_1), f(x_2)) < \epsilon$
-
-			$\Rightarrow \underbrace{\sup\{\rho_y(f(x_1, f(x_2))\colon \rho_x(x_1, x_2) \le \delta\}}_{= w_f(\delta)} \le \epsilon$
-   	
-			$\forall \epsilon > 0, \exists \delta > 0 \colon w_f(\delta) \le \epsilon \Rightarrow 0 \le w_f(\gamma) \le w_f(\delta) \le \epsilon$
-			при $\gamma \le \delta$   
-
-			$\Rightarrow w_f$ - непрерывна в 0
-
-			\item "$\Leftarrow$"
-
-			$\forall \epsilon < 0, \exists \delta > 0 \colon w_f(\delta) < \epsilon \Rightarrow$
-
-			$\Rightarrow$ Если $\rho_x(x_1, x_2) \le \delta$ $\rho_y(f(x_1), f(x_2) < \sup\{\rho_y(f(x_1), f(x_2))\colon \rho_x(x_1, x_2) \le \delta\} < \epsilon$
-		\end{itemize}
+		\item[$\La$:]
+			\begin{gather*}
+				\forall \epsilon < 0, \exists \delta > 0 \colon w_f(\delta) < \epsilon \Ra \\
+				\Ra ((\rho_x(x_1, x_2) \le \delta) \Ra (\rho_y(f(x_1), f(x_2) < \sup\{\rho_y(f(x_1), f(x_2)) \mid \rho_x(x_1, x_2) \le \delta\} < \epsilon))
+			\end{gather*}
+		\end{description}
 	\end{proof}
-	\item $X$ - компактб $f$ - непрерывна на $X \Rightarrow w_f$ непрерывна в 0.
+
+\item
+	Если $X$ "--- компакт, то $f$ непрерывна на $X$ тогда и только тогда, когда $w_f$ непрерывна в 0.
 \end{enumerate}
 
-\begin{Def} $[a, b]$
-	
-	\text{\bf Дробление отрезка} $\tau \colon x_0 = a < x_1 < x_2 < \dots < x_n = b$. (Иногда называют пунктиром)
-
-	\text{\bf Мелкость дробления} (ранг дробления) $ |\tau| = \max\limits_{k = 1, \dots, n}(x_k - x_{k - 1})$
-
-	\text{\bf Оснащение дробления} $\colon \xi_1, \xi_2, \dots, \xi_n$, где $\xi_k \in [x_{k - 1}, x_k]$
-
+\begin{Def}
+	$[a, b]$. Дробление отрезка (иногда называют пунктиром):
+	\[ \tau\colon x_0 = a < x_1 < x_2 < \dots < x_n = b \]
+	Мелкость дробления (ранг дробления):
+	\[ |\tau| = \max_{k=1..n} \left(x_k - x_{k - 1}\right) \]
+	Оснащение дробления:
+	\[ \xi_1, \xi_2, \dots, \xi_n \quad \xi_k \in [x_{k - 1}, x_k] \]
 \end{Def}
 
-\begin{Def}{Сумма Римона} $f \colon [a, b] \longrightarrow \R$
-
-	$\sigma(f, \tau, \xi) = \sum\limits_{k = 1}^n(x_k - x_{k - 1})$
-
+\begin{Def}
+	Сумма Римана: $f\colon [a, b] \ra \R$
+	\[ \sigma(f, \tau, \xi) = \sum_{k = 1}^n f(\xi_k) \left(x_k - x_{k - 1}\right) \]
 \end{Def}
 
 \begin{theorem}
-	$f \in C[a, b]$
-
-	$\forall \epsilon, \exists \delta > 0 \colon \forall$ дробления $(\tau, \xi), |\tau| < \delta| \Rightarrow |\sigma(f, \tau, \xi) -
-	\int\limits_a^bf(x)\d x| < \epsilon$
-
-	В частности, если $(\tau_n, \xi_n)$ - последовательность дроблений такая, что $|\tau_n| \longrightarrow 0$, то 
-	$\sigma(f, \tau_n, \xi_n) \longrightarrow \int\limits_a^bf(x)\d x$
+	$f \in C[a, b]$.
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall (\tau, \xi), |\tau| < \delta \Ra \left|\sigma(f, \tau, \xi) - \int\limits_a^bf(x)\d x\right| < \epsilon \]
+	В частности, если $(\tau_n, \xi_n)$ "--- последовательность дроблений такая, что $|\tau_n| \ra 0$, то
+	\[ \sigma(f, \tau_n, \xi_n) \ra \int\limits_a^bf(x)\d x \]
 \end{theorem}
 \begin{proof}
 	\begin{gather*}
@@ -156,16 +175,17 @@
 		\sum\limits_{k = 1}^n\int\limits_{x_{k - 1}}^{x_k}(f(\xi_k) - f(x))\d x \\
 		|\Delta| \le \sum\limits_{k = 1}^n\left|\int\limits_{x_{k - 1}}^{x_k}(f(\xi_k) - f(x))\d x \right| \le \sum\limits_{x = 1}^n
 		\int\limits_{x_{k - 1}}^{x_k}|f(\xi_k) - f(x)|\d x \le \\
-		\le \sum\limits_{k = 1}^n\int\limits_{x_{k - 1}}^{x_k}w_f(|\tau|)\d x(\text{т.к. $|\xi_k - x| < \tau$}) = \sum\limits_{k = 1}^nw_f(|\tau|)(x_k - x_{k - 1}) \\
+		\stackrel{|\xi_k - x| < \tau}{\le} \sum\limits_{k = 1}^n\int\limits_{x_{k - 1}}^{x_k}w_f(|\tau|)\d x = \sum\limits_{k = 1}^nw_f(|\tau|)(x_k - x_{k - 1}) \\
 		|\Delta| \le w_f(|\tau|)(b - a) < \epsilon(b - a)
 	\end{gather*}
 \end{proof}
+
 \begin{Def}
-	$f:[a, b] \longrightarrow \R$
-
-	$f$ - интегрируема по Риману, если $\exists I \colon \forall \epsilon, \exists \delta > 0\colon \forall |\tau| < \delta |\sigma(f, \tau, \xi) - I| < \epsilon$
-
-	и $I$ называется интегралом Римана. ($\int\limits_a^bf(x)\d x$)
+	$f:[a, b] \ra \R$.
+	$f$ интегрируема по Риману, если
+	\[ \exists I \colon \forall \epsilon, \exists \delta > 0\colon \forall |\tau| < \delta |\sigma(f, \tau, \xi) - I| < \epsilon \]
+	и $I$ называется интегралом Римана.
+	\[ \int\limits_a^bf(x)\d x \]
 \end{Def}
 \begin{Rem}
 	В этом определении не обязательна непрерывность функции, но для не непрерывных будет непонятно, существует ли интеграл.

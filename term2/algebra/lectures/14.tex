@@ -1,0 +1,46 @@
+﻿	\section{Ранг произведения матриц}
+
+\begin{theorem}
+	$A \in M(n, m, K)$, $B \in M(m, l, k)$.
+	\[\rang A + \rang B - m \le \rang AB \le \min\{\rang A, \rang B\} \]
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+	\[
+		A \cdot B = \begin{pmatrix}
+			a_{11} & \cdots & a_{1m} \\
+			\vdots & \ddots & \vdots \\
+			a_{n1} & \cdots & a_{nm}
+		\end{pmatrix} \cdot \begin{pmatrix}
+			B_1    \\
+			\vdots \\
+			B_m
+		\end{pmatrix} = \begin{pmatrix}
+			a_{11}B_1 + \cdots + a_{1m}B_m \\
+			a_{21}B_1 + \cdots + a_{2m}B_m \\
+			\vdots \\
+			a_{n1}B_1 + \cdots + a_{nm}B_m
+		\end{pmatrix}
+	\]
+	Строки произведения "--- это линейные комбинации строк $B$.
+	Следовательно, пространство, порожденное $AB$, не больше пространства, порожденного строками $B$, и $\rang AB \le \rang B$.
+	Столбцы $AB$ "--- линейная комбинация столбцов $A$, откуда $\rang AB \le \rang A$ и
+	\[ \rang AB \le \min\{\rang A, \rang B\} \]
+
+	\item
+		$f\colon K^l \to K^m\colon x \mapsto Bx$, $g\colon K^m \to K^n\colon y \mapsto Ay$.
+		\begin{gather*}
+			[g \circ f] = A \cdot B \\
+			U = \Im f, h = g\bigr|_{\Im f}
+		\end{gather*}
+		$h\colon U \to V$ "--- линейное преобразование.
+		\begin{gather*}
+			\dim \Im h + \dim \ker h = \dim U \\
+			\rang AB = \dim \Im (g \circ f) = \dim \Im \left(g \bigr|_{Im(f)}\right)
+				= \dim \Im f - \dim \ker \left(g \bigr|_{\Im f}\right) \ge \\
+			\ge \dim \Im f - \dim \ker g = \dim \Im f - (m - \dim \Im g) = \\
+			= \dim \Im f + \dim \Im g - m = \rang A + \rang B - m
+		\end{gather*}
+	\end{enumerate}
+\end{proof}

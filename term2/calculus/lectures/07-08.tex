@@ -1,0 +1,563 @@
+\chapter{Функции нескольких переменных}
+\setauthor{Юрий Кравченко}
+\section{Линейные операторы}
+
+\begin{Def}
+	$X$ "--- линейное (векторное) пространство над $\R$, $x_1, x_2, \dots, x_n \in X$, $\lambda_1, \lambda_2, \dots, \lambda_n \in \R$.
+	$\lambda_1x_1 + \lambda_2x_2 + \dots + \lambda_nx_n$ "--- линейная комбинация векторов $x_1, x_2, \dots, x_n$.
+\end{Def}
+
+\begin{Def}
+	$x_1, x_2, ..., x_n \in X$ "--- линейно независимы, если
+	\[ \lambda_1x_1 + \lambda_2x_2 + \dots + \lambda_nx_n = 0 \]
+	только при
+	\[ \lambda_1 = \lambda_2 = \dots = \lambda_n = 0 \]
+\end{Def}
+
+\begin{Def}
+	Размерность пространства "--- максимальное число линейно независимых векторов
+\end{Def}
+
+\begin{Def}
+	$x_1, x_2, ..., x_n \in X$ "--- базис, если
+	\begin{enumerate}
+	\item
+		$x_1, x_2, ..., x_n$ линейно независимы
+	\item
+		\[ \forall x \in X, \exists \lambda_1, \lambda_2, \dots, \lambda_n \colon x = \lambda_1x_1 + \lambda_2x_2 + \dots + \lambda_nx_n \]
+	\end{enumerate}
+\end{Def}
+
+\begin{exmp}
+$X = \R^n$.
+
+$
+	\left\{
+		\begin{pmatrix}
+			1\\
+			0\\
+			0\\
+			\vdots \\
+			0\\
+		\end{pmatrix},
+		\begin{pmatrix}
+			0\\
+			1\\
+			0\\
+			\vdots \\
+			0\\
+		\end{pmatrix},
+		\dots,
+		\begin{pmatrix}
+			0\\
+			0\\
+			0\\
+			\vdots \\
+			1\\
+		\end{pmatrix}
+	\right\}
+$ "--- базис, потому что любой вектор
+$
+	\begin{pmatrix}
+		a_1\\
+		a_2\\
+		\vdots \\
+		a_n
+	\end{pmatrix}
+$ можно представить как
+\[
+	a_1
+	\begin{pmatrix}
+		1\\
+		0\\
+		0\\
+		\vdots \\
+		0\\
+	\end{pmatrix}
+	+a_2
+	\begin{pmatrix}
+		0\\
+		1\\
+		0\\
+		\vdots \\
+		0\\
+	\end{pmatrix}
+	+\dots
+	+a_n
+	\begin{pmatrix}
+		0\\
+		0\\
+		0\\
+		\vdots \\
+		1\\
+	\end{pmatrix}
+\]
+\end{exmp}
+
+\begin{Def}
+	$X$, $Y$ "--- линейные пространства.
+	$A\colon X \ra Y$ "--- линейный оператор, если
+	\begin{enumerate}
+		\item $\forall x, y \in X, A(x + y) = A(x) + A(y)$
+		\item $\forall x \in X, \forall \lambda \in \R, A(\lambda x) = \lambda A(x)$
+	\end{enumerate}
+\end{Def}
+
+\underline{Свойства:}
+\begin{enumerate}
+\item
+	$\forall A, A(0_x) = 0_y$
+	\begin{proof}
+		$\lambda = 0, A(0x) = 0A(x)$
+	\end{proof}
+
+\item
+	\[ A\left(\sum_{k = 1}^n \lambda_k x_k\right) = \sum_{k = 1}^n \lambda_k A\left(x_k\right) \]
+	\begin{proof}
+		\[ A\left(\sum_{k = 1}^n \lambda_k x_k\right) = \sum_{k = 1}^n A\left(\lambda_k x_k\right) = \sum_{k = 1}^n \lambda_k A\left(x_k\right) \]
+	\end{proof}
+
+\item
+	Множество линейных операторов "--- линейное пространство
+	\begin{proof}
+		\begin{enumerate}
+			\item $\forall A, B, (A + B)(x) \equiv (B + A)(x)$
+			\item $\forall A, B, C, ((A + B) + C)(x) \equiv (A + (B + C))(x)$
+			\item $\exists O \colon \forall A, (A + O)(x) \equiv A(x) + O(x)$
+			\item $\forall A, \exists -A \colon (A + -A)(x) \equiv O(x)$
+			\item $\forall \alpha, \beta, A, \alpha(\beta A)(x) \equiv (\alpha \beta)A(x)$
+			\item $\forall A, (1 \cdot A)(x) \equiv A(x)$
+			\item $\forall \alpha, \beta, A, (\alpha + \beta)A(x) \equiv \alpha A(x) + \beta A(x)$
+			\item $\forall \alpha, A, B, \alpha(A + B)(x) \equiv \alpha A(x) + \alpha B(x)$
+		\end{enumerate}
+	Проверьте сами
+\end{proof}
+\end{enumerate}
+
+\begin{Def}
+	Композиция линейных операторов $A \colon X \ra Y$ и $B \colon Y \ra Z$:
+	\[ B \circ A \colon X \ra Z \quad (B \circ A)(x) = B(A(x)) \]
+\end{Def}
+\begin{theorem}
+	Композиция линейных операторов "--- линейный оператор.
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item $(B \circ A)(x + y)  = B(A(x + y)) = B(A(x) + A(y)) = B(A(x)) + B(A(y))  = (B \circ A)(x) + (B \circ A)(y)$
+		\item $(B \circ A)(\lambda x) = B(A(\lambda x)) = B(\lambda A(x)) = \lambda B(A(x)) = \lambda (A \circ B) (x)$
+	\end{enumerate}
+\end{proof}
+
+\begin{Def}
+	$A \colon X \ra Y$, $B \colon Y \ra X$.
+	$B$ "--- обратный оператор к $A$, если:
+	\begin{enumerate}
+		\item $\forall x, (B \circ A)(x) = x$
+		\item $\forall y, (A \circ B)(y) = y$
+	\end{enumerate}
+	\[ B = A^{-1} \]
+\end{Def}
+
+\underline{Свойства:}
+\begin{enumerate}
+	\item Если обратный оператор существует, то он единственный
+	\item $(\lambda A)^{-1} = \frac{1}{\lambda}A^{-1}$
+	\begin{proof}
+		\[ \left(\frac{1}{\lambda}A^{-1}\right) \circ \left(\lambda A\right)(x) = \frac{1}{\lambda} \lambda\left(A^{-1} \circ A\right)(x) = x \]
+	\end{proof}
+\end{enumerate}
+
+\begin{theorem}
+	Теперь рассмотрим случай $Y = X$. $A \colon X \to X$.
+	Множество обратимых операторов образует группу относительно композиции.
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		$\exists E \colon E(x) = x$
+	\item
+		Проверим замкнутость операций. Для этого докажем, что
+		\[ (A \circ B) ^ {-1} (x) = (B^{-1} \circ A^{-1}) (x) \]
+		\begin{proof}
+			\[ B^{-1} \circ A^{-1} \circ (A \circ B) (x) = B^{-1}(A^{-1}(A(B(x))) = B^{-1}(B(x)) = x \]
+		\end{proof}
+	\end{enumerate}
+\end{proof}
+
+Частный случай $X = \R^n$, $Y = \R^m$, $A \colon \R^n \ra \R^m$.
+\begin{gather*}
+	\bar x = x_1 \bar e_1 + \dots + x_n \bar e_n \\
+	A(\bar x) = A(x_1 \bar e_1 + \dots + x_n \bar e_n) = x_1A \bar e_1 + \dots + x_nA \bar e_n
+\end{gather*}
+Напишем это же равенство через матрицы:
+\[
+	A(\bar x) =
+	\begin{pmatrix}
+		a_{1, 1} & \dots & a_{1, n}\\
+		\vdots & \ddots & \vdots\\
+		a_{m, 1} & \dots & a_{m, n}\\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		a_{1, 1}x_1 + \dots + a_{1, n}x_n\\
+		\vdots\\
+		a_{m, 1}x_1 + \dots + a_{m, n}x_n\\
+	\end{pmatrix}
+	=
+	x_1
+	\begin{pmatrix}
+		a_{1, 1}\\
+		\vdots\\
+		a_{m, 1}\\
+	\end{pmatrix}
+	+ \dots
+	+ x_n
+	\begin{pmatrix}
+		a_{1, n}\\
+		\vdots\\
+		a_{m, n}\\
+	\end{pmatrix}
+\]
+
+\begin{Def}
+	Норма оператора:
+	$X$ и $Y$ "--- нормированные пространства (заданы $\|\|_x$ и $\|\|_y$).
+	$A \colon X \ra Y$ "--- линейный оператор.
+	\[ \|A\| = \sup_{\|x\|_x \le 1} \|A(x)\|_y \]
+	или то же самое
+	\[ \|A\| = \sup \{\|A(x)\|_y \mid \|x\|_x \le 1\} \]
+\end{Def}
+\begin{Def}
+	Если $\|A\| < +\infty$, то $A$ "--- ограниченный оператор.
+\end{Def}
+
+\underline{Свойства:}
+\begin{enumerate}
+\item
+	$\|A + B\| \le \|A\| + \|B\|$
+	\begin{proof}
+		$\|A + B\| = \sup \|(A + B)(x)\|_y = \sup \|A(x) + B(x)\|_y \le \sup \|A(x)\|_y + \sup \|B(x)\|_y = \|A\| + \|B\|$
+	\end{proof}
+
+\item
+	$\|\lambda A\| = |\lambda| \cdot \|A\|$
+	\begin{proof}
+		$\|\lambda A\| = \sup \| (\lambda A)(x) \|_y = \sup \| \lambda A(x) \|_y = \sup( |\lambda| \cdot \|A(x) \|_y) = |\lambda| \sup \|A(x)\|_y = |\lambda| \cdot \|A\|$
+	\end{proof}
+
+\item
+	$\|A\| = 0 \Ra A$ "--- нулевой оператор
+	\begin{proof}
+		$\|A\| = 0 \Ra \sup \|A(x)\|_y = 0 \Ra \|A(x)\|_y = 0, \forall x \colon \|x\|_x \le 1$
+
+		Пусть $\|\tilde x\|_x > 1$, тогда возьмём $x = \frac{\tilde x}{\|\tilde x\|_x}$ и $\|x\|_x = 1$
+
+		$A(\tilde x) = A(\|\tilde x\|_x \cdot x) = \|\tilde x\|_x \cdot A(x) = 0$
+	\end{proof}
+
+\item
+	Норма для операторов, которую мы задали, действительно является нормой в линейном пространстве операторов.
+\end{enumerate}
+
+\begin{Rem}
+	Ограниченный оператор не означает ограниченное отображение. Если $A \colon X \ra Y$ "--- ограниченное отображение, то $A = O$.
+\end{Rem}
+\begin{proof}
+	Пусть $A \ne O$
+	\begin{gather*}
+		\exists x_0 \in X \colon A(x_0) \ne 0_y \Ra \|A(x_0)\|_y \ne 0 \\
+		\|A(\lambda x_0)\|_y = |\lambda| \cdot \|Ax_0\|_y
+	\end{gather*}
+	Если $A$ "--- ограниченное отображение, то $A(\lambda x_0)$ "--- ограниченное множество, поэтому
+	\[ \forall \lambda \in \R, \|A(\lambda x_0)\| \le M \]
+	но
+	\[ \|A(\lambda x_0)\| = |\lambda| \cdot \|Ax_0\| \]
+	"--- противоречие
+\end{proof}
+
+\begin{theorem}
+	$A \colon X \ra Y$ "--- линейный оператор, $X, Y$ "--- нормированные пространства.
+	Тогда
+	\[
+		\sup_{\|x\|_x \le 1} \|A(x)\|_y
+			= \sup_{\|x\|_x < 1} \|A(x)\|_y
+			= \sup_{\|x\|_x = 1} \|A(x)\|_y
+			= \sup_{x \ne 0} \frac{\|A(x)\|_y}{\|x\|_x}
+			= \inf \{c \mid \forall x \in X, \|A(x)\|_y \le c\|x\|_x\}
+	\]
+\end{theorem}
+\begin{proof}
+	Для удобства обозначим части равенств $N_1, N_2, N_3, N_4, N_5$ соответственно.
+	\begin{description}
+	\item[$N_1 \ge N_2$ и $N_1 \ge N_3$:]
+		Очевидно.
+
+	\item[$N_3 = N_4$:]
+		\[ \frac{\|A_x\|_y}{\|x\|_x} = \frac{1}{\|x\|_x} \cdot \|A(x)\|_y = \|A(\frac{x}{\|x\|_x})\|_y \]
+		$\frac{x}{\|x\|_x}$ "--- единичный вектор.
+
+	\item[$N_4 = N_5$:]
+		\begin{gather*}
+			\inf\{c \mid \forall x \in X, \|A(x)\|_y \le c\|x\|_x\}
+				= \inf \{c \mid \forall x \in X\colon x \ne 0, \|A(x)\|_y \le c\|x\|_x\} = \\
+			= \inf \{c \mid \forall x \in X\colon x \ne 0, \frac{\|A(x)\|_y}{\|x\|_x} \le c\}
+		\end{gather*}
+		"--- наименьшая из верхних границ для $\frac{\|A(x)\|_y}{\|x\|_x}$ при $x \ne 0$, что является супремумом по определению.
+
+	\item[$N_2 \ge N_1$:]
+		Докажем, что
+		\begin{gather*}
+			(1+ \epsilon)N_2 \ge N_1,  \forall \epsilon > 0 \\
+			(1+ \epsilon)N_2 = \sup_{\|x\|_x < 1} \|A(x)\|_y \cdot (1 + \epsilon)
+		\end{gather*}
+		Зафиксируем $x \in X, \|x\|_x \le 1$:
+		\begin{gather*}
+			\tilde x = \frac{x}{1 + \epsilon} \\
+			\|\tilde x\|_x = \|\frac{x}{1 + \epsilon}\|_x = \frac{1}{1 + \epsilon} \|x\|_x \le \frac{1}{1 + \epsilon} < 1 \\
+			\|A(x)\|_y = \|A((1 + \epsilon)\tilde x)\|_y = (1 + \epsilon)\|A(\tilde x)\|_y \le (1+\epsilon)N_2
+		\end{gather*}
+
+	\item[$N_3 \ge N_1$:]
+		\[
+			\|A(x)\|_y = \|A(\|x\|_x \cdot \frac{x}{\|x\|_x})\|_y = \|x\|_x \cdot \|A(\frac{x}{\|x\|_x})\|_y
+				\le \|A(\frac{x}{\|x\|_x})\|_y \le N_3
+		\]
+	\end{description}
+\end{proof}
+
+\begin{conseq}
+	\begin{enumerate}
+	\item
+		$\forall x \in X, \|A(x)\| _ y \le \|A\| \cdot \|x\|_x$
+		\begin{proof}
+			$\|A\| = \sup_{x \ne 0} \frac{\|A(x)\|_y}{\|x\|_x}$
+		\end{proof}
+
+	\item
+		$\|B \circ A\| \le \|B\| \cdot \|A\|$
+		\begin{proof}
+			\begin{gather*}
+				\|(B \circ A)(x)\|_z = \|B(A(x))\|_z \le \|B\| \cdot \|A(x)\|_y \le \|B\| \cdot \|A\| \cdot \|x\|_x \\
+				\|B \circ A\| = \sup_{\|x\|_x \le 1} \|(B\circ A)(x)\|_z \le \|B\| \cdot \|A\|
+			\end{gather*}
+		\end{proof}
+	\end{enumerate}
+\end{conseq}
+
+\begin{theorem}
+	$A \colon X \ra Y$ "--- линейный оператор.
+	Тогда следующие условия равносильны:
+	\begin{enumerate}
+		\item $A$ ограниченный оператор
+		\item $A$ непрерывен в 0
+		\item $A$ непрерывен
+		\item $A$ равномерно непрерывен
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$4\Ra 3 \Ra 2$:]
+		Очевидно.
+
+	\item[$1 \Ra 4$:]
+		\begin{gather*}
+			\|A(x_1) - A(x_2)\|_y = \|A(x_1 - x_2)\|_y \le \|A\| \cdot \|x_1 - x_2\|_x \\
+			\forall \epsilon > 0, \exists \delta > 0 \colon \forall x_1, x_2, \|x_1 - x_2\|_x < \delta \Ra \|A(x) - A(y)\|_y < \epsilon
+		\end{gather*}
+		Возьмём $\delta = \frac{\epsilon}{\|A\|}$
+		\[
+			\|x_1 - x_2\|_x < \frac{\epsilon}{\|A\|} \Ra \|A(x_1) - A(x_2)\|_y \le \|A\| \cdot \|x_1 - x_2\|_x
+				< \|A\| \cdot \frac{\epsilon}{\|A\|} = \epsilon
+		\]
+
+	\item[$2 \Ra 1$:]
+		\[ \forall \epsilon > 0, \exists \delta > 0 \colon \|x - 0\|_x < \delta \Ra \|A(x) - A(0)\|_y < \epsilon \]
+		Возьмём $\epsilon = 1$ и соответствующий ему $\delta$:
+		\[ \|x - 0\|_x < \delta \Ra \|A(x) - A(0)\|_y < 1 \]
+		Возьмём $x\in X \colon \|x\|_x < 1$, тогда $\tilde x = \delta x$
+		\begin{gather*}
+			\|\tilde x\|_x < \delta \Ra 1 > \|A \tilde x\|_y = \|A(\delta x)\|_y = \delta \|A(x)\|_y \\
+			\|A(x)\|_y < \frac{1}{\delta}, \forall x \in X \colon \|x\|_x < 1 \\
+			\sup_{\|x\|_x < 1} \|A(x)\|_y \le \frac{1}{\delta}
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{theorem}
+	$A \colon \R^n \ra \R^m$
+	\[ \|A\| \le \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2} \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		x = x_1e_1 + \dots + x_n e_n \\
+		\|x\|^2 = x_1^2 + \dots + x_n^2 \\
+		\|A(x)\| = \|A(x_1e_1 + \dots + x_n e_n)\|
+			= \|x_1A(e_1) + \dots + x_nA(e_n)\| \le |x_1| \cdot \|A(e_1)\| + \dots + |x_n| \cdot \|A(e_n)\| \\
+		\|A(x)\|^2 \le (|x_1| \cdot \|A(e_1)\| + \dots + |x_n| \cdot \|A(e_n)\|) ^ 2
+			\le (|x_1| ^ 2 + \dots + |x_n|^2) \cdot (\|A(e_1)\|^2 + \dots + \|A(e_n)\|^2) = \\
+		= \|x^2\| (\|A(e_1)\|^2 + \dots + \|A(e_n)\|^2) = \|x\|^2 \cdot \sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2 \\
+		A(e_k) =
+			\begin{pmatrix}
+				a_{1, 1} & \dots & a_{1, n}\\
+				\vdots & \ddots & \vdots\\
+				a_{m, 1} & \dots & a_{m, n}\\
+			\end{pmatrix}
+			\begin{pmatrix}
+				0\\
+				\vdots\\
+				0\\
+				1\\
+				0\\
+				\vdots\\
+				0\\
+			\end{pmatrix}
+			=
+			\begin{pmatrix}
+				a_{1, k}\\
+				\vdots\\
+				a_{m, k}\\
+			\end{pmatrix} \\
+		\|A(e_k)\|^2 = a_{1, k}^2 + \dots + a_{m, k}^2 \\
+		\|A(x)\| \le \|x\|\sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2}
+			\le \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2} \quad \text{при $\|x\| \le 1$} \\
+		\sup_{\|x\| \le 1}\|A(x)\| \le \sqrt{\sum_{i = 1}^m \sum_{j = 1}^n a_{i, j}^2}
+	\end{gather*}
+\end{proof}
+
+\begin{Def}
+	$X$ "--- линейное пространство.
+	Две нормы называются эквивалентными, если
+	\[ \exists c_1, c_2 > 0 \colon \forall x \in X, c_1\|x\|_1 \le \|x\|_2 \le c_2\|x\|_1 \]
+\end{Def}
+
+\begin{Rem}
+	\begin{enumerate}
+	\item
+		Если нормы эквивалентны, то сходимости по этим нормам означают одно и то же.
+		Пусть $x_n \ra x_0$ по норме $1$, тогда $\|x_n - x_0\|_2 \le c_2\|x_n - x_0\|_1$,
+		но $x_n - x_0 \ra 0 \Ra x_n \ra x_0$ по норме 2.
+
+	\item
+		Непрерывности относительно эквивалентных норм совпадают
+	\end{enumerate}
+\end{Rem}
+
+\begin{theorem}
+	В $\R^d$ все нормы эквивалентны
+\end{theorem}
+
+\begin{proof}
+	\[ \|x\| = \sqrt{x_1^2 + \dots + x_n^2} \]
+	Докажем, что все нормы эквивалентны данной
+	Пусть $p$ "--- другая норма.
+	\begin{gather*}
+		p(x) = p\left(\sum_{k = 1}^d x_k e_k\right) \le \sum_{k = 1}^d |x_k| p(e_k)
+			\le \left(\sum_{k = 1}^d |x_k|^2\right)^{\frac12} \left(\sum_{k = 1}^d p(e_k)^2\right)^{\frac12} = \\
+		= \|x\| \cdot \left(\sum_{k = 1}^d p(e_k)^2\right)^{\frac12}
+	\end{gather*}
+	Возьмём $c_2 = \sqrt{\sum_{k = 1}^d p(e_k)^2}$:
+	\begin{gather*}
+		p(x) \le c_2 \|x\| \\
+		|p(x) - p(y)| \le p(x - y) \le c_2 \|x - y\| \Ra \text{$p$ "--- непрерывная функция} \\
+	\end{gather*}
+	$S^{d - 1} = \{x\in \R^d \mid \|x\| = 1\}$ "--- сфера в $n$-мерном пространстве.
+	Она компактна (ограничена и замкнута), поэтому по теореме Вейерштрасса $p$ достигает наименьшее значение $p(y)$.
+	$p(y) \ne 0$, потому что иначе $y \notin S^{d - 1}$.
+
+	Пусть $c_1 = p(y) > 0$, тогда
+	\begin{gather*}
+		с_1 \le p\left(\frac{x}{\|x\|}\right) = p\left(\frac{1}{\|x\|} \cdot x\right) = \frac{1}{\|x\|} \cdot p(x) \\
+		c_1\|x\| \le p(x)
+	\end{gather*}
+\end{proof}
+
+\section{Дифференцируемость в \texorpdfstring{$\R^n$}{R\textasciicircum{}n}}
+
+\begin{Def}
+	$f \colon D \subset \R^n \ra \R^m$, $a \in \Int D$.
+	$f$ дифференцируема в точке $а$, если существует линейный оператор $T\colon \R^n \ra \R^m$ такой, что
+	\[ f(a + h)_{h \ra 0} = f(a) + T(h) + o(\|h\|) \]
+\end{Def}
+\begin{Rem}
+	$T$ определен однозначно: зафиксируем $h$, $t > 0$:
+	\begin{gather*}
+		f(a + th)_{t \ra 0} = f(a) + T(th) + o(\|th\|) = f(a) + T(th) + o(t) \\
+		T(h) + o(1) = \frac{f(a + th) - f(a)}{t} \\
+		T(h) = \lim_{t \ra 0} \frac{f(a + th) - f(a)}{t}
+	\end{gather*}
+\end{Rem}
+
+\begin{Def}
+	Матрица, соответствующая оператору $T$ "--- матрица Якоби.
+\end{Def}
+Частный случай $m = 1$:
+\begin{gather*}
+	f \colon D \subset R^n \ra R \\
+	f(a + h) = f(a) + T(h) + o(\|h\|) \\
+	T \colon \R^n \ra \R \\
+	T(h) =
+		\begin{pmatrix}
+			t_1 & \dots & t_n
+		\end{pmatrix}
+		\begin{pmatrix}
+			h_1\\
+			\vdots \\
+			h_n
+		\end{pmatrix}
+		= t_1h_1 + \dots + t_nh_n = \left< V, h \right> \\
+	V =
+		\begin{pmatrix}
+			t_1\\
+			\vdots \\
+			t_n
+		\end{pmatrix} \\
+	\exists V \in \R^n \colon f(a + h) = f(a) + \left< V, h \right> + o(\|h\|) \\
+\end{gather*}
+
+\begin{Def}
+	$V$ "--- градиент функции $f$:
+	\[ V = \grad f = \nabla f \]
+\end{Def}
+
+\begin{theorem}
+	$f \colon D \subset \R^n \ra \R^m$, $a \in \Int D$,
+	\[
+		f =
+			\begin{pmatrix}
+				f_1\\
+				\vdots\\
+				f_m
+			\end{pmatrix}
+	\]
+	Тогда $f$ дифференцируема в точке $a$ тогда и только тогда, когда все $f_k$ дифференцируемы в точке $a$.
+\end{theorem}
+\begin{proof}
+	\[ f(a + h) = f(a) + T(h) + o(\|h\|) \]
+	\begin{description}
+	\item[$\Ra$:]
+		\[ f_k(a + h) = f_k(a) + (T(h))_k + o(\|h\|) \]
+
+	\item[$\La$:]
+		\begin{gather*}
+			\alpha_k(h) = f_k(a+h) - f_k(a) - \left<V_k, h\right> = o(\|h\|) \\
+			\frac{\alpha_k(h)}{\|h\|} \ra 0 \\
+			\alpha(h) = f(a+h) - f(a) - T(h) = o(\|h\|) \\
+			\alpha(h) =
+				\begin{pmatrix}
+					\alpha_1(h)\\
+					\vdots\\
+					\alpha_n(h)
+				\end{pmatrix} \\
+			\|\alpha(h)\| = \sqrt{\alpha_1^2(h) +\dots + \alpha_n^2(h)} \\
+			\frac{\|\alpha(h)\|}{\|h\|} = \sqrt{(\frac{\|\alpha_1(h)\|}{\|h\|}) ^ 2 + \dots + (\frac{\|\alpha_n(h)\|}{\|h\|}) ^ 2} \ra 0
+		\end{gather*}
+		потому что
+		\[ \frac{\alpha_k(h)}{\|h\|} \ra 0 \]
+	\end{description}
+\end{proof}
+

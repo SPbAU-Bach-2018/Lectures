@@ -1,10 +1,12 @@
 \setauthor{Дмитрий Лапшин}
 
-\[f(a + h) = f(a) + Th + o(\|g\|) \text{при $h \ra \infty$}\]
-\[f\colon E \subset \R^n \ra \R^m\]
-\[T\colon \R^n \ra \R^m \text{"--- дифференциал в точке $a$}\]
-
-\[\d_a f \quad T h \quad \d_a f(h) \]
+Ещё раз вспомним:
+\begin{gather*}
+	f(a + h) = f(a) + Th + o(\|g\|) \quad\text{при $h \ra \infty$} \\
+	f\colon E \subset \R^n \ra \R^m \\
+	T\colon \R^n \ra \R^m \text{"--- дифференциал в точке $a$} \\
+	\d_a f \quad T h \quad \d_a f(h)
+\end{gather*}
 
 \begin{exmp}
 	\begin{enumerate}
@@ -13,7 +15,7 @@
 		Она дифференцируема во всех точках:
 		\begin{gather*}
 			f(a + h) = f(a) + \underbrace{\d_a f(h) + o(\|h\|)}_{=0} \\
-			\d_a f = 0 d
+			\d_a f = 0
 		\end{gather*}
 		Как и раньше, производная константы "--- ноль.
 
@@ -21,7 +23,7 @@
 		$f$ "--- линейное отображение: $f(x) = Tx$.
 		Оно также дифференцируемо везде:
 		\begin{gather*}
-			f(a + h) = T(a + h) = Ta + Th = f(a) + Th + 0
+			f(a + h) = T(a + h) = Ta + Th = f(a) + Th + 0 \\
 			\d_a f = T
 		\end{gather*}
 
@@ -60,9 +62,9 @@
 \end{theorem}
 \begin{Rem}
 	\begin{gather*}
-		\d_a f\colon R^n \ra R^m \\
-		\d_{f(a)} g\colon R^m \ra R^l \\
-		\d_a (g \circ f)\colon \R^n \ra R^l
+		\d_a f\colon \R^n \ra \R^m \\
+		\d_{f(a)} g\colon \R^m \ra \R^l \\
+		\d_a (g \circ f)\colon \R^n \ra \R^l
 	\end{gather*}
 	Все размерности сходятся.
 \end{Rem}
@@ -70,12 +72,13 @@
 	$b \lrh f(a) \in D$
 	\begin{gather*}
 		\begin{aligned}
-			f(a + h) &= f(a) + \d_a f(h) + \alpha(h) \|h\| & \alpha &\colon E\ra R^m & \lim_{h \ra \vec 0} \alpha(h) &= \vec 0 \\
-			g(b + k) &= g(b) + \d_b g(k) + \beta(k) \|k\|  & \beta  &\colon D\ra R^l & \lim_{k \ra \vec 0} \beta(k)  &= \vec 0 \\
+			f(a + h) &= f(a) + \d_a f(h) + \alpha(h) \|h\| & \alpha &\colon E\ra \R^m & \lim_{h \ra \vec 0} \alpha(h) &= \vec 0 \\
+			g(b + k) &= g(b) + \d_b g(k) + \beta(k) \|k\|  & \beta  &\colon D\ra \R^l & \lim_{k \ra \vec 0} \beta(k)  &= \vec 0 \\
 		\end{aligned} \\
+		k = \d_a f(h) + \alpha(h) \|h\| \\
 		(g \circ f)(a) = (g \circ f)(a) + \d_{f(a)} g(k) + \beta(k) \|k\| =
-			(g \circ f)(a) + \d_{f(a)} g(d_a f(h) + \alpha(h) \|h\|) + \beta(k) \|k\| = \\
-		= (g \circ f)(a) + \underbrace{d_{f(a)} g(d_a f(h))}_{d_{a} (g \circ f)} + \d_{f(a)} g(\alpha(h)) \|h\| + \beta(k) \|k\|
+			(g \circ f)(a) + \d_{f(a)} g(\d_a f(h) + \alpha(h) \|h\|) + \beta(k) \|k\| = \\
+		= (g \circ f)(a) + \underbrace{\d_{f(a)} g(d_a f(h))}_{\d_{a} (g \circ f) (h)} + \d_{f(a)} g(\alpha(h)) \|h\| + \beta(k) \|k\|
 	\end{gather*}
 	Проверим, что <<хвост>> стремится к нулю при $h$, стремящемуся к нулю:
 	\begin{gather*}
@@ -120,8 +123,8 @@
 	Осталось увидеть, что последние шесть слагаемых есть $o(\|h\|)$
 	\begin{gather*}
 		|\d_a \lambda(h)| \le \|\d_a \lambda\| \|h\| \text{ "--- ограниченно при $h \ra \vec 0$}\\
-		|\d_a f(h)| \le \|\d_a f\| \|h\| \text{ "--- ограниченно при $h \ra \vec 0$}\\
-		|\d_a \lambda(h) \d_a f(h)| \le \|\d_a \lambda\| \|\d_a f\| \|h\|^2 = o(\|h\|)
+		\|\d_a f(h)\| \le \|\d_a f\| \|h\| \text{ "--- ограниченно при $h \ra \vec 0$}\\
+		\|\d_a \lambda(h) \d_a f(h)\| \le \|\d_a \lambda\| \|\d_a f\| \|h\|^2 = o(\|h\|)
 	\end{gather*}
 \end{proof}
 
@@ -150,10 +153,10 @@
 \begin{proof}
 	$\phi(t) \lrh \left< f(t), f(b) - f(a) \right>$, $\phi\colon [a, b] \ra \R$.
 	\[ \phi(b) - \phi(a) = \left< f(b), f(b) - f(a) \right> - \left< f(a), f(b) - f(a) \right> = \|f(b) - f(a)\|^2 \]
-	Приеняем линейную теорему Лагранжа для $\phi$:
+	Применяем линейную теорему Лагранжа для $\phi$:
 	\begin{gather*}
 		\exists c\in(a, b)\colon \phi(b) - \phi(a) = \underbrace{\phi'(c)}_{\R \ra \R}(b - a) \\
-		\phi'(c) h = d_c \phi(h) = \left<\underbrace{\d_c f(h)}_{=f'(c)h}, f(b) - f(a)\right> \\
+		\phi'(c) h = \d_c \phi(h) = \left<\underbrace{\d_c f(h)}_{=f'(c)h}, f(b) - f(a)\right> \\
 		\phi(b) - \phi(a) = \phi'(c)(b - a) = \left<f'(c), f(b) - f(a)\right>(b-a) \le
 	\end{gather*}
 	Неравенство Коши-Буняковского:

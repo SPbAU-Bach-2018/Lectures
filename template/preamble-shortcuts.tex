@@ -12,6 +12,7 @@
 \def\Q{\mathbb{Q}}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
+\def\H{\mathbb{H}}
 \def\d{\mathup{d}}
 \def\t{\texttt}
 
@@ -30,7 +31,12 @@
 \DeclareMathOperator{\coDom}{coDom}
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ann}{Ann}
 \AtBeginDocument{\let\Re\relax}
 \AtBeginDocument{\newcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}}
 \AtBeginDocument{\let\Im\relax}
@@ -47,6 +53,11 @@
 	}{%
 		\includegraphics[width=#2\linewidth]{#1}
 	}%
+}
+\newcommand{\cautoimg}[1]{%
+	\begin{center}%
+		\includegraphics{#1}
+	\end{center}%
 }
 \newcommand{\cimg}[2]{%
 	\begin{center}%

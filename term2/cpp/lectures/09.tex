@@ -1,0 +1,242 @@
+\chapter{c++11}
+\section{Новые ключевые слова}
+
+\subsection{Ключевое слово \t{default}}
+
+\begin{cppcode}
+class A {
+public:
+	A (int);
+	A () = default;
+};
+\end{cppcode}
+
+Разумное использование:
+\begin{cppcode}
+class B {
+public:
+	B (int);
+protected:
+	B (const &B) = default;
+};
+\end{cppcode}
+
+\subsection{Ключевое слово \t{delete}}
+
+Предназаначение удалять что-то из класса, чтобы это нельзя было использовать.
+Следующий код запретит не все:
+\begin{cppcode}
+class A {
+public:
+	A (const &A);
+	f ();
+
+	friend g();
+};
+\end{cppcode}
+В функциях \t{g} и \t{f} все еще можно будет использовать приведение типов.
+
+Поэтому надо использовать \cpp"= delete":
+\begin{cppcode}
+class A {
+public:
+	A (const &A) = delete;
+};
+\end{cppcode}
+
+\subsection{Ключевое слово override}
+
+\cpp"override" строго говорит что функция будет перекрыта.
+
+\begin{cppcode}
+/* в Base.h*/
+class Base {
+public:
+	virtual void f (int);
+	virtual int g () const;
+	void h () {
+		g ();
+	}
+};
+
+/* в Derived.h*/
+class Derived: public Base {
+public:
+	void f (int) = override; // Ok
+	virtual int g () = override; // Error
+};
+\end{cppcode}
+Функции \t{f} "--- одинаковые и вторая перекрывает первую, функции \t{g} "--- разные, так как одна реализована для \cpp'const' класса.
+
+\subsection{Ключевое слово \t{final}}
+
+Вспомним пример про рабочих и их зарплату.
+Слово \cpp'final' говорит что функцию уже нельзя будет перекрывать.
+Можно писать где первая строка описания класса.
+\begin{cppcode}
+
+class Worker {
+	virtual int getSalary () = 0;
+};
+
+class Developer: public Worker {
+	virtual int getSalary () = override, final {
+		return 100;
+	}
+};
+
+int main () {
+	Worker *w;
+	/* считываем n */
+	/* динамическое связывание */
+
+	if (n > 1)
+		w = Developer ();
+	else
+		w = Tester ();
+	w->getSalary ();
+
+	/* статическое связывание */
+	Developer *d = new Developer;
+	d->getSalary ();
+}
+\end{cppcode}
+
+\subsection{Ключевое слово \t{nullptr}}
+
+\begin{cppcode}
+f(long);
+f(char *);
+
+int main () {
+	f (NULL); //error
+	f (0l); /* будет вызывать f(long) */
+	f ((char*)NULL); /* будет вызывать f(char*) */
+	f (static_cast<char*>(NULL)); /* будет вызывать f(char*) */
+	f (nullptr); /* будет вызывать f(char*) */
+}
+\end{cppcode}
+
+\subsection{Конструкторы}
+
+\begin{cppcode}
+class Board {
+public:
+	static const size_t BOAD_SIZE = 8;
+	int board [BOARD_SIZE];
+	int x = 10; // c++11
+	int y = 10; // c++11
+};
+\end{cppcode}
+
+\subsection{constructor chaining}
+
+Позволяет использовать нормально в одном контрукторе другие.
+
+Как могли бы написатью
+\begin{cppcode}
+class Complex {
+private:
+	int myRe;
+	int myIm;
+public:
+	Complex (int re = 0, int im = 0);
+	Complex (int* arr) {
+		Complex (arr[0], arr[1]);
+		/* будет создан новый Complex и удалится в той же строке*/
+	}
+}
+\end{cppcode}
+
+Как надо:
+\begin{cppcode}
+class Complex {
+private:
+	int myRe;
+	int myIm;
+public:
+	Complex (int re = 0, int im = 0);
+	Complex (int* arr): Complex (arr[0], arr[1]) {}
+}
+\end{cppcode}
+Но конструктор может бросить исключение.
+Поэтому перепишем следующим образом:
+
+\begin{cppcode}
+class Complex {
+private:
+	int myRe;
+	int myIm;
+public:
+	Complex (int re = 0, int im = 0);
+	Complex (int* arr) try: Complex (arr[0], arr[1]) {
+		//...
+	}
+	catch (){
+
+	}
+}
+\end{cppcode}
+
+\subsection{Списки инициализации}
+\begin{cppcode}
+stuct Point {
+	int x;
+	int y;
+};
+
+int main () {
+	int arr[] = {3, 6, 9};
+	Point p {0, 1};
+	//C++11
+	vector<int> a {3, 5, 6};
+}
+\end{cppcode}
+\cpp"vector<int> a {3, 5, 6};" по этой штуке компилятор генерирует \cpp"std::inirializer_list".
+
+\begin{cppcode}
+template<typename T>
+class vector {
+public:
+	vector (std::initializer_list<T> l) {
+		size_t size = l.size ();
+		const T* it = l.begin ();
+		for (int i = 0; i < size; ++i)
+			cout << *(it++); //it[i]
+	}
+};
+\end{cppcode}
+
+\section{Еще нововведения}
+
+\subsection{\t{auto}}
+
+Во время комипляции.
+\begin{cppcode}
+std::vector<int>::iterator it = v.begin ();
+auto it = v.begin ();
+int x = 3;
+auto y = x;
+\end{cppcode}
+
+\subsection{\t{decltype}}
+\begin{cppcode}
+template<typename T, typename V>
+void multiply (const T& t, const V& v) {
+	typedef decltype (t * v) res_t;
+	res_t r = t * v;
+}
+
+//хотелось, но нельзя, так как t, v раньше объявления находятся
+template<typename T, typename V>
+decltype (t * v) multiply (const T& t, const V& v) {
+	auto r = t * v;
+	return r;
+}
+
+//поэтому так
+auto multiply (const T& t, const V& v) -> decltype (t * v) {
+	auto r = t * v;
+	return r;
+}
+\end{cppcode}

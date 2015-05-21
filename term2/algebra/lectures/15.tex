@@ -1,0 +1,168 @@
+﻿\section[Ещё раз об элем-ых преобр-ях и элем-ых матрицах]{Ещё раз об элементарных преобразованиях и элементарных матрицах}
+
+\textbf{Элементарные матрицы:}
+\begin{enumerate}
+\item
+	Элементарная диагональная "--- диагональная, один элемент диагонали заменили на $c \ne 0$:
+	\[
+		\begin{pmatrix}
+			1 & 0 & \cdots & 0 & \cdots & 0 \\
+			0 & 1 & \cdots & 0 & \cdots & 0 \\
+			\vdots&\vdots&\ddots&\vdots&\ddots&\vdots \\
+			0 & 0 & \cdots & c & \cdots & 0 \\
+			\vdots&\vdots&\ddots&\vdots&\ddots&\vdots \\
+			0 & 0 & \cdots & 0 & \cdots & 1
+		\end{pmatrix}
+	\]
+
+\item
+	Элементарная трансвекция $E + \lambda e_{ij}$, $i \ne j$:
+	\[
+		\begin{pmatrix}
+			1 & 0 & \cdots & 0 & \cdots & 0 \\
+			0 & 1 & \cdots & \lambda & \cdots & 0 \\
+			\vdots&\vdots&\ddots&\vdots&\ddots&\vdots \\
+			0 & 0 & \cdots & 1 & \cdots & 0 \\
+			\vdots&\vdots&\ddots&\vdots&\ddots&\vdots \\
+			0 & 0 & \cdots & 0 & \cdots & 1
+		\end{pmatrix}
+	\]
+
+\item
+	Элементарная транспозиция строк: берём единичную матрицу и меняем две строки местами:
+	\[
+		\begin{pmatrix}
+			1 & 0 & 0 & 0 & 0 & 0 \\
+			\mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{1} & \mathbf{0} \\
+			0 & 0 & 1 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 & 0 \\
+			\mathbf{0} & \mathbf{1} & \mathbf{0} & \mathbf{0} & \mathbf{0} & \mathbf{0} \\
+			0 & 0 & 0 & 0 & 0 & 1
+		\end{pmatrix}
+	\]
+\end{enumerate}
+Элементарное преобразование над строками матриц "--- умножение слева на элементарную матрицу нужного размера.
+Элементарное преобразование над столбцами матриц "--- умножение справа на элементарную матрицу.
+
+\begin{theorem}
+	$A \in M(n, n, K)$, $\det A \ne 0$.
+	Тогда $A$ есть призведение элементарных диагональных матриц и элементарных трансвекций.
+\end{theorem}
+\begin{proof}
+	Привели к ступенчатому виду (верхней треугольной матрице):
+	\[
+		A \to \begin{pmatrix}
+			1 & 0 & * &\cdots& 0 \\
+			0 & 1 & * &\cdots& 0 \\
+			0 & 0 & 0 &\cdots& 0 \\
+			\vdots&\vdots&\vdots&\ddots&\vdots\\
+			0 & 0 & 0 &\cdots& 1
+		\end{pmatrix} = B
+	\]
+	$\det A \ne 0 \Ra \det B \ne 0$, значит на диагонале B ненулевые элементы, и $B = E$.
+
+	Существует последовательность элементарных матриц $C_1, \dots, C_k$, что
+	\begin{gather*}
+		C_k C_{k-1} \dots C_1 A = E \\
+		A = (C_k \dots C_1)^{-1} = C_1^{-1} \dots C_k^{-1} \\
+	\end{gather*}
+	Обратные к элементарным матрицам "--- элементарные.
+	\begin{gather*}
+		\begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & c & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}^{-1} = \begin{pmatrix}
+			1 & 0 & 0 \\
+			0 & c^{-1} & 0 \\
+			0 & 0 & 1
+		\end{pmatrix} \\
+		(E + \lambda e_{ij})^{-1} = E - \lambda e_{ij}
+	\end{gather*}
+\end{proof}
+
+Напоминание: $A \in M(n, m, K)$, $C \in M(m, m, K)$, $D \in M(n, n, K)$ "--- невырожденные матрицы.
+\[
+	D^{-1}AC = \begin{pmatrix}
+		E_r & 0 \\
+		0   & 0
+	\end{pmatrix}
+\]
+$D$, $С$ "--- обратимые матрицы.
+
+$C$, $D^{-1}$ можно представить в виде произведения элементарных метриц.
+\begin{conseq}
+	$\exists C_1, \dots, C_k, D_1, \dots, D_l$ "--- элементарные матрицы, что
+	\[
+		D_l \dots D_1 A C_1 \dots C_k = \begin{pmatrix}
+			E_r & 0 \\
+			0   & 0
+		\end{pmatrix}
+	\]
+\end{conseq}
+
+\begin{conseq}
+	$A \in M(n, m, K)$ элементарными преобразованиями над строками и столбцами может быть приведена к виду
+	$\begin{pmatrix} E_r & 0 \\ 0 & 0 \end{pmatrix}$, где $r = \rang A$.
+\end{conseq}
+
+Что изменится, если рассмотреть $A \in M(n, m, R)$, R "--- евклидово кольцо?
+
+В диагональных элементарных матрицах требуем, чтобы $c \in R^{\times}$,
+то есть можно домножать строки (столбцы) только на обратимые элементы $c \in R^{\times}$.
+
+\begin{theorem}
+	$A \in M(n, m, R)$.
+	Тогда существуют $d_1, \dots, d_r \in R\setminus \{0\}$, что $d_i \mid d_{i+1}$
+	и матрица $A$ может быть приведина элементарными преобразованиями над строками и столбцами к
+	\[
+		\begin{pmatrix}
+			d_1 & 0 & 0 & \cdots & 0 \\
+			0 & \ddots & 0 & \cdots & 0 \\
+			0 & 0 & d_r & \cdots & 0 \\
+			0 & 0 & 0 & \cdots & 0 \\
+			\vdots&\vdots&\vdots&\ddots&\vdots \\
+			0 & 0 & 0 & \cdots & 0
+		\end{pmatrix}
+	\]
+	причем $d_i$ определены однозначно с точность до ассоциативности.
+\end{theorem}
+
+Без доказательства.
+
+\subsection{Системы линейных уравнений над евклидовыми кольцами}
+
+Уравнение $ax + by = c$ разрешимо тогда и только тогда, когда $\gcd(a, b) \mid c$.
+
+$A \in M(n, m, R)$, $R$ "--- евклидово кольцо.
+$B$ "--- столбец высоты $n$ над $R$.
+Когда система $AX = B$ разрешима над $R$?
+
+\begin{Def}
+	$\delta_i(A)$ "--- НОД всех миноров порядка $i$ матрицы системы.
+	$\delta_i(A \mid B) $ "--- НОД всех миноров порядка $i$ расширенной матрицы.
+\end{Def}
+\begin{theorem}
+	В введеных обозначениях $AX = B$ разрешимо в $R$ тогда и только тогда, когда
+	\begin{enumerate}
+		\item $\rang A = \rang (A \mid B)$
+		\item $\forall i, \delta_i(A) = \delta_i(A \mid B)$
+	\end{enumerate}
+\end{theorem}
+\begin{Rem}
+	Рассмотрим линейный случай.
+	\begin{gather*}
+		A = (a, b), \delta_1(A) = \gcd(a, b) \\
+		(A \mid B) = (a, b, c), \delta_1(A \mid B) = \gcd(a, b, c) \\
+		\gcd(a, b) = \gcd(a, b, c) \xLeftrightarrow{a, b \ne 0} \gcd(a, b) \mid c
+	\end{gather*}
+\end{Rem}
+Без доказательства.
+Указание: $\delta_i$ не меняется при элементарных преобразованиях.
+Пусть привели $A$ к почти единичному виду. $d_1 \mid \dots \mid d_r$
+\begin{gather*}
+	\delta_1 = d_1 \\
+	\delta_2 = d_1d_2 \\
+	\vdots \\
+	\delta_r = d_1d_2 \dots d_r \Ra d_i = \frac{\delta_i}{\delta_{i - 1}}
+\end{gather*}

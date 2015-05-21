@@ -1,0 +1,215 @@
+\subsection{placement new}
+Это особоя форма \cpp"new", которая позволяет в выделенную память размещать объект с помощью конструктора.
+Так же полезно, когда у класса не существует конструктора по умолчанию и при этом требуется создать массив объектов.
+Синтаксис следующий:
+
+\begin{cppcode}
+#include <new>
+
+class Packet {
+private: 
+    int info;
+public:
+    Packet (int info = 0) : info (info) {}
+};
+
+int main () {
+    char* buffer = new char[sizeof (Packet)];
+    Packet *p = new (buffer) Packet();
+
+    p->~Packet ();
+    delete [] buffer;
+}
+\end{cppcode}
+
+Теперь чтобы удалить выделенные объекты, сначала нужно от каждого выделенного объекта вызвать деструктор, а затем удалить выделенную для них память, то что и происходит в последних строках, приведенного выше примера.
+На самом деле и без строки \cpp"p->~Packet ();" будет все работать, так как в внутри объекта не выделяется память, но так делать не рекомендуется.
+
+\section{lambda calculus}
+
+\subsection{for\_each}
+\begin{cppcode}
+#include <algorithm>
+
+template<class InputIt, class Function>
+Function for_each (InputIt first, InputIt last, Function fn) {
+    while (first!=last) {
+        fn (*first);
+        ++first;
+    }
+    return std::move (fn);
+}
+\end{cppcode}
+
+Как видно по коду \cpp"for_each" применяет функцию \cpp"fn" ко всем элементам, находящимся в диапазоне $[first, last)$.
+Примерно такая реализация этой функции в стандартной библиотеке.
+
+Пример использования:
+
+\begin{cppcode}
+#include <algorithm>
+#include <vector>
+
+void f (int &n) {
+    n = n * n;
+}
+
+class Func {
+public:
+    void operator () (int &n) {
+        n = n * n;
+    }
+};
+
+int main () {
+    std::vector<int> v = {1, 3, 5, 7};
+    for_each (v.begin (), v.end (), f);
+    for_each (v.begin (), v.end (), Func ());
+    return 0;
+}
+\end{cppcode}
+
+Два вызова \cpp"for_each" делают абсолютно одинаковые вещи, просто реализованы по-разному, за исключением того, что у функтора есть свои преимущества.
+
+\subsection{transform}
+\begin{cppcode}
+template<class InputIt, class OutputIt, class UnaryOperation>
+OutputIt transform (InputIt first1, InputIt last1, OutputIt d_first, 
+                    UnaryOperation unary_op) {
+    while (first1 != last1) {
+        *d_first++ = unary_op(*first1++);
+    }
+    return d_first;
+}
+\end{cppcode}
+
+\cpp"transform" применяет оператор \cpp"unarry_op" ко всем элементам, находящимися в диапазоне $[first1, last1)$, и соохраняет результат в диапазоне, начинающимся с $d\_first$.
+
+Пример использования:
+
+\begin{cppcode}
+#include <algorithm>
+#include <vector>
+
+double f (const double &d) {
+    if (d < 0.001)
+        return 0;
+    return d;
+}
+
+class Func {
+    double eps; 
+public:
+    Func (double eps) : eps (eps) {}
+
+    double operator () (const double &d) {
+        if (d < eps)
+            return 0;
+        return d;
+    }
+};
+
+int main () {
+    std::vector<double> v = {1, 0.1, 0.01, 0.001, 0.0001};
+    transform (v.begin (), v.end (), v.begin (), f);
+    transform (v.begin (), v.end (), v.begin (), Func (0.01));
+    return 0;
+}
+\end{cppcode}
+
+В данном случае функтор получился функциональнее обычной функции. 
+Так же константные ссылки не обязательны и можно спокойно менять значения, которые передаются в функтор или функцию. 
+
+Бонус. 
+\cpp"transform" так же определен и для \cpp"BinaryOperation".
+
+Примерная релизация:
+\begin{cppcode}
+template<class InputIt1, class InputIt2,
+         class OutputIt, class BinaryOperation>
+OutputIt transform(InputIt1 first1, InputIt1 last1, InputIt2 first2,
+                   OutputIt d_first, BinaryOperation binary_op) {
+    while (first1 != last1) {
+        *d_first++ = binary_op(*first1++, *first2++);
+    }
+    return d_first;
+}
+\end{cppcode}
+
+\subsection{lambda function}
+Лямбда функции призваны уменьшить количество символов, так как позволяют записывать функторы более кратко. 
+
+Посмотрим синтаксис:
+
+\begin{cppcode}
+#include <vector>
+#include <algorithm>
+
+int main () {
+    std::vector<double> v = {0.1, 0.01, 0.001, 0.0001};
+
+    for_each (v.begin (), v.end (), 
+        [] (double &d) {
+            if (d < 0.001)
+                d = 0;
+        }
+    );
+    
+    transform (v.begin (), v.end (), v.begin (), 
+        [] (const double &d) -> double {
+            if (d < 0.001)
+                return 0;
+            return d;
+        }
+    );
+    return 0;
+}
+\end{cppcode}
+
+Описанные лямбда функции фактически соответствуют тем функторам, которые были написаны в двух предыдущих пунктах про \cpp"for_each" и \cpp"transform".
+
+Разберемся теперь в синтаксисе.
+В квадратных скобках \cpp"[]" указан \cpp"capture_list". 
+Он позволяет передавать какие-то переменные в функтор. 
+Рассмотрим на примерах:
+
+\begin{enumerate}
+\item \cpp"[a, &b]" "--- в этом случае \cpp"a" захватывается по значению, а \cpp"b" по ссылке.
+\item \cpp"[&]" "--- захватывает все переменные по ссылке.
+\item \cpp"[=]" "--- захватывает все переменные по значению.
+\item \cpp"[]" "--- ничего не захватывает.
+\end{enumerate}
+
+В круглых скобках, описываются такие же параметры как и в функторах. 
+Между круглой закрывающейся скобкой и \cpp"->" могут быть ключевые слова.
+После \cpp"->" указывается возвращаемое значение лямбда функции.
+
+Важное замечание, если захватывать по значению, то переменные будут доступны как \cpp"const".
+Чтобы это исправить следует использовать \cpp"mutable", такой синтаксис выглядит так:
+
+\cpp"[=] (const double &d) mutable -> double". 
+
+Еще пример:
+
+\begin{cppcode}
+#include <vector>
+#include <algorithm>
+
+int main () {
+    std::vector<double> v = {0.1, 0.01, 0.001, 0.0001};
+    
+    int epsilon = 0.001; 
+    for_each (v.begin (), v.end (), 
+        [epsilon](double &d) -> void {
+            if (d < epsilon)
+                d = 0;
+        }
+    );
+
+    return 0;
+}
+\end{cppcode}
+
+
+
+

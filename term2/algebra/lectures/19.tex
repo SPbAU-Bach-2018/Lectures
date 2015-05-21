@@ -1,0 +1,246 @@
+﻿\section{Формулировка теоремы о каноническом виде матрицы линейного оператора}
+\begin{Def}
+$\mathcal{J}_k(\lambda) = \begin{pmatrix}
+\lambda&1&0&\cdots&0\\
+\vdots&\vdots&\vdots&\cdots&\vdots\\
+0&0&0&\cdots&1\\
+0&0&0&\cdots&\lambda\\
+\end{pmatrix}$
+
+$\mathcal{J})_k(\lambda)$ "--- Жорданова клетка, размера k, отвечает $\lambda$.
+
+$\mathcal{J}_1(\lambda) = (\lambda)$
+\end{Def}
+
+\begin{theorem}{}
+K "--- алгебраически замкнутое поле, V "--- векторное пространство над K, 
+$f \in End(V)$.
+
+Тогда существует базис V, в котором матрица f имеет блочно диагональный вид.
+
+Причем, диагональные блоки "--- это какие-то клетки Жордана, отвечающие собственным 
+числам f.
+
+Причем такое представление единственное с точностью до перестановки блоков.
+Кроме того, число клеток, отвечающих одному и тому же $\lambda$, равно геометрической
+кратности $\lambda$, а суммарный размер клеток, отвечающих $\lambda$, равен
+алгебраической кратности $\lambda$. 
+\end{theorem}
+
+\begin{Def}
+Матрица из предыдущей теоремы называется канонической жордановой формой
+матрицы линейного оператора, а соответствующий базис "--- жорданов базис.
+\end{Def}
+\begin{conseq}
+Геометрическая кратность $\le$ алгебраической кратности.
+\end{conseq}
+
+\begin{conseq}
+$A \in M(n, n, K)$, K "--- алгебраически замкнуто.
+
+$\exists C \det C \ne 0$
+
+$C^{-1}AC$ "--- жорданова форма.
+
+$V = K^{n}$
+
+$f(v) = Av$, C "--- матрица перехода от стандартного базиса к жорданову базису.
+\end{conseq}
+
+\begin{exmp}
+Пусть $\lambda$ "--- единственное собственное число f $\chi_f(t) = (-1)^{n}(t - \lambda)^n$
+\begin{enumerate}
+\item n = 1, клетка размера 1, алгебраическая кратность  = геометрической кратности.
+\item n = 2, 
+\begin{enumerate}
+\item 1 + 1, алгебраическая кратность  = геометрической кратности = 2
+\item 2, алгебраическая кратность = 2, геометрическая кратность = 1.
+$$
+\begin{pmatrix}
+\lambda & 1\\
+0&\lambda\\
+\end{pmatrix} \begin{pmatrix}
+1\\
+0\\
+\end{pmatrix}
+= \begin{pmatrix}
+\lambda\\
+0\\
+\end{pmatrix}
+$$
+
+Если $v_1, v_2$ "--- жорданов базис, то $v_1$ "--- собственный вектор.
+
+$v_2 \to v_1 + \lambda v_2$
+
+$$(f - \lambda E) = \begin{pmatrix}
+0&1\\
+0&0\\
+\end{pmatrix}$$
+$$
+\begin{pmatrix}
+0&1\\
+0&0\\
+\end{pmatrix} X = \begin{pmatrix}
+0\\
+0\\
+\end{pmatrix}
+$$
+\end{enumerate}
+
+\item n = 3
+\begin{enumerate}
+\item 1 + 1 + 1, геометрическая кратность = 3
+\item 2 + 1, геометрическая кратность = 2
+\item 3, геометрическая кратность = 1
+\end{enumerate}
+
+\item n = 7
+3 + 2 + 2
+
+3 + 3 + 1
+
+Геометрическая кратность совпадает, максимальная размерность совпадает.
+\end{enumerate}
+\end{exmp}
+
+\section{Применение жордановой формы}
+\begin{enumerate}
+\item Вычисление $A^{m}$
+
+$C^{-1}AC = B$ "--- жорданова форма.
+
+$$A = CBC^{-1}$$
+$$A^{m} = (CBC^{-1}) = CB^{m}C^{-1}$$
+
+Достаточно возвести жордановы клетки в степень m.
+$$\mathcal{J}_k(\lambda)^m = (\lambda E + 
+\begin{pmatrix}
+0&1&\cdots&0\\
+\vdots&\vdots&\cdots&\vdots\\
+0&0&\cdots&0\\
+\end{pmatrix}) = (\lambda E + \mathcal{J})^m = $$
+$$= \sum_{r = 0}^{m}C_m^{r}\lambda^{m - r}\mathcal{J}^r$$
+
+$$ 
+\mathcal{J}^2 = \begin{pmatrix}
+0&0&1&0\\
+0&0&0&1\\
+0&0&0&0\\
+0&0&0&0\\
+\end{pmatrix}
+$$
+
+$$\mathcal{J}^k = 0$$
+
+$$(\mathcal{J}_k(\lambda))^m = \sum_{r = 0}^{k - 1}C_m^r \lambda^{m - r}\mathcal{J}^r$$
+$$
+\begin{pmatrix}
+\lambda^m& C_m^1 \lambda^{m - 1} &\cdots& C_m^{k - 1}\lambda^{m - k + 1}\\
+0&\ddots&\ddots&\ddots\\
+0&\ddots&\ddots&C_m^2\lambda^{m - 2}\\
+0&\ddots&\ddots&C_m^1\lambda^{m - 1}\\
+0&\ddots&\ddots&\lambda^{m}\\
+\end{pmatrix}
+$$
+\item $A^m, g(A), g \in K[t]$
+$C^{-1}AC = B$ "--- жорданова форма.
+$g(A) = Cg(B)C^{-1}$
+\item Вычисление некоторых специальных функций
+$$
+A = \begin{pmatrix}
+2&-1\\
+1&0\\
+\end{pmatrix}
+$$
+$$
+v_2 = \begin{pmatrix}
+1\\
+0\\
+\end{pmatrix}   
+$$
+$$
+v_1 = \begin{pmatrix}
+1\\
+1\\
+\end{pmatrix} 
+$$
+$$\begin{pmatrix}
+0&1\\
+1&-1\\
+\end{pmatrix} = 
+\begin{pmatrix}
+2&-1\\
+1&0\\
+\end{pmatrix} 
+\begin{pmatrix}
+1&1\\
+1&0\\
+\end{pmatrix} = 
+\begin{pmatrix}
+1&0\\
+1&-1\\
+\end{pmatrix} \begin{pmatrix}
+1&1\\
+1&0\\
+\end{pmatrix} =
+\begin{pmatrix}
+1&1\\
+0&1\\
+\end{pmatrix} =  
+$$
+$$
+\begin{pmatrix}
+1&1\\
+0&1\\
+\end{pmatrix}^m =
+\begin{pmatrix}
+1&m\\
+0&1\\
+\end{pmatrix} 
+$$
+
+$$
+\begin{pmatrix}
+2&-1\\
+1&0\\
+\end{pmatrix} = 
+\begin{pmatrix}
+1&1\\
+1&0\\
+\end{pmatrix} \begin{pmatrix}
+1&m\\
+0&1\\
+\end{pmatrix} \begin{pmatrix}
+0&1\\
+1&-1\\
+\end{pmatrix} = 
+\begin{pmatrix}
+1&m + 1\\
+1&m\\
+\end{pmatrix} \begin{pmatrix}
+0&1\\
+1&-1\\
+\end{pmatrix} = 
+\begin{pmatrix}
+m + 1& -m\\
+m& -m + 1\\
+\end{pmatrix}
+$$
+
+$$exp(t) = \sum_{k = 0}^{\infty}\frac{t^k}{k!}$$ 
+$$A \in M(n, n, \C)$$
+$$exp(A) = \sum_{k = 0}^{\infty}\frac{A^k}{k!}$$
+$$A = a_{ij} $$
+
+$$M = max|a_{ij}|$$
+$$|(A^k)_{ij}| \le n^{k - 1}M^{k} \le (nM)^k$$
+$$(\sum_{k = 0}^{N}\frac{A^k}{k!}) \le \sum_{k = 0}^{N}\frac{(nM)^k}{k!} \le
+\sum_{k = 0}^{\infty}\frac{(nM)^k}{k!} < e^{nM}$$
+
+$$C^{-1}AC = B(\text{"--- жорданова форма})$$
+
+$$\exp(A) = C \exp(B)C^{-1}$$
+
+\end{enumerate}
+                  

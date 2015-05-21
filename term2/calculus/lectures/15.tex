@@ -1,0 +1,139 @@
+%%\begin{proof}
+%%	\begin{description}
+	\item[Шаг 2:]
+		Покажем, что $f(U)$ открыто.
+		Для этого покажем, что для $x_0 \in U$ образ $f(x_0)$ есть окрестность в $f(U)$.
+		Выберем $r > 0$ такой, что $\bar B_r (x_0) \subset U$.
+		Докажем, что $B_{\lambda r} (f(x_0)) \subset f(U)$.
+
+		Возьмём $y \in B_{\lambda r} (f(x_0))$, $\|y - f(x_0)\| < \lambda r$ и найдём $x \in U$, что $f(x) = y$.
+		Рассмотрим
+		\begin{gather*}
+			\phi(x)\colon \bar B_r(x_0) \ra R \quad \phi(x) = \|y - f(x)\| \\
+			2\lambda \|x-x_0\| < \|f(x) - f(x_0)\| = \| y - f(x_0) - (y - f(x)) \| \le \\
+			\le \|y - f(x_0)\| + \|y - f(x)\| = \phi(x) + \phi(x_0)
+		\end{gather*}
+		Возьмём $x$ на границе $\bar B_r(x_0)$, то есть $\|x - x_0\| = r$.
+		\[ 2\lambda r < \phi(x) + \phi(x_0) = \phi(x) + \|y - f(x_0)\| < \phi(x) + \lambda r \]
+		Таким образом,
+		\[ 2\lambda r < \phi(x) + \lambda r \Ra \phi(x) > \lambda r > \phi(x_0) \]
+		Получили, что у $\phi$ и $\phi^2$ на границе значения больше, чем центре.
+
+		$\phi^2$ "--- непрерывно на компакте $\bar B_r(x)$, значит $\phi^2$ достигает наименьшего значения в $x_*$, причём не на границе.
+		$\phi^2$ дифференцируема:
+		\begin{gather*}
+			\phi^2(x) = \sum_{i=1}^n \left(y_k - f_k(x)\right)^2 \\
+			\nabla \phi^2(x_*) = 0 \\
+			\partd{\phi^2}{x_i}(x_*) = \sum_{i=1}^n 2\left(-\partd{f_k}{x_i} (x_*)\right)\left(y_k - f_k(x_*)\right) \\
+			\underbrace{\begin{pmatrix}
+					\partd{f_1}{x_1}(x_*) & \cdots & \partd{f_n}{x_1}(x_*) \\
+					\vdots & \ddots & \vdots \\
+					\partd{f_1}{x_n}(x_*) & \cdots & \partd{f_n}{x_n}(x_*)
+				\end{pmatrix}
+				}_{=\left(\d_{x_*} f\right)^T}
+				\begin{pmatrix}
+					y_1 - f_1(x_*) \\
+					\vdots \\
+					y_n - f_n(x_*)
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					0 \\
+					\vdots \\
+					0
+				\end{pmatrix}
+		\end{gather*}
+		$\d_{x_*} f$ обратимо, а значит $\left(\d_{x_*} f\right)^T$ обратима и невырожденна, откуда
+		\begin{gather*}
+			\begin{pmatrix}
+					y_1 - f_1(x_*) \\
+					\vdots \\
+					y_n - f_n(x_*)
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					0 \\
+					\vdots \\
+					0
+				\end{pmatrix} \\
+			y - f(x_*) = 0
+		\end{gather*}
+
+		Получили, что
+		\[ \forall y \in B_{\lambda r} f(x_0), \exists x_* \in B_r(x_0) \subset U\colon f(x_*) = y \]
+		и $B_{\lambda r} f(x_0) \subset f(U)$.
+
+	\item[Шаг 3:]
+		Покажем, что $g$ дифференцируема.
+		Возьмём $y, y + k \in V = f(U)$. Покажем, что
+		\[ g(y+k) - g(y) = Bk + o(\|k\|) \]
+		Заметим:
+		\begin{gather*}
+			y \in V \Ra \exists x \in U \colon f(x) = y \\
+			y + k \in V \Ra \exists x + h \in U \colon f(x+h) = y + k \\
+			g(y+k)-g(y)=x+h-x = h\\
+			k = f(x+h) - f(h) = \d_x f(h) + r(h) \quad \frac{r(h)}{\|h\|} \ra 0
+		\end{gather*}
+		$B = \left(\d_x f\right)^{-1}$
+		\begin{gather*}
+			Bk = \underbrace{B\left(\d_x f(h)\right)}_{=h} + Br(h) \\
+			g(y+k)-g(y) = h = Bk - Br(h)
+		\end{gather*}
+		Осталось показать, что $\frac{Br(h)}{\|k\|} \ra 0$ при $k \ra 0$:
+		\begin{gather*}
+			\frac{\|Br(h)\|}{\|k\|} \le \frac{\|B\| \|r(h)\|}{\|h\|} \frac{\|h\|}{\|k\|} \\
+			\|k\| = \|f(x+h) - f(x)\| > 2\lambda \|h\| \\
+			\frac{\|h\|}{\|k\|} < \frac1{2\lambda} \\
+			\frac{\|B\|\| \|r(h)\|}{\|h\|} \frac{\|h\|}{\|k\|} \ra 0
+		\end{gather*}
+
+	\item[Шаг 4:]
+		Докажем, что $g$ непрерывно дифференцируема.
+		\begin{gather*}
+			\d_{f(x)} g = \left(\d_x f\right)^{-1} \text{"--- непрерывна}\\
+			\d_{y} g = \left(\d_{g(y)} f\right)^{-1}\\
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{conseq}
+	$f\colon D \subset \R^n \ra \R^n$, $D$ открыто, $f$ непрерывно дифференцируемо на $D$.
+	Тогда если $W \subset D$ "--- открыто, то открыто и $f(W)$
+\end{conseq}
+\begin{proof}
+	\[W = \bigcup_{x\in W} B_{r(x)}(x) \]
+	Докажем для одного шарика $f\left(B_{r(x)}(x)\right)$.
+	Берём для него $U$ и $V$, подходящее под условие теоремы при $a = x$.
+	$g = f^{-1}\colon V \ra U$ "--- непрерывна, поэтому для $g$ прообраз открытого открыт, откуда для $f$ образ открытого открыт, что и требовалось.
+\end{proof}
+
+Рассмотрим $x \in \R^n$, $y \in \R^m$, тогда $(x, y) \in \R^{n+m}$.
+Рассмотрим также линейный оператор $A\colon \R^{n+m} \ra \R^n$, обладающий свойством
+\[ A(h, 0) = 0 \Ra h = 0 \]
+Тогда при любых $k \in \R^m$, $b \in \R^n$ уравнение $A(x, k) = b$ имеет ровно одно решение:
+\begin{gather*}
+	(x, k) = (x, 0) + (0, k) \\
+	A(x, k) = A(x, 0) + A(0, k) \\
+	A(x, 0) = b - A(0, k)
+\end{gather*}
+Получили систему $n$ линейных уравнений на $n$ координат вектора $x$ со столбцом свободных членов $b - A(0, k)$.
+Она совместна и имеет одно решение, так как соотвествующая ей однородная система $A(x, 0) = 0$ имеет одно решение.
+
+\begin{theorem}[О неявной функции]
+	$f\colon D \subset \R^{n+m} \ra \R^n$, $D$ открыто, $(\underbrace{a}_{\in\R^n}, \underbrace{b}_{\in\R^m}) \in \R^{n+m}$, $A = \d_{(a,b)} f$, $f(a, b) = 0$.
+	Пусть $A$ удовлетворяет условию $A(h, 0) = 0 \Ra h = 0$, тогда существует окрестность $W$ точки $b$ и функция $g\colon W\ra\R^n$, что
+	\begin{gather*}
+		\forall y \in W, f(g(y), y) = 0 \\
+		g(b) = a
+	\end{gather*}
+\end{theorem}
+
+\begin{exmp}
+	Простая окружность:
+	\begin{gather*}
+		f(x, y) = x^2 + y^2 - 1 \\
+		\d_{(a, b)} f = (2a, 2b) \\
+		\d_{(a, b)} f (h, 0) = 0 \xLongrightarrow{a \ne 0} b = 0
+	\end{gather*}
+	Как можно заметить, если $a \ne 0$, то можно выбрать дугу окружности вокруг точки $(a, b)$, что условие теоремы на ней выполнено.
+\end{exmp}

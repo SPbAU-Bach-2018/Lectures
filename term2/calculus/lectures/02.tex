@@ -1,157 +1,172 @@
 \setauthor{Юрий Кравченко}
 \begin{conseq}
-	\[ (b - a)\min f \le \int_a^b f \le (b - a)\max f \]
+	\[ (b - a)\min f \le \int\limits_a^b f \le (b - a)\max f \]
 \end{conseq}
 \begin{proof}
 	Проинтегрируем неравенства $\min f \le f \le \max f$ и получим то, что надо.
 \end{proof}
+
 \begin{conseq}
-	\[\left| \int_a^b f \right| \le \int_a^b |f|\]
+	\[ \left| \int\limits_a^b f \right| \le \int\limits_a^b |f| \]
 \end{conseq}
 \begin{proof}
 	\begin{gather*}
 		 -|f| \le f \le |f| \\
-		 \int_a^b -|f| \le \int_a^b f \le \int_a^b |f| \\
-		 -\int_a^b |f| \le \int_a^b f \le \int_a^b |f| \\
-		 \left|\int_a^b f \right| \le \int_a^b |f|
+		 \int\limits_a^b -|f| \le \int\limits_a^b f \le \int\limits_a^b |f| \\
+		 -\int\limits_a^b |f| \le \int\limits_a^b f \le \int\limits_a^b |f| \\
+		 \left|\int\limits_a^b f \right| \le \int\limits_a^b |f|
 	 \end{gather*}
 \end{proof}
 
-\begin{conseq}{Интегральная теорема о среднем}
-	\[\exists c\colon \int_a^b f = (b - a)f(c)\]
+\begin{conseq}[Интегральная теорема о среднем]
+	\[ \exists c\colon \int\limits_a^b f = (b - a)f(c) \]
 \end{conseq}
 \begin{proof}
-	$\min f \le \frac{1}{b - a} \int_a^b f \le \max f$\\
+	\[ \min f \le \frac{1}{b - a} \int\limits_a^b f \le \max f \]
 	Заметим, что $\min f$ и $\max f$ достигаются, а значит и $\frac{1}{b - a} \int_a^b f$ достигается в некоторой точке. Возьмём её за $c$.
 \end{proof}
 
 \begin{Def}
-	$\fint_a^b f$ "--- среднее значение функции $f$ на отрезке $[a, b]$\\
-	\[\fint_a^b f = \frac{1}{b - a} \int_a^b f\]
+	$\fint_a^b f$ "--- среднее значение функции $f$ на отрезке $[a, b]$
+	\[ \fint_a^b f = \frac{1}{b - a} \int\limits_a^b f\]
 \end{Def}
 
 \begin{Def}
-	$f \in C[a, b]; \Phi \colon [a, b] \ra \R$ \\
+	$f \in C[a, b]$, $\Phi\colon [a, b] \ra \R$.
 	$\Phi (x) = \int_a^x f$ "--- интеграл с переменным верхним пределом.
 \end{Def}
 
-\begin{theorem}{Барроу}
+\begin{theorem}[Барроу]
 	$f \in C[a, b]$
-	\[\Phi^{'}(x) = f(x)\]
+	\[\Phi'(x) = f(x)\]
 \end{theorem}
 \begin{proof}
+	Пусть $x, y \in [a, b]$, $x < y$.
+	Тогда
 	\begin{gather*}
-		 \text{Пусть}  x, y \in [a, b]; x < y, тогда \\
-		 \Phi^{'}(x) = \lim_{y \ra x} \frac{\Phi (y) - \Phi(x)}{y - x} \\
-		 \Phi (y) - \Phi (x) = \int_a^y f - \int_a^x f = \int_x^y f \\
-		 \Phi^{'} (x) = \lim_{y \ra x} \frac{1}{y - x} \int_x^y f \\
-		 \exists c_y \in [x, y] \colon \lim_{y \ra x} \frac{1}{y - x} \int_x^y f = \lim_{y \ra x} f(c_y)\\
-		 \text{Неформальное объяснение : пусть } y \ra x \text{, тогда } c_y \ra x \Rightarrow \lim_{y \ra x} f(c_y) = f(x) \Rightarrow \Phi^{'} = f(x) \\
-		 \text{Формальное объяснение : докажем, что }  \forall \epsilon > 0, \exists \delta \colon \forall y \in (x - \delta, x + \delta), |f(с_y) - f(x)| < \epsilon \\
-		 \text{по определению непрерывности в точке } x \colon \\
-		 \forall \epsilon > 0, \exists \delta \colon \forall y \in (x - \delta, x + \delta), |f(y) - f(x)| < \epsilon \\
-		 y \in (x - \delta, x + \delta) \Rightarrow y_c \in (x - \delta, x + \delta) \Rightarrow |f(y_c) - f(x)| < \epsilon \\
-		 \text{аналогично можно доказать для } y > x
+		\Phi'(x) = \lim_{y \ra x} \frac{\Phi (y) - \Phi(x)}{y - x} \\
+		\Phi (y) - \Phi (x) = \int\limits_a^y f - \int\limits_a^x f = \int\limits_x^y f \\
+		\Phi' (x) = \lim_{y \ra x} \frac{1}{y - x} \int\limits_x^y f \\
+		\exists c_y \in [x, y]\colon \lim_{y \ra x} \frac{1}{y - x} \int\limits_x^y f = \lim_{y \ra x} f(c_y)
+	\end{gather*}
+
+	Неформальное объяснение: пусть $y \ra x$, тогда $c_y \ra x \Ra \lim_{y \ra x} f(c_y) = f(x) \Ra \Phi' = f(x)$.
+
+	Формальное объяснение: докажем, что
+	\[ \forall \epsilon > 0, \exists \delta\colon \forall y \in (x - \delta, x + \delta), |f(с_y) - f(x)| < \epsilon \]
+	По определению непрерывности в точке $x$:
+	\begin{gather*}
+		\forall \epsilon > 0, \exists \delta\colon \forall y \in (x - \delta, x + \delta), |f(y) - f(x)| < \epsilon \\
+		y \in (x - \delta, x + \delta) \Ra c_y \in (x - \delta, x + \delta) \Ra |f(c_y) - f(x)| < \epsilon
 	 \end{gather*}
+	Аналогично можно доказать для $y < x$.
 \end{proof}
 
 \begin{Def}
-	$f \in C[a, b]; \Psi \colon [a, b] \ra \R$ \\
-	$\Psi (x) = \int_x^b f$ "--- интеграл с переменным верхним пределом.
+	$f \in C[a, b]$, $\Psi \colon [a, b] \ra \R$.
+	$\Psi (x) = \int_x^b f$ "--- интеграл с переменным нижним пределом.
 \end{Def}
 
 \begin{conseq}
-	\[ \Psi^{'}(x) = -f(x)\]
+	\[ \Psi'(x) = -f(x) \]
 \end{conseq}
 \begin{proof}
-	\begin{gather*}	
-		\Phi (x) + \Psi (x) = \int_a^x f + \int_x^b f = \int_a^b f \\
-		\Psi(x) = \int_a^b - \Phi(x)\\
-		\Psi^{'}(x) =  0 - \Phi^{'}(x) = -f(x)
+	\begin{gather*}
+		\Phi (x) + \Psi (x) = \int\limits_a^x f + \int\limits_x^b f = \int\limits_a^b f \\
+		\Psi(x) = \int\limits_a^b f - \Phi(x)\\
+		\Psi'(x) =  0 - \Phi'(x) = -f(x)
 	\end{gather*}
 \end{proof}
 
 \begin{conseq}
-	\[ f \in C\langle a, b \rangle \Rightarrow \exists F \colon F \text{ "--- первообразная } f\]
+	\[ f \in C\langle a, b \rangle \Ra \exists F \colon F \text{ "--- первообразная } f\]
 \end{conseq}
 \begin{proof}
-	\begin{gather*}	
-		\text{Возьмём } c \in (a, b)\\
-		\Phi \colon [c, b\rangle \ra \R; \Phi(x) = \int_c^x f; \Phi^{'}(x) = f(x)\\
-		\Psi \colon \langle a, c] \ra \R; \Psi(x) = \int_x^c f; \Psi^{'}(x) = -f(x)\\
+	Возьмём $c \in (a, b)$:
+	\begin{gather*}
+		\Phi \colon [c, b\rangle \ra \R; \Phi(x) = \int\limits_c^x f; \Phi'(x) = f(x)\\
+		\Psi \colon \langle a, c] \ra \R; \Psi(x) = \int\limits_x^c f; \Psi'(x) = -f(x)\\
+		F(x) =
+		\begin{cases}
+			\Phi (x)  & x \in [c, b\rangle\\
+			-\Psi (x) & x \in \langle a, c] \\
+		\end{cases}
 	\end{gather*}
-	\[
-	F(x) = \left\{
-	\begin{aligned}
-		\Phi (x), x \in [c, b\rangle\\
-		\Psi (x), x \in \langle a, c] \\
-	\end{aligned}
-	\right.
-	\]
 \end{proof}
 
-\begin{theorem}{Формула Ньютона "--- Лейбница}
-	$f \in C[a, b]; F \text{ "--- первообразная } f\text{, тогда}$
-	\[ \int_a^b f = F(b) - F(a) \]
+\begin{theorem}[Формула Ньютона "--- Лейбница]
+	$f \in C[a, b]$, $F$ "--- первообразная $f$.
+	Тогда
+	\[ \int\limits_a^b f = F(b) - F(a) \]
 \end{theorem}
 \begin{proof}
 	\begin{gather*}
-		\Phi(x) = \int_a^x \text{ "--- первообразная } f\\
-		F(x) = \Phi (x) + C\\
-		F(b) - F(a) = \Phi (b) + C - \Phi (a) - C = \Phi (b) = \int_a^b f
+		\Phi(x) = \int\limits_a^x f \text{ "--- первообразная } f \\
+		F(x) = \Phi (x) + C \\
+		F(b) - F(a) = \Phi (b) + C - \Phi (a) - C = \Phi (b) = \int\limits_a^b f
 	\end{gather*}
 \end{proof}
 
-\begin{conseq*}
-	\[\int_a^b f \text{ не зависит от выбора площади $\sigma$, используемой в определении.} \]
-\end{conseq*}
+\begin{conseq}
+	Определённый интеграл не зависит от выбора площади $\sigma$, используемой в определении.
+\end{conseq}
 
-\begin{theorem}{Линейность интеграла}
-	$f, g \in C[a, b]; \alpha, \beta \in \R$, тогда
-	\[ \int_a^b(\alpha f + \beta g) = \alpha \int_a^b f + \beta \int_a^b g\]
+\begin{theorem}[Линейность интеграла]
+	$f, g \in C[a, b]$, $\alpha, \beta \in \R$.
+	Тогда
+	\[ \int\limits_a^b(\alpha f + \beta g) = \alpha \int\limits_a^b f + \beta \int\limits_a^b g \]
 \end{theorem}
 \begin{proof}
-	Пусть $F$ - первообразная $f$; $G$ - первообразная $g$, тогда $\alpha F + \beta G$ - первообразная $\alpha f + \beta g$ \\
-	$\int_a^b(\alpha f + \beta g) = \alpha F(b) + \beta G(b) - (\alpha F(a) + \beta G(a)) = \alpha (F(a) - F(b)) + \beta (G(a) - G(b)) = \alpha \int_a^b f +\beta \int_a^b g$
+	Пусть $F$ "--- первообразная $f$, $G$ "--- первообразная $g$.
+	Тогда $\alpha F + \beta G$ "--- первообразная $\alpha f + \beta g$:
+	\[ \int\limits_a^b(\alpha f + \beta g) = \alpha F(b) + \beta G(b) - (\alpha F(a) + \beta G(a)) = \alpha (F(a) - F(b)) + \beta (G(a) - G(b)) = \alpha \int\limits_a^b f +\beta \int\limits_a^b g \]
 \end{proof}
 
 \begin{Def}
-	$ F |_{a}^{b}$ "--- подстановка\\
-	$F |_{a}^{b} = F(b) - F(a)$
+	$ F \bigl|_{a}^{b}$ "--- подстановка:
+	\[ F \bigl|_{a}^{b} = F(b) - F(a) \]
 \end{Def}
 
-\begin{theorem}{формула интегрирования по частям}
-	$u, v \in C^1[a, b]$, тогда
-	\[ \int_a^b u v^{'} = u v |_{a}^{b} - \int_a^b u^{'} v\]
+\begin{theorem}[Формула интегрирования по частям]
+	$u, v \in C^1[a, b]$.
+	Тогда
+	\[ \int\limits_a^b u v' = uv \biggl|_a^b - \int\limits_a^b u' v \]
 \end{theorem}
 
 \begin{proof}
 	\begin{gather*}
-		(uv)^{'} = u v^{'} + u^{'} v\\
-		uv = \int u v^{'} + \int u^{'} v\\
-		\int u v^{'} = uv - \int u^{'} v\\
-		F(x) = u(x)v(x) - G(x)
+		(uv)' = u v' + u' v\\
+		uv = \int u v' + \int u' v\\
+		\int u v' = uv - \int u' v\\
+		F(x) = u(x)v(x) - G(x) \\
+		\int\limits_a^b u v' = F(b) - F(a) = (u(b)v(b) - G(b)) - (v(a)u(a) - G(a)) = \\
+		= (u(b)v(b) - v(a)u(a)) - (G(b) - G(a)) = uv |_{a}^{b} - \int\limits_a^b u' v
 	\end{gather*}
-	$\int_a^b u v^{'} = F(b) - F(a) = (u(b)v(b) - G(b)) - (v(a)u(a) - G(a)) = (u(b)v(b) - v(a)u(a)) - (G(b) - G(a)) = uv |_{a}^{b} - \int_a^b u^{'} v$
 \end{proof}
 
 \begin{exmp}
-	$\int_1^n \ln x = x \ln x |_{1}^{n} - \int_1^n x (\ln x)^{'} = n \ln n - 1 \ln 1 - \int_1^n \frac{x}{x} = n \ln n - n + 1$ 
+	Интеграл логарифма:
+	\[ \int\limits_1^n \ln x = x \ln x \biggl|_{1}^{n} - \int\limits_1^n x (\ln x)' = n \ln n - 1 \ln 1 - \int\limits_1^n \frac{x}{x} = n \ln n - n + 1 \]
 \end{exmp}
 
 \begin{Def}
-	$\int_a^b f(x) dx \\ dx$ "--- параметр интегрирования
+	$\d x$ "--- параметр интегрирования:
+	\[ \int\limits_a^b f(x) \d x \]
 \end{Def}
+Пока не очень будем задумываться над глубоким смыслом этой записи, воспринимаем как <<скобки>>.
 
 \begin{Def}
-	$a > b \\ \int_a^b f = - \int_b^a f$
+	$a > b$:
+	\[ \int\limits_a^b f = - \int\limits_b^a f \]
 \end{Def}
 
-\begin{theorem}{Замена переменных в определённом интеграле}\\
-	$f \in C\langle a, b \rangle; \Phi \in C^1[ \alpha, \beta]; \Phi([\alpha, \beta]) \subset \langle a, b \rangle$, тогда
-	\[ \int_{\alpha}^{\beta} f(\Phi(t)) (\Phi (t))^{'} dt = \int_{\Phi(\alpha)}^{\Phi(\beta)} f(x) dx\]
+\begin{theorem}[Замена переменных в определённом интеграле]
+	$f \in C\langle a, b \rangle$, $\phi \in C^1[ \alpha, \beta]$,\\
+	$\phi([\alpha, \beta])\subset\langle a, b\rangle$.
+	Тогда
+	\[ \int\limits_{\alpha}^{\beta} f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^{\phi(\beta)} f(x) \d x\]
 \end{theorem}
 \begin{proof}
-	$F$ "--- первообразная $f; F(\Phi(t))$ "--- первообразная $f(\Phi (t)) (\Phi (t))^{'}$\\
-	$\int_{\alpha}^{\beta} f(\Phi (t)) (\Phi (t))^{'} dt = F(\Phi (\beta)) - F(\Phi (\alpha)) = \int_{\Phi(\alpha)}^{\Phi(\beta)} f(x) dx$
+	$F$ "--- первообразная $f$, $F(\phi(t))$ "--- первообразная $f(\phi (t)) \cdot \phi'(t)$.
+	\[ \int\limits_{\alpha}^{\beta} f(\phi (t)) \phi'(t) \d t = F(\phi (\beta)) - F(\phi (\alpha)) = \int\limits_{\phi(\alpha)}^{\phi(\beta)} f(x) dx \]
 \end{proof}

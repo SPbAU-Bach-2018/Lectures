@@ -1,0 +1,271 @@
+\begin{theorem}
+	Пусть $A$ и $B$ "--- клеточные множества.
+	Тогда
+	\begin{enumerate}
+		\item (монотонность меры) $A \subset B \Ra 0 \le \mu A \le \mu B$
+		\item (полуаддитивность меры) $\mu (A \cup B) \le \mu A + \mu B$
+		\item (аддитивность меры) $A \cap B = \emptyset \Ra \mu(A + B) = \mu A + \mu B$
+		\item $A \subset B \Ra \mu(B \setminus A) = \mu B - \mu A$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\[ A = \bigsqcup_{k=1}^m P_k \quad B = \bigsqcup_{j=1}^l Q_j \]
+	\begin{enumerate}
+	\item[3.]
+		\begin{gather*}
+			A \cap B = \emptyset \Ra P_k \cap Q_j = \emptyset \\
+			A \cup B = \bigsqcup_{k=1}^m P_k \sqcup \bigsqcup_{j=1}^l Q_j \text{ "--- дизъюнктное} \\
+			\mu A = \sum_{k=1}^m \mu P_k \quad \mu B = \sum_{j=1}^l \mu Q_l \\
+			\mu (A \cup B) = \sum_{k=1}^m \mu P_k + \sum_{j=1}^l \mu Q_l
+		\end{gather*}
+
+	\item[4.]
+		\begin{gather*}
+			B = (B \setminus A) \sqcup A \\
+			\mu B = \mu (B \setminus A) + \mu A
+		\end{gather*}
+
+	\item[1.]
+		\[ \mu B - \mu A = \mu (B \setminus A) \ge 0 \]
+
+	\item[2.]
+		\begin{gather*}
+			A \cup B = (B \setminus (A \cap B)) \sqcup A \\
+			\mu (A \cup B) = \mu (B \setminus (A \cap B)) + \mu A \le \mu B + \mu A
+		\end{gather*}
+	\item[2'.]
+		\[ \mu (A \cup B) + \mu (A \cap B) = \mu A + \mu B \]
+	\end{enumerate}
+\end{proof}
+
+\setauthor{Егор Суворов}
+\begin{Def}
+	Пусть $E$ "--- ограниченное множество в $\R^n$.
+	Тогда внешняя мера Жордана есть $\mu^* E = \inf \{ \mu A \mid A \supset E \}$, где $A$ "--- клеточное.
+\end{Def}
+\begin{Def}
+	Внутренняя мера Жордана: $\mu_* E = \sup \{ \mu A \mid A \subset E \}$, где $A$ "--- клеточное.
+\end{Def}
+\begin{theorem}
+	Если $E$ "--- ограниченное множество, то:
+	\begin{enumerate}
+	\item $0 \le \mu_* E \le \mu^* E < +\infty$
+	\item
+		Монотонность: если $E \subset F$ ($F$ ограничено), то
+		$\mu_* E \le \mu_* F$ и $\mu^* E \le \mu^* F$
+	\item
+		Полуаддитивность \textit{внешней} меры:
+		$\mu^* (E \cup F) \le \mu^* E + \mu^* F$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\begin{itemize}
+		\item
+			Так как $\varnothing \subset E$, то $\mu \varnothing \le \sup \mu A = \mu_* E$
+		\item
+			Если $A \subset E \subset B$, то $\mu A \le \mu B$.
+			Зафиксируем $B$, напишем супремум по $A$:
+			\begin{gather*}
+				\mu_* E = \sup_{A \subset E} \mu A \le \mu B \\
+				\forall B \colon \mu_* E \le \mu B \forall B \supset E \\
+				\mu_* E \le \inf_{B \supset E} \mu B = \mu^* E
+			\end{gather*}
+		\item
+			Если $E$ ограничено, то $\exists P \supset E$, причём $P$ "--- ячейка.
+			Тогда $\mu^* E \le \mu P$.
+		\end{itemize}
+	\item
+		\begin{itemize}
+		\item
+			Если $A \subset E$, то $A \subset F$.
+			Поэтому
+			\[\mu_*E = \sup_{A \subset E} \mu A \le \sup_{A \subset F} \mu A\]
+			так как справа супремум идёт по большему множеству.
+		\item
+			Если $B \supset F$, то $B \supset E$.
+			Поэтому
+			\[\mu^*F = \inf_{B \supset F} \mu B \ge \sup_{B \supset E} \mu B = \mu^* E\]
+		\end{itemize}
+		Монотонность: если $E \subset F$ ($F$ ограничено), то
+		$\mu_* E \le \mu_* F$ и $\mu^* E \le \mu^* F$
+	\item
+		Пусть есть клеточные множества $A$ и $B$: $E \subset A$, $F \subset B$.
+		Тогда $E \cup F \subset A \cup B$ и $A \cup B$ "--- клеточное.
+		\[
+		\mu^* (E \cup F)
+		= \inf_{C \supset E \cup F} \mu C
+		\le \inf_{A \supset E\\ B \supset F} \mu(A \cup B)
+		\le \inf_{A \supset E\\ B \supset F} \mu A + \mu B
+		= \inf_{A \supset E} \mu A + \inf_{B \supset F} \mu B
+		= \mu^* A + \mu^* B
+		\]
+	\end{enumerate}
+\end{proof}
+
+\begin{Def}
+	Пусть $E$ "--- ограниченное множество.
+	Если $\mu_* E = \mu^* E$, то $E$ является \textit{измеримым по Жордану}
+	и $\mu E \eqDef \mu_* E = \mu^* E$ "--- его мера Жордана.
+\end{Def}
+\begin{Rem}
+	Так мы доопределили меру на каком-то дополнительном классе множеств, правда, не очень понятно, на каком.
+	Зато есть шанс, что у нас реально возникающие множества станут измеримыми
+	(хотя бы замкнутые/открытые ячейки,	а не только полуоткрытые)
+\end{Rem}
+\begin{Rem}
+	Дальше вместо <<измеримо по Жордану>> будем говорить <<измеримо>> "--- так короче, а других измеримостей у нас пока не предвидится.
+\end{Rem}
+\begin{Exercise}
+	Доказать, что $\mu E > 0 \iff \Int E \neq \varnothing$
+\end{Exercise}
+\begin{exmp}
+	Пусть есть два параллелепипеда, один открытый, другой замкнутый и они зажимают множество $P$:
+	\[ (a_1, b_1) \times \dots \times (a_n, b_n) \subset P \subset [a_1, b_1] \times \dots \times [a_n, b_n] \]
+	Тогда $P$ измеримо и $\mu P = (b_1-a_1) \cdot \dots \cdot (b_n - a_n)$.
+\end{exmp}
+\begin{proof}
+	Возьмём ячейки, вложенные в $P$, отрезав немного с правых концов:
+	\[P_m = \left(a_1, b_1 - \frac 1m\right] \times \dots \times \left(a_n, b_n - \frac 1m\right] \subset \left(a_1, b_1\right) \times \dots \times \left(a_n, b_n\right) \subset P\]
+	Возьмём ячейки, покрывающие $P$, отрезав немного с левых концов:
+	\[Q_m = \left(a_1 - \frac 1m, b_1\right] \times \dots \times \left(a_n - \frac 1m, b_n\right] \supset \left[a_1, b_1\right] \times \dots \times \left[a_n, b_n\right] \supset P\]
+	Отсюда видно:
+	\[
+	\mu_* P \ge \sup \mu P_m = \sup \left(b_1 - a_1 - \frac 1m\right) \cdot \dots \cdot \left(b_n - a_n - \frac 1m\right) = \left(b_1-a_1\right)\cdot\dots\cdot\left(b_n-a_n\right)
+	\]
+	Аналогично для внешней меры:
+	\[
+	\mu^* Q \le \inf \mu Q_m = \inf \left(b_1 - a_1 + \frac 1m\right) \cdot \dots \cdot \left(b_n - a_n + \frac 1m\right) = \left(b_1-a_1\right)\cdot\dots\cdot\left(b_n-a_n\right)
+	\]
+	Собираем вместе:
+	\[
+	\left(b_1-a_1\right)\cdot\dots\cdot\left(b_n-a_n\right) \ge \mu^* P \ge \mu_* P \ge \left(b_1-a_1\right)\cdot\dots\cdot\left(b_n-a_n\right)
+	\]
+	Таким образом верхняя и нижняя меры существуют, равны и мы даже знаем, чему именно.
+\end{proof}
+
+\begin{exmp}
+	Если $E$ "--- множество из конечного числа точек, то оно измеримо и $\mu E = 0$.
+\end{exmp}
+\begin{proof}
+	Накроем каждую из $n$ точек ячейкой вида $\left(x_1 - \frac 1m, x_1\right] \times\dots\times \left(x_n - \frac 1m, x_n\right] = P_m$.
+	Видно, что внешняя мера $E$ ограничивается суммарной мерой таких ячеек, устремляем $m$ к бесконечности, получаем $\mu^* E \ge 0$.
+	То есть $\mu^* E = 0$.
+\end{proof}
+
+\begin{Exercise}
+	Найти внешнюю и внутреннюю меру $E = \{ \frac 1 m \mid m \in \N \} \subset \R$.
+\end{Exercise}
+
+\begin{exmp}
+	Пусть $E = [0, 1] \cap \Q$.
+	Тогда $\mu_* E = 0$, и $\mu^* E = 1$, то есть оно не измеримо по Жордану.
+\end{exmp}
+\begin{proof}
+	$\mu_* E = 0$, т.к. $E$ не содержит внутренних точек и, как следствие, не содержит ячеек.
+
+	Покажем, что $\mu^* E = 1$.
+	Для этого возьмём какое-то покрытие $E$ ячейками:
+	\[ E \subset \bigcup_{k=1}^n P_k \]
+	Пририсуем слева и справа замыкания:
+	\[ [0,1] = \cl E \subset \cup_{k=1}^n \cl P_k \]
+	У нас есть конечное число замкнутых отрезков, которые покрывают отрезок $[0,1]$, мы интересуемся
+	суммой длин.
+	Ясно, что она хотя бы единица (можно показать по индукции).
+	Значит $\mu^*e \ge 1$.
+	Вывод: $E$ неизмеримо по Жордану.
+\end{proof}
+
+\begin{exmp}
+	Если $E$ измеримо, $\mu^* E = 0$ и $F \subset E$, то $F$ измеримо и $\mu F = 0$.
+\end{exmp}
+\begin{proof}
+	\[ \mu E = 0 \Ra \mu^* E = 0 \Ra 0 \le \mu^* F \le \mu^* E = 0 \Ra \mu^*F = 0 \]
+	То есть $0 \le \mu_* F \le \mu^* F = 0$, что и требовалось доказать.
+\end{proof}
+
+\begin{exmp}
+	Возьмём в $\R^2$ горизонтальный отрезок $[a,b] \times \{c\}$.
+	Его мера равна нулю, так как он является замкнуты параллелепипедом.
+\end{exmp}
+\begin{Rem}
+	Это пример бесконечного множества, которое имеет меру ноль.
+	Можно придумать такой пример даже в $\R$.
+\end{Rem}
+
+\begin{exmp}
+	Пример связного открытого неизмеримого множества.
+
+	Пусть $\{ r_k \}$ "--- это как-то занумерованные рациональные числа из $(0,1)$.
+	Также возьмём достаточно маленькое $\epsilon > 0$ (как минимум $\epsilon < \frac 1 2$).
+	Построим множество:
+	\[
+	\mathcal{D} = \bigcup_{k=1}^\infty \left(r_k - \frac{\epsilon}{2^k}, r_k + \frac{\epsilon}{2^k}\right) \cap (0,1)
+	\]
+	Оно является объединением открытых, то есть само оно тоже открыто.
+	Заметим, что весь отрезок $[0,1]$ мы не накроем, так как сумма длин этих интервалов равна
+	$\sum_{k=1}^\infty \frac{2\epsilon}{2^k} = 2\epsilon$
+	(на самом деле, это еще надо формально проверить, но для интуитивного понимания достаточно).
+
+	Давайте приклеим над множеством $\mathcal{D}$ цилиндры, получив $\mathcal{D} \times [0,1)$
+	(пока не слишком открытое).
+	А потом снизу еще кое-что приклеим, получим:
+	\[ \Omega = (\mathcal{D} \times [0,1]) \cup ((0,1) \times (-1, 0)) \]
+	% картинка
+	Это открытое и связное множество.
+	Покажем, что оно неизмеримо (на самом деле, $\mathcal{D}$ тоже неизмеримо, но связность "--- это круто).
+\end{exmp}
+\begin{proof}
+	Обозначим за $\Omega_+$ верхнюю половину множества (включая границу на нуле).
+	Хотим посчитать $\mu^* \Omega_+$, покроем ячейками и напишем замыкание:
+	\begin{gather*}
+		\Omega_+ \subset \bigcup_{k=1}^m P_k \\
+		[0,1]^2 = \cl \Omega_+ \subset \bigcup_{k=1}^m \cl P_k \\
+		1 = \mu [0,1]^2 \le \sum_{k=1}^m \mu(\cl P_k) = \sum_{k=1}^m \mu P_k
+	\end{gather*}
+	То есть $\mu^* \Omega_+ \ge 1$.
+	С другой стороны, всё $\Omega_+$ покрывается при помощи $[0,1]^2$, то есть $\mu^* \Omega_+ = 1$.
+
+	Теперь будем смотреть на внутреннюю меру.
+	Хотим показать, что она не больше $\epsilon$.
+	Взяли какие-то ячейки:
+	\[
+	\bigcup_{k=1}^m P_k \subset \Omega_+
+	\]
+	Отсюда ясно, что объединение проекций $P_k$ на ось X содержится в $\mathcal{D}$.
+	Возьмём клеточное множество вида <<объединение проекций со столбиком $[0,1]$ наверх>>.
+	Очевидно, оно накрывает объединение $P_k$ и все его клетки не пересекаются,
+	а его площадь не больше $2 \epsilon$.
+	Значит, площадь объединения $P_k$ тоже не больше $2\epsilon$ (так как они тоже не пересекаются).
+	То есть $\mu_* \Omega_+ \le \epsilon < \mu^* \Omega+$.
+
+	Таким образом $\Omega_+$ неизмеримо.
+	Значит, $\Omega$ тоже неизмеримо, так как нижний квадратик просто добавляет к $\mu_*$ и $\mu^*$ единичку.
+	Были неравными "--- остались неравными.
+\end{proof}
+
+\section{Свойства измеримых множеств}
+\begin{theorem}[критерий измеримости]
+	Пусть $E$ ограничено.
+	Тогда $E$ измеримо тогда и только тогда, когда $\forall \epsilon > 0, \exists A_\epsilon \subset E \subset B_\epsilon$, причём
+	$\mu B_\epsilon - \mu A_\epsilon < \epsilon$.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		Так как $E$ измеримо, то $\mu E = \mu^* E = \inf_{B \supset E} \mu B$.
+		Значит, можем найти такое клеточное $B$, что $\mu B < \mu^*E + \frac{\epsilon}2$.
+		Аналогично для $\mu_* E$: можно найти такое $A$, что $\mu A > \mu_*E - \frac{\epsilon}2$.
+		Соберём вместе, получим, что $\mu B - \mu A < \epsilon$.
+	\item[$\La$:]
+		\begin{gather*}
+			\mu^*E = \inf_{B\supset E} \mu B \le \inf \mu B_\epsilon \\
+			\mu_*E = \sup_{A\subset E} \mu A \ge \sup \mu A_\epsilon \\
+			\mu A_\epsilon \le \mu_*E \le m^* E \le \mu B_\epsilon \\
+			0 \le \mu B_\epsilon - \mu A_\epsilon < \epsilon \\
+			0 \le \mu^* E - \mu_* E \le \epsilon \\
+			\mu^* E = \mu_* E \\
+		\end{gather*}
+	\end{description}
+\end{proof}

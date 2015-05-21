@@ -3,8 +3,11 @@
 *.aux
 *.toc
 *.log
+
 *.jpg
 *.jpeg
+*.png
+
 *.synctex.gz*
 *.pyg
 *.thm

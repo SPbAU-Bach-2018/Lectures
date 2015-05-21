@@ -1,0 +1,178 @@
+\setauthor{Дмитрий Лапшин}
+
+\begin{lemma}
+	Если $Q(h)$ "--- строго положительно определена, то существует $c > 0$, что
+	\[ \forall h, Q(h) \ge c\|h\|^2 \]
+\end{lemma}
+\begin{proof}
+	Рассмотирм $Q$ на единичной сфере. Получим непрерывную на компакте функцию, поэтому
+	\begin{gather*}
+		\exists h_0\colon \underbrace{Q(h_0)}_{>0} = \min \{Q(h)\} \lrh c \\
+		Q(h) = Q\left(\|h\| \cdot \frac{h}{\|h\|}\right) = \|h\|^2 Q\left(\frac{h}{\|h\|}\right) \ge \|h\|^2 c
+	\end{gather*}
+\end{proof}
+
+Докажем теперь теорему:
+\begin{proof}
+	\[ f(a + h) - f(a) = \frac12 \underbrace{\sum_{i,j = 1}^n \partdd{f}{x_i}{x_j}(a) h_ih_j}_{=Q(h)} + o(\|h\|^2) \]
+	\begin{enumerate}
+	\item
+		$Q(h)$ "--- положительно определена, откуда $Q(h) \le c \|h\|^2$.
+		\[  f(a+h) - f(a) = \frac12 Q(h) + o(\|h\|^2) \ge \frac{c\|h\|^2}2 + o(\|h\|^2) = \|h\|^2 \underbrace{\left(\frac{c}2 + o(1)\right)}_{\text{$>0$ при малых $h$}} \]
+
+	\item $f \ra -f$
+
+	\item
+		$a$ нестрогий минимум, поэтому $f(a+h) \ge f(a)$ при достаточно малых $h$.
+		Зафиксируем $h$ и будем рассматривать $f(a+th) \ge f(a)$ при достаточно малых $t$.
+		\[ f(a+th) - f(a) = \frac12 \sum_{i,j = 1}^n \partdd{f}{x_i}{x_j}(a) t^2h_ih_j \underbrace{o(\|th\|^2)}_{=t^2o(1)} = \frac{t^2}2 Q(h) + t^2o(1)\]
+		\[ 0 = \frac{f(a+th) - f(a)}{t^2} = \frac12 Q(h) + o(1) \]
+		Переходим к пределу
+		\[ \frac{f(a+th) - f(a)}{t^2} \ge 0 \]
+
+	\item $f \ra -f$
+	\end{enumerate}
+\end{proof}
+
+Дальше Тейлора выписывать не рекомендуют: вместо матриц выйдет табличка четырёхмерных коэффициентов.
+
+\begin{Def}
+	Гессиан или матрица Гессе "--- та самая матрица, квадратичную норму которой мы и смотрели:
+	\[ \left( \partdd{f}{x_i}{x_j}\right)_{i,j=1}^n \]
+\end{Def}
+
+\section{Обратные отображения}
+
+Ещё одна теорема больше из алгебры:
+\begin{theorem}
+	$A\colon \R^n \ra \R^m$ "--- линейный оператор. Тогда следующее равносильно:
+	\begin{enumerate}
+		\item $A$ обратим
+		\item $A(\R^n) = \R^m$
+		\item Уравнение $Ax = 0$ имеет нулевое решение
+		\item $\det A \ne 0$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Докажем не очень строго: перезапишем всё выше в терминах систем уравнений:
+	\begin{enumerate}
+		\item Для всех $y$ уравенние $Ax = y$ имеет единственное решение
+		\item Для всех $y$ уравенние $Ax = y$ имеет решение
+		\item Уравнение $Ax = 0$ имеет нулевое решение
+		\item $\det A \ne 0$
+	\end{enumerate}
+	Получилось, что система линейных уравнений имеет единственное решение для любых свободных коэффициентов, в том числе для нулевых свободных коэффициентов "--- тривиальное, тогда и только тогда, когда определитель матрицы системы не ноль.
+\end{proof}
+
+\begin{theorem}
+	$A\colon \R^n \ra \R^m$ "--- линейный оператор,
+	\[ \exists m > 0\colon \forall x \in \R^n, \|Ax\| \ge m\|x\| \]
+	Тогда $A$ обратим и $\left\|A^{-1}\right\| \le \frac1m$.
+\end{theorem}
+\begin{proof}
+	\[ Ax = 0 \Ra 0 = \|Ax\| \ge m\|x\| \Ra x = 0 \]
+	Смотрим теорему выше.
+	\[ \left\|A^{-1}\right\| = \inf \left\{c > 0 \mid \left\|A^{-1} x\right\| \le c \|x\| \right\} \]
+	Нам достаточно показать, что
+	\[ \left\|A^{-1} x\right\| \le \frac{1}m \|x\| \]
+	$y \lrh A^{-1} x$, $x = Ay$
+	\[ \|y\| \le \frac{1}m \|Ay\| \]
+	Это мы уже знаем
+\end{proof}
+
+\begin{Rem}
+	\[ \forall x, \|Ax\| \ge \frac{1}{\left\|A^{-1}\right\|} \|x\| \]
+\end{Rem}
+\begin{proof}
+	\begin{gather*}
+		\left\| A^{-1} \right\| \|A x\| \ge \|x\| \\
+		\|x\| = \left\|A^{-1} (Ax)\right\| \le \left\|A^{-1}\right\| \|A x\|
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Обратнимость линейных операторов, близких к обратимым]
+	$A\colon \R^n \ra \R^m$ "--- обратимый линейный оператор, $\left\|A^{-1}\right\| = \frac1\alpha$.
+	\begin{enumerate}
+	\item
+		Если $B\colon \R^n \ra \R^m$ "--- линейный оператор, $\|B - A\| = \beta < \alpha$, то $B$ обратим и
+		\[ \left\|B^{-1} - A^{-1}\right\| < \frac{\beta}{\alpha(\alpha - \beta)} \]
+
+	\item
+		Пусть $\Omega$ "--- множество обратимых операторов. Тогда $f\colon B \ra B^{-1}$ непрерывна на $\Omega$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\begin{gather*}
+			\|Ax\| = \|Bx + (A-B)x\| \le \|Bx\| + \|(A - B)x\| \le \|Bx\| + \|(A - B)\| \|x\| = \|Bx\| + \beta \|x\| \\
+			\|Ax\| \ge \frac{1}{\left\|A^{-1}\right\|} \|x\| = \alpha \|x\| \\
+			(\alpha - \beta) \|x\| \le \|Bx\|
+		\end{gather*}
+		По предыдущей теореме уже получили обратимость.
+		\begin{gather*}
+			B^{-1} A^{-1} = B^{-1} (A - B) A^{-1} \\
+			\left\|B^{-1} - A^{-1}\right\| = \left\|B^{-1} (A - B) A^{-1}\right\| \le \left\|B^{-1}\right\| \|A - B\| \left\|A^{-1}\right\|
+				= \frac1{\alpha - \beta}\beta\frac1\alpha = \frac{\beta}{\alpha(\alpha - \beta)}
+		\end{gather*}
+
+	\item
+		\[ B_k \ra A \Ra \|B_k - A\| \ra 0 \stackrel{?}{\Ra} \|B_k^{-1} - A^{-1}\| \ra 0 \Ra B_k^{-1} \ra A^{-1} \]
+		$\left\|A^{-1}\right\| = \frac1\alpha$
+		\begin{gather*}
+			\|B_k - A\| \le \frac{\alpha}2 \\
+			\left\|B_k^{-1} - A^{-1}\right\| \le \frac{\|B_k - A\|}{\alpha(\alpha - \|B_k - A\|)} \le \frac{2}{\alpha^2} \|B_k - A\| \ra 0
+		\end{gather*}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Об обратной функции]
+	$f\colon D \subset \R^n \ra \R^m$, $a \in \Int D$, $f$ непрерывно дифференцируема в окрестности $a$, $\d_a f$ "--- обратимое отображение, $b = f(a)$.
+	Тогда
+	\begin{enumerate}
+	\item
+		Существует окрестности $U$ точки $a$ и $V$ точки $b$, что $f\colon V \ra U$ "--- биекция.
+
+	\item
+		Пусть $g\colon V \ra U$ "--- обратная к $f$. Тогда $g$ "--- непрерывно дифференцируема.
+	\end{enumerate}
+\end{theorem}
+
+\begin{Rem}
+	В случае верности теоремы
+	\[ g(f(x)) = x \]
+	\[ \d_{f(x)} g \circ \d_x f = id \]
+	\[ \d_{f(x)} g = \left(\d_x f\right)^{-1} \]
+\end{Rem}
+
+\begin{Rem}
+	Это самая адовая теорема курса! Доказателсьтво длинное, разбито на важные шаги.
+\end{Rem}
+
+\begin{proof}
+	$A = \d_a f$. Выберем $\lambda\colon 4\lambda \|A^{-1}\| = 1$.
+	В качестве $U$ возьмём шар с центром в $a$, что
+	\[ \forall x \in U, \|\d_x f - \d_a f\| \le 2\lambda \]
+	\begin{description}
+	\item[Шаг 1:]
+		Докажем, что $f$ инъективна на $U$.
+		Возьмём две точки $x, x + h \in U$.
+		Покажем, что значения $f(x)$ и $f(x + h)$ различны.
+		В шаре содержится отрезок $[x, x + h]$.
+		\begin{gather*}
+			F\colon [0,1] \ra \R^n; F(t) = f(x+th) - tAh \\
+			F'(t) = \d_{x+th} f(h) - Ah \\
+			\|F(1) - F(0)\| \le \|F'(t)\| = \| \d_{x+th} f(h) - Ah\| \le \quad \text{при некотором $t$ по теореме Лагранжа} \\
+			\le \underbrace{\|\d_{x+th} f - A\|}_{x + th \in U} \|h\| < 2\lambda \|h\| \\
+			\begin{aligned}
+				F(0) &= f(x) \\
+				F(1) &= f(x + th) - Ah
+			\end{aligned}\\
+			\|f(x + th) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
+			\|f(x + th) - f(x) \| = \|f(x+th) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
+			\ge \|Ah\| - \frac{\|Ah\|}2 = \frac{\|Ah\|}2 \\
+			f(x+h) = f(x) \Ra 0 \ge \frac{\|Ah\|}2 \Ra \|Ah\| = 0 \Ra h = 0
+		\end{gather*}
+		Таким образом, $f(x+h) \ne f(x)$.
+%%	\end{description}
+%%\end{proof}
