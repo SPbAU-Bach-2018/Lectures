@@ -1,0 +1,242 @@
+\setauthor{Беляев Станислав}
+
+\section{Векторные пространства}
+
+\begin{Def}
+	$K$ "--- поле, $V \ne 0$
+	\[ + \colon V \times V \to V \]
+	\[ \cdot \colon K \times V \to V \]
+	$V$ "--- векторное пространство над полем $K$, если:
+	\begin{enumerate}
+	\item
+		$\forall v_1, v_2, v_3 \in V \colon (v_1 + v_2) + v_3 = v_1 + (v_2 + v_3)$
+	\item
+		$\exists 0 \in V ~ \forall v \in V \colon 0 + v = v + 0 = v$
+	\item
+		$\forall v \in V ~ \exists -v \in V \colon v + (-v) = (-v) + v = 0$
+	\item
+		$\forall v_1, v_2 \in V \colon v_1 + v_2 = v_2 + v_1$
+	\item
+		$\forall v \in V \colon 1_{K} \cdot v = v$
+	\item
+		$\forall a,b \in K ~ \forall v \in V \colon (ab)v = a(bv)$
+	\item
+		$\forall a \in K ~ \forall v_1, v_2 \in V \colon a(v_1 + v_2) = av_1 + av_2$
+	\item
+		$\forall a,b \in K ~ \forall v \in V \colon (a + b)v = av + bv$
+	\end{enumerate}
+\end{Def}
+
+\begin{exmp}
+	\begin{enumerate}
+	\item
+		$V = K$, внешнее умножение "--- умножение в поле $K$
+	\item
+		$K^n$ "--- пространство векторов столбцов
+		\[ K^n = \left\{
+			\begin{pmatrix}
+				a_1\\
+				\vdots\\
+				a_n\\
+			\end{pmatrix}
+			\mid a_i \in K
+		\right\} \]
+	\item
+		$\tensor[^n]{K}{}$ "--- пространство векторов строк
+		\[ \tensor[^n]{K}{} = \left\{
+			( a_1 \dots a_n) \mid a_i \in K
+		\right\} \]
+	\item
+		$K \subseteq L$, $K$ "--- поле, $L$ "--- тело
+		\[ \cdot \colon K \times L \to L ~ \text{(сужение умножения в $L$)} \]
+		$\C$ "--- в.п. над $\R$
+	\item
+		$\H$ "--- в.п. над $\R$
+	\item
+		$\H$ "--- в.п. над $\C$
+	\item
+		$Q(i) = \{ a + bi \mid a,b \in \Q \}$ "--- в.п. над $\Q$ \\
+		$\R$ "--- в.п. над $\Q$
+	\item
+		$M(n,m,k)$ "--- в.п. над $K$
+	\item
+		\[ \cdot \colon K \times K[x] \to K[x] ~ \text{(сужение обычного умножения)} \]
+		$K[x]$ "--- в.п. над $K$
+	\item
+		$C([a,b] \to \R)$ "--- в.п. над $\R$
+	\end{enumerate}
+\end{exmp}
+
+\textbf{Свойства векторного пространства}
+
+\begin{enumerate}
+	\item
+		$0_v$ "--- единственный
+		\begin{proof}
+			$v + 0_1 = v = v + 0_2$
+		\end{proof}
+	\item
+		$\forall a \in K \colon a \cdot 0_v = 0_v$
+		\begin{proof}
+			$a \cdot 0_v = a \cdot (0_v + 0_v) = a \cdot 0_v + a \cdot 0_v$ \\
+			$0_v = a \cdot 0_v$
+		\end{proof}
+	\item
+		$\forall v \in V \colon 0_k \cdot v = 0_v$
+		\begin{proof}
+			$0_k \cdot v = (0_k + 0_k) \cdot v = 0_k \cdot v + 0_k \cdot v$
+		\end{proof}
+	\item
+		$\forall a \in K ~ \forall v \in V \colon (-a) \cdot v = a \cdot (-v) = -(a \cdot v)$
+		\begin{proof}
+			$av + (-a)v = (a + (-a))v = 0_k \cdot v = 0_v$ \\
+			$-(av) = (-a)v$\\
+			$2$-e равенство аналогично
+		\end{proof}
+\end{enumerate}
+
+\section{Подпространства, линейные комбинации}
+
+\begin{Def}
+	$v_1, \dots, v_n \in V, a_1, \dots, a_n \in K$
+	\[ a_1v_1 + \dots + a_nv_n \text{"--- линейная комбинация $v_i$ с кооф. $a_i$} \]
+\end{Def}
+
+\begin{Def}
+	$i \in I, v_i \in V, a_i \in K$, почти все ($=$ все, кроме конечного числа) $a_i$ равны $0$
+	\[ \sum_{i \in I} a_iv_i \text{"--- линейная комбинация (сумма конечна, т.к. п.в. $a_i = 0$)} \]
+\end{Def}
+
+\begin{Def}
+	$V$ "--- в.п. над $K$, $0 \neq U \subseteq V$ \\
+	\[U \text{ называют подпространством в } V, \text{ если } U \text{"--- в.п. над } K \text{ относительно } + \mid_{U \times U}, \cdot \mid_{K \times U}\]
+\end{Def}
+
+\begin{exmp}
+	\begin{enumerate}
+		\item
+			$\C \subseteq \H$, в.п. над $\R$
+		\item
+			$K[x^2] \subseteq K[x]$
+		\item
+			$\R[x]$ "--- можно рассматривать, как подпространство в $C([a,b] \to \R)$
+	\end{enumerate}
+\end{exmp}
+
+\begin{assertion}
+	$V$ "--- в.п. над $K$, $0 \neq U \subseteq V$ \\
+	\[U \text{"--- подпространство } V \Lra \left\{ \begin{array}{ll}
+		U \text{ замкнуто относительно сложения} \\
+		U \text{ замкнуто относительно умножения на скаляр}
+	\end{array} \right.\]
+\end{assertion}
+\begin{proof}
+	Посмотрим на пункты из определения векторного пространства. $1, 4, 5, 6, 7, 8$ "--- очевидны. Рассмотрим остальные:
+	\begin{enumerate}
+	\item[2.]
+		$\exists 0 \in K ~ \forall u \in U \colon 0_k \cdot u \in U$ \\
+		$0_v = 0_k \cdot u = 0_u$
+	\item[3.]
+		$\forall u \in U \colon (-1_k) \cdot u \in U$ \\
+		$(-1_k) \cdot u = -u \in V$, а значит обратный в $U$
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+	(Без доказательства) Пересечение подпространств - подпространство.
+\end{lemma}
+
+\begin{assertion}
+	$\{ v_i \}_{i \in I} \subseteq V$, какое наименьшее подпространство, содержащее это семейство векторов? Ответ: \\
+	\[\bigcap\limits_{\mathclap{\substack{\text{\tiny{$U-$ под-во. $V$}} \\ \text{\tiny{$\{ v_i \}_{i \in I} \subseteq U$}}}}}{U} = \left\{ \sum\limits_{i \in I} a_iv_i \mid \text{п.в. } a_i = 0 \right\} \text{"--- мн-во всех конечных лин. комбинаций векторов из } \{ v_i \}_{i \in I}\]
+\end{assertion}
+
+\begin{Def}
+	$\{ v_i \}_{i \in I}$ "--- семейство образующих 
+\end{Def}
+
+\begin{Def}
+	$\left< v_i \mid i \in I \right>$ "--- подпространство, порожденное семейством $\{ v_i \}_{i \in I}$ (линейная оболочка векторов $v_i$)
+\end{Def}
+
+\begin{Def}
+	Если $V = \left< v_i \mid i \in I \right>$, то говорят, что cемейство образующих порождает пространство $V$
+\end{Def}
+
+\begin{exmp}
+	\begin{enumerate}
+	\item
+		$\C$ "--- в.п. над $\R, \C = \left< 1, i \right>$
+	\item
+		$K[x] = \left< 1, x, x^2, \dots \right>$
+	\end{enumerate}
+\end{exmp}
+
+\section{Линейная зависимость и линейная независимость}
+
+\begin{Def}
+	$\{ v_i \}_{i \in I}$ "--- линейно зависимые, если $\exists a_i$ "--- п.в. (но не все) $a_i = 0$, такие что:
+	\[\sum_{i \in I} a_iv_i = 0\]
+\end{Def}
+
+\begin{Def}
+	Если $\{ v_i \}_{i \in I}$ не являются лин. зависимыми, то они называются линейно независимыми. \\
+	\textbf{Эквивалентные определения}
+	\begin{enumerate}
+	\item
+		$\forall a_i$ п.в. (но не все) $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i \neq 0$
+	\item
+		$\forall a_i$ п.в. $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i = 0 \Rightarrow$ все $a_i = 0$
+	\end{enumerate}
+\end{Def}
+
+\begin{exmp}
+	$\C$ "--- в.п. над $\R$
+	\begin{enumerate}
+	\item
+		$\{1, i\}$ "--- лин. независимые
+	\item
+		$\{1, 1 + i, i\}$ "--- лин. зависимые \\
+		$1 \cdot 1 + (-1) \cdot (1 + i) + 1 \cdot i = 0$
+	\item
+		$\{1, x, x^2, \dots\}$ "--- лин. независимые ($K[x]$)
+	\end{enumerate}
+\end{exmp}
+
+\textbf{Свойства линейной зависимости и линейной независимости}
+
+\begin{enumerate}
+	\item
+		Любая подсистема лин. независимой системы "--- лин. независима
+	\item
+		Любая подсистема лин. зависимой системы "--- лин. зависима
+	\item
+		Семейство, содержащее $0$, лин. зависима
+	\item
+		Семейство, содержащее $2$ одинаковых вектора "--- лин. зависима
+	\item
+		Семейство лин. независимо $\Lra$ всякое его конечное подсемейство "--- лин. независимо
+\end{enumerate}
+
+\begin{lemma}
+	$\{ v_i \}_{i \in I}$ лин. зависимые $\Rightarrow$ один из $v_i$ есть лин. комбинация остальных
+\end{lemma}
+\begin{proof}
+	$\sum\limits_{i \in I} a_iv_i = 0$, п.в. (но не все) $a_i = 0, j \colon a_j \neq 0$ \\
+	$a_jv_j + \sum\limits_{\substack{\text{\tiny{$i \in I $}} \\ \text{\tiny{$i \neq j $}}}} a_iv_i = 0 \Rightarrow v_j = \sum\limits_{\substack{\text{\tiny{$i \in I $}} \\ \text{\tiny{$i \neq j $}}}} (\frac{-a_i}{a_j})v_i$
+\end{proof}
+
+\begin{theorem}
+	(О лин. зависимости лин. комбинаций) \\
+	$V$ "--- в.п. над $K, ~ v_1, \dots, v_n \in V, ~ u_1, \dots, u_m \in \left< v_1, \dots, v_n \right>$ \\
+	\[\text{Если } m > n, \text{ то } u_1, \dots, u_m \text{ лин. зависимые}\]
+\end{theorem}
+\begin{proof}
+	$u_i = \sum\limits_{j = 1}^{n} a_{ij}v_j, ~ a_{ij} \in K$ \\
+	$x_1, \dots, x_m = ?$ \\
+	$0 = x_1 \cdot u_1 + \dots + x_m \cdot u_m = \sum\limits_{i = 1}^{m} x_iu_i = \sum\limits_{i = 1}^{m} x_i \sum\limits_{j = 1}^{n} a_{ij}v_j = \sum\limits_{i = 1}^{m} \sum\limits_{j = 1}^{n} (x_ia_{ij})v_j = \sum\limits_{j = 1}^{n} \sum\limits_{i = 1}^{m} (x_ia_{ij})v_j$ \\
+	Потребуем, чтобы для $j = 1, \dots, n \colon \sum\limits_{i = 1}^{m} x_ia_{ij} = 0$ \\
+	Это система $n$ линейных уравнений с $m$ неизвестными, $m > n \Rightarrow \exists x_i$ (не все $0$), являющиеся решением этой системы \\
+	$\sum\limits_{i = 1}^{m} x_iu_i = \sum\limits_{j = 1}^{n} 0 \cdot v_j = 0$ \\
+	Так как не все $x_i = 0$, то $\{u_i\}_{i = 1}^{m}$ - лин. зависимые
+\end{proof}
