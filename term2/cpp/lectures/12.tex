@@ -1,203 +1,74 @@
-\chapter{Метапрограммирование}
-\setauthor{Дмитрий Лапшин}
-
-Вспомним traits.
-
-Что такое метапрограммирование?
-\begin{enumerate}
-\item
-	Программа при компиляции может создать свою новую часть.
-\item
-	Программа при работе меняет саму себя.
-\end{enumerate}
-В C++ реализуема только первая часть, вторая касается больше полиморфных вирусов и Java.
-
-Как мы могли уже написать один код, чтобы был доступен разный функционал без дублирования кода?
-\begin{description}
-\item[Указатель на фунцию]
-	Так, как в Си делали.
-\item[Виртуальные функции]
-	Наследники реализуют конкретный функционал.
-
-	У обоих подходов есть проблема производительности: идёт вызов функции, идёт расчёт, что вызывать.
-
-\item[Обобщённое программирование (шаблоны)]
-	Тут всё быстрее, так как всё происходит в момент компиляции.
-	Вспомним прошлые лекции: мы написали код, порождающий функции и структуры:
+\section{std::array}
 \begin{cppcode}
-int sum();
-int sum(int);
-int sum(int, int);
-// ...
+std::array<int> a (10);
 \end{cppcode}
-Или вот в момент компиляции считаем факториал:
+
+\section{Функции begin и end}
 \begin{cppcode}
-template<int n>
-struct fact {
-	static const int value = n * fact<n - 1>::value;
-};
-template<>
-struct fact<0> {
-	static const int value = 1;
-};
+int res = accamulate (begin (a), end (a), 0, sum);
 \end{cppcode}
-\end{description}
 
-Что такое trait? trait "--- объект, хранящий информацию о деталях реализации другого типа.
-Это исползуется для различных реализации для различных типов.
+\section{foreach}
+Синтаксический сахар.
 
-Например, шаблон принимает параметр: численный тип.
-Файл \t{limits.h} содержит макросы, объявляющие константы.
-Пока нам нужно просто писать специализации, что грустно.
-
-Но в C++ есть стандартная структура-шаблон \cpp'std::numeric_limits', которая принимает тип-число и содержит методы:
 \begin{cppcode}
-template<typename T>
-struct std::numeric_limits<class T> {
-	static T max();
-	//...
-	static const bool is_integer = false;
-	//...
+int main () {
+  vector <int> {1, 2, 3};
+  for (auto x : v) {
+    cout << x << "\n";
+  }
+  for (auto it = v.begin (); it != v.end (); ++it) {
+   cout << x << "\n"; 
+  }
+
+}
+\end{cppcode}
+
+Первый цикл развернеться во второй.
+
+\section{Новые контейнеры}
+
+\subsection{forward\_list}
+Односвязный список.
+
+\subsection{unordered\_set и unordered\`map}
+Как сделать хеш, для своего объекта. 
+\begin{cppcode}
+
+#include <unordered_set>
+
+class A {
+  int x;
+  string s;
+  bool operator=(const A& rhs) {
+    return rhs.a = a;
+  };
+  friend size_t std::hash <A>;
 };
 
-template<>
-struct std::numeric_limits<char> {
-	static T max() {
-		return CHAR_MAX;
-	};
-};
-\end{cppcode}
-Чуда не произошло, эти специализации всё ещё нужно писать, но теперь не в каждом алгоритме:
-\begin{cppcode}
-T largest = std::numeric_limits<T>::max();
-\end{cppcode}
-Вопрос на подумать: а зачем \cpp'max()' функция?
+unordered_set<class T, class hash_func = std::hash<T>, class pred = equal_to<T>>;
 
-\begin{cppcode}
-template<typename T>
-struct is_pointer {
-	static const bool value = false;
+namespace std {
+  template<>
+  struct hash<A> {
+    size_t operator (const A& rhs ) const {
+      size_t val = 0;
+      val += std::hash<int> () (rhs.x) * 31;
+      val += std::hash<string> () rhs.s * 59;
+    }
+  };
 };
 
-template<typename T>
-struct is_pointer<T*> {
-	static const bool value = true;
-};
+int main () {
 
-//...
-
-bool b = is_pointer<T>::value;
-if (b) {
-	//...
-}
-else {
 
 }
 \end{cppcode}
-Мы хотим, чтобы тут даже не доходило до компиляции ненужной ветки \cpp'if'-а.
-В Си это выглядело бы так:
-\begin{cppcode}
-void f(int a) {
-	//...
-}
 
-void f_optimized(int a) {
-	//...
-}
 
-void real_f(int a) {
-	#ifdef _SUPPORT_MMX
-		f_optimized(a);
-	#else
-		f(a);
-	#endif
-}
-\end{cppcode}
-Мы не хотим препроцессор.
+\subsection{}
 
-Как это делает старый стандарт:
-\begin{cppcode}
-template<bool b> // включать ли быструю версию
-struct alg_selector {
-	template<typename T>
-	static void implementation(T& obj) {
-		// медленная реализация
-	}
-};
 
-template<>
-struct alg_selector<true> {
-	template<typename T>
-	static void implementation(T& obj) {
-		// быстрая реализация
-	}
-};
 
-template<>
-void algorithm(T& obj) {
-	alg_selector<is_optimized<T>::value>::implementation(obj);
-}
 
-// struct ObjectB оптимальная, struct ObjectA нет
 
-template<typename T>
-struct is_optimized {
-	static const bool value = false;
-}
-
-template<>
-struct is_optimized<ObjectB> {
-	static const bool value = true;
-}
-
-int main() {
-	ObjectA a;
-	ObjectB b;
-	algorithm(a);
-	algorithm(b);
-}
-\end{cppcode}
-
-На экзамене попросят написать реализацию выше с чем-то содержательным.
-Кстати, в стандартной библиотеке \cpp'#include <type_traits>' уже есть много подобных фич.
-
-Есть механизм SFINAE (Suptitiution Failure Is Not An Error).
-\begin{cppcode}
-template<typename T>
-struct has_iterator {
-	template <typename U>
-	static char test(typename U::iterator x);
-
-	template <typename U>
-	static long test(U* x);
-
-	static const bool value = sizeof(test<T>(0)) == 1;
-}
-
-int main() {
-	int a = 128;
-
-}
-\end{cppcode}
-Там выше есть бага, но мы позже разберёмся.
-Суть в том, что можно на уровне языка проверять наличие каких-то типов, методов и полей у структур  и прочего.
-
-Теперь новый стандарт. На принципе выше есть конструкция \cpp'std::enable_if':
-\begin{cppcode}
-template<typename T>
-typename enable_if<!has_iterator<T>::value, void>::type show(T& x) {
-	cout << x << "\n";
-}
-
-template<typename T>
-typename enable_if<has_iterator<T>::value, void>::type show(T& x) {
-	for (auto& i: x)
-		cout << i;
-}
-\end{cppcode}
-Что делает \cpp'std::enable_if'?
-Оно принимает два параметра "--- \cpp'bool' и некий тип.
-Если выражение итинно, то \cpp'std::enable_if::type' просто равен второму параметру.
-Иначе, подстановка не удаётся через SFINAE (подстановка не удаласть, но нет ошибки компиляции), и метод не создаётся.
-
-В любом случае, будет создана только одна интанация метода \cpp'show' "--- только та, у которой условие верно.
