@@ -1,0 +1,266 @@
+\chapter{Threads}
+\setauthor{Денис Галеев}
+В системе есть планировщик.
+В современных машинах вытесняющая(preempt) многозадачность.
+
+Когда управления потоков переключается с одного на другой содержимое регистров(context) сохраняются в память, и в них компируется иницилизирующие значения регистров для второго потока. 
+
+Есть некоторые классы задач, которые разумно параллелить и нет. 
+Например разумно параллелить умножение матриц, но не разумно параллелить алгоритм Евклида.
+
+\section{thread}
+
+Рассмотрим синтаксис.
+Строка компиляции: \t{g++ -std=c++11  ex01.cpp -lpthread -o main}
+
+\begin{cppcode}
+#include <thread>
+#include <iostream>
+#include <vector>
+
+void hello () {
+  std::cout << "Hello from " << std::this_thread::get_id () << "\n";
+}
+
+int main () {
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 10; ++i) {
+    threads.push_back (std::thread (hello));
+  }
+
+  for (auto& t:threads) {
+    t.join ();
+  }
+
+  return 0;
+}
+\end{cppcode}
+
+В параметрах у \cpp"thread" можно передавать функтор, \cpp"void*" и лямбда-выражения.
+Сейчас мы можем увидеть вместо строчек \t{Hello from 139744734836480}, например \t{Hello from Hello from 139752011310848}.
+Это происходит из-за того, что поток может прервать выполнение в любой момент. 
+
+
+\section{Атомарные операции}
+
+Существуют атомарные операции, которые на какой-то архитектуре не могут приостановиться посередине их выполнения.
+Например чтение из памяти или запись в память.
+
+Пример прерывания инкремента int.
+
+\begin{cppcode}
+#include <thread>
+#include <iostream>
+#include <vector>
+
+class Counter {
+  int value = 0;
+
+public:
+  void increment() {
+    ++value;
+  }
+
+  int get_count () {
+    return value;
+  }
+};
+
+int main () {
+  Counter counter;
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 10000 ; ++i) {
+    threads.push_back (std::thread ([&counter] () {
+        for (int i = 0; i < 10000; ++i) {
+          counter.increment ();
+        }
+    }));
+  }
+
+  for (auto& t:threads) {
+    t.join ();
+  }
+
+  printf ("%d", counter.get_count ());
+  return 0;
+}
+\end{cppcode}
+
+На экране мы скорей всего увидим не 100000000, а что-то меньше.
+
+Так как мы вряд ли хотим чтобы такое происходило, нучимся делать операцию \cpp"++value;" атомарной.
+
+
+Чтобы это исправить используем \cpp"mutex".
+
+\begin{cppcode}
+#include <thread>
+#include <mutex>
+#include <iostream>
+#include <vector>
+
+
+class Counter {
+  int value = 0;
+
+public:
+  void increment() {
+    ++value;
+  }
+
+  int get_count () {
+    return value;
+  }
+};
+
+class CounterConcurrent {
+  Counter &c;
+  std::mutex m;
+
+public:
+  CounterConcurrent (Counter &_c) : c(_c){
+  }
+
+  void increment() {
+    m.lock ();
+    c.increment ();
+    m.unlock ();
+  }
+};
+
+
+int main () {
+  Counter counter;
+  CounterConcurrent counterc(counter);
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 10000 ; ++i) {
+    threads.push_back (std::thread ([&counterc] () {
+        for (int i = 0; i < 10000; ++i) {
+          counterc.increment ();
+        }
+    }));
+  }
+
+  for (auto& t:threads) {
+    t.join ();
+  }
+
+  printf ("%d", counter.get_count ());
+  return 0;
+}
+\end{cppcode}
+
+
+
+Отлично рассмотрим пример когда, \cpp{cpounter} бросает исключения.
+
+\begin{cppcode}
+#include <thread>
+#include <mutex>
+#include <iostream>
+#include <vector>
+
+
+class Counter {
+  int value = 0;
+
+public:
+  void increment() {
+    ++value;
+  }
+
+  void decrement() {
+    --value;
+    if (value == 0) {
+      throw std::runtime_error ("decrement");
+    }
+  }
+
+  int get_count () {
+    return value;
+  }
+};
+
+class CounterConcurrent {
+  Counter &c;
+  std::mutex m;
+
+public:
+  CounterConcurrent (Counter &_c) : c(_c){
+  }
+
+  void increment() {
+    m.lock ();
+    c.increment ();
+    m.unlock ();
+  }
+
+  void decrement() {
+    m.lock ();
+    c.decrement ();
+    m.unlock ();
+  }
+};
+
+
+int main () {
+  Counter counter;
+  CounterConcurrent counterc(counter);
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 5000 ; ++i) {
+    threads.push_back (std::thread ([&counterc] () {
+        for (int i = 0; i < 10000; ++i) {
+          counterc.increment ();
+        }
+    }));
+
+    threads.push_back (std::thread ([&counterc] () {
+        for (int i = 0; i < 10000; ++i) {
+          counterc.decrement ();
+        }
+    }));
+  }
+
+  for (auto& t:threads) {
+    t.join ();
+  }
+
+  printf ("%d", counter.get_count ());
+  return 0;
+}
+\end{cppcode}
+
+Беда в том, что такой код вероятнее всего кинет исключение.
+Чтобы это исправить надо применить идиому \t{RAII}.
+И обернуть \cpp{mutex} в \cpp{lock_guard}.
+
+Пишется это так:
+\begin{cppcode}
+lock_guard<mutex> lg(m);
+c.decrement ();
+\end{cppcode}
+
+
+Другие виды \cpp"mutex".
+\begin{enumerate}
+\item
+\cpp"time_mutex"
+
+\cpp"try_lock_for"
+
+\cpp"try_lock_until"
+\item
+\cpp"recursive_mutex"
+
+\end{enumerate}
+
+
+\section{Так же сделать}
+\begin{enumerate}
+\item
+\t{producer\_consumer}
+\t{conditional\_variable}
+\item
+std::bind, ref, function
+
+\end{enumerate}

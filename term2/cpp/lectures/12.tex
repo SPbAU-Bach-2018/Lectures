@@ -1,0 +1,74 @@
+\section{std::array}
+\begin{cppcode}
+std::array<int> a (10);
+\end{cppcode}
+
+\section{Функции begin и end}
+\begin{cppcode}
+int res = accamulate (begin (a), end (a), 0, sum);
+\end{cppcode}
+
+\section{foreach}
+Синтаксический сахар.
+
+\begin{cppcode}
+int main () {
+  vector <int> {1, 2, 3};
+  for (auto x : v) {
+    cout << x << "\n";
+  }
+  for (auto it = v.begin (); it != v.end (); ++it) {
+   cout << x << "\n"; 
+  }
+
+}
+\end{cppcode}
+
+Первый цикл развернеться во второй.
+
+\section{Новые контейнеры}
+
+\subsection{forward\_list}
+Односвязный список.
+
+\subsection{unordered\_set и unordered\`map}
+Как сделать хеш, для своего объекта. 
+\begin{cppcode}
+
+#include <unordered_set>
+
+class A {
+  int x;
+  string s;
+  bool operator=(const A& rhs) {
+    return rhs.a = a;
+  };
+  friend size_t std::hash <A>;
+};
+
+unordered_set<class T, class hash_func = std::hash<T>, class pred = equal_to<T>>;
+
+namespace std {
+  template<>
+  struct hash<A> {
+    size_t operator (const A& rhs ) const {
+      size_t val = 0;
+      val += std::hash<int> () (rhs.x) * 31;
+      val += std::hash<string> () rhs.s * 59;
+    }
+  };
+};
+
+int main () {
+
+
+}
+\end{cppcode}
+
+
+\subsection{}
+
+
+
+
+

@@ -1,0 +1,197 @@
+%%\begin{enumerate}
+%%\item
+%%	\begin{proof}
+		Осталось доказать, что
+		\[ \int\limits_E f = \int\limits_{E'} f + \int\limits_{E''} f \]
+		Возьмём последовательность разбиений $\tau_l$, $|\tau_l| \ra 0$.
+		\begin{align*}
+			\tau_l   &= \left\{ E_k^{(l)} \right\} \\
+			\tau'_l  &= \left\{ E_k^{(l)} \cap E'  \colon E_k^{(l)} \cap E'  \ne \emptyset \right\} \\
+			\tau''_l &= \left\{ E_k^{(l)} \cap E'' \colon E_k^{(l)} \cap E'' \ne \emptyset \right\}
+		\end{align*}
+		Мы уже знаем, что
+		\[ S(f, \tau_l, \xi_l) \ra \int\limits_E f \]
+		и
+		\[ S(f, \tau'_l, \xi_l) + S(f, \tau''_l, \xi_l) = S(f, \tau_l, \xi_l) \]
+		$\xi'_l$ и $\xi''_l$ "--- подправленные точки.
+		Мы при разбиении некоторые множества разбили на 2.
+		Точка могла оказаться не там, где надо. Подвинем её как-нибудь в нужное множество.
+		\begin{align*}
+			S(f, \tau'_l , \xi'_l ) &\ra \int_{E'}  f \\
+			S(f, \tau''_l, \xi''_l) &\ra \int_{E''} f
+		\end{align*}
+		Осталось сравнить $S(f, \tau'_l, \xi_l)$ и $S(f, \tau'_l, \xi'_l)$.
+		Так как мы поправляли точки только у разбиваемых множеств, то
+		\begin{gather*}
+			| S(f, \tau'_l, \xi_l) - S(f, \tau'_l, \xi'_l) =
+				\left| \sum_{E_k \in \tau_0} (f(\xi_{lk}) - f(\xi'_{lk})) \mu(E_k \cap E') \right| \le \\
+			\le 2M \sum_{E_k \in \tau_0} \mu(E_k \cap E) \le 2M \mu(U_{2\tau l} (\partial E')) \ra 0
+		\end{gather*}
+	\end{proof}
+	\textbf{Упражнение:} ограниченность $f$ по делу.
+\item
+	$E$ "--- множество нулевой меры, $f\colon E \ra \R$.
+	Тогда $f$ интегрируема на $E$, и интергал равен нулю.
+	\begin{proof}
+		$E_k$ "--- разбиение $E$, $E_k \subset E \Ra \mu E_k = 0$.
+		\[
+			S(f, \tau, \xi) = \sum_{k=1}^{m(\tau)} f(\xi_k) \mu E_k = 0
+		\]
+	\end{proof}
+
+\item
+	$f\colon E \ra \R$ ограничена, $E \supset e$, $\mu e = 0$.
+	Если, сохраняя ограниченость $f$, поменять значения $f$ на $e$, интеграл не изменится.
+	\begin{proof}
+		По п. 3:
+		\[ \int\limits_{E} f = \int\limits_{E \setminus e} f + \int\limits_{e} f = \int\limits_{E \setminus e} f + 0 \]
+	\end{proof}
+
+\item
+	$f\colon \cl E \ra \R$ ограничена, $E$ измеримо.
+	Тогда интегрируемости $f$ на $E$, $\cl E$ и $\Int E$ равносильны и три интеграла равны.
+	\begin{proof}
+		\begin{gather*}
+			\cl E \setminus \Int E = \partial E \quad \mu (\partial E) = 0
+		\end{gather*}
+		Изменим $f(x) = 0$ на $\partial E$, получили функцию $\tilde f$.
+		Интеграл не поменялся.
+		\begin{gather*}
+			\int\limits_E f = \int\limits_E \tilde f \quad
+				\int\limits_{\cl E} f = \int\limits_{\cl E} \tilde f \quad
+				\int\limits_{\Int E} f = \int\limits_{\Int E} \tilde f \\
+			\int\limits_E \tilde f = \int\limits_{\cl E} \tilde f = \int\limits_{\Int E} \tilde f
+		\end{gather*}
+	\end{proof}
+
+\item
+	Интеграл линеен.
+	$f, g\colon E \ra \R$ интегрируемы, $\alpha, \beta \in \R$.
+	Тогда $\alpha f + \beta g$ интегрируема и
+	\[ \int\limits_E (\alpha f + \beta g) = \alpha \int\limits_E f + \beta \int\limits_E g \]
+	\begin{proof}
+		$f$ интегрируема, значит
+		\[
+			\forall \epsilon>0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k < \epsilon
+		\]
+		Аналогично для $g$. Мы даже можем взять общий $\delta$.
+		\begin{gather*}
+			\omega(\alpha f + \beta g, E_k) = \sup_{E_k} \left| (\alpha f(x) + \beta g(x)) - (\alpha f(y) + \beta g(y))\right| \le \\
+			\le \sup_{E_k} (|\alpha| |f(x) - f(y)| + |\beta| |g(x) - g(y)|) \le \\
+			\le |\alpha| \sup_{E_k} |f(x) - f(y)| + |\beta| \sup_{E_k} |g(x) - g(y)| = |\alpha| \omega(f, E_k) + |\beta| \omega(g, E_k) \\
+			\sum_{k=1}^{m(\tau)} \omega(\alpha f + \beta g, E_k) \mu E_k \le
+				|\alpha| \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k + |\beta| \sum_{k=1}^{m(\tau)} \omega(g, E_k) \mu E_k \le
+				(|\alpha| + |\beta|) \epsilon
+		\end{gather*}
+		Получили, что $\alpha f + \beta g$ интегрируема.
+		Проверим равенство: возьмём последовательность $\tau_l$, $|\tau_l| \ra 0$.
+		\[ S(\alpha f + \beta g, \tau, \xi) = \alpha S(f, \tau, \xi) + \beta S(f, \tau, \xi) \]
+		В пределе
+		\[ \int\limits_E (\alpha f + \beta g) = \alpha \int\limits_E f + \beta \int\limits_E g \]
+	\end{proof}
+
+\item
+	$f, g\colon E \ra R$ интегрируемы и ограничены.
+	Тогда $fg$ интегрируема.
+	\begin{proof}
+		$|f|, |g| \le M$.
+		\begin{gather*}
+			\omega(fg, E_k) = \sup_{E_k} |f(x)g(x) - f(y)g(y)| = \sup_{E_k} |f(x)g(x) - f(x)g(y) + f(x)g(y) - f(y)g(y)| \le \\
+			\le \sup_{E_k} (|f(x)| |g(x) - g(y)| + |g(y)| |f(x) - f(y)|) \le |M| (\omega(f, E_k) + \omega(g, E_k)) \\
+			\sum_{k=1}^{m(\tau)} \omega(fg, E_k) \mu E_k \le 2M\epsilon
+		\end{gather*}
+	\end{proof}
+
+\item
+	$f, g\colon E \ra \R$ интегрируемы, $f$ ограничена, $\inf_E |g| > 0$.
+	Тогда $\frac{f}g$ интегрируема.
+	\begin{proof}
+		Достаточно проверить ограниченость и интегрируемость $\frac1g$.
+		\[ \sup \frac1{|g|} = \frac1{\inf |g|} < +\infty \]
+		Теперь интегрируемость:
+		\begin{gather*}
+			\omega \left( \frac1g, E_k \right) = \sup_{E_k} \left| \frac1{g(x)} - \frac1{g(y)} \right| =
+				\sup_{E_k} \frac{|g(x) - g(y)|}{|g(x)g(y)|} \le \frac{\omega(g, E_k)}{\alpha^2} \\
+			\sum_{k=1}^{m(\tau)} \omega \left(\frac1g, E_k\right) \mu E_k \le \frac\epsilon{\alpha^2}
+		\end{gather*}
+	\end{proof}
+
+\item
+	$f\colon E \ra \R$, интегрируема.
+	Тогда $|f|$ интегрируема и
+	\[ \left|\int\limits_E f\right| \le \int\limits_E |f| \]
+	\begin{proof}
+		\begin{gather*}
+			||f(x)| - |f(y)|| \le |f(x) - f(y)| \\
+			\omega(|f|, E_k) \le \omega(f, E_k) \\
+			\sum_{k=1}^{m(\tau)} \omega(|f|, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k
+		\end{gather*}
+		Берём $\tau_l$:
+		\begin{gather*}
+			S(f, \tau_l, \xi_l) = \sum_{k=1}^{m(\tau)} f\left(\xi_k^{(l)}\right) \mu E_k^{(l)} \le
+				\sum_{k=1}^{m(\tau)} |f\left(\xi_k^{(l)}\right)| \mu E_k^{(l)} = S(|f|, \tau_l, \xi_l) \\
+			S(f, \tau_l, \xi_l) = \sum_{k=1}^{m(\tau)} f\left(\xi_k^{(l)}\right) \mu E_k^{(l)} \ge
+				\sum_{k=1}^{m(\tau)} -|f\left(\xi_k^{(l)}\right)| \mu E_k^{(l)} = -S(|f|, \tau_l, \xi_l) \\
+			-S(|f|, \tau_l, \xi_l) \le S(f, \tau_l, \xi_l) \le S(|f|, \tau_l, \xi_l) \\
+			-\int\limits_E |f| \le \int\limits_E f \le \int\limits_E |f|
+		\end{gather*}
+	\end{proof}
+
+\item
+	$f, g\colon E \ra \R$ интегрируемы, $f \ge g$.
+	Тогда
+	\[ \int\limits_E f \ge \int\limits_E g \]
+	\begin{proof}
+		\begin{gather*}
+			S(f, \tau_l, \xi_l) = \sum_{k=1}^{m(\tau)} f\left(\xi_k^{(l)}\right) \mu E_k^{(l)} \ge
+				\sum_{k=1}^{m(\tau)} g\left(\xi_k^{(l)}\right) \mu E_k^{(l)} = S(g, \tau_l, \xi_l) \\
+			\int\limits_E f \ge \int\limits_E g
+		\end{gather*}
+	\end{proof}
+
+\item
+	$f\colon G \ra \R$, $G$ открыто, $f$ интегрируема, $f \ge 0$, $a \in G$, $f$ непрерывна в $a$, $f(a) > 0$.
+	Тогда
+	\[ \int\limits_E f > 0 \]
+	\begin{proof}
+		По теореме о стабилизации знака существует окрестность $V$ точки $a$, что
+		\[ \forall x \in V, f(x) \ge \frac{f(a)}2 \]
+		$P \subset V$ "--- ячейка с центром в $a$.
+		Рассмотрим
+		\begin{gather*}
+			g(x) = \begin{cases} f(a) / 2 & x \in P \\ 0 & x \notin P \end{cases} \\
+			f \ge g \\
+			\int_G g = \frac{f(a)}2 \mu P > 0
+		\end{gather*}
+	\end{proof}
+
+\item
+	Счётная аддитивность.
+	$f\colon E \ra \R$ интегрируема и ограничена, $E_k \subset E$ измеримы, $\mu E_k \ra mu E$.
+	Тогда
+	\[ \int\limits_{E_k} f \ra \int\limits_E f \]
+	\begin{proof}
+		\begin{gather*}
+			\int\limits_E f = \int\limits_{E_k} f + \int\limits_{E \setminus E_k} f \\
+			\left| \int\limits_E f - \int\limits_{E_k} f \right| = \left| \int\limits_{E \setminus E_k} f \right| \le
+				\int\limits_{E \setminus E_k} M = M \mu(E \setminus E_k) = M (\mu E - \mu E_k) \ra 0
+		\end{gather*}
+	\end{proof}
+
+\item
+	\textit{Объяснение} счётной аддитивности.
+	\[ E = \bigsqcup_{k=1}^\infty E_k\]
+	$E_k$ и $E$ измеримы,
+	\[ \sum_{k=1}^n \mu E_k \ra \mu E \]
+	$f\colon E \ra \R$ интегрируема.
+	Тогда
+	\[ \lim_{n \ra \infty} \sum_{k=1}^n \int_{E_k} f = \int_E f \]
+	\begin{proof}
+		\begin{gather*}
+			\tilde E_n = \bigsqcup_{k=1}^n E_k \quad \mu \tilde E_n \ra \mu E \\
+			\int\limits_{\tilde E_n} f = \sum_{k=1}^n \int\limits_{E_k} f \\
+			\int\limits_{\tilde E_n} f \ra \int\limits_E f
+		\end{gather*}
+	\end{proof}
+\end{enumerate}

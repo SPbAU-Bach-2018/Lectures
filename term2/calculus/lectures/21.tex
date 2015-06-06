@@ -1,0 +1,206 @@
+\setauthor{Дмитрий Лапшин}
+
+Упражнение: $E \subset \cl \Int E$ и $f\colon E \to \R$ "--- интегрируема, то $f$ ограничена.
+
+\begin{Def}
+	$E$ "--- множество, $f\colon E \to \R$.
+	$\omega(f, E)$ "--- колебание $f$ на $E$.
+	\[ \omega(f, E) = \sup_{x \in E} f(x) - \inf_{x \in E} f(x) = \sup_{x, y \in E} (f(x) - f(y)) \]
+\end{Def}
+
+\begin{theorem}[критерий интегрируемости]
+	$E$ "--- измерима, $f\colon E \to \R$.
+	$f$ интегрируема на $E$ тогда и только тогда, когда
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta, \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k < \epsilon\]
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		$f$ интегрируема, значит
+		\[
+			\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
+				\left| S(f, \tau, \xi) - \int\limits_E \right| < \epsilon
+		\]
+		Зафиксируем $\tau$.
+		Посмотрим на $\omega(f, E_k) \le 2(f(\xi_k) - f(\xi_k'))$.
+		\begin{description}
+		\item[$f$ постоянна на $E_k$:] очевидно.
+		\item[$f$ непостоянна на $E_k$:] $\gamma \lrh \omega(f, E_k) = \sup_{E_k} f - \inf_{E_k} f$.
+			Приблизимся к супремуму с точностью $\gamma/4$ в точке $\xi_k$, к инфимуму в $\xi_k'$.
+			\begin{gather*}
+				\begin{aligned}
+					f(\xi_k)  &> \sup_{E_k} f - \gamma / 2 \\
+					f(\xi_k') &< \inf_{E_k} f + \gamma / 2
+				\end{aligned} \\
+				f(\xi_k) - f(\xi_k') > \sup f - \inf f - \gamma/2 = \gamma/2
+			\end{gather*}
+		\end{description}
+		Тогда
+		\begin{gather*}
+			\begin{aligned}
+				\left| S(f, \tau, \xi ) - \int\limits_E f \right| &< \epsilon \\
+				\left| S(f, \tau, \xi') - \int\limits_E f \right| &< \epsilon
+			\end{aligned} \\
+			\left| S(f, \tau, \xi) - S(f, \tau, \xi') \right| < 2\epsilon \\
+			\sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \mu E_k < 2\epsilon \\
+			\frac12 \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \\
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le 2\sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) < 4\epsilon
+		\end{gather*}
+
+	\item[$\La$:]
+		Пусть
+		\[
+			\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} < \epsilon
+		\]
+		Рассмотрим $\tau' \succ \tau$. Тогда
+		\[ E_k = \bigsqcup_{i=1}^{i_k} E_{k_i}' \]
+		Далее оценим
+		\[
+			\left| f(\xi_k) \mu E_k - \sum_{i=1}^{i_k} f\left(\xi_{k_i}'\right) \mu E_{k_i}' \right| = \cdots
+		\]
+		$\xi_k \in E_k$, $\xi_{k_i}' \in E_{k_i}' \subset E_k$.
+		\begin{gather*}
+			|f(\xi_k) - f\left(\xi_{k_i}\right)| \le \omega(f, E_k) \\
+			\dots = \left| \sum_{i=1}^{i_k} f(\xi_k) \mu E_{k_i}' - \sum_{i=1}^{i_k} f(\xi_k') \mu E_{k_i}' \right| \le \\
+			\le \sum_{i=1}^{i_k} \left| f(\xi_k) - f\left(\xi_{k_i}'\right) \right| \mu E_{k_i}' \le \sum_{i=1}^{i_k}  \omega(f, E_k) \mu E_{k_i}' = \omega(f, E_k) \mu E_k
+		\end{gather*}
+		Суммируем по $k$
+		\[
+			|S(f, \tau, \xi) - S(f, \tau, \xi')| \le \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k
+		\]
+		Если при этом $|\tau| < \delta$, то $|S(f, \tau, \xi) - S(f, \tau, \xi')| < \epsilon$.
+
+		Пусть $\tau'$ и $\tau''$ "--- разбиения мелкости меньше $\delta$.
+		Рассмотрим $\tau \succ \tau', \tau''$. Тогда
+		\begin{gather*}
+			\begin{aligned}
+				|S(f, \tau, \xi) - S(f, \tau' , \xi' )| &< \epsilon \\
+				|S(f, \tau, \xi) - S(f, \tau'', \xi'')| &< \epsilon
+			\end{aligned} \\
+			|S(f, \tau', \xi') - S(f, \tau'', \xi'')| < 2\epsilon
+		\end{gather*}
+		Рассмотирм последовательность разбиений $\tau_n$, что $|\tau_n| \to 0$.
+		\[ \forall \epsilon > 0, \exists N\colon |\tau_n| < \delta \colon \forall n,m > N, |S(f, \tau_n, \xi_n) - S(f, \tau_m, \xi_m)| < 2\epsilon \]
+		Это уже критерий Коши для последовательностей.
+		Значит, $S_n$ имеет предел $I$.
+		Тогда взяв ряд неравенств (начиная с некоторого $n$)
+		\[ | S(f, \tau', \xi') - S(f, \tau_n, \xi_n) | < 2\epsilon \]
+		в пределе получим
+		\[ | S(f, \tau', \xi') - I| < 2\epsilon \]
+	\end{description}
+\end{proof}
+
+\begin{Def}
+	Верхняя и нижняя сумма Дарбу $S_\tau(f)$ и $s_\tau(f)$:
+	\begin{align*}
+		S_\tau(f) &= \sum_{k=1}^{m(\tau)} \sup_{x \in E_k} f(x) \cdot \mu E_k \\
+		s_\tau(f) &= \sum_{k=1}^{m(\tau)} \inf_{x \in E_k} f(x) \cdot \mu E_k
+	\end{align*}
+\end{Def}
+\begin{Rem}
+	\[ S_\tau(f) \ge s_\tau(f) \]
+\end{Rem}
+\begin{Rem}
+	\[ S_\tau(f) - s_\tau(f) = \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \]
+\end{Rem}
+
+\begin{theorem}
+	$f\colon E \to \R$ "--- ограниченна.
+	Тогда $f$ интегрируема на $E$ тогда и только тогда, когда
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta, S_\tau - s_\tau < \epsilon \]
+\end{theorem}
+
+\begin{conseq}
+	$f\colon E \to \R$ "--- ограниченна и интегрируема.
+	Тогда
+	\[ s_\tau \le \int\limits_E f \le S_\tau \]
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		s_\tau \le S(f, \tau, \xi) \le S_\tau \\
+		\sum_{k=1}^{m(\tau)} \inf_{x \in E_k} f(x) \mu E_k
+			\le \sum_{k=1}^{m(\tau)} f(\xi_k) \mu E_k
+			\le \sum_{k=1}^{m(\tau)} \sup_{x \in E_k} f(x) \mu E_k
+	\end{gather*}
+	$\tau' \succ \tau$
+	\begin{gather*}
+		s_\tau \le S(f, \tau', \xi') \le S_\tau \\
+		\inf_{x \in E_k} f(x) \mu E_k
+			\le \sum_{i=1}^{i_k} f(\xi_{k_i}') \mu E_{k_i}'
+			\le \sup_{x \in E_k} f(x) \mu E_k
+	\end{gather*}
+	$\tau_n \succ \tau$, $|\tau_n| \to 0$, $S(f, \tau_n, \xi_n) \to \int_E f$
+	\begin{gather*}
+		s_\tau \le S(f, \tau', \xi') \le S_\tau \\
+		s_\tau \le \int\limits_E \le S_\tau
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	$f\colon K \ra \R$ непрерывна, $K$ "--- измеримый компакт.
+	Тогда $f$ интегрируема на $K$.
+\end{theorem}
+\begin{proof}
+	$f$ непрерына на компакте, значит она ограничена и равномерно непрерывна.
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall x,y\in K, \|x - y\| < \delta \Ra |f(x) - f(y)| < \epsilon \]
+	Если $\diam E < \delta$, то $\omega(f, E) < \epsilon$.
+	$\tau$ "--- произвольное разбиение мелкости меньше $\delta$. Там все $\diam E_k < \delta$.
+	\[ \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} \epsilon \mu E_k = \epsilon \mu K \]
+\end{proof}
+
+Упражнение. $E$ "--- открытое измеримое множество.
+$f\colon E \to \R$ непрерывно и ограничено.
+Тогда $f$ интегрируема.
+
+\section{Свойства кратного интеграла}
+
+\begin{enumerate}
+\item
+	$E$ измеримо.
+	Тогда
+	\[ \int\limits_E 1 = \mu E \]
+	\begin{Rem}
+		$1$ "--- <<адын>>. \copyright Храбров.
+	\end{Rem}
+
+\item
+	$E \supset E'$ измеримо, $f$ интегрируема на $E$.
+	Тогда $f$ интегрируема на $E'$.
+	\begin{proof}
+		$\tau'$ "--- разбиение $E'$. Достроим, сохраняя мелкость, до разбиения $E$.
+		\begin{gather*}
+			\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
+				\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k < \epsilon \\
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k') \mu E_k' < \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k < \epsilon
+		\end{gather*}
+	\end{proof}
+
+\item
+	Аддитивность интеграла.
+	$E = E' \sqcup E''$, $E'$ и $E''$ измеримы, $f$ ограничена.
+	Тогда $f$ интегрируема на $E$ тогда и только тогда, когда $f$ интегрируема на $E'$ и $E''$, и в этом случае
+	\[ \int\limits_E f = \int\limits_{E'} f + \int\limits_{E''} f \]
+	\begin{proof}
+		Достаточно доказать влево. $\tau$ "--- разбиение $E$.
+		\begin{gather*}
+			\tau' = \{E_k \cap E' \mid E_k \in \tau\} \\
+			\tau'' = \{E_k \cap E'' \mid E_k \in \tau\} \\
+			\tau_0 = \{E_k \mid E_k \cap E' \ne \emptyset \ne E_k \cap E''\} \\
+			\sum_{E_k \notin \tau_0} \omega(f, E_k) \mu E_k
+				\le \sum_{F \in \tau'} \omega(f, F) \mu F + \sum_{F \in \tau''} \omega(f, F) \mu F \\
+			\sum_{E_k \in \tau_0} \omega(f, E_k) \mu E_k
+				\le \sum_{E_k \in \tau_0} 2M \mu E_k = 2M \mu \left( \bigcup_{E_k \in \tau_0} E_k \right) \le \cdots \\
+		\end{gather*}
+
+		$E_k \cap E' \ne \emptyset \ne E_k \cap E''$.
+		Мы можем брать точки $a_k$ и $b_k$ из $E_k$, что на $[a_k, b_k]$ есть точка из $\delta E'$.
+		$\diam E_k < \delta$, значит длина $[a_k, b_k]$ меньше $\delta$.
+		Тогда точка из границы $\delta E'$ лежит на рассоянии не более $\delta$ от концов.
+
+		Так как мы можем в качестве $a$ перебрать любую точку, то $E_k \subset U_\delta (\partial E')$.
+		\begin{gather*}
+			\dots \le 2M \mu(U_\delta (\partial E')) \to 2M \mu(\delta E') = 0
+		\end{gather*}
+%%	\end{proof}
+%%\end{enumerate}
