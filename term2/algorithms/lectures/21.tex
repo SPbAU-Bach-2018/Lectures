@@ -2,116 +2,230 @@
 \section{Хеши}
 \subsection{Строка Туэ-Морса}
 
-\textbf{Def}: s[i] = bitcount(i) \% 2 \\
-\textbf{Def2}: $s_{k+1} = s_k$ + not $s_k$ \\ \\
-Обозначим <P,M> : $\sum s_i \cdot p^i $ $mod $ $M$ \\
-Пример использования: антихеш-тест для mod = $2^{m}$ (для любого P) \\\\
-$H_1$ = $Hash(s[0,2^k])$, $H_2$ = $Hash(s[2^k,2^{k+1}])$ \\
-$H_1$ = $H_2$ для $k \ge$ ? \\\\
-$H_1 - H_2 = 0 \mod 2^m$ \\
-$s[2^k,2^{k+1}]$ = not $s[0,2^k]$ $\Rightarrow$ $\sum p^i \cdot (\pm1) = 0 \mod$ $2^{m}$  \\
-$\sum p^i \cdot (\pm1) = -p^0 + p^1 + p^2 - p^3 + ... = -(1-p)(1-p^2)(1-p^4)...(1 - p^{2^{k-1}})$ \\
+\begin{Def} 
+   Два определения строки Туэ-Морса:
+   \begin{enumerate}
+       \item s[i] = bitcount(i) \% 2
+       \item $s_{k+1} = s_k$ + not $s_k$
+   \end{enumerate} 
+\end{Def}
+
+
+Обозначим <P,M> : $\sum s_i \cdot p^i $ $mod $ $M$ 
+
+Строки Туэ-Морса можно использовать для антихеш-тест для  $M = 2^{m}$ (для любого P)
+
+
+$H_1$ = $Hash(s[0,2^k])$, $H_2$ = $Hash(s[2^k,2^{k+1}])$ 
+
+$H_1$ = $H_2$ для $k \ge$ ? 
+
+Проверим для какой длины случится коллизия.
+
+$$H_1 - H_2 = 0 \mod 2^m$$
+$$s[2^k,2^{k+1}] = \not s[0,2^k] \Rightarrow \sum p^i \cdot (\pm1) = 0 \mod 2^{m}$$  
+$$\sum p^i \cdot (\pm1) = -p^0 + p^1 + p^2 - p^3 + ... = -(1-p)(1-p^2)(1-p^4)...(1 - p^{2^{k-1}})$$
 $1-p^4 = (1-p^2)(1+p^2) = (1+p^2)(1+p)(1-p)$, каждая из скобок четная $\Rightarrow $ получаем $1+2+3+..k = $ $k(k+1)\over{2}$ $ \ge$ $k^2\over{2}$ $\Rightarrow $ при $Len = 2^k$ хеши равны по модулю $2^{k^2\over{2}}$\\\\
 $m = 2^{k^2/2} \Rightarrow k = \sqrt{2m}$ \\
 $m = 64 \Rightarrow k = \sqrt{128} \approx 12$, $2^k = 4096$\\
 Нужна строка длины $2^{k+1}$, значит 8192 хватит. \\
-\textbf{Замечание}: $p = 2k$: $p^m \equiv 0 \mod 2^m$ \\
+\begin{Rem}
+    $p = 2k$: $p^m \equiv 0 \mod 2^m$ 
+\end{Rem}
 
 \subsection{Алгоритм построения коллизии для <P,M> хеша}
+Хотим найти стороки s и t, такие что $Hash(s_1,..,s_k) = Hash(t_1,..,t_k)$
+ 
+Алфавит $\Sigma = \{a,b\}$ 
 
-$Hash(s_1,..,s_k) = Hash(t_1,..,t_k)$, $\sum = \{a,b\} $ \\
-$\sum p^i \cdot (-1,0,1) = 0 \mod M$ \\
-$A_0 = \{p^0, p^1,...,p^{k-1}\}$  //все по модулю M \\
-Если среди элементов $A_i$ есть 0, то все хорошо. \\
-Получение $A_{i+1}: $ \\
-1. Sort($A_i$) \\
-2. $A_{i+1} = \{A_i[1]-A_i[0], A_i[3] - A_i[2],..\}$
+Если мы сможем подобрать такие коэффициенты(не все 0), то сможем найти исходные строчки(как, покажем потом):
+$$\sum p^i \cdot (-1,0,1) = 0 \mod M$$
+
+$A_0 = \{p^0, p^1,...,p^{k-1}\}$  //все по модулю M 
+
+Если среди элементов $A_i$ есть 0, то все хорошо. )
+
+Получение $A_{i+1}: $ 
+\begin{enumerate} 
+ \item Sort($A_i$) 
+ \item $A_{i+1} = \{A_i[1]-A_i[0], A_i[3] - A_i[2],..\}$
+\end{enumerate}
   
-$|A_{i+1}| =$ $|A_i|\over{2}$ \\
-Диапазон $A_0$: $0.. M-1$ \\\\
-$A_1$: $k$ случайных чисел, $E(x_i)=$ $M \cdot i\over{k+1}$, диапазон $A_1 \sim$  $M\over{k+1}$  \\ 
-$A_2$: $|A_1| =$ $k\over{2}$ $\Rightarrow$ диапазон $A_2 \sim$ $M\over{(k+1)(k/2 + 1)}$ \\
-Для $A_i$ диапазон делится на $k\over{2^{i-1}}$ $+ 1$ \\\\
-$M \le$ $k\over{1}$ $\cdot$ $k\over{2}$ $\cdot$ $k\over{4}$ ... $\approx$ ${k^{log k}}\over{2^{({log^2 k})\over{2}}} $ = $2^{({log^2 k})\over{2}}$ $\Rightarrow M =$ $2^{({log^2 k})\over{2}}$, $log M =$ $ ({log^2 k})\over{2}$\\
-$log k = \sqrt{2logM}$\\
-$k = 2^{\sqrt{2logM}}$\\
-$M = 2^{64}$: $k = 2^{\sqrt{2 \cdot 64}} \approx 2^{12} = 4096$ \\
-\textbf{Пример}: $1 - p + p^2 = 0$, $1 + p^2 = p$: $bab = aba$ // $b$ обозначает 1, $a$ -- 0 \\
+Размер множетсва уменьшился в два раза $|A_{i+1}| = |A_i|\over{2}$
 
+Диапазон:
+\begin{description}{
+    \item [$A_0$:] $0 \cdots M-1$ 
+    \item [$A_1$:] $k$ случайных чисел, $E(x_i)=$ $M \cdot i\over{k+1}$, диапазон $A_1 \sim$  $M\over{k+1}$ 
+    \item [$A_2$:] $|A_1| =$ $k\over{2}$ $\Rightarrow$ диапазон $A_2 \sim$ $M\over{(k+1)(k/2 + 1)}$ 
+    \item [$A_i$:] диапазон делится на $k\over{2^{i-1}}$ $+ 1$ 
+}
+\end{description}
+
+$$M \le \frac{k}{1} \cdot \frac{k}{2} \cdot \frac{k}{4} \cdots \approx \frac{k^{log k}}{2^{\frac{\log^2 k}{2}}} =
+ 2^{\frac{log^2 k}{2}} \Ra M = 2^{({log^2 k})\over{2}}, \log M = \frac{{\log^2 k}}{2}$$
+$$\log k = \sqrt{2 \log M}$$
+$$k = 2^{\sqrt{2\log M}}$$
+$M = 2^{64}$: $k = 2^{\sqrt{2 \cdot 64}} \approx 2^{12} = 4096$ 
+\begin{exmp}
+Элементы $A_i$ можно расписать как многочлен.
+
+$1 - p + p^2 = 0, 1 + p^2 = p\colon bab = aba$ ($b$ обозначает 1, $a$ "--- 0)
+\end{exmp}
 \subsection{Леммы
 про вероятность коллизии при выборе многочлена, или точки, или обоих случайными} 	
 
-P - точка, M - модуль\\
-S - многочлен(строка) с коэффициентами 0..M-1\\
-k - степень многочлена(длина строки) \\\\
-\textbf{Lm1}: <P,M> - fixed, s - random, тогда Pr[s(P) = 0] = ${1}\over{M}$, Hash(s) = 0\\\\
-s(x) = (x-p)t(x) + $a_0 \leftarrow$ равномерно распределены от 0 до M-1, значит верно\\\\ 
-\textbf{Lm2}: <s,M> - fixed, P - random, тогда Pr[s(P) = 0] $\le$ ${k}\over{M}$ \\\\
-Pr[s(P) = 0] = ${ root number \over{M}}$, M - простое $\Rightarrow$ корней $\le k$\\\\
-\textbf{Замечание}: M = $2^{32}$, $x^{32} = 0 \mod M$ имеет $2^{31}$ корней \\\\
-\textbf{Lm3}: M - fixed, <s,P> - random. Pr[s(P) = 0] = ${1}\over{M}$ $\Leftrightarrow$ у random s(x) $\sim$ 1 корень \\\\
-$\sum_{P=0}^{M-1}$ $1\over{M}$ $\cdot$ $1\over{M}$ $=$ $1\over{M}$ через Lm1\\\\
+P - точка, M - модуль
+
+S - многочлен(строка) с коэффициентами 0..M-1
+
+k - степень многочлена(длина строки) 
+\begin{lemma}{}
+ <P,M> - fixed, s - random, тогда Pr[s(P) = 0] = ${1}\over{M}$, Hash(s) = 0
+
+s(x) = (x-p)t(x) + $a_0 \leftarrow$ равномерно распределены от 0 до M-1, значит верно
+\end{lemma}
+
+\begin{lemma}{} 
+<s,M> - fixed, P - random, тогда Pr[s(P) = 0] $\le$ ${k}\over{M}$ 
+
+Pr[s(P) = 0] = ${ root number \over{M}}$, M - простое $\Rightarrow$ корней $\le k$
+\end{lemma}
+
+\begin{Rem}
+ M = $2^{32}$, $x^{32} = 0 \mod M$ имеет $2^{31}$ корней 
+\end{Rem}
+
+\begin{lemma}{}
+ M - fixed, <s,P> - random. Pr[s(P) = 0] = ${1}\over{M}$ $\Leftrightarrow$ у random s(x) $\sim$ 1 корень
+
+$\sum_{P=0}^{M-1}$ $\frac{1}{M}$ $\cdot$ $1\over{M}$ $=$ $1\over{M}$ через Lm1
+\end{lemma}
+
 \textbf{Выводы}:
 \begin{enumerate}
-	\item[1.] M -- простое  $\sim$ $10^9+7$
-	\item[2.] P$_1$ - random
-	\item[3.] P$_2$ - random
+	\item M -- простое  $\sim$ $10^9+7$
+	\item P$_1$ - random
+	\item P$_2$ - random
 \end{enumerate}   
 
 \subsection{Хеш-таблица}
-m списков, всего n чисел: Len $\sim$ $n\over{m}$\\
-\textbf{Lm1}: E(Len$_i$ = 1) (бессмысленна, т.к все равно могут быть все элементы в одном списке) \\
-\textbf{Lm2}: E(max Len$_i$) = $O(log n)$\\\\
-Hash = Random\\
-Pr\{len$_i$ = k\} = $\frac{C^n_k \cdot (n-1)^{n-k}}{n^n} \le \frac{n^k}{k!}\cdot\frac{n^{n-k}}{n^n} = \frac{1}{k!}$ \\
-\textbf{Неправильное док-во}: E(Len$_i$ $\ge$ k) $\le$ n($1\over{k!}$+$1\over{(k+1)!}$+...) $\le$ $2n\over{k!}$ \\
-E(Len$_i \ge k$) = 1: 2n = k!\\
-2n = ($k\over{e}$) $^k$ $\cdot \frac{1}{\sqrt{2 \pi k}}$, $k^k = 2^{klogk}$, 2n = $2^{klogk}$ \\
-$\frac{log(2n)}{loglog(2n)} \le k \le log(2n)$ \\
-Получаем 1 + o(1/n)\\\\
+m списков, всего n чисел: длина одного списка $\sim \frac{n}{m}$
+
+Пусть $m = n$
+
+\begin{lemma}{}
+E($Len_i$ = 1) (бессмысленна, т.к все равно могут быть все элементы в одном списке) 
+\end{lemma}{}
+
+\begin{lemma}{}
+ E(max $Len_i$) = $O(\log n)$
+\end{lemma}
+
+Hash = Random
+
+$$Pr\{len_i = k\} = \frac{C^n_k \cdot (n-1)^{n-k}}{n^n} \le \frac{n^k}{k!}\cdot\frac{n^{n-k}}{n^n} = \frac{1}{k!}$$
+
+\textbf{Неправильное док-во}: 
+$$E(Len_i \ge k) \le n(\frac{1}{k!}+\frac{1}{(k+1)!}+ \cdots) \le \frac{2n}{k!}$$
+$$E(Len_i \ge k) = 1\colon 2n = k!$$
+$$2n = (\frac{k}{e})^k \cdot \frac{1}{\sqrt{2 \pi k}}, k^k = 2^{k\log k}, 2n = 2^{k\log k}$$
+$$\frac{\log(2n)}{\log\log(2n)} \le k \le \log(2n)$$
+Получаем 1 + o(1/n)
 
 \subsection{Двойное хеширование}
-$i_1 = Hash_1(x)$, $i_2 = Hash_2(x)$\\\\
-\textbf{Add(x)}\\
-if (|List[i$_1$| $\le$ |List[i$_2$|) \\
-List[i$_1$] $\leftarrow$ x 	\\
-else\\
-List[i$_2$] $\leftarrow$ x \\\\
-\textbf{Lm3}: E(max Len$_i$) = $\Theta(log log n)$ 	// без док-ва \\\\
-\textbf{Двойное хеширование для открытой адресации}\\\\
-i = h$_1$(x)\\\\
-\textbf{while}\\
-i++  // в обычном \\\\
-\textbf{while}\\
-i = (i + h$_2$(x)) $\mod n$ // в двойном\\\\
-\textbf{Совершенное хеширование} \\
-Даны $x_1,..,x_n$. Найти h: x$_i\rightarrow [0..m)$, что  $\forall$ i $\neq$ j: h($x_i$) $\neq$ h($x_j$)\\\\
-\textbf{Алго1}: Time = O(n), m = n$^2$\\
-Pr\{коллизии\} $\le$ $\frac{\frac{n(n-1)}{2}}{n^2}$ $\le$ $1\over{2}$\\\\
-\textbf{while} 1\\
-h = hashFunc\\
-\textbf{if} (good(h))\\
-break;\\\\
-\textbf{Алго2}: Time  = O(n), m $\le$ 4n\\\\
+$$i_1 = Hash_1(x), i_2 = Hash_2(x)$$
+\begin{cppcode}
+void Add(x):
+    if (|List[i[i]| <= |List[i[2]|) {
+        List[i[1]].pb(x)
+    } else {
+        List[i[2]].pb(x)
+    }
+\end{cppcode}
+
+\begin{lemma}{}
+ $$E(max Len_i) = \Theta(\log \log n)$$
+ 
+ Без доказательства
+\end{lemma}
+
+
+\subsection{Двойное хеширование для открытой адресации}
+
+\begin{cppcode}
+i = h1(x)
+while(...) i++  // в обычном 
+
+while(...) i = (i + h2(x)) mod n // в двойном
+\end{cppcode}
+
+\subsection{Совершенное хеширование} 
+
+Даны $x_1,..,x_n$. Найти $h\colon x_i\rightarrow [0..m)$ такое, что  $\forall i \neq j\colon h(x_i) \neq h(x_j)$
+\begin{description}
+\item[Алгоритм 1]: Time = O(n), $m = n^2$
+Pr\{коллизии\} $\le \frac{\frac{n(n-1)}{2}}{n^2} \le \frac{1}{2}$
+
+\begin{cppcode}
+while(1) {
+    h = hashFunc
+    if (good(h)) {
+        break;
+    }
+}
+\end{cppcode}
+
+\item[Алгоритм 2]: 
+{\Large \color{red} Ниже какая-та хрень, которую нужно исправить(Оля)}
+
+Time  = O(n), m $\le$ 4n
 2-Level\\
 1. Random n = m$_1$\\
 n$_i$ - количество одинаковых хешей для разных элементов\\
 Тогда E\{$\sum n_i^2$\} = E\{кол-во коллизий\} = $\sum(h[i] = h[j])$ = n + n(n-1)$\cdot \frac{1}{n}$ $\le$ 2n// n при i = j, n(n-1) при i$\neq$j \\\\
-\textbf{Lm Маркова}: E(X) $\le$ A $\Rightarrow$ Pr[A $\ge$ 2X] $\le$ $1\over{2}$\\\\
+\textbf{Lm Маркова}: E(X) $\le$ A $\Rightarrow$ Pr[A $\ge$ 2X] $\le$ $\frac{1}{2}$\\\\
 $\Rightarrow$ Pr[$\sum n_i^2 \ge 4n$] $\le$ $1\over{2}$ $\Rightarrow$ Pr[$\sum n_i^2 < 4n$] $\ge$ $1\over{2}$\\\\
-\textbf{Фильтр Блюма}\\
-add(x) $x_1,..,x_n$
-isAdded(x) m бит памяти \\\\
-\textbf{Алгоритм}: $h_1,..,h_k$; $h_i:$ $x_j \rightarrow cell_{ij}$\\\\
-init(): обнуление. bit $\leftarrow$ 0\\\\
-add($x_j$)\\
- |\textbf{FOR} i = 1..k\\
- |   bit[cell$_{ij}$] = 1\\\\
-isAdded($x_j$)\\
- |\textbf{FOR} i = 1..k\\
- |\textbf{if} bit[cell$_{ij}$] = 0:\\
- |	 	 \textbf{return} 0;\\
- |\textbf{return} 1;\\\\
-Получился алгоритм с односторонней ошибкой.\\
-Pr[Error] = Pr[isAdded(x$_i$) = 1, но x$_i$ нет] //! с оценкой этого на лекции были проблемы 
- 
+
+{\Large \color{red} Выше какая-та хрень, которую нужно исправить(Оля)}
+
+\end{description} 
+
+\subsection{Фильтр Блюмa}
+
+Занимает m бит памяти. 
+
+Есть k хешфункций. Число добавлено, если во всех битиках, которые выдают
+хешфункции стоит 1.
+
+При добавление числа ставим 1 во всех соответсвующих клетках.  
+
+$$h_1,..,h_k$$
+
+$$h_i \colon x_j \rightarrow cell_{ij}$$
+
+\begin{cppcode}
+void init() {
+    bit = {0};
+}
+
+void add(j) {
+    for(int i = 1; i <= k; ++i) {
+         bit[cell[i][j]] = 1;
+    }
+}
+
+bool isAdded(j) {
+    for(int i = 1; i <= k; ++i) {
+         if (bit[cell[i][j]] = 0) { 
+             return 0;
+         }
+     }
+     return 1;
+}
+\end{cppcode}
+
+Получился алгоритм с односторонней ошибкой.
+
+Pr[Error] = Pr[isAdded(x[i]) = 1, но x[i] нет] //! с оценкой этого на лекции были проблемы 
+

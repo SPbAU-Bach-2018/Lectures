@@ -1,0 +1,204 @@
+\chapter{Ретроанализ и функция Гранди}
+\setauthor{Виталий Пластинин}
+
+\section {Мн-ва. bitset}
+n элементов, целые $1 \dots c$
+\begin{enumerate}
+\item sorted array $O(n + m)$\\
+\item bitset<c> b $O(c/w)$\\
+\end{enumerate}
+$w$ -- размер машинного словa.\\
+$unsigned \underbrace{long \; long}_{w = 64}$\\
+
+Объединение множеств:
+\begin{cppcode}
+for (int i = 0; i < c / w; i++) {
+    a1[i] |= a2[i];
+}
+\end{cppcode}
+
+bitset умеет:
+\begin{enumerate}
+\item or, and, xor, not
+\item $<<$, $>>$
+\item .count() (\_\_buildin\_popcount $O(\log w \cdot \frac{c}{w})$)
+\item
+\begin{cppcode}
+x = b[i];
+b[i] = x;
+\end{cppcode}
+\end{enumerate}
+
+Так же его можно кастить:\\
+\begin{cppcode}
+unsigned long long *a = (unsigned long long*)&b;
+\end{cppcode}
+
+Умножение матриц над $\mathbb{F}_2$:
+\begin{cppcode}
+forn(i, n) {
+    forn(j, n) {
+        forn(k, n) {
+            c[i][j] ^= a[i][k] & b[k][j];
+        }
+    }
+}
+\end{cppcode}
+
+Заметим, что этот код эквивалентен следующему:
+\begin{cppcode}
+forn(i, n) {
+    forn(k, n) {
+        if (a[i][k]) {
+            forn(j, n) {
+                c[i][j] ^= b[k][j];
+            }
+        }
+    }
+}
+\end{cppcode}
+
+Cоптимизируем, используя битсеты, до $O(\frac{n^3}{w})$, вместо $O(n^3)$:
+\begin{cppcode}
+forn(i, n) {
+    forn(j, n) {
+        if (a[i][j]) {
+            c[i] ^= b[j];
+        }
+    }
+}
+\end{cppcode}
+
+\section{Игры}
+
+\subsection{DAG}
+Пусть есть симметричная игра на ацикличном ориентированном графе:\\
+Есть начальная вершина, игроки ходят по очереди. Проигрывает тот, кто не может сделать ход.\\
+
+Решение:\\
+Понятно, что вершины с исходящей степенью 0 изначально проигрышны($L$). Дальше просто запускаем \texttt{dfs} из начальной вершины.
+Условия выигрышности/проигрышности вершины:\\
+$\exists$ ход в $L \Rightarrow W$\\
+$\forall$ ход в $W \Rightarrow L$\\
+Т.е. $f[v] = not(and f[x_i])$\\
+
+Работает, очевидно, за $O(V + E)$\\
+
+\subsection{Функция Гранди}
+
+\begin{Def}
+$$ f[v] = mex \{f[x_i]\} $$
+$$ mex A = min \; x: x \in (\mathbb{N} \cup 0) \wedge x \notin A $$
+\end{Def}
+
+\begin{Rem}
+\begin{enumerate}
+\item $f[v] = 0 \Leftrightarrow Lose$
+\item $mex \; \emptyset = 0$
+\item $0 \in A \Rightarrow mex \; A \neq 0$
+\end{enumerate}
+\end{Rem}
+
+\subsection{Прямая сумма игр}
+
+$V = \langle V_1, V_2 \rangle$\\
+
+$\langle V_1, V_2 \rangle \rightarrow \langle x_1, V_2 \rangle$\\
+
+$\langle v_1, V_2 \rangle \rightarrow \langle x_1, x_2 \rangle$\\
+
+$f[\langle v_1, v_2 \rangle] = f[v_1] xor f[v_2]$
+
+\subsection{Игра ним}
+Есть кучка из $n$ камней. Игроки по очереди берут из нее любое количество камней. Проигрывает тот, кто не может сделать ход.\\
+
+Понятно, что для одной кучки верно, что
+\begin{enumerate}
+\item $n = 0 \Rightarrow lose$
+\item $n > 0 \Rightarrow win$
+\end{enumerate}
+
+Сумма: $n_1$ и $n_2$\\
+$$lose \Leftrightarrow f[n_1] \bigoplus f[n_2] = 0$$
+
+\begin{theorem}{}
+$$f[nim(n1), nim(n2)] = n_1 \bigoplus n_2$$
+\end{theorem}
+
+\begin{proof}
+%тут, наверно, хорошо бы нарисовать большую картинку и вставить
+$f[\langle v_1, v_2 \rangle] = mex\{a_i \bigoplus f[v_2], f[v_1] \bigoplus b_i\}$\\
+$a_i \neq f[v_i] \Rightarrow a_i \bigoplus f[v_2] f[v_1] \bigoplus f[v_2]$\\
+Аналогично $b_i \neq f[v_2]$
+\end{proof}
+
+\begin{lemma}{}
+$$f[nim(n1), nim(n2)] = n_1 \bigoplus n_2$$
+\end{lemma}
+
+\begin{proof}
+Переход $2^k \rightarrow 2^{k + 1}$\\
+\begin{tabular}{c|c|c|}
+\hline
+      & $A + 2^n$ & $A$\\
+\hline
+$2^n$ & $A$ & $A + 2^n$\\
+\hline
+      & $2^n$ &
+\end{tabular}
+\end{proof}
+
+Следствие из теоремы -- ним на $k$ кучках:
+$$f[\langle x_1, \dots, x_k \rangle] = x_1 \bigoplus \dots \bigoplus x_n$$
+
+\subsection{Ретроанализ}
+Теперь симмитричная игра на ориентированном графе с циклами.\\
+$w \overset{\exists}{\rightarrow} l$\\
+$l \overset{\forall}{\rightarrow} w$\\
+
+пока $\exists$ непомеченная, для которой можем сказать -- ставим.
+
+\begin{lemma}
+Непомеченные -- ничейные.
+\end{lemma}
+
+\begin{proof}
+Из непомеченных всегда есть цикл (если бы не было, была бы конечная вершина, для которой можно было бы определить состояние).
+\end{proof}
+
+Алгоритм быстрого ретроанализа:\\
+\begin{enumerate}
+\item Добавим все вершины, которые изначально проигрышные (их степень равна нулю. Здесь и дальше под степенью вершины подразумиваем
+кол-во исходящих из нее ребер).
+\item Запустим \texttt{bfs}.
+\item Достаем очередную вершину из очереди. Если она $L$, то помечаем все вершины, из которых есть переход в данную как $W$ и добавляем
+их в очередь. Если же она была $W$, то удаляем из графа (даже не удаляем, а просто уменьшаем счетчик степень у вершин, которые имели 
+ребро в эту) все ребра, что в нее входили. Если у какой-то вершины после этого стала степень 0, то помечаем ее как $L$ и добавляем в очередь.
+\item Те вершины, которые мы не смогли пометить, являются ничейными.
+\end{enumerate}
+Время работы, как и алгоритма \texttt{bfs} составляет $O(V + E)$\\
+
+\subsection{BinaryTree}
+Slow: $O(TreeSize)$\\
+
+Fast:\\
+\begin{cppcode}
+go(v) {
+    if (rand() % 2) {
+        swap(v.left, v.right);
+    }
+    if (go(v.left) == LOSE)
+        return WIN;
+    if (go(v.right) == LOSE)
+        return WIN;
+    return LOSE;
+}
+\end{cppcode}
+
+$W(h) = L(h - 1) + \frac{1}{2} \cdot W(h - 1)$\\
+
+$L(h) = 2 \cdot W(h - 1)$\\
+
+$W(h) = \frac{1}{2} \cdot W(h - 1) + 2 \cdot W(h - 2)$\\
+
+Это примерно равно $O(1.687^h)$ (вместо $2^h$).
