@@ -81,6 +81,7 @@ $$ S \to addLetter(c) \to Sc $$
 		}
 		Спустись из pos по символу c
 	\end{minted}
+	Итак, нужно уметь взять суффиксную ссылку от $pos$
 \item
 	Суффиксные ссылки \\
 	$\forall$ вершины храним $suf[v]$
@@ -90,6 +91,7 @@ $$ S \to addLetter(c) \to Sc $$
 		%\cimg{ukkonen4.jpg}{}
 		КАРТИНКА СУФФИКСНЫЕ ССЫЛКИ
 	\end{lemma}
+	Вот как мы берем суффиксную ссылку от $pos = \<v, char, shift\>$
 	\begin{minted}{cpp}
 	v = suf[v];
 	while (shift > 0){
