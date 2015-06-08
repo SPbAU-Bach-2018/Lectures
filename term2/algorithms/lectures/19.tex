@@ -96,7 +96,7 @@ $$ S \to addLetter(c) \to Sc $$
 	v = suf[v];
 	while (shift > 0){
 		e = edge[v][s[k - shift]];
-		shift = e.len
+		shift -= e.len
 		v = e.to
 		//последний прыжок неправильный, но понятно, как переделать
 	}
