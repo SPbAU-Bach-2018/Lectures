@@ -10,8 +10,8 @@
 \usepackage{amssymb,amsmath,amsthm}
 \usepackage{mathtools}
 \usepackage[top=0.5cm,bottom=0.5cm,left=1cm,right=1cm,marginparwidth=0.5cm,marginparsep=0cm,headsep=0cm,includehead,includefoot]{geometry}
-\usepackage[page]{totalcount}
-\usepackage{color}
+\usepackage{lastpage}
+\usepackage{xcolor}
 \usepackage{datetime}
 \pagestyle{fancy}
 
@@ -48,7 +48,7 @@
 \begin{document}
 \lhead{Алгоритмы, бакалавры, вторая половина 2 семестра}
 \rhead{СПб АУ}
-\cfoot{\thepage~из~\totalpages}
+\cfoot{\thepage~из~\pageref{LastPage}}
 \rfoot{\today~\currenttime}
 
 \input{01-09}
