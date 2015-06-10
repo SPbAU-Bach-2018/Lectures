@@ -107,9 +107,10 @@
 		\begin{gather*}
 			\forall \epsilon > 0, \exists A_\epsilon, B_\epsilon \text{ "--- клеточные}\colon A_\epsilon \subset E \subset B_\epsilon
 				\land\mu B_\epsilon - \mu A_\epsilon < \epsilon \\
-			\partial E = \cl E \setminus \Int E \subset \cl B_\epsilon \setminus \Int A_\epsilon
-				\subset \tilde B_\epsilon \setminus \tilde A_\epsilon \\
-			\mu \tilde B_\epsilon < \mu B_\epsilon + \epsilon \quad \mu \tilde A_\epsilon > \mu A_\epsilon - \epsilon \\
+			\partial E = \cl E \setminus \Int E \subset \cl B_\epsilon \setminus \Int A_\epsilon \\
+			\tilde A_\epsilon \text{ "--- клеточное, вложенное в } \Int A_\epsilon \quad \mu \tilde A_\epsilon > \mu A_\epsilon - \epsilon \\
+			\tilde B_\epsilon \text{ "--- клеточное, содержащее } \cl B_\epsilon \quad \mu \tilde B_\epsilon < \mu B_\epsilon + \epsilon\\
+			\partial E \subset \tilde B_\epsilon \setminus \tilde A_\epsilon \\
 			\mu (\tilde B_\epsilon \setminus \tilde A_\epsilon) \le \mu \tilde B_\epsilon - \mu \tilde A_\epsilon
 				< \mu B_\epsilon + \epsilon - \mu A_\epsilon + \epsilon < 3\epsilon \\
 			\Ra \mu^* \partial E = 0 \Ra \mu (\partial E) = 0
