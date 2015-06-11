@@ -125,7 +125,7 @@
 	\mu_{n+1} \left( \bigcup_{k=1}^{m(\tau)} Y_k\right)
 	\le  \mu_{n+1} Y_k
 	= \mysum (\sup_{E_k} f + \epsilon) \mu_{n} B_k
-	\le \mysum (\sup_{E_k} f + \epsilon) (\mu_{n} A_k + \frac{\epsilon}{m(\tau)})
+	\le \mysum (\sup_{E_k} f + \epsilon) (\mu_{n} A_k + \frac{\epsilon}{m(\tau)}) = \\
 	= \mysum (\sup_{E_k} f \underbrace{\mu_n A_k}_{\le \mu_n E_k} + \epsilon \mu_n A_k + \frac{\epsilon^2}{m(\tau)} + \sup_{E_k} f \cdot \frac{\epsilon}{m(\tau)})
 	\le S_\tau(f) + \epsilon\mysum \mu A_k + \epsilon^2 + M\epsilon
 	\end{gather*}
@@ -144,7 +144,7 @@
 	\mu_{n+1} \left( \bigcup_{k=1}^{m(\tau)} X_k \right)
 	= \mysum \mu_{n+1} X_k
 	= \mysum \inf_{E_k} f \cdot \mu_n A_k
-	\ge \mysum \inf_{E_k} f \cdot (\mu_n E_k - \frac{\epsilon}{m(\tau)})
+	\ge \mysum \inf_{E_k} f \cdot (\mu_n E_k - \frac{\epsilon}{m(\tau)}) = \\
 	= \mysum \inf_{E_k} f \cdot \mu_n E_k - \mysum \underbrace{\inf_{E_k} f}_{\le M} \cdot \frac{\epsilon}{m(\tau)}
 	\ge s_\tau(f) - M \epsilon
 	\ge I - (M+1)\epsilon
