@@ -8,7 +8,7 @@
 	\[ \omega(f, E) = \sup_{x \in E} f(x) - \inf_{x \in E} f(x) = \sup_{x, y \in E} (f(x) - f(y)) \]
 \end{Def}
 
-\begin{theorem}[критерий интегрируемости]
+\begin{theorem}[критерий интегрируемости]\label{integral_criteria_oscill}
 	$E$ "--- измерима, $f\colon E \to \R$.
 	$f$ интегрируема на $E$ тогда и только тогда, когда
 	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta, \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k < \epsilon\]
@@ -103,7 +103,7 @@
 \begin{Rem}
 	\[ S_\tau(f) \ge s_\tau(f) \]
 \end{Rem}
-\begin{Rem}
+\begin{Rem}\label{darboux_diff_oscill}
 	\[ S_\tau(f) - s_\tau(f) = \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \]
 \end{Rem}
 
@@ -112,6 +112,9 @@
 	Тогда $f$ интегрируема на $E$ тогда и только тогда, когда
 	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta, S_\tau - s_\tau < \epsilon \]
 \end{theorem}
+\begin{proof}
+	Очевидно из замечания \ref{darboux_diff_oscill} и теоремы \ref{integral_criteria_oscill}.
+\end{proof}
 
 \begin{conseq}
 	$f\colon E \to \R$ "--- ограниченна и интегрируема.
