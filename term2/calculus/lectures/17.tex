@@ -40,6 +40,11 @@
 
 \begin{exmp}
 	$Q(c) = \left< Ax, x \right>$ "--- квадратичная форма. Найдём экстремумы квадратичной формы на единичной сфере.
+\begin{theorem}
+	Наибольшее и наименьшее значения квадратичной формы на единичной сфере "--- наибольшее и наименьшее её собственное число,
+	и достигаются в соотвествующих собственных векторах.
+\end{theorem}
+\begin{proof}
 	\begin{gather*}
 		f(x) = \sum_{i,j = 1}^n a_{ij} x_i x_j \\
 		\Phi(x) = x_1^2 + x_2^2 + \dots + x_n^2 - 1 \\
@@ -53,42 +58,41 @@
 	\end{gather*}
 	Итого, $\lambda$ "--- собственное число $A$, $x$ "--- отнормированный собственный вектор.
 	\[ Q(x) = \left< Ax, x \right> = \left< \lambda x, x \right> = \lambda \|x\|^2 = \lambda \]
+\end{proof}
 \end{exmp}
 
-\begin{theorem}
-	Наибольшее и наименьшее значения квадратичной формы на единичной сфере "--- наибольшее и наименьшее её собственное число,
-	и достигаются в соотвествующих собственных векторах.
-\end{theorem}
-Доказательство выше.
 \begin{conseq}
+	Если есть оператор $A$, то можно посчитать его норму:
 	\[ \|A\| = \max \left\{\sqrt{\lambda} \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$} \right\} \]
 \end{conseq}
-\begin{assertion}
-	\textit{Из алгебры:}
-	\[ \left<Ax, y\right> = \left<x, A^T y\right> \]
-	Для доказательства заметим, что достаточно проверить для базиса, так как всё линейно.
-	\begin{alignat*}{3}
-		\left<Ae_i, e_j\right> &= \left< \begin{pmatrix} a_{1i} \\ \vdots \\ a_{mi} \end{pmatrix}, e_j \right> &= a_{ji} \\
-		\left<e_i, A^Te_j\right> &= \left< e_i, \begin{pmatrix} a_{j1} \\ \vdots \\ a_{jn} \end{pmatrix} \right> &= a_{ji}
-	\end{alignat*}
-\end{assertion}
-
 \begin{proof}
+	\begin{assertion}
+		\textit{Из алгебры:}
+		\[ \left<Ax, y\right> = \left<x, A^T y\right> \]
+	\end{assertion}
+	\begin{proof}
+		Для доказательства заметим, что достаточно проверить для базиса, так как всё линейно.
+		\begin{alignat*}{3}
+			\left<Ae_i, e_j\right> &= \left< \begin{pmatrix} a_{1i} \\ \vdots \\ a_{mi} \end{pmatrix}, e_j \right> &= a_{ji} \\
+			\left<e_i, A^Te_j\right> &= \left< e_i, \begin{pmatrix} a_{j1} \\ \vdots \\ a_{jn} \end{pmatrix} \right> &= a_{ji}
+		\end{alignat*}
+	\end{proof}
+
 	\begin{gather*}
 		\|A\| = \max_{\|x\| = 1} \|Ax\| \\
 		\|A\|^2 = \max_{\|x\| = 1} \|Ax\|^2 \\
-		\|Ax\|^2 = \left< Ax, Ax \right> = \left<x, A^TAx\right> = \left<A^TAx\right>
+		\|Ax\|^2 = \left< Ax, Ax \right> = \left<x, A^TAx\right> = x^T(A^TA)x
 	\end{gather*}
-	Получили квадратичную форму
+	Получили квадратичную форму $A^TA$
 	\begin{gather*}
 		\|A\|^2 = \max \{\lambda \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$}\} \\
 		\|A\| = \max \left\{\sqrt{\lambda} \mid \text{$\lambda$ "--- собственное число матрицы $A^TA$} \right\}
 	\end{gather*}
 \end{proof}
 
-\begin{Rem}
+\begin{conseq}
 	Внезапно, все собственные числа матрицы $A^TA$ неотрицательны.
-\end{Rem}
+\end{conseq}
 
 \chapter{Кратные интегралы}
 
