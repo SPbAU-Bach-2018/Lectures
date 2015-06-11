@@ -123,7 +123,7 @@
 	\newcommand{\mysum}{\sum_{k=1}^{m(\tau)}}
 	\begin{gather*}
 	\mu_{n+1} \left( \bigcup_{k=1}^{m(\tau)} Y_k\right)
-	\le  \mu_{n+1} Y_k
+	\le \mysum \mu_{n+1} Y_k
 	= \mysum (\sup_{E_k} f + \epsilon) \mu_{n} B_k
 	\le \mysum (\sup_{E_k} f + \epsilon) (\mu_{n} A_k + \frac{\epsilon}{m(\tau)}) = \\
 	= \mysum (\sup_{E_k} f \underbrace{\mu_n A_k}_{\le \mu_n E_k} + \epsilon \mu_n A_k + \frac{\epsilon^2}{m(\tau)} + \sup_{E_k} f \cdot \frac{\epsilon}{m(\tau)})
