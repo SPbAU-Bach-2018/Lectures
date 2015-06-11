@@ -22,17 +22,18 @@
 				\left| S(f, \tau, \xi) - \int\limits_E \right| < \epsilon
 		\]
 		Зафиксируем $\tau$.
-		Посмотрим на $\omega(f, E_k) \le 2(f(\xi_k) - f(\xi_k'))$.
+		Хотим найти два таких оснащения $\xi_k$ и $\xi_k'$, что $\omega(f, E_k) \le 2(f(\xi_k) - f(\xi_k'))$.
 		\begin{description}
-		\item[$f$ постоянна на $E_k$:] очевидно.
+		\item[$f$ постоянна на $E_k$:] очевидно, берём произвольные $\xi_k$ и $\xi_k'$.
 		\item[$f$ непостоянна на $E_k$:] $\gamma \lrh \omega(f, E_k) = \sup_{E_k} f - \inf_{E_k} f$.
-			Приблизимся к супремуму с точностью $\gamma/4$ в точке $\xi_k$, к инфимуму в $\xi_k'$.
+			Приблизимся к супремуму с точностью $\gamma/4$ в точке $\xi_k$, к инфимуму в $\xi_k'$ с такой же точностью:
 			\begin{gather*}
 				\begin{aligned}
-					f(\xi_k)  &> \sup_{E_k} f - \gamma / 2 \\
-					f(\xi_k') &< \inf_{E_k} f + \gamma / 2
+					f(\xi_k)  &\ge \sup_{E_k} f - \gamma / 4 \\
+					f(\xi_k') &\le \inf_{E_k} f + \gamma / 4
 				\end{aligned} \\
-				f(\xi_k) - f(\xi_k') > \sup f - \inf f - \gamma/2 = \gamma/2
+				f(\xi_k) - f(\xi_k') \ge \sup f - \inf f - \gamma/2 = \gamma/2 \\
+				\frac12 \omega(f, E_k) \le f(\xi_k) - f(\xi_k')
 			\end{gather*}
 		\end{description}
 		Тогда
@@ -43,33 +44,34 @@
 			\end{aligned} \\
 			\left| S(f, \tau, \xi) - S(f, \tau, \xi') \right| < 2\epsilon \\
 			\sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \mu E_k < 2\epsilon \\
-			\frac12 \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \\
-			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le 2\sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) < 4\epsilon
+			\frac12 \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \mu E_k \\
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le 2\sum_{k=1}^{m(\tau)} \left( f(\xi_k) - f(\xi_k') \right) \mu E_k < 4\epsilon
 		\end{gather*}
 
 	\item[$\La$:]
 		Пусть
 		\[
 			\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
-			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \sum_{k=1}^{m(\tau)} < \epsilon
+			\sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k \le \epsilon
 		\]
-		Рассмотрим $\tau' \succ \tau$. Тогда
+		Рассмотрим какие-нибудь $\tau' \succ \tau$ ($\tau'$ подчинено $\tau$).
+		Тогда каждое $E_k \in \tau$ представляется как дизюнктное объединение некоторых кусочков из разбиения $\tau'$
 		\[ E_k = \bigsqcup_{i=1}^{i_k} E_{k_i}' \]
 		Далее оценим
 		\[
-			\left| f(\xi_k) \mu E_k - \sum_{i=1}^{i_k} f\left(\xi_{k_i}'\right) \mu E_{k_i}' \right| = \cdots
+			\left| f(\xi_k) \mu E_k - \sum_{i=1}^{i_k} f\left(\xi_{k_i}'\right) \mu E_{k_i}' \right| = \cdots \text{~(продолжение ниже)}
 		\]
 		$\xi_k \in E_k$, $\xi_{k_i}' \in E_{k_i}' \subset E_k$.
 		\begin{gather*}
-			|f(\xi_k) - f\left(\xi_{k_i}\right)| \le \omega(f, E_k) \\
-			\dots = \left| \sum_{i=1}^{i_k} f(\xi_k) \mu E_{k_i}' - \sum_{i=1}^{i_k} f(\xi_k') \mu E_{k_i}' \right| \le \\
+			|f(\xi_k) - f\left(\xi_{k_i}'\right)| \le \omega(f, E_k) \\
+			\dots = \left| \sum_{i=1}^{i_k} f(\xi_k) \mu E_{k_i}' - \sum_{i=1}^{i_k} f(\xi_{k_i}') \mu E_{k_i}' \right| \le \\
 			\le \sum_{i=1}^{i_k} \left| f(\xi_k) - f\left(\xi_{k_i}'\right) \right| \mu E_{k_i}' \le \sum_{i=1}^{i_k}  \omega(f, E_k) \mu E_{k_i}' = \omega(f, E_k) \mu E_k
 		\end{gather*}
 		Суммируем по $k$
 		\[
 			|S(f, \tau, \xi) - S(f, \tau, \xi')| \le \sum_{k=1}^{m(\tau)} \omega(f, E_k) \mu E_k
 		\]
-		Если при этом $|\tau| < \delta$, то $|S(f, \tau, \xi) - S(f, \tau, \xi')| < \epsilon$.
+		Если при этом $|\tau| < \delta$, то $|S(f, \tau, \xi) - S(f, \tau, \xi')| < \epsilon$ независимо от выбора $\tau'$.
 
 		Пусть $\tau'$ и $\tau''$ "--- разбиения мелкости меньше $\delta$.
 		Рассмотрим $\tau \succ \tau', \tau''$. Тогда
@@ -80,11 +82,11 @@
 			\end{aligned} \\
 			|S(f, \tau', \xi') - S(f, \tau'', \xi'')| < 2\epsilon
 		\end{gather*}
-		Рассмотирм последовательность разбиений $\tau_n$, что $|\tau_n| \to 0$.
-		\[ \forall \epsilon > 0, \exists N\colon |\tau_n| < \delta \colon \forall n,m > N, |S(f, \tau_n, \xi_n) - S(f, \tau_m, \xi_m)| < 2\epsilon \]
+		Рассмотрим последовательность разбиений $\tau_n$ такую, что $|\tau_n| \to 0$.
+		\[ \forall \epsilon > 0, \exists N\colon \colon \forall n,m > N, |\tau_n|, |\tau_m| < \delta \Ra |S(f, \tau_n, \xi_n) - S(f, \tau_m, \xi_m)| < 2\epsilon \]
 		Это уже критерий Коши для последовательностей.
 		Значит, $S_n$ имеет предел $I$.
-		Тогда взяв ряд неравенств (начиная с некоторого $n$)
+		Тогда взяв ряд неравенств (начиная с некоторого $N$)
 		\[ | S(f, \tau', \xi') - S(f, \tau_n, \xi_n) | < 2\epsilon \]
 		в пределе получим
 		\[ | S(f, \tau', \xi') - I| < 2\epsilon \]
