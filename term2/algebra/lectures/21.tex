@@ -1,19 +1,17 @@
 \section{Жорданова форма оператора с единственным собственным числом}
 % \setauthor{Егор Суворов} - внизу, иначе плохо работает
-
-\begin{center}
-	{\color{red}\Large Ниже написана какая-то непонятая автором фигня}
-\end{center}
+\begin{theorem} 
+\[ V = \bigoplus_{i=1}^n \ker (f - \lambda_i id)^{a_i} \]
  
-\[ V = \bigoplus_{i=1}^n \ker (f - \lambda_i id)^a_i \]
- 
-\[ f\biggr|_{U_{a_i}}(\lambda_i) \]
+\[ f\biggr|_{U_{a_i}(\lambda_i)} \]
 
 \setauthor{Егор Суворов}
-Замечание: в такой ситуации $\lambda$ "--- единственное собственное число.
+В такой ситуации $\lambda$ "--- единственное собственное число.
+\end{theorem}
+
 \begin{proof}
 	Возьмём некоторое собственное число $\gamma \neq \lambda$
-	и посмотрим на нетождественный оператор $f - \gamma id = f - \lambda id + (\lambda - \gamma) id$.
+	и посмотрим на оператор $$f - \gamma id = f - \lambda id + (\lambda - \gamma) id$$.
 	Покажем, что он обратим (тогда ядро тривиально, тогда $\gamma$ не может быть собственным числом).
 
 	Обратимость не зависит от домножения на ненулевой скаляр.
@@ -21,22 +19,18 @@
 	\[
 	(f - \gamma id) \cdot \frac{1}{\lambda - \gamma}
 	=
-	\frac{f - \lambda id + (\lambda - \gamma) id}{\lambda - gamma}
+	\frac{f - \lambda id + (\lambda - \gamma) id}{\lambda - \gamma}
 	=
 	\frac{f - \lambda id}{\lambda - \gamma} + id
 	=
 	id - \underbrace{\frac{f - \lambda id}{\gamma - \lambda}}_{g}
 	\]
-	Т.к. $(f-\lambda id)^a = 0$, то $g^a = 0$, то есть $g$ "--- нильпотентный.
+	Т.к. $(f-\lambda id)^{a_i} = 0$, то $g^{a_i} = 0$, то есть $g$ "--- нильпотентный.
 	А тождественное минус нильпотентный всегда обратимо, можно явно предъявить:
 	\[
 	(id - g)(id + g + \dots + g^{a-1}) = id - g^a = id
 	\]
 \end{proof}
-
-\begin{center}
-	{\color{red}\Large Выше написана какая-то непонятая автором фигня}
-\end{center}
 
 Пусть $V$ "--- векторное пространство и есть подпространство $U \subset V$.
 \begin{Def}
