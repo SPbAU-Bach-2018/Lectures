@@ -1,16 +1,25 @@
 \section{Инвариантные подпространства}
 
-$V$ "--- векторное пространства над K, $\dim V = n < \infty$, $f(u) \in U$
+\begin{Def}
+
+$V$ "--- векторное пространства над K, $\dim V = n < \infty$,
+
+$U < V$ инвариантно относительно f, если  $\forall u \in U \colon f(u) \in U$
+
+\end{Def}
 
 \begin{exmp}
+\begin{enumerate}
+\item 
 $\lambda$ "--- собственное число f, $U_1(\lambda)$ "--- f-инвариант
 
+\item 
 $\{0\}, V$ "--- также f-инвариантны. 
-
+\end{enumerate}
 \end{exmp} 
 
 \begin{theorem}{}
-Пусть $v = U + W$ и U "--- f-инвариантное, тогда
+Пусть $v = U \oplus W$ и U "--- f-инвариантное, тогда
 $\exists$ базис $u_1, \cdots, u_k \in U$, 
 $w_1, \cdots, w_{n - k} \in W$, в котором матрица f
 имеет вид 
@@ -84,18 +93,18 @@ $$H(f) = a_0 id + a_1f + \cdots + a_kf^k \in End(v)$$
 
 		\item
 			\begin{gather*}
-				H_1(f) H_2(f) = H_1(f) \left( \sum_{i=0}^m b_k f^k \right) \stackrel{=}{2} \sum_{i=0}^m b_k H_1(f) f^k = \\
-				= \sum_{i=0}^m b_k f^k H_1(f) = ...
+				H_1(f) H_2(f) = H_1(f) \left( \sum_{i=0}^m b_k f^k \right) = \sum_{i=0}^m b_k H_1(f) f^k = \\
+				= \sum_{i=0}^m b_k f^k H_1(f) = H_2(f) H_1(f)
 			\end{gather*}
 		\end{enumerate}
 	\end{proof}
 	\begin{gather*}
-		U = \Im H(f) = \left\{ v \in V \mid \exists w \in V\colon H(t)w = v\right\} \\
+		U = \Im H(f) = \left\{ v \in V \mid \exists w \in V\colon H(f)w = v\right\} \\
 		f(U) \stackrel{\subset}{?} U
 	\end{gather*}
 	$u \in U$, $w, \in V$, $H(f)w = u$
 	\begin{gather*}
-		f(u) = f(H(t)(w)) = (f \circ H(t))(w) = (H(t) \circ f)(w) = H(t) (f(w)) \in \Im H(t) = U
+		f(u) = f(H(f)(w)) = (f \circ H(f))(w) = (H(f) \circ f)(w) = H(f) (f(w)) \in \Im H(f) = U
 	\end{gather*}
 	Про $U$ доказали.
 
@@ -111,6 +120,7 @@ $$H(f) = a_0 id + a_1f + \cdots + a_kf^k \in End(v)$$
 
 \begin{Rem}
 	$f$ "--- обратим, $\Im f = V$, $\ker f = \{0\}$.
+
 	Если $H(f)$ "--- обратимый оператор, то $\Im H(f) = V$, $\ker H(f) = \{0\}$.
 \end{Rem}
 
@@ -127,16 +137,17 @@ $$H(f) = a_0 id + a_1f + \cdots + a_kf^k \in End(v)$$
 	Зафиксируем базис $V$.
 	$A = [f]$ "--- матрица $f$ в этом базисе.
 	\[ H[f] = H(A) \]
-	Нулевому оператору отвечает нулевая матрица.
 	\[ \chi_f = \chi_A \]
+	Нулевому оператору отвечает нулевая матрица.
+	
 	Перешли к равносильному утверждению в матрицах:
 	\[ \chi_A (A) = 0 \]
 	Докажем его:
 	\begin{gather*}
 		\chi_A = \det (A - tE) \\
-		A - te \in M(n, n, K[t]) \\
+		A - tE \in M(n, n, K[t]) \\
 		B = (A - tE)^{\text{взаимная}} \in M(n, n, K[t]) \\
-		(A - te) B = B(A - te) = \det (A - tE) E
+		(A - tE) B = B(A - tE) = (\det (A - tE)) E
 	\end{gather*}
 	При вычислении алгебраического дополниния считаем определитель размера $n - 1$ и каждый элемент "--- многочлен от $t$ степени не более 1.
 	Таким образом, каждое алгебраическое дополение есть многочлен от $t$ степени не более $n - 1$.
@@ -189,7 +200,7 @@ $$H(f) = a_0 id + a_1f + \cdots + a_kf^k \in End(v)$$
 \begin{theorem}
 	$H_1, H_2 \in K[t]$, $f \in \End(V)$, $H_1$ и $H_2$ взаимно просты.
 	Тогда 
-	\[  \ker (H_1H_2)(f) = \ker H_1(f) \oplus \ker H_2(f) \]
+	\[  \ker ((H_1H_2)(f)) = \ker H_1(f) \oplus \ker H_2(f) \]
 \end{theorem}
 \begin{proof}
 	\begin{enumerate}
