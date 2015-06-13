@@ -36,7 +36,7 @@
 		v'_j = \sum_{i = 1}^{n}a_{ij}v_i, a_{ij}\in K \\
 		A = (a_{ij})_{i, j = 1, \dots n}
 	\end{gather*}
-	$j$-й столбец $A$ "--- столбец координат $v_j'$.
+	$j$-й столбец $A$ "--- столбец координат $v_j'$ в базисе $v_i$.
 
 	$A$ "--- матрица перехода от $v_1, \dots, v_n$ к базису $v_1', \dots, v_n'$
 	\[ A = [A]_{\{v_i\} \to \{v_i'\}} \]
@@ -78,7 +78,7 @@
 		\begin{alignedat}{3}
 			v_j'' &= \sum_{i = 1}^{n}c_{ij}v_i &\\
 			v_j'' &= \sum_{r = 1}^{n}b_{rj}v_r' &= \sum_{r = 1}^{n}b_{rj}\left(\sum_{i = 1}^{n}a_{ir}v_i\right) = \\
-			      &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}(b_{rj}a_{ir})v_i &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}a_{ir}b_{ri}v_i = \\
+			      &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}(b_{rj}a_{ir})v_i &= \sum_{r = 1}^{n}\sum_{i = 1}^{n}a_{ir}b_{rj}v_i = \\
 			      &= \sum_{i = 1}^{n}\underbrace{\left(\sum_{r = 1}^{n}a_{ir} b_{rj}\right)}_{c_{ij}} v_i
 			        &\Ra c_{ij} = \sum_{r = 1}^{n}a_{ir}b_{rj}
 		\end{alignedat} \\

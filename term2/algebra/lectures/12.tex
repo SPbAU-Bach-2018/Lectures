@@ -10,7 +10,7 @@
 \begin{Rem}
 	\begin{itemize}
 		\item $\forall u_1, u_2 \in U, f(u_1 + u_2) = f(u_1) + f(u_2)$ "--- адитивность.
-		\item $\forall c \in K, \forall u \in U, f(cU) = cf(U)$ "--- однородность степени 1.
+		\item $\forall c \in K, \forall u \in U, f(cu) = cf(u)$ "--- однородность степени 1.
 	\end{itemize}
 \end{Rem}
 
@@ -294,7 +294,7 @@
 			\vdots \\
 			\beta_m \\
 		\end{pmatrix} \\
-		f(u) = f\left(\sum_{j = 1}^n\beta_ju_i\right) = \sum_{j = 1}^n\beta_jf(u_j)
+		f(u) = f\left(\sum_{j = 1}^m\beta_ju_i\right) = \sum_{j = 1}^n\beta_jf(u_j)
 		= \sum_{j = 1}^m\beta_j \sum_{i = 1}^n\alpha_{ij}v_i = \sum_{i = 1}^n\left(\sum_{j = 1}^m\alpha_{ij}\beta_j\right) v_i \\
 		\gamma_i = \sum_{j = 1}^m\alpha_{ij}\beta_j 
 	\end{gather*}
@@ -345,7 +345,7 @@ $j$-ый столбец $[f_1 + f_2]$ "--- координаты разложен
 \begin{theorem}
 	$U$, $V$ "--- конечномерные векторные пространства, $f\colon U \to V$ "--- линейное отображение.
 	$\{u_1, \dots, u_m\}$, $\{u'_1, \dots, u'_m\}$  "--- базисы $U$,
-	$\{v_1, \dots, v_m\}$, $\{v'_1, \dots, v'_m\}$  "--- базисы $V$.
+	$\{v_1, \dots, v_n\}$, $\{v'_1, \dots, v'_n\}$  "--- базисы $V$.
 	$C$ "--- матрица перехода от $\{u_j\}$ к $\{u'_j\}$,
 	$D$ "--- матрица перехода от $\{v_i\}$ к $\{v'_i\}$,
 	$A$ "--- матрица $f$ в базисах $\{u_j\}$, $\{v_i\}$,
