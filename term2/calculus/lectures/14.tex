@@ -43,6 +43,8 @@
 
 \section{Обратные отображения}
 
+\textbf{\color{red} Возможно, дальше, когда мы говорим про обратимые операторы, надо их брать из $\R^n \to \R^n$, а не из $\R^n \to \R^m$}
+
 Ещё одна теорема больше из алгебры:
 \begin{theorem}
 	$A\colon \R^n \ra \R^m$ "--- линейный оператор. Тогда следующее равносильно:
@@ -111,7 +113,7 @@
 		\end{gather*}
 		По предыдущей теореме уже получили обратимость.
 		\begin{gather*}
-			B^{-1} A^{-1} = B^{-1} (A - B) A^{-1} \\
+			B^{-1} - A^{-1} = B^{-1} (A - B) A^{-1} \\
 			\left\|B^{-1} - A^{-1}\right\| = \left\|B^{-1} (A - B) A^{-1}\right\| \le \left\|B^{-1}\right\| \|A - B\| \left\|A^{-1}\right\|
 				= \frac1{\alpha - \beta}\beta\frac1\alpha = \frac{\beta}{\alpha(\alpha - \beta)}
 		\end{gather*}

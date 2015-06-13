@@ -1,0 +1,14 @@
+\newcommand{\GeometryForAbstract}{}
+\input{preamble-packages}
+\input{preamble-settings}
+
+\rfoot{\today~\currenttime}
+
+\renewcommand{\section}[1]{%
+\noindent\makebox[\linewidth]{\color[rgb]{0.8,0.8,0.8}\rule{\paperwidth}{0.4pt}}%
+\refstepcounter{section}%
+\reversemarginpar\hspace{0.01mm}\marginpar{\textbf{\arabic{section}}}\reversemarginpar%
+}%
+
+\newcommand{\setname}[1]{\lhead{#1}}
+\rhead{СПб АУ}
