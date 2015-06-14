@@ -49,21 +49,21 @@
 	\item
 		$K \subseteq L$, $K$ "--- поле, $L$ "--- тело
 		\[ \cdot \colon K \times L \to L ~ \text{(сужение умножения в $L$)} \]
-		$\C$ "--- в.п. над $\R$
+		$\C$ "--- вектороное пространство над $\R$
 	\item
-		$\H$ "--- в.п. над $\R$
+		$\H$ "--- векторное пространство над $\R$
 	\item
-		$\H$ "--- в.п. над $\C$
+		$\H$ "--- вектороное пространство над $\C$
 	\item
-		$Q(i) = \{ a + bi \mid a,b \in \Q \}$ "--- в.п. над $\Q$ \\
-		$\R$ "--- в.п. над $\Q$
+		$Q(i) = \{ a + bi \mid a,b \in \Q \}$ "--- вектороное пространство над $\Q$ \\
+		$\R$ "--- векторное пространство над $\Q$
 	\item
-		$M(n,m,k)$ "--- в.п. над $K$
+		$M(n,m,k)$ "--- векторное пространство над $K$
 	\item
 		\[ \cdot \colon K \times K[x] \to K[x] ~ \text{(сужение обычного умножения)} \]
-		$K[x]$ "--- в.п. над $K$
+		$K[x]$ "--- векторное пространство над $K$
 	\item
-		$C([a,b] \to \R)$ "--- в.п. над $\R$
+		$C([a,b] \to \R)$ "--- векторное пространство над $\R$
 	\end{enumerate}
 \end{exmp}
 
@@ -99,23 +99,23 @@
 
 \begin{Def}
 	$v_1, \dots, v_n \in V, a_1, \dots, a_n \in K$
-	\[ a_1v_1 + \dots + a_nv_n \text{"--- линейная комбинация $v_i$ с кооф. $a_i$} \]
+	\[ a_1v_1 + \dots + a_nv_n \text{"--- линейная комбинация $v_i$ с коэфициентами $a_i$} \]
 \end{Def}
 
 \begin{Def}
 	$i \in I, v_i \in V, a_i \in K$, почти все ($=$ все, кроме конечного числа) $a_i$ равны $0$
-	\[ \sum_{i \in I} a_iv_i \text{"--- линейная комбинация (сумма конечна, т.к. п.в. $a_i = 0$)} \]
+	\[ \sum_{i \in I} a_iv_i \text{"--- линейная комбинация (сумма конечна, так как почти все $a_i = 0$)} \]
 \end{Def}
 
 \begin{Def}
-	$V$ "--- в.п. над $K$, $0 \neq U \subseteq V$ \\
-	\[U \text{ называют подпространством в } V, \text{ если } U \text{"--- в.п. над } K \text{ относительно } + \mid_{U \times U}, \cdot \mid_{K \times U}\]
+	$V$ "--- векторное пространтсво над $K$, $0 \neq U \subseteq V$ \\
+	\[U \text{ называют подпространством в } V, \text{ если } U \text{"--- вектороное пространство над } K \text{ относительно } + \mid_{U \times U}, \cdot \mid_{K \times U}\]
 \end{Def}
 
 \begin{exmp}
 	\begin{enumerate}
 		\item
-			$\C \subseteq \H$, в.п. над $\R$
+			$\C \subseteq \H$, векторное пространство над $\R$
 		\item
 			$K[x^2] \subseteq K[x]$
 		\item
@@ -124,7 +124,7 @@
 \end{exmp}
 
 \begin{assertion}
-	$V$ "--- в.п. над $K$, $0 \neq U \subseteq V$ \\
+	$V$ "--- векторное пространство над $K$, $0 \neq U \subseteq V$ \\
 	\[U \text{"--- подпространство } V \Lra \left\{ \begin{array}{ll}
 		U \text{ замкнуто относительно сложения} \\
 		U \text{ замкнуто относительно умножения на скаляр}
@@ -143,12 +143,12 @@
 \end{proof}
 
 \begin{lemma}
-	(Без доказательства) Пересечение подпространств - подпространство.
+	(Упражнение) Пересечение подпространств - подпространство.
 \end{lemma}
 
 \begin{assertion}
 	$\{ v_i \}_{i \in I} \subseteq V$, какое наименьшее подпространство, содержащее это семейство векторов? Ответ: \\
-	\[\bigcap\limits_{\mathclap{\substack{\text{\tiny{$U-$ под-во. $V$}} \\ \text{\tiny{$\{ v_i \}_{i \in I} \subseteq U$}}}}}{U} = \left\{ \sum\limits_{i \in I} a_iv_i \mid \text{п.в. } a_i = 0 \right\} \text{"--- мн-во всех конечных лин. комбинаций векторов из } \{ v_i \}_{i \in I}\]
+	\[\bigcap\limits_{\mathclap{\substack{\text{\tiny{$U-$ подпространство. $V$}} \\ \text{\tiny{$\{ v_i \}_{i \in I} \subseteq U$}}}}}{U} = \left\{ \sum\limits_{i \in I} a_iv_i \mid \text{почти все} a_i = 0 \right\} \text{"--- мн-во всех конечных линеных комбинаций векторов из } \{ v_i \}_{i \in I}\]
 \end{assertion}
 
 \begin{Def}
@@ -164,9 +164,10 @@
 \end{Def}
 
 \begin{exmp}
+
 	\begin{enumerate}
 	\item
-		$\C$ "--- в.п. над $\R, \C = \left< 1, i \right>$
+		$\C$ "--- векторное пространство над $\R, \C = \left< 1, i \right>$
 	\item
 		$K[x] = \left< 1, x, x^2, \dots \right>$
 	\end{enumerate}
@@ -175,31 +176,32 @@
 \section{Линейная зависимость и линейная независимость}
 
 \begin{Def}
-	$\{ v_i \}_{i \in I}$ "--- линейно зависимые, если $\exists a_i$ "--- п.в. (но не все) $a_i = 0$, такие что:
+	$\{ v_i \}_{i \in I}$ "--- линейно зависимые, если $\exists a_i$ "--- почти все (но не все) $a_i = 0$, такие что:
 	\[\sum_{i \in I} a_iv_i = 0\]
 \end{Def}
 
 \begin{Def}
-	Если $\{ v_i \}_{i \in I}$ не являются лин. зависимыми, то они называются линейно независимыми. \\
+	Если $\{ v_i \}_{i \in I}$ не являются линейно зависимыми, то они называются линейно независимыми. \\
 	\textbf{Эквивалентные определения}
 	\begin{enumerate}
 	\item
-		$\forall a_i$ п.в. (но не все) $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i \neq 0$
+		$\forall a_i$ почти все (но не все) $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i \neq 0$
 	\item
-		$\forall a_i$ п.в. $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i = 0 \Rightarrow$ все $a_i = 0$
+		$\forall a_i$ почти все $a_i = 0 \colon \sum\limits_{i \in I} a_iv_i = 0 \Rightarrow$ все $a_i = 0$
 	\end{enumerate}
 \end{Def}
 
 \begin{exmp}
+
 	$\C$ "--- в.п. над $\R$
 	\begin{enumerate}
 	\item
-		$\{1, i\}$ "--- лин. независимые
+		$\{1, i\}$ "--- линейно независимые
 	\item
-		$\{1, 1 + i, i\}$ "--- лин. зависимые \\
+		$\{1, 1 + i, i\}$ "--- линейно зависимые \\
 		$1 \cdot 1 + (-1) \cdot (1 + i) + 1 \cdot i = 0$
 	\item
-		$\{1, x, x^2, \dots\}$ "--- лин. независимые ($K[x]$)
+		$\{1, x, x^2, \dots\}$ "--- линейно независимые ($K[x]$)
 	\end{enumerate}
 \end{exmp}
 
@@ -207,29 +209,29 @@
 
 \begin{enumerate}
 	\item
-		Любая подсистема лин. независимой системы "--- лин. независима
+		Любая подсистема линейно независимой системы "--- лининейно независима
 	\item
-		Любая надсистема лин. зависимой системы "--- лин. зависима
+		Любая надсистема линейно зависимой системы "--- линейно зависима
 	\item
-		Семейство, содержащее $0$, лин. зависима
+		Семейство, содержащее $0$ "--- линейно зависима
 	\item
-		Семейство, содержащее $2$ одинаковых вектора "--- лин. зависима
+		Семейство, содержащее $2$ одинаковых вектора "--- линейно зависима
 	\item
-		Семейство лин. независимо $\Lra$ всякое его конечное подсемейство "--- лин. независимо
+		Семейство линейно независимо $\Lra$ всякое его конечное подсемейство "--- линейно независимо
 \end{enumerate}
 
 \begin{lemma}
-	$\{ v_i \}_{i \in I}$ лин. зависимые $\Rightarrow$ один из $v_i$ есть лин. комбинация остальных
+	$\{ v_i \}_{i \in I}$ линейно зависимые $\Rightarrow$ один из $v_i$ есть линейная комбинация остальных
 \end{lemma}
 \begin{proof}
-	$\sum\limits_{i \in I} a_iv_i = 0$, п.в. (но не все) $a_i = 0, j \colon a_j \neq 0$ \\
+	$\sum\limits_{i \in I} a_iv_i = 0$, почти все (но не все) $a_i = 0, j \colon a_j \neq 0$ \\
 	$a_jv_j + \sum\limits_{\substack{\text{\tiny{$i \in I $}} \\ \text{\tiny{$i \neq j $}}}} a_iv_i = 0 \Rightarrow v_j = \sum\limits_{\substack{\text{\tiny{$i \in I $}} \\ \text{\tiny{$i \neq j $}}}} (\frac{-a_i}{a_j})v_i$
 \end{proof}
 
 \begin{theorem}
-	(О лин. зависимости лин. комбинаций) \\
-	$V$ "--- в.п. над $K, ~ v_1, \dots, v_n \in V, ~ u_1, \dots, u_m \in \left< v_1, \dots, v_n \right>$ \\
-	\[\text{Если } m > n, \text{ то } u_1, \dots, u_m \text{ лин. зависимые}\]
+	(О линейной зависимости линейных комбинаций) \\
+	$V$ "--- векторное пространство над $K, ~ v_1, \dots, v_n \in V, ~ u_1, \dots, u_m \in \left< v_1, \dots, v_n \right>$ \\
+	\[\text{Если } m > n, \text{ то } u_1, \dots, u_m \text{ линейно зависимые}\]
 \end{theorem}
 \begin{proof}
 	$u_i = \sum\limits_{j = 1}^{n} a_{ij}v_j, ~ a_{ij} \in K$ \\
@@ -238,5 +240,5 @@
 	Потребуем, чтобы для $j = 1, \dots, n \colon \sum\limits_{i = 1}^{m} x_ia_{ij} = 0$ \\
 	Это система $n$ линейных уравнений с $m$ неизвестными, $m > n \Rightarrow \exists x_i$ (не все $0$), являющиеся решением этой системы \\
 	$\sum\limits_{i = 1}^{m} x_iu_i = \sum\limits_{j = 1}^{n} 0 \cdot v_j = 0$ \\
-	Так как не все $x_i = 0$, то $\{u_i\}_{i = 1}^{m}$ - лин. зависимые
+	Так как не все $x_i = 0$, то $\{u_i\}_{i = 1}^{m}$ - линейно зависимые
 \end{proof}
