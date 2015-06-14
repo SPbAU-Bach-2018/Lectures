@@ -2,7 +2,8 @@
 
 \begin{Def}
 	$K$ "---  поле, $V$ "--- вектороное пространство над $K$.
-	$\{V_{\alpha}\}_{\alpha \in I}$ "--- базис $V$.
+
+	$\{v_{\alpha}\}_{\alpha \in I}$ "--- базис $V$.
 	\[ v \in V \Ra v = \sum_{\alpha \in I}a_{\alpha}v_{\alpha} \]
 	почти все $a_{\alpha} = 0$ и такое разложение единственно.
 	$\{a_{\alpha}\}_{\alpha \in I}$ "--- набор координат вектора $v$ в базисе $\{v_{\alpha}\}$.
@@ -161,16 +162,16 @@
 
 \begin{theorem}
 	$V$ "--- векторное пространство над $K$,
-	$U, W \subset V$.
+	$U, W < V$.
 	Тогда
 	\begin{enumerate}
 	\item
-		$U \cap W \subset V$ (упражнение).
+		$U \cap W < V$ (упражнение).
 
 	\item
 		\begin{gather*}
 			U + W = \{u + w \mid u \in U, w \in W\} \\
-			U + W \subset V
+			U + W < V
 		\end{gather*}
 	\end{enumerate}
 	Объединение подпространством быть не обязано.
@@ -180,7 +181,7 @@
 	Достаточно проверить замкнутость относительно операций.
 	\begin{gather*}
 		(\underbrace{u}_{\in U} + \underbrace{w}_{\in W}) + (\underbrace{u'}_{\in U} + \underbrace{w'}_{\in W})
-			= (\underbrace{u+u'}_{\in W}) + (\underbrace{w+w'}_{\in U}) \in U + W \\
+			= (\underbrace{u+u'}_{\in U}) + (\underbrace{w+w'}_{\in W}) \in U + W \\
 		c(\underbrace{u}_{\in U} + \underbrace{w}_{\in W}) = \underbrace{cu}_{\in U} + \underbrace{cw}_{\in W} \in U + W \\
 		U + W \ne \emptyset \\
 		0_v = 0_{u} + 0_{w} \in U + W
@@ -193,11 +194,11 @@
 	\[ \dim(U + W) + \dim(U \cap W) = \dim U + \dim W \]
 \end{theorem}
 \begin{proof}
-	\[ U \cap W \subset U \quad U \cap W \subset W \]
+	\[ U \cap W < U \quad U \cap W < W \]
 	Так как $\dim U < \infty$, то и $\dim (U \cap W) < \infty$.
 
 	$v_1, \dots, v_r$ "--- базис  $U \cap W$.
-	$\{v_1, \dots, v_r\} \subset U$, дополним до базиса $U$:
+	$\{v_1, \dots, v_r\} < U$, дополним до базиса $U$:
 	\[ \{v_1, \dots, v_r, u_{r + 1}, \dots, u_{n}\} \quad n = \dim U \]
 	Аналогично дополним до базиса $W$:
 	\[ \{v_1, \dots, v_r, w_{r + 1}, \dots, w_{m}\} \quad m = \dim W \]
