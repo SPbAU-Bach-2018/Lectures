@@ -24,10 +24,10 @@ int main () {
 
 
 
-\subsection{rvalue references}
+\subsection{rvalue references, move semantic}
 \begin{enumerate}
-	\item rvalue "--- тольков  в правой части выражения. 
-	\item lvalue "--- и в левой и в правой части выражения.
+	\item rvalue "--- может стоять только в правой части выражения
+	\item lvalue "--- нечто с именем, нечто, от чего можно ввзять ссылку, может стоять и в левой и в правой части выражения
 \end{enumerate}
 \begin{cppcode}
 int main () {
@@ -41,19 +41,23 @@ int main () {
 Так же \cpp"rvalue" "--- являются все временные значения
 Но все же \cpp"const int" "--- \cpp"lvalue".
 
-Объект \cpp"x", он имеет:
+Рассмотрим некоторый класс \cpp"X", у него есть:
 \begin{enumerate}
-  \item constructor
-  \item copy
-  \item destructor
+  \item конструктор копий
+  \item оператор присваивания
+  \item деструктор
+  \item \cpp"X::pRes" --- некоторый ресурс, которым владет объект.
 \end{enumerate}
 
-Как работает конструктор копий \cpp"a = b":
-\begin{enumerate}
-  \item освободить
-  \item выделить память
-  \item скопировать
-\end{enumerate}
+Как работает следующее выражение \cpp"a = b":
+
+\begin{cppcode}
+operator=(const X& rhs) {
+    // освободить this->pRes
+    // выделить память
+    // скопировать из rhs.pRes в this->pRes
+}
+\end{cppcode}
 
 Как работает следующий код:
 \begin{cppcode}
@@ -65,23 +69,27 @@ int main () {
 	X a = foo (); // copy constructor
 }
 \end{cppcode}
-Внутри есть какая-то переменная \cpp"tmp", в которую присвоется результат \cpp"foo". 
-А потом скопируется в \cpp"a".
+Здесь неявно создаётяся временная переменная (назовём её \cpp"tmp"), в которую записывается 
+результат \cpp"foo", а потом из неё копируется в \cpp"a". Но можно сделать быстрее, просто поменяв 
+указатели на память у \cpp"a" и \cpp"tmp". Научимся так делать. 
 
-Но можно в принципе сделать быстрее, просто поменяв указатели на память у \cpp"a" и \cpp"tmp". 
-Научимся делать так. 
-Теперь у нас будет два конструктора копий первый когда в правой части выражения стоит \t{lvalue}, а второй когда в правой части стоит \t{rvalue}.
+Теперь у нас будет два конструктора копий и два оператора присваивания: первые когда в правой части выражения стоит \t{lvalue}, 
+а вторые когда в правой части стоит \t{rvalue}. 
+
+Чтобы ловить \cpp"rvalue" используем \cpp"rvalue reference", выглядит так: \cpp"X&&"
+
+Синтаксис оператора присваивания для \cpp"rvalue":
 \begin{cppcode}
 X& operator= (X&& rhs) {
-  T* tmp = this = -> pRes; 
-  this-> pRes = this.pRes; 
+  T* tmp = this->pRes; 
+  this->pRes = this->pRes; 
   rhs.pRes = tmp;
-  /* или swap (this.pRes, rhs.pRes) */
-  return this; 
+  /* или swap (this->pRes, rhs->pRes) */
+  return *this; 
 }
 \end{cppcode}
 
-Написали сейчас следующие методы:
+Итак, мы написали сейчас следующие методы:
 \begin{cppcode}
   X (const X&); 
   X (X&&);
@@ -98,9 +106,11 @@ void swap (T& a, T& b) {
   b = tmp;
 }
 \end{cppcode}
-Но это не будет использовать наши новые конструкторы. 
-Поэтому надо использовать \cpp"std::move", которое возвращает \cpp"rvalue". 
-Перепишем теперь наш \cpp"swap".
+
+Но этот swap не будет использовать наши новые конструкторы (т.к. мы инициализируем именованной переменной --- \cpp"lvalue")
+Чтобы превратить \cpp"lvalue" в \cpp"rvalue"  надо использовать \cpp"std::move", которое возвращает \cpp"rvalue". 
+
+Перепишем \cpp"swap":
 \begin{cppcode}
 template<class T>
 void swap (T& a, T& b) {
@@ -118,4 +128,5 @@ void swap (T& a, T& b) {
 	v.push_back (std::move (v));
 \end{cppcode}
 
-\subsection{move semantic}
+Этот приём, когда мы \cpp"lvalue" превращаем в \cpp"rvalue" начинаем по сути перемещать объект, а не копировать и называется
+\cpp"move semantic".
