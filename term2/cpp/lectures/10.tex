@@ -130,3 +130,13 @@ void swap (T& a, T& b) {
 
 Этот приём, когда мы \cpp"lvalue" превращаем в \cpp"rvalue" начинаем по сути перемещать объект, а не копировать и называется
 \cpp"move semantic".
+
+\begin{Rem}
+	Хотим оптимизировать возврат, но писать return \cpp"std::move(x)" не нужно, т.к. компиляторы давно делают \textit{return value optimization} (Возвращаемое значение создаётся в кадре стека вызывающей функции) 
+	\begin{cppcode}
+X foo() {
+	X x;
+	return x; 
+}
+	\end{cppcode}
+\end{Rem}
