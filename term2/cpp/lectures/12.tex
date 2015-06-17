@@ -51,7 +51,7 @@ unordered_set<class T, class hash_func = std::hash<T>, class pred = equal_to<T>>
 namespace std {
   template<>
   struct hash<A> {
-    size_t operator (const A& rhs ) const {
+    size_t operator ()(const A& rhs ) const {
       size_t val = 0;
       val += std::hash<int> () (rhs.x) * 31;
       val += std::hash<string> () rhs.s * 59;
