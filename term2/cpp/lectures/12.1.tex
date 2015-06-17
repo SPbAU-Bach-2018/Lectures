@@ -16,10 +16,13 @@ int main() {
 Механизм будет напоминать рекурсию.
 
 \begin{cppcode}
-template<typename T, typename ... Args> //'...' before Args means that the number of arguments may be any/
+template<typename T, typename ... Args> 
+// '...' before Args means that the number of arguments may be any
 T sum(T n, Args ... rest) {
 	return n + sum(rest ...);
-}//macros PRETTY_FUNCTION gives us the name of the function with arguments and its return value
+}
+/* macros PRETTY_FUNCTION gives us the name 
+of the function with arguments and its return value */
 
 template<typename T>
 T sum(T n) {
@@ -33,11 +36,14 @@ T sum(T n) {
 \begin{cppcode}
 void printf(const char* fmt, ...) {
 	va_list args;
-	va_start(args, fmt);//макрос, настраивает args на смещение, равное размеру fmt(fmt здесь в том смысле, что это
-						//последний аргумент перед '...')
+	va_start(args, fmt); // макрос, настраивает args на 
+                     	// смещение, равное размеру fmt
+                     	// (fmt здесь в том смысле, что это
+						// последний аргумент перед '...')
 	while(...) {
-		int i = va_arg(args, int);//тут вторым параметром может быть любой примитивный тип в зависимости от %_
-								  //args кастуется к нужному типу и на сколько нужно смещается по стеку
+		int i = va_arg(args, int); //тут вторым параметром может быть любой 
+		                          // примитивный тип в зависимости от args кастуется 
+		                          // к нужному типу и на сколько нужно смещается по стеку
 	}
 	va_end(args);
 }
