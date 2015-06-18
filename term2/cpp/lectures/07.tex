@@ -45,9 +45,11 @@ int main () {
 
 Начнем решать задачу с контейнеров. 
 \begin{cppcode}
-template<template<class> V, class T>
-void foo (const V<T> &V) {
-    T temp = V.begin ();
+// В стандартных контейнерах два шаблонных параметра - тип и аллокатор
+// Нужно зафиксировать оба
+template<template<class, class> class V, class T, class A>
+void foo (const V<T, A> &v) {
+    T temp = *v.begin ();
 }
 
 int main () {
@@ -58,7 +60,8 @@ int main () {
 }
 \end{cppcode}
 
-Но такая реализация сужает количество шаблонных параметров. 
+Но такая реализация фиксирует количество шаблонных параметров.
+Если у нас свой вектор с одним шаблонным параметром "--- не скомпилируется.
 Но как же сделанно в STL: 
 \begin{cppcode}
 template<class T, class allocator = std::allocator>
