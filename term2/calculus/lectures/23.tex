@@ -36,7 +36,7 @@
 	$f$ непрерывна на компакте, значит, принимает наибольшее и наименьшее значение.
 	Пусть $f(a)$ "--- минимум, $f(b)$ "--- максимум.
 	Тогда $\forall x \colon f(a) \le f(x) \le f(b)$.
-	Подставим $m=f(a)$ и $M=f(a)$ в теорему.
+	Подставим $m=f(a)$ и $M=f(b)$ в теорему.
 	Получим, что $\exists \lambda \in [f(a), f(b)] \colon \int_K fg = \lambda \int_K g$.
 	Теперь надо показать, что $\lambda$ "--- это значение функции в какой-то точке.
 
@@ -94,7 +94,7 @@
 
 \begin{theorem}[геометрический смысл многомерного интеграла]
 	Пусть есть $f \colon E \to \R$, интегрируемая и ограниченная, а также $f \ge 0$ на $E \subset \R^n$.
-	Возьмём $G \subset \R^{n+1}$ следующего вида: $\{ x_1, \dots, x_{n+1} \} \mid x=(x_1,\dots,x_n) \in E, 0 \le x_{n+1} \le f(x) \}$.
+	Возьмём $G \subset \R^{n+1}$ следующего вида: $\{ (x_1, \dots, x_{n+1}) \mid x=(x_1,\dots,x_n) \in E; 0 \le x_{n+1} \le f(x) \}$.
 	Это, по сути, <<подграфик>> функции.
 	Тогда $G$ измеримо и $\mu_{n+1} G = \int_E f$ (то есть интеграл "--- объём под графиком).
 \end{theorem}
@@ -117,9 +117,9 @@
 	\[
 	\underbrace{\bigcup_{k=1}^{m(\tau)} X_k}_{\mathcal{X}} \subset G \subset \underbrace{\bigcup_{k=1}^{m(\tau)} Y_k}_{\mathcal{Y}}
 	\]
-	% двумерная картинка, с n=1. Пусть A_k=E_k (для простоты)
-	% Взяли A_k, нарисовали прямоугольник под графиком - это X_k
-	% Взяли B_k (оно может чуть вылезать), нарисовали прямоугольник над графиком - это Y_k
+	\begin{center}
+	\input{23_proof_graph}
+	\end{center}
 	При этом по краям неравенства стоят клеточные множества.
 	Мы зажали $G$ между какими-то клеточными множествами $\mathcal{X}$ и $\mathcal{Y}$.
 	Сейчас поймём, что их меры несильно отличаются друг от другая.
@@ -130,10 +130,9 @@
 	\le \mysum \mu_{n+1} Y_k
 	= \mysum (\sup_{E_k} f + \epsilon) \mu_{n} B_k
 	\le \mysum (\sup_{E_k} f + \epsilon) (\mu_{n} A_k + \frac{\epsilon}{m(\tau)}) = \\
-	= \mysum (\sup_{E_k} f \underbrace{\mu_n A_k}_{\le \mu_n E_k} + \epsilon \mu_n A_k + \frac{\epsilon^2}{m(\tau)} + \sup_{E_k} f \cdot \frac{\epsilon}{m(\tau)})
-	\le S_\tau(f) + \epsilon\mysum \mu A_k + \epsilon^2 + M\epsilon
+	= \mysum (\sup_{E_k} f \cdot \underbrace{\mu_n A_k}_{\le \mu_n E_k} + \epsilon \mu_n A_k + \frac{\epsilon^2}{m(\tau)} + \sup_{E_k} f \cdot \frac{\epsilon}{m(\tau)})
+	\le S_\tau(f) + \epsilon\mysum \mu A_k + \epsilon^2 + \underbrace{\sup_E f}_{M}\cdot \epsilon
 	\end{gather*}
-	% ололо, рассказать про $M$
 	Так как $A_k \subset E_k$, а $E_k$ дизъюнктны, то $\mysum \mu A_k \le \mu (\cup E_k) = \mu E$.
 	Теперь оценим $\epsilon < 1$ и заменим сумму Дарбу на интеграл (она не больше $I+\epsilon \le I+1$):
 	\[
