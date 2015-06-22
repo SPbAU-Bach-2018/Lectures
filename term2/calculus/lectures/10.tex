@@ -131,9 +131,9 @@
 	$f\colon D \subset R^n \ra R^m$, $g\colon E \subset R^m \ra R^l$, $f(D) \subset E$, $a \in \Int D$, $f(a) \in \Int E$,
 	$f$ дифференцируема в $a$, $g$ "--- в $f(a)$.
 	Тогда
-	\[ \d_a(g \circ f) = \d_f(n) g \circ \d_a f \]
+	\[ \d_a(g \circ f) = \d_{f(a)} g \circ \d_a f \]
 	то есть матрица $\d_a (g \circ f)$ есть
-	\[(\begin{pmatrix}
+	\[ \begin{pmatrix}
 		\partd{g_1}{e_1}(a) & \partd{g_1}{e_2}(a)
 			&\cdots& \partd{g_1}{e_n}(a) \\
 		\partd{g_2}{e_1}(a) & \partd{g_2}{e_2}(a)
