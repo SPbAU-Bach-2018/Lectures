@@ -147,7 +147,7 @@
 	Хотим увидеть это:
 	\begin{align*}
 		B_r(x) \cap (E \cup F) &\ne \emptyset & (B_r(x) \cap E) \cup (B_r(x) \cap F) &\ne \emptyset \\
-		B_r(x) \setminus (E \cup F) &\ne \emptyset & (B_r(x) \setminus E) \cup (B_r(x) \setminus F) &\ne \emptyset
+		B_r(x) \setminus (E \cup F) &\ne \emptyset & (B_r(x) \setminus E) \cap (B_r(x) \setminus F) &\ne \emptyset
 	\end{align*}
 	Покажем:
 	\begin{gather*}
@@ -183,7 +183,7 @@
 	\begin{enumerate}
 		\item (монотонность меры) $E \subset F \Ra 0 \le \mu E \le \mu F$
 		\item (полуаддитивность меры) $\mu (E \cup F) \le \mu E + \mu F$
-		\item (аддитивность меры) $E \cap F = \emptyset \Ra \mu(E + F) = \mu E + \mu F$
+		\item (аддитивность меры) $E \cap F = \emptyset \Ra \mu(E \sqcup F) = \mu E + \mu F$
 	\end{enumerate}
 \end{theorem}
 \begin{proof}
