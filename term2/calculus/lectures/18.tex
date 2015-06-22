@@ -86,7 +86,7 @@
 		\item
 			Если $B \supset F$, то $B \supset E$.
 			Поэтому
-			\[\mu^*F = \inf_{B \supset F} \mu B \ge \sup_{B \supset E} \mu B = \mu^* E\]
+			\[\mu^*F = \inf_{B \supset F} \mu B \ge \inf_{B \supset E} \mu B = \mu^* E\]
 		\end{itemize}
 		Монотонность: если $E \subset F$ ($F$ ограничено), то
 		$\mu_* E \le \mu_* F$ и $\mu^* E \le \mu^* F$
@@ -150,7 +150,7 @@
 \end{exmp}
 \begin{proof}
 	Накроем каждую из $n$ точек ячейкой вида $\left(x_1 - \frac 1m, x_1\right] \times\dots\times \left(x_n - \frac 1m, x_n\right] = P_m$.
-	Видно, что внешняя мера $E$ ограничивается суммарной мерой таких ячеек, устремляем $m$ к бесконечности, получаем $\mu^* E \ge 0$.
+	Видно, что внешняя мера $E$ ограничивается суммарной мерой таких ячеек, устремляем $m$ к бесконечности, получаем $\mu^* E \le 0$.
 	То есть $\mu^* E = 0$.
 \end{proof}
 

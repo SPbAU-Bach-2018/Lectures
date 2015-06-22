@@ -9,6 +9,10 @@
 	$\delta$-окрестность множества $U_\delta(A)$ (иногда обозначается $A_\delta$):
 	\[ U_\delta(A) = \{ x \mid \rho(x, A) < \delta\} = \{x \mid \exists y \in A\colon \rho(x, y) < \delta\} \]
 \end{Def}
+\begin{Rem}
+	$\delta$-окрестность является объединением открытых шаров радиуса $\delta$ с центрами из $A$:
+	\[ U_\delta(A) = \bigcup_{x \in A} B_\delta(x) \]
+\end{Rem}
 
 \begin{theorem}
 	$E$ "--- измерима, тогда $\mu^*(U_\delta(E)) \ra \mu E$ при $\delta \ra 0$.
