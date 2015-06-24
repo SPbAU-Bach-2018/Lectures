@@ -55,7 +55,7 @@
 \begin{theorem}[Метод множителей Лагранжа]
 	$f\colon D \subset \R^{n+m} \to \R$ "--- непрерывно дифференцируема,
 	$\Phi\colon D \to \R^m$ "--- непрерывно дифференцируема,
-	$a \in D\colon \Phi(a) = 0_m$ "--- точка условного экстремума.
+	$a \in \Int D\colon \Phi(a) = 0_m$ "--- точка условного экстремума.
 	Тогда
 	\[ \nabla f, \nabla \Phi_1, \nabla \Phi_2, \dots, \nabla \Phi_m \]
 	линейно зависимы.
@@ -93,9 +93,9 @@
 	\[
 		\det \begin{pmatrix}
 			\partd{\Phi_1}{y_1} & \partd{\Phi_1}{y_2} & \cdots & \partd{\Phi_1}{y_m} \\
-			\partd{\Phi_2}{y_1} & \partd{\Phi_2}{y_2} & \cdots & \partd{\Phi_2}{z_m} \\
+			\partd{\Phi_2}{y_1} & \partd{\Phi_2}{y_2} & \cdots & \partd{\Phi_2}{y_m} \\
 			\vdots & \vdots & \ddots & \vdots \\
-			\partd{\Phi_m}{y_1} & \partd{\Phi_m}{y_2} & \cdots & \partd{\Phi_m}{z_m}
+			\partd{\Phi_m}{y_1} & \partd{\Phi_m}{y_2} & \cdots & \partd{\Phi_m}{y_m}
 		\end{pmatrix} \ne 0
 	\]
 	Проверим условие теоремы об обратной функции:

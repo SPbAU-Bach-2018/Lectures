@@ -1,9 +1,10 @@
 %%\begin{proof}
 	Мы хотим
 	\[ \nabla f(a) = \lambda_1 \nabla \Phi_1(a) + \lambda_2 \nabla \Phi_2(a) + \dots
-	+ \lambda_n \nabla \Phi_m(a) \]
+	+ \lambda_m \nabla \Phi_m(a) \]
 	То есть хотим
 	\begin{gather*}
+		F \lrh f - \lambda_1 \Phi_1 - \lambda_2 \Phi_2 - \dots - \lambda_m \Phi_m \\
 		\nabla F = 0 \\
 		\partd{F}{y_k}(a) = \partd{f}{y_k}(a) - \sum_{j=1}^m \lambda_j \partd{\Phi_j}{y_k}(a) \\
 	\end{gather*}
