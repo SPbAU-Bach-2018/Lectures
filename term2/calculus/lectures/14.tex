@@ -168,10 +168,10 @@
 			\le \underbrace{\|\d_{x+th} f - A\|}_{x + th \in U} \|h\| < 2\lambda \|h\| \\
 			\begin{aligned}
 				F(0) &= f(x) \\
-				F(1) &= f(x + th) - Ah
+				F(1) &= f(x + h) - Ah
 			\end{aligned}\\
-			\|f(x + th) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
-			\|f(x + th) - f(x) \| = \|f(x+th) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
+			\|f(x + h) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
+			\|f(x + h) - f(x) \| = \|f(x+h) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
 			\ge \|Ah\| - \frac{\|Ah\|}2 = \frac{\|Ah\|}2 \\
 			f(x+h) = f(x) \Ra 0 \ge \frac{\|Ah\|}2 \Ra \|Ah\| = 0 \Ra h = 0
 		\end{gather*}
