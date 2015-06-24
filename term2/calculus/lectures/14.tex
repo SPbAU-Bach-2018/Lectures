@@ -168,7 +168,8 @@
 				F(0) &= f(x) \\
 				F(1) &= f(x + h) - Ah
 			\end{aligned}\\
-			\|f(x + h) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| = \frac{\|Ah\|}2 \\
+			\|f(x + h) - Ah - f(x)\| \le 2\lambda \|h\| = \frac{1}{2\left\|A^{-1}\right\|} \|h\| =
+				\frac{\|A^{-1}Ah\|}{2\|A^{-1}\|} \le \frac{\|Ah\|}2 \\
 			\|f(x + h) - f(x) \| = \|f(x+h) - f(x) - Ah + Ah\| \ge \|Ah\| - \|f(x+h) - Ah - f(x)\| \ge \\
 			\ge \|Ah\| - \frac{\|Ah\|}2 = \frac{\|Ah\|}2 \\
 			f(x+h) = f(x) \Ra 0 \ge \frac{\|Ah\|}2 \Ra \|Ah\| = 0 \Ra h = 0
