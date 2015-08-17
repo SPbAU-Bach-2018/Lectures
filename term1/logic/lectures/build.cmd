@@ -9,4 +9,4 @@ setlocal
 set TEXINPUTS=%TEXINPUTS%;%~dp0;
 
 pdflatex lectures.tex
- 
+pdflatex lectures.tex
