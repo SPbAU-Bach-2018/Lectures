@@ -1,1 +1,232 @@
-\input{../../../term2/algebra/lectures/23.tex}
+\chapter{Пространства со скалярным произведением}
+\section{Билинейные и полуторалинейные формы}
+\begin{Def}
+$V$ "--- векторное пространство над $K$. 
+
+$B \colon V \times V \to K, B$ "--- билинейная форма, 
+если $B$ линейно по каждому аргументу.
+
+$$B(\alpha_1 x_1 + \alpha_2 x_2, y) = \alpha_1 B(x_1, y) + \alpha_2 B(x_2, y)$$
+$$B(x, \alpha_1y_1 + \alpha_2 y_2) = \alpha_1 B(x, y_1) + \alpha_2(x, y_2)$$
+\end{Def}
+\begin{Def}
+$B$ "--- билинейная форма.
+    \begin{enumerate}
+    \item $B$ "--- симметрическая, если $\forall x, y \in V, B(x, y) = B(y, x)$.
+    \item $B$ "--- кососимметрическая, если 
+        \begin{enumerate}
+        \item $\forall x, y \in V B(x, y) = -B(y, x)$
+        \item $\forall x \in V, B(x, x) = 0$
+        \end{enumerate}
+    \end{enumerate}
+\end{Def}
+\begin{Rem}
+Если $char K \ne 2$, то  $a \Ra b$.
+
+$$B(x, x) = -B(x, x) \Ra 2B(x, x) = 0 \Ra B(x, x) = 0$$
+\end{Rem}
+\begin{Rem}
+Для произвольного поля $b \to a$.
+$$0 = B(x + y, x + y) = B(x + y, x) + B(x + y, y) = B(x, x) + B(y, x) + B(x, y) + B(y, y)$$
+$$B(y, x) + B(x, y) = 0$$
+$$B(x, y) = -B(y, x)$$
+\end{Rem}
+
+$$B(0, y) = B(0 + 0, y) = B(0, y) + B(0, y)$$
+$$\forall y \in V \colon 0 = B(0, y)$$
+$$\forall x \in V \colon 0 = B(x, 0)$$
+
+\begin{Def}
+$B$ "--- невырожденная, если 
+$$\forall x \ne 0 \exists y \colon B(x, y) \ne 0$$
+$$\forall y \ne 0 \exists x \colon B(x, y) \ne 0$$
+\end{Def}
+\begin{Def}
+Пусть $K = \R, V$ "--- векторное пространство над $\R$.
+
+$B \colon V \times V \to \R, B$ "--- билинейная форма.
+
+$B$ "--- положительно определенна, если 
+$\forall x\colon B(x, x) \ge 0$ и $B(x, x) = 0 \Lra x = 0$
+\end{Def}
+
+\begin{Def}
+$B$ "--- неотрицательно определена, если $\forall x \colon B(x, x) \ge 0$
+\end{Def}
+\begin{Rem}
+Положительная определнность $\Ra$ невырожденность.
+\end{Rem}
+\begin{exmp}
+\begin{enumerate}
+\item $\R^n$
+$$x = 
+\begin{pmatrix}
+x_1\\
+\vdots\\
+x_n\\
+\end{pmatrix}, 
+y = 
+\begin{pmatrix}
+y_1\\
+\vdots\\
+y_n\\
+\end{pmatrix}$$
+$$B(x, y) = x^{T}y = \sum_{i = 1}^{n}x_iy_i$$
+$B$ "--- симметричный положительный оператор.
+\item $a_1, \cdots, a_n \in R$
+$B(x, y) = \sum_{i = 1}^{n}a_ix_iy_i$
+$B$ "--- симметричная
+
+$B$ "--- положительно определенная $\Lra$ все $a_i > 0$
+
+\item K "--- произвольное 
+$$A \in M(n, n, K), V = K^{n}$$
+$$B \colon V \times V \to K$$
+$$B(x, y) = x^{T}Ay$$
+
+Если $A = A^{T}$, то $B$ "--- симметричная.
+$$B(x, y) = x^TAy = (x^tAy)^T = y^TA^T(x^T)^T = y^TA^Tx = y^TAx = B(y, x)$$
+
+Верно и обратное.
+Если $A \ne A^{T}$
+$\exists i, j a_{ij} \ne a_{ji}$
+
+$$x = 
+\begin{pmatrix}
+0\\
+0\\
+1(-i)\\
+0\\
+\end{pmatrix}$$
+$$y = 
+\begin{pmatrix}
+0\\
+0\\
+1(-j)\\
+0\\
+\end{pmatrix}$$
+
+$x^{T}Ay = a_{ij}, y^TAx = a_{ji} \Ra B$ не симметричная.
+
+$B$ "--- кососимметричная $\Lra$
+\begin{enumerate}
+\item $A = -A^{T}$
+\item на диагонали $A$ нули. 
+\end{enumerate}
+\item
+ $$V = C([a, b], \R)$$
+ $$B(f, g) = \int_{a}^{b}f(t)g(t)dt$$
+ $B$ "--- симметричная
+ $$\int_{a}^{b}f^2(t)dt \ge 0$$
+ $$\int_{a}^{b}f^2(t)dt = 0 \Lra f = 0$$
+ Положительно определен.
+\item $V = C([a, b], \R)$
+$\rho$ "--- неприрывная функция на $[a, b]$.
+$B(f, g) = \int_{a}^{b}\rho(t)f(t)g(t)dt$
+
+$B$ "--- симметрична.
+
+Если $\rho > 0$, на $[a, b]$, то $B$ "--- положительно определено. 
+
+(Упражнение. Когда $B$ "--- невыраждена?)
+\item $V = \R[t]$
+$$B(f, g) = \int_{0}^{\infty}e^{-t}f(t)g(t)dt$$
+$$B(f, g) = \int_{-\infty}^{\infty}e^{-t^2}f(t)g(t)dt$$
+\end{enumerate}     
+\end{exmp}
+
+\begin{Def}
+$V$ "--- векторное пространство над $R, \dim_{\R}V < \infty$
+
+$B \colon V \times V \to \R, B$ "--- симмитрична, положительно определенная.
+
+Тогда $(V, B)$ называется евклидовым пространством. 
+\end{Def}
+
+\begin{Def}
+$K$ "--- поле.
+
+$-\colon K \to K$ "--- изоморфизм поля $K$.
+
+$- \ne id$
+
+$-^2 = id$
+
+$\forall a \in K\colon \overline{\overline{a}} = a$ "--- инвлюция на поле $K$.
+\end{Def}
+
+\begin{exmp}
+$\C$ и комплексное сопряжение. 
+\end{exmp}
+
+\begin{Def}
+$V$ "--- векторное пространство над $K$. 
+
+$B\colon V \times V \to K$  $B$ "--- полуторолиненая форма если:
+
+\begin{enumerate}
+\item $B(x_1 + x_2, y) = B(x_1, y) + B(x_2, y)$
+\item $B(x, y_1 + y_2) = B(x, y_1) + B(x, y_2)$
+\item $B(\alpha x, y) = \alpha B(x, y)$
+\item $B(x, \alpha y) = \overline{\alpha}B(x, y)$
+\end{enumerate}
+\end{Def}
+
+\begin{Def}
+$B$ "--- называется эрмитово симметричная если 
+$B(x, y) = \overline{B(y, x)}$
+\end{Def}
+
+\begin{Def}
+Если $B$ "--- эрмитова симмитричная.
+$B(x, x) \in \R$
+
+и если $\forall x \in V, B(x, x) \ge 0, B(x, x) = 0 \Lra x = 0$, то $B$ "--- 
+положительно определенная. 
+\end{Def}
+
+
+
+\begin{Def}
+$B$ "--- невырожденная, если 
+$$\forall x \ne 0 \exists y B(x, y) \ne 0$$
+$$\forall y \ne 0 \exists x B(x, y) \ne 0$$
+\end{Def}
+
+Положительно определенная $\Ra$ невыражденная.
+\begin{Def}
+$K = \C, \dim_{\C}V = n < \infty$
+
+$B \colon V \times V \to K, B$ "--- эрмитово симмитрично, положительно определенное,
+тогда $(V, B)$ "--- называется унитарным пространством. 
+\end{Def}
+
+\begin{exmp}
+\item $C^n$
+ $$B(x, y) = \sum_{i = 1}^{n}x_i\overline{y_i}$$
+ $$B(x, \lambda y) = \overline{\lambda}B(x, y)$$
+ эрмитово симмитрично, положительно определено.
+\item $B(x, y) = x^{T}A\overline{y}$
+(Упражнение $B$ "--- эрмитово  симмитрично $\Lra A  = \overline{A}^{T}$)
+\item $V = C([a, b] \to \C)$
+$$B(f, g) = \int_{a}^{b}f(t)\overline{g(t)}dt$$  
+$$B(f, f) = \int_{a}^{b}|f|^2dt$$
+$B$ "--- положительно определенный. 
+\end{exmp}
+
+$B(u, v)$ "--- полуторолинейно эрмитово симметрично.
+
+$K$ "--- поле с инволюцией.
+
+Если $K = \C$
+$$B(u, v) = \overline{B(u, v)} \Ra B(u, v) \in \R$$ 
+
+Выше было: $-$ "--- инволюция на $K$(то есть, в частности, - $\ne$ $id$)
+$$B(u_1 + u_2, v) = B(u_1, v) + B(u_2, v)$$
+$$B(u, v_1 + v_2) = B(u, v_1) + B(u, v_2)$$
+$$B(\lambda u, v) = \lambda B(u, v)$$
+$$B(u, \lambda v) = \overline{\lambda} B(u, v)$$
+
+Далее - "--- либо инволюция на $K$, либо $id$.
+
+$B$, соответственно, полуторолинейная или билинейная форма.
