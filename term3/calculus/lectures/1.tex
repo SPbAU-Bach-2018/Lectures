@@ -1,0 +1,152 @@
+\setauthor{Дима Лапшин}
+Планы:
+\begin{enumerate}
+	\item Кратные интегралы
+	\item Криволинейные интегралы
+	\item Ряды
+	\item Функциональные ряды
+	\item Несобственные интегралы (их могут попросить пораньше)
+\end{enumerate}
+
+\setcounter{chapter}{2}
+\chapter{Кратные интегралы (продолжение)}
+\setcounter{section}{4}
+\section[Сведение крат. интеграла к повторному]{Сведение кратного интеграла к повторному}
+
+\begin{theorem}
+	$E \subset \R^n$ измеримо, $\Omega = E \times [a, b] \subset \R^{n+1}$ (координаты: $(x_1, \dots, x_n, y)$).
+	$f\colon \Omega \ra \R$ интегрируема на $\Omega$, $\forall x \in E, \exists \int_a^b f(x,y) \d y \lrh g(x)$.
+	Тогда $g$ интегрируема на $E$ и
+	\[ \int\limits_E g = \int\limits_\Omega f \]
+\end{theorem}
+\begin{proof}
+	$f$ интегрируема на $\Omega$ и интеграл равен $I$, значит
+	\[
+		\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
+		\forall \xi, \left|S(f,\tau,\xi) - I\right| < \epsilon
+	\]
+	Тогда $\tau = \{\Omega_1, \dots, \Omega_m\}$, $\diam \Omega_i < \delta$.
+	Возьмём разбиение $E$ мелькостью менее $\frac\delta2$ и разбиение $[a, b]$ такой же мелкости.
+	Перемножим эти два разбиения, получим разбиение мелкостью менее $\delta$.
+	\begin{Rem}
+		Каждое измеримое множество--фрагмент $E$ декартого умножается на отрезок--фрагмент $[a, b]$, получаем измеримое.
+	\end{Rem}
+	Возьмём это разбиение в качестве $\Omega_i$.
+
+	Для доказательства теоремы зафиксируем $\epsilon$ и $\delta$.
+	Возбмём произвольное разбиение $\tau = \{E_1, E_2, \dots\}$ и его оснащение $\{\eta_1, \eta_2, \dots\}$ мелкости менее $\frac\delta2$.
+	Покажем из него, что
+	\[
+		\left| S(g, \tau, \eta) - I \right| < 2\epsilon
+	\]
+	Мы знаем, что $g(\eta_i)$ существуют, значит для каждого:
+	\[
+		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \tilde\tau\colon |\tilde\tau| < \delta_{\eta_i},
+		\forall \{y_k\}, \left| g(x) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
+	\]
+	Возьмём в качестве $\tilde\epsilon = \frac\epsilon{\mu E}$.
+	Мы хотим найти такую мелкость $\tilde\delta < \frac\delta2$ разбиения $[a, b]$, что будет выполнено
+	\[
+		\left| S(g, \tau, \eta) - I \right| < 2\epsilon
+	\]
+
+	Делаем мы это так.
+	Взяли разбиение $E_i$.
+	У него есть оснащение $\eta_i$.
+	Для каждого такого есть $\tilde\delta_{\eta_i}$.
+	Их конечное число, значит есть такое $\tilde\delta$, которое меньше их всех и даже $\frac\delta2$.
+	Теперь возмьмём разбиение $E$ и умножаем его на дробление $[a, b]$ мелкости меньше $\tilde\delta$:
+	$\{I_1, I_2, \dots\}$ с оснащением ${y_1, y_2, \dots}$.
+
+	Получим:
+	\begin{gather*}
+		\tau\colon \Omega_{ij} = E_i \times I_j \quad \xi\colon \xi_{ij} = (\eta_i, y_j) \\
+		S(f, \tau, \xi) = \sum_{i,j} f(\eta_i, y_j) \mu(E_i \times I_j) = \sum_{i,j} f(\eta_i, y_j) \mu E_i \mu I_j
+			= \sum_i \underbrace{\left(\sum_j f(\eta_i, y_j) \mu I_j\right)}_{\text{сумма для $\int_a^b f(\eta_i,y) \d x$}} \mu E_i > \cdots\\
+		\sum_j f(\eta_i, y_j) \mu I_j > \int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E} \\
+		\cdots > \sum_i \left(\int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E}\right)
+			= \sum_i g(\eta_i) \mu E_i - \epsilon \sum_{i} \frac1{\mu E_i} \mu E_i = \sum_i g(\eta_i) \mu E_i - \epsilon \\
+		\sum_i g(\eta_i) \mu E_i < I + 2\epsilon
+	\end{gather*}
+	Аналогично
+	\begin{gather*}
+		\sum_i g(\eta_i) \mu E_i > I - 2\epsilon \\
+		\left| \sum_i g(\eta_i) \mu E_i - I \right| < 2\epsilon \Ra \int\limits_E g = I
+	\end{gather*}
+\end{proof}
+\begin{Rem}
+	Пусть мы знаем, что $f$ непрерывна, а значит и равномерно непрерывна.
+	Тогда из определения равномерной непрерывности можно взять $\tilde\delta$ для $\tilde\epsilon = \frac\epsilon{\mu E}$.
+	Оно без игр с $\tilde\delta_{\eta_i}$ подойдёт везде.
+\end{Rem}
+
+\begin{conseq}
+	Пусть есть $f\colon [a, b] \times [c, d] \ra \R$, $f$ интегрируема, $\forall x, \text{$f(x)$ интегрируема по $y$}$.
+	Тогда
+	\[ \int\limits_{[a, b] \times [c, d]} f = \int\limits_{[a, b]} \left( \int\limits_{[c, d]} f \d y \right) \d x \]
+\end{conseq}
+\begin{conseq}
+	Пусть есть $f\colon [a, b] \times [c, d] \ra \R$, $f$ интегрируема,
+	$\forall x, \text{$f(x)$ интегрируема по $y$}$, $\forall x, \text{$f(y)$ интегрируема по $x$}$.
+	Тогда
+	\[
+		\int\limits_{[a, b]} \left( \int\limits_{[c, d]} f \d y \right) \d x
+		= \int\limits_{[c, d]} \left( \int\limits_{[a, b]} f \d x \right) \d y
+	\]
+\end{conseq}
+\begin{Rem}
+	Без интегрируемости всей $f$ на $[a, b] \times [c, d]$ неверно.
+	\begin{exmp}
+		\begin{gather*}
+			f(x, y) = \begin{cases} \frac{x^2 - y^2}{(x^2 + y^2)^2} & (x, y) \ne 0 \\ 0 & (x, y) = 0 \end{cases} \\
+			\int\limits_0^1 \int\limits_0^1 f(x, y) \d x \d y = \frac\pi4 \quad \int\limits_0^1 \int\limits_0^1 f(x, y) \d y \d x = \frac{-\pi}4
+		\end{gather*}
+	\end{exmp}
+\end{Rem}
+
+\begin{Rem}
+	Вспочинаем, что такое элементарное множество: взяли $\phi, \psi\colon E \subset \R^n \ra \R$, $\phi \le \psi$.
+	\[ X = \{ (x, y) \in \R^{n+1} \mid x \in E \land \phi(x) \le y \le \psi(x)\} \]
+\end{Rem}
+\begin{theorem}
+	Пусть $X$ "--- элементарное множество, $f\colon X \ra \R$, $f$ интегрируема, $\int_{\phi(x)}^{\psi(x)} f(x, y) \d y$ существует.
+	Тогда
+	\[ \int\limits_X f = \int\limits_E \left( \int\limits_{\phi(x)}^{\psi(x)} f(x, y) \d y \right) \d x \]
+\end{theorem}
+\begin{proof}
+	$a = \min \phi(x)$, $b = \max \psi(x)$.
+	Продлим функцию $f$ нулями, применим предыдущую теорему:
+	\begin{gather*}
+		h\colon E \times [a, b] \ra \R \\
+		h(x, y) = \begin{cases} f(x, y) & (x, y) \in X \\ 0 & (x, y) \notin X \end{cases}
+	\end{gather*}
+\end{proof}
+
+\section{Замена переменной в интеграле}
+
+\begin{Def}
+	$f\colon G \ra \R$, $f$ непрерывна.
+	$f$ непрерывно продолжаемая на замыкании, если существует $g\colon \cl G \ra \R$, что
+	\[ g \biggr|_G = f \]
+\end{Def}
+
+\begin{Def}
+	$f\colon \cl G \ra \R$, $G$ открыто.
+	$f$ называется непрерывно дифференцируемой $k$ раз на $\cl G$,
+	если $f$ непрерывно дифференцируема на $G$ и все происзодные непрерывно продолжаются на $\cl G$.
+\end{Def}
+
+Глобальная цель: есть открытое измеримое $G \subset \R^n$, $\phi\colon \cl G \ra \R^n$,
+$\phi(G) = D$ "--- открытое, $\phi$ является биекцией между $C$ и $D$, $\phi$ непрерывно дифференцируема на $\cl G$,
+якобиан
+\[	\mathcal J_\phi(t) = \det \begin{pmatrix}
+		\partd{\phi_1}{t_1} & \cdots & \partd{\phi_1}{t_n} \\
+		\vdots & \ddots & \vdots \\
+		\partd{\phi_n}{t_1} & \cdots & \partd{\phi_n}{t_n}
+	\end{pmatrix} \ne 0
+\]
+Тогда можно заменить переменную:
+\[
+	\int\limits_D f = \int\limits_G f(\phi(t)) \left| J_\phi(t) \right| \d t
+\]
+Всё похоже на одномерный случай, но тогда нам не нужна была биекция: если $\phi$ убежит вверх, то она так же убежит вниз, и уберёт избыток.
