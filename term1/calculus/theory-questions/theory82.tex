@@ -1,0 +1,26 @@
+﻿\section{Локальные максимумы и минимумы}
+
+\begin{Def}
+$f\colon \left<a, b\right> \ra \R$, $x_0 \in (a, b)$. 
+$x_0$~--- точка строгого локального минимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) \ \{x_0\} f(x) > f(x_0)$$
+$x_0$~--- точка нестрогого локального минимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) f(x) \geqslant f(x_0)$$
+
+$x_0$~--- точка строгого локального максимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) \ \{x_0\} f(x) < f(x_0)$$
+$x_0$~--- точка нестрогого локального максимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) f(x) \leqslant f(x_0)$$
+
+Точка локального максимума или минимума также называется точкой локального экстремума.
+\end{Def}
+\begin{theorem}{Необходимое условие экстремума}
+$f\colon \left<a, b\right> \ra \R$, $x_0 \in (a, b)$, $f$ дифференцируема в $x_0$.
+$$x_0\text{~--- экстремум} \Ra f'(x_0) = 0$$
+\end{theorem}
+\begin{proof}
+Сузим до окрестности, там по теореме Ферма всё работает.
+\end{proof}
+\begin{Rem}
+Обратное неверно, смотри $f(x) = x^3$.
+\end{Rem}

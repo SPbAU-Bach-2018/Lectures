@@ -1,0 +1,90 @@
+﻿\section{Обратимые отображения и их свойства}
+
+\begin{Def}
+Пусть $f: A \to B$. Тогда $f$ обратимо справа, если $\exists g: B \to A \colon$ \[f \circ g = id_B\]
+
+$f$ обратимо слева, если $\exists g: B \to A \colon$ \[g \circ f = id_A\]
+
+$f$ обратимо, если $\exists g: B \to A \colon$ \[g \circ f = id_A, f \circ g = id_B\]
+
+Здесь $g$ "--- отображение, обратное к $f$, обозначается $g=f^{-1}$.
+\end{Def}
+
+\begin{theorem}{}
+
+\begin{enumerate}
+\item $f$ обратимо $\iff$ $f$ обратимо слева и справа.
+\item $f$ обратимо $\Ra$ обратное отображение единственно.
+\end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item
+Покажем, что если у $f$ есть и левый и правый обратный, то они совпадают.
+Пусть $g$ "--- правый обратный к $f$, $h$ "--- левый, тогда:
+\begin{gather*}
+(h \circ f) \circ g = id_A \circ g = g; \\
+h \circ (f \circ g) = h \circ id_B = h; \\
+\Ra g = h\\
+\end{gather*}
+
+\item Пусть $f$ обратимо и $g$, $h$ "--- два обратных. В частности, $g$ "--- обратное справа, $h$ "--- обратное слева, то есть по п.1 они совпадают.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{}
+Если $A \xrightarrow{f} B \xrightarrow{g} C$, то:
+
+\begin{enumerate}
+\item Если $f$, $g$ обратимы справа, то и $g \circ f$ обратимо справа.
+\item Если $f$, $g$ обратимы слева, то и $g \circ f$ обратимо слева.
+\item Если $f$, $g$ обратимы, то $g \circ f$ обратимо и $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Из условия знаем, что существуют:
+\begin{gather*}
+u: B \to A, f \circ u = id_B; \\
+v: C \to B, g \circ v = id_C; \\
+\end{gather*}
+
+Покажем, что $u \circ v$ "--- правый обратный к $g \circ f$:
+\begin{gather*}
+(g \circ f) \circ (u \circ v) = g \circ (f \circ (u \circ v)) = \\
+= g \circ ((f \circ u) \circ v) = g \circ (id_B \circ v) = g \circ v = id_C;
+\end{gather*}
+
+\item Аналогично.
+
+\item 
+\begin{gather*}
+(g \circ f)(f^{-1} \circ g^{-1}) = g \circ ((f \circ f^{-1}) \circ g^{-1}) = g \circ (id_B \circ g^{-1}) = g \circ g^{-1} = id_C; \\
+(f^{-1} \circ g^{-1})\circ(g \circ f) = f^{-1}(g^{-1} \circ g) \circ f = f^{-1} \circ id_B \circ f = f^{-1} \circ f = id_A;
+\end{gather*}
+\end{enumerate}
+\end{proof}
+
+\begin{conseq}{}
+Композиция сюръективных "--- сюръекция.
+
+Композиция инъективных "--- инъекцию.
+
+Композиция биективных "--- биекция.
+\end{conseq}
+
+\begin{theorem}{}
+Если $f: A \to B$ и $f$ обратима, тогда $f^{-1}$ обратима и $(f^{-1})^{-1} = f$
+\end{theorem}
+
+\begin{proof}
+\begin{gather*}
+f \circ f^{-1} = id_{B}; \\
+f^{-1} \circ f = id_A \Ra f \text{ "--- обратное к }f^{-1}
+\end{gather*}
+
+В силу единственности обратного $(f^{-1})^{-1} = f$.
+\end{proof}

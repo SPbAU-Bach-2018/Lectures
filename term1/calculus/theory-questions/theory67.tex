@@ -1,0 +1,40 @@
+﻿\section{Теорема о дифференцируемости обратной функции}
+
+
+\begin{theorem}{Производная обратной функции}
+$f: (a, b) \to \R,f^{-1}$ ~--- обратная функция.
+
+$f$ ~--- дифф. в точке $x_0 \in (a, b)$
+
+Тогда $(f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}$
+
+\end{theorem}
+
+\begin{proof}
+
+$$f^{-1} = g$$
+$$g(f(x)) = x$$
+$$g'(f(x_0))f'(x_0) = 1$$
+
+Нужна дифф. функции g в точке $f(x_0)$
+
+$$f(x) = f(x_0) + f'(x_0)(x - x_0) + \alpha (x)(x - x_0) \text{где $\alpha(x) \to 0$}$$
+$$g(f(x)) = g(f(x_0) + f'(x_0)(x - x_0) + \alpha (x)(x - x_0))$$
+$$g(y) = g(f(x_0)) + A(y - f(x_0)) + \beta(y)(y - f(x_0))$$
+$$g(f(x)) = g(f(x_0)) + A(f(x) - f(x_0)) + \beta(f(x))(f(x) - f(x_0))$$
+$$x = x_0 + A(f'(x_0)(x - x_0) + \alpha(x)(x - x_0)) + \beta(f(x))(f'(x_0)(x - x_0) + \alpha(x)(x - x_0))$$
+$$A = \frac{1}{f'(x_0)}, o = \frac{\alpha(x)}{f'(x_0)} + \beta(f(x))(f'(x_0 + \alpha(x)))$$
+$$\beta(f(x)) = -\frac{\alpha(x)}{f'(x_0)}\frac{1}{f'(x_0) + \alpha(x)}$$
+$$\beta(y) = -\frac{\alpha(g(y))}{f'(x_0)}\frac{1}{f'(x_0) + \alpha(g(y))}$$
+
+Надо понять,что $\beta(y) \to 0$ при $y \to f(x_0)$
+
+Если $y \to f(x_0)$, то $g(y) \to g(f(x_0))$
+
+$$\lim_{y \to f(x_0)}\alpha(g(y)) = \lim_{x \to x_0}\alpha(x) = 0$$
+\end{proof}
+
+\begin{conseq}
+$$(f^{-1})'(y) = \frac{1}{f'(f^{-1}(y_0))}$$
+
+\end{conseq}

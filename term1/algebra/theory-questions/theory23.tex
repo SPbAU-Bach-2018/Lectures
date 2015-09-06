@@ -1,0 +1,88 @@
+\section{Степень многочлена}	
+\begin{Rem}
+	Альтернативное обозначение многочленов (тут $a \in A$, а $x$ "--- переменная):
+	\begin{align*}
+	a &= (a, 0, 0, \dots); \\
+	x &= (0, 1, 0, \dots); \\
+	x^i &= (0, \dots, \underbrace{1}_{i-\text{я позиция}}, \dots); \\
+	(a_0, a_1, a_2, \dots) &= (a_0, 0, 0, \dots) + (0, a_1, 0, 0, \dots) + \dots =  \\
+    &= (a_0, 0, 0, \dots) \cdot (1, 0, 0, \dots) + (0, a_1, 0, 0, \dots) \cdot (0, 1, 0, 0, \dots) + \dots = \\
+    &= a_0 + a_1x + a_2x^2 + \dots + a_nx^n
+	\end{align*}
+	Последняя строка "--- общий способ записать многочлен.
+\end{Rem}
+	
+\begin{Def}
+	Альтернативное определение кольца многочленов:
+	\[A[x] = \lbrace a_0 + a_1x + \dots + a_nx^n \mid n \in \N \cup \lbrace 0 \rbrace \wedge a_i \in A \rbrace\]
+\end{Def}
+	
+\begin{Def}
+	Пусть $f = a_0 + a_1x + \dots + a_nx^n$, $a_n \neq 0$ и $f \neq 0$.
+	Тогда $n$ "--- степень многочлена $f$, обозначается $n = \deg f$.
+	Если $f = 0$, то положим $\deg f = -\infty$.
+\end{Def}
+	 
+\begin{theorem}{}
+	\begin{enumerate}
+	\item $deg(f + g) \leq \max(\deg f, \deg g)$
+	\item $deg(fg)  \leq \deg f + \deg g$
+	\begin{Rem}
+		Если $A$ - область целостности, то $\deg (fg) = \deg f + \deg g$
+	\end{Rem}
+	\end{enumerate}		
+\end{theorem}			 
+
+\begin{proof}
+	\begin{enumerate}
+	\item Следует из доказательства замкнутости относительно сложения (просто сложили и посмотрели на определение степени):
+	\begin{gather*}
+	f = a_0 + \dots + a_nx^n \wedge a_n \neq 0;\\
+	g = b_0 + \dots + b_mx^m \wedge a_m \neq 0;
+	\end{gather*}
+	\item Раскрыли скобки по дистрибутивности кольца многочленов, обнаружили, что там не может возникнуть
+	      $x^k$, где $k > \deg f + \deg g$.
+	\item Для области целостности. Рассмотрим $a_n\neq 0$ и $b_m \neq 0$ и пусть $fg$ имеет вид
+	\[ c_0x^0 + c_1x^1 + \dots + c_{n+m}x^{n+m} \]
+	Так как $c_{n+m}=a_nb_m$, то $c_{n+m} \neq 0$ (иначе есть нетривиальные делители нуля), то
+	есть $\deg (fg) = \deg f + \deg g$.
+	Если же один из многочленов ноль, то его степень равна $-\infty$, сумма степеней тоже равна
+	$-\infty$, а результат ноль $\Ra$ его степень равна $-\infty$.
+	\end{enumerate}
+\end{proof}	 
+
+\begin{conseq}
+	Если $A$ "--- область целостности, то и $A[x]$ "--- область целостности
+\end{conseq}
+\begin{proof}
+	Пусть $f, g \neq 0$, тогда:
+	\[
+	\deg f, \deg g \geq 0
+	\Ra \deg (fg) \geq 0
+	\Ra  fg \neq 0	
+	\]
+\end{proof}
+	 
+\begin{exmp}
+	Возьмём $A = \Z / 4 \Z$ (кольцо остатков по модулю 4, не область целостности)
+	положим $f = 2x$, $g = 2x^2$, $fg = 4x^2 = 0$, то есть $A[x]$ "--- не область целостности.
+\end{exmp} 
+	 
+\begin{conseq}
+	$A$ "--- область целостности $\Ra (A[x])^* = A^*$ 
+\end{conseq}	 
+\begin{proof}
+\begin{itemize}
+\item $\subset$: пусть $fg=1$ (при этом $f,g \neq 0$, иначе точно необратимо), тогда:
+	\begin{equation*}
+	\left.
+		\begin{aligned}
+		\deg f + \deg g &= 0 \\
+		\deg f &\ge 0 \\
+		\deg g &\ge 0
+		\end{aligned}
+	\right\} \Ra \deg f = \deg g = 0
+	\end{equation*}
+\item $\supset$: если элемент обратим в кольце $A$, то он обратим и в кольце многочленов
+\end{itemize}
+\end{proof}

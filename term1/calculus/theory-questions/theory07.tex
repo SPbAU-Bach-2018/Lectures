@@ -1,0 +1,36 @@
+\section{Неравентсва Коши-Буняковского и Минковского}
+
+\begin{theorem}{Неравенство Коши-Буняковского}
+$a_1, a_2, \ldots a_n, b_1, b_2, \ldots, b_n \in \R$
+$$\left(\sum_{k=1}^n a_kb_k\right){}^2 \leqslant \sum_{k=1}^n a_k^2 \sum_{k=1}^n b_k^2 $$
+\end{theorem}
+\begin{proof}
+$$f(t) \lrh \sum_{k=1}^n(a_kt-b_k)^2 = \left(\underbrace{a_1^2 + a_2^2 + \ldots + a_n^2}_{\lrh A}\right)t^2 - 
+2\left(\underbrace{a_1b_1 + \ldots + a_nb_n}_{\lrh C}\right)t + \left(\underbrace{b_1^2 + \ldots + b_2^2}_{\lrh B}\right)$$
+$f$ имеет не более 1 корня, следовательно
+$$ (2C)^2 - 4AB \leqslant 0 \Ra 4\left(C^2 - AB\right) \leqslant 0 \Lra C^2 \leqslant AB$$
+Можно считать, что все числа не равны 0~--- иначе всё тривиально.
+\begin{Rem}
+Равентсво в случае, если числа пропорциональны.
+\end{Rem}
+\begin{proof}
+$$a_i = \alpha b_i$$
+
+$\Lra$
+
+$$C^2 = AB \Lra \text{есть корень} t_0 \Lra \forall a_k t_0 - b_k = 0$$
+\end{proof}
+\end{proof}
+
+\begin{theorem}{Неравенство Минковского}
+$$\sqrt{\sum_{i=1}^n (a_i+b_i)^2} \leqslant \sqrt{\sum_{i=1}^k a_i^2} + \sqrt{\sum_{i=1}^k b_i^2}$$
+\end{theorem}
+\begin{proof}
+Возведём в квадрат
+$$ \sqrt{\sum_{i=1}^n (a_i+b_i)^2} \leqslant \sqrt{\underbrace{\sum_{i=1}^k a_i^2}_{\lrh A}} + \sqrt{\underbrace{\sum_{i=1}^k b_i^2}_{\lrh B}} \Lra \sum_{i=1}^n (a_i + b_i)^2 \leqslant A + 2\sqrt{AB} + B \Lra$$
+$$ \Lra A + B + 2\sum_{i=1}^n a_ib_i \Lra A + B + 2\sqrt{AB} \Lra \sum_{i=1}^n a_ib_i \leqslant \sqrt{AB} \La$$
+$$ \La \text{Неравенство Коши-Буняковского}$$
+\begin{Rem}
+Равентсво в случае, если числа пропорциональны.
+\end{Rem}
+\end{proof}      

@@ -1,0 +1,31 @@
+﻿\section{Отношение эквивалентности}
+
+\begin{Def}
+    $R$ "--- отношение эквивалентности, если оно рефлексивное, симметрично и транзитивно. Стандартное
+    обозначение: $a \sim b$.
+\end{Def}
+\begin{Def}
+    Для $a \in A$ определён
+    класс эквивалентности: $[a] = \{b \in A \mid a \sim b\}$
+\end{Def}
+
+\begin{theorem}{}
+Пусть $a, b \in A$. Тогда либо $[a]\cap [b] = \varnothing$, либо $[a] = [b]$ 
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $[a] \cap [b] = \varnothing$ "--- всё доказано. Заметим, что тогда $a \nsim b$, в противном случае $a, b \in [a], [b]$.
+\item $\exists c \in [a] \cap [b]$. Тогда $c \sim a$ и $c \sim b$ $\Ra a \sim b$.
+
+Покажем, что $[a] \subset [b]$ и $[b] \subset [a]$:
+
+\begin{enumerate}
+\item $x \in [a] \Ra x \sim a \Ra x \sim b \Ra x \in [b]$
+\item Аналогично
+\end{enumerate}
+\end{enumerate}
+
+\end{proof}
+
+Множество классов эквивалентности называется фактормножеством по отношению $R$.

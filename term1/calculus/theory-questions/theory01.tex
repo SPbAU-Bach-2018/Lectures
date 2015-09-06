@@ -1,0 +1,135 @@
+\section{Множества}
+
+Не любая совокупность элементов --- множество. Про каждый объект можно сказать, принадлежит ли он множеству ($x \in A$) или нет ($x \notin A$).
+
+\begin{Def}
+Множество $A$ - подмножество $B$, если все элементы $A$ содержатся и в $B$. 
+$$ A \subset B \LraDef \forall x \in A\; x \in B $$
+\end{Def}
+\begin{Def}
+Множества называются равными, если они содержатся друг в друге.
+$$ A = B \LraDef A \subset B \land B \subset A $$
+\end{Def}
+\begin{Def}
+Пустое множество --- это множество без элементов.
+$$ \forall x\: x \notin \emptyset $$
+\end{Def}
+\begin{Def}
+$2^A$ --- множество всех подмножеств $A$.
+$$ 2^A \eqDef \left\{B \mid B \subset A \right\} $$
+\end{Def}
+
+\begin{itemize}
+\item $\N$ --- множество натуральных чисел. 
+\item $\Z$ --- множество целых чисел.
+\item $\Q$ --- множество рациональных чисел.
+\item $\R$ --- множества вещественных чисел.
+\item $\C$ --- множества комплексных чисел.
+\end{itemize}
+
+Задание множеств:
+\begin{itemize} 
+\item $\left\{a,b,c\right\}$
+\item $\left\{a_1, a_2, \ldots, a_n\right\}$
+\item $\left\{a_1, a_2, \ldots\right\}$
+\item $\left\{x \in A \mid \Phi(x)\right\}, \Phi(x) - \text{условие}$.
+\end{itemize} 
+Например, $\left\{p \in \N \mid p \text{ имеет ровно 2 натуральных делителя}\right\}$.
+
+Бывают некорректно заданные <<множества>>. Например, множество художественных произведений на русском языке --- плохо заданное множество. Рассмотрим 
+$\Phi(n)$ --- истина, если n нельзя записать в не более чем тридцать слов русского языка. Тогда
+$\left\{n \in \N \mid \Phi(n)\right\}$~--- не множество. Если бы это было множеством, то в нём есть наименьший элемент, 
+который описывается как <<Наименьший элемент множества...>>
+
+\begin{Def}
+Пересечение двух множеств~--- множество, состоящие из всех элементов, находящихся одновременно в обоих множествах.
+$$ A \cap B \eqDef \left\{x \in A \mid x \in B \right\} $$
+\end{Def}
+\begin{Def}
+Объединение двух множеств~--- множество, состоящее из элементов обоих множеств.
+$$ A \cup B \eqDef \left\{x \mid x \in A \lor x \in B \right\} $$
+\end{Def}
+\begin{Def}
+Разность множеств~--- это множество тех элементов, которые лежат в первом, но не во втором.
+$$ A \setminus B \eqDef \left\{ x \in A \mid x \notin B \right\}$$
+\end{Def}
+\begin{Def}
+Симметрическя разность~--- объединение разностей.
+$$ A \btu B \eqDef \left(A \setminus B\right) \cup \left(B \setminus A\right) $$
+\end{Def}
+
+Объединение и пересечение множно записать для многих множеств.
+$$ \bigcup_{i \in I} A_i = \left\{x \mid \exists i \in I\colon x \in A_i\right\}; 
+\bigcap_{i \in I} A_i = \left\{x \mid \forall i \in I\: x \in A_i \right\} $$
+
+Свойства операций со множествами:
+\begin{enumerate}
+\item Ассоциативность
+$$ A \cap B = B \cap A; A \cup B = B \cup A $$
+\item Коммутативность
+$$ \left(A \cap B \right) \cap C = A \cap \left(B \cap C \right); \left(A \cup B \right) \cup C = A \cup \left(B \cup C \right) $$
+\item Рефлексивность
+$$ A \cap A = A; A \cup A = A $$
+\item Дистрибутивность
+$$ A \cap \left(B \cup C \right) = \left(A \cap B\right) \cup \left(A \cap C \right) $$
+$$ A \cup \left(B \cap C \right) = \left(A \cup B\right) \cap \left(A \cup C \right) $$
+\item Нейтральный элемент
+$$ A \cap \emptyset = \emptyset$$
+$$ A \cup \emptyset = A$$
+\end{enumerate}
+
+\begin{theorem}{Правила де Моргана}
+$ A, B_\alpha, \alpha \in I $.
+Тогда 
+$$ A \setminus \bigcup_{\alpha \in I} B_\alpha = \bigcap_{\alpha \in I} \left(A \setminus B_\alpha\right) ; 
+A \setminus \bigcap_{\alpha \in I} B_\alpha = \bigcup_{\alpha \in I} \left(A \setminus B_\alpha\right) $$
+\end{theorem} 
+\begin{proof}
+$$
+x \in A \setminus \bigcup_{\alpha \in I} B_{\alpha} \Lra \left\{\begin{aligned}x &\in A \\ x &\notin \bigcup_{\alpha \in I} B_{\alpha}\end{aligned}\right. \Lra 
+\left\{\begin{aligned} x &\in A \\ \forall \alpha \in I\: x &\notin B_\alpha \end{aligned}\right. \Lra
+\forall \alpha \in I\: \left\{\begin{aligned} x &\in A \\ x &\notin B_\alpha \end{aligned}\right.  
+\Lra x \in \bigcap_{\alpha \in I} \left(A \setminus B_\alpha\right) 
+$$
+$$
+x \in A \setminus \bigcap_{\alpha \in I} B_{\alpha} \Lra \left\{\begin{aligned}x &\in A \\ x &\notin \bigcap_{\alpha \in I} B_{\alpha}\end{aligned}\right. \Lra 
+\left\{\begin{aligned} x &\in A \\ \lnot \forall \alpha \in I\: x &\in B_\alpha \end{aligned}\right. \Lra
+\exists \alpha \in I\colon \left\{\begin{aligned} x &\in A \\ x &\notin B_\alpha \end{aligned}\right.  
+\Lra x \in \bigcup_{\alpha \in I} \left(A \setminus B_\alpha\right) 
+$$
+\end{proof}
+
+\begin{theorem}{Обобщение дистрибутивности}
+$ A, B_\alpha, \alpha \in I $.
+Тогда 
+$$ A \cap \bigcup_{\alpha \in I} B_\alpha = \bigcup_{\alpha \in I} (A \cap B_\alpha) $$
+$$ A \cup \bigcap_{\alpha \in I} B_\alpha = \bigcap_{\alpha \in I} (A \cup B_\alpha) $$
+\end{theorem}
+\begin{proof}
+$$
+x \in A \cap \bigcup_{\alpha \in I} B_{\alpha} \Lra \left\{\begin{aligned}x &\in A \\ x &\in \bigcup_{\alpha \in I} B_{\alpha}\end{aligned}\right. \Lra 
+\left\{\begin{aligned} x &\in A \\ \exists \alpha \in I\colon x &\in B_\alpha \end{aligned}\right. \Lra
+\exists \alpha \in I\colon \left\{\begin{aligned} x &\in A \\ x &\in B_\alpha \end{aligned}\right.  
+\Lra x \in \bigcup_{\alpha \in I} \left(A \cap B_\alpha\right) 
+$$
+$$
+x \in A \cup \bigcap_{\alpha \in I} B_{\alpha} \Lra \left[\begin{aligned}x &\in A \\ x &\in \bigcap_{\alpha \in I} B_{\alpha}\end{aligned}\right. \Lra 
+\left[\begin{aligned} x &\in A \\ \forall \alpha \in I\: x &\in B_\alpha \end{aligned}\right. \Lra
+\forall \alpha \in I\: \left[\begin{aligned} x &\in A \\ x &\in B_\alpha \end{aligned}\right.  
+\Lra x \in \bigcap_{\alpha \in I} \left(A \cup B_\alpha\right) 
+$$
+\end{proof}
+
+\begin{Def}
+Упорядоченная пара $\langle a, b \rangle$ или $(a, b)$ --- объект
+$$ (a_1; b_1) = (a_2; b_2) \LraDef a_1 = a_2 \land b_1 = b_2 $$
+\end{Def}
+\begin{Def}
+Упорядоченная $n$-ка, или кортеж --- объект
+$$ (a_1, a_2, \ldots, a_n) = (b_1, b_2, \ldots, b_n) \LraDef \forall i=1..n\: a_i = b_i $$
+\end{Def}
+
+\begin{Def}
+Декартого произведение множеств --- множество кортежей, состоящих из элементов соответствующих множеств.
+$$ \left(a_1, a_2, \ldots, a_n\right) \in A_1 \times A_2 \times \ldots \times A_n \LraDef \forall i=1..n\: a_i \in A_i $$
+\end{Def}

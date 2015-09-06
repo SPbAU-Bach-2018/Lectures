@@ -1,0 +1,35 @@
+﻿\section{Критерий Коши для отображений и для функций}
+
+\begin{theorem}{Критерий Коши}
+
+$$f: E \subset X \to Y, a \text{~--- предельная точка E, Y ~--- полное}$$
+
+$$\exists \lim_{x \to a} f(x) \Lra \forall \epsilon > 0 \exists \delta > 0 \forall x, y \in \dot B_{\delta}(a) \cap E \rho(f(x), f(y)) < \epsilon$$
+
+\end{theorem}
+\begin{proof}
+ \begin{enumerate}
+ \item $\Ra$ 
+ Если $\lim_{x \to a}f(x) = b \Ra \forall \epsilon > 0 \exists \delta > 0$
+   $$\forall x \in \dot B_{\delta}(a) \forall y \in \dot B_{\delta}(a)$$
+
+   $$f(x) \in B_{\epsilon}(b), f(y) \in B_{\epsilon}(b)$$
+
+   $$\rho(f(x), b) < \epsilon, \rho(f(y), b) < \epsilon \Ra \rho(f(x), f(y)) \le \rho(f(x), b) + \rho(f(y), b) < 2\epsilon$$
+ \item $\La$
+
+     Берем любую последовательность $x_n$ $x_n \ne a \in E \to a$
+
+     $$\exists N \forall n > N x_n \in B_{\delta}(a)$$
+
+     $$\Ra x_n \in \dot B_{\delta}(a) \cap E$$
+
+     $$\rho(f(x_n), f(x_m)) \forall n, m > N$$
+
+     $$\Ra f(x_n) \text{~--- фундументальная последовательность точек из Y}$$
+
+     $$\Ra \exists lim(f(x_n)) \text{полнота Y}$$
+ \end{enumerate}
+
+
+\end{proof}

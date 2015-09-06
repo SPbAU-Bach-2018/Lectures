@@ -1,0 +1,21 @@
+﻿\section{Замена переменной}
+\begin{theorem}{Замена переменной в неопределённом интеграле}
+$f\colon \left<a, b\right> \ra \R$ непрерывна, $\phi\colon \left<c, d\right> \ra \left<a, b\right>$ непрерывно дифференцируема.
+$$\int f(\phi(t)) \phi'(t) \d t = F(\phi(t)) + c$$
+\end{theorem}
+\begin{proof}
+$$\left(F(\phi(t)) + c\right)' = (F(\phi(t)))' = F'(\phi(t)) \phi'(t) = f(\phi(t)) \phi'(t)$$
+\end{proof}
+\begin{conseq}
+$$\int f(\alpha x + \beta) \d x = \frac1{\alpha}F(\alpha x + \beta) + c$$
+\end{conseq}
+
+Примеры:
+$$\int \frac{\ln^2 x}{x}\d x$$
+$f = x^2, \phi = \ln x$
+$$\int \frac{\ln^2 x}{x} \d x = \int (\ln x)^2 (\ln x)' \d x = \frac{(\ln x)^3}3 + c = \frac{\ln^3 x}3 + c$$
+$a>0$
+$$\int \frac{\d x}{x^2 + a^2} = \frac1{a^2} \int \frac{\d x}{\left(\frac{x}a\right)^2 + 1} = \frac1{a^2} \frac1{\frac1a} \arctg \frac{x}a + c=$$
+$$= \frac1a \arctg \frac{x}a$$
+$f=\frac1{x^2+1}$
+

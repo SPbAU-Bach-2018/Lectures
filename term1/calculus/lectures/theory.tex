@@ -1,0 +1,180 @@
+%% texify: XeLaTeX + MakeIndex + BibTeX, modificated
+%% texify
+%% --pdf
+%% --engine=xelatex
+%% --tex-option=$synctexoption // You may delete this, affords to skip from preview to code in one click, that i seldom do
+%% --tex-option=-8bit // Else minted fails on tabs
+%% --tex-option=--shell-escape // For minted to live
+%% $fullname
+%% I prefer to build with TeXworks for better view of errors and warnings. It's hard to read all log file. 
+
+\documentclass[12pt,a4paper]{book}
+\usepackage{polyglossia} %% Better than babel on XeLaTeX
+\usepackage{amsmath, amssymb} %% Cool math!
+\usepackage{color} %% Coloring almost anything
+\usepackage[russian]{hyperref} %% Clickable links is pdf
+\usepackage{indentfirst}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+%% WARNING: latest minted is used. Download from github!
+%% Works fine, though
+%\usepackage{minted} %% Highlighting code. Installation is hard: requires python2 and script Pygments. Look at documentation for help!
+\usepackage[math-style=ISO,vargreek-shape=unicode]{unicode-math} %% MAGIC! INCLUDE AS LAST!
+
+\setdefaultlanguage[spelling=modern]{russian} %% Languages for polyglossia
+\setotherlanguage{english}
+
+\defaultfontfeatures{Ligatures={TeX}} %% Fonts and ligatures.
+\setmainfont{CMU Serif} %% There are original Knuth's fonts in Unicode, called Computer Modern Unicode. Download anywhere, just install them
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}  
+\setmathfont{Latin Modern Math} %% Download too. You may change it :)
+\AtBeginDocument{\def\setminus{\mathbin{\backslash}}}
+%\setmathfont{XITS}
+
+%% Magic as black as my working table
+%\DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
+%\newcommand{\makecyrmathletter}[1]{%
+%  \begingroup\lccode`a=#1\lowercase{\endgroup
+%  \Umathcode`a}="0 \csname symcyrletters\endcsname\space #1
+%}
+%\count255="409
+%\loop\ifnum\count255<"44F
+%  \advance\count255 by 1
+%  \makecyrmathletter{\count255}
+%\repeat
+%% Simpy adds cyrillic to maths!
+
+\frenchspacing %% One space before sentence, not two!
+
+%% Shortcuts:
+\def\la{\leftarrow}
+\def\ra{\rightarrow}
+\def\lra{\leftrightarrow}
+\def\La{\Leftarrow}
+\def\Ra{\Rightarrow}
+\def\Lra{\Leftrightarrow}
+\def\lrh{\leftrightharpoons}
+\def\xra{\xrightarrow}
+\def\btu{\bigtriangleup}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+
+\def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
+\def\eqDef{\stackrel{\mathrm{Def}}{=}}
+\def\d{\mathup{d}}
+
+% ======================================
+
+%% Change Chapter and Section numeration style
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+
+%% Indent for first par in chapter
+\makeatletter
+\renewcommand{\chapter}{\clearpage %% no double page, only
+\thispagestyle{empty}%% not plain, empty. wanna number of page!
+\global\@topnum=0
+\@afterindenttrue %% Set to true!
+\secdef\@chapter\@schapter}
+\makeatother
+
+%% Environment for theorem body
+\newcounter{theorem}[section]
+\renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
+\newcommand*{\theoremheader}[1]{\par\refstepcounter{theorem}%
+\textbf{Теорема \thetheorem. #1.}}
+\newenvironment*{theorem}[1]{
+\theoremheader{#1}%
+}{%
+}
+
+%% Environment for consequence body
+\newcounter{conseq}[theorem]
+\renewcommand{\theconseq}{\thetheorem.\arabic{conseq}}
+\newcommand*{\conseqheader}{\par\refstepcounter{conseq}%
+\textit{Следствие \theconseq.} }
+\newenvironment*{conseq}{
+\conseqheader%
+}{%
+}
+
+\newcounter{lemma}[section]
+\renewcommand{\thelemma}{\thesection.\arabic{lemma}}
+\newcommand*{\lemmaheader}{\par\refstepcounter{lemma}%
+\textit{Лемма \thelemma.}}
+\newenvironment*{lemma}{
+	\lemmaheader%
+}{%
+}
+
+\newenvironment{assertion}{%
+\par\textbf{Утверждение. }%
+}{%
+%
+}
+
+%% Environment for proof body. I like this style, but you are free to change it.
+\newenvironment{proof}{%
+\par$\blacktriangleright$%
+}{%
+\hfill$\blacktriangleleft$%
+}
+
+%% Environment for definitions. Pretty raw one.
+\newenvironment{Def}{%
+\par$\mathfrak{Def\colon}$%
+}{%
+}
+
+%% Environment for remarks.
+\newenvironment{Rem}{%
+\par\textit{REM: }%
+}{%
+}
+
+\setcounter{MaxMatrixCols}{40}
+
+% ==================================
+
+%% In-line code highlighting. Using: \py|a = input()|
+%\newmintinline[cinl]{c}{} %\c is defined :(
+%\newmintinline[cpp]{cpp}{}
+%\newmintinline[python]{python}{}
+%\newmintinline[bash]{bash}{}
+%\newmintinline[make]{make}{}
+
+%% Escaped code highlighting. Using: \begin{cppcode} ... \end{cppcode}
+%\setminted{obeytabs,tabsize=4,linenos,texcomments}
+%\newminted{c}{}
+%\newminted{cpp}{}
+%\newminted{python}{}
+%\newminted{bash}{}
+%\newminted{make}{}
+
+% ==================================
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
+
+
+\begin{document}
+\input{theory-01.tex}
+\input{theory-02.tex}
+\input{theory-03.tex}
+\input{theory-04.tex}
+\input{theory-05.tex}
+\input{theory-06.tex}
+\input{theory-07.tex}
+\input{theory-08.tex}
+%\input{theory-09.tex}
+\input{theory-10.tex}
+\input{theory-11.tex}
+\input{theory-12.tex}
+\input{theory-13.tex}
+\input{theory-14.tex}
+\end{document}

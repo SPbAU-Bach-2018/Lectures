@@ -1,0 +1,133 @@
+\chapter{Интегральное исчисление}
+
+\section{Неопределённый интеграл}
+
+\begin{Def}
+$f\colon \left<a, b\right> \ra \R$. Функция $F\colon \left<a, b\right> \ra \R$ называется первообразной $f$, если
+$$F' = f$$
+\end{Def}
+
+Не для всех $f$ существует $F$. Например,
+$$f(x) = \begin{cases}1 & x \geqslant 0 \\ 0 & x < 0\end{cases}$$
+\begin{proof}
+Пусть есть $F' = f$. Тогда по теореме Дарбу
+$$\forall a, b \in (-1, 1), c \in (F'(a), F'(b))\; \exists c \in (a, b)\colon F'(c) = C$$
+\end{proof}
+
+\begin{theorem}{О существовании первообразной}
+Для любой непрерывной $f\colon \left<a, b\right> \ra \R$ есть первообразная $F$.
+\end{theorem}
+Докажем в следующем семестре.
+
+\begin{theorem}{}
+$f, F\colon \left<a, b\right> \ra \R$, $F$~--- первоообразная. Тогда
+\begin{enumerate}
+\item $F + с, c \in \R$ также первообразная.
+\item $\Phi$~--- певрообразная только если $\Phi = F + c$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$$(F+c)' = F' + 0 = f$$
+Рассмотрим $G = \Phi - F$. Она дифференцируема и
+$$G' = (\Phi - F)' = \Phi' - F' = f - f = 0$$
+Но тогда $$G = const$$
+\end{proof}
+
+\begin{Def}
+Неопределённым интегралом функции $f$ называется множество её первообразных.
+$$\int f(x)\d x$$
+\end{Def}
+Пока стоит воспринимать все символы интеграла как некоторые ,,скобки''.
+
+Если есть некоторая первообразная $F$, то
+$$\int f(x)\d x = \left\{F(x) + c \mid c \in \R\right\}$$
+Тот же смысл имеют записи
+$$\int f(x)\d x = F(x) + c$$
+$$\int f\d x = F + c$$
+
+Для того, чтобы найти неопределённый интеграл, достаточно найти какую-то первообразную, а для проверки первообразной достаточно взять от неё производную.
+
+Таблица интегралов:
+\begin{align*}
+\int 0\d x &= c \\
+\int x^p\d x &= \frac{x^{p+1}}{p + 1} + c \\
+\int \frac{\d x}{x} &= \ln |x| + c \\
+\int a^x \d x &= \frac{a^x}{\ln a} + c \\
+\int \sin x \d x &= -\cos x + c \\
+\int \cos x \d x &= \sin x + c \\
+\int \frac{\d x}{\cos^2 x} &= \tg x + c \\
+\int \frac{\d x}{\sin^2 x} &= -\ctg x + c \\
+\int \frac{\d x}{\sqrt{1 - x^2}} &= \arcsin x + c \\
+\int \frac{\d x}{1 + x^2} &= \arccos x + c \\
+\int \frac{\d x}{1 - x^2} &= \frac12 \ln \left|\frac{1+x}{1-x}\right| + c\\
+\int \frac{\d x}{\sqrt{x^2 \pm 1}} &= \ln \left|x + \sqrt{x^2 \pm 1}\right| + c
+\end{align*}
+
+\subsection{Арифметические действия с интегралами}.
+
+\begin{Def}
+Пусть $A, B$~--- множества. Тогда
+$$A + B = \left\{a + b \mid a \in A \land b \in B\right\}$$
+$$A - B = \left\{a - b \mid a \in A \land b \in B\right\}$$
+$$\alpha A = \left\{\alpha a \mid a \in A\right\}$$
+\end{Def}
+
+\begin{theorem}{Об арифметических операциях с интегралами}
+$$\int (f \pm g) \d x = \int f \d x \pm \int g \d x$$
+$\alpha \ne 0$
+$$\int \alpha f \d x = \alpha \int f \d x$$
+\end{theorem}
+\begin{Rem}
+Именно из-за того, что константы в записи нет, мы исключаем ноль.
+\end{Rem}
+\begin{proof}
+$F, G$~--- первообразные соотвественно $f, g$.
+$$\int f \d x = \left\{F + c_1\right\}$$
+$$\int g \d x = \left\{G + c_2\right\}$$
+$$\int f \d x \pm \int g \d x = \left\{F + c_1\right\} \pm \left\{G + c_2\right\} = \left\{F+G+c_3\right\} = $$
+$(F+G)' = f + g$
+$$ = \int (f+g)\d x$$
+$$\alpha \int f \d x = \alpha \left\{F + c_1\right\} = \left\{\alpha F + c_2\right\} = $$
+$(\alpha F)' = \alpha f$
+$$ = \int \alpha f\d x$$
+\end{proof}
+
+\begin{theorem}{Замена переменной в неопределённом интеграле}
+$f\colon \left<a, b\right> \ra \R$ непрерывна, $\phi\colon \left<c, d\right> \ra \left<a, b\right>$ непрерывно дифференцируема.
+$$\int f(\phi(t)) \phi'(t) \d t = F(\phi(t)) + c$$
+\end{theorem}
+\begin{proof}
+$$\left(F(\phi(t)) + c\right)' = (F(\phi(t)))' = F'(\phi(t)) \phi'(t) = f(\phi(t)) \phi'(t)$$
+\end{proof}
+\begin{conseq}
+$$\int f(\alpha x + \beta) \d x = \frac1{\alpha}F(\alpha x + \beta) + c$$
+\end{conseq}
+
+Примеры:
+$$\int \frac{\ln^2 x}{x}\d x$$
+$f = x^2, \phi = \ln x$
+$$\int \frac{\ln^2 x}{x} \d x = \int (\ln x)^2 (\ln x)' \d x = \frac{(\ln x)^3}3 + c = \frac{\ln^3 x}3 + c$$
+$a>0$
+$$\int \frac{\d x}{x^2 + a^2} = \frac1{a^2} \int \frac{\d x}{\left(\frac{x}a\right)^2 + 1} = \frac1{a^2} \frac1{\frac1a} \arctg \frac{x}a + c=$$
+$$= \frac1a \arctg \frac{x}a$$
+$f=\frac1{x^2+1}$
+
+\begin{theorem}{Интегрирование по частям}
+$f, g$~--- дифференцируемые, $f'g$~--- интегрируемая.
+$$\int fg'\d x = fg - \int f'g \d x$$
+\end{theorem}
+\begin{proof}
+$\Phi$~--- первообразная $f'g$.
+$$(fg - \Phi + c)' = fg' + f'g - f'g = fg'$$
+\end{proof}
+
+Пример:
+$$\int x^2 e^x \d x = x^2 e^x - \int 2x e^x \d x = x^2 e^x - 2 \int x e^x \d x = $$
+$$ = x^2 e^x - 2\left(x e^x - \int e^x \d x\right) = x^2 e^x - 2x e^x + 2e^x + c$$
+
+Есть термин ,,берущеися'' интегралы. Это интегралы, выражаемые через элементарные функции. Их, вообще говоря, мало. К ним относятся рациональные функции (отношение многочленов), произведение тригинометрических функций, $x\sqrt{ax^2 + bx + c}$. Не берутся, например, 
+$$\int e^{x^2} \d x$$
+$$\int \frac{e^x}x \d x$$
+$$\int \frac{\sin x}x \d x$$
+$$\int \frac{\cos x}x\d x$$
+$$\int \frac{\d x}{\ln x}$$

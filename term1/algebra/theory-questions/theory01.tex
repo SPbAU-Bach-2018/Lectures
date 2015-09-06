@@ -1,0 +1,75 @@
+﻿\section{Отображения. Композиция отображений}
+
+\begin{Def}
+$A$, $B$ "--- множества. $\Gamma_{f} \subset A \times B$. $\Gamma_f$ "--- график отображения, если выполнены два условия:
+
+\begin{enumerate}
+\item $\forall a \in A, \exists b \in B \colon (a, b) \in \Gamma_{f}$
+\item $\forall a \in A, \exists b_1, b_2 \in B\colon (a, b_1) \in \Gamma_f \wedge (a, b_2) \in \Gamma_f \Ra b_1 = b_2$
+\end{enumerate} 
+\end{Def}
+
+\begin{Def}
+Есть $A, B$ и $\Gamma_f \subset A \times B$.
+Говорим, что задано отображение $f$ из $A$ в $B$ с графиком $\Gamma_f$, обозначение:
+\begin{gather*}
+f:A \to B \\
+A \xrightarrow{f} B \\
+(a, b) \in \Gamma_f \Lra b = f(a)
+\end{gather*}
+
+Также называем:
+
+$A$ "--- областью определения ($A=\Dom(f)$),
+
+$B$ "--- областью назначения ($B=\coDom(f)$).
+\end{Def}
+
+\begin{Def}
+Равенство отображений $f: A \to B$ и $f_1: A_1 \to B_1$:
+\begin{gather*}
+f = f_1 \Lra A = A_1, B = B_1, \Gamma_f = \Gamma_{f_1}
+\end{gather*}
+\end{Def}
+
+\begin{Def}
+Композиция отображений $g \circ f$, где $A \xrightarrow{f} B \xrightarrow{g} C$:
+\begin{gather*}
+g \circ f: A \to C \\
+(g \circ f)(a) = g(f(a)) \\
+(a, c) \in \Gamma_{g \circ f} \Lra \exists b \in B \colon (a, b) \in \Gamma_{f} \wedge (b, c) \in \Gamma_g
+\end{gather*}
+
+Область определения $g \circ f$ "--- область определения $f$ ($\Dom(f)$)
+
+Область назначения $g \circ f$ "--- область назначения $g$ ($\coDom(f)$)
+
+\end{Def}
+
+\begin{theorem}{Композиция отображений ассоциативна}
+Если $A \xrightarrow{f} B \xrightarrow{g} C \xrightarrow{h} D$, то:
+\begin{gather*}
+h \circ (g \circ f) = (h \circ g) \circ f \\
+\end{gather*}
+\end{theorem}
+
+\begin{proof}
+Проверим область определения:
+\begin{gather*}
+\Dom(h \circ (g \circ f)) = \Dom(g \circ f) = \Dom(f) = A \\
+\Dom((h \circ g) \circ f) = \Dom(f) = A
+\end{gather*}
+
+Проверим область назначения:
+\begin{gather*}
+\Dom(h \circ (g \circ f)) = \coDom(h) = D \\
+\Dom((h \circ g) \circ f) = \coDom((h \circ g)) = \coDom(h) = D
+\end{gather*}
+
+Проверим, что образ одинаков для любого $a \in A$:
+\begin{gather*}
+(h \circ (g \circ f))(a) = h(g \circ f(a)) = h(g(f(a))) \\
+((h \circ g) \circ f)(a) = (h \circ g)(f(a)) = h(g(f(a)))
+\end{gather*}
+
+\end{proof}

@@ -1,0 +1,13 @@
+﻿\section{Неравенство Йенсена}
+
+\begin{theorem}{Неравенство Йенсена}
+$f\colon \left<a, b\right> \ra \R$ выпукла.
+$$\forall \{x_i\}_{i=1}^n \subset \left<a, b\right> \forall \{\lambda_i\}_{i=1}^n \subset [0, 1]\colon \sum_{i=1}^n \lambda_i = 1$$
+$$f\left(\sum_{i=1}^n \lambda_i x_i\right) \leqslant \sum_{i=1}^n \lambda_i f(x_i)$$ 
+\end{theorem}
+\begin{proof}
+Метод математической индукции. Теорема при $n = 2$ совпадает с определением выпуклости.
+$$f\left(\underbrace{\sum_{i=1}^n \lambda_i x_i}_{\lrh y} + \lambda x_{n+1} x_{n+1}\right) = f((1 - \lambda_{n+1})y + \lambda_{n+1} x_{n+1}) \leqslant $$
+$$ \geqslant (1-\lambda_{n+1}) f(y) + \lambda_{n+1} f(x_{n+1}) = (1 - \lambda_{n+1}) f\left(\sum_{i=1}^n \frac{\lambda_i}{1 - \lambda_{n+1}} x_i\right) \leqslant (1 - \lambda_{n+1}) \sum_{i=1}^n \frac{\lambda_i}{1-\lambda_{n+1}} f(x_i) + \lambda_{n+1} f(x_{n+1}) = $$
+$$= \sum_{i=1}^n \lambda_i f(x_i) + \lambda_{n+1} f(x_{n+1})$$
+\end{proof}

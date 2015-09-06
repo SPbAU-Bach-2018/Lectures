@@ -1,0 +1,103 @@
+\section{Производная многочлена}
+
+\begin{Def}
+	Пусть $A$ "--- коммутативное кольцо с 1. Тогда определим
+	умножение на натуральное число $k$:
+
+	\begin{align*}
+	k \cdot a &= \underbrace{a+a+\dots+a}_{k\text{~слагаемых}} = \\
+	          &=(\underbrace{1+1+\dots+1}_{k\text{~слагаемых}})a
+	\end{align*}
+
+	Для удобства также положим $0\cdot a = 0$.
+\end{Def}
+
+\begin{Def}
+	Для многочлена $f=a_nx^n+a_{n-1}x^{n-1}+\dots+a_0x^0$ определим производную:
+
+	\begin{align*}
+	f' &= (n \cdot a_n) x^{n-1} + \dots + (2\cdot a_2)x + a_1 = \\
+	   &= \sum_{k = 1}^nka_kx^{k-1}
+	   &= \sum_{k = 0}^nka_kx^{k-1} && \text{при $k=0$ фиктивное слагаемое}
+	\end{align*}
+
+	Несмотря на то, что $x^{-1}$ неопределено, фиктивное слагаемое при $k=0$ имеет коэффициент ноль
+	(считаем, что $0 \cdot x^{-1} = 0$)	и иногда удобно считать, что оно есть.
+\end{Def}
+
+\begin{theorem}{Свойства производной}
+	\begin{enumerate}
+		\item $(f + g)' = f' + g'$ и более общий случай: $(f_1 + \dots + f_k)' = f_1' + \dots + f_k'$.
+		\item $\forall c \in A \colon (c\cdot f)' = c\cdot f'$
+		\item $(fg)' = f'g + fg'$
+		\item $(f_1 \cdot f_2 \cdot \dots \cdot f_k)' = f_1' \cdot f_2 \cdot \dots \cdot f_k + f_1\cdot f_2'\cdot \dots \cdot f_k + \dots + f_1 \cdot \dots \cdot f_k'$
+		\item $(f^k)' = kf^{k - 1}f'$ 
+		\item Если $A$ "--- поле и $f \in A[x]$, то:
+		\begin{itemize}
+			\item Если $\mathrm{char} A = 0$, то
+			    \[f' = 0 \Lra f = c_0 \in A = \mathrm{const} \]
+			\item Если $\mathrm{char} A = p > 0$, то
+				\[f' = 0 \Lra f \in A[x^p]\]
+				то есть все ненулевые коэффициенты $f$ находятся при степенях вида $x^{kp}$.
+		\end{itemize}
+	\end{enumerate}
+\end{theorem} 
+
+\begin{proof}
+	\begin{enumerate}
+		\item Расписать по определению.
+		\item Расписать по определению.
+		\item Доказываем в несколько приёмов:
+		\begin{itemize}
+			\item Пусть $f = x^n$, $g = x^m$:
+				\[(fg)' = (x^{n + m})' = (n + m)x^{n + m -1} = nx^{n-1}x^m + x^n mx^{m-1} = f'g + fg'\]
+			\item Пусть $f = x^n$, $g = \sum_{k = 0}^m c_k x^k$:
+				\begin{align*}
+				(fg)' &= \left(\sum_{k=0}^m c_k x^n x^k\right)' = \sum_{k=0}^m c_k(x^n x^k)' = \\
+				 &= \sum_{k=0}^m c_k(f'x^k + fkx^{k-1}) = f' \sum_{k=0}^m c_k x^k + f \sum_{k=0}^m kx^{k-1} = f'g + fg'
+				\end{align*}
+			\item Пусть $f = \sum_{k = 0}^n a_k x^k$, а $g$ "--- произвольный многочлен:
+				\begin{align*}
+				(fg)' &= \sum_{k = 0}^n a_k(x^k g)' = \sum_{k = 0}^n a_k(kx^{k-1}g + x^kg') =
+				 &= g\sum_{k = 0}^n ka_kx^{k-1} + g'\sum_{k=0}^n a_kx^k = f'g + fg'
+				\end{align*}
+		\end{itemize}
+		\item По индукции, несколько раз применяем пункт 3.
+		\item Следует из пункта 4.
+		\item 
+		\begin{itemize}
+			\item Пусть $\mathrm{char} A = 0$. Докажем $\Ra$:
+				\begin{gather*}
+					f = c_0 + c_1x + \dots + c_nx^n \\
+				0 = f' = c_1 + 2c_2x + \dots + nc_nx^{n-1} \\
+				\forall k>0 \colon kc_k = \underbrace{(1 + 1 + \dots + 1)}_{\neq 0, k\text{~единиц}}c_k = 0 \Ra c_k = 0 \\
+				\Ra f = c_0 = \mathrm{const}
+				\end{gather*}
+				$\La$ очевидно.
+
+			\item Пусть $\mathrm{char} A = p > 0$. Тогда $\underbrace{1+1+\dots+1}_p=0$.
+				\begin{enumerate}
+				\item $\Ra$:
+	   				\begin{gather*}
+   					f' = \sum_{k = 1}^nkc_kx^{k-1} \\
+   					\forall k \geq 1 \colon kc_k = 0
+   					\end{gather*}
+
+   		 			Рассмотрим такое $k$, что $p \nmid k$ $\Ra$ $k = pq + r$, $1 \le r <p$:
+   					\begin{align*}
+	   		 		kc_k &= \underbrace{(1+1+\dots+1)}_{k}c_k = \\
+	   		 		     &= (\underbrace{\underbrace{1+\dots+1}_p+ \dots + \underbrace{1+\dots+1}_p}_q + \underbrace{1+\dots+1}_r)c_k = \\
+   			 		     &= \underbrace{(1+\dots+1)}_{r\text{~раз}, \neq 0} c_k = 0 \\
+   		 			\Ra c_k = 0
+   		 			\end{align*}
+   		 		\item $\La$:	
+   		 			\begin{align*}
+		 			f &= c_0 + c_px^p + c_{2p}x^2p + \dots \in A[x^p] = \\
+		 			  &= \sum\limits_{j=0}^rc_{jp}x^{jp}; \\
+		 			f' &= \sum\limits_{j=0}^rjpc_{jp}x^{jp-1} = \\
+		 			   &= \sum\limits_{j=0}^rj\cdot 0 \cdot c_{jp}x^{jp-1} = 0;
+		 			\end{align*}
+			 	\end{enumerate}
+		\end{itemize}	
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,35 @@
+\section{Матричная конструкция поля коплексных чисел}
+
+$$M(2, \R)$$
+$$\mathcal{C} = \left\{\left(\begin{matrix}a & -b \\ b & a\end{matrix}\right) \mid a, b \in \R\right\}$$
+
+\begin{assertion}
+$\mathcal{C}$ "--- коммутативное кольцо с единицей.
+\end{assertion}
+\begin{proof}
+Операции замкнуты:
+$$\left(\begin{matrix}a_1 & -b_1 \\ b_1 & a_1\end{matrix}\right) + \left(\begin{matrix}a_2 & -b_2 \\ b_2 & a_2\end{matrix}\right) = \left(\begin{matrix}a_1+a_2 & -b_1-b_2 \\ b_1+b_2 & a_1+a_2\end{matrix}\right)$$
+$$\left(\begin{matrix}a_1 & -b_1 \\ b_1 & a_1\end{matrix}\right) \left(\begin{matrix}a_2 & -b_2 \\ b_2 & a_2\end{matrix}\right) = \left(\begin{matrix}a_1a_2-b_1b_2 & -a_1b_2-a_2b_1 \\ a_2b_1+a_1b_2 & -b_1b_2+a_1a_2\end{matrix}\right) = \left(\begin{matrix}a_1a_2-b_1b_2 & -(a_1b_2+a_2b_1) \\ a_1b_2+a_2b_1 & a_1a_2-b_1b_2\end{matrix}\right)$$
+Как видно, операции и коммутативны.
+Единица есть:
+$$\left(\begin{matrix}1 & 0 \\ 0 & 1\end{matrix}\right) = \left(\begin{matrix}1 & -0 \\ 0 & 1\end{matrix}\right)$$
+Таким образом, $\mathcal{С}$ "--- коммутативное подкольцо с единицей.
+\end{proof}
+
+\begin{assertion}
+$\mathcal{C}$ "--- поле.
+\end{assertion}
+\begin{proof}
+Найдём обратный:
+$$\left(\begin{matrix}a & -b \\ b & a\end{matrix}\right)\left(\begin{matrix}a' & -b' \\ b' & a'\end{matrix}\right) = \left(\begin{matrix}1 & 0 \\ 0 & 1\end{matrix}\right) 
+\Lra \left\{\begin{aligned}aa'-bb' &= 1 \\ ab'+a'b &= 0\end{aligned}\right.\xLongleftrightarrow{a, b \ne 0} \left\{\begin{aligned}a' &= a\frac1{a^2+b^2} \\ b' &= -b\frac1{a^2+b^2}\end{aligned}\right.$$
+\end{proof}
+
+\begin{assertion}
+$$\C \sim \mathcal{C}$$
+\end{assertion}
+\begin{proof}
+Отображение очевидно:
+$$(a, b) \lra \left(\begin{matrix}a & -b \\ b & a\end{matrix}\right)$$
+Все операции переходят друг в друга, базовые операции (сложение, умножение на скаляр, перемножение) переходят в себя, сопряжение "--- в транспонирование.
+\end{proof}

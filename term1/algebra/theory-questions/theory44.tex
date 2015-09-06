@@ -1,0 +1,33 @@
+\section{Теорема о пересечении высот треугольника}
+\begin{theorem}{Высоты треугольника} 3 высоты треугольника пересекаются в одной точке.
+\end{theorem}
+\begin{proof}
+\begin{center}
+\def\svgwidth{6.0cm}
+\input{theory44-altitudes.pdf_tex}
+\end{center}
+
+$(a, b), (c, d)$ "--- точки. Тогда $(a, b) \bot (c, d) \Lra ac + bd = 0$ "--- скалярное произведение.
+
+$$z_1 = a + bi, z_2 = c + di, \Re (z_1\bar{z_2}) = ac + bd$$
+
+Известно, что $(z_1 - w) \bot z_2$ и $(z_2 - w) \bot z_1$.
+
+Надо доказать, что $w \bot z_1 - z_2$.
+$$\left\{
+\begin{aligned}
+	z_1 - w \bot z_2 &\Lra \Re((z_1 - w)\bar{z_2}) = 0 \\
+	z_2 - w \bot z_1 &\Lra \Re((z_2 - w)\bar{z_1}) = 0
+\end{aligned}\right.
+\Ra \Re(z_1\bar{z_2} - z_2\bar{z_1} + w(\bar{z_1} - \bar{z_2})) = 0 \Lra
+$$
+$$\Lra \Re(z_1\bar{z_2} - z_2\bar{z_1}) + \Re(w(\overline{z_1 - z_2})) = 0$$
+$z_1\bar{z_2} - z_2\bar{z_1}$ "--- чисто мнимое, поэтому 
+$$\Re(z_1\bar{z_2} - z_2\bar{z_1}) = \Ra \Re(w(\overline{z_1 - z_2})) = 0$$
+\end{proof}
+
+\underline{Упражнение:}
+\begin{enumerate}
+\item Медианы.
+\item Биссектрисы.
+\end{enumerate}

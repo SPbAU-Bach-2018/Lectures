@@ -1,0 +1,60 @@
+﻿\section{Предел последовательности}
+
+\begin{Def}
+Пусть есть пространство $(X, \rho)$ и последовательность $(x_i)$. Тогда
+$$x^* = \lim_{n\ra\infty} x_n \LraDef x^* \in X \land \forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: \rho(x^*;x_i) < \epsilon$$
+\end{Def}
+Примеры:
+\begin{itemize}
+\item $\lim_{n\ra\infty} x = x$
+\item $\R\colon \lim_{n\ra\infty} \frac1n = 0$
+\end{itemize}
+\begin{Rem}
+Определение зависит от метрического пространства, в котором мы находимся. Последнего предела на $(0; +\infty)$ нет. А на метрике
+$$\rho(x; y) = \begin{cases}0 & x = y \\ 1 & x \ne y \end{cases}$$ предел есть только у стационарных последовательностей.
+\end{Rem}
+
+\begin{theorem}{Свойства предела}
+\begin{enumerate}
+\item $x^* = \lim_{n\ra\infty} x_n \Lra$ каждая окрестность $x^*$ содержит всю последовательность с некотрого элемента
+\item $x^* = \lim_{n\ra\infty} x_n \land x^{**} = \lim_{n\ra\infty} x_n \Ra x^* = x^{**}$
+\item $\exists x^* = \lim_{n\ra\infty} x_n \Ra (x_n) \text{ ограниченна}$
+\item $x \in A' \Ra \exists (x_n) \subset A\colon \lim_{n\ra\infty} x_n = x$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$: Пусть $x^* \in U$ --- открытое множество. Тогда
+$$\exists r > 0\colon B_r(x^*) \subset U$$
+$$\forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: \rho(x^*;x_n) < \epsilon \Ra \exists N\colon \forall n \geqslant N\: x_n \in U$$
+$\La$: $U \lrh B_\epsilon(x^*)$.
+$$\forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: x_n \in U \Ra x_* = \lim_{n\ra\infty} x_n$$
+\item Пусть $\epsilon \lrh \frac{\rho(x^*;x^{**})}2 > 0$
+$$x^* = \lim_{n\ra\infty} x_n \Ra \exists N_1\colon \forall n \geqslant N_1\: \rho(x^*;x_n) < \epsilon$$
+$$x^{**} = \lim_{n\ra\infty} x_n \Ra \exists N_2\colon \forall n \geqslant N_2\: \rho(x^{**};x_n) < \epsilon$$
+Тогда
+$$\forall n \geqslant \max\{N_1; N_2\} \left\{\begin{aligned}\rho(x^*;x_n) < \epsilon \\ \rho(x^{**};x_n) < \epsilon\end{aligned}\right. \Ra$$
+$$\Ra 2\epsilon = \rho(x^*;x^{**}) \leqslant \rho(x^*;x_n) + \rho(x^{**}; x_n) < 2\epsilon$$
+\item $x^* = \lim_{n\ra\infty} x_n \Ra \exists N\colon \forall n \geqslant N\: \rho(x^{*}; x_n) < 1$. Рассмотрим 
+$$R = 1 + \max_{n < N}\{\rho(x^*;x_n)\}$$
+Тогда $$\forall n\: x_n \in B_R(x^*)$$
+\item $x \in A'$. Рассмотрим 
+$$x_1 \in \dot B_1(x) \cap A \ne \varnothing$$
+$$x_2 \in \dot B_{\min\left\{\frac12;\rho(x;x_1)\right\}}(x) \cap A \ne \varnothing$$
+$$x_3 \in \dot B_{\min\left\{\frac13;\rho(x;x_2)\right\}}(x) \cap A \ne \varnothing$$
+$$\vdots$$
+$$x_n \in \dot B_{\min\left\{\frac1n;\rho(x;x_n)\right\}}(x) \cap A \ne \varnothing$$
+Тогда $$\forall n \geqslant N\: \rho(x; x_n) < \frac1N \Ra x = \lim_{n\ra\infty} x_n$$
+\end{enumerate}
+\end{proof}
+\begin{Rem}
+В пункте 4 можно выбрать различные $x_n$.
+\end{Rem}
+\begin{Rem}
+Если $x_n$ --- различные и $x^*$ --- их предел, то $x^* \in \{x_n\}'$
+\end{Rem}
+\begin{Rem}
+$$x = \lim_{n\ra\infty} x_n \land x_n \in A \Ra x \in \cl A$$
+\end{Rem}
+
+Далее будем работать с $(\R; |x - y|)$.

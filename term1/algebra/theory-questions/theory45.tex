@@ -1,0 +1,119 @@
+\section{Матрицы. Действия над матрицами}
+
+\begin{Def}
+$R$ "--- кольцо. Матрицей называется таблица элементов кольца
+$$(a_{ij}) = (a_{ij})_{\substack{1 \leqslant i \leqslant m \\ 1 \leqslant j \leqslant n}} = $$
+$$ = \left(\begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{matrix}\right)$$
+\end{Def}
+
+\begin{Def}
+Множество матриц заданного размера ($m$ строк, $n$ столбцов) на данном кольце $R$
+$$M(m, n, R) = \left\{(a_{ij})_{\substack{1 \leqslant i \leqslant m \\ 1 \leqslant j \leqslant n}}\right\}$$
+\end{Def}
+
+\begin{Def}
+Сложение матриц
+$$+\colon M(m, n, R) \times M(m, n, R) \ra M(m, n, R)$$
+$$(a_ij) + (b_ij) \mapsto (a_{ij} + b_{ij})$$
+\end{Def}
+
+\begin{lemma}
+$\left<M(m, n, R), +\right>$ есть абелева группа.
+\end{lemma}
+
+\begin{Def}
+Транспонирование "--- переворот матрицы
+$${}^T\colon M(m, n, R) \ra M(n, m, R)$$
+$$(a_{ij})^T = (a_{ji})$$
+\end{Def}
+
+\begin{Def}
+Умножение матриц
+$$\times\colon M(m, n, R) \times M(n, k, R) \ra M(m, k, R)$$
+$$(a_ij) \times (b_ij) = (c_ij)$$
+$$c_{ij} = \sum_{l=1}^{n} a_{il}b_{lj}$$
+\end{Def}
+
+Умножение можно запомнить как <<строка на столбец>>.
+
+Почему же умножение именно такое? Рассмотирм систему линейных преобразований
+$$\left\{
+\begin{array}{ccccccccc}
+y_1 &= &a_{11} x_1 &+ &a_{12} x_2 &+ &\cdots &+ &a_{1m} x_m \\
+y_2 &= &a_{21} x_1 &+ &a_{22} x_2 &+ &\cdots &+ &a_{2m} x_m \\
+\vdots &= &\vdots &+ &\vdots    &+ &\ddots &+ &\vdots \\
+y_n &= &a_{n1} x_1 &+ &a_{n2} x_2 &+ &\cdots &+ &a_{nm} x_m \\
+\end{array}\right.
+$$
+Теперь её можно записать как
+$$(a_{ij})\left(\begin{matrix}x_1 \\ x_2 \\ \vdots \\ x_n\end{matrix}\right) = \left(\begin{matrix}y_1 \\ y_2 \\ \vdots \\ y_n\end{matrix}\right)$$
+
+Также, если мы аналогично выразим
+$$
+(b_{ij})\left(\begin{matrix}z_1 \\ z_2 \\ \vdots \\ z_n\end{matrix}\right) = \left(\begin{matrix}x_1 \\ x_2 \\ \vdots \\ x_n\end{matrix}\right)
+$$
+то результирующее преобразование
+$$
+(c_{ij})\left(\begin{matrix}z_1 \\ z_2 \\ \vdots \\ z_n\end{matrix}\right) = \left(\begin{matrix}y_1 \\ y_2 \\ \vdots \\ y_n\end{matrix}\right)
+$$
+можно выразить как
+$$(c_{ij}) = (a_{ij})(b_{ij})$$
+
+\begin{theorem}{Свойства умножения матриц}
+\begin{enumerate}
+\item $A\colon n \times m$, $B\colon m \times k$, $C\colon k \times l$
+$$A(BC) = (AB)C$$
+\item $A, B\colon n \times m$, $C\colon m \times k$
+$$(A+B)C = AC + BC$$
+\item $A, B\colon n \times m$, $C\colon k \times n$
+$$C(A + B) = CA + CB$$
+\item $A\colon n \times m$, $B\colon m \times k$, $R$ коммутативное кольцо.
+$$(AB)^T = B^TA^T$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Надо расписывать суммы
+\begin{enumerate}
+\item $BC \lrh D\colon m \times l$, $AD \lrh E\colon n \times l$, $AB \lrh F\colon n \times k$, $FC \lrh G\colon n \times l$. Таким образом, $E$ и $G$ совпадают размерами.
+$$e_{ij} = \sum_{x=1}^m a_{ix} d_{xj} = \sum_{x=1}^m a_{ix} \left(\sum_{y=1}^k b_{xy} c_{yj}\right) = \sum_{x=1}^m \sum_{y=1}^k a_{ix} b_{xy} c_{yj}$$
+$$g_{ij} = \sum_{y=1}^k f_{iy} c_{yj} = \sum_{y=1}^k \left(\sum_{x=1}^m a_{ix} b_{xy}\right) c_{yj} = \sum_{y=1}^k \sum_{x=1}^m a_{ix} b_{xy} c_{yj}$$
+Таким образом $e_{ij} = g_{ij}$
+\item
+$$((A+B)C)_{ij} = \sum_{x=1}^m (A+B)_{ix} c_{xj} = \sum_{x=1}^m (a_{ix} + b_{ix}) c_{xj} = \sum_{x=1}^m (a_{ix} c_{xj} + b_{ix} c_{xj}) = $$
+$$ = \sum_{x=1}^m a_{ix} c_{xj} + \sum_{x=1}^m b_{ix} c_{xj} = (AC)_{ij} + (BC)_{ij} = (AC+BC)_{ij}$$
+\item Аналогично
+\item
+$$((AB)^T)_{ij} = (AB)_{ji} = \sum_{x=1}^m a_{jx} b_{xi} = \sum_{x=1}^m b^T_{ix} a^T_{xj} = (B^TA^T)_{ij}$$
+\end{enumerate}
+\end{proof}
+
+Заметим, что умножение не коммутативно.
+$$\left(\begin{matrix}0 & 1 \\ 0 & 0\end{matrix}\right) \left(\begin{matrix}0 & 0 \\ 0 & 1\end{matrix}\right) = \left(\begin{matrix}0 & 1 \\ 0 & 0\end{matrix}\right)$$
+$$\left(\begin{matrix}0 & 0 \\ 0 & 1\end{matrix}\right) \left(\begin{matrix}0 & 1 \\ 0 & 0\end{matrix}\right) = \left(\begin{matrix}0 & 0 \\ 0 & 0\end{matrix}\right)$$
+
+\begin{Def}
+Умножение на скаляр:
+$$\times\colon R \times M(m, n, R) \ra M(m, n, R)$$
+$$\lambda (a_{ij}) = (\lambda a_{ij})$$
+\end{Def}
+
+{\bf Свойства:}
+\begin{enumerate}
+\item $\alpha(A + B) = \alpha A + \alpha B$
+\item $(\alpha + \beta)A = \alpha A + \beta A$
+\item $\alpha(AB) = (\alpha A) B = A(\alpha B)$
+\item $(\alpha \beta)A = \alpha(\beta A)$
+\item $1_R A = A$
+\end{enumerate}
+
+Теперь рассмотрим квадратные матрицы "--- матрицы, у которых количество строк и столбцов совпадают.
+
+\begin{theorem}{Кольцо квадратных матриц}
+$M(n, n, R)$ "--- кольцо с единицей. Если $2 \mid n$, то в нём есть делители нуля.
+\end{theorem}
+Все необходимые свойства уже доказаны.

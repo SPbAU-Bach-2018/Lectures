@@ -1,0 +1,110 @@
+\section{Четность перестановки. Теорема об изменении четности перестановки при умножении на транспозицию. Следствия из неё}
+
+\begin{Def}
+Пусть $\sigma \in S_n$ и $i, j = 1..n$. Тогда $i$ и $j$ образуют инверсию относительно $\sigma$, если $i < j$, а $\sigma(i) > \sigma(j)$.
+\end{Def}
+\begin{Def}
+$Inv(\sigma)$ "--- множество всех инверсий относительно $\sigma$.
+\end{Def}
+\begin{Def}
+$\sigma$ "--- четная, если $|Inv(\sigma)|$ четно.
+\end{Def}
+\begin{Def}
+$\sigma$ "--- нечетная, если $|Inv(\sigma)|$ нечетно.
+\end{Def}
+
+\begin{theorem}{}
+$\sigma \in S_n, \tau = (i~j)$ "--- транспозиция. Тогда $\sigma$ и $\sigma\tau$ имеют различную четность.
+\end{theorem}
+\begin{proof}
+Не умаляя общности, будем считать, что $i < j$. Тогда
+\begin{gather*}
+\sigma=\left(
+\begin{matrix}
+1 & \cdots & i & \cdots & j & \cdots & n \\
+\sigma_1 & \cdots & \sigma_i & \cdots & \sigma_j & \cdots & \sigma_n \\
+\end{matrix}
+\right) \\
+\sigma\tau=\left(
+\begin{matrix}
+1 & \cdots & i & \cdots & j & \cdots & n \\
+\sigma_1 & \cdots & \sigma_j & \cdots & \sigma_i & \cdots & \sigma_n \\
+\end{matrix}
+\right)
+\end{gather*}
+
+$$
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\multicolumn{2}{|c|}{$\sigma$} & \multicolumn{2}{c|}{$\sigma\tau$}\\
+	\hline
+	$(k~l), \{k, l\} \bigcap \{i, j\} = \varnothing$ & есть инверсия & $(k~l), \{k, l\} \bigcap \{i, j\} = \varnothing$ & есть инверсия\\
+	\hline
+	$(k~l), \{k, l\} \bigcap \{i, j\} = \varnothing$ & есть инверсия & $(k~l), \{k, l\} \bigcap \{i, j\} = \varnothing$ & есть инверсия\\
+	\hline
+	$(k~i), k < i$ & есть & $(k~j), k < i$ & есть\\
+	\hline
+	$(k~i), k < i$ & нет & $(k~j), k < i$ & нет\\
+	\hline
+	$(k~i), k > j$ & есть & $(k~j), k > j$ & есть\\
+
+	\hline
+	$(k~j), k < i$ & есть & $(k~i), k < i$ & есть\\
+	\hline
+	$(k~j), k < i$ & нет & $(k~i), k < i$ & нет\\
+	\hline
+	$(k~j), k > j$ & есть & $(k~i), k > j$ & есть\\
+	\hline
+	$(k~j), k > j$ & нет & $(k~i), k > j$ & нет\\
+	
+	\hline
+	\multicolumn{4}{|c|}{$\sigma(\sigma(i)\sigma(k)\sigma(j))$}\\
+	\hline
+	\multicolumn{4}{|c|}{$\sigma\tau(\sigma(j)\sigma(k)\sigma(i))$}\\
+	\hline
+	$(k~i), i < k < j$ & есть & $(k~j), i < k < j$ & нет\\
+	\hline
+	$(k~i), i < k < j$ & нет & $(k~j), i < k < j$ & есть\\
+	\hline
+	$(k~j), i < k < j$ & есть & $(k~i), i < k < j$ & нет\\
+	\hline
+	$(k~j), i < k < j$ & нет & $(k~i), i < k < j$ & есть\\
+
+	\hline
+	(i~j) & есть & (i~j) & нет\\
+	\hline
+	(i~j) & нет & (i~j) & есть\\
+	\hline
+
+	\end{tabular}
+$$	
+Как глубокоуважаемый читатель уже догадался, самое интересное здесь "--- это последние 6 строк.
+\begin{gather*}
+r = |\{k \mid i < k < j \land (i~k)\text{ образует инверсию}\}| \\
+s = |\{k \mid i < k < j \land (k~j)\text{ образует инверсию}\}| \\
+|Inv(\sigma\tau)| = |Inv(\sigma)| - r + (j - i - 1 - r) - s + (j - i - 1 - s) \pm 1
+\end{gather*}
+Таким обазом, чётность изменилась.
+\end{proof}
+
+Следствия:
+\begin{enumerate}
+\item Пусть $\sigma = \prod_{j = 1}^r \tau_j$, где $\tau_j$ "--- транспозиция.
+Тогда $\sigma$ четна (нечетна) $\iff$ число сомножителей четно (нечетно).
+  \begin{proof}
+  \begin{itemize}
+  \item $\Leftarrow$: $id$ четна. При каждом добавлении $\tau_j$ четность меняется.
+  \item $\Rightarrow$: $\sigma$ четна, $r$ "--- число транспозиций, и если у него другая четность, то приходим к противоречию.
+  \end{itemize}
+  \end{proof}
+\item $\sigma \in S_n$, $\tau$ "--- транспозиция. $\sigma$ и $\tau\sigma$ имеют различную четность. (из первого следствия)
+\item При перемножении двух перестановок их четность меняется так же, как при суммировании их четностей как чисел.
+\item Множество четных перестановок "--- подгруппа $S_n$. Называется <<знакопеременная группа>>, обозначается $A_n$.
+  \begin{proof}
+  \begin{enumerate}
+  \item Непусто ($id$ четна)
+  \item Замкнуто (по третьему следствию)
+  \item Обратный элемент к $\sigma = \prod_{j = 1}^{2r} \tau_j$ "--- это $\sigma^{-1} = \prod_{j = 1}^{2r} \tau_{2r + 1 - j}$ 
+  \end{enumerate}
+  \end{proof}
+\end{enumerate}

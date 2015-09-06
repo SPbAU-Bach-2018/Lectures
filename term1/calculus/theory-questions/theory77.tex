@@ -1,0 +1,31 @@
+﻿\section{Формула Тейлора с остатком в форме Пеано}
+
+\begin{theorem}{Формула Тейлора с остатком в форме Пеано}
+$f$ дифференцируема $n$ раз в $x_0$.
+$$f(x) = T_{n, k} f(x) + o((x - x_0)^n) \quad x \ra x_0$$
+\end{theorem}
+\begin{proof}
+$$g(x) = f(x) - T_{n, k} f(x)$$
+$$\forall k \leqslant n\; g^{(k)} (x_0) = f^{(k)} (x_0) - \left(T_{n, x_0} f\right)^{(k)} (x_0) = 0$$
+Пользуемся леммой.
+\end{proof}
+
+\begin{conseq}
+$$\exists! P \in \R[x]\colon f(x) = P(x) + o((x - x_n)^k) \quad x \ra x_0$$
+\end{conseq}
+\begin{proof}
+$x \ra x_0$:
+$$T_{n, x_0} f(x) + o\left((x-x_0)^n\right) = f(x) = P(x) + o\left((x-x_0)^n\right)$$
+$$q(x) \lrh T_{n, x_0} f(x) - P(x) = o\left((x-x_0)^k\right)$$
+$$q(x_0) = 0$$
+$q \in \R[x]$
+$$q(x) = (x - x_0) q_1(x)$$
+$$q_1(x) = o\left((x - x_0)^{n-1}\right)$$
+$$q_1(x_0) = 0$$
+$$\vdots$$
+$$q_n(x_0) = o(1)$$
+$$q_n \equiv 0$$
+$$q \equiv 0$$
+$$P \equiv T_{n, x_0} f$$
+\end{proof}
+

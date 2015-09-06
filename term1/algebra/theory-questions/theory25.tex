@@ -1,0 +1,52 @@
+\section{Теорема Безу}
+
+\begin{Def}{\bf Значение многочлена в точке}
+Пусть есть $A \subset B$, и $B$ "---  коммутативное кольцо с 1 (будем уметь подставлять
+в многочлены из $\Z[x]$ не только целые числа). Есть многочлен:
+\[f \in A[x], f = a_nx^n + \ldots + a_0, c \in B\]
+Тогда значение многочлена в точке $c$ есть
+\[f(c) = a_nc^n + \ldots + a_0 = \sum_{k = 0}^{n}a_kc^k\]
+\end{Def}
+
+\begin{Rem}
+Таким образом мы многочленом $f \in A[x]$ задали отображение
+$\tilde f : B \to B$, которое переводит $c \to f(c)$. Имеются свойства:
+\begin{enumerate}
+\item $(f+g)(c)=\tilde f(c) + \tilde g(c)$
+\item $(f\cdot g)(c)=\tilde f(c) \cdot \tilde g(c)$
+\end{enumerate}
+\end{Rem}
+
+\begin{theorem}{}
+\textbf{(Безу)}
+	Пусть $A$ "--- коммутативное кольцо с $1$, $c \in A$ и $f \in A[x]$. Тогда:
+	\[\exists q \in A[x] \colon f(x) = (x - c)q(x) + f(c)\]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим $x - c$, по теореме о делении многочленов с остатком получаем:
+	\begin{gather*}
+	f(x) = (x - c)q(x) + r_0; \\
+	\deg r_0 < \deg (x - c) = 1; \\
+	\Ra r = r_0 \in A; \\
+	f(x) = (x - c)q(x) + r_0; \\
+	f(c) = (c - c)q(c) + r_0; \\
+	f(c) = r_0; \\
+	\Ra f(x) = (x - c)q(x) + r_0; \\
+	\end{gather*}
+\end{proof}
+
+\begin{Def}
+	$A$, $B$ "--- коммутативные кольца с 1 и $A \subseteq B$; $f \in A[x]$. Тогда
+	$c \in B$ "--- корень $f$, если $f(c) = 0$.
+\end{Def}
+
+\begin{conseq}
+	$c$ "--- корень $\Lra$ $(x - c) \mid f$\\
+\end{conseq}
+\begin{proof}
+	\begin{itemize}
+	\item $\La$: $f(x) = (x - c)g(x) \Ra f(c) = (c-c)g(c) = 0$ $\Ra$ $c$ - корень
+	\item $\Ra$: $f(c) = 0 \Ra$ теорема Безу $\Ra f(x) = (x-c)g(x) + f(c) = (x-c)g(x) \Ra (x-c) | f$
+	\end{itemize}
+\end{proof}

@@ -1,0 +1,36 @@
+﻿\section{Непрерывность и дифференциеруемость выпуклой функции}
+
+\begin{theorem}{Монотонность производной выпуклой функции}
+$f\colon \left<a, b\right> \ra R$~--- выпуклая. Тогда 
+$$\forall x \in (a, b)\; f'_-(x) \leqslant f'_+(x)$$
+\end{theorem}
+\begin{proof}
+$u_1 < u_2 < x < v$
+$$\frac{f(x)-f(u_1)}{x-u_1} \leqslant \frac{f(x)-f(u_2)}{x-u_2} \leqslant \frac{f(x)-f(v)}{x-v}$$
+Тогда $\frac{f(x)-f(u)}{x-u}$ растёт и ограничено, т.е. предел $f'_-(x)$ существует.
+Аналогично существует $f'_+(x)$, она убывает. Как видно, они в правильном порадке.
+\end{proof}
+
+\begin{theorem}{Свойство и признак выпуклости}
+$f$~--- выпуклая на $\left<a, b\right>$ тогда и только тогда, когда
+$$\forall x, x_0 \in \left<a, b\right>\; f(x) \geqslant f(x_0) + (x-x_0)f'(x_0)$$
+\end{theorem}
+\begin{proof}
+$\Ra$:\\
+$x > x_0$, $y \in (x_0, x)$
+$$\frac{f(x_0) - f(y)}{x_0-y} \leqslant \frac{f(x_0)-f(x)}{x_0 - x}$$
+$$f'(x_0) = \lim_{y \ra x_0} \frac{f(x_0) - f(y)}{x_0-y} \leqslant \frac{f(x_0) - f(x)}{x_0 - x}$$
+$x_0 - x > 0$
+$$f'(x_0)(x-x_0) \leqslant f(x_0) - f(x)$$
+Аналогично $x < x_0$, $y \in (x, x_0)$
+$$\frac{f(x) - f(x_0)}{x-x_0} \leqslant \frac{f(y)-f(x_0)}{y - x_0}$$
+$\La$:\\
+$u<v<w$
+$$\forall x\; f(x) \geqslant f(v) + (x-v) f'(v)$$
+$$f(u) \geqslant f(v) + (u-v) f'(v)$$
+$$f(w) \geqslant f(v) + (w-v) f'(v)$$
+Сложим с правильными коэффициентами:
+$$(w-v)f(u) \geqslant (w-v) f(v) + (w-v)(u-v) f'(v)$$
+$$(v-u)f(w) \geqslant (v-u) f(v) + (w-v)(v-u) f'(v)$$
+$$(w-v)f(u) + (v-u) f(w) \geqslant (w-u) f(v)$$
+\end{proof}

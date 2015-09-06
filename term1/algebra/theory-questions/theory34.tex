@@ -1,0 +1,40 @@
+\section{Конструкция комплексных чисел, как множества пар}
+\begin{gather*}
+\R^2 = \{(a, b) \mid a, b \in \R\}
+\end{gather*}
+\begin{itemize} 
+\item $+$~: $\R^2 \times \R^2 \ra \R^2$
+\begin{gather*}
+(a, b) + (c, d) \mapsto (a + c, b + d)
+\end{gather*}
+\item $*$~: $\R^2 \times \R^2 \ra \R^2$
+\begin{gather*}
+(a, b)*(c, d) \mapsto (ac - bd, ad + bc)
+\end{gather*}
+\end{itemize}
+\begin{theorem}{}
+$\R^2$ с введёнными операциями является полем.
+\end{theorem}
+\begin{Def}
+Это поле называется полем комплексных чисел $\C$ (Complex).
+\end{Def}
+\begin{proof}
+\begin{enumerate}
+\item $0_c = (0, 0)$
+\item $-(a, b) = (-a, -b) $
+\item $(1, 0) * (a, b) = (a, b) $
+\item$ (a, b) \ne 0$, $(a, b)^{-1}$
+\begin{gather*}
+(a, b)^{-1} = (c, d) \Lra (a, b)*(c, d) = (1, 0) \Lra \\
+\Lra \left\{\begin{aligned}
+ac - bd &= 1 \\
+bc + ad &= 0 \\
+\end{aligned}\right.\Lra \\
+\Lra \left\{\begin{aligned}
+(a^2 + b^2) c &= a \\
+(a^2 + b^2) d &= -b
+\end{aligned}\right.
+\end{gather*}
+Найденные значения корректны, так как $(a, b) \ne 0 \Ra a^2 + b^2 > 0$.
+\end{enumerate}
+\end{proof}

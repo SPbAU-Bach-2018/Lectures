@@ -1,0 +1,20 @@
+\section{Тело квантернионов}
+
+$$M(2, \C)$$
+$$\mathcal{H} = \left\{\left(\begin{matrix}z & w \\ -\bar w & \bar z\end{matrix}\right) \mid z, w \in \C\right\}$$
+
+\begin{theorem}{Тело квантернионов}
+$\mathcal{H}$ "--- тело (поле без коммутативности умножения).
+\end{theorem}
+\begin{proof}
+Операции замкнуты:
+$$\left(\begin{matrix}z_1 & w_1 \\ -\bar w_1 & \bar z_1\end{matrix}\right)+\left(\begin{matrix}z_2 & w_2 \\ -\bar w_2 & \bar z_2\end{matrix}\right) = \left(\begin{matrix}z_1+z_2 & w_1+w_2 \\ -\bar w_1-\bar w_2 & \bar z_1 + \bar z_2\end{matrix}\right) = \left(\begin{matrix}z_1+z_2 & w_1+w_2 \\ -\overline{w_1+w_2} & \overline{z_1+z_2}\end{matrix}\right)$$
+$$\left(\begin{matrix}z_1 & w_1 \\ -\bar w_1 & \bar z_1\end{matrix}\right) \left(\begin{matrix}z_2 & w_2 \\ -\bar w_2 & \bar z_2\end{matrix}\right) = \left(\begin{matrix}z_1z_2 - w_1\bar w_2 & z_1 w_2+w_1 \bar z_2 \\ -\bar w_1z_2-\bar z_1\bar w_2 & -\bar w_1 w_2+\bar z_1\bar z_2\end{matrix}\right) = \left(\begin{matrix}z_1z_2 - w_1\bar w_2 & z_1 w_2+w_1 \bar z_2 \\ -\overline{z_1w_2+w_1\bar z_2} & \overline{z_1z_2+w_1\bar w_2}\end{matrix}\right)$$
+Свойства сложения уже видны. Единица есть. Найдём обратный:
+$$\left(\begin{matrix}z & w \\ -\bar w & \bar z\end{matrix}\right)\left(\begin{matrix}z' & w' \\ -\bar{w'} & \bar{z'}\end{matrix}\right) = \left(\begin{matrix}1 & 0 \\ 0 & 1\end{matrix}\right) 
+\Lra \left\{\begin{aligned}zz'-w\bar{w'} &= 1 \\ zw'+w\bar{z'} &= 0\end{aligned}\right.\xLongleftrightarrow{z, w \ne 0} \left\{\begin{aligned}z' &= \bar z\frac1{|z|^2+|w|^2} \\ w' &= -w\frac1{|z|^2+|w|^2}\end{aligned}\right.$$
+\end{proof}
+
+Коммутативности нет:
+$$\left(\begin{matrix}i & 0 \\ 0 & -i\end{matrix}\right) \left(\begin{matrix}0 & 1 \\ -1 & 0\end{matrix}\right) = \left(\begin{matrix}0 & i \\ i & 0\end{matrix}\right)$$
+$$\left(\begin{matrix}0 & 1 \\ -1 & 0\end{matrix}\right) \left(\begin{matrix}i & 0 \\ 0 & -i\end{matrix}\right) = \left(\begin{matrix}0 & -i \\ -i & 0\end{matrix}\right)$$

@@ -1,0 +1,63 @@
+\section{Гомоморфизмы групп. Свойства гомоморфизмов}
+\begin{Def}
+	$H$, $G$ "--- группы, $f: G \to H$
+	\begin{enumerate}
+		\item $f$ "--- гомоморфизм, если $\forall a, b \in G \colon f(ab) = f(a)f(b)$
+		\item $f$ "--- изоморфизм, если $f$ "--- и гомоморфизм, и биекция
+	\end{enumerate}
+\end{Def}
+
+\begin{Def}
+	$H$, $G$ "--- группы. Если между $H$, $G$ есть изоморфизм, то группы называются изоморфными: $H \cong G$
+\end{Def}						
+
+\begin{theorem}{Свойства гомоморфизма}
+	\begin{enumerate}
+		\item $f(e_G) = e_H$
+		\item $f(x^{-1}) = (f(x))^{-1}$
+		\item $f(G)$ "--- подгруппа $H$
+		\item $G \xrightarrow{f} H \xrightarrow{g} K$, $f$, $g$ "--- гомоморфизмы, тогда $g \circ f: G \to K$ "--- тоже гомоморфизм
+		\item $f: G \to H$ "--- изоморфизм, тогда $f^{-1}: H \to G$ "--- изоморфизм
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item $f(e_G) = f(e_G e_G) = f(e_G)f(e_G) = e_H e_H = e_H$
+		\item $f(e_G) = f(x x^{-1}) = f(x)f(x^{-1}) = e_H \Ra f(x^{-1}) = (f(x))^{-1}$
+		\item
+		    Покажем замкнутость относительно операции $\cdot$
+		    \begin{gather*}
+			e_H \in f(G); \\
+			c, d \in f(G) \iff \exists a, b \in G \colon c = f(a), d = f(b); \\
+			cd = f(a)f(b) = f(ab) \Ra cd \in f(G); \\
+			\end{gather*}
+
+			Покажем замкнутость относительно взятия обратного (из пункта 2 теоремы):
+			\[f(a)^{-1} = f(a^{-1}) \in f(G)\]
+
+			Таким образом, $f(G)$ "--- подгруппа.
+		\item Пусть $a, b \in G$, тогда:
+			\[(g \circ f)(ab) = g(f(ab)) = g(f(a)f(b)) = g(f(a))g(f(b)) = (g \circ f)(a)(g \circ f)(b)\]
+		\item
+			\begin{gather*}
+			c, d \in H; \\
+			\exists a, b \in G\colon c = f(a); d = f(d); \\
+			a = f^{-1}(c); b = f^{-1}(d); \\
+			f^{-1}(cd) = ab = f^{-1}(c)f^{-1}(d);
+			\end{gather*}
+			Тогда $f^{-1}$ "--- изоморфизм
+	\end{enumerate}   
+\end{proof}		
+
+\begin{conseq}
+    \begin{enumerate}
+    \item  $G \cong G$ (взяли $id_G$).
+    \item  $G \cong H \Ra H \cong G$
+    \item  $G \cong H$, $H \cong K$ $\Ra$ $G \cong K$
+    \end{enumerate}
+
+\end{conseq}
+
+\begin{exmp}
+Пусть $G=\left< \mathbb{R}, +\right>$, $H=\left< \mathbb{R}_+, \cdot\right>$, тогда $x \ra e^x$ "--- изоморфизм.
+\end{exmp}

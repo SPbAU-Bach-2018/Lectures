@@ -1,0 +1,32 @@
+﻿\section{Арифметические действия с диффиренцируемыми функциями}
+
+\begin{theorem}{Арифметические действия с диффиренцируемыми функциями}
+
+$f, g:(a, b) \to \R x_0 \in(a, b)$
+
+$f, g$ ~--- дифф. в точке $x_0$, тогда
+
+\begin{enumerate}
+    \item $(f\pm g)'(x_0) = f'(x_0) \pm g'(x_0)$
+    \item $(cf)'(x_0) = cf'(x_0)$
+    \item $(fg)'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0)$
+    \item Если $g \ne 0$ в окрестности точки  $x_0$
+
+    $(\frac{f}{g})'(x_0) = \frac{f'(x_0)g(x_0) - f(x_0)g'(x_0)}{g^2(x_0)}$  
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+    \item $(f \pm g)'(x_0) = lim_{x \to x_0}\frac{(f(x) \pm g(x)) - (f(x_0) \pm g(x_0))}{x - x_0}
+     = lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} \pm lim_{x \to x_0} \frac{g(x) - g(x_0)}{x - x_0} = f'(x_0) \pm g'(x_0)$
+    \item 
+    \item $$(fg)'(x_0) = \lim_{x \to x_0}\frac{f(x)g(x) - f(x_0)g(x_0)}{x - x_0} = $$
+    $$ = \lim_{x \to x_0} (\frac{f(x)g(x) - f(x_0)g(x)}{x - x_0} + \frac{f(x_0)g(x) - f(x_0)g(x_0)}{x - x_0}) =$$
+    $$= lim_{x \to x_0}(g(x)) \lim_{x \to x_0}{\frac{f(x) - f(x_0)}{x - x_0}} + f(x_0)\lim_{x \to x_0}{\frac{g(x) - g(x_0)}{x - x_0}} = $$
+    $$= g(x_0)f'(x_0) + f(x_0)g'(x_0)$$
+    \item Достаточно доказать, что $(\frac1g)'(x_0) = -\frac{g'(x_0)}{g^2(x_0)}$
+    $$(\frac{1}{g})'(x_0) = \lim_{x \to x_0}\cfrac{\cfrac{1}{g(x)} - \cfrac{1}{g(x_0)}}{x - x_0} = $$
+    $$=\lim_{x \to x_0}\frac{g(x_0) - g(x)}{x - x_0}\frac{1}{g^2(x)} = \frac{-g'(x_0)}{g^2(x_0)} $$ 
+\end{enumerate}
+\end{proof}

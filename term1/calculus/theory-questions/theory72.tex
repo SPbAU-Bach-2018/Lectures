@@ -1,0 +1,25 @@
+\section{Теорема Дарбу}
+
+\begin{theorem}{Теорема Дарбу}
+$f\colon [a,b] \ra \R$, $f$ дифференцируема на $[a, b]$, $C \in [f'(a), f'(b)]$. Тогда
+$$\exists c \in (a, b)\colon f'(c) = C$$
+\end{theorem}
+\begin{proof}
+Пусть $C=0$, тогда $f'(a)$ и $f'(b)$ разных знаков.\\
+$f$ непрерывна, поэтому функиця достигает свои максимум и минимум (по теореме Вейерштрасса). Достаточно показать, что один из них достигаются не в конце.
+
+От противного: пусть минимум находится в точке $a$, а максимум в точке $b$. Тогда
+$$\forall x>a\: \frac{f(x)-f(a)}{x - a} \geqslant 0 \land \forall x<b\: \frac{f(x) - f(b)}{x - b} \geqslant 0$$
+Тогда
+$$\left.\begin{aligned}
+f'(a) &= \lim_{x\ra a+} \frac{f(x)-f(a)}{x - a} \\ f'(b) &= \lim_{x\ra b-}\frac{f(x) - f(b)}{x - b}
+\end{aligned}\right| \Ra \left.\begin{aligned}
+f'(a) &\geqslant 0 \\ f'(b) &\geqslant 0 
+\end{aligned} \right.\text{~--- противоречие}$$
+
+Таким образом хотя бы один экстремум не в конце, и искомое $c$ существует.
+
+В общем случае перейдём к
+$$g(x) = f(x) - Cx$$
+$$g'(x) = f'(x) - C$$
+\end{proof}

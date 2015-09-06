@@ -1,0 +1,138 @@
+\begin{conseq}
+$\sin$ и $\cos$ непрерывны. 
+\end{conseq}
+\begin{proof}
+$$\left|\sin x - \sin y\right| = 2 \left|\sin \frac{x-y}2\right| \left|\cos \frac{x+y}2\right| \leqslant \left|x - y\right|$$
+\end{proof}
+
+\begin{conseq}
+$\tg$ и $\ctg$ непрерывны. 
+\end{conseq}
+
+\begin{conseq}
+$$\sin \uparrow   \left[-\frac\pi2,\frac\pi2\right]$$
+$$\cos \downarrow \left[0,\pi\right]$$
+$$\tg  \uparrow   \left(-\frac\pi2,\frac\pi2\right)$$
+\end{conseq}
+
+\begin{Def}
+$$ \arcsin = \left(\sin \mid_{\left[-\frac\pi2,\frac\pi2\right]}\right)^{-1} $$
+$$ \arccos = \left(\cos \mid_{\left[0,\pi\right]}\right)^{-1} $$
+$$ \arctg  = \left(\tg  \mid_{\left(-\frac\pi2,\frac\pi2\right)}\right)^{-1} $$
+\end{Def}
+
+\begin{theorem}{}
+$$\lim_{x \ra 0} \frac{\sin x}x = 1$$
+\end{theorem}
+\begin{proof}
+$0 < x < \frac\pi2$:
+$$\sin x < x < \tg x \Ra \frac{\sin x}x < 1 < \frac1{\cos x} \frac{\sin x}x \Ra \cos x < \frac{\sin x}x < 1 \xra{x\ra0} 1 \leqslant \lim_{x\ra0} \frac{\sin x}x \leqslant 1$$
+\end{proof}
+
+\subsection{Степенная функция}
+$$x^n \quad x \in [0;+\infty); n \in \N$$
+Больше нуля, непрерывна, инфимум 0, супремум бесконечен, строго монотонная.
+$$x^\frac1n\text{ обратная}$$
+Тоже непрерывна.
+$$x^{\frac{m}n} = \left(x^\frac1n\right)m$$
+$$x^{-\frac{m}n}=\frac1{x^{\frac{m}n}}$$
+
+\begin{assertion}
+Определение корректно.
+\end{assertion}
+\begin{assertion}
+Свойства степени выполняются.
+\end{assertion}
+
+\begin{lemma}
+$$\lim_{n\ra+\infty} a^{\frac1n}$$
+\end{lemma}
+\begin{proof}
+$a \geqslant 1$:
+$$(1+\epsilon)^n \geqslant 1 + \epsilon n > \epsilon n > \epsilon N > a$$
+$$N > \frac{a}\epsilon \Ra \forall n > N\; (1+\epsilon)^n > a \Ra 1 + \epsilon > a^{\frac1n} \geqslant 1^{\frac1n} = 1$$
+$0 < a < 1$:
+$$\lim_{n\ra+\infty} a^{\frac1n} = \frac1{\lim_{n\ra+\infty} \left(\frac1a\right)^{\frac1n}} = 1$$
+\end{proof}
+
+\begin{theorem}{}
+Пусть $\lim_{n\ra+\infty} x_n = x$, $x_n \in \Q$, $a > 0$. Тогда последовательноть $a^{x_n}$ имеет предел, зависящий только от $x$ и $a$.
+\end{theorem}
+\begin{proof}
+$$a^{x_n} - a^{x_m} = a^{x_n}\left(a^{x_m-x_n} - 1\right)$$
+$$\forall n\; |x_n| \leqslant M \Ra a^{x_n} \in \left[a^{-M}; a^M\right]$$
+Т.о.
+$$\left|a^{x_n} - a^{x_m}\right| \leqslant \underbrace{a^M}_{\lrh C} \left(a_{x_n-x_m} - 1\right) < C\epsilon$$
+По лемме 
+$$\exists N\colon \forall k > N\; |a^{\frac1n} < 1| < \epsilon$$
+$$|x_n - x_m| < \frac1N \ra -\epsilon < a^{-\frac1N} < a_{x_n-x_m} - 1 < a^{\frac1N} - 1 < 1 + \epsilon$$
+Т.о. предел существует.
+
+Пусть теперь 
+$$\lim_{n\ra+\infty} x_n = \lim_{n\ra+\infty} y_n = x \quad \lim_{n\ra+\infty} a^{x_n} \ne \lim_{n\ra+\infty} a^{y_n}$$
+Но рассмотрим
+$$\left\{z_n\right\} = \left\{x_1, y_1, x_2, y_2, \ldots\right\} \ra x$$
+Но тогда $a^{z_n}$ не имеет предела, что противоречит доказанному выше.
+\end{proof}
+
+\begin{Def}
+$$a^x = \lim_{\substack{x_n \ra x \\ x_n \in \Q}}$$
+\end{Def}
+
+Свойства степени:
+\begin{enumerate}
+\item Для $x \in \Q$ корректно.
+\item $x^a x^b = x^{a + b}$
+\item $\left(x^a\right)^b = x^{ab}$
+\item $x^ay^a = (xy)^a$
+\item $x < y \land a > 0 \ra x^a < y^a$
+\begin{proof}
+$$a_n \ra a > 0 \Ra a_n > 0\text{ с какого-то места}$$
+$$x^a_n < x^b_n \Ra x^a \leqslant x^b$$
+Теперь хотим строгое
+$$\left(\frac{x}y\right)^n < 1$$
+$$z\lrh\frac{x}y$$
+$$z^{a_n} < 1 \land z^{a_n} \downarrow \Ra z_a < 1$$
+\end{proof}
+\item $x^a < x^b$ при $x>1 \land a < b$ или $0<x<1 \land a > b$
+\begin{proof}
+$x>1 \land a < b$:
+$$a < p < q < b \quad p,q \in Q$$
+$$x^{a_n} < x^p < x^q < x^{b_n}$$
+$$x^a \leqslant x^p < x^q \leqslant x^b$$
+\end{proof}
+\end{enumerate}
+
+\begin{lemma}
+$$a > 0 \Ra \lim_{x \ra 0} a^x = 1$$
+\end{lemma}
+\begin{proof}
+$$\forall \epsilon > 0\; \exists N\colon \forall n > N\; \left|a^{\frac1n} - 1\right| < \epsilon$$
+$$\forall |x| < \frac1N 1 - \epsilon < \frac1{1 + \epsilon} < a^{-\frac1N} < a^x < a^{\frac1N} < 1 + \epsilon$$
+Возьмём $\delta = \frac1N$
+\end{proof}
+
+\begin{theorem}{}
+$$a > 0 \Ra f(x)\lrh a^x\text{ непрерывна}$$
+\end{theorem}
+\begin{proof}
+Надо доказать, что $a^{\lim_{n\ra+\infty} x_n} = \lim_{n\ra+\infty} a^{x_n}$
+
+$x_0 \lrh \lim_{n\ra+\infty} x_n$
+$$a^{x_n}-a^{x_0} = a^{x_0}\left(a^{x_n-x_0} - 1\right) \ra 0$$
+\end{proof}
+
+\begin{conseq}
+Есть обратная $$\log_a x$$
+\end{conseq}
+
+\begin{theorem}{}
+$$\lim_{x\ra\infty} \left(1+\frac1x\right)^x = e$$
+\end{theorem}
+\begin{proof}
+$x_n \ra +\infty$. $[x_n] = k$
+$$\left(1 + 1\frac{k + 1})^k\right) \leqslant \left(1 + \frac1{x_n}\right)^x_n \leqslant \left(1+\frac1k\right)^{k+1}$$
+$x_n \ra +\infty$. $y_n = -x_n$
+$$f(x_n) = \left(1 + \frac1{-y_n}\right)^{-y_n} = \left(1 + \frac1{y_n-1}\right)^{y_n} \ra e$$
+А для смеси возьмём две части, в каждой есть хороший номер.
+\end{proof}

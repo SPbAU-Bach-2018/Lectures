@@ -1,0 +1,290 @@
+﻿\begin{Def}
+Закрытое множество --- множество, дополнение которого открыто.
+\end{Def}
+
+\begin{theorem}{О свойствах закмнутых множеств}
+Пусть $(X, \rho)$ --- метрическое пространство.
+\begin{enumerate}
+\item $\varnothing$ и $X$ --- закмнуты.
+\item Перечечение замкнутых --- замкнуто.
+\item Объеднинение конечного числа замкнутых замкнуто.
+\item Замкнутый шар замкнут.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Очевидно
+\item По формулам де Моргана
+$$X \setminus \bigcap_{\alpha \in I} F_\alpha = \bigcup_{\alpha \in I} \left(X \setminus F_\alpha \right)$$
+\item По формуле де Моргана
+$$$$
+\item Докажем, что $X \setminus \bar B_r(a)$ открыт. Рассмотрим $x \in X \setminus \bar B_r(a)$. Тогда по определению $$\rho(a, x) > r$$
+Покажем, что $$B_{\rho(a, x) - r}(x) \cap \bar B_r(a) = \varnothing$$
+Пусть $\exists y \in B_{\rho(a, x) - r}(x) \cap \bar B_r(a)$. Тогда
+$$y \in \bar B_r(a) \Ra \rho(a, y) \leqslant r$$
+$$y \in B_{\rho(a, x) - r}(x) \Ra \rho(x, y) < \rho(a, x) - r$$
+$$\rho(a, x) \leqslant \rho(a, y) + \rho (x, y) < r + (\rho(a, x) - r) = \rho(a, x) \text{ --- противоречие}$$
+\end{enumerate}
+\end{proof}
+\begin{Rem}
+$$\bigcup_{n=1}^\infty \left[\frac1n;1\right] = \left(0; 1\right]$$
+\end{Rem}
+
+\begin{Def}
+$A \subset X$, $(X, \rho)$. Тогда замыкание множества $A$ --- перечесение всех замкнутых множеств, содержащих A.
+$$\cl A = \bigcap_{\substack{F \text{ замкнуто}\\F \supset A}}F$$
+\end{Def}
+
+\begin{theorem}{О связи замыкания и внутренности}
+$$X \setminus \cl A = \Int (X \setminus A)$$
+$$X \setminus \Int A = \cl (X \setminus A)$$
+\end{theorem}
+\begin{proof}
+$$X \setminus \cl A = X \setminus \bigcap_{\substack{F \text{ замкнуто}\\F \supset A}} = \bigcup_{\substack{F \text{ замкнуто}\\F \supset A}} (X \setminus F)$$
+$$X \setminus F \text{ открыто}$$
+$$X \setminus F \subset X \setminus A$$
+То
+$$\bigcup_{\substack{F \text{ замкнуто}\\F \supset A}} (X \setminus F) = \bigcup_{\substack{G \text{ открыто}\\G \subset X \setminus A}} G = \Int (X \setminus A)$$
+Аналогично
+\end{proof}
+\begin{conseq}
+$$ \Int A = \cl (X \setminus A)$$
+$$ \cl A = \Int (X \setminus A)$$
+\end{conseq}
+
+Свойства замыкания:
+\begin{enumerate}
+\item $A \subset \cl A$
+\item $cl A$ замкнуто.
+\item $A \text{ замкнуто} \Lra A = \cl A$
+\item $A \subset B \Ra \cl A \subset \cl B$
+\item $\cl (A \cup B) = \cl A \cup \cl B$
+\item $\cl \cl A = \cl A$
+\end{enumerate}
+
+\begin{theorem}{Существование открытого/замкнутого надмножества в надпространстве}
+$(X; \rho)$ --- пространство, $(Y; \rho)$ --- подпространство.
+\begin{enumerate}
+\item $A \text{ открыто в } Y \Lra \exists G \subset X \text{ --- открытое в } X\colon A = G \cap Y$ 
+\item $A \text{ замкнутыо в } Y \Lra \exists F \subset X \text{ --- замкнутое в } X\colon A = F \cap Y$ 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$:
+$$A \text{ открыто в } Y \Lra \forall x \in A\: \exists r_x > 0\colon B_{r_x}^Y(x) \subset A$$
+$$G \lrh \bigcup_{x \in A} B_{r_x}^X(x) \text{ --- открыто в } X$$
+$$G \cap Y = \bigcup_{x \in A} \left(B_{r_x}^X(x) \cap Y\right) = \bigcup_{x \in A} B_{r_x}^Y(x) = A$$
+$\La$:
+$$x \in A \subset G \Ra \exists r > 0\colon B_r^X(x) \subset G$$
+$$B_r^Y(x) = B_r^X(x) \cap Y \subset G \cap Y = A$$
+\item Перейдём к доплнениям
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{О замыканиях}
+$(X, \rho)$, $A \subset X$
+$$x \in \cl A \Lra \forall r>0\: B_r(x) \cap A \ne \varnothing$$
+\end{theorem}
+\begin{proof}
+$\Ra$: Пусть $\exists r > 0\colon B_r(x) \cap A = \varnothing$. Тогда
+$$B_r(x) \subset X \setminus A$$
+$$X \setminus B_r(x) \text{ замнкуто}$$
+$$X \setminus B_r(x) \supset A$$
+$$x \notin X \setminus B_r(x)$$
+Тогда
+$$ \cl A \subset X \setminus B_r(x)$$
+Но тогда
+$$x \notin \cl A$$
+$\La$: Пусть $x \notin \cl A \Ra \exists F \supset A\colon x \notin F \land F \text{ закрыто}$. Тогда
+$$x \in X \setminus F \text{ --- открытое} \Ra \exists r > 0\colon B_r(x) \subset X \setminus F \Ra \exists r>0\colon B_r(x) \cap A = \emptyset $$
+\end{proof}
+\begin{conseq}
+$ U \text{ открытое} \land U \cap A = \varnothing \Ra U \cap \cl A = \varnothing$
+\end{conseq}
+\begin{proof}
+Пусть $x \in U \cap \cl A$.
+$$x \in \cl A \Ra \forall r > 0\: B_r(x) \cap A \ne \varnothing$$
+$$x \in U \Ra \exists r_0 > 0\colon B_{r_0} \subset U$$
+Но $B_{r_0}(x) \cap A \ne \varnothing \Ra U \cap A \ne \varnothing$
+\end{proof}
+
+\begin{Def}
+Проколотая окрестность точки:
+$$\dot B_r(x) = B_r(x) \setminus \{x\}$$
+\end{Def}
+\begin{Def}
+Точка $x \in X$ предельная у множества $A$, если
+$$\forall r > 0\: \dot B_r(x) \cap A \ne \varnothing$$
+\end{Def}
+\begin{Def}
+$A'$~--- множество предельных точек.
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item $\cl A = A \cup A'$
+\item $A \subset B \Ra A' \subset B'$
+\item $(A \cup B)' = A' \cup B'$
+\begin{proof}
+$\supset$:
+$$A \cup B \supset A \Ra (A \cup B)' \supset A'$$
+$$A \cup B \supset B \Ra (A \cup B)' \supset B'$$
+Тогда $$(A \cup B)' \supset A' \cup B'$$
+$\subset$: Пусть $x \in (A \cup B)' \land x \notin B'$.
+$$x \in (A \cup B)' \Ra \forall r > 0\: B_r(x) \cap (A \cup B) \ne \varnothing$$
+$$x \notin B' \Ra \exists r_0 > 0\colon \dot B_{r_0}(x) \cap B = \varnothing \Ra \forall r \leqslant r_0\: \dot B_r(x) = \varnothing$$
+Тогда $$\forall r > 0\: \dot B_r(x) \cap A \ne \varnothing \Ra x \in A'$$
+\end{proof} 
+\end{enumerate}
+
+\begin{theorem}{Об окрестности предельной точки}
+$$x \in A' \Lra \forall r > 0 \left|B_r(x) \cap A\right| = \infty$$
+\end{theorem}
+\begin{proof}
+$$x \in A' \Ra \dot B_r(x) \cap A \ne \varnothing \Ra \exists y_1 \in A\colon y_1 \ne x \land y \in B_r(x)$$
+Тогда
+$$\dot B_{\rho(x,y_1)} \cap A \ne \varnothing \Ra \exists y_2 \in A\colon y_2 \ne x \land y_2 \ne y_1 \land y \in B_{\rho(x,y_1)}$$
+Тогда рассмотрим
+$$\{y_i\}_{i=1}^\infty\colon y_i \ne y_j \land y_i \ne x \land y_i \in A$$
+\end{proof}
+\begin{conseq}
+$|A| < \infty \Ra A' = \varnothing$
+\end{conseq}
+
+\begin{theorem}{О точной границе замкнутого множества}
+$$A \text{ ограниченно сверху и замкнуто} \Ra \sup A \in A$$
+$$A \text{ ограниченно снизу и замкнуто} \Ra \inf A \in A$$
+\end{theorem}
+\begin{proof}
+$a = \sup A$. Тогда
+$$\forall x \in A\: x \leqslant a \land \forall \epsilon > 0\: \exists x \in A\colon x > a - \epsilon$$
+Пусть $a \notin A$. Рассмотрим $\dot B_r(a) = (a - r, a + r) \setminus \{a\}$.
+$$ \dot B_r(a) \cap A \ne \varnothing \Ra x \in A' \Ra x \in A$$
+\end{proof}
+
+\section{Предел последовательности}
+
+\begin{Def}
+Пусть есть пространство $(X, \rho)$ и последовательность $(x_i)$. Тогда
+$$x^* = \lim_{n\ra\infty} x_n \LraDef x^* \in X \land \forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: \rho(x^*;x_i) < \epsilon$$
+\end{Def}
+Примеры:
+\begin{itemize}
+\item $\lim_{n\ra\infty} x = x$
+\item $\R\colon \lim_{n\ra\infty} \frac1n = 0$
+\end{itemize}
+\begin{Rem}
+Определение зависит от метрического пространства, в котором мы находимся. Последнего предела на $(0; +\infty)$ нет. А на метрике
+$$\rho(x; y) = \begin{cases}0 & x = y \\ 1 & x \ne y \end{cases}$$ предел есть только у стационарных последовательностей.
+\end{Rem}
+
+\begin{theorem}{Свойства предела}
+\begin{enumerate}
+\item $x^* = \lim_{n\ra\infty} x_n \Lra$ каждая окрестность $x^*$ содержит всю последовательность с некотрого элемента
+\item $x^* = \lim_{n\ra\infty} x_n \land x^{**} = \lim_{n\ra\infty} x_n \Ra x^* = x^{**}$
+\item $\exists x^* = \lim_{n\ra\infty} x_n \Ra (x_n) \text{ ограниченна}$
+\item $x \in A' \Ra \exists (x_n) \subset A\colon \lim_{n\ra\infty} x_n = x$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$: Пусть $x^* \in U$ --- открытое множество. Тогда
+$$\exists r > 0\colon B_r(x^*) \subset U$$
+$$\forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: \rho(x^*;x_n) < \epsilon \Ra \exists N\colon \forall n \geqslant N\: x_n \in U$$
+$\La$: $U \lrh B_\epsilon(x^*)$.
+$$\forall \epsilon > 0\: \exists N\colon \forall n \geqslant N\: x_n \in U \Ra x_* = \lim_{n\ra\infty} x_n$$
+\item Пусть $\epsilon \lrh \frac{\rho(x^*;x^{**})}2 > 0$
+$$x^* = \lim_{n\ra\infty} x_n \Ra \exists N_1\colon \forall n \geqslant N_1\: \rho(x^*;x_n) < \epsilon$$
+$$x^{**} = \lim_{n\ra\infty} x_n \Ra \exists N_2\colon \forall n \geqslant N_2\: \rho(x^{**};x_n) < \epsilon$$
+Тогда
+$$\forall n \geqslant \max\{N_1; N_2\} \left\{\begin{aligned}\rho(x^*;x_n) < \epsilon \\ \rho(x^{**};x_n) < \epsilon\end{aligned}\right. \Ra$$
+$$\Ra 2\epsilon = \rho(x^*;x^{**}) \leqslant \rho(x^*;x_n) + \rho(x^{**}; x_n) < 2\epsilon$$
+\item $x^* = \lim_{n\ra\infty} x_n \Ra \exists N\colon \forall n \geqslant N\: \rho(x^{*}; x_n) < 1$. Рассмотрим 
+$$R = 1 + \max_{n < N}\{\rho(x^*;x_n)\}$$
+Тогда $$\forall n\: x_n \in B_R(x^*)$$
+\item $x \in A'$. Рассмотрим 
+$$x_1 \in \dot B_1(x) \cap A \ne \varnothing$$
+$$x_2 \in \dot B_{\min\left\{\frac12;\rho(x;x_1)\right\}}(x) \cap A \ne \varnothing$$
+$$x_3 \in \dot B_{\min\left\{\frac13;\rho(x;x_2)\right\}}(x) \cap A \ne \varnothing$$
+$$\vdots$$
+$$x_n \in \dot B_{\min\left\{\frac1n;\rho(x;x_n)\right\}}(x) \cap A \ne \varnothing$$
+Тогда $$\forall n \geqslant N\: \rho(x; x_n) < \frac1N \Ra x = \lim_{n\ra\infty} x_n$$
+\end{enumerate}
+\end{proof}
+\begin{Rem}
+В пункте 4 можно выбрать различные $x_n$.
+\end{Rem}
+\begin{Rem}
+Если $x_n$ --- различные и $x^*$ --- их предел, то $x^* \in \{x_n\}'$
+\end{Rem}
+\begin{Rem}
+$$x = \lim_{n\ra\infty} x_n \land x_n \in A \Ra x \in \cl A$$
+\end{Rem}
+
+Далее будем работать с $(\R; |x - y|)$.
+
+\begin{theorem}{Предельный переход в неравенстве}
+Пусть $x_n, y_n \in \R; x = \lim x_n; y = \lim y_n; x_n \leqslant y_n$ (или $x_n < y_n$). Тогда $x \leqslant y$.
+\end{theorem}
+\begin{proof}
+Пусть $y < x$; $\epsilon \lrh \frac{x - y}2$. Тогда 
+$$\exists N_1: \forall n \geqslant N_1\: |x - x_n| < \epsilon$$
+$$\exists N_2: \forall n \geqslant N_2\: |y - y_n| < \epsilon$$
+Тогда
+$$\forall n \geqslant \max\{N_1, N_2\}\: x_n > x - \epsilon = y + \epsilon > y_n$$
+\end{proof}
+\begin{Rem}
+Понятно, что можно потребовать отношение между последовательностями только с некоторого номера.
+\end{Rem}                                                 
+\begin{Rem}
+Строгие неравенства не сохраняются.
+\end{Rem}
+\begin{conseq}
+$x_n \leqslant b \Ra x \leqslant b$
+\end{conseq}
+\begin{conseq}
+$x_n \geqslant a \Ra x \geqslant a$
+\end{conseq}
+\begin{conseq}
+$x_n \in [a;b] \Ra x \in [a; b]$
+\end{conseq}
+
+\begin{theorem}{О двух миллиционерах}
+Пусть $x_n \leqslant y_n \leqslant z_n$ и $\lim x_n = \lim z_n = l$. Тогда $\lim y_n = l$.
+\end{theorem}
+\begin{proof}
+Выберем $\epsilon > 0$.
+$$\exists N_1\colon\forall n \geqslant N_1 x_n > l - \epsilon$$
+$$\exists N_2\colon\forall n \geqslant N_2 z_n < l + \epsilon$$
+Тогда
+$$\exists N = \max\{N_1,N_2\}\colon\forall n \geqslant N\:l - \epsilon < x_n \leqslant y_n \leqslant z_n < l + \epsilon$$
+Тогда $\lim y_n = l$
+\end{proof}
+\begin{conseq}
+$\lim z_n = 0 \land |y_n| \leqslant z_n \Ra \lim y_n = 0$
+\end{conseq}
+\begin{conseq}
+Если $\lim x_n = 0$, а $y_n$ ограниченна, то $\lim x_ny_n = 0$.
+\end{conseq}
+
+\begin{Def}
+$(x_n)$ нестрого монотонно возрастает, если $$x_1 \leqslant x_2 \leqslant x_3 \leqslant \cdots$$
+
+$(x_n)$ строго монотонно возрастает, если $$x_1 < x_2 < x_3 < \cdots$$
+
+$(x_n)$ нестрого монотонно убывает, если $$x_1 \geqslant x_2 \geqslant x_3 \geqslant \cdots$$
+
+$(x_n)$ строго монотонно убывает, если $$x_1 > x_2 > x_3 > \cdots$$
+\end{Def}
+
+\begin{theorem}{Теорема Вейерштрасса}
+Монотонная последовательность ограниченна тогда и только тогда, когда имеет предел.
+\end{theorem}
+\begin{proof}
+$\La$: Очевидно.
+
+$\Ra$: Пусть $(x_n)$ возрастает. Она ограниченна, значит есть супремум. Докажем, что это и есть предел. Возьмём $\epsilon > 0$.
+$$a = \sup \{x_n\} \Ra \exists x_k\colon x_k > x - \epsilon \Ra a - \epsilon < x_k \leqslant x_{k+1} \leqslant \ldots \leqslant a$$
+Тогда $$\forall n \geqslant k\: |x_n - a| < \epsilon$$
+\end{proof}

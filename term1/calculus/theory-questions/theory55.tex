@@ -1,0 +1,53 @@
+﻿\section{Теорема Больцано---Коши}
+
+\begin{lemma} О связности отрезка.
+Пусть $[a, b] \subset U \cup V$, $U, V$~--- открытые и $U \cap V = \emptyset$. Тогда либо $[a, b] \subset U$, либо $[a, b] \subset V$. 
+\end{lemma}
+
+\begin{proof}
+Рассмотрим точку $b$. Пусть $b \in V$. $S = [a, b] \cap U$, пусть $S \ne \emptyset$.
+$$b_1 = \sup S$$
+Поскольку $b \in V$~--- открытое, то
+$$\exists \epsilon>0\colon (b - \epsilon, b + \epsilon) \subset V$$
+Тогда
+$$ (b - \epsilon, b + \epsilon) \cap S = \emptyset \Ra b_1 \leqslant b - \epsilon \Ra b_1 < b$$
+Пусть $b_1 \in V$. Тогда 
+$$(b_1 - \epsilon_1, b_1 + \epsilon) \subset V \Ra (b_1 -\epsilon_1, b_1 + \epsilon) \cap S = \emptyset \Ra \sup S \leqslant b_1 - \epsilon \quad \text{противоречие}$$
+Тогда 
+$$b_1 \in U \Ra (b_1 - \epsilon_1, b_1 + \epsilon_1) \subset U$$
+$\delta = min \{\epsilon_1, b - b_1\} > 0$
+$$[b_1, b_1 + \epsilon_1) \subset S \Ra sup S \ge b_1 + \delta \quad \text{противоречие}$$
+\end{proof}
+
+
+\begin{theorem}{Теорема Больцано---Коши}
+$f\colon [a, b] \ra \R$, $f$~--- непрерывна на $[a, b]$. Тогда
+$$\forall C\in [f(a), f(b)]\: \exists c \in (a, b)\colon f(c) = C$$
+\end{theorem}
+
+\begin{proof}
+От противного. Пусть 
+$$\forall x \in [a, b]\: f(x) \ne C $$
+Тогда 
+$$[a, b] \subset f^{-1}\left((-\infty, C))\cup f^{-1}((C, +\infty)\right)$$
+они открытые и не пересекаются, $a$ и $b$ принадлежат разным множествам. Противоречие. 
+\end{proof}
+
+\begin{conseq}
+$f\colon [a,b] \ra \R$ непрерывна на $[a,b]$. Тогда $f([a, b])$~--- отрезок.
+\end{conseq}
+\begin{proof}
+$$\exists u, v \in [a, b]\colon \forall x \in [a, b]\: f(u) \leqslant f(x) \leqslant f(v) \Ra f([a, b]) \subset [f(u), f(v)]$$
+По теореме
+$$\forall C \in (f(u), f(v)) \exists c \in (u, v)\colon f(c) = C$$
+Таким образом $f([a, b]) = [f(u), f(v)]$
+\end{proof}
+
+\begin{conseq}
+$f:\left<a, b\right> \to \R$ непрерывна. Тогда $f$ принимает все значения из $(\inf f(x), \sup f(x))$.
+\end{conseq}
+\begin{proof}
+Пусть $C \in (\inf f, \sup f)$. Тогда
+$$\exists u\colon f(u) < C; \exists v\colon f(v) > C$$ 
+Тогда $C$ лежит между $f(u)$ и $f(v)$, но f непрерывно на $[u, v]$, значит она принимает все промежуточные значения.
+\end{proof}

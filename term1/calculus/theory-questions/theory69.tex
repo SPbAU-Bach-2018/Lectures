@@ -1,0 +1,26 @@
+﻿\section{Теоремы Ферма и Ролля}
+\begin{theorem}{Теорема Ферма}
+$f\colon \left<a, b\right>$, $x_0 \in (a, b)$, $f$ дифференцируема в $x_0$, $x_0$~--- точка экстремума. Тогда
+$$f'(x_0) = 0$$
+\end{theorem}
+\begin{proof}
+Пусть $x > x_0$.
+$$\lim_{x\ra x_0} \frac{f(x) - f(x_0)}{x - x_0} \geqslant 0$$
+Пусть $x < x_0$.
+$$\lim_{x\ra x_0} \frac{f(x) - f(x_0)}{x - x_0} \leqslant 0$$
+Но тогда
+$$f'(x_0) = 0$$
+\end{proof}
+
+\begin{theorem}{Теорема Ролля}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $f(a) = f(b)$.
+Тогда
+$$\exists c\in(a, b)\colon f'(c) = 0$$
+\end{theorem}
+\begin{proof}
+Если функция константна, то всё доказано. Иначе есть глобальный максимум и минимум, причём они не могут быть оба в концах.
+\end{proof}
+
+\begin{conseq}
+Между корнями функции есть корень производной.
+\end{conseq}

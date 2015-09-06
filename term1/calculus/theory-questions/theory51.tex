@@ -1,0 +1,30 @@
+﻿\section{Непрерывность отображений из метрического пространства в векторное}
+
+\begin{theorem}{Непрерывность отображений из метрического пространства в векторное}
+$f\colon E \subset X \ra \R^{d}$, $a \in E$. Тогда $f$ непрерывна в точке $a$ $\Lra$ все координаты функции $f$ непрерывны в точке $a$.
+\end{theorem}
+
+\begin{proof}
+\begin{itemize}
+\item[$\Ra$:]
+
+$$\forall \epsilon > 0\: \exists \delta > 0\colon \forall x \in B_{\delta}(a) \cap E\: f(x) \in B_{\epsilon}(f(a)) $$
+То есть 
+$$\rho(f(x), f(a)) < \epsilon$$
+
+$$|f_i(x) - f_i(a)| \leqslant \sqrt{(f_1(x) - f_1(a))^2 + \cdots + (f_d(x) - f_d(a))^2} = \rho(f(x), f(a))$$
+Тогда
+$$|f_i(x) - f_i(a)| < \epsilon \Ra f_i \in B_{\epsilon}(f_i(a))$$
+
+То есть $f_i$ непрерывна в точке $a$.
+
+\item[$\La$:]
+  
+Возьмем $\delta = \min\{\delta_1, \cdots, \delta_d\} > 0$. Тогда 
+$$\forall x \in B_{\delta}(a)\: \forall i = 1..d\: |f_i(x) - f_i(a)| < \epsilon$$
+Тогда
+$$(f_1(x) - f_1(a))^2 + \ldots + (f_d(x)-f_d(a))^2 < d \epsilon$$
+Тогда
+$$\rho(f(x), f(a)) < \sqrt{d} \epsilon$$
+\end{itemize}
+\end{proof}

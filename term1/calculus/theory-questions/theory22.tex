@@ -1,0 +1,36 @@
+\section{Связь между бесконечно большими и малыми}
+\begin{theorem}{О связи бесконечно больших и малых}
+Пусть $x_n \ne 0$. Тогда
+$$x_n \ra \infty \Lra \frac1{x_n} \ra 0$$
+\end{theorem}
+\begin{proof}
+$$x_n \ra \infty \Lra \forall E > 0\; \exists N\colon \forall n > N\; |x_n| > E \Lra \forall \epsilon > 0\; \exists N\colon \forall n > N\; |\frac1{x_n}| < \epsilon \Lra 
+\frac1{x_n} \ra 0$$
+\end{proof}
+
+\begin{theorem}{Об арифметических действиях с бесконечно малыми}
+Пусть $\{x_n\}$, $\{y_n\}$~--- бесконечно малые, $\{z_n\}$ ограниченна. Тогда
+\begin{enumerate}
+\item $x_n \pm y_n$~--- бесконечно малая
+\item $x_n z_n$~--- бесконечно малая
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Об арифметических действиях с бесконечно большими}
+\begin{enumerate}
+\item $x_n \ra +\infty \land y_n\text{ ограниченна снизу} \Ra x_n + y_n \ra +\infty$
+\item $x_n \ra -\infty \land y_n\text{ ограниченна сверху} \Ra x_n + y_n \ra -\infty$
+\item $x_n \ra \infty \land y_n\text{ ограниченна} \Ra x_n + y_n \ra +\infty$
+\item $x_n \ra \pm\infty \land y_n\geqslant a > 0 \Ra x_n y_n \ra +\infty$
+\item $x_n \ra \pm\infty \land y_n\leqslant a < 0 \Ra x_n y_n \ra -\infty$
+\item $x_n \ra \infty \land \left|y_n\right| \geqslant a > 0 \Ra x_ny_n \ra \infty$
+\item $x_n \ra a \ne 0 \land y_n \ra 0 \land y_n \ne 0 \Ra \frac{x_n}{y_n} \ra \infty$
+\item $x_n\text{ ограниченна} \land y_n \ra \infty \Ra \frac{x_n}{y_n} \ra 0$
+\item $x_n \ra \infty \land y_n\text{ ограниченна} \land y_n \ne 0 \Ra \frac{x_n}{y_n} \ra \infty$
+\end{enumerate}
+\end{theorem}
+
+\begin{Rem}
+$$\lim x_n = l \in \bar \R \land l > 0 \Ra \exists a > 0\colon \exists N\colon \forall n > N\; x_n \geqslant a$$
+$$\lim x_n = l \in \bar \R \land l < 0 \Ra \exists a < 0\colon \exists N\colon \forall n > N\; x_n \leqslant a$$
+\end{Rem}

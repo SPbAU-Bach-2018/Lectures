@@ -1,0 +1,18 @@
+\section{Теорема о пересечение семейства компактов}
+\begin{theorem}{Пересечение компактных}
+Дан набор компактных множеств, любое конечное пересечение которых не пусто. Тогда их пересечение не пусто.
+\end{theorem}
+\begin{proof}
+$K_0$~--- любое их них. Пусть пересечение всех пусто. 
+$$\bigcap_{\alpha\in I} K_\alpha = \emptyset$$
+Тогда 
+$$\bigcup_{\alpha\in I} \left(X \setminus K_\alpha\right) \supset K_0$$
+Но тогда можно выбрать конечное покрытие. Тогда 
+$$\bigcup_{i=1}^k \left(X \setminus K_{x_i}\right) \supset K_0$$
+Но тогда 
+$$\bigcap_{i=0}^k K_{x_i} = \emptyset \quad\text{противоречие}$$
+\end{proof}
+
+\begin{conseq}
+Пусть есть цепочка вложенных непустых компактных. Тогда их пересечение не пусто.
+\end{conseq}

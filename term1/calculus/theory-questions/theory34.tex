@@ -1,0 +1,52 @@
+﻿\section{Верхний и нижний предел}
+
+\begin{Def}
+Верхний и нижний предел
+$$\liminf x_n = \varliminf x_n = \lim_{x\ra\infty}\inf_{k>n} x_k$$
+$$\limsup x_n = \varlimsup x_n = \lim_{x\ra\infty}\sup_{k>n} x_k$$
+\end{Def}
+\begin{Rem}
+$y_n \lrh \inf_{k>n} x_n$, $z_n \lrh \sup_{k>n} x_n$.
+$$y_n<x_n<z_n$$
+$$y_n \nearrow{}; z_n \searrow$$
+\end{Rem}
+
+\begin{Def}
+$a$~--- частичный предел последовательности, если $a$ предел подпоследовательности.
+\end{Def}
+
+\begin{lemma}
+Если $x_n$ монотонно возрастает и неограничена, то $\lim x_n = +\infty$
+\end{lemma}
+
+\begin{theorem}{Существование верхнего и нижнего пределов}
+У любой последовательности есть верхний и нижний предел в $\bar\R$, при этом
+$$\varliminf x_n \leqslant \varlimsup x_n$$
+\end{theorem}
+\begin{proof}
+$y_n \lrh \inf_{k>n} x_n$, $z_n \lrh \sup_{k>n} x_n$.
+Если $x_n$ ограниченно, то и $y_n$ ограниченно. Если $x_n$ не ограниченно снизу, то и $y_n$ не ограниченно снизу. Т.о. $\lim y_n = \varliminf x_n$. Аналогично 
+существует верхний предел.
+\end{proof}
+
+\begin{theorem}{Верхний и нижний предел и частичные пределы}
+\begin{enumerate}
+\item $\limsup$~--- наибольший частичный предел.
+\item $\liminf$~--- наименьший частичный предел.
+\item $\lim\text{ существует}\Lra\varlimsup = \varliminf$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 
+$a = \limsup x_n$. Покажем, что $a$~--- частичный предел.
+$$z_n \searrow{} \Ra \sup_{k>n} x_k \geqslant a$$
+
+Выберем $$x_{k_m}\colon x_{k_m} > a - \frac1m; k_{m+1} > k_m$$
+Оно стремится к $a$.
+
+Пусть есть больший частичный предел. Но тогда с какого-то места последовательность, сходящаяся к $b$, уйдёт выше супремума, что плохо.
+\item Аналогично
+\item Два миллиционера
+\end{enumerate}
+\end{proof}

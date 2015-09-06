@@ -1,0 +1,47 @@
+﻿\section{Открытые и замкнутые множества в пространстве и подпространстве}
+\begin{theorem}{Существование открытого/замкнутого надмножества в надпространстве}
+$(X; \rho)$ --- пространство, $(Y; \rho)$ --- подпространство.
+\begin{enumerate}
+\item $A \text{ открыто в } Y \Lra \exists G \subset X \text{ --- открытое в } X\colon A = G \cap Y$ 
+\item $A \text{ замкнутыо в } Y \Lra \exists F \subset X \text{ --- замкнутое в } X\colon A = F \cap Y$ 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$:
+$$A \text{ открыто в } Y \Lra \forall x \in A\: \exists r_x > 0\colon B_{r_x}^Y(x) \subset A$$
+$$G \lrh \bigcup_{x \in A} B_{r_x}^X(x) \text{ --- открыто в } X$$
+$$G \cap Y = \bigcup_{x \in A} \left(B_{r_x}^X(x) \cap Y\right) = \bigcup_{x \in A} B_{r_x}^Y(x) = A$$
+$\La$:
+$$x \in A \subset G \Ra \exists r > 0\colon B_r^X(x) \subset G$$
+$$B_r^Y(x) = B_r^X(x) \cap Y \subset G \cap Y = A$$
+\item Перейдём к доплнениям
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{О замыканиях}
+$(X, \rho)$, $A \subset X$
+$$x \in \cl A \Lra \forall r>0\: B_r(x) \cap A \ne \varnothing$$
+\end{theorem}
+\begin{proof}
+$\Ra$: Пусть $\exists r > 0\colon B_r(x) \cap A = \varnothing$. Тогда
+$$B_r(x) \subset X \setminus A$$
+$$X \setminus B_r(x) \text{ замнкуто}$$
+$$X \setminus B_r(x) \supset A$$
+$$x \notin X \setminus B_r(x)$$
+Тогда
+$$ \cl A \subset X \setminus B_r(x)$$
+Но тогда
+$$x \notin \cl A$$
+$\La$: Пусть $x \notin \cl A \Ra \exists F \supset A\colon x \notin F \land F \text{ закрыто}$. Тогда
+$$x \in X \setminus F \text{ --- открытое} \Ra \exists r > 0\colon B_r(x) \subset X \setminus F \Ra \exists r>0\colon B_r(x) \cap A = \emptyset $$
+\end{proof}
+\begin{conseq}
+$ U \text{ открытое} \land U \cap A = \varnothing \Ra U \cap \cl A = \varnothing$
+\end{conseq}
+\begin{proof}
+Пусть $x \in U \cap \cl A$.
+$$x \in \cl A \Ra \forall r > 0\: B_r(x) \cap A \ne \varnothing$$
+$$x \in U \Ra \exists r_0 > 0\colon B_{r_0} \subset U$$
+Но $B_{r_0}(x) \cap A \ne \varnothing \Ra U \cap A \ne \varnothing$
+\end{proof}

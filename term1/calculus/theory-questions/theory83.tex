@@ -1,0 +1,39 @@
+﻿\section{Достаточные условия экстремума}
+
+\begin{theorem}{Достаточное условие экстремума}
+$f\colon \left<a, b\right> \ra R$, $x_0 \in (a, b)$, $f$ непрерывна на $(x_0-\delta, x_0+\delta)$$f$ дифференцируема на $(x_0-\delta, x_0)\cup(x_0+\delta)$. Тогда
+\begin{itemize}
+\item $f'((x_0-\delta, x_0)) > 0 \land f'((x_0, x_0 + \delta)) < 0 \Ra x_0\text{~--- точка максимума}$
+\item $f'((x_0-\delta, x_0)) < 0 \land f'((x_0, x_0 + \delta)) > 0 \Ra x_0\text{~--- точка минимума}$
+\end{itemize}
+\end{theorem}
+\begin{proof}
+$$f'((x_0-\delta, x_0)) > 0 \Ra f\text{ возрастает на } (x_0-\delta, x_0) \Ra f(x_0) > f((x_0-\delta, x_0))$$
+$$f'((x_0, x_0+\delta)) < 0 \Ra f\text{ убывает на } (x_0, x_0+\delta) \Ra f(x_0) > f((x_0, x_0+\delta))$$
+\end{proof}
+
+\begin{theorem}{Достаточное условие экстремума через вторую производную}
+$f\colon \left<a, b\right> \ra R$, $x_0 \in (a, b)$, $f$ дважды дифференцируема в $x_0$ и $f'(x_0) = 0$. Тогда
+\begin{itemize}
+\item $f''(x_0) < 0 \Ra x_0\text{~--- точка максимума}$
+\item $f''(x_0) > 0 \Ra x_0\text{~--- точка минимума}$
+\end{itemize}
+\end{theorem}
+\begin{theorem}{Достаточное условие экстремума через $n$-ую производную}
+$f\colon \left<a, b\right> \ra R$, $x_0 \in (a, b)$, $f$ дифференцируема $n$ раз в $x_0$ и $f'(x_0) = f''(x_0) \cdots = f^{(n-1)}(x_0) = 0$. Тогда
+\begin{itemize}
+\item $2 \mid n \land f''(x_0) < 0 \Ra x_0\text{~--- точка максимума}$
+\item $2 \mid n \land f''(x_0) > 0 \Ra x_0\text{~--- точка минимума}$
+\item $2 \nmid 2 \land f''(x_0) \ne 0 \Ra x_0\text{~--- не экстремум}$
+\end{itemize}
+\end{theorem}
+\begin{proof}
+$$f(x) = f(x_0) + \frac{f'(x_0)}{1!}(x-x_0) + \cdots + \frac{f^{(n-1)}}{(n-1)!}(x-x_0)^{n-1} + \frac{f^{(n)}}{n!}(x-x_0)^{n} + o((x-x_0)^n)$$
+$$f(x) - f(x_0) = \frac{f^{(n)}}{n!}(x-x_0)^{n} + o((x-x_0)^n) = (x-x_0)^n \left(\frac{f^{(n)}(x_0)}{n!} + o(1)\right)$$
+$2 \mid n \land f^{(n)}(x_0) > 0$:
+$$\exists \epsilon>0\colon \forall x\in(x_0-\epsilon,x_0)\cup(x_0, x_0+\epsilon)\; f(x) - f(x_0) > 0$$
+$2 \mid n \land f^{(n)}(x_0) < 0$:
+$$\exists \epsilon>0\colon \forall x\in(x_0-\epsilon,x_0)\cup(x_0, x_0+\epsilon)\; f(x) - f(x_0) < 0$$
+$2 \nmid n \land f^{(n)}(x_0) \ne 0$:
+$$\exists \epsilon>0\colon \forall x\in(x_0-\epsilon,x_0)\cup(x_0, x_0+\epsilon)\; sign(f(x) - f(x_0)) = sign(x-x_0)$$
+\end{proof}

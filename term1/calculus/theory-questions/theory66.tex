@@ -1,0 +1,9 @@
+\section{Производная композиции}
+
+\begin{theorem}{Производная композиции}
+$g$ дифференцируема в $x_0$, $f$ дифференцируема в $f(x_0)$. Тогда $f \circ g$ дифференцируема, причём
+$$(f \circ g)'(x) = f'(g(x)) g'(x)$$
+\end{theorem}
+\begin{proof}
+$$(f \circ g)'(x) = \lim_{x\ra x_0} \frac{f(g(x)) - f(g(x_0))}{x-x_0} = \lim_{x\ra x_0} \left(\frac{f(g(x)) - f(g(x_0))}{g(x)-g(x_0)} \frac{g(x) - g(x_0)}{x-x_0}\right) = f'(g(x)) g'(x)$$
+\end{proof}

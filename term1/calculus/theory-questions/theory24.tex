@@ -1,0 +1,19 @@
+\section{Свойства компактного множества}
+\begin{theorem}{Свойства компактного множества}
+Если $K$ компактно, то $K$ замкнуто и ограниченно.
+\end{theorem}
+\begin{proof}
+$$K \subset \bigcup_{n=1}^\infty B_n(x) \Ra K \subset \bigcup_{i=1}^k B_{r_i}(x) \Ra K \subset B_{R}(x) \Lra K\text{ ограниченно}$$
+Возьмём произвольный $a \notin K$. Тогда                                                                
+$$K \subset \bigcup_{x\in K} B_{\frac12\rho(a, x)}(x) \Ra K \subset \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i)$$
+Но ($r \lrh \min_{i=1}^k\left\{\frac12 \rho(a, x_i)\right\}$)
+$$\forall i=1..k\; B_r(a) \cap B_{\frac12 \rho(a, x_i)}(x_i) = \varnothing \Ra B_r(a) \cap \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i) = \varnothing$$
+Но $K \subset \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i)$. Т. о. $B_r(a) \cap K = \varnothing$.
+\end{proof}
+
+\begin{theorem}{Признак компактного множества}
+Замкнутое подмножество компактного компактно.
+\end{theorem}
+\begin{proof}
+Добавим к покрытию подмножества $X \setminus K_1$.
+\end{proof}  

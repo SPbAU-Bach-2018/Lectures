@@ -1,0 +1,37 @@
+\section{Модуль комплексного числа. Мультипликативность модуля. Произведение двух сумм двух квадратов}
+\begin{gather*}
+\forall z = a+bi \in \C\colon z\bar z = a^2 + b^2 
+\end{gather*}
+\begin{Def}
+Модуль комплексного числа
+\begin{gather*}
+|z| = \sqrt{z\overline{z}} = \sqrt{a^2 + b^2}
+\end{gather*}
+\end{Def}
+
+\underline{Свойство}: $|z_1z_2|^2 = |z_1|^2|z_2|^2$
+\begin{proof}
+\begin{gather*}
+z_1 = a + bi,~z_2 = c + di \\
+(a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2
+\end{gather*}
+\end{proof}
+\begin{Rem}
+	Для $\Z[a, b, c, d]$(кольцо многочленов) тоже верно.
+\end{Rem}
+
+\underline{Напоминание}: $\phi$ называется мультипликативной, если $\phi(ab) = \phi(a)\phi(b)$. Таким образом, модуль мультипликативен.
+
+\underline{Вопрос}: При каких $k$ имеет место
+\begin{gather*}
+(a_1^2 + \cdots + a_k^2)(b_1^2 + \cdots + b_k^2) = c_1^2 + \dots + c_k^2
+\end{gather*}
+где $c_i$ "--- полиномы от $a_j$ и $b_l$?
+
+\underline{Ответ}: Только для $k \in \{1, 2, 4, 8\}$.
+\begin{description}
+\item[$k = 1$:] мультипликативность |$\R$|
+\item[$k = 2$:] мультипликативность |$\C$|
+\item[$k = 4$:] мультипликативность модуля кватернионов
+\item[$k = 8$:] мультипликативность модуля октав
+\end{description}

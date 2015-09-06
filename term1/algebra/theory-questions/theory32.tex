@@ -1,0 +1,34 @@
+﻿\section{Метод Лагранжа}
+Решим сначала подзадчу:
+\[
+\begin{array}{c|c|c|c|c|c}
+x_1 & x_2 & \cdots & x_i & \cdots & x_n \\
+\hline
+0 & 0 & \cdots & 1 & \cdots & 0 \\
+\end{array}
+\]
+$\deg L_i < n$
+\[ L_i = \frac{(x - x_1)(x-x_2) \cdots (x - x_{i - 1})(x - x_{i + 1}) \cdots (x - x_n)}{(x_i - x_1)(x_i - x_2) \cdots(x_i-x_{i-1})(x_i-x_{i+1}) \cdots (x_i - x_n)} \]
+
+Перейдём к общему случаю:
+\begin{gather*}
+\begin{array}{c|c|c|c}
+x_1 & x_2 & \ldots & x_n \\
+\hline
+y_1 & y_2 & \ldots & y_n \\
+\end{array} \\
+f = y_1L_1 + y_2L_2 + \cdots + y_n L_n \\
+f(x_i) = \sum_{k = 1}^{n} y_kL_k(x_i) = y_i L_i(x_i) = y_i \\
+f = \sum_{k = 1}^{n} y_kL_k \\
+L_i(x) = \frac{(x - x_1)(x - x_2) \cdots (x-x_{i-1})(x-x_{i+1}) \cdots (x - x_n)}{(x_i - x_1)(x_i - x_2) \cdots(x_i-x_{i-1})(x_i-x_{i+1}) \cdots (x_i - x_n)}
+\end{gather*}
+Теперь выпишем дробь в более общем виде. 
+\[ g(x) = \prod_{j=1}^{n} (x-x_j) \]
+Числитель $L_k$ равен $\frac{g(x)}{(x - x_k)}$, знаменатель же равен $g'(x_i)$:
+\begin{gather*}
+g'(x) = \\
+= 1(x-x_2)(x-x_3)\cdots(x-x_n) + (x-x_1)1(x-x_3)\cdots(x-x_n) + \cdots + (x-x_1)(x-x_2)\cdots(x-x_{n-1})1 \\
+g'(x_i) = 0 + 0 + \cdots + (x_i - x_1)(x_i - x_2) \cdots(x_i-x_{i-1})1(x_i-x_{i+1}) \cdots (x_i - x_n) + \cdots + 0 \\
+f(x) = \sum_{i=1}^{n} f(x_i) \frac{g(x)}{(x - x_i) g'(x_i)} \\
+\deg g = n \Ra \deg f \le n - 1
+\end{gather*}

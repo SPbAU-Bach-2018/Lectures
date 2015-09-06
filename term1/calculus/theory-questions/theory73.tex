@@ -1,0 +1,40 @@
+﻿\section{Правило Лопиталя}
+
+\begin{theorem}{Правило Лопиталя}
+$-infty \le a < b \le +infty$ f и g дифф. на (a, b)
+$$g'(x) \ne 0 \forall x \in (a, b)$$
+$$\lim_{x \to a^+} f(x) = \lim_{x \to a^+} g(x) = 0(+ \infty)$$
+$$\lim_{x \to a^{+}}\frac{f'(x)}{g'(x)} = l \in \overline{\R} \Ra$$
+$$\lim_{x \to a^{+}}\frac{f(x)}{g(x)} = l$$
+\end{theorem}
+\begin{proof}
+    Возьмем $x_n \downarrow a x_n \in(a, b)$, надо доказать, что $\lim_{n \to \infty}\frac{f(x_n)}{g(x_n)} = l$
+
+    $$\frac{f(x_n) - f(a)}{g(x_n) - g(a)} = l$$
+
+    По теореме Штольца достаточно проверить, что  $\lim_{n \to \infty}\frac{f(x_{n + 1}) - f(x_n)}{g(x_{n + 1} - g(x_n)}$ и что $g(x_n)$ ~--- монотонна
+    $$\lim_{n \to \infty}\frac{f(x_{n + 1}) - f(x_n)}{g(x_{n + 1} - g(x_n)} = \frac{f'(c_n)}{g'(c_n)} \to l$$
+    $$a < x_{n+1} < c_n < x_n \Ra c_n \to a$$
+    Осталось доказать монотонность $g(x_n)$.
+
+    Заметим, что g' везде одного знака, иначе по теореме Дарбу была бы точка, где g' = 0. $\Ra g(x_n)$ ~--- строго монотонно. 
+\end{proof}
+
+{\bf Примеры}
+\begin{enumerate}
+    \item $\lim_{x \to \infty}\frac{\ln x}{x^p} = 0$, при p > 0
+    \begin{proof}
+        $$(ln(x))' = \frac1x$$
+        $$(x^p)' = px^{p - 1}$$
+        $$\lim_{x \to \infty}\frac{(ln x)'}{(x^p)'} = \lim_{x \to +\infty}\frac{\frac{1}{x}}{px^{p - 1}} = 0$$
+    \end{proof}
+    \item $\lim_{x \to \infty}\frac{x^p}{a^x} = 0$ при a > 1
+    \begin{proof}
+        $$\lim_{x\to \infty}\frac{(x^p)'}{(a^x)'} = \lim\frac{px^{p - 1}}{a^x \ln a}$$
+    \end{proof}
+    \item $\lim_{x \to 0^+}x^x = e^{lim(ln(x^x))} = 1$
+    \begin{proof}
+        $$ln(x^x) = x ln(x)$$
+        $$\lim_{x \to 0^+} x ln(x) = \lim_{x\to 0^+}\frac{ln(x)}{\frac{1}{x}} = \lim_{x \to 0}\frac{(ln x)'}{(\frac{1}{x})'} = \lim_{x \to 0^+} = 0$$
+    \end{proof}
+\end{enumerate}

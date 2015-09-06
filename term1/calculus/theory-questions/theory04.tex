@@ -1,0 +1,66 @@
+\section{Верхняя и нижняя граница}
+
+\begin{Def}
+$A \subset \R$.\\
+$x \in R $ --- верхняя граница $A$, если $$\forall a \in A: a \leqslant x$$
+$x \in R $ --- нижняя граница $A$, если $$\forall a \in A: a \geqslant x$$
+\end{Def}
+\begin{Def}
+$A$ ограничено сверху, если
+$$\exists x \in R: x \text{~--- верхняя граница} A$$
+$A$ ограничено снизу, если 
+$$\exists x \in R: x \text{~--- нижняя граница} A$$
+$A$ ограничено, если $A$ ограничено сверху и снизу.
+\end{Def}
+\begin{Rem}
+Границ, если они есть, много.
+\end{Rem}
+\begin{Def} $A \subset \R$, $A$ ограничено сверху.
+$x$~--- супремум $A$, если $x$ --- наименьшая из верхних границ.\\
+\end{Def}
+\begin{Def}
+$A \subset \R$, $A$ ограничено снизу.
+$x$~--- инфимум $A$, если $x$ --- наибольшая из нижних границ.
+\end{Def}
+
+Пример:
+$$A = \left\{1, \frac12, \frac13, \frac14, \cdots\right\}$$
+$$\sup A = 1, \inf A = 0$$
+
+\begin{assertion}
+$\N$ не ограничено сверху.
+\end{assertion}
+\begin{proof}
+$x\text{~--- верхняя граница }\Ra \exists n \in \N: n > x$.
+\end{proof}
+
+\begin{theorem}{Существование точной границы}
+$A \neq \emptyset$.
+\begin{enumerate}
+\item Если $A$ ограничено сверху, то $\exists x = \sup A$.
+\item Если $A$ ограничено снизу, то $\exists x = \inf A$.
+\end{enumerate}
+\end{theorem}
+Эта теорема равносильна аксиоме полноты.
+\begin{proof}
+\begin{enumerate}
+\item $B$~--- множество всех верхних границ $A$.
+$$\forall a \in A\: \forall b \in B\: a \leqslant b \Ra \exists c \in \R\colon \forall a \in A\: a \leqslant c \land \forall b \in B\: c \leqslant b \Ra \exists \sup A = c$$
+\item Рассмотрим $ B = \{-a : a \in A\}$. Тогда $$\inf A = -\sup B$$
+\end{enumerate}
+\end{proof}
+
+\begin{Rem}
+Без аксиомы полноты это неверно. Рассмотрим $ A = \{x \in \Q : x^2 < 2\}, U = \Q$
+\end{Rem}
+
+\begin{theorem}{Свойство и признак точной границы}
+\begin{enumerate}
+\item $A$ ограничено сверху. Тогда $$b = \sup A \Lra (\forall a \in A\: a \leqslant b \land \forall \epsilon > 0\: \exists a \in A\colon a > b - \epsilon)$$
+\item $A$ ограничено снизу. Тогда $$c = \inf A \Lra (\forall a \in A\: a \geqslant c \land \forall \epsilon > 0\: \exists a \in A\colon a < c + \epsilon)$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$$b = \sup A \Lra (b \text{~--- верхняя граница } A \land \forall \epsilon > 0\: b - \epsilon\text{~--- не верхняя граница}) \Lra $$ 
+$$ \Lra (\forall a \in A\: a \leqslant b \land \forall \epsilon > 0\: \exists a \in A\colon a > b - \epsilon)$$
+\end{proof}

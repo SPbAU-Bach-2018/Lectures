@@ -1,0 +1,38 @@
+﻿\section{Приложение комплексных чисел}
+\subsection{Суммы косинусов и синусов}
+\begin{gather*}
+A = 1 + \cos \phi + \cos 2\phi + \ldots + \cos n \phi \\
+\phi \ne 2\pi k, k \in \Z \\
+B = 0 + \sin \phi + \sin 2\phi + \ldots + \sin n \phi \\
+A + Bi = 1 + (\cos \phi + i \sin \phi) + (\cos 2\phi + i \sin 2\phi) + \cdots + (\cos n\phi + i\sin n\phi) = \\
+= 1 + (\cos \phi + i \sin \phi) + (\cos \phi + i\sin \phi)^2 + \cdots + (\cos \phi + i \sin \phi)^n
+\end{gather*}
+$z = \cos \phi + i\sin \phi$
+\begin{gather*}
+A + Bi = 1 + z + z^2 + \cdots + z^n \xlongequal{z \ne 1} \frac{1 - z^{n + 1}}{1 - z} \\
+A = \Re\frac{1 - z^{n + 1}}{1 - z}, B = \Im \frac{1 - z^{n + 1}}{1 - z} \\
+\end{gather*}
+$z = w^2, w = \cos \frac{\phi}{2} + i \sin\frac{\phi}{2}$
+\begin{gather*}
+\frac{1 - z^{n + 1}}{1 - z} = \frac{1 - w^{2(n + 1)}}{1 - w^2} = \frac{w^{2(n + 1)} - 1}{w^2 - 1} = \frac{w^{n + 1}}{w}\frac{w^{n + 1} - w^{-(n + 1)}}{w - w^{-1}} = \\
+= w^{n}\frac{w^{n + 1} - \bar{w}^{n + 1}}{w - \bar{w}} = \left(\cos \frac{n\phi}{2} + i\sin \frac{n\phi}{2}\right) \frac{2i\sin\frac{\phi(n + 1)}{2}}{2i\sin\frac{\phi}{2}} \\
+%% w^{-1} = \bar w = \cos \frac{\phi}{2} - i\sin \frac{\phi}{2} = \cos(-\frac{\phi}{2}) + i\sin(-\frac{\phi}{2}) \\
+A = \frac{\cos\frac{n\phi}{2} \sin \frac{(n + 1)\phi}{2}}{\sin\frac{\phi}{2}}; B = \frac{\sin\frac{n\phi}{2} \sin \frac{(n + 1)\phi}{2}}{\sin\frac{\phi}{2}} \\
+\end{gather*}
+
+\subsection{Понижение степени}
+\begin{gather*}
+\cos^n \phi; \sin^n \phi\\
+z = \cos\phi + i\sin\phi \\
+z^{-1} = \bar z; \cos \phi = \frac{z + z^{-1}}{2}\\
+\cos^n\phi = (\frac{z + z^{-1}}{2})^n = \frac{1}{2}\sum_{k = 0}^{n}C_n^kz^{n - k}(z^{-1})^k = \frac{1}{2^n}\sum_{k = 0}^{n}\Choose{n}{k}z^{n - 2k} = \\
+= \frac{1}{2^n} \left(\sum_{0 \leqslant k < \frac{n}{2}} \Choose{n}{k}z^{n - 2k} + \sum_{\frac{n}{2} < k\leqslant n}\Choose{n}{k}z^{n- 2k} + \begin{cases} \Choose{n}{\frac{n}{2}} & \text{$n$ четно}\\ 0, & \text{$n$ нечетно} \end{cases}\right)\\
+\end{gather*}
+$n - k \lrh k'$, $\frac{n}{2} < k \leqslant n \Ra 0 \leqslant k' < \frac{n}{2}; \Choose{n}{k} = \Choose{n}{n - k} = \Choose{n}{k'}; z^{n - 2k} = z^{n - 2(n - k')} = z^{-(n - 2k')}$
+\begin{gather*}
+\cos^n \phi = \frac{1}{2^n}\left(\sum_{0 \leqslant k < \frac{n}{2}}\Choose{n}{k}\left(z^{n - 2k} + z^{-(n- 2k)}\right) + \begin{cases}\Choose{n}{\frac{n}{2}} & \text{$n$ четно}\\ 0 & \text{$n$ нечетно} \end{cases}\right)\\
+\end{gather*}
+$z^{n - 2k} + z^{-(n - 2k)} = 2 \cos(n - 2k)\phi$
+\begin{gather*}
+\cos^n \phi = \frac{1}{2^n}\left(\sum_{0\leqslant k < \frac{n}{2}} \Choose{n}{k} \cos(n - 2k)\phi + \begin{cases}C_n^{\frac{n}{2}} & \text{$n$ четно}\\ 0 & \text{$n$ нечетно}\\ \end{cases}\right)\\
+\end{gather*}

@@ -1,0 +1,65 @@
+﻿\section{Замкнутые множества}
+
+\begin{Def}
+Замкнутые множество --- множество, дополнение которого открыто.
+\end{Def}
+
+\begin{theorem}{О свойствах закмнутых множеств}
+Пусть $(X, \rho)$ --- метрическое пространство.
+\begin{enumerate}
+\item $\varnothing$ и $X$ --- закмнуты.
+\item Перечечение замкнутых --- замкнуто.
+\item Объеднинение конечного числа замкнутых замкнуто.
+\item Замкнутый шар замкнут.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Очевидно
+\item По формулам де Моргана
+$$X \setminus \bigcap_{\alpha \in I} F_\alpha = \bigcup_{\alpha \in I} \left(X \setminus F_\alpha \right)$$
+\item По формуле де Моргана
+$$$$
+\item Докажем, что $X \setminus \bar B_r(a)$ открыт. Рассмотрим $x \in X \setminus \bar B_r(a)$. Тогда по определению $$\rho(a, x) > r$$
+Покажем, что $$B_{\rho(a, x) - r}(x) \cap \bar B_r(a) = \varnothing$$
+Пусть $\exists y \in B_{\rho(a, x) - r}(x) \cap \bar B_r(a)$. Тогда
+$$y \in \bar B_r(a) \Ra \rho(a, y) \leqslant r$$
+$$y \in B_{\rho(a, x) - r}(x) \Ra \rho(x, y) < \rho(a, x) - r$$
+$$\rho(a, x) \leqslant \rho(a, y) + \rho (x, y) < r + (\rho(a, x) - r) = \rho(a, x) \text{ --- противоречие}$$
+\end{enumerate}
+\end{proof}
+\begin{Rem}
+$$\bigcup_{n=1}^\infty \left[\frac1n;1\right] = \left(0; 1\right]$$
+\end{Rem}
+
+\begin{Def}
+$A \subset X$, $(X, \rho)$. Тогда замыкание множества $A$ --- перечесение всех замкнутых множеств, содержащих A.
+$$\cl A = \bigcap_{\substack{F \text{ замкнуто}\\F \supset A}}F$$
+\end{Def}
+
+\begin{theorem}{О связи замыкания и внутренности}
+$$X \setminus \cl A = \Int (X \setminus A)$$
+$$X \setminus \Int A = \cl (X \setminus A)$$
+\end{theorem}
+\begin{proof}
+$$X \setminus \cl A = X \setminus \bigcap_{\substack{F \text{ замкнуто}\\F \supset A}} F = \bigcup_{\substack{F \text{ замкнуто}\\F \supset A}} (X \setminus F)$$
+$$X \setminus F \text{ открыто}$$
+$$X \setminus F \subset X \setminus A$$
+То
+$$\bigcup_{\substack{F \text{ замкнуто}\\F \supset A}} (X \setminus F) = \bigcup_{\substack{G \text{ открыто}\\G \subset X \setminus A}} G = \Int (X \setminus A)$$
+Аналогично
+\end{proof}
+\begin{conseq}
+$$ \Int A = \cl (X \setminus A)$$
+$$ \cl A = \Int (X \setminus A)$$
+\end{conseq}
+
+Свойства замыкания:
+\begin{enumerate}
+\item $A \subset \cl A$
+\item $\cl A$ замкнуто.
+\item $A \text{ замкнуто} \Lra A = \cl A$
+\item $A \subset B \Ra \cl A \subset \cl B$
+\item $\cl (A \cup B) = \cl A \cup \cl B$
+\item $\cl \cl A = \cl A$
+\end{enumerate}

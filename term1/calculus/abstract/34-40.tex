@@ -1,0 +1,40 @@
+\section{} % 34
+Верхний предел: предел инфиумов хвостов ($\lim \inf x_n$, $\underline \lim x_n$).
+Частичный предел "--- предел подпоследовательности. Теорема: $\underline\lim x_n \le \overline\lim x_n$,
+и оба существуют (в $\bar\R$). Теорема: $\exists \lim \iff \underline\lim = \overline\lim$.
+Теорема: верхний предел есть наибольший частный предел; симметрично для нижнего.
+Предельный переход в неравенстве: если $a_n\le b_n$, то $\underline\lim a_n \le \underline\lim b_n$;
+симметрично.
+
+\section{} % 35
+$
+a = \underline\lim x_n \iff
+\begin{cases}
+\forall \eps > 0 \exists N \forall n > N: x_n > a -\eps \\
+\forall \eps > 0 \forall N \exists n > N: x_n < a +\eps \\
+\end{cases}
+$
+
+\section{} % 36
+При $x > -1$ с некоторого $n$: $(1+x)^n\ge 1 + nx$ (по индукции). Следствие: предел $t^n$
+в зависимости от $t$. Теорема: $x_n>0$, $\lim \frac{x_{n+1}}{x_n} < 1$, тогда $x_n \to 0$.
+
+\section{} % 37
+Пусть $x_n=\left(1+\frac1n\right)^n$; $y_n=\left(1+\frac1n\right)^{n+1}$, тогда $x_n\nearrow$, $y_n\searrow$,
+при этом $x_n<y_n$, тогда обе последовательности ограничены и пределы у них есть (он общий, так как разница
+маленькая). $e \coloneqq \lim x_n$, очевидно: $x_n < e < y_n$.
+
+\section{} % 38
+$\lim\limits_{n\to\infty} \frac{n^k}{a^n} = 0$ при $a>0$.
+$\lim\limits_{n\to\infty} \frac{a^n}{n!}=0$.
+$\lim \frac{n!}{n^n} = 0$ (так как отношение $\to \frac 1 e$).
+
+\section{} % 39
+Теорема Штольца-1: $y_n>0$, $y_n\searrow$, $x_n, y_n \to 0$, а также $\frac{x_n-x_{n-1}}{y_n-y_{n-1}} \to a \in \bar\R$.
+Тогда $\frac{x_n}{y_n} \to a$. Д-во: сначала свели к $a=0$, потом обозначим отношение разностей за $\eps_n \to 0$, рассмотрим $x_n-x_m$, покажем,
+что $\forall\eps$ в хвосте $|x_n-x_m|<\eps |y_n-y_m|$, т.е. $\frac{x_m}{y_m} \to 0$.
+
+\section{} % 40
+Теорема Штольца-2: $y_n>0$, $y_n\nearrow$, $x_n, y_n \to +\infty$, а также $\frac{x_n-x_{n-1}}{y_n-y_{n-1}} \to a \in \bar\R$.
+Тогда $\frac{x_n}{y_n} \to a$. Д-во: свели к $a=0$, потом обозначили за $\eps_n$, рассмотрели $x_n=x_1+\sum(x_i-x_{i-1})$, выразили
+правую часть через $y_i$ и $\eps_i$, разделили на $y_n$.

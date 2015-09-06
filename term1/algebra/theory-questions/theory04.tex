@@ -1,0 +1,41 @@
+﻿\section{Равносильность инъективности и обратимости слева}
+
+\begin{theorem}{}
+Пусть $f:A \to B$ и $A \ne \varnothing$. Тогда $f$ обратима слева $\iff$ $f$ инъективна.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$
+
+$\exists g \colon g \circ f = id_A \Ra f$ инъективно.
+
+\item $\La$
+
+Пусть $C = f(A)$. Построим $h_1: C \to A$ такое, что
+\[(c, a) \in \Gamma_{h_1} \Lra (a, c) \in \Gamma_{f}\]. Проверим, что это график:
+
+\begin{enumerate}
+\item Определённость для $c \in C$:
+\begin{gather*}
+\forall c \in C, \exists a \in A \colon (a, c) \in \Gamma_{f}; \\
+\forall c \in C, \exists a \in A \colon (c, a) \in \Gamma_{h_1}; \\
+\end{gather*}
+\item Однозначность. Знаем, что $f$ инъективно. 
+\begin{gather*}
+\forall a_1, a_2 \in A, \exists b \in B \colon (a_1, b) \in \Gamma_{f} \wedge (a_2, b)\in \Gamma_{f} \Ra a_1 = a_2; \\
+\forall a_1, a_2 \in A, \exists b \in C \colon (a_1, b) \in \Gamma_{f} \wedge (a_2, b)\in \Gamma_{f} \Ra a_1 = a_2; \\
+\forall a_1, a_2 \in A, \exists b \in C \colon (b, a_1) \in \Gamma_{h_1} \wedge (b, a_2)\in \Gamma_{h_1} \Ra a_1 = a_2;
+\end{gather*}
+\end{enumerate}
+
+$\Ra \Gamma_{h_1}$ "--- график.
+
+Теперь построим $h: B \to A$. Для этого выберем произвольный $a \in A$ и положим:
+
+$h(b) = \begin{cases} h_1(b), & \text{если~} b \in C\\ a, &\text{если~} b \notin C\end{cases}$
+
+Проверим, что $h \circ f = id_A$. Рассмотрим $x \in A$:
+\[(h \circ f)(x) = h(f(x)) = h_1(f(x)) = x\]
+\end{enumerate}
+\end{proof}

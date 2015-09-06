@@ -1,0 +1,175 @@
+\section{Формула Тейлора}
+
+\begin{theorem}{Формула Тейлора}
+$$T(x) = \sum{i=0}^n \frac{T^{(i)} (x_0)}{i!} (x-x_0)^i$$
+\end{theorem}
+\begin{proof}
+$$T(x) = \sum_{i=0}^n a_k (x-x_0)^k$$
+$$((x-x_o)^k)^{(m)} = \begin{cases}0 & k < m \\ m! & k = m \\ k(k-1)(k-2)\cdots(k-m+1)(x-x_0)^{k-m} & k > m\end{cases}$$
+$$T(x)^{(m)} = \sum_{i=m}^n a_k k(k-1)(k-2)(k-3)\cdots(k-i+1)(x-x_0)^{k-m}$$
+$$T(x_0)^{(m)} = a_m m! $$
+$$a_m = \frac {T^{(m)}(x_0)}{m!} $$
+\end{proof}
+
+\begin{Def}
+$f$ дифференцируема $n$ раз в точке $x_0$. Тогда многочленом Тейлора функции $f$ в точке $x_0$ есть
+$$T_{n,x_0} f(x) = \sum_{i=0}^n \frac{f^{(i)} (x)}{k!} (x-x_0)^k$$
+\end{Def}
+
+\begin{Def}
+Формула Тейлора:
+$$f(x) = T_{n, x_0} f(x) + R_{n, x_0} f(x)$$
+\end{Def}
+
+\begin{lemma}
+$g$ дифференцируема $n$ раз в $x_0$. $g(x_0) = g'(x_0) = g''(x_0) = \cdots = g^{(n)}(x_0) = 0$. Тогда
+$$g(x) = o\left((x - x_0)^n\right) при x \ra x_0$$
+\end{lemma}
+\begin{proof}
+$$\lim_{x \ra x_0} \frac{g(x)}{(x-x_0) ^ n} = \lim{x \ra x_0} \frac{g'(x)}{n (x-x_0)^{n-1}} = \cdots = \lim_{x\ra x_0} \frac{g^(n-1)}{n! (x-x_0)}$$
+$g^{(n-1)}$ дифференцируема в $x_0$, а значит
+$$g^{(n-1)}(x) = g^{(n-1)}(x_0) + g^{(n)}(x_0) (x-x_0) + o(x-x_0) = o(x-x_0)$$
+Т.о.
+$$\lim_{x\ra x_0} \frac{g^(n-1)}{n! (x-x_0)} = 0$$
+Тогда 
+$$g(x) = o\left((x-x_0)^n\right)$$
+\end{proof}
+
+\begin{theorem}{Формула Тейлора с остатком в форме Пеано}
+$f$ дифференцируема $n$ раз в $x_0$.
+$$f(x) = T_{n, k} f(x) + o((x - x_0)^n) \quad x \ra x_0$$
+\end{theorem}
+\begin{proof}
+$$g(x) = f(x) - T_{n, k} f(x)$$
+$$\forall k \leqslant n\; g^{(k)} (x_0) = f^{(k)} (x_0) - \left(T_{n, x_0} f\right)^{(k)} (x_0) = 0$$
+Пользуемся леммой.
+\end{proof}
+
+\begin{conseq}
+$$\exists! P \in \R[x]\colon f(x) = P(x) + o((x - x_n)^k) \quad x \ra x_0$$
+\end{conseq}
+\begin{proof}
+$x \ra x_0$:
+$$T_{n, x_0} f(x) + o\left((x-x_0)^n\right) = f(x) = P(x) + o\left((x-x_0)^n\right)$$
+$$q(x) \lrh T_{n, x_0} f(x) - P(x) = o\left((x-x_0)^k\right)$$
+$$q(x_0) = 0$$
+$q \in \R[x]$
+$$q(x) = (x - x_0) q_1(x)$$
+$$q_1(x) = o\left((x - x_0)^{n-1}\right)$$
+$$q_1(x_0) = 0$$
+$$\vdots$$
+$$q_n(x_0) = o(1)$$
+$$q_n \equiv 0$$
+$$q \equiv 0$$
+$$P \equiv T_{n, x_0} f$$
+\end{proof}
+
+\begin{theorem}{Формула Тейлора с остатком в форме Лагранжа}
+$f$ дифференцируема $n/ + 1/$ раз в $x_0$, $f^{(n)}$ непрерывна на $[x, x_0]$.
+$$\exists c \in (x, x_0)\colon f(x) = T_{n, x_0} f(x) + \frac{f^{(n+1)}(c)}{(n+1)!} (x-x_0)^{n+1}$$
+\end{theorem}
+\begin{Rem}
+Теорема Лагража~--- частный случай для $n = 0$.
+$$\exists c\in(x,x_0)\colon f(x) = f(x_0) + f'(c)(x-x_0)$$
+\end{Rem}
+\begin{proof}
+$$f(x) = T_{n, x_0} f(x) + M \frac{(x-x_0)^{n+1}}{(n+1)!}$$
+Надо доказать, что в форме
+$$\exists c\in(x,x_0)\colon M = \frac{f^{(n+1)}(c)}{(n+1)!}$$
+$$g(t) \lrh f(t) - T_{n, x_0} f(t) - M(t-x_0)^{n+1}$$
+$$g^{(k)} (t) = f^{(k)}(t) - (T_{n, x_0})^{(k)} (t) - M(n+1)(n+2)(n+3)\cdots(n-k+2)(t-x_0)^{n-k+1}$$
+$$g^{(k)} (x_0) = 0$$
+Тогда у функции $g$ первые $n$ производных равны нулю, а также $g(x) = 0$, значит
+$$g(x_0) = g(x) = 0$$
+По теореме Ролля
+$$\exists x_1\in(x, x_0)\colon g'(x_1) = 0$$
+$$g'(x_0) = g'(x_1) = 0$$
+По теореме Ролля
+$$\exists x_2\in(x, x_1)\colon g'(x_2) = 0$$
+$$\vdots$$
+$$\exists x_{n+1}\in(x, x_0)\colon g^{(n+1)}(x_{n+1}) = 0$$
+$$g^{(n+1)}(t) = f{(n-1)}(t) - M(n+1)!$$
+$$c = x_{n+1}$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \ra \R$, $n+1$ раз дифференцируема на $[a, b]$, $x_0 \in (a, b)$, $\left|f^{(n+1)} (t)\right| \leqslant M$.
+$$\left|f(x) - T_{n, x_0} f(x)\right| \leqslant \frac{M \left|x-x_0\right|^{n+1}}{(n+1)!} = O\left((x-x_0)^n\right)$$
+\end{conseq}
+\begin{proof}
+$$\exists c \in (x,x_0)\colon \left|f(x) - T_{n, x_0} f(x)\right| = \left|\frac{f^{(n+1)}(v)}{(n+1)!}(x-x_0)^{n+1}\right|$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \ra \R$, $n+1$ раз дифференцируема на $[a, b]$, $x_0 \in (a, b)$, $forall n\; \left|f^{(n+1)} (t)\right| \leqslant M$.
+$$\lim_{n\ra\infty} T_{n, x_0} = f(x)$$
+\end{conseq}
+\begin{proof}
+$$\left|f(x) - T_{n, x_0} f(x)\right| \leqslant \frac{M \left|x-x_0\right|^{n+1}}{(n+1)!} \ra 0$$
+\end{proof}
+
+$x_0 = 0$:
+\begin{align*}
+e^x &= 1 &+ x &+ \frac{x^2}{2!} &+ \frac{x^3}{3!} &+ \frac{x^4}{4!} &+ \cdots &+ o(x^n) \\
+e^x &= 1 &+ x &+ \frac{x^2}{2!} &+ \frac{x^3}{3!} &+ \frac{x^4}{4!} &+ \cdots &+ \frac{e^cx^{n+1}}{(n+1)!}
+\end{align*}
+\begin{align*}
+\sin x &= 0 &+ x &+ 0 &- \frac{x^3}{3!} &+ 0 &+ \cdots &+ o(x^{2n+1}) \\
+\cos x &= 1 &+ 0 &+ \frac{x^2}{2!} &+ 0 &- \frac{x^4}{4!} &+ \cdots &+ o(x^{2n+1}) \\
+\ln (x+1) &= 0 &+ x &- \frac{x^2}2 &+ \frac{x^3}3 &- \frac{x^4}4 &+ \cdots &+ o(x^n) \\
+(x+1)^p &= 1 &+ px &+ \frac{p(p-1)}{2!}x^2 &+ \frac{p(p-1)(p-2)}{3!}x^3 &+ \frac{p(p-1)(p-2)(p-3)}{4!}x^4 &+ \cdots &+ o(x^n)
+\end{align*}
+
+\begin{Def}
+$a_n \in \R$
+$$\sum_{i=0}^\infty \eqDef \lim_{n\ra\infty} \sum{i=0}^n a_n$$
+\end{Def}
+
+\begin{conseq}
+$\forall x\ in \R\;$
+$$e^x = \sum_{n=0}^\infty \frac{x^n}{n!}$$
+$$\sin x = \sum_{n=0}^\infty \frac{(-1)^n x^{2n+1}}{(2n+1)!}$$
+$$\sin x = \sum_{n=0}^\infty \frac{(-1)^n x^{2n}}{(2n)!}$$
+\end{conseq}
+
+\begin{theorem}{Иррациональность $e$}
+$$e \notin \Q$$
+\end{theorem}
+\begin{proof}
+$$\left(1+\frac1n\right)^n \leqslant e \leqslant \left(1+\frac1{n+1}\right)^n$$
+$$2 < e < 3$$
+Пусть $e = \frac{m}{n}$
+$$e^1 = 1 + 1 + \frac1{2!} + 1\frac{3!} + \cdots + \frac{e^c}{(n+1)!} = \frac{m}{n} \Ra$$
+$$\Ra \underbrace{n!(1 + 1 + \frac1{2!} + 1\frac{3!} + \cdots)}_{\in \N} + \frac{e^c}{n+1} = \underbrace{m(n-1)!}_{\in N} \Ra$$
+$$\Ra \frac{e^c}{n+1} \in \N$$
+$$0<c<1 \Ra 1 < e^c < 3$$
+$$0 < \frac{1}{n+1} < \frac{e^c}{n+1} < \frac{3}{n + 1} < 1$$
+Т.о. $e \ne \frac{m}{n}$
+\end{proof}
+
+\section{Экстремумы функции}
+
+\begin{Def}
+$f\colon \left<a, b\right> \ra \R$, $x_0 \in (a, b)$. 
+$x_0$~--- точка строгого локального минимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) \ \{x_0\} f(x) > f(x_0)$$
+$x_0$~--- точка нестрогого локального минимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) f(x) \geqslant f(x_0)$$
+
+$x_0$~--- точка строгого локального максимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) \ \{x_0\} f(x) < f(x_0)$$
+$x_0$~--- точка нестрогого локального максимума, если
+$$\exists \delta>0\colon \forall x \in (x - \delta, x + \delta) f(x) \leqslant f(x_0)$$
+
+Точка локального максимума или минимума также называется точкой локального экстремума.
+\end{Def}
+\begin{theorem}{Необходимое условие экстремума}
+$f\colon \left<a, b\right> \ra \R$, $x_0 \in (a, b)$, $f$ дифференцируема в $x_0$.
+$$x_0\text{~--- экстремум} \Ra f'(x_0) = 0$$
+\end{theorem}
+\begin{proof}
+Сузим до окрестности, там по теореме Ферма всё работает.
+\end{proof}
+\begin{Rem}
+Обратное неверно, смотри $f(x) = x^3$.
+\end{Rem}\
