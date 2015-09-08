@@ -2,8 +2,10 @@
 
 \usepackage{metalogo}
 \usepackage{verbatim}
+\usepackage{minted}
 
 \input{preamble-settings}
+\input{preamble-settings-minted}
 
 \renewcommand{\thesection}{\arabic{section}}
 \newcommand{\ok}{& \textcolor{green!60!black}{Правильно}}
@@ -35,7 +37,7 @@
 	переводы строк (не используем \verb'\\' вне таблиц, где эта комбинация является частью синтаксиса).
 	Просто аккуратно делите на абзацы.
 	Также не стоит использовать \verb`\vspace` и похожие команды, которые выставляют отступы.
-	
+
 \item
 	Математические символы, записи следует оборачивать в \verb'$...$'.
 	Также следует оборачивать запятые и прочие символы пунктуации, если они
@@ -55,7 +57,7 @@
 		\hline \verb!где $a$, $b \in \R$! & где $a$, $b \in \R$ \bad \\
 		\hline \verb!где $a$, $b$ $\in \R$! & где $a$, $b$ $\in \R$ \bad \\
 		\hline \verb!где $a, b \in \R$! & где $a, b \in \R$ \ok \\
-		\hline 
+		\hline
 	\end{tabular}\end{center}
 
 	В примере ниже это критично (хотя таких ситуаций лучше вообще избегать):
@@ -106,10 +108,10 @@
 	Аналогично не следует разрывать параграф пустой строкой между несколькими подряд идущими
 	\text{gather*} и другими окружениями "--- будет слишком много пустого места.
 
-\item 
+\item
 	Если хотим поставить одну выключную формулу, то вместо \verb!$$...$$! используем \verb!\[...\]!.
 
-\item 
+\item
 	Математику в условии теоремы, утверждения пишем в тексте (\verb'$...$'), а вывод "--- уже выделенно (\verb'\begin{gather*}'):
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
@@ -123,7 +125,7 @@ $f\colon [a, b] \ra \R$, $f$ "--- непрерывна
 c \in (a, b)\colon f(c) = C\]
 \end{theorem}
 \end{verbatim}
-		\end{minipage} 
+		\end{minipage}
 		\\\hline
 		... верстается так \\\hline
 		\begin{minipage}{11.5cm}
@@ -141,19 +143,19 @@ c \in (a, b)\colon f(c) = C\]
 		\hline Это... & ...верстается так & \\
 		\hline \begin{minipage}{0.5\linewidth}
 \begin{verbatim}
-$\forall a \exists b 
+$\forall a \exists b
 \forall c P(A, B, C)$
 \end{verbatim}
 		\end{minipage} & $\forall a \exists b \forall c: P(A, B, C)$ \bad \\
 		\hline \begin{minipage}{0.5\linewidth}
 \begin{verbatim}
-$\forall a: \exists b: 
+$\forall a: \exists b:
 \forall c: P(A, B, C)$
 \end{verbatim}
 		\end{minipage} & $\forall a: \exists b: \forall c: P(A, B, C)$ \bad \\
 		\hline \begin{minipage}{0.5\linewidth}
 \begin{verbatim}
-$\forall a\colon \exists b\colon 
+$\forall a\colon \exists b\colon
 \forall c\colon P(A, B, C)$
 \end{verbatim}
 		\end{minipage} & $\forall a\colon \exists b\colon \forall c\colon P(A, B, C)$ \bad \\
@@ -179,7 +181,7 @@ $\exists a\colon \forall b,
 \item
 	Многоточия.
 	\verb!\ldots! "--- это многоточия снизу, \verb!\cdots! "--- посередине, \verb!\dots! автоматически выбирает нужное.
-	При этом \verb!...! распознаётся как многоточие \textit{только} в text-mode, 
+	При этом \verb!...! распознаётся как многоточие \textit{только} в text-mode,
 	поэтому наша рекомендация "--- везде использовать \verb!\dots!.
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
@@ -197,8 +199,8 @@ $\exists a\colon \forall b,
 		\hline
 	\end{tabular}\end{center}
 
-\item 
-	Не используйте псевдографику, не заменяйте одни символы другими. 
+\item
+	Не используйте псевдографику, не заменяйте одни символы другими.
 	Не забывайте, что одни и те же команды имеют разный смысл в math-mode и в text-mode (и могут иметь разные пробелы, соответственно):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
@@ -233,7 +235,7 @@ $\exists a\colon \forall b,
 		\hline
 	\end{tabular}\end{center}
 
-\item 
+\item
 	Используйте окружения для единого стиля:
 	\begin{enumerate}
 		\item \verb'theorem' для тела теорем, у которых может быть название (не для доказательств!).
@@ -246,7 +248,7 @@ $\exists a\colon \forall b,
 		\item \verb'exmp' для примеров.
 	\end{enumerate}
 
-\item 
+\item
 	Части доказательства и шаги индукции мы набираем окружением \verb'\begin{description}' вот так:
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
@@ -254,9 +256,9 @@ $\exists a\colon \forall b,
 \begin{verbatim}
 Докажем по индукции:
 \begin{description}
-\item[База:] Для $n = 1$ всё 
+\item[База:] Для $n = 1$ всё
 очевидно
-\item[Переход:] Пусть для $k$ всё 
+\item[Переход:] Пусть для $k$ всё
 доказано...
 \end{description}
 \end{verbatim}
@@ -275,7 +277,7 @@ $\exists a\colon \forall b,
 \item
 	Некоторые правила набора символов
 	\begin{enumerate}
-	\item 
+	\item
 		Черта в множествах "--- \verb'\mid', а не \verb'|'.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
@@ -283,8 +285,8 @@ $\exists a\colon \forall b,
 			\hline \verb'$\{n \mid 2 \div n\}$' & $\{n \mid nx > y\}$ \ok \\
 			\hline
 		\end{tabular}\end{center}
-	
-	\item 
+
+	\item
 		Двоеточие в определении отношения и функции "--- \verb'\colon', а не \verb':'.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
@@ -304,8 +306,8 @@ $\exists a\colon \forall b,
 			\hline \verb'$a \leqslant b$' & $a \leqslant b$ \bad \\
 			\hline
 		\end{tabular}\end{center}
-	
-	\item 
+
+	\item
 		Черта над одной буквой "--- \verb'\bar', а не \verb'\overline'.
 		При этом если буква имеет индексы, черта всё равно ставится только над буквой.
 		Над выражением "--- \verb'\overline'.
@@ -314,7 +316,7 @@ $\exists a\colon \forall b,
 			\hline
 			\begin{minipage}{10cm}
 \begin{verbatim}
-$\overline{z_1z_2} = 
+$\overline{z_1z_2} =
 \overline{z_1}\overline{z_2}$
 \end{verbatim}
 			\end{minipage}
@@ -325,7 +327,7 @@ $\overline{z_1z_2} =
 			\hline
 		\end{tabular}\end{center}
 
-	\item 
+	\item
 		Треугольные скобки "--- \verb'\left< \right>' или хотя бы \verb'\langle \rangle', но никак не \verb'< >'!
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
@@ -337,8 +339,8 @@ $\overline{z_1z_2} =
 			\hline \verb'$\left<a, \cfrac23\right>$' & $\left<a, \cfrac23\right>$ \ok \\
 			\hline
 		\end{tabular}\end{center}
-	
-	\item 
+
+	\item
 		Тире ставим так: \verb'"---', окружая пробелами (не минусиками "--- это дефисы!!!).
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
@@ -508,6 +510,89 @@ y &= \sin^2 ax \cos bx = \\
 	хранит везде всю историю всех файлов, поэтому большие файлы сильно раздуют
 	объём папочки (даже удалённые).
 
+\item
+	Для набора кода используем команды пакета \t{minted}:
+	\begin{enumerate}
+	\item
+		Набор кода в строке (название классов, методов, операторы) используется аналог команды \verb'\verb':
+		\verb'\cpp' для плюсов, \verb'\java' для Java и так далее.
+		\begin{center}\begin{tabular}{|c|c|c|}
+			\hline Это... & ...верстается так & \\
+			\hline \verb'std::sort<int>'        & std::sort<int>        \bad \\
+			\hline \verb"\verb'std::sort<int>'" & \verb'std::sort<int>' \bad \\
+			\hline \verb"\cpp'std::sort<int>'"  & \cpp'std::sort<int>'  \ok  \\
+			\hline
+		\end{tabular}\end{center}
+
+	\item
+		Набор кусков кода уже делаем в аналоге окружения \verb'verbatim':
+		\verb'cppcode' для плюсов, \verb'javacode' для Java и так далее:
+		\begin{center}\begin{tabular}{|c|c|c|}
+			\hline Это... & ...верстается так & \\
+			\hline \begin{minipage}{0.4\linewidth}
+\begin{verbatim}
+void main() {
+    cout
+        << "Hello, World!"
+        << endl;
+    return 1;
+}
+\end{verbatim}
+			\end{minipage} & \begin{minipage}{0.4\linewidth}
+void main() {
+    cout
+        << "Hello, World"
+        << endl;
+    return 1;
+}
+			\end{minipage} \bad \\
+			\hline \begin{minipage}{0.4\linewidth}
+\begin{verbatim}
+\begin{verbatim_}
+void main() {
+    cout
+        << "Hello, World!"
+        << endl;
+    return 1;
+}
+	\end{verbatim_}
+	%подчёркивания не нужны
+\end{verbatim}
+			\end{minipage} & \begin{minipage}{0.4\linewidth}
+\begin{verbatim}
+void main() {
+    cout
+        << "Hello, World!"
+        << endl;
+    return 1;
+}
+\end{verbatim}
+			\end{minipage} \bad \\
+			\hline \begin{minipage}{0.4\linewidth}
+\begin{verbatim}
+\begin{cppcode}
+void main() {
+    cout
+        << "Hello, Wolrd!"
+        << endl;
+    return 1;
+}
+\end{cppcode}
+\end{verbatim}
+			\end{minipage} & \begin{minipage}{0.4\linewidth}
+\begin{cppcode}
+void main() {
+    cout
+        << "Hello, World!"
+        << endl;
+    return 1;
+}
+\end{cppcode}
+			\end{minipage} \ok \\
+			\hline
+		\end{tabular}\end{center}
+	\end{enumerate}
+	\textbf{Важно:} в последнем случае будут корректно работать отстубы табами. Используйте их!
 \end{enumerate}
 
 \section{Особенности правописания}
@@ -522,7 +607,7 @@ y &= \sin^2 ax \cos bx = \\
 \item
 	Не допускаются сокращения, кроме <<и т. п.>> и <<и т. д.>> (а эти выражения не рекомендуется использовать).
 	Следует писать полностью (<<то есть>>, <<так как>>).
-	
+
 \item Используем букву Ё!
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline Винни-Пух и всё-всё-всё \bad \\
@@ -596,6 +681,55 @@ y &= \sin^2 ax \cos bx = \\
 	\end{minipage} \\
 	\hline
 	\end{tabular}\end{center}
+
+\item
+	Отступы и пустые строки делаются так:
+	\begin{enumerate}
+	\item
+		Разделители, как \verb'\section', \verb'\chapter' и прочие не порождают отступа,
+		ограждаются одной пустой строкой с каждой стороны.
+
+	\item
+		Все окружения порождают отступ внутри себя.
+		Если вы используете цепочку вложеных окружений, то можно сделать отступ один раз.
+\begin{verbatim}
+\begin{center}\begin{tabular}
+    %и поехали)
+\end{tabular}\end{center}
+\end{verbatim}
+
+	\item
+		Если вы используете короткие строки в \verb'\item',
+		то пишите в одну строку и отступите перед \verb'\item', пустых строк не нужно.
+		Иначе \verb'\item' не сдвигается относительно \verb'enumerate', \verb'itemize' и \verb'description',
+		содержимое пишется со следующей строки со сдвигом, а перед следующим \verb'item'-ом ставится пустая строка:
+\begin{verbatim}
+\begin{itemize}
+    \item 1
+    \item 2
+    \item 3
+\end{itemize}
+\begin{itemize}
+\item
+    1
+    1
+
+\item
+    2
+    2
+\end{itemize}
+\end{verbatim}
+	\item
+		Если внутри многострочных окружений приходится переноситсь строчку в исходном файле, то желательно добавить отступ:
+\begin{verbatim}
+\begin{gather*}
+    2 + 2 = 4 \\
+    2 + 3
+        = 6
+\end{gather*}
+\end{verbatim}
+
+	\end{enumerate}
 
 \item
 	Не делаем строки существенно длиннее сотни символов.
