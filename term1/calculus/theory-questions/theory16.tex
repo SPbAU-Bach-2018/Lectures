@@ -1,0 +1,24 @@
+﻿\section{Теорема о двух миллиционерах}
+
+\begin{theorem}{О двух миллиционерах}
+Пусть $x_n \leqslant y_n \leqslant z_n$ и $\lim x_n = \lim z_n = l$. Тогда $\lim y_n = l$.
+\end{theorem}
+\begin{proof}
+Выберем $\epsilon > 0$.
+$$\exists N_1\colon\forall n \geqslant N_1 x_n > l - \epsilon$$
+$$\exists N_2\colon\forall n \geqslant N_2 z_n < l + \epsilon$$
+Тогда
+$$\exists N = \max\{N_1,N_2\}\colon\forall n \geqslant N\:l - \epsilon < x_n \leqslant y_n \leqslant z_n < l + \epsilon$$
+Тогда $\lim y_n = l$
+\end{proof}
+\begin{conseq}
+$\lim z_n = 0 \land |y_n| \leqslant z_n \Ra \lim y_n = 0$
+\end{conseq}
+\begin{conseq}
+Если $\lim x_n = 0$, а $y_n$ ограниченна, то $\lim x_ny_n = 0$.
+\end{conseq}
+\begin{proof}
+Пусть $|y_n| < M$
+
+$$|x_n y_n| = |x_n||y_n| \le |x_n|M \to 0 \text{ (Возьмем $\epsilon' = \epsilon/M$)}$$ 
+\end{proof}

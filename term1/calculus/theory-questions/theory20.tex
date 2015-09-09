@@ -1,0 +1,18 @@
+\section{Покоординатная сходимость}
+\begin{Def}
+$\{x_n\}$~--- последовательность в $\R^d$. Тогда $\{x_n\}$ сходится в $x_0$ покоординатно, если 
+$$x_n=\{x_n^{(1)}, x_n^{(2)}, \ldots, x_n^{(d)}\}\colon \lim x_n^{(i)} = x_0^i$$
+\end{Def}
+\begin{theorem}{О сходимости покоординатно}
+$\{x_n\}$ сходится тогда и только тогда, когда последовательность сходится покоординатно.
+\end{theorem}
+\begin{proof}
+$$\left|x_n^{(i)} - x_0^{(i)}\right| \leqslant \sqrt{\sum_{i=1}^d \left(x_n^{(i)} - x_0^{(i)}\right)^2} \leqslant \sum_{i=1}^d \left(x_n^{(i)} - x_0^{(i)}\right)$$
+\end{proof}
+\begin{conseq}
+$x_n \ra x_0, y_n \ra y_0$. Тогда $\langle x_n, y_n\rangle \ra \langle x_0, y_0\rangle$
+\end{conseq}
+\begin{proof}
+$$\left.\begin{array}{rr} x_n \ra x_0 \Ra x_n^{(i)} \ra y_n^{(i)}\\y_n \ra y_0 \Ra y_n^{(i)} \ra y_0^{(i)}\end{array}\right\} \Ra x_n^{(i)}y_n^{(i)} \ra x_0^{(i)}y_0^{(i)}$$
+Тогда $$\sum_{i=1}^d x_n^{(i)} y_n^{(i)} \ra \sum_{i=1}^d x_0^{(i)} y_0^{(i)} \Lra \langle x_n, y_n\rangle \ra \langle x_0, y_0\rangle$$
+\end{proof}

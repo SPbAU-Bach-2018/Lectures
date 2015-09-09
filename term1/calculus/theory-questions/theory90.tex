@@ -1,0 +1,45 @@
+﻿\section{Таблица интегралов}
+
+Таблица интегралов:
+\begin{align*}
+\int 0\d x &= c \\
+\int x^p\d x &= \frac{x^{p+1}}{p + 1} + c \\
+\int \frac{\d x}{x} &= \ln |x| + c \\
+\int a^x \d x &= \frac{a^x}{\ln a} + c \\
+\int \sin x \d x &= -\cos x + c \\
+\int \cos x \d x &= \sin x + c \\
+\int \frac{\d x}{\cos^2 x} &= \tg x + c \\
+\int \frac{\d x}{\sin^2 x} &= -\ctg x + c \\
+\int \frac{\d x}{\sqrt{1 - x^2}} &= \arccos x + c \\
+\int \frac{\d x}{1 + x^2} &= \arctg x + c \\
+\int \frac{\d x}{1 - x^2} &= \frac12 \ln \left|\frac{1+x}{1-x}\right| + c\\
+\int \frac{\d x}{\sqrt{x^2 \pm 1}} &= \ln \left|x + \sqrt{x^2 \pm 1}\right| + c
+\end{align*}
+
+\begin{Def}
+Пусть $A, B$~--- множества. Тогда
+$$A + B = \left\{a + b \mid a \in A \land b \in B\right\}$$
+$$A - B = \left\{a - b \mid a \in A \land b \in B\right\}$$
+$$\alpha A = \left\{\alpha a \mid a \in A\right\}$$
+\end{Def}
+
+\begin{theorem}{Об арифметических операциях с интегралами}
+$$\int (f \pm g) \d x = \int f \d x \pm \int g \d x$$
+$\alpha \ne 0$
+$$\int \alpha f \d x = \alpha \int f \d x$$
+\end{theorem}
+\begin{Rem}
+Именно из-за того, что константы в записи нет, мы исключаем ноль.
+\end{Rem}
+\begin{proof}
+$F, G$~--- первообразные соотвественно $f, g$.
+$$\int f \d x = \left\{F + c_1\right\}$$
+$$\int g \d x = \left\{G + c_2\right\}$$
+$$\int f \d x \pm \int g \d x = \left\{F + c_1\right\} \pm \left\{G + c_2\right\} = \left\{F+G+c_3\right\} = $$
+$(F+G)' = f + g$
+$$ = \int (f+g)\d x$$
+$$\alpha \int f \d x = \alpha \left\{F + c_1\right\} = \left\{\alpha F + c_2\right\} = $$
+$(\alpha F)' = \alpha f$
+$$ = \int \alpha f\d x$$
+\end{proof}
+

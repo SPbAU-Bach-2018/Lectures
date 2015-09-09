@@ -1,0 +1,46 @@
+\section{Метрические пространства}
+
+\begin{Def}
+Пусть есть множество $X$ и отображение $\rho \colon X \times X \ra \left[0; +\infty\right) $. Тогда $\rho$ называется метрикой, если:
+\begin{enumerate}
+\item $\rho(x, y) = 0 \Lra x = y$
+\item $\rho(x, y) = \rho(y, x)$
+\item $\rho(x, y) + \rho(y, z) \geqslant \rho(x, z)$
+\end{enumerate} 
+Также пара $(X, \rho)$ называется метричесикм пространством.
+\end{Def}
+
+Примеры:
+\begin{enumerate}
+\item Дискретная метрика
+$\rho(x, y) = \begin{cases}0 & x \ne y \\ 1 & x = y\end{cases}$
+\item $\rho(x, y) = \left|x - y\right|$
+\item Евклидовская метрика. $\rho$ --- длина отрезка на плоскости между точками
+\item Манхеттанская метрика. $\rho\left((x_1, y_1), (x_2, y_2)\right) = |x_1 - x_2| + |y_1 - y_2|$
+\item Расстояния на сфере.
+\item Французская железнодорожная метрика. Есть центр --- точка $O$. Тогда для точек на одном луче из $O$ расстояние $\rho(A, B) = |AB|$, иначе $\rho(A, B) = |AO| + |BO|$
+\item Пространство $\R^n$, метрика $$\rho(x, y) = \sqrt{\sum_{i=1}^n \left(x_i-y_i\right)^2}$$
+\end{enumerate}
+
+\begin{Def}
+Пусть $(X, \rho)$ --- метрическое пространство. Тогда $(Y, \rho|_{Y \times Y})$ --- подпространство X. $Y \subset X$.
+\end{Def}
+
+
+\begin{Def}
+$B_r(a) = \left\{x \in X \mid \rho(x, a) < r\right\}$ --- открытый шар.
+\end{Def}
+\begin{Def}
+$\bar B_r(a) = \left\{x \in X \mid \rho(x, a) \leqslant r\right\}$ --- замкнутый шар.
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item $B_{r_1}(a) \cap B_{r_2}(a) = B_{\min\{r_1, r_2\}}(a)$
+\item $x \ne y \Ra \exists r > 0\colon B_r(x) \cap B_r(y) = \varnothing$
+\begin{proof}
+Рассмотрим $r = \frac13 \rho(x,y) > 0$.
+\end{proof}
+\end{enumerate}
+         
+

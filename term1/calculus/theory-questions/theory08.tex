@@ -1,0 +1,28 @@
+\section{Открытые множества}
+\begin{Def}
+$(X, \rho)$ --- метрическое пространство. $G \subset X$ --- открытое множество, если $$\forall x \in G\: \exists r > 0\colon B_r(x) \subset G$$
+\end{Def}
+
+\begin{theorem}{О свойтсвах открытых множеств}
+Пусть $(X, \rho)$ --- метрическое пространство.
+\begin{enumerate}
+\item $\varnothing$ и $X$ --- открыты.
+\item Объединение открытых открыто.
+\item Пересечение \textbf{конечного числа} открытых открыто.
+\item $B_r(a)$ открыт.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Очевидно.
+\item $$x \in \bigcup G_\alpha \Ra \exists \alpha_0 \colon x \in G_{\alpha_0} \Ra \exists r > 0: B_r(x) \in \bigcup G_\alpha$$
+\item $x \in \bigcap_{k=1}^n G_k$ 
+$$ \forall k=1..n\: x \in G_k \Ra \forall k=1..n\: \exists r_k > 0\colon B_{r_k}(x) \in G_k \Ra \exists r = \min{r_k}\colon G_r \in \bigcap_{k=1}^n G_k$$
+\item $$\forall x \in B_r(a)\: \exists r_x = \frac12 \left(r - \rho(a, x)\right)$$
+$$y \in B_{r_x}(x) \Ra \rho(y, x) < r_x \Ra \rho(y, x) + \rho(a, x) < r_x + \rho(a, x) \Ra \rho(y, a) < r$$
+\end{enumerate}
+\end{proof}
+
+\begin{Rem}
+$$\bigcap_{n=1}^\infty \left(0; 1 + \frac1n\right) = \left(0;1\right] \text{ --- не открытое множество}$$
+\end{Rem}

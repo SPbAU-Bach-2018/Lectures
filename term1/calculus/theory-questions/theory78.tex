@@ -1,0 +1,45 @@
+﻿\section{Формула Тейлора с остатком в форме Лагранжа}
+
+\begin{theorem}{Формула Тейлора с остатком в форме Лагранжа}
+$f$ дифференцируема $n/ + 1/$ раз в $x_0$, $f^{(n)}$ непрерывна на $[x, x_0]$.
+$$\exists c \in (x, x_0)\colon f(x) = T_{n, x_0} f(x) + \frac{f^{(n+1)}(c)}{(n+1)!} (x-x_0)^{n+1}$$
+\end{theorem}
+\begin{Rem}
+Теорема Лагража~--- частный случай для $n = 0$.
+$$\exists c\in(x,x_0)\colon f(x) = f(x_0) + f'(c)(x-x_0)$$
+\end{Rem}
+\begin{proof}
+$$f(x) = T_{n, x_0} f(x) + M \frac{(x-x_0)^{n+1}}{(n+1)!}$$
+Надо доказать, что в форме
+$$\exists c\in(x,x_0)\colon M = \frac{f^{(n+1)}(c)}{(n+1)!}$$
+$$g(t) \lrh f(t) - T_{n, x_0} f(t) - M(t-x_0)^{n+1}$$
+$$g^{(k)} (t) = f^{(k)}(t) - (T_{n, x_0})^{(k)} (t) - M(n+1)(n+2)(n+3)\cdots(n-k+2)(t-x_0)^{n-k+1}$$
+$$g^{(k)} (x_0) = 0$$
+Тогда у функции $g$ первые $n$ производных равны нулю, а также $g(x) = 0$, значит
+$$g(x_0) = g(x) = 0$$
+По теореме Ролля
+$$\exists x_1\in(x, x_0)\colon g'(x_1) = 0$$
+$$g'(x_0) = g'(x_1) = 0$$
+По теореме Ролля
+$$\exists x_2\in(x, x_1)\colon g'(x_2) = 0$$
+$$\vdots$$
+$$\exists x_{n+1}\in(x, x_0)\colon g^{(n+1)}(x_{n+1}) = 0$$
+$$g^{(n+1)}(t) = f{(n-1)}(t) - M(n+1)!$$
+$$c = x_{n+1}$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \ra \R$, $n+1$ раз дифференцируема на $[a, b]$, $x_0 \in (a, b)$, $\left|f^{(n+1)} (t)\right| \leqslant M$.
+$$\left|f(x) - T_{n, x_0} f(x)\right| \leqslant \frac{M \left|x-x_0\right|^{n+1}}{(n+1)!} = O\left((x-x_0)^n\right)$$
+\end{conseq}
+\begin{proof}
+$$\exists c \in (x,x_0)\colon \left|f(x) - T_{n, x_0} f(x)\right| = \left|\frac{f^{(n+1)}(v)}{(n+1)!}(x-x_0)^{n+1}\right|$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \ra \R$, $n+1$ раз дифференцируема на $[a, b]$, $x_0 \in (a, b)$, $forall n\; \left|f^{(n+1)} (t)\right| \leqslant M$.
+$$\lim_{n\ra\infty} T_{n, x_0} = f(x)$$
+\end{conseq}
+\begin{proof}
+$$\left|f(x) - T_{n, x_0} f(x)\right| \leqslant \frac{M \left|x-x_0\right|^{n+1}}{(n+1)!} \ra 0$$
+\end{proof}

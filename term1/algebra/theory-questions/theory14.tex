@@ -1,0 +1,63 @@
+\section{Циклические группы. Теорема о классификации циклических групп с точностью до изоморфности}
+\begin{Def}
+	Группа $G$ "--- циклическая группа, если она порождена одним элементом (то есть замыкание этого элемента
+	в группе порождает группу).
+	Обозначение: $G = \left<a\right>$
+\end{Def}
+
+Примеры:
+\begin{enumerate}
+	\item $\left<\mathbb{Z}, +\right> = \left<1\right>$
+	\item ${e} = \left<e\right>$ "--- тривиальная группа
+	\item $n \in \mathbb{N}$, $C_n$ "--- группа поворотов на угол $\frac{2\pi k}{n}$, $C_n = \left<\frac{2\pi}{n}\right>$
+\end{enumerate}
+
+\begin{Def}{Степени}
+\begin{gather*}
+i > 0: a^i = \underbrace{aa \ldots a}_{i} \\
+a^{-i} = \underbrace{a^{-1}a^{-1} \ldots a^{-1}}_{i} \\
+a^{m + n} = a^ma^n
+\end{gather*}
+
+\end{Def}
+\begin{theorem}{Лемма о делении с остатком}
+	$\forall n \in \mathbb{N}, a \in \mathbb{Z} \colon \exists!$ (существуют и единственны) $q, r \in \mathbb{Z} \colon 0 \leqslant r < n \colon a = qn + r$
+\end{theorem}
+\begin{proof}
+	Существование:
+	\begin{gather*}
+	q = \left\lfloor \frac{a}{n} \right\rfloor\\
+	nq \leqslant a < nq + n \\
+	r = a - nq
+	\end{gather*}
+	Единственность (от противного):
+	\begin{gather*}
+	a = nq_1 + r_1 = nq_2 + r_2; 0 \leqslant r1, r2 < n;\\
+	0 = n * (q_1 - q_2) + (r_1 - r_2), n|q_1 - q_2| = |r_1 - r_2|
+	\end{gather*}
+
+	Так как $n \geqslant 1$, то левая часть хотя бы $n$, а правая "--- строго меньше $n$. Противоречие.
+\end{proof}
+
+\begin{theorem}{Теорема о классификации циклических групп с точностью до изоморфности}
+	Всякая циклическая группа изоморфна либо $(\mathbb{Z}, +)$, либо $C_n$, $n \in \mathbb{N}$
+\end{theorem}
+\begin{proof}
+	$G = \left<a\right>$. Рассмотрим отображение $i \ra a^i$, $i \in \mathbb{Z}$.
+	\begin{itemize}
+	\item Если все элементы различны, то получили изоморфизм $(i + j \lra a^{i+j} = a^i a^j)$
+	\item В противном случае $\exists i > j\colon a^i = a^j \Ra a^{i-j}=e$.
+	      Пусть $n$ "--- наименьшее число такое, что $a^n = e$. Тогда $G = \{e = a^0, a^1, a^2, \dots, a^{n-1} \}$, $G \lra C_n$, $a^k a^l = a^{(k+l) \bmod n}$
+	\end{itemize}
+\end{proof}
+
+\begin{Def}
+	$G$ "--- группа. Если $G$ конечна, то порядком $G$ называют число элементов в ней, иначе порядок равен $\infty$
+\end{Def}
+
+\begin{Def}
+	$a \in G$ и $n \in \mathbb{N}$ "--- минимальное число такое, что $a^n = e$. Тогда $n$ - порядок элемента $a$. Если такого элемента нет, то порядок $a$ равен $\infty$
+\end{Def}
+\begin{Rem}
+	Альтернативное определение: порядок элемента равен порядку циклической группы, порожденной этим элементом
+\end{Rem}

@@ -1,0 +1,32 @@
+\section{Характеристика кольца. Теорема о характеристике поля}
+\begin{Def}
+	Характеристика кольца $A$ с единицей "--- это наименьшее $n > 0$ такое, что $\underbrace{1+\dots+1}_{n} = 0$.
+	Обозначается $\Char A = n$.
+	Если такого $n$ нет, то считается, что $\Char A = 0$.
+\end{Def}
+
+\begin{exmp}
+	$\Char \Z = \Char \Q = \Char \R = 0$
+\end{exmp}
+\begin{exmp}
+	Пусть $\mathbb{F}_2$ и $\mathbb{F}_3$ "--- поля из 2 и 3 элементов, соответственно. Тогда:
+	\begin{gather*}
+	\Char \mathbb{F}_2 = 2 \\
+	\Char \mathbb{F}_3 = 3
+	\end{gather*}
+\end{exmp}
+
+\begin{theorem} 
+	Если $A$ "--- поле, то $\Char A$ либо $0$, либо простое число.
+\end{theorem}
+\begin{proof}
+	Два случая:
+	\begin{enumerate}
+	\item $\forall n > 0 \colon \underbrace{1 + \dots + 1}_{n} \neq 0 \Ra \mathrm{char} A = 0$
+	\item $\Char A > 0 \colon \underbrace{1 + \dots + 1}_{n} = 0$. Тогда $n > 1$, так как в поле $1 \neq 0$.
+	От противного: пусть $n = ab, 1 < a, b < n$.
+	Рассмотрим $\underbrace{1+\dots+1}_a = A$ и $\underbrace{1+\dots+1}_b = B$, по дистрибутивности
+	знаем, что $AB=0$. Так как поле "--- область целостности, то $A=0$ или $B=0$, то
+	есть меньшим количеством единиц можно получить ноль, противоречие.
+	\end{enumerate}
+\end{proof}

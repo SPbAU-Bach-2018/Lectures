@@ -1,0 +1,25 @@
+\section{Формула Муавра}
+
+\begin{theorem}{}
+$z = r(\cos \phi + i\sin \phi)$, $z \ne 0$, $n \in \Z$. Тогда 
+\begin{gather*}
+z^n = r^n(\cos n\phi + i\sin n\phi)
+\end{gather*}
+\end{theorem} 
+\begin{proof}
+\begin{itemize}
+\item Если $n \in \N$, то очевидно из умножения в тригинометрической форме.
+\item Если $n = 0$, то написано $1 = 1$.
+\item Если $n = -1$:
+\begin{gather*} 
+z^{-1} = \frac{\bar z}{|z|^2} = \frac{r\overline{(\cos \phi + i \sin \phi)}}{r^2} = r^{-1}(\cos \phi - i \sin \phi) = r^{-1}(\cos(-\phi) + i\sin(-\phi))
+\end{gather*}
+\item Если $n < 0$:
+\begin{gather*}
+z^n = \left(z^{-1}\right)^n = \left(r^{-1}(\cos{-\phi} + i \sin{-\phi})\right)^{|n|} = \\ 
+= r^{-|n|}(\cos(-|n| \phi) + i \sin(-|n| \phi)) = r^n(\cos{n \phi} + i \sin{n \phi})
+\end{gather*}
+\end{itemize}
+\end{proof}
+
+

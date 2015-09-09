@@ -1,0 +1,36 @@
+﻿\section{Теоремы о непрерывности обратного отображения и о непрерывности монотонной функции}
+
+\begin{theorem}{}
+$f\colon K \ra Y$ непрерывно на компакте $K$ и биективно. Тогда $f^{-1}\colon Y \ra K$ непрерывно.
+\end{theorem}
+\begin{proof}
+Надо проверить, что для $f^{-1}$ прообраз открытого множества~--- открытое. То есть надо проверить для $f$, что образ открытого~--- открытое.
+
+Берем $G \subset K$~--- открытое. Тогда $K \setminus G$~--- замкнутое подмножество K. Тогда $K \setminus G$~--- компакт. Тогда $f(K \setminus G)$~--- компакт, в том числе замкнутое.
+Тогда $f(G)$~--- открытое.
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \ra \R$ строго монотонна и $f$ непрерывна на $[a, b]$. Тогда $f^{-1}$ непрерывна на множестве задания.
+\end{conseq}
+\begin{proof}
+$[a, b] = K$~--- компакт.
+Так как $f$ строго монотонна, то $f$~--- биекция между $[a, b]$ и $f([a,b])$.
+\end{proof}
+
+\begin{conseq}
+$f\colon \left<a,b\right> \to \R$ строго монотона и непрерывна. Тогда $f^{-1}$ непрерывна на множестве задания.
+\end{conseq}
+\begin{proof}
+$$ Y = f(\left<a,b\right>) $$
+$$f^{-1}\colon Y \to \R$$
+Надо доказать непрерывность. Берем $c \in Y$. Тогда 
+$$\exists x_0\in\left<a, b\right>\colon c = f(x_0)$$
+Возьмем $x_0 \in [\alpha, \beta] \subset \left<a, b\right>$
+$$g = f\mid_{[\alpha, \beta]}\colon [\alpha, \beta] \to \R$$  
+Применяем к $g$ следствие 1.
+$$\forall \epsilon > 0\: \exists \delta > 0\colon \forall y \in B_{\delta}(c) \cap f([\alpha, \beta])\: g^{-1}(y) \in B_{\epsilon}(g^{-1}(c))$$
+$f\colon X \to Y$ непрерывно на $X$.
+$$\forall a \in X\: \forall \epsilon > 0\: \exists \delta > 0\colon \forall x \in B_{\delta}(a)\: f(x) \in B_{\epsilon}(f(a))$$
+\end{proof}
+

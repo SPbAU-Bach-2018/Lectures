@@ -1,0 +1,48 @@
+\section{Непрерывность тригонометрических функций}
+\begin{theorem}{}
+$$\forall x \in \left(0; \frac{\pi}2\right)\: \sin x < x < \tg x$$
+\end{theorem}
+\begin{proof}
+\begin{wrapfigure}{r}{6.0cm}
+\def\svgwidth{6.0cm}
+\input{theory56-sin.pdf_tex}
+\end{wrapfigure}
+$$S_{AOB} < S_{\text{сектор}} < S_{AOC}$$
+\begin{align*}
+S_{AOB} &= \frac12 \sin x \\
+S_{\text{сектор}} &= \frac{x}2 \\
+S_{AOC} &= \frac12 \tg x
+\end{align*}
+$$\sin x < x < \tg x$$
+\end{proof}
+                        
+\begin{conseq}
+$\sin$ и $\cos$ непрерывны. 
+\end{conseq}
+\begin{proof}
+$$\left|\sin x - \sin y\right| = 2 \left|\sin \frac{x-y}2\right| \left|\cos \frac{x+y}2\right| \leqslant \left|x - y\right|$$
+\end{proof}
+
+\begin{conseq}
+$\tg$ и $\ctg$ непрерывны. 
+\end{conseq}
+
+\begin{conseq}
+$$\sin \uparrow   \left[-\frac\pi2,\frac\pi2\right]$$
+$$\cos \downarrow \left[0,\pi\right]$$
+$$\tg  \uparrow   \left(-\frac\pi2,\frac\pi2\right)$$
+\end{conseq}
+
+\begin{Def}
+$$ \arcsin = \left(\sin \mid_{\left[-\frac\pi2,\frac\pi2\right]}\right)^{-1} $$
+$$ \arccos = \left(\cos \mid_{\left[0,\pi\right]}\right)^{-1} $$
+$$ \arctg  = \left(\tg  \mid_{\left(-\frac\pi2,\frac\pi2\right)}\right)^{-1} $$
+\end{Def}
+
+\begin{theorem}{Первый замечательный предел}
+$$\lim_{x \ra 0} \frac{\sin x}x = 1$$
+\end{theorem}
+\begin{proof}
+$0 < x < \frac\pi2$:
+$$\sin x < x < \tg x \Ra \frac{\sin x}x < 1 < \frac1{\cos x} \frac{\sin x}x \Ra \cos x < \frac{\sin x}x < 1 \xra{x\ra0} 1 \leqslant \lim_{x\ra0} \frac{\sin x}x \leqslant 1$$
+\end{proof}

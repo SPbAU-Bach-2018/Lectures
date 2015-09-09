@@ -1,0 +1,28 @@
+\section{Диаметр множества}
+\begin{Def}
+Диаметр множеста:
+$$\diam A = \sup \rho(x, y)$$
+\end{Def}
+
+\begin{theorem}{Свойства диаметра}
+\begin{enumerate}
+\item $\diam E = \diam \cl E$
+\item $K_1 \supset K_2 \supset K_3 \cdots $~--- последовательность вложенных компактов, $\diam K_n \ra 0$. Тогда $\bigcap K_i$~--- одноточечное.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item
+$$E \subset \cl E \Ra \diam E \leqslant \diam \cl E$$
+$$d = \diam \cl E = \sup \rho(x, y)$$
+$$\forall \epsilon > 0\: \exists x_0, y_0\colon \rho(x_0, y_0) > d - \epsilon$$
+$$x_0 \in \cl E \Ra \exists x_1 \in E\colon \rho (x_0, x_1) < \epsilon$$ 
+$$y_0 \in \cl E \Ra \exists y_1 \in E\colon \rho (y_0, y_1) < \epsilon$$ 
+Тогда
+$$\rho(x_1, y_1) + 2\epsilon > \rho(x_0, x_1) + \rho(x_1, y_1) + \rho(y_1, y_0) \geqslant \rho(x_0, y_0) > d - \epsilon$$
+$$\rho(x_1, y_1) > \rho(x_0, y_0) - 3\epsilon$$
+Устремив $\epsilon \ra 0$, получим
+$$\diam E \geqslant \diam \cl E$$
+\item Пусть в пересечение лежат две точки, но тогда диаметр для любого n хотя бы $\rho(a, b)$. Противоречие.
+\end{enumerate}
+\end{proof}

@@ -1,0 +1,30 @@
+\section{Компактность}
+
+\begin{Def}
+Множество $A$ имеет покрытие множествами $B_\alpha$, если $A \subset \bigcup_{\alpha \in A} B_\alpha$.
+\end{Def}
+\begin{Def}
+Множество $A$ имеет открытое покрытие открытыми множествами $B_\alpha$, если $A \subset \bigcup_{\alpha \in A} B_\alpha$.
+\end{Def}
+\begin{Def}
+Множество $A$ компактно, если из любого его открытого покрытия можно выбрать конечное подкокрытие.
+$$\forall B_\alpha\colon K \subset \bigcup_{\alpha \in A} B_\alpha\; \exists \alpha_1, \alpha_2, \ldots, \alpha_n\colon K\subset \bigcup_{i=1}^{n} B_{\alpha_i}$$
+\end{Def}
+
+\begin{theorem}{Компактность и подпространства}
+Пусть $(X, \rho)$~--- метрическое пространство, $K \subset Y \subset X$. Тогда 
+$$K\text{ компактно в } (X, \rho) \Lra K\text{ компактно в } (Y, \rho)$$
+\end{theorem}
+\begin{proof}
+$\Ra$: Пусть $B_\alpha$~--- открытое в $Y$, что 
+$$K \subset \bigcup_{\alpha \in A} B_\alpha = \bigcup_{\alpha \in A} (G_\alpha \cap Y) \subset \bigcup_{\alpha \in A} G_\alpha$$
+Тогда можно заменить покрытие в $Y$ покрытием соотвествующими множествами в $X$, выбрать конечное подпокрытие, а потом перейти обратно в $Y$.
+
+$\La$: Пусть $K = \bigcup_{\alpha \in I} G_\alpha$. Тогда 
+$$K = K \cap Y \subset \left(\bigcup_{\alpha \in I} G_\alpha\right) \cap Y = \bigcup_{\alpha \in I} \left(G_\alpha \cap Y\right)$$
+Получим покрытие в пространстве $Y$, в нём есть конечное подпокрытие. Выберем соответствующие шарики из $X$.
+\end{proof}
+
+\begin{Rem}
+Например, $(0, 1)$ не компактно. Например, из $$\bigcup_{i=2}^\infty \left(\frac1i, 1\right)$$ не выбрать.
+\end{Rem}

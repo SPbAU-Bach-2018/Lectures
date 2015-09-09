@@ -1,0 +1,27 @@
+﻿\section{Сравнение скорости роста возрастания последовательностей}
+
+\begin{theorem}{Предел убывающей по отношению}
+$x_n > 0$, $\lim \frac{x_{n+1}}{x_n} < 1$. Тогда $x_n \ra 0$.
+\end{theorem}
+\begin{proof}
+С какого-то места отношение довольно мало (меньше 1).
+\end{proof}
+\begin{conseq}
+$$\lim_{n\ra\infty} \frac{n^k}{a^n} = 0\quad a>1$$
+\end{conseq}
+\begin{proof}
+$$x_n = \frac{n^k}{a^n}$$
+$$\frac{x_{n+1}}{x_n} = \left(\frac{n+1}n\right)^k \frac1a < 1$$
+\end{proof}
+\begin{conseq}
+$$\lim \frac{a^n}{n!} = 0$$
+\end{conseq}
+
+\begin{conseq}
+$$\lim \frac{n!}{n^n} = 0$$
+\end{conseq}
+\begin{proof}
+$$x_n = \frac{n!}{n^n}$$
+$$\frac{x_{n+1}}{x_n} = (1+\frac1n)^-n \ra \frac1e < 1$$
+\end{proof}
+

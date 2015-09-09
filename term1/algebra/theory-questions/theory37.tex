@@ -1,0 +1,72 @@
+\section{Аргумент комплексного числа. Тригонометрическая форма записи. Арифметические операции над комплексными числами в тригонометрической форме}
+
+\begin{center}
+\def\svgwidth{6.0cm}
+\input{theory37-vector.pdf_tex}
+\end{center}
+$z \in \C,~z = a + bi \Ra (a, b)$ "--- координата в декартовой системе координат. В полярной системе координат два других параметра: $r$ "--- радиус, $\phi$ - угол.
+\begin{gather*}
+\left\{
+\begin{aligned}
+	a = r\cos \phi  \\
+	b = r\sin \phi
+\end{aligned}\right.
+\end{gather*}
+
+Пары $(r, \phi)$ и $(r, \phi + 2 \pi k)$ определяют одну и ту же точку на комплексной плоскости.
+\begin{gather*}
+\sim\colon \phi_1 \sim \phi_2 \Lra \phi_1 - \phi_2 = 2 \pi k, k\in \Z
+\end{gather*}
+Это эквиваленция. Тогда все равнозначные значения образуют классы эквиваленции.
+\begin{Def}
+Аргументом комплексного числа $z$ называют множество возможных значений $\phi$. Главным аргументом называют представителя этого множества из диапазона $[0,2\pi)$
+\begin{gather*}
+\Arg z = [\phi] = \left\{\phi \Re z = |z| \cos \phi \land \Im z = |z| \sin \phi\right\}\\
+\arg z \in [\phi] \cap [0,2\pi)
+\end{gather*}
+\end{Def}
+\begin{Rem}
+Собственно, в каком полуинтревале выбирать главный аргумент "--- вопрос выбора.
+\end{Rem}
+
+Пусть $z = a + bi$, $|z| = \sqrt{a^2 + b^2}$. $arg z = ?$:
+\begin{enumerate}
+\item $a > 0, b \ge 0$ 
+\begin{gather*}
+\frac{b}{a} = \tg \phi, \phi \in \left[0, \frac{\pi}2\right) \Ra \arg z = \arctg \frac{b}{a}
+\end{gather*}
+\item $a > 0, b < 0$ 
+\begin{gather*}
+\frac{b}{a} = \tg \phi, \phi \in \left(\frac{3\pi}2, 2\pi\right) \Ra \arg z = 2\pi + \arctg \frac{b}{a}
+\end{gather*}
+\item $a < 0$ 
+\begin{gather*}
+\frac{b}{a} = \tg \phi, \phi \in \left(\frac{\pi}2, \frac{3\pi}2\right) \Ra \arg z = \pi + \arctg \frac{b}{a}
+\end{gather*}
+\item $a = 0, b > 0$
+\begin{gather*}
+\arg z = \frac\pi2
+\end{gather*}
+\item $a = 0, b < 0$
+\begin{gather*}
+\arg z = \frac{3\pi}2
+\end{gather*}
+\end{enumerate}
+
+\begin{Def}{Тригонометрическая форма записи числа}
+\begin{gather*}
+z = a + bi = r\cos \phi + ir\sin \phi = r(\cos \phi + i\sin \phi)
+\end{gather*}
+где $r$ "--- модуль ($r \ge 0$), а $\phi$ "--- аргумент комплексного числа.
+\end{Def}
+\begin{gather*}
+|\cos \phi + i \sin \phi| = \sqrt{\cos^2 \phi + \sin^2 \phi} = 1
+\end{gather*}
+
+В тригинометрической форме числа трудно складывать и вычитать, но легко умножать и делить: 
+$z_1 = r_1(\cos \phi_1 + i \sin \phi_1)$, $z_2 = r_2(\cos \phi_2 + i \sin \phi_2)$. Тогда:
+\begin{gather*}
+z_1z_2 = r_1r_2(\cos \phi_1 \cos \phi_2 - \sin \phi_1 \sin \phi_2 + i(\cos \phi_1 \sin \phi_2 + \cos \phi_2 \sin \phi_1)) = \\
+= r_1r_2(\cos(\phi_1 + \phi_2) + i \sin(\phi_1 + \phi_2)) \\
+|z_1z_2| = r_1r_2 = |z_1||z_2| \quad \Arg (z_1z_2) = \Arg z_1 + \Arg z_2
+\end{gather*}

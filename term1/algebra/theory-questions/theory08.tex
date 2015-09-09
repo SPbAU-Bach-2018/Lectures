@@ -1,0 +1,31 @@
+﻿\section{Бинарные отношения}
+\begin{Def}
+На $A$ задано бинарное отношение $R$, если задано $R \subset A \times A$.
+
+$(a, b) \in R \iff a R b \iff$ $a$ и $b$ находятся в отношении $R$
+
+Если $R = \varnothing$ "--- пустое отношение.
+
+Если $R = A^2$ "--- полное отношение.
+\end{Def}
+
+\begin{Def}
+Пусть $R$ "--- бинарное отношение на $A$, тогда:
+\begin{enumerate}
+\item $R$ рефлексивно,если $\forall a \in A \colon aRa \iff (a, a)\in R$
+\item $R$ антирефлексивно, если $\forall a \in A \colon \neg (aRa)$
+\item $R$ симметрично, если $\forall a, b \in A \colon aRb \Ra bRa$
+\item $R$ асимметрично, если $\forall a, b \in A \colon aRb \Ra \neg(bRa)$
+\item $R$ антисимметрично, если $\forall a, b \in A \colon (aRb \wedge bRa) \Ra a = b$
+\item $R$ транзитивно, если  $\forall a, b, c \in A \colon (aRb \wedge bRc) \Ra aRc$
+\end{enumerate}
+\end{Def}
+
+\begin{Def}
+$R$ называется отношением нестрогого частичного порядка, если оно рефлексивно, транзитивно и антисимметрино. 
+\end{Def}
+\begin{Def}
+$R$ называется отношением строгого частичного порядка, если оно антирефлексивно, транзитивно и асимметрино. 
+\end{Def}
+
+Если на $A$ задано отношение частичного порядко, то $A$ "--- частично упорядоченное множество (ЧУМ).

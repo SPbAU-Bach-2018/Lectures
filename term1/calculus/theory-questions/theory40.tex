@@ -1,0 +1,34 @@
+﻿\section{Теорема Штольца}
+\begin{theorem}{Теорема Штольца}
+$0<y_n<y_{n+1}$, $\lim x_n = \lim y_n = +\infty$, $\lim \frac{x_n-x_{n+1}}{y_n-y_{n+1}} = a \in \bar\R$.
+Тогда $\lim \frac{x_n}{y_n} = a$.
+\end{theorem}
+\begin{proof}
+$a = 0$:
+$$\epsilon_n \lrh \frac{x_n - x_{n+1}}{y_n - y_{n+1}}$$
+$$x_n = x_1 + \sum_{i=2}^n (x_i - x_{i-1}) = x_1 + \sum_{i=2}^n \epsilon_i(y_i - y_{i-1})$$
+$$\frac{x_n}{y_n} = \frac{x_1}{y_n} + \sum_{i=2}^n \epsilon_i \frac{y_i - y_{i-1}}{y_n} = $$
+$$\forall \epsilon > 0\: \exists N\colon \forall n > N\: |\epsilon_n| < \epsilon$$
+$$= \frac{x_1}{y_n} + \sum_{i=2}^N + \sum_{i=N+1}^n$$
+
+$$\left|\sum_{i=N+1}^n \epsilon_i \frac{y_i - y_{i-1}}{y_n}\right| \leqslant \sum_{i=N+1}^n |\epsilon_i| \frac{y_i - y_{i-1}}{y_n} < 
+\sum_{i=N+1}^n \epsilon \frac{y_i - y_{i-1}}{y_n} <$$
+$$< \frac{\epsilon}{y_n}\sum_{i=N+1}^n (y_i - y_{i-1}) = \frac{\epsilon}{y_n} (y_n - y_N) < \epsilon$$
+
+$$\sum_{i=2}^N \epsilon_i \frac{y_i - y_{i-1}}{y_n} \leqslant \frac{1}{y_n}\sum_{i=2}^N \epsilon_i(y_i - y_{i-1}) < \epsilon$$
+
+$$\frac{x_1}{y_n} < \epsilon$$
+
+Т.о.
+$$\left|\frac{x_n}{y_n}\right| < \epsilon \Ra \frac{x_n}{y_n} \ra 0$$
+
+$a\in\R$:
+$\tilde x_n = x_n - a y_n$. Фактом $x_n\ra\infty$ мы не пользовались.
+
+$$\frac{\tilde x_n - \tilde x_{n - 1}}{y_n - y_{n - 1}} = \frac{(x_n - ay_n) - (x_{n - 1} - ay_{n - 1})}{y_n - y_{n - 1}} = \frac{x_n - x_{n - 1}}{y_n - y_{n - 1}} - a \to 0$$
+
+$a=+\infty$: Поменяем местами $x_n$ и $y_n$. Проверим, что $x_n$ монотонно растёт и не ноль.
+$$\frac{x_n - x_{n-1}}{y_n - y_{n-1}} = +\infty \Ra \frac{x_n - x_{n-1}}{y_n - y_{n-1}} > 1 x_n - x_{n11} > y_n - y_{n-1} > 0$$
+
+$a=-\infty$: Сменим знаки $x_n$.
+\end{proof}

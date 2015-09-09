@@ -1,0 +1,67 @@
+﻿\section{Неравенство о средних. Неравенства Гельдера и Минковского}
+
+\begin{conseq}
+Неравенство о средних. $x_1, x_2, \ldots, x_n \ge 0$.
+$$\frac{x_1 + x_2 + \cdots + x_n}n \geqslant \sqrt[n]{x_1x_2 \cdots x_n}$$
+\end{conseq}
+\begin{proof}
+$f(x) = -\ln x$~--- выпуклая убывающая функция. $\lambda_i = \frac1n$.
+$$-\ln \frac{x_1 + x_2 + \cdots + x_n}n = f \left(\frac{x_1 + x_2 + \cdots + x_n}n\right) \leqslant \frac{f(x_1) + f(x_2) + \cdots + f(x_n)}n = -\ln \sqrt[n]{x_1x_2 \cdots x_n}$$
+$$-\ln \frac{x_1 + x_2 + \cdots + x_n}n \leqslant -\ln \sqrt[n]{x_1x_2 \cdots x_n} \Ra \frac{x_1 + x_2 + \cdots + x_n}n \geqslant \sqrt[n]{x_1x_2 \cdots x_n}$$
+\end{proof}
+\begin{conseq}
+$$x_1^{\lambda_1} + x_2^{\lambda_2} + \cdots + x_n^{\lambda_n} \leqslant \lambda_1x_1 + \lambda_2x_2 + \cdots + \lambda_n x_n$$
+\end{conseq}
+
+\begin{proof}
+$f(x) = -ln(x)$ ~--- выпуклая функция.
+
+$\lambda_1 = \ldots = \lambda_n = \frac1n$
+
+$$f(\frac{x_1 + x_2 + \ldots + x_n}{n}) \ge \frac{f(x_1) + f(x_2) + \ldots + f(x_n)}{n}$$
+
+$$-ln(\frac{x_1 + x_2 + \ldots + x_n}{n}) \ge \frac{-ln(x_1) + -ln(x_2) + \ldots + -ln(x_n)}{n} = \frac{-ln(x_1x_2\ldots x_n)}{n} = -ln(\sqrt[n]{x_1x_2\ldots x_n}$$
+
+
+\end{proof}
+\begin{conseq}
+Неравенство Гельдера:
+$$x_1, \ldots, x_n, y_1, \ldots, y_n \in \R \quad p,q > 1 \quad \frac1p + \frac1q = 1$$
+$$\left|\sum_{i=1}^n x_iy_i\right| \leqslant \left(\sum_{i=1}^n |x_i|^p\right)^{\frac1p} \left(\sum_{i=1}^n |x_i|^q\right)^{\frac1q}$$
+\end{conseq}
+\begin{Rem}
+Это неравенство БШ при $p=q=2$.
+\end{Rem}
+\begin{proof}
+Если есть нули или отрицательные~--- перейдём к модулям.
+$$f(x) = x^p$$
+$$f\left( \lambda_1a_1 + \lambda_2a_2 + \cdots + \lambda_n a_n \right) \leqslant \lambda_1f(a_1) + \lambda_2f(a_2) + \cdots + \lambda_nf(a_n)$$
+$$\left( \lambda_1a_1 + \lambda_2a_2 + \cdots + \lambda_n a_n \right)^p \leqslant \lambda_1 a_1^p + \lambda_2 a_2^p + \cdots + \lambda_n a_n^p$$
+$$\lambda_1x_1 + \lambda_2x_2 + \cdots + \lambda_n x_n \leqslant \left(\lambda_1 x_1^p + \lambda_2 x_2^p + \cdots + \lambda_n x_n^p \right)^{\frac1p}$$
+
+$$ \left\{\begin{aligned}
+\lambda_i a_i^p &= x_i^p \\
+\lambda_i a_i &= \frac{x_iy_i}{(\sum_{i=1}^n y_i^p) ^ {\frac1q}}
+\end{aligned}\right.$$
+
+$$\lambda_i  = (\frac{x_k}{a_k})^p$$ 
+$$\frac{x_k^{p}}{a_k^{p - 1}} =\frac{x_k y_k}{(\sum y_k^q)^{\frac1q}} $$
+$$a_k = (\sum y_k^q)^{\frac{1}{q(p - 1)}}\frac{1}{y_k^{\frac1{p - 1}}}x_k$$
+$$\lambda = \frac{y_k^q}{\sum y_k^q}$$
+$$\sum\frac{x_k y_k}{(\sum y_k ^q)^{\frac1q}} \le (\sum x_k^p)^{\frac1p} $$
+\end{proof}
+
+\begin{conseq}
+Неравентсво Минковского, $p \ge 1$
+
+$$(\sum_{k = 1}^{n}|x_k + y_k|^p)^{\frac1p} \le (\sum_{k = 1}^{n}|x_k|^p)^{\frac{1}{p}} + (\sum_{k = 1}^{n}|y_k|^p)^{\frac{1}{p}}$$
+\end{conseq}
+
+\begin{proof}
+$$\frac1p + \frac1q = 1$$
+$$\sum_{k = 1}^{n}|x_k + y_k| \le \sum_{k = 1}^{n}|x_k + y_k|^{p - 1}|x_k + y_k| \le $$
+$$ \le \sum_{k - 1}^{n}|x_k + y_k|^{p - 1}|x_k| + \sum_{k = 1}^{n}|x_k + y_k|^{p - 1}|y_k| \le $$
+$$ \le (\sum_{k - 1}^{n}|x_k + y_k|^{(p - 1)q})^{\frac1q}(\sum|x_k|^p)^{\frac{1}{p}} + (\sum_{k = 1}^{n}|x_k + y_k|^{(p - 1)q})^{\frac1q}(\sum|y_k|^p)^{\frac{1}{p}} \le $$
+$$ (p - 1)q = (p - 1) \frac{p}{p - 1} = p$$
+$$ = (\sum|x_k + y_k|p)^{\frac{1}{q}}((\sum|x_k|^{p})^{\frac1p} + (\sum|y_k|^{p})^{\frac{1}{p}})$$
+\end{proof}

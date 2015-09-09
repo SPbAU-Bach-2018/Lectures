@@ -1,0 +1,26 @@
+﻿\section{Предельный переход в неравенстве}
+\begin{theorem}{Предельный переход в неравенстве}
+Пусть $x_n, y_n \in \R; x = \lim x_n; y = \lim y_n; x_n \leqslant y_n$ (или $x_n < y_n$). Тогда $x \leqslant y$.
+\end{theorem}
+\begin{proof}
+Пусть $y < x$; $\epsilon \lrh \frac{x - y}2$. Тогда 
+$$\exists N_1: \forall n \geqslant N_1\: |x - x_n| < \epsilon$$
+$$\exists N_2: \forall n \geqslant N_2\: |y - y_n| < \epsilon$$
+Тогда
+$$\forall n \geqslant \max\{N_1, N_2\}\: x_n > x - \epsilon = y + \epsilon > y_n$$
+\end{proof}
+\begin{Rem}
+Понятно, что можно потребовать отношение между последовательностями только с некоторого номера.
+\end{Rem}                                                 
+\begin{Rem}
+Строгие неравенства не сохраняются.
+\end{Rem}
+\begin{conseq}
+$x_n \leqslant b \Ra x \leqslant b$
+\end{conseq}
+\begin{conseq}
+$x_n \geqslant a \Ra x \geqslant a$
+\end{conseq}
+\begin{conseq}
+$x_n \in [a;b] \Ra x \in [a; b]$
+\end{conseq}

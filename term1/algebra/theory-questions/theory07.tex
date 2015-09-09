@@ -1,0 +1,62 @@
+﻿\section{Сюръективное отображение конечного множества на себя является биективным}
+
+\begin{theorem}{}
+    $A$ "--- конечное множество. 
+    $f: A \thra A$, тогда $f$ "--- биекция.
+\end{theorem}
+
+\begin{proof}
+    {\bf Краткий план решения:}
+    \begin{enumerate}
+        \item $\forall a, \exists n_a \colon \{\ub{f \circ f \circ \dots \circ f}_{n \text{~применений}}\}(a) = a$
+        \item $\exists n, \forall a \colon (\ub{f \circ \dots \circ f}_{n \text{~применений}})(a)  = a$
+        \item f "--- инъекция.
+    \end{enumerate}
+    \begin{enumerate}
+    \item
+    Строим последовательность $\{a_i\}$:
+    \begin{gather*}
+    a_0 = a; \\
+    a_{i+1} \in f^{-1}(a_i); \text{существует, так как у нас сюръекция};
+    \end{gather*}
+    Множество конечно, а значит $\exists m > n \colon a_m = a_n$.
+    \begin{lemma}{}
+        Если $a_m = a_n$ и $m>n$, то $a_{m - n} = a$.
+    \end{lemma}
+    \begin{proof}
+        Индукция по $n$.
+        \begin{enumerate}
+        \item {\bf База:} $n = 0$. Тогда $a_m = a_0 = a$.
+        \item {\bf Переход:} ($n \ge 1$):
+        \begin{gather*}
+        a_m = a_n; \\
+        f(a_m) = f(a_n); \\
+        a_{m - 1} = f(a_m) = f(a_n) = a_{n - 1};
+        \end{gather*}
+        По индукционному предположению 
+        \[a_{m - n} = a_{(m - 1) - (n - 1)} = a\]
+        \end{enumerate}
+    \end{proof}
+    
+    Вернемся к доказательству теоремы.
+    \[a_{m - n} \in f^{-1}(f^{-1}\dots(\{a\})\dots)\]
+    Применим много раз функцию $f$ к обеим частям:
+    \begin{gather*}
+    f(f(\dots f(a_{m - n})\dots)) = a; \\
+    f(f(\dots f(a) \dots)) = a; \\
+    (f \circ f \circ \dots \circ f)(a) = a; \\
+    \forall a \in A, \exists n_a \ge 1 \colon \ub{(f \circ \dots \circ f)}_{n_a}(a) = a;
+    \end{gather*}
+
+    \item Возьмём $N=\prod\limits_{a \in A} n_a$. Покажем по индукции, что произведение первых $k$ множителей позволяет выполнить необходимое
+    условие для соответствующих $k$ элементов, тогда, так как множество конечно, $N$ выполнит условие для всех элементов $A$.
+    \item
+    \begin{gather*}
+    a, b \in A; \\
+    f(a) = f(b); \\
+    a = (\ub{f \circ \dots \circ f}_{N - 1} \circ f)(a) = (\ub{f \circ \dots \circ f}_{N - 1} \circ f)(b) = b; \\
+    a = b; \\
+    \Ra f \text{"--- инъекция}
+    \end{gather*}
+    \end{enumerate}
+\end{proof}

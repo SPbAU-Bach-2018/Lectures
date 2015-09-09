@@ -1,0 +1,39 @@
+\section{Производная}
+
+\begin{Def}
+ $$f:(a, b)\to \R x_0 \in (a, b)$$
+
+ Если существует конечный $\lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}$, то он называется производной f в точке $x_0$. $f'(x_0)$
+\end{Def}
+
+\begin{Def}
+$$f:(a, b) \to \R x_0 \in (a, b)$$
+
+f ~--- диффиренцируема в точке $x_0$, если $\exists A \in \R$ т.ч. $f(x) = f(x_0) + A(x - x_0) + o(x - x_0)$ при $x \to x_0$
+\end{Def}
+
+\begin{theorem}{}
+$f:(a, b) \to \R x_0 \in (a, b)$
+
+f ~--- дифф. в точке $x_0 \Lra \exists$ конечная производная $f'(x_0)$
+
+И в этом случае $A = f'(x_0)$ 
+\end{theorem}
+
+\begin{proof}
+ f ~--- дифф.в точке $x_0 \Lra$
+
+ $$\exists A \in \R: f(x) = f(x_0) + A(x - x_0) + o(x - x_0) \Lra $$
+
+ $$\exists A \in \R: f(x) - f(x_0) - A(x - x_0) = o(x - x_0) \Lra $$
+
+ $$\exists A \in \R: \frac{f(x) - f(x_0)}{(x - x_0)} - A \to 0 \Lra $$
+
+ $$lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} = A$$
+\end{proof}
+
+\begin{Def}
+ Дифференциал функции f в точке $x_0$ ~--- это отображение $\R \to \R$ умноженное на A. $df(x_0)$
+\end{Def}
+
+$T:\R^n \to \R^n$ ~--- линейно, если $T(ax + by) = aT(x) + bT(y)$

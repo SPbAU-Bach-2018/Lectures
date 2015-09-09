@@ -1,0 +1,12 @@
+﻿\section{Супремум и инфимум замкнутых множеств}
+
+\begin{theorem}{О точной границе замкнутого множества}
+$$A \text{ ограниченно сверху и замкнуто} \Ra \sup A \in A$$
+$$A \text{ ограниченно снизу и замкнуто} \Ra \inf A \in A$$
+\end{theorem}
+\begin{proof}
+$a = \sup A$. Тогда
+$$\forall x \in A\: x \leqslant a \land \forall \epsilon > 0\: \exists x \in A\colon x > a - \epsilon$$
+Пусть $a \notin A$. Рассмотрим $\dot B_r(a) = (a - r, a + r) \setminus \{a\}$.
+$$ \dot B_r(a) \cap A \ne \varnothing \Ra x \in A' \Ra x \in A$$
+\end{proof}

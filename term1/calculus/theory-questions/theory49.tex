@@ -1,0 +1,47 @@
+﻿\section{Арифметические действия с непрерывными функциями}
+
+\begin{theorem}{Арифметические действия с непрерывными функциями}
+$f, g\colon E \subset X \to \R^d$, $a \in E$, $f, g$ непрерывны в точке $a$. Тогда
+
+\begin{enumerate}
+\item $f(x)+g(x)$ непрерывно в точке $a$
+\item $сf(x)$ непрерывно в точке $a$
+\item $f(x) - g(x)$ непрерывно в точке $a$
+\item $\| f(x) \|$ непрерывно в точке $a$
+\item $\left<f(x), g(x)\right>$ непрерывно в точке $a$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Арифметические действия с непрерывными вещественными функциями}
+$f, g\colon E \subset X \to \R$, $a \in E$, $f, g$ непрерывны в точке $a$. Тогда
+\begin{enumerate}
+\item $f(x) + g(x)$ непрерывно в точке $a$
+\item $f(x)g(x)$ непрерывно в точке $a$
+\item $f(x) - g(x)$ непрерывно в точке $a$
+\item $|f(x)|$ непрерывно в точке $a$
+\item Если $g(a) \ne 0$, то $\frac{f(x)}{g(x)}$ непрерывно в точке $a$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{О стабильном знаке}
+$f\colon E \subset X \to \R$, $a \in E$, $f$~--- непрерывно в точке $a$ и $f(a) \ne 0$. Тогда
+
+$$\exists B_{\delta}(a)\colon \forall x \in B_{\delta}(a)\: sign(f(x)) = sign(f(a))$$
+\end{theorem}
+ 
+\begin{proof}
+$$\epsilon = \frac{|f(a)|}{2}$$
+\end{proof}
+
+\begin{theorem}{О непрерывности композиции}
+$f\colon E_1 \subset X \to Y$, $g\colon E_2 \subset Y \to Z$, $f(E_1) \subset E_2$, $a \in E_2$, $f$ непрерывна в точке $a$, $g$ непрерывна в точке $f(a)$. Тогда $g \circ f$ непрерывна в точке $a$.
+\end{theorem}
+\begin{proof}
+Надо проверить, что 
+$$\forall \epsilon > 0\: \exists \delta > 0\colon \forall x \in B_{\delta}(a) \cap E_1\: g(f(x)) \in B_{\epsilon}(g(f(a)))$$
+Берем $\epsilon$
+$$\exists \gamma > 0\colon \forall y \in B_{\gamma}(f(a)) \cap E_2\: g(y) \in B_{\epsilon}(g(f(a))) \quad \text{по непрерывности $g$ в точке $f(a)$}$$
+$$\exists \delta > 0\colon \forall x \in B_{\delta}(a) \cap E_1\: f(x) \in B_{\gamma}(f(a)) \quad \text{по непрерывности $f$ в точке $a$}$$
+Тогда
+$$g(f(x)) \in B_{\epsilon}(g(f(a))$$
+\end{proof}

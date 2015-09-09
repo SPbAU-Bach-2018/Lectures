@@ -1,0 +1,35 @@
+\section{Неравенство треугольника}
+
+\begin{theorem}{} 
+\begin{gather*}
+||z_1| - |z_2|| \leqslant |z_1 \pm z_2| \leqslant |z_1| + |z_2|
+\end{gather*}
+Причём:
+\begin{enumerate}
+	\item $|z_1 + z_2| = |z_1| + |z_2| \Lra$ $z_1$ и $z_2$ лежат на одном луче, проведённом из начала координат.
+	\item $|z_1 - z_2| = |z_1| + |z_2| \Lra$ $z_1$ и $z_2$ лежат на дополнительных лучах, проведённых из начала координат.
+	\item $|z_1 + z_2| = ||z_1| - |z_2|| \Lra$ $z_1$ и $z_2$ лежат на дополнительных лучах, проведённых из начала координат.
+	\item $|z_1 - z_2| = ||z_1| - |z_2|| \Lra$ $z_1$ и $z_2$ лежат на одном луче, проведённом из начала координат.
+\end{enumerate} 
+\end{theorem}
+\begin{proof}
+Так как все величины неотрицательны, то исходной неравенство равносильно следующему:
+\begin{gather*}
+(|z_1|-|z_2|)^2 \leqslant (|z_1 \pm z_2|)^2 \leqslant (|z_1| + |z_2|)^2
+\end{gather*}
+$z_1 = r_1(\cos \phi_1 + i \sin \phi_1)$, $z_2 = r_2(\cos \phi_2 + i \cos \phi_2)$
+\begin{gather*}
+(|z_1 \pm z_2|)^2 = (r_1 \cos \phi_1 \pm r_2 \cos \phi_2)^2 + (r_1 \sin \phi_1 \pm r_2 \sin \phi_2)^2 = \\
+= r_1^2 \cos^2 \phi_2 \pm 2r_1r_2 \cos \phi_1 \cos \phi_2 + r_2^2 \cos^2 \phi_2 + r_1^2 \sin^2 \phi_1 \pm 2r_1r_2 \sin \phi_1 \sin \phi_2 + r_2^2 \sin^2 \phi_2 = \\
+= r_1^2 + r_2 ^2 \pm 2r_1r_2(\cos \phi_1 \cos \phi_2 + \sin \phi_1 \sin \phi_2) = r_1^2 + r_2^2 \pm 2r_1r_2 \cos(\phi_1 - \phi_2) \\
+|z_1 \pm z_2|^2 \leqslant r_1^2 + r_2^2 + 2r_1r_2 = (r_1 + r_2)^2 = (|z_1| + |z_2|)^2 \\
+\end{gather*}
+\begin{enumerate}
+	\item Если знак +, то равенство $\Lra \cos(\phi_1 - \phi_2) = 1 \Lra \phi_1 - \phi_2 = 2 \pi k, k \in \Z \Lra \phi_1 = \phi_2 + 2 \pi k, k \in \Z$, то есть $z_1$ и $z_2$ лежат на одном луче.
+	\item Если знак -, то равенство $\Lra \cos(\phi_1 - \phi_2) = -1 \Lra \phi_1 - \phi_2 = 2 \pi k + \pi, k \in \Z \Lra \phi_1 = \phi_2 + 2 \pi k + \pi, k \in \Z$, то есть $z_1$ и $z_2$ лежат на дополнительных лучах.
+\end{enumerate}
+Левое неравенство "--- аналогично через
+\begin{gather*}
+|z_1 \pm z_2|^2 \geqslant r_1^2 + r_2^2 - 2r_1r_2 = (r_1 - r_2)^2 = (|z_1| - |z_2|)^2
+\end{gather*}
+\end{proof}

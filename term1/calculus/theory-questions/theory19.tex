@@ -1,0 +1,59 @@
+\section{Арифметические свойства предела}
+Пусть есть $(\R^d, \rho)$ со стандартной метрикой и нормой.
+
+\textbf{Утверждение.} $x_n \in \R^d$. $$\lim_{n\ra\infty} x_n = \vec 0 \Lra \lim_{n\ra\infty} \|x_n\| = 0$$
+\begin{proof}
+$$\lim x_n = 0 \Lra \forall \epsilon > 0\;\exists N\colon\forall n>N\; \|x_n\| < \epsilon \Lra \lim \|x_n\| = 0$$
+\end{proof}
+\begin{Rem}
+$A \subset \R^d\text{ ограниченно} \Lra \exists M\colon \forall x \in A\: \|x\| \leqslant M$
+\end{Rem}
+
+\begin{theorem}{Арифметические свойства предела}
+$x_n, y_n \in \R^d$, $\lambda \in \R$, $\lim x_n = x_0$, $\lim y_n = y_0$, $\lim \lambda = \lambda_0$.
+\begin{enumerate}
+\item $\lim (x_n + y_n) = x_0 + y_0$
+\item $\lim (\lambda x_n) = \lambda_0x_0$
+\item $\lim (x_n - y_n) = x_0 - y_0$
+\item $\lim \langle x_n, y_n\rangle = \langle x_0, y_0\rangle$
+\item $\lim \|x_n\| = \|x_0\|$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$$\forall \epsilon > 0\; \exists N_1\colon \forall n > N_1\; \|x_n - x_0\| < \epsilon$$
+$$\forall \epsilon > 0\; \exists N_2\colon \forall n > N_2\; \|y_n - y_0\| < \epsilon$$
+$$\forall \epsilon > 0\; \exists N_3\colon \forall n > N_3\; |\lambda - \lambda_0| < \epsilon$$
+\begin{enumerate}
+\item $$\forall \epsilon > 0\;\begin{cases}\|x_n-x_0\| < \epsilon \\ \|y_n-y_0\| < \epsilon\end{cases} \Ra 
+\|x_n + y_n - x_0 - y_0\| \leqslant \|x_n - x_0\| + \|y_n - y_0\| < \epsilon + \epsilon = 2\epsilon$$
+\item $$\|\lambda_nx_n-\lambda_0x_0\| = \|\lambda_nx_n - \lambda_nx_0 + \lambda_nx_0 - \lambda_0x_0\| \leqslant
+\|\lambda_nx_n - \lambda_nx_0\|+\|\lambda_nx_0-\lambda_0x_0\| = $$
+$$ = |\lambda_n| \|x_n-x_0\| + |\lambda_n - \lambda_0| \|x_0\| \leqslant
+M \|x_n-x_0\| + |\lambda_n - \lambda_0| \|x_0\|$$
+Но тогда
+$$\forall n > \max{N_1, N_3}\; \begin{cases}\|x_n-x_0\| < \frac{\epsilon}M \\ |\lambda_n - \lambda_0| < \frac{\epsilon}{\|x_0\|}\end{cases} \Ra
+\|\lambda_nx_n-\lambda_0x_0\| < \epsilon$$
+\item Следствие 1 и 2
+\item $x_n = \left(x_n^{(1)}, x_n^{(2)}, \ldots, x_n^{(d)}\right); y_n = \left(y_n^{(1)}, y_n^{(2)}, \ldots, y_n^{(d)}\right)$
+Это докажем позже
+\item $$0 \leqslant \left|\|x_n\|-\|x_0\|\right| \leqslant \|x_n-x_0\| \longrightarrow 0 \Ra \|x_n\| - \|x_0\| \longrightarrow 0 \Ra \|x_n\| \longrightarrow \|x_0\|$$
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{Свойства предела на вещественных}
+$x_n, y_n \in \R; \lim x_n = x_0; \lim y_n = y_0$
+\begin{enumerate}
+\item $\lim (x_n + y_n) = x_0 + y_0$
+\item $\lim x_ny_n = x_0y_0$
+\item $\lim (x_n - y_n) = x_0 - y_0$
+\item $\lim |x_n| = |x_0|$
+\item Если $y_n, y_0 \ne 0$, то $\lim \frac{x_n}{y_n} = \frac{x_0}{y_0}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Докажем, что $\lim \frac1{y_n} = \frac1{y_0}$.
+$$\left|\frac{1}{y_n} - \frac{1}{y_0}\right| = \frac{|y_n - y_0|}{|y_n||y_0|} \lrh A$$
+$$\exists N_1\colon \forall n > N_1\; |y_n-y_0| < \frac{|y_0|}2 \Ra |y_n| \geqslant |y_0| - |y_0 - y_n| > |y_0| - \frac{|y_0|}2 = \frac{|y_0|}2$$
+Тогда
+$$A < \frac{|y_n - y_0|}{\frac{|y_0|}2 |y_0|} < \frac{\frac{\epsilon|y_0|^2}2}{\frac{|y_0|}2 |y_0|}$$
+\end{proof}

@@ -1,1 +1,136 @@
-\input{../../../term2/algebra/lectures/24.tex}
+﻿\section{Матрица Грама}
+\begin{Def}
+$\dim_k V < \infty$
+
+$B \colon V \times V \to K$ (полуторолинейная(билинейная форма))
+$v_1, \cdots, v_n$ "--- базис V.
+
+$\Gamma = (B(v_i, v_j))_{i,j = 1,n}$ "--- матрица Грама формы B, отвечающая базису $v_1, \cdots, v_n$.
+\end{Def}
+
+
+Почему нам достаточно $\Gamma$, чтобы востановить значение билинейной формы на всем пространстве.
+$$x, y \in V$$
+$$x = \sum_{i = 1}^{n}x_i v_i$$
+$$y = \sum_{i = 1}^{n}y_i v_i$$
+$$B(x, y) = B(\sum_{i = 1}^{n}x_iv_i, \sum_{j = 1}^{n} y_{j}v_j) = $$
+$$= \sum_{i = 1}^{n}\sum_{j = 1}^{n}x_i \overline{y_j} B(v_i, v_j) = $$
+$$= \sum_{i = 1}^{n}\sum_{j = 1}^{n}x_i B(v_i, v_j)\overline{y_j} = $$
+$$= (x_1, \cdots, x_n) B(v_i, v_j) \begin{pmatrix}\overline{y_1}\\ \vdots \\ \overline{y_n} \end{pmatrix} $$
+
+\begin{Rem}
+Замечание о бесконечно мерном случае.
+$x = \sum x_i v_i$, где почти все $x_i = 0$
+$y = \sum y_i v_j$, где почти все $y_i = 0$ 
+
+$B(x, y) = \sum_i \sum_j x_i B(v_i, v_j) \overline{y_j}$, почти все $x_i, y_j = 0$
+\end{Rem}
+
+\begin{lemma}{}
+Матрица Грама эрмитово симметрична $\Lra$ форма эрмитово симметрична.
+\end{lemma}
+\begin{proof}
+Эрмитово симметрична $B(x, y) = \overline{B(y, x)}$
+$$\Gamma = B(v_i, v_j)$$
+$\Gamma^T = \overline{\Gamma}$ "--- эрмитовски симметричная матрица.
+
+Верно и обратное.
+$$x \to \begin{pmatrix}
+x_1\\
+\vdots\\
+x_n\\
+\end{pmatrix}$$
+$$y \to \begin{pmatrix}
+y_1\\
+\vdots\\
+y_n\\
+\end{pmatrix}$$
+$$B(x, y) = x^{T}\Gamma \overline{y}$$
+$$\overline{B(x, y)} = \overline{(x^T \Gamma \overline{y})} = (\overline{x^T \Gamma \overline{y}})^T =$$
+$$(x^{-T}\overline{\Gamma}y)^T = y^{T}\overline{\Gamma}^{T}(\overline{x}^T)^T = y^T \Gamma \overline{x} = B(y, x)$$
+$$B(x, y) = \overline{B(y, x)}$$
+
+\end{proof}
+\begin{lemma}{}
+\begin{enumerate}
+\item $B$ "--- эрмитово симметрична полуторолинейная $\Lra$ ее матрица Грама эрмитово симметрична.
+\item $B$ "--- симметрична билинейная  форма $\Lra$ ее матрица Грама (в любом базисе) симметричная матрица.
+\item $B$ "--- кососимметричная билинейная форма $\Lra$ ее матрица Грама "--- 
+кососимметричная матрица с нулевой диагональю.
+\end{enumerate}
+
+\end{lemma}
+\begin{proof}
+1,2 смотрите выше.
+3 $$\forall x,y B(x, y) = -B(y,x)$$
+$$\forall x B(x, x) = 0$$
+$$\Gamma^T = -\Gamma \Ra B(x, y) = -B(y, x) \forall (x, y)$$
+$$B(x, y) = x^{T}\Gamma y = (x^T \Gamma y)^T = y^T\Gamma^T x = -y^T\Gamma x = -B(y, x)$$
+
+В обратную сторону, если верно для $\forall x,y$, то, в частности, верно и 
+для базисных векторов.
+Если $B(x, x) = 0 \forall x$
+$B(v_i, v_j) = 0 \Ra$ диагональ $\Gamma$ "--- нулевая.
+
+$\Gamma^{T} = -\Gamma $ + нулевая диагональ.
+$$B(x, x) = x^{T}\Gamma x = \sum_{i, j}x_i\Gamma_{ij}x_j = 
+\sum_{i}\Gamma_{ii}x_i^2 + \sum_{i < j}(\Gamma_{ij}+ \Gamma_{ji})x_ix_j = 0$$
+\end{proof}
+
+\begin{lemma}{}
+$B$ "--- невырожденная $\Lra \Gamma$ невырожденная. 
+\end{lemma}
+\begin{proof}
+$$\forall x \ne 0 \exists y B(x, y) \ne 0$$
+$$\forall x \ne 0 \exists \overline{y} x^{T}\Gamma\overline{y} \ne 0$$
+$ \Lra$ для строки $x^{T}\Gamma$ найдется столбец $\overline{y}$, такой что
+$x^{T}\Gamma\overline{y} \ne 0$
+$$(c_1, \cdots, c_n)$$
+$$\exists y c_1\overline{y_1} + \cdots + c_n\overline{y_n} \ne 0 \Lra \forall x (c_1, \cdots, c_n) \ne (0, \cdots, 0) \Lra \forall x \ne 0 x^T\Gamma \ne 0$$
+
+Отображение из пространства строк в пространство строк.
+$$x^{T} \to x^T \Gamma$$
+Невырожденно $\Lra$ ядро отображения тривиально $\Lra \det \Gamma \ne 0$
+$$x \to \Gamma^{T} x $$
+Невырожденно $\Lra \det(\Gamma^T) \ne 0 \Lra \det(P \ne 0)$
+
+Аналогично, $\forall \overline{y} \exists x B(x, y) \ne 0 \Lra \det(\Gamma) \ne 0$
+\end{proof}
+\begin{Def}
+$K = \R, B$ "--- симмитричная положительно определенная.
+$\forall x \ne 0, x^{T}\Gamma x > 0$
+Матрица $\Gamma$ с таким свойством называется положительно определенной матрицей.
+\end{Def} 
+\begin{Def}
+$K = \C B$ "--- полуторалинейная эрмитово симметричная положительно определенная
+
+$$\forall x \ne 0, x^T \Gamma \overline{x} > 0$$
+$$\Gamma^T = \overline{\Gamma}$$
+\end{Def}
+
+\begin{lemma}{}
+$v_1, \cdots, v_n; v_1', \cdots, v_n'$ "--- базисы V
+
+B "--- полуторолинейная(билинейная) форма на V.
+
+$\Gamma, \Gamma'$ "--- матрица Грама в соответствующих базисах. 
+
+C "--- матрица переходв от $v_1, \cdots, v_n$ к  $v_1', \cdots, v_n'$,
+тогда
+$$\Gamma' = C^{T}\Gamma \overline{C}$$
+\end{lemma}
+
+\begin{proof}
+$x, y$ "--- столбцы координат в старом базисе. 
+
+$x', y'$ "--- столбцы координат в новом базисе.
+$$u = \sum x_i v_i = \sum x_i' v_i'$$
+$$v = \sum y_i v_i = \sum y_i' v_i'$$
+$$x = C x', y = Cy'$$
+$$x'^{T}C^T\Gamma\overline{C}\overline{y} = x^T\Gamma \overline{y} = B(u, v) = x^{T}\Gamma'\overline{y'} $$
+
+$\forall$ столбцов $x', y'$
+$$x'^T \Gamma'\overline{y'} = x'^TC^T \Gamma \overline{C}\overline{y'}$$
+$$\Gamma' = C^T\Gamma\overline{C}$$
+$$\forall i, j (\Gamma')_{ij} = (C^{T}\Gamma \overline{C})_{ij} \Ra \Gamma = C^{T}\Gamma\overline{C}$$
+\end{proof}

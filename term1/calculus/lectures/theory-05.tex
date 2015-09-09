@@ -1,0 +1,212 @@
+\begin{Def}
+$\{x_n\}$~--- последовательность в $\R^d$. Тогда $\{x_n\}$ сходится в $x_0$ покоординатно, если 
+$$x_n=\{x_n^{(1)}, x_n^{(2)}, \ldots, x_n^{(d)}\}\colon \lim x_n^{(i)} = x_0^i$$
+\end{Def}
+\begin{theorem}{О сходимости покоординатно}
+$\{x_n\}$ сходится тогда и только тогда, когда последовательность сходится покоординатно.
+\end{theorem}
+\begin{proof}
+$$\left|x_n^{(i)} - x_0^{(i)}\right| \leqslant \sqrt{\sum_{i=1}^d \left(x_n^{(i)} - x_0^{(i)}\right)^2} \leqslant \sum_{i=1}^d \left(x_n^{(i)} - x_0^{(i)}\right)$$
+\end{proof}
+\begin{conseq}
+$x_n \ra x_0, y_n \ra y_0$. Тогда $\langle x_n, y_n\rangle \ra \langle x_0, y_0\rangle$
+\end{conseq}
+\begin{proof}
+$$\left.\begin{array}{rr} x_n \ra x_0 \Ra x_n^{(i)} \ra y_n^{(i)}\\y_n \ra y_0 \Ra y_n^{(i)} \ra y_0^{(i)}\end{array}\right\} \Ra x_n^{(i)}y_n^{(i)} \ra x_0^{(i)}y_0^{(i)}$$
+Тогда $$\sum_{i=1}^d x_n^{(i)} y_n^{(i)} \ra \sum_{i=1}^d x_0^{(i)} y_0^{(i)} \Lra \langle x_n, y_n\rangle \ra \langle x_0, y_0\rangle$$
+\end{proof}
+
+\section{Бесконечно малые и большие}
+
+\begin{Def}
+$$\lim x_n = +\infty \LraDef \forall E\; \exists N\colon \forall n > N\; x_n > E$$
+$$\lim x_n = -\infty \LraDef \forall E\; \exists N\colon \forall n > N\; x_n < E$$
+$$\lim x_n = \infty \LraDef \forall E\; \exists N\colon \forall n > N\; \left|x_n\right| > E$$
+\end{Def}
+\begin{Rem}
+$$\left[\begin{array}{ll}\lim x_n = +\infty\\\lim x_n = -\infty\end{array}\right.\Ra \lim x_n = \infty$$
+Также заметим, что обратное неверно ($x_n = (-1)^n n$).
+\end{Rem}
+
+\begin{Rem}
+$\lim x_n = \infty \Ra x_n\text{ неограниченна}$
+\end{Rem}
+\begin{Rem}
+Единтсвенность предела справедлива и расширенная на $\pm \infty$.
+\end{Rem}
+\begin{Rem}
+Теорема о двух миллиционерах справедлива и для бесконечно больших.
+\end{Rem}
+
+\begin{Rem}
+${\bar\R} = \R \cup \{+\infty, -\infty\}$
+\begin{enumerate}
+\item $\pm c+\pm\infty = \pm\infty$
+\item $\pm c-\pm\infty = \mp\infty$
+\item $c>0\colon \pm \infty \times c = \pm \infty$
+\item $c<0\colon \pm \infty \times c = \mp \infty$
+\item $c>0\colon \frac{\pm \infty}{c} = \pm \infty$
+\item $c<0\colon \frac{\pm \infty}{c} = \mp \infty$
+\item $\frac{c}{\pm \infty} = 0$
+\item $(+\infty) + (+\infty) = +\infty$
+\item $(+\infty) - (-\infty) = +\infty$
+\item $(-\infty) + (-\infty) = -\infty$
+\item $(-\infty) - (+\infty) = -\infty$
+\item $\pm \infty \times (+ \infty) = \pm \infty$
+\item $\pm \infty \times (- \infty) = \mp \infty$
+\end{enumerate}
+\end{Rem}
+
+\begin{Def}
+Последовательность называют бесконечно большой, если её предел бесконечнен.
+\end{Def}
+\begin{Def}
+Последовательность называют бесконечно малой, если её предел равен нулю.
+\end{Def}
+
+\begin{theorem}{О связи бесконечно больших и малых}
+Пусть $x_n \ne 0$. Тогда
+$$x_n \ra \infty \Lra \frac1{x_n} \ra 0$$
+\end{theorem}
+\begin{proof}
+$$x_n \ra \infty \Lra \forall E > 0\; \exists N\colon \forall n > N\; |x_n| > E \Lra \forall \epsilon > 0\; \exists N\colon \forall n > N\; |\frac1{x_n}| < \epsilon \Lra 
+\frac1{x_n} \ra 0$$
+\end{proof}
+
+\begin{theorem}{Об арифметических действиях с бесконечно малыми}
+Пусть $\{x_n\}$, $\{y_n\}$~--- бесконечно малые, $\{z_n\}$ ограниченна. Тогда
+\begin{enumerate}
+\item $x_n \pm y_n$~--- бесконечно малая
+\item $x_n z_n$~--- бесконечно малая
+\end{enumerate}
+\end{theorem}
+\begin{theorem}{Об арифметических действиях с бесконечно большими}
+\begin{enumerate}
+\item $x_n \ra +\infty \land y_n\text{ ограниченна снизу} \Ra x_n + y_n \ra +\infty$
+\item $x_n \ra -\infty \land y_n\text{ ограниченна сверху} \Ra x_n + y_n \ra -\infty$
+\item $x_n \ra \infty \land y_n\text{ ограниченна} \Ra x_n + y_n \ra +\infty$
+\item $x_n \ra \pm\infty \land y_n\geqslant a > 0 \Ra x_n y_n \ra +\infty$
+\item $x_n \ra \pm\infty \land y_n\leqslant a < 0 \Ra x_n y_n \ra -\infty$
+\item $x_n \ra \infty \land \left|y_n\right| \geqslant a > 0 \Ra x_ny_n \ra \infty$
+\item $x_n \ra a \ne 0 \land y_n \ra 0 \land y_n \ne 0 \Ra \frac{x_n}{y_n} \ra \infty$
+\item $x_n\text{ ограниченна} \land y_n \ra \infty \Ra \frac{x_n}{y_n} \ra 0$
+\item $x_n \ra \infty \land y_n\text{ ограниченна} \land y_n \ne 0 \Ra \frac{x_n}{y_n} \ra \infty$
+\end{enumerate}
+\end{theorem}
+
+\begin{Rem}
+$$\lim x_n = l \in \bar \R \land l > 0 \Ra \exists a > 0\colon \exists N\colon \forall n > N\; x_n \geqslant a$$
+$$\lim x_n = l \in \bar \R \land l < 0 \Ra \exists a < 0\colon \exists N\colon \forall n > N\; x_n \leqslant a$$
+\end{Rem}
+
+\section{Компактность}
+
+\begin{Def}
+Множество $A$ имеет покрытие множествами $B_\alpha$, если $A \subset \bigcup_{\alpha \in A} B_\alpha$.
+\end{Def}
+\begin{Def}
+Множество $A$ имеет открытое покрытие открытыми множествами $B_\alpha$, если $A \subset \bigcup_{\alpha \in A} B_\alpha$.
+\end{Def}
+\begin{Def}
+Множество $A$ компактно, если из любого его открытого покрытия можно выбрать конечное подкокрытие.
+$$\forall B_\alpha\colon K \subset \bigcup_{\alpha \in A} B_\alpha\; \exists \alpha_1, \alpha_2, \ldots, \alpha_n\colon K\subset \bigcup_{i=1}^{n} B_{\alpha_i}$$
+\end{Def}
+
+\begin{theorem}{Компактность и подпространства}
+Пусть $(X, \rho)$~--- метрическое пространство, $K \subset Y \subset X$. Тогда 
+$$K\text{ компактно в } (X, \rho) \Lra K\text{ компактно в } (Y, \rho)$$
+\end{theorem}
+\begin{proof}
+$\Ra$: Пусть $B_\alpha$~--- открытое в $Y$, что 
+$$K \subset \bigcup_{\alpha \in A} B_\alpha = \bigcup_{\alpha \in A} (G_\alpha \cap Y) \subset \bigcup_{\alpha \in A} G_\alpha$$
+Тогда можно заменить покрытие в $Y$ покрытием соотвествующими множествами в $X$, выбрать конечное подпокрытие, а потом перейти обратно в $Y$.
+
+$\La$: Пусть $K = \bigcup_{\alpha \in I} G_\alpha$. Тогда 
+$$K = K \cap Y \subset \left(\bigcup_{\alpha \in I} G_\alpha\right) \cap Y = \bigcup_{\alpha \in I} \left(G_\alpha \cap Y\right)$$
+Получим покрытие в пространстве $Y$, в нём есть конечное подпокрытие. Выберем соответствующие шарики из $X$.
+\end{proof}
+
+\begin{Rem}
+Например, $(0, 1)$ не компактно. Например, из $$\bigcup_{i=2}^\infty \left(\frac1i, 1\right)$$ не выбрать.
+\end{Rem}
+
+\begin{theorem}{Свойства компактного множества}
+Если $K$ компактно, то $K$ замкнуто и ограниченно.
+\end{theorem}
+\begin{proof}
+$$K \subset \bigcup_{n=1}^\infty B_n(x) \Ra K \subset \bigcup_{i=1}^k B_{r_i}(x) \Ra K \subset B_{R}(x) \Lra K\text{ ограниченно}$$
+Возьмём произвольный $a \notin K$. Тогда                                                                
+$$K \subset \bigcup_{x\in K} B_{\frac12\rho(a, x)}(x) \Ra K \subset \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i)$$
+Но ($r \lrh \min_{i=1}^k\left\{\frac12 \rho(a, x_i)\right\}$)
+$$\forall i=1..k\; B_r(a) \cap B_{\frac12 \rho(a, x_i)}(x_i) = \varnothing \Ra B_r(a) \cap \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i) = \varnothing$$
+Но $K \subset \bigcup_{i=1}^k B_{\frac12 \rho(a, x_i)}(x_i)$. Т. о. $B_r(a) \cap K = \varnothing$.
+\end{proof}
+
+\begin{theorem}{Признак компактного множества}
+Замкнутое подмножество компактного компактно.
+\end{theorem}
+\begin{proof}
+Добавим к покрытию подмножества $X \setminus K_1$.
+\end{proof}
+
+\begin{theorem}{Пересечение компактных}
+Дан набор компактных множеств, любое конечное пересечение которых не пусто. Тогда их пересечение не пусто.
+\end{theorem}
+\begin{proof}
+$K_0$~--- любое их них. Пусть пересечение всех пусто. 
+$$\bigcap_{\alpha\in I} K_\alpha = \emptyset$$
+Тогда 
+$$\bigcup_{\alpha\in I} \left(X \setminus K_\alpha\right) \supset K_0$$
+Но тогда можно выбрать конечное покрытие. Тогда 
+$$\bigcup_{i=1}^k \left(X \setminus K_{x_i}\right) \supset K_0$$
+Но тогда 
+$$\bigcap_{i=0}^k K_{x_i} = \emptyset \quad\text{противоречие}$$
+\end{proof}
+
+\begin{conseq}
+Пусть есть цепочка вложенных непустых компактных. Тогда их пересечение не пусто.
+\end{conseq}
+
+\begin{Def}
+Параллелепипедом на $\R^d$ и $a, b \in \R^d$ назовём
+$$[a, b] = \left\{x \in \R^d \mid \forall i=1..d\: a_i \leqslant x_i \leqslant b_i\right\} \text{ (закрытый)}$$
+$$(a, b) = \left\{x \in \R^d \mid \forall i=1..d\: a_i \leqslant x_i \leqslant b_i\right\} \text{ (открытый)}$$
+\end{Def}
+
+\begin{theorem}{О вложенных параллелепипедах}
+$P_1 \supset P_2 \supset P_3 \supset \ldots$ имеют непустое пересечение.
+\end{theorem}
+\begin{proof}
+Применим теорему о вложенных отрезках по каждой координате.
+\end{proof}
+
+\begin{theorem}{Теорема Гейне-Бореля}
+Замкнутый куб компактен
+\end{theorem}
+\begin{proof}
+$$I = \left\{x \in \R^d \mid \forall i=1..d\: 0 \leqslant x_i \leqslant a\right\}$$
+Рассмотрим произвольное покрытие. Пусть из него нельзя выбрать конечное подпокрытие. Тогда разобъём куб по кажому измерению пополам. Хотя бы один из результирующих не покрываем. 
+Повторим процесс до бесконечности. У них есть точка в пересечении. Но она тогда есть покрывающее её множество. Оно открыто, а значит оно покроет ещё и некоторый хвост подкубов.
+Ну а тогда возьмём его и все вышестоящие покрытия. Результат конечен и покрыл куб.
+\end{proof}
+
+\begin{Def}
+Подпоследовательность:
+$$\left\{x_{n_i}\right\}_{i=1}^\infty; {n_i} \uparrow$$
+\end{Def}
+
+\begin{theorem}{Предел подпоследовательности}
+Подпоследовательность имеет тот же предел.
+Объединение 2 подпоследовательностей с общим пределом имеет тот же предел.
+\end{theorem}
+
+\begin{theorem}{Компактность в $\R^d$}
+Следующее в $\R^d$ равносильно:
+\begin{enumerate}
+\item Компактно
+\item Замкнуто и ограниченно
+\item Для любой последовательности в множестве можно выбрать подпоследовательность, сходящуюсю к некоторой точке множества (\textit{секвенциально компактно})
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$2 \Ra 1$: $К$ ограниченно, значит можно его ограничить кубом, значит оно подмножество компактного и закрыто, значит компактно.

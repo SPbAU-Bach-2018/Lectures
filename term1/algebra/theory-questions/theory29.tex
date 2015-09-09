@@ -1,0 +1,93 @@
+﻿\section{Число корней многочлена}
+\begin{lemma}
+$A$ "--- область целостности. $0 \ne f, g \in A[x]$. $c$ "--- корень $f$ кратности $k$, корень $g$ кратности $l$.
+Тогда $c$ "--- корень $fg$ кратности $k + l$.
+\end{lemma}
+\begin{proof}
+\begin{gather*}
+f = (x - c)^kf_1, f_1(c) \ne 0 \\
+g = (x - c)^lg_1, g_1(c) \ne 0 \\
+fg = (x - c)^{k + l}f_1g_1, f_1(c)g_1(c) \ne 0
+\end{gather*}
+\end{proof}
+
+\begin{lemma}
+$A$ "--- область целостности.
+Какие бы ни были $c \ne d \in A$, $0 \ne f, g \in A[x]$, $a, k \in \N$, такие, что $f = (x - c)^{k}g$ и $g(c) \ne 0$,
+\[ (x - d)^{a} \mid f \Lra (x - d)^{a} \mid g \]
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item[$\La$:]
+\[ (x - d)^{a} \mid g \Ra (x - d)^{a} \mid f \]
+\item[$\Ra$:]
+Индукция по $a$.
+\begin{itemize}
+\item[База:] $a= 1$
+\begin{gather*}
+x - d \mid f \Ra f(d) = 0 \\
+(c - d)^k g(d) = 0 \Ra g(d) = 0 \Ra (x - d) \mid g
+\end{gather*}
+\item[Переход:] $a - 1 \to a$. 
+$a - 1$ для всех $f$ и $g$ удовлетворяет условию леммы.
+\begin{gather*}
+f = (x - c)^{k}g \\
+(x - d)^{a} \mid f \Ra (x - d)^{a - 1} \mid f \\
+f = (x - d)^{a}f_1 \\
+g = (x - d)^{a - 1}g_1 \\
+(x - d)^af_1 = (x - c)^{k}(x - d)^{a - 1}g_1 \\
+(x - d)f_1 = (x - c)^kg_1 \\
+\Ra (x - d) \mid g_1
+\end{gather*}
+\end{itemize}
+\end{itemize}
+\end{proof}
+
+\begin{theorem}{}
+$A$ "--- область целостности. $0 \ne f \in A[x]$. Тогда число корней $f$ с учетом кратности не превосходит $\deg f$.
+\end{theorem}
+\begin{proof}
+Индукция по $\deg f$
+\begin{itemize}
+\item[База:] 
+$\deg f = 0$, $f = const \ne 0$ "--- нет корней.
+\item[Переход:] 
+$c$ "--- корень $f$ кратности $k$. $f = (x - c)^{k}g$, $g(c) \ne 0$, $c$ "--- не корень $g$.
+Все корни $g$ "--- это в точности все корни $f$, кроме $c$, причем кратность сохраняется. Тогда число корней $g$ с учетом кратности не более $\deg g$. Тогда число корней $f$ 
+\[ C(f) = k + C(g) \le k + \deg g = \deg f \]
+\end{itemize}
+\end{proof}
+
+\begin{Rem}
+Предположение, что $A$ "--- область целостности, существенно.
+\end{Rem}
+
+\begin{Def}
+$A$, $f \in A[x]$.
+\[ \tilde f\colon A \to A\colon c \mapsto f(c) \]
+\end{Def}
+\begin{exmp}
+$A = \F_2$
+\begin{gather*}
+f = 0, g = x^2 + x \\
+\tilde f\colon 0 \mapsto 0, 1 \mapsto 0 \\
+\tilde g\colon 0 \mapsto 0, 1 \mapsto 0
+\end{gather*}
+\end{exmp}
+
+\begin{conseq}
+$A$ "--- область целостности. $f, g \in A[x]$, $|A| > \max\{\deg f, \deg g\}$.
+Тогда, если $\tilde f = \tilde g$, то $f = g$.
+\end{conseq}
+\begin{proof}
+Рассмотрим $f - g \ne 0$. Тогда $\tilde f - \tilde g$ "--- тождественно не нулевое отображение.
+\[ \forall c \in A, f(c) - g(c) = 0 \]
+Тогда число корней $f - g$
+\[ C(f-g) > \deg (f - g) \]
+Тогда $f - g = 0$.
+\end{proof}
+
+\begin{conseq}
+Если $A$ "--- область целостности, $|A| = \infty$ и $\tilde f = \tilde g$, то и $f = g$.
+\end{conseq}

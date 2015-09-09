@@ -1,0 +1,48 @@
+﻿\section{Равносильность сюръективности и обратимости справа}
+
+\begin{Def}{\bf Аксиома выбора}
+Пусть есть множество $B$ и семейство $X_b$: $\forall b \in B \colon X_b \neq \varnothing$. Тогда
+\[\exists \Phi: B \to \bigcup\limits_{b \in B}X_b\]
+такое, что
+\[\forall b \in B \colon \Phi(b) \in X_{b}\]
+\end{Def}
+
+\begin{theorem}{}
+
+$f : A \to B$ "--- обратимо справа $\Lra$ $f$ "--- сюръективно.
+
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$
+
+Очевидно, так как $f(g(B)) = B$.
+
+\item $\La$
+
+Введём семейство $X_b$ для $b \in B$: $X_b = f^{-1}(\{b\}) \ne \varnothing$.
+
+По аксиоме выбора существует $g: B \to \bigcup\limits_{b \in B}X_b$ (обозначим область назначения $g$ за $C$). $f(g(b))=b$, так
+как $g(b) \in f^{-1}(\{b\})$.
+
+Покажем, что $C = A$.
+Так как $X_b = f^{-1}(\{b\}) \subset A$, то $C \subset A$.
+Обратное включение: возьмём $a \in A$. Знаем, что $a \in X_{f(a)} \Ra a \in C \Ra A \subset C \Ra A = C$.
+Таким образом $g: B \to A$.
+
+По построению знаем, что:
+\begin{gather*}
+\forall b \in B \colon f(g(b)) = b; \\
+\forall b \in B \colon (f \circ g)(b) = b; \\
+f \circ g = id_{B}; \\
+\Ra f \text{~обратима справа}
+\end{gather*}
+\end{enumerate}
+\end{proof}
+
+\begin{conseq}{}
+
+$f$ "--- обратимо $\iff$ $f$ "--- биективно.
+
+\end{conseq}

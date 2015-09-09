@@ -1,0 +1,24 @@
+﻿\section{Cледствия}          
+\begin{conseq}{}
+\begin{enumerate}
+ \item $\lim_{x \to 0}(1 + x)^{\frac1x} = e$
+ \item $\lim_{x \to 0}(\frac{\ln(1 + x)}{x}) = 1$
+ \begin{proof}
+    $$\lim(\frac{\ln(1 + x)}x) =  \lim(\ln(1 + \frac1x)^x) = \ln \lim_{x \to 0}(1 + \frac1x)^x = \ln e = 1$$
+ \end{proof}
+ \item $\lim_{x \to 0}\frac{a^x - 1}{x} = \ln a$
+ \begin{proof}
+    $y = a^x - 1 \to 0$ при $x \to 0$(непрерывность $a^x$)
+    $$a^x = y + 1$$
+    $$x \ln a = \ln (y + 1) $$
+    $$\frac{a^x - 1}{x} = \frac{y}{\frac{\ln(y+ 1)}{\ln(a)}} = \ln(a)\frac{y}{\ln(1 + y)} = \ln(a)$$
+ \end{proof}
+ \item $\lim_{x \to 0}\frac{(1 + x)^p - 1}{x} = p$
+ \begin{proof}
+     $y = (1 + x)^p - 1 \to 0$ при $x \to 0$
+     $$(1 + x)^p = 1 + y$$
+     $$p \ln(1 + x) = \ln(1 + y)$$
+     $$\frac{(1 + x)^p - 1}{x} = \frac{y}{x} = \frac{y}{\ln(1 + y)}\frac{\ln(1 + y)}{p \ln(1 + x)}\frac{\ln(1 + x)}{x} p = p $$
+ \end{proof}
+\end{enumerate}
+\end{conseq}

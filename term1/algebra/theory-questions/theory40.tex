@@ -1,0 +1,28 @@
+\section{Извлечение корней n-й степени из комплексного числа}
+
+\begin{Def}
+$n \in \N, z \in \C$
+\begin{gather*}
+w \in \C\colon w^n = z
+\end{gather*}
+$w$ "--- корень $n$-й степени из $z$.
+\end{Def}
+
+\begin{itemize}
+\item $z = 0 \Ra w^n = 0$. $r = |w| \land r^n = 0 \Ra r = 0 \Ra w = 0$.
+\item $z \ne 0$. $|z| = R$, $\arg z = \phi$. $r = |w|$, $\psi = \arg w$.
+\begin{gather*}
+w^n = r^n(\cos n\psi + i \sin n\psi) = R(\cos\phi + i \sin \phi) = z \Ra r^n = R, r = \sqrt[n]{R} \\
+n \psi = \phi + 2 \pi k, k \in \Z \Ra \psi = \frac{\phi + 2 \pi k}{n}, k \in \Z \\
+w_k = \sqrt[n]{R}\left(\cos{\frac{\phi + 2 \pi k}{n}} + i \sin{\frac{\phi + 2 \pi k}{n}}\right), k \in \Z
+\end{gather*}
+Рассмотрим $k$ и $k'$ такие, что 
+\begin{gather*}
+k = ns + k', 0 \leqslant k' < n
+\end{gather*}
+Тогда $w_k = w_{k'}$, так как $\arg w_k = \arg w_{k'} + 2 \pi s$. Значит, мы можем рассматривать только $k=0..(n - 1)$. При таких $k$ аргументы попарно неэквивалентны.
+
+Если корни $n$-й степени есть, то их не более $n$, и они совпадают с какими-то из чисел $w_0, w_1, \ldots, w_{n - 1}$.  Но все $w_k$ являются корнями, значит корней ровно $n$, и они ровно такие. 
+Второй вариант доказать, что корней не более $n$ "--- рассмотреть многочлен.
+$w$ "--- корень, тогда $w$ "--- корень многочлена $t^n - z$, а корней многочлена не больше $n$. 
+\end{itemize}

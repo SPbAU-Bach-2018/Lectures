@@ -1,0 +1,28 @@
+﻿\section{Выпуклость}
+
+\begin{Def}
+$f\colon \left<a, b\right> \ra \R$. \\
+$f$ выпукла вниз, если 
+$$\forall x, y \in \left<a, b\right>\; \forall \lambda \in (0, 1) f(\lambda x + (1-\lambda)y) \leqslant \lambda f(x) + (1-\lambda) f(y)$$
+$f$ строго выпукла вниз, если 
+$$\forall x, y \in \left<a, b\right>\colon x \ne y\; \forall \lambda \in (0, 1) f(\lambda x + (1-\lambda)y) < \lambda f(x) + (1-\lambda) f(y)$$
+$f$ выпукла вверх, если 
+$$\forall x, y \in \left<a, b\right>\; \forall \lambda \in (0, 1) f(\lambda x + (1-\lambda)y) \geqslant \lambda f(x) + (1-\lambda) f(y)$$
+$f$ строго выпукла вверх, если 
+$$\forall x, y \in \left<a, b\right>\colon x \ne y\; \forall \lambda \in (0, 1) f(\lambda x + (1-\lambda)y) > \lambda f(x) + (1-\lambda) f(y)$$
+\end{Def}
+Абсолютно эквивалентная запись, геом. смысл...	0,0301
+10.12	
+
+\begin{Rem}
+Сумма выпуклых и выпуклая, умноженная на положительную, выпуклы.
+\end{Rem}
+
+\begin{lemma}
+О трёх хордах. $f\colon \left<a, b\right> \ra R$~--- выпуклая, $u < v < w$, $u,v,w \in \left<a, b\right>$. Тогда
+$$\frac{f(v) - f(u)}{v - u} \leqslant \frac{f(w) - f(u)}{w-u} \leqslant \frac{f(w) - f(v)}{w-v}$$
+\end{lemma}
+\begin{proof}
+$$\frac{f(v) - f(u)}{v - u} \leqslant \frac{f(w) - f(u)}{w-u} \Lra (w-u)(f(v) - f(u)) \leqslant (v-u)(f(w) - f(u)) \Lra$$
+$$\Lra (w-u)f(v) - (w-u)f(u) \leqslant (v-u)f(w) - (v-u)f(u) \Lra (w-u)f(v) \leqslant (v-u)f(w) + (w-v)f(u)$$
+\end{proof}

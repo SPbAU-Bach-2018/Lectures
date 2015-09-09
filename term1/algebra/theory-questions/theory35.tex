@@ -1,0 +1,78 @@
+\section{Алгебраическая форма записи комплексного числа. Комплексное сопряжение. Свойства комплексного сопряжения}
+
+$\R \mapsto \C\colon a \mapsto (a, 0)$ - инъективный гомоморфизм колец:
+\begin{align*}
+	\phi(a+b) &= \phi(a) + \phi(b) \\
+	\phi(ab) &= \phi(a) \phi(b)
+\end{align*}
+\begin{gather*}
+\C \supset \phi(\R) = \{(a, 0) \mid a \in \R\} \\
+\phi(\R) \cong \R
+\end{gather*}
+Поэтому говорят, что $\R \subseteq \C$, имея в виду, что $\phi(\R) \subseteq \C$.
+\begin{gather*}
+i = (0, 1) \Ra i^2 = (-1, 0) = -1
+\end{gather*}
+\begin{Def}
+Алгебраическая форма записи:
+\begin{gather*}
+(a, b) = (a, 0)*(1, 0) + (b, 0)*(0, 1) = a + bi
+\end{gather*}
+$a$ называется вещественной частью комплексного числа, $b$ "--- мнимой частью.
+\begin{gather*}
+a = \Re z \quad b = \Im z
+\end{gather*}
+\end{Def}
+
+\begin{Def}
+$z \in \C$, $z = a + bi$, $a, b \in \R$. $\bar z$ называется комплексно сопряжённым с $z$, если $\bar z = a - bi$.
+\end{Def}
+\begin{Rem}
+Сопряжение $\sim$ симметрия относительно вещественной оси.
+\begin{center}
+\def\svgwidth{6.0cm}
+\input{theory35-vector.pdf_tex}
+\end{center}
+\end{Rem}
+
+\underline{Cвойства:}
+\begin{itemize}
+\item[1.] $\bar{\bar z} = z$
+\item[2.] $z = \overline{z} \Lra z \in \R$
+\item[3.] $\overline{z_1 + z_2} = \bar z_1 + \bar z_2$
+\item[3'.] $\overline{z_1 + z_2 + \dots + z_n} = \bar z_1 + \bar z_2 + \cdots + \bar z_n$ (По индукции из свойства 3)
+\item[4.] $\overline{z_1z_2} = \bar z_1 \bar z_2$
+\item[4'.] $\overline{z_1 z_2 \cdots z_n} = \bar z_1 \bar z_2 \cdots \bar z_n$ (По индукции из свойства 4)
+\item[5.] $f \in \R[x]~f = a_0 + a_1x + a_2x^2 + \dots + a_nx^n$ Тогда: $\overline{f(z)} = f(\bar z)$
+\item[6.] \begin{itemize}
+			\item[\bullet] $z + \bar z \in \R$ 
+			\item[\bullet] $z \bar z \in \R$, $z \bar z \ge 0$
+			\item[\bullet] $z \bar z = 0 \Lra z = 0$
+		 \end{itemize}	
+Два последних пункта следуют из того, что $z \bar z = a^2 + b^2$.
+\begin{proof}
+Только 5 свойство:
+\begin{gather*}
+f(z)=a_0 + a_1z + \cdots + a_nz^n \\
+\overline{f(z)} = \overline{a_0 + a_1z + \cdots + a_nz^n} = \bar a_0 + \overline{a_1z} + \cdots + \overline{a_nz^n} = \bar a_0 + \bar a_1 \bar z + \cdots + \bar a_n \overline{z^n} = \\
+= a_0 + a_1\bar {z} + \cdots + a_n\bar z^n = f(\overline{z})
+\end{gather*}
+\end{proof}   
+
+$\bar z\colon \C \ra \C$ "--- гомоморфизм:
+\begin{align*}
+\overline{z_1 + z_2} &= \bar z_1 + \bar z_2 \\
+\overline{z_1 z_1} &= \bar z_1 \bar z_2
+\end{align*}
+
+$\overline{z} \circ \overline{z} = id_\C$, поэтому сопряжение "--- нетождественный изоморфизм из $\C$ на себя (автоморфизм).
+\begin{Def}
+Автоморфизм "--- изоморфизм поля с самим собой.
+\end{Def}
+\item[7.] $z \ne 0$: $z \bar z = |z|^2$, $|z| \ne 0$.
+\begin{gather*}
+z \frac{\bar z}{|z|^2} = 1 \Ra z^{-1} = \frac{\bar z}{|z|^2} = \frac{a - bi}{a^2 + b^2}
+\end{gather*}
+PS: определение и проч. про модуль в следующем вопросе.
+\end{itemize}
+

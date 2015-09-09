@@ -1,0 +1,29 @@
+﻿\section{Характеристика непрерывности в терминах прообразов}
+
+\begin{theorem}{}
+$f\colon X \ra Y$. $f$ непрерывна во всех точках $\Lra$ прообраз любого открытого множества открыт.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item $\Ra$:
+
+$G \subset Y$, $G$ открытое. Надо доказать, что  $f^{-1}(G)$~--- открытое. Возьмем $a \in f^{-1}(G)$. Надо доказать, что существует шар с центром в точке $a$, содержащийся в $f^{-1}(G)$.
+
+$$f(a) \in G \Ra \exists B_{\epsilon}(f(a)) \subset G$$
+Знаем,что $f$ непрерывна в точке $а$
+$$\exists \delta > 0\colon \forall x \in B_{\delta}(a)\: f(x) \in B_{\epsilon}(f(a)) \subset G$$
+То есть
+$$\forall x \in B_{\delta}(a)\: f(x) \in G $$
+То есть 
+$$B_{\delta}(a) \subset f^{-1}(G) $$
+
+\item $\La$
+Зафиксируем $a \in x$. Надо доказать, что 
+$$\forall \epsilon > 0\: \exists \delta > 0\colon \forall x \in B_{\delta}(a)\: f(x) \in B_{\epsilon}(f(a))$$
+
+Возьмем $B_{\epsilon}(f(a))$ ~--- открытое множество, $a \in f^{-1}(B_{\epsilon}(f(a)))$ ~--- открытое, поэтому 
+
+$$\exists B_{\delta}(a) \subset f^{-1}(B_{\epsilon}(f(a))) \Ra f(B_{\delta}(a)) \subset B_{\epsilon}(f(a))$$
+\end{enumerate}
+\end{proof}

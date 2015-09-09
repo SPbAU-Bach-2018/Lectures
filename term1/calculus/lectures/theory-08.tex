@@ -1,0 +1,86 @@
+\begin{Rem}
+Если в определении по Гейне все пределы существуют, то они будут равны. То есть достаточно доказать,
+что для любой сходящейся последовательности $\{x_n\}$ предел $f(x_n)$ существует, из этого
+будет следовать по Гейне.
+\end{Rem}
+\begin{proof}
+Возьмём две сходящиеся последовательности $x_n$ и $y_n$, после применения функций стремящиеся к каким-то разным значениям $b$ и $c$. Но тогда
+у последовательности 
+$$x_1, y_1, x_2, y_2, x_3, y_3, \ldots$$
+сходящейся к той же точке, будет предел. Но тогда у подпоследовательностей одинаковые пределы.
+\end{proof}
+
+\begin{assertion}{Единственность предела}
+$f\colon E \subset X \ra Y$, $a$~--- предельная точка. Тогда предел $\lim\limits_{x\ra a} f(x)$ единственнен.
+\end{assertion}
+\begin{proof}
+Пусть есть два различных предела. Тогда из определения по Коши с какого-то расстояния весь хвост должен быть ближе к одному пределу, чем к другому.
+\end{proof}
+
+\begin{theorem}{Ограниченность}
+$f\colon E \subset X \ra Y$, $\lim\limits_{x\ra a} = b$. Тогда 
+$$\exists r>0\colon f \mid_{E \cap B_r(x)}\text{ограничена}$$
+\end{theorem}
+
+\begin{theorem}{Уход от нуля}
+$f\colon E \ra \R^d$, $\lim\limits_{x\ra a} = b \ne \vec 0$. Тогда
+$$\exists r>0\colon \forall x \in \dot B_r(a) \cap E\: f(x) \ne 0$$
+\end{theorem}
+\begin{proof}
+$\epsilon \lrh \rho(x, \vec 0)$
+\end{proof}
+
+\begin{theorem}{Арифметические свойства предела функции}
+$f, g\colon E \subset \ra \R^d$, $\lambda\colon E \ra \R$, $a$ предельная точка $E$.
+\begin{enumerate}
+\item $\lim\limits_{x\ra a} (f(x) + g(x)) = f_0 + g_0$
+\item $\lim\limits_{x\ra a} (\lambda(x)  g(x)) = \lambda_0 g_0$
+\item $\lim\limits_{x\ra a} (f(x) - g(x)) = f_0 - g_0$
+\item $\lim\limits_{x\ra a} \left\|f(x)\right\| = \left\|f_0\right\|$
+\item $\lim\limits_{x\ra a} \left<f(x), g(x)\right> = \left<f_0, g_0\right>$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Возьмём любые сходящиеся к $a$ последовательности. Для них будет справедлива теорема об арифметических действиях с пределами последовательности.
+\end{proof}
+
+\begin{theorem}{Арифметические свойства предела функции}
+$f, g\colon E \subset \ra \R$, $a$ предельная точка $E$.
+\begin{enumerate}
+\item $\lim\limits_{x\ra a} (f(x) \pm g(x)) = f_0 \pm g_0$
+\item $\lim\limits_{x\ra a} (f(x) g(x)) = f_0 g_0$
+\item $\lim\limits_{x\ra a} \left|f(x)\right| = \left|f_0\right|$
+\item $\lim\limits_{x\ra a} \cfrac{f(x)}{g(x)}=\cfrac{f_0}{g_0}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Аналогично.
+\end{proof}
+
+\begin{Rem}
+Арифметические свойства расширяются на бесконечности.
+\end{Rem}
+
+\begin{theorem}{Предельный переход в неравенстве}
+$f, g\colon E \ra Y$, $a$ предельная точка $E$, $\forall x \in E\setminus \{a\} f(x) \leqslant g(x)$. Тогда 
+$$f_0 \leqslant g_0$$
+\end{theorem}
+
+\begin{theorem}{О двух миллиционерах}
+$f, g, h\colon E \ra Y$, $a$ предельная точка $E$, $f(x) \leqslant g(x) \leqslant h(x)$, $\lim\limits_{x\ra a} f(x) = \lim\limits_{x\ra a} h(x) = b$. Тогда
+$$\lim_{x\ra a} g(x) = b$$
+\end{theorem}
+
+\begin{Def}
+Пределы слева и справа. $f\colon E \cap \R \ra Y$.
+$$\lim\limits_{x\ra a-} = \lim\limits_{x\ra a-0} \eqDef \lim\limits_{x\ra a} f\mid_{E\cap(-\inf,a)}$$
+$$\lim\limits_{x\ra a+} = \lim\limits_{x\ra a+0} \eqDef \lim\limits_{x\ra a} f\mid_{E\cap(a,+\inf)}$$
+\end{Def}
+
+\begin{theorem}{Существование предела возрастающей и ограниченой функции}
+
+\end{theorem}
+
+\begin{theorem}{Критерий Коши}
+Функция с полной областью значений имеет предел в точке тогда и только тогда, когда для любого разброса существует выколотый шарик вокруг предельной точки, все расстояния в котором малы.
+\end{theorem}

@@ -1,0 +1,76 @@
+﻿\section{Корни из 1. Первообразные корни из 1}
+
+\begin{Def}
+$\epsilon$ "--- корень из $1$ степени $n$, если
+\begin{gather*}
+\epsilon = \cos{\frac{2 \pi k}{n}} + i \sin{\frac{2 \pi k}{n}}, k = 0..(n - 1)
+\end{gather*}
+\end{Def}
+
+\begin{Def}
+$\epsilon$ "--- первообразный корень единицы степени $n$, если $\epsilon$ не является корнем меньшей степени.
+\end{Def}
+
+\begin{assertion}
+$\epsilon$ "--- первообразный корень степени $n$ тогда и только тогда, когда $(n, k) = 1$.
+\end{assertion}
+
+\begin{proof}
+Если дробь $\frac{k}{n}$ сократима, то 
+\begin{gather*}
+\frac{k}{n} = \frac{k'}{n'}; n' < n
+\end{gather*}
+Но тогда $\epsilon$ - корень степени $n'$: 
+\begin{gather*}
+\epsilon = \cos\frac{2\pi k'}{n'} + i \sin\frac{2\pi k'}{n'}
+\end{gather*}
+\end{proof}
+
+\begin{conseq}
+Число первообразных корней степени $n$ из $1$ равно функции Эйлера
+\begin{gather*}
+\phi(n) = \left|\left\{k \mid 1 \le k \le n, (k, n) = 1\right\}\right|
+\end{gather*}
+\end{conseq}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$n$ & все корни & первообразные корни & $\phi(n)$ \\
+\hline
+$1$ & $1$ & $1$ & $1$ \\
+\hline
+$2$ & $1$, $-1$ & $-1$ & $1$ \\
+\hline
+$3$ & $1$,$-\frac{1}{2} \pm \frac{\sqrt{3}i}{2}$ & $-\frac{1}{2} \pm \frac{\sqrt{3}i}{2}$ & $2$ \\
+\hline
+$4$ & $\pm1,\pm i$ & $\pm i$ & $2$ \\
+\hline
+$6$ & $\pm1,\pm\frac{1}{2} \pm \frac{\sqrt{3}i}{2}$ & $\frac{1}{2} \pm \frac{\sqrt{3}i}{2}$ & $2$ \\
+\hline
+$8$ & \multicolumn{3}{c|}{Упражнение} \\
+\hline
+$12$ & \multicolumn{3}{c|}{Упражнение} \\
+\hline
+\end{tabular}
+\end{center}
+
+Для $n = 6$:
+$$x^6 -1 = (x^2)^3 - 1 = (x^2 - 1)(x^4 + x^2 + 1) = (x^2 + x + 1)(x^2 - x + 1)(x - 1)(x + 1)$$
+
+\underline{Упражнения}:
+\begin{enumerate}
+\item $n > 2 \Ra \phi(n)$ "--- чётно.
+\item $n = const$, $G_n = \left|\left\{\epsilon \mid \text{$\epsilon$ "--- корень из $1$ степени $n$}\right\}\right|$. Тогда $|G_n| = n \Ra G_n$ "--- группа по умножению и $G_n \cong C_n$.
+\item $S = \{z \in \C \mid |z| = 1\}$. Доказать, что $S$ "--- группа относительно умножения.
+\item $G = \bigcup\limits_{n = 1}^{\infty} G_n$ Доказать, что $G$ - группа. Доказать, что в $G$ есть счётная система образующих, но нет конечной системы образующих. Доказать, что каждый элемент $G$ имеет конечный порядок. 
+\end{enumerate}
+
+\underline{Геометрический смысл:}
+\begin{center}
+\def\svgwidth{6.0cm}
+\input{theory41-root.pdf_tex}
+\end{center}
+Корни из 1 лежат в вершинах правильного $n$"---угольника, вписанного в круг радиуса $1$.
+
+$\epsilon \in G_n$, $f\colon z \mapsto \epsilon z$, тогда $f$ "--- это поворот на угол $\arg \epsilon = \frac{2 \pi k}n$

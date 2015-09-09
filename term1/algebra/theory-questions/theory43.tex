@@ -1,0 +1,46 @@
+\section{Многочлены Чебышева}
+\begin{theorem}{}
+Существуют многочлены $T_n(x)$, $U_n(x)$ такие, что:
+\begin{itemize}
+\item $\cos{n \phi} = T_n(\cos \phi)$
+\item $\frac{\sin{n \phi}}{\sin \phi} = U_n(\cos \phi)$ при $\phi \ne 2 \pi k$
+\item $T_0(x) = 1$, $T_1(x) = x$, $T_{n + 1}(x) = 2xT_n(x) - T_{n - 1}(x)$
+\item $U_0(x) = 0$, $U_1(x) = 1$, $U_{n + 1}(x) = 2xU_n(x) - U_{n - 1}(x)$
+\end{itemize}
+\end{theorem}
+\begin{Def} 
+Многочлены $T_n$ и $U_n$ называются многочленами Чебышева первого и второго рода соответсвенно.
+\end{Def}
+
+\underline{Пример:} 
+\begin{align*}
+T_0(x) &= 1 & \cos 0\phi &= 1 \\ 
+T_1(x) &= x & \cos 1\phi &= \cos \phi\\ 
+T_2(x) &= 2x^2 - 1 & \cos 2\phi &= 2 \cos^2 \phi - 1 \\
+T_3(x) &= 4x^3 - 3x & \cos 3\phi &= 4 \cos^3 \phi - 3\cos \phi \\
+U_0(x) &= 0 & \frac{\sin 0\phi}{\sin \phi} &= 0\\ 
+U_1(x) &= 1 & \frac{\sin 1\phi}{\sin \phi} &= 1\\ 
+U_2(x) &= 2x & \frac{\sin 2\phi}{\sin \phi} &= 2\cos \phi \\
+U_3(x) &= 4x^2 - 1 & \sin 3\phi &= (4\cos^2 \phi - 1)\sin \phi \\
+\end{align*}
+
+\begin{proof}
+$U_n, T_n$ "--- многочлены с целыми коэффициентами по их заданию. $\deg T_n = n$, $\deg U_n = n - 1$ (индукция по $n$).
+
+Докажем $\cos n\phi = T_n(\cos\phi)$ индукцией по $n$.
+
+\underline{База}: $n = 0, 1$.
+
+\underline{Переход:}
+\begin{gather*}
+z = \cos\phi + i \sin\phi \\
+\cos (n + 1)\phi = \frac{z^{n + 1} + z^{-(n + 1)}}{2} = (z + z^{-1})\frac{z^n + z^{-n}}{2} - \frac{z^{n - 1} + z^{-(n - 1)}}{2}= \\
+= 2\cos\phi\cos{n\phi} - \cos{(n - 1)\phi} = 2 \cos \phi\, T_n(\cos \phi) - T_{n - 1}(\cos\phi) = T_{n + 1}(\cos \phi)
+\end{gather*}
+Таким образом, для $T_n$ всё доказано.
+
+Доказательство для $U_n$: аналогично через
+\begin{gather*}
+\frac{\sin{n\phi}}{\sin\phi} = \frac{z^n - z^{-n}}{z - z^{-1}}
+\end{gather*}
+\end{proof}

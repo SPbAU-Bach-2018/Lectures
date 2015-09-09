@@ -1,0 +1,44 @@
+﻿\section{Предельные точки}
+
+\begin{Def}
+Проколотая окрестность точки:
+$$\dot B_r(x) = B_r(x) \setminus \{x\}$$
+\end{Def}
+\begin{Def}
+Точка $x \in X$ предельная у множества $A$, если
+$$\forall r > 0\: \dot B_r(x) \cap A \ne \varnothing$$
+\end{Def}
+\begin{Def}
+$A'$~--- множество предельных точек.
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item $\cl A = A \cup A'$
+\item $A \subset B \Ra A' \subset B'$
+\item $(A \cup B)' = A' \cup B'$
+\begin{proof}
+$\supset$:
+$$A \cup B \supset A \Ra (A \cup B)' \supset A'$$
+$$A \cup B \supset B \Ra (A \cup B)' \supset B'$$
+Тогда $$(A \cup B)' \supset A' \cup B'$$
+$\subset$: Пусть $x \in (A \cup B)' \land x \notin B'$.
+$$x \in (A \cup B)' \Ra \forall r > 0\: \dot B_r(x) \cap (A \cup B) \ne \varnothing$$
+$$x \notin B' \Ra \exists r_0 > 0\colon \dot B_{r_0}(x) \cap B = \varnothing \Ra \forall r \leqslant r_0\: \dot B_r(x) = \varnothing$$
+Тогда $$\forall r > 0\: \dot B_r(x) \cap A \ne \varnothing \Ra x \in A'$$
+\end{proof} 
+\end{enumerate}
+
+\begin{theorem}{Об окрестности предельной точки}
+$$x \in A' \Lra \forall r > 0 \left|B_r(x) \cap A\right| = \infty$$
+\end{theorem}
+\begin{proof}
+$$x \in A' \Ra \dot B_r(x) \cap A \ne \varnothing \Ra \exists y_1 \in A\colon y_1 \ne x \land y \in B_r(x)$$
+Тогда
+$$\dot B_{\rho(x,y_1)} \cap A \ne \varnothing \Ra \exists y_2 \in A\colon y_2 \ne x \land y_2 \ne y_1 \land y \in B_{\rho(x,y_1)}$$
+Тогда рассмотрим
+$$\{y_i\}_{i=1}^\infty\colon y_i \ne y_j \land y_i \ne x \land y_i \in A$$
+\end{proof}
+\begin{conseq}
+$|A| < \infty \Ra A' = \varnothing$
+\end{conseq}

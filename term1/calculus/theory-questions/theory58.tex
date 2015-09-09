@@ -1,0 +1,26 @@
+\section{Логарифм}
+
+\begin{theorem}{}
+$$a > 0 \Ra f(x)\lrh a^x\text{ непрерывна}$$
+\end{theorem}
+\begin{proof}
+Надо доказать, что $a^{\lim_{n\ra+\infty} x_n} = \lim_{n\ra+\infty} a^{x_n}$
+
+$x_0 \lrh \lim_{n\ra+\infty} x_n$
+$$a^{x_n}-a^{x_0} = a^{x_0}\left(a^{x_n-x_0} - 1\right) \ra 0$$
+\end{proof}
+
+\begin{conseq}
+Есть обратная $$\log_a x$$
+\end{conseq}
+
+\begin{theorem}{}
+$$\lim_{x\ra\infty} \left(1+\frac1x\right)^x = e$$
+\end{theorem}
+\begin{proof}
+$x_n \ra +\infty$. $[x_n] = k$
+$$\left(1 + \frac{1}{k + 1}\right)^k \leqslant \left(1 + \frac1{x_n}\right)^{x_n} \leqslant \left(1+\frac1k\right)^{k+1}$$
+$x_n \ra +\infty$. $y_n = -x_n$
+$$f(x_n) = \left(1 + \frac1{-y_n}\right)^{-y_n} = \left(1 + \frac1{y_n-1}\right)^{y_n} \ra e$$
+А для смеси возьмём две части, в каждой есть хороший номер.
+\end{proof}

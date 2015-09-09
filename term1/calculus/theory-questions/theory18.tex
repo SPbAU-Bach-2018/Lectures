@@ -1,0 +1,81 @@
+\section{Конечное векторное пространство}
+
+\begin{Def}
+Вектор~--- кортеж $x = (x_1, x_2, \ldots, x_d) \in \R^d$. Операция сложения 
+$$+\colon \R^d \times \R^d \ra \R^d;x+y = (x_1+y_1, x_2+y_2, \ldots, x_d + y_d)$$ 
+и умножения 
+$$\times\colon \R \times \R^d \ra \R^d; \lambda x = (\lambda x_1, \lambda x_2, \ldots, \lambda x_n)$$
+\end{Def}
+\begin{enumerate}
+\item Сложение
+\begin{enumerate}
+\item Коммутативно
+\item Ассоциативно
+\item Существует ноль $\vec 0 = \underbrace{(0, 0, \ldots, 0)}_d$
+\item Существует обратный элемент
+\end{enumerate}
+\item $\alpha (x + y) = \alpha x + \alpha y$
+\item $(\alpha + \beta) x = \alpha x + \beta x$
+\item $(\alpha\beta)x = \alpha(\beta x)$
+\item $1x = x$
+\end{enumerate}
+\begin{Def}
+Общее определение векторного пространства~--- 
+
+$$+: X + X \to X$$
+
+$$\times: \R \times X \to X$$
+
+Обладает свойствами 1--4 и $1X = X$ 
+\end{Def}
+
+\begin{Def}
+Скалярное произведение векторов (евклидово):
+$$\langle x, y\rangle = \sum_{i=1}^d x_iy_i$$
+\end{Def}
+Свойства:~%
+\begin{enumerate}
+\item $\langle x, x\rangle \geqslant 0; \langle x, x\rangle = 0 \Lra x = \vec 0$
+\item $\langle \lambda x, y\rangle = \lambda \langle x, y\rangle$
+\item $\langle x, y\rangle = \langle y, x\rangle$
+\item $\langle x + y, z\rangle = \langle x, z\rangle + \langle y, z\rangle$
+\end{enumerate}
+
+\begin{Def}
+Общее определение скалярного произведения: $X$~--- веторное пространство. Задана операция $\langle x,y\rangle\colon X \times X \ra \R$ обладающая указынными свойствами.
+\end{Def}
+Например, если приписать в определение положительную константу~--- ничего не поменяется.
+
+\begin{Def}
+(Евклидова) норма:
+$$\|x\| = \sqrt{\langle x, x\rangle}$$
+\end{Def}
+\begin{enumerate}
+\item $\|x\| \geqslant 0; \|x\| = 0 \Lra x = \vec 0$
+\item $\|\lambda x\| = |\lambda| \|x\|$
+\item $|\langle x,y\rangle|^2 \leqslant \|x\|\|y\|$ (нер-во Коши---Буняковкского)
+\item $\|x + y\| \leqslant \|x\| + \|y\|$ (нер-во треугольника)
+\item $\|x - z\| \leqslant \|x - y\| + \|y - z\|$ (нер-во Минковского)
+\item $\|x - y\| \geqslant \left|\|x\| - \|y\|\right|$
+\begin{proof}
+$\|x - y\| = \|y - x\|$. Таким образом достаточно показать, что 
+$$\|x - y\| \geqslant \|x\| - \|y\| \La \|x - y\| + \|y\| \geqslant \|x\|$$
+А это неравнство треугольника.
+\end{proof}
+\item $\rho(x, y) = \|x - y\|$~--- метрика. Это ровно евклидово пространтво на $\R^d$.
+\end{enumerate}
+
+\begin{Def}
+Общее определение нормы: $\|x\|\colon X \Ra \R$, обладает свойствами 1, 2 и 4.
+\end{Def}
+Свойство 3 касается скаляроного произведения, которого может и не быть.
+
+Примеры:~%
+\begin{enumerate}
+\item $\|x\|_1 = \sum\limits_{k=1}^d |x_k|$
+\item $\|x\|_\infty = \max\limits_{k=1..d} |x_k|$
+\begin{proof}
+$$\|x + y\| = \max_{k=1..d} |x_k + y_k| \leqslant \max_{k=1..d} (|x_k| + |y_k|) = |x_{k_0}| + |y_{k_0}| \leqslant \|x\| + \|y\|$$
+\end{proof}
+\item $$\|x\|_d = \sqrt[p]{\sum\limits_{k=1}^d |x_k|^p}$$
+\end{enumerate}

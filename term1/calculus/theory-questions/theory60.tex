@@ -1,0 +1,35 @@
+\section{Сравнение функций}
+
+\begin{Def}
+$f,g\colon E \ra \R$, $a$~--- предельная точка $E$. Если существует такая $\phi\colon E \ra \R$, что
+$$\forall x\in E\: f(x) = \phi(x) g(x)$$
+и
+\begin{enumerate}
+\item $\lim\limits_{x\ra a} \phi(x) = 1$, то $f \sim g$ при $x \ra a$.
+\item $\lim\limits_{x\ra a} \phi(x) = 0$, то $f = o(g)$ при $x \ra a$.
+\item $\phi$ ограничена, то $f = O(g)$ при $x \ra a$.
+\item Если 
+$$\forall x \in E\: |f(x)| \leqslant c|g(x)|$$
+то $f = O(g)$ на $E$.
+\end{enumerate}
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item $\sim$~--- отношение эквиваленции.
+\item $f_1 \sim f_2 \land g_1 \sim g_2 \Ra f_1g_1 \sim f_2g_2$
+\item $f \sim g \Lra f = g + o(f) \Lra f = g + o(f)$ 
+\begin{proof}
+$$f \sim g \Lra f = \phi g, \phi \ra 1 \Lra f = g + (\phi - 1) g, \phi - 1 \ra 0 \Lra f = g + o(g)$$
+\end{proof}
+\item $f \sim g \Ra o(f) = o(g)$
+\item $f \cdot o(g) = o(fg)$
+\end{enumerate}
+
+Примеры ($x \ra 0$):
+\begin{align*}
+\sin x &\sim x \\
+\ln(x + 1) &\sim x \\
+a^x - 1 &\sim \ln a \cdot x \\
+(x+1)^p - 1 &\sim px 
+\end{align*}

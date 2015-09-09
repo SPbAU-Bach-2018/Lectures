@@ -1,0 +1,36 @@
+﻿\section{Формула Тейлора}
+
+\begin{theorem}{Формула Тейлора}
+$$T(x) = \sum_{i=0}^n \frac{T^{(i)} (x_0)}{i!} (x-x_0)^i$$
+\end{theorem}
+\begin{proof}
+$$T(x) = \sum_{i=0}^n a_k (x-x_0)^k$$
+$$((x-x_o)^k)^{(m)} = \begin{cases}0 & k < m \\ m! & k = m \\ k(k-1)(k-2)\cdots(k-m+1)(x-x_0)^{k-m} & k > m\end{cases}$$
+$$T(x)^{(m)} = \sum_{i=m}^n a_k k(k-1)(k-2)(k-3)\cdots(k-i+1)(x-x_0)^{k-m}$$
+$$T(x_0)^{(m)} = a_m m! $$
+$$a_m = \frac {T^{(m)}(x_0)}{m!} $$
+\end{proof}
+
+\begin{Def}
+$f$ дифференцируема $n$ раз в точке $x_0$. Тогда многочленом Тейлора функции $f$ в точке $x_0$ есть
+$$T_{n,x_0} f(x) = \sum_{i=0}^n \frac{f^{(i)} (x)}{k!} (x-x_0)^k$$
+\end{Def}
+
+\begin{Def}
+Формула Тейлора:
+$$f(x) = T_{n, x_0} f(x) + R_{n, x_0} f(x)$$
+\end{Def}
+
+\begin{lemma}
+$g$ дифференцируема $n$ раз в $x_0$. $g(x_0) = g'(x_0) = g''(x_0) = \cdots = g^{(n)}(x_0) = 0$. Тогда
+$$g(x) = o\left((x - x_0)^n\right) при x \ra x_0$$
+\end{lemma}
+\begin{proof}
+$$\lim_{x \ra x_0} \frac{g(x)}{(x-x_0) ^ n} = \lim{x \ra x_0} \frac{g'(x)}{n (x-x_0)^{n-1}} = \cdots = \lim_{x\ra x_0} \frac{g^(n-1)}{n! (x-x_0)}$$
+$g^{(n-1)}$ дифференцируема в $x_0$, а значит
+$$g^{(n-1)}(x) = g^{(n-1)}(x_0) + g^{(n)}(x_0) (x-x_0) + o(x-x_0) = o(x-x_0)$$
+Т.о.
+$$\lim_{x\ra x_0} \frac{g^(n-1)}{n! (x-x_0)} = 0$$
+Тогда 
+$$g(x) = o\left((x-x_0)^n\right)$$
+\end{proof}

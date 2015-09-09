@@ -1,0 +1,27 @@
+\section{Фундамитальные последовательности}
+
+\begin{Def}
+Последовательность называется фундаментальной, если 
+$$\forall \epsilon > 0\: \exists N\colon \forall n,m > N\: \rho(n, m) < \epsilon$$
+\end{Def}
+\begin{Rem}
+$E \lrh \{x_i\}_{i=n}^{\infty}$
+$$\{x_n\}\text{ фундаментальная} \Lra \diam E \ra 0$$
+\end{Rem}
+
+Свойства фундаментальных последовательностей:
+\begin{enumerate}
+\item Ограничена
+\item Если есть сходящаяся подпоследовательность, то она сходится.
+\begin{proof}
+$$\forall \epsilon > 0\: \exists K\colon \forall k > K\: \rho(x_{n_k}, a) < \epsilon$$
+$$\forall \epsilon > 0\: \exists N\colon \forall n,m > K\: \rho(x_n, x_m) < \epsilon$$
+
+Т.о.
+$$\exists n_k > M = \max\{N, K\}\colon \forall n > n_k \rho(x_n, a) \leqslant \rho(x_{n_k}, a) + \rho(x_{n_k}, x_k) < 2\epsilon$$
+\end{proof}
+\end{enumerate}
+
+\begin{Def}
+Пространство называют полным, если любая фундаментальная последовательность имеет предел.
+\end{Def}   

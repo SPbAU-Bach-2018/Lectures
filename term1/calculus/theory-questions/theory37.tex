@@ -1,0 +1,21 @@
+﻿\section{Число e}
+
+Определим число $e$:
+$$x_n = \left(1+\frac1n\right)^n; y_n=\left(1+\frac1n\right)^{n+1}$$
+Покажем, что $x_n \uparrow; y_n \downarrow$.
+\begin{proof}
+$$x_n < x_{n+1} \La \frac{(n+1)^n}{n^n} < \frac{(n+2)^{n+1}}{(n+1)^{n+1}} \La \frac{n+1}{n+2} < \frac{n^n(n+2)^n}{(n+1)^{2n}} \La $$
+$$ \La \frac{n+1}{n+2} < \left(1-\frac1{n^2+2n+1}\right)^n \La 1 - \frac{1}{n+2} < 1 - \frac{n}{n^2+2n+1} \leqslant \left(1-\frac1{n^2+2n+1}\right)^n$$
+
+$$y_n < y_{n-1} \La \frac{(n+1)^{n+1}}{n^{n+1}} < \frac{n^n}{(n-1)^n} \La \frac{n+1}{n} < \frac{n^{2n}}{(n-1)^n(n+1)^n} \La $$
+$$\La \frac{n+1}{n} < \left(1+\frac1{n^2-1}\right)^n \La 1 + \frac1n < 1 - \frac{n}{n^2-1} \leqslant \left(1-\frac1{n^2-1}\right)^n$$
+\end{proof}
+
+Заметим, что при этом $x_n < y_n$. Собственно, тогда $\lim x_n$ существует.
+$$\lim \left(1+\frac1n\right)^n \lrh e$$
+
+Свойства:
+\begin{enumerate}
+\item $\lim y_n = e$
+\item $x_n < e < y_n$
+\end{enumerate}

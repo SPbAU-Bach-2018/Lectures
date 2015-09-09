@@ -1,0 +1,22 @@
+﻿\section{Характеристика верхних и нижних пределов с помощью N и eps}
+\begin{theorem}{Определение верхнего и нижнего предела через $N$ и $\epsilon$}
+\begin{enumerate}
+\item $$a = \varliminf x_n \Lra \begin{cases}\forall \epsilon > 0\: \exists N\colon \forall n>N\: x_n > a - \epsilon \\ \forall \epsilon > 0\: \forall N\colon \exists n>N\: x_n < a + \epsilon\end{cases}$$
+\item $$a = \varlimsup x_n \Lra \begin{cases}\forall \epsilon > 0\: \forall N\colon \exists n>N\: x_n > a - \epsilon \\ \forall \epsilon > 0\: \exists N\colon \forall n>N\: x_n < a + \epsilon\end{cases}$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Запишем в терминах $y_n$:
+$$\forall \epsilon > 0\: \exists N\colon \inf_{n>N} > a-\epsilon ; \forall \epsilon > 0\: \exists N\colon \inf_{n>N} < a+\epsilon$$
+Уже видно, что эти условия и задают предел.
+\item Аналогично.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{О предельном переходе в неравенстве}
+$$a_n \leqslant b_n \Ra \begin{cases}\varliminf a_n \leqslant \varliminf b_n \\ \varlimsup a_n \leqslant \varlimsup b_n\end{cases}$$
+\end{theorem}                                                                                                                       
+\begin{proof}
+Просто сводим к пределам инфимумов. 
+\end{proof}

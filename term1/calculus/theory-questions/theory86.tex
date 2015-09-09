@@ -1,0 +1,28 @@
+﻿\section{Критерии выпуклости в терминах первой и второй производных}
+
+\begin{theorem}{Критерий выпуклости}
+$f\colon \left<a, b\right> \ra \R$, $f$ дифференцируема на $(a, b)$.
+$$f\text{ (строго) выпукла} \Lra f' \text{ (строго) возрастает}$$
+\end{theorem}
+\begin{proof}
+$\Ra$: $x_1 < x_2$
+$$f(x) \geqslant f(x_1) + (x - x_1) f'(x_1)$$
+$$f(x) \geqslant f(x_2) + (x - x_2) f'(x_2)$$
+Подставим
+$$f(x_2) \geqslant f(x_1) + (x_2 - x_1) f'(x_1)$$
+$$f(x_1) \geqslant f(x_2) + (x_1 - x_2) f'(x_2)$$
+$$f'(x_1) \leqslant \frac{f(x_2)-f(x_1)}{x_2-x_1} \leqslant f'(x_2)$$
+$La$:
+Нужно проверить, что 
+$$\frac{f(u)-f(v)}{u-v} \leqslant \frac{f(v) - f(w)}{v-w}$$
+По теороеме Лагранжа, есть точки $\xi < \eta$
+$$\frac{f(u)-f(v)}{u-v} = f'(\xi) \leqslant f'(\eta) = \frac{f(v) - f(w)}{v-w}$$
+\end{proof}
+
+\begin{theorem}{Критерий выпуклости через вторую производную}
+$f\colon \left<a, b\right> \ra \R$, $f$ дважды дифференцируема на $(a, b)$.
+$$f\text{ выпукла} \Lra f'' > 0$$
+\end{theorem}
+\begin{proof}
+Смотрим на теоремы о монотонности.
+\end{proof}

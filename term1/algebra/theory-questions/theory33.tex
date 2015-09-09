@@ -1,0 +1,73 @@
+﻿\section{Биномиальная формула}
+\begin{Def}
+Кольцо многочленов от $n$ переменных.
+$$(((A[x_1])[x_2])[x_3] \ldots )[x_n]$$
+$$(A[x_2])[x_1] = (A[x_1])[x_2]$$
+$$x_1 \to x_1$$
+$$x_2 \to x_2$$
+
+$$\sum c_{i_1, i_2}x_{1}^{i_1}x_2^{i_2}$$
+$A[x_1, \ldots, x_n]$ "--- кольцо многочленов от нескольких переменных.
+$$\sum c_{i_1, \ldots, i_n}x_1^{i_1}\ldots x_n^{i_n} $$
+\end{Def}
+
+\textbf{Биномиальная формула}: $(x + y)^n = ?$
+\textbf{Биномиальные коэффициенты}: $\Choose{n}{k} = \frac{n!}{k!(n - k)!}$
+
+\begin{lemma} 
+\begin{enumerate}
+\item $\Choose{n}{0} = 1$
+\item $\Choose{n}{n} = 1$
+\item $\Choose{n}{k} + \Choose{n}{k + 1} = \Choose{n + 1}{k + 1}$
+\item $\Choose{n}{k} = \Choose{n}{n - k}$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{gather*}
+\Choose{n}{k} + \Choose{n}{k + 1} = \frac{n!}{k!(n - k)!} + \frac{n!}{(k + 1)!(n - k - 1)!} = \\
+= \frac{n!(k + 1) + n!(n - k)}{(k + 1)! \ldots (n - k)!} = \frac{n!(n + 1)}{(k + 1)!(n + 1 - (k + 1))!} = \Choose{n + 1}{k + 1}
+\end{gather*}
+\end{proof}
+
+\begin{Def}
+Треугольник Паскаля:
+\[ \begin{array}{c|ccccc}
+& 0 & 1 & 2 & 3 & 4 \\
+\hline
+0 & 1 &   &   &   &   \\
+1 & 1 & 1 &   &   &   \\
+2 & 1 & 2 & 1 &   &   \\
+3 & 1 & 3 & 3 & 1 &   \\
+4 & 1 & 4 & 6 & 4 & 1 \\
+\end{array} \]
+\end{Def}
+
+\begin{theorem}{Биномиальная формула}
+\[ (x + y)^k = \sum_{k = 0}^n \Choose{n}{k} x^ky^{n - k} \]
+\end{theorem}
+
+\begin{proof}
+Индукция по $n$
+\begin{enumerate}
+\item $n = 0$
+\[ 1 = \Choose{0}{0}x^0y^0 \]
+\item $n = 1$
+\[ x + y = \Choose{1}{0} x^1y^0 + \Choose{1}{1}x^0y^1 \]
+\item $n \to n + 1$
+\begin{gather*}
+(x + y)^{n + 1} = (x + y)^{n}(x + y) = \left(\sum_{k = 0}^{n}\Choose{n}{k}x^ky^{n - k}\right)(x + y) = \sum_{k = 0}^{n}\Choose{n}{k}x^{k + 1}y^{n - k} + \sum_{k = 0}^{n}\Choose{n}{k}x^ky^{n - k + 1} = \\
+= \Choose{n}{n}x^{n + 1} + \sum_{k = 0}^{n - 1}\Choose{n}{k}x^{k + 1}y^{n - k} + \sum_{k = 1}^{n}\Choose{n}{k}x^ky^{n - k + 1} + \Choose{n}{0} y^{n + 1} = \\
+= \Choose{n + 1}{n + 1}x^{n + 1} + \sum_{k = 1}^{n}\Choose{n}{k - 1}x^{k}y^{n + 1 - k} + \sum_{k = 1}^{n} \Choose{n}{k}x^ky^{n - k + 1} + \Choose{n + 1}{0}y^{n + 1} = \\
+= \Choose{n + 1}{n + 1}x^{n + 1} + \sum_{k = 1}^{n}\left(\Choose{n}{k - 1} + \Choose{n}{k}\right) x^{k}y^{n + 1 - k} + \Choose{n + 1}{0}y^{n + 1} = \\
+= \sum_{k = 0}^{n + 1} \Choose{n + 1}{k}x^{k}y^{n + 1 - k} \\
+\end{gather*}
+\end{enumerate}
+\end{proof}
+
+\begin{conseq}
+\begin{enumerate}
+\item \[ \sum_{k = 0}^{n}\Choose{n}{k} = 2^k \]
+\item \[ \sum_{\substack{k = 0..n \\ 2  \mid k}} \Choose{n}{k} = 2^{n - 1} \]
+\item \[ \sum_{\substack{k = 0..n \\ 2 \nmid k}} \Choose{n}{k} = 2^{n - 1} \]
+\end{enumerate}
+\end{conseq}

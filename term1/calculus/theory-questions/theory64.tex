@@ -1,0 +1,29 @@
+﻿\section{Непрерывность дифференцируемой функции}
+
+\begin{assertion}
+f ~--- дифф. в точке $x_0 \Ra f$ ~--- непрерывна в точке $x_0$
+\end{assertion}
+
+\begin{proof}
+   f ~--- дифф. в точке $x_0 \Ra$
+
+   $$f(x) = f(x_0) + A(x - x_0) + o(x - x_0)$$
+
+   $$lim_{x \to x_0} f(x) = f(x_0) + \lim_{x \to x_0}(A(x - x_0) + o(x - x_0)) = f(x_0)$$
+\end{proof}
+
+\begin{Rem}
+   Обратное не верно. 
+\end{Rem}
+
+{\bf Примеры}
+\begin{enumerate}
+\item $f(x) = x^{\frac{1}{3}}$
+
+$$lim_{x \to 0}\frac{f(x) - f(0)}{x - 0} = lim_{x\to 0}\frac{x^{\frac13}}{x} = \infty$$
+
+$x^{\frac13}$ ~--- не дифф. в точке 0, но непрерывна.
+\item $f(x) = x \sin(x)$, f(0) = 0. Непрерывна.
+
+$lim_{x \to 0}\frac{f(x) - f(0)}{x - 0} = \lim_{x \to 0} \sin\frac1x$ не существует.
+\end{enumerate}

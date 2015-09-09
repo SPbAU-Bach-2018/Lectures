@@ -1,0 +1,27 @@
+\section{Арифметические действия с производными высших порядков}
+
+\begin{theorem}{Арифметические действия с производными высших порядков}
+\begin{enumerate}
+\item 
+$$ (\alpha x f + \beta g)^{(n)} = \alpha f^{(n)} + \beta g^{(n)} $$
+\item Правило Лейбница
+$$ (fg)^{(n)} = \sum_{i=0}^n \Choose{n}{i} f^{(i)} g^{(n-i)} $$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Метод математической индукции: база $n=1$ уже доказана. Докажем переход
+$$ (fg)^{(n+1)} = \left( \sum_{i=0}^{n} \Choose{n}{i} f^{(i)} g^{(n-i)} \right) = \sum_{i=0}^{n} \Choose{n}{i} \left(f^{(i+1)} g^{(n-i)} + f^{(i)} g^{(n-i+1)}\right) = $$ 
+$$ = \sum_{i=0}^n \Choose{n}{i} f^{(i+1)} g^{(n-i)} + \sum_{i=0}^n \Choose{n}{i} f^{(i)} g^{(n-i+1)} = \sum_{i=0}^{n-1} \left(\Choose{n}{i} + \Choose{n}{i + 1}\right) f^{(i+1)} g^{(n-i)} + fg^{(n+1)} + f^{(n+1)}g = $$
+$$ = \sum_{i=0}^{n+1} \Choose{n}{i} f^{(i)}g^{(n+1-i)} $$
+\end{proof}
+
+{\bf Примеры}
+\begin{enumerate}
+\item $$(x^p)^{(n)} = p(p - 1)(p - 2)\ldots(p - n + 1)x^{p - n}$$
+\item $$(ln x)^{(n)} = (\frac{1}{x})^{n - 1} = (-1)(-2)\ldots(-n + 1)x^{-n} $$
+\item $$(a^x)^{(n)} = (ln a)^n a^x $$
+\item $$(\sin x)^{(n)} = \sin(x + \frac{\pi n}{2})$$
+\item $$(\cos x)^{(n)} = \cos(x + \frac{\pi n}{2})$$
+\item $$(f(ax + b))^{(n)} = a^nf^{(n)}(ax + b)$$
+\item $$(x^2 sin x)^{(n)} = \sum_{k = 0}^{n}C_n^k(x^2)^{(k)}sin(x)^{n - k} = x^2\sin(x + \frac{\pi n}{2}) + 2nx\sin(x + \frac{\pi(n - 1)}{2}) + n(n - 1) \sin(x + \frac{\pi (n - 2)}{2})$$
+\end{enumerate}

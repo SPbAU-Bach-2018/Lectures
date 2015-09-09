@@ -1,0 +1,46 @@
+﻿\section{Следствия теоремы Лагранжа}
+
+\begin{conseq}
+\begin{enumerate}
+    \item $f:[a, b] \to \R$ f ~--- непрерывна на $[a, b]$, дифф. на (a, b)
+    и $|f'(x)| \le M \forall x \in [a, b]$, тогда $|f(x) - f(y)| \le M|x - y| \forall x, y \in [a, b]$
+    \begin{proof}
+        $$f:[x, y] \to \R$$
+        $$\Ra \exists c \in (x, y), f(x) - f(y) = (x - y)f'(c)$$
+        $$\Ra |f(x) - f(y)| = |x - y||f'(c)| \le M(x - y)$$ 
+    \end{proof} 
+    \item При тех же условиях f равномерно непрерывна на (a, b)
+    \begin{proof}
+        $$\forall \epsilon > 0 \exists \delta > 0 \forall x,y \in (a, b), |x - y| < \delta: |f(x) - f(y)| < \epsilon$$
+        По следствию 1
+        $$|f(x) - f(y)| \le M|x - y| < M \delta \Ra \delta = \frac{\epsilon}{M} \text{ подходит}$$
+    \end{proof}
+    \item $f:[a,b] \to \R$, f ~--- непрерывна на [a, b] и диф. на (a, b) и $f'(x) = 0 \forall x \in (a, b)$, тогда f(x) = const.
+    \begin{proof}
+        $$[x, x_0] \subset [a, b]$$
+        $$\exists c \in (x, x_0) \subset (a, b), f(x) - f(x_0) = f'(c)(x - x_0) = 0$$
+        $$\Ra f(x) - f(x_0) \forall x \in [a, b]$$
+    \end{proof}
+    \item $f:[a,b] \to \R$, f ~--- непрерывна на [a, b] и диф. на (a, b) и $f'(x) \ge 0 \forall x \in (a, b)$, тогда f(x) монотонно возрастает.
+          A если $f'(x) > 0 \forall x \in (a, b)$, тогда f(x) строго монотонно возрастает.
+    \begin{proof}
+        $$x < y x, y \in <a, b>$$
+        $$f(y) - f(x) = (y - x)f'(c) \Ra f(y) > f(x)$$ 
+    \end{proof}
+    \item $f:[a,b] \to \R$, f ~--- непрерывна на [a, b] и диф. на (a, b) и $f'(x) \le 0 \forall x \in (a, b)$, тогда f(x) монотонно убывает.
+          A если $f'(x) < 0 \forall x \in (a, b)$, тогда f(x) строго монотонно убывает.    
+\end{enumerate}
+\end{conseq}
+
+\begin{theorem}{}
+    \begin{enumerate}
+        \item $f:[a,b] \to \R$, f ~--- непрерывна на [a, b] и диф. на (a, b), тогда f(x) монотонно возрастае $\Lra f'(x) \ge 0 \forall x \in (a, b)$.
+        \item $f:[a,b] \to \R$, f ~--- непрерывна на [a, b] и диф. на (a, b), тогда f(x) монотонно убывает $\Lra f'(x) \le 0 \forall x \in (a, b)$.
+    \end{enumerate}      
+\end{theorem}
+
+\begin{proof}
+$\Ra$
+
+Пусть x < y, тогда $f(x) < f(y) \Ra \frac{f(y) - f(x)}{y - x} \ge 0 \Ra f'(x) \ge 0$
+\end{proof}

@@ -1,0 +1,16 @@
+﻿\section{Иррациональность числа e}
+
+\begin{theorem}{Иррациональность $e$}
+$$e \notin \Q$$
+\end{theorem}
+\begin{proof}
+$$\left(1+\frac1n\right)^n \leqslant e \leqslant \left(1+\frac1{n+1}\right)^n$$
+$$2 < e < 3$$
+Пусть $e = \frac{m}{n}$
+$$e^1 = 1 + 1 + \frac1{2!} + 1\frac{3!} + \cdots + \frac{e^c}{(n+1)!} = \frac{m}{n} \Ra$$
+$$\Ra \underbrace{n!(1 + 1 + \frac1{2!} + 1\frac{3!} + \cdots)}_{\in \N} + \frac{e^c}{n+1} = \underbrace{m(n-1)!}_{\in N} \Ra$$
+$$\Ra \frac{e^c}{n+1} \in \N$$
+$$0<c<1 \Ra 1 < e^c < 3$$
+$$0 < \frac{1}{n+1} < \frac{e^c}{n+1} < \frac{3}{n + 1} < 1$$
+Т.о. $e \ne \frac{m}{n}$
+\end{proof}

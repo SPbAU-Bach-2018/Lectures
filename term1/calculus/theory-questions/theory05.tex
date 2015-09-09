@@ -1,0 +1,25 @@
+\section{Теорема о вложенных отрезках}
+
+\begin{theorem}{Теорема о вложенных отрезках}
+Вместе с теоремой Архимеда выводят полноту.
+$\left\{\left[a_n, b_n\right]\right\}_{i=1}^n: \forall i \in \N\: \left(a_i \leqslant a_{i + 1} \land b_i \geqslant b_{i + 1}\right) \land \forall i, j \in \N\: a_i < b_j$. 
+Тогда 
+$$\bigcap_{i=1}^\infty [a_i, b_i] \neq \emptyset$$
+\end{theorem}
+\begin{proof}
+$A = \{a_i\}, B = \{b_i\}$. 
+Тогда по аксиоме полноты 
+$$\exists c \in \R\colon \forall i \in \N\: c \in \left[a_i, b_i\right] \Ra c \in \bigcap_{i=1}^\infty [a_i, b_i] \neq \emptyset$$
+\end{proof}
+
+\begin{Rem} 
+Существенна замкнутость отрезков.
+$$\bigcap_{n=1}^\infty \left(0, \frac1n\right] = \emptyset$$
+\end{Rem}
+\begin{Rem} 
+Не лучи.
+$$\bigcap_{n=1}^\infty \left[n, +\infty\right) = \emptyset $$
+\end{Rem}
+\begin{Rem} 
+$\R$. Рассмотрим приблежения $\sqrt{2}$.
+\end{Rem}

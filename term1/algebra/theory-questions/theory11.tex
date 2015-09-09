@@ -1,0 +1,53 @@
+\section{Подгруппы. Критерий того, что непустое подмножество группы является подгруппой. Пересечение подгрупп}
+\begin{Def}
+	Пусть $f: A \to B$ и $C \subset A$. Введём $g$ "--- сужение $f$ на $C$:
+	\begin{gather*}
+	g: C \ra B \\
+	\forall c \in C\colon g(c) = f(c)
+	\end{gather*}
+\end{Def}
+
+\begin{Def}
+	$H \subset G$ "--- подгруппа в $G$, если она является группой относительно сужения операции в $G$ на $H$.
+\end{Def}
+
+
+\begin{Def}
+	Множество $A$ замкнуто относительно операции $\cdot$, если $\forall a, b \in A \colon a \cdot b \in A$
+
+	Множество $A$ замкнуто относительно операции взятия обратного, если $\forall a \in A \colon a^{-1} \in A$ \\
+\end{Def}
+
+\begin{theorem}{Достаточные условия для подгруппы}
+Для того, чтобы доказать, что $H$ "--- подгруппа $G$ ($H \neq \varnothing$, $H \subset G$), достаточно проверить только замкнутость относительно операциий $\cdot$ и взятия обратного элемента. \\
+\end{theorem}
+\begin{proof}
+Ассоциативность к нам переходит из исходной группы $G$.
+
+Если существует обратный элемент, то $a a^{-1} = e \in H$
+
+Так как есть замкнутость, то операция $\cdot$ действует из $H \times H$ в $H$.
+\end{proof}
+
+\begin{conseq}
+Пусть $\varnothing \ne H \subset G$ и $\forall a, b \in H\colon ab^{-1} \in H \Ra H$ "--- подгруппа.  
+\end{conseq}
+\begin{proof}
+Нейтральный элемент есть: $a \in H \Ra aa^{-1} \in H \Ra e \in H$.
+
+Замкнутость относительно взятия обратного: $\forall a \in H \colon ea^{-1} \in H \Ra a^{-1} \in H$.
+
+Замкнутость относительно операции $\cdot$: $\forall a, b \in H \Ra a, b^{-1} \in H \Ra a\left(b^{-1}\right)^{-1} \in H \Ra ab \in H$.
+\end{proof}
+
+\begin{theorem}{}
+	$H_\alpha$ "--- подгруппы в $G$. Тогда $\bigcap H_\alpha$ "--- подгруппа в $G$.
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+	H = \bigcap H_\alpha; \\
+	e \in H_{\alpha} \Ra e \in H \Ra H \ne \varnothing; \\
+	a, b \in H \Ra \forall \alpha\colon a, b \in H_\alpha \Ra ab \in H_\alpha \Ra ab \in H; \\
+	a \in H \Ra \forall \alpha \colon a \in H_\alpha \Ra a^{-1} \in H_\alpha \Ra a^{-1} \in H;
+	\end{gather*}
+\end{proof}

@@ -1,0 +1,22 @@
+﻿\section{Теоремы Лагранжа и Коши}
+\begin{theorem}{Теорема Лагранжа}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$.
+$$\exists c \in (a, b)\colon f(b) - f(a) = (b-a) f'(c)$$
+\end{theorem}
+\begin{theorem}{Теорема Коши}
+$f, g\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $g'(x) \ne 0 \ne g(b) - g(a)$.
+$$\exists c\colon \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)}$$
+\end{theorem}
+\begin{proof}
+$h(x) = f(x) - Kg(x)$, $h(a) = h(b)$.
+$$K = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+Тогда
+$$\exists c\colon h'(c) = 0$$
+$$h'(c) = 0 \Ra K = \frac{f'(c)}{g'(c)}$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $|f'(x)| \leqslant M$.
+Тогда
+$$\forall x,y\in(a,b)\; |f(x) - f(y)| \leqslant M|x-y|$$
+\end{conseq}

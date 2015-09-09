@@ -1,0 +1,50 @@
+$$\lim_{\epsilon\ra 0} \frac{\sin(x - \epsilon) - \sin x}{\epsilon} = \lim_{\epsilon\ra 0} \frac {2\sin\frac{h}2 \cos (x + \frac{\epsilon}2)} = \cos x$$
+
+\section{Теоремы о среднем}
+\begin{theorem}{Теорема Ферма}
+$f\colon \left<a, b\right>$, $x_0 \in (a, b)$, $f$ дифференцируема в $x_0$, $x_0$~--- точка экстремума. Тогда
+$$f'(x_0) = 0$$
+\end{theorem}
+\begin{proof}
+Пусть $x > x_0$.
+$$\lim_{x\ra x_0} \frac{f(x) - f(x_0)}{x - x_0} \geqslant 0$$
+Пусть $x < x_0$.
+$$\lim_{x\ra x_0} \frac{f(x) - f(x_0)}{x - x_0} \leqslant 0$$
+Но тогда
+$$f'(x_0) = 0$$
+\end{proof}
+
+\begin{theorem}{Теорема Ролля}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $f(a) = f(b)$.
+Тогда
+$$\exists c\in(a, b)\colon f'(c) = 0$$
+\end{theorem}
+\begin{proof}
+Если функция константна, то всё доказано. Иначе есть глобальный максимум и минимум, причём они не могут быть оба в концах.
+\end{proof}
+
+\begin{conseq}
+Между корнями функции есть корень производной.
+\end{conseq}
+
+\begin{theorem}{Теорема Лагранжа}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$.
+$$\exists c \in (a, b)\colon f(b) - f(a) = (b-a) f'(c)$$
+\end{theorem}
+\begin{theorem}{Теорема Коши}
+$f, g\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $g'(x) \ne 0 \ne g(b) - g(a)$.
+$$\exists c\colon \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)}$$
+\end{theorem}
+\begin{proof}
+$h(x) = f(x) - Kg(x)$, $h(a) = h(b)$.
+$$K = \frac{f(b) - f(a)}{g(b) - g(a)}$$
+Тогда
+$$\exists c\colon h'(c) = 0$$
+$$h'(c) = 0 \Ra K = \frac{f'(c)}{g'(c)}$$
+\end{proof}
+
+\begin{conseq}
+$f\colon [a, b] \in \R$, $f$ непрерывна, $f$ дифференцируема на $(a, b)$, $|f'(x)| \leqslant M$.
+Тогда
+$$\forall x,y\in(a,b)\; |f(x) - f(y)| \leqslant M|x-y|$$
+\end{conseq}

@@ -1,0 +1,57 @@
+\section{Теорема о деление с остатком}
+\begin{theorem}{}
+	$A$ "--- коммутативное кольцо с $1$б
+	$f, g \in A[x]$ и
+	\[f = a_0 + a_1x + a_2x^2 + \dots + a_nx^n\]
+	
+	где $n = \deg f$ и $a_n \in A^*$. Тогда $\exists q, r \in A[x] \colon  g = qf + r, \deg r < \deg f$
+	(разделили $g$ на $f$ с остатком).
+\end{theorem}
+
+\begin{Rem}
+	Если $A$ "--- область целостности, то такое представление единственно
+\end{Rem}
+
+\begin{proof}
+\begin{itemize}
+\item \textbf{Существование}:
+	Индукция по $m = \deg g$.
+	\begin{itemize}
+	\item
+	\textbf{База:} $m < n$. Тогда положим $q=0, r=g$.
+	\item
+	\textbf{Переход:} доказали для всех многочленов $\deg g < m$, докажем для $m$
+	\begin{gather*}
+	g = b_mx^m + \dots + b_0; \\
+	g_1 = g - b_m a_n^{-1}x^{m-n}f;
+	\end{gather*}
+	коэффицент при $x^m$ в $g_1$: $b_m - b_m a_n^{-1} a_n = 0 \Ra \deg g_1 < m$\\
+	по предположению индукции $g_1 = fq_1 + r_1, \deg r_1	< \deg f $, тогда разделим $g_1$ на $f$ с остатком и положим:
+	\begin{gather*}
+		r = r_1; \\
+		q = q_1 + b_m a_n^{-1} x^{m-n}; \\
+		g = fq	+ r;
+	\end{gather*}
+	\end{itemize}
+
+\item	
+	\textbf{Единственность:}
+	Знаем, что $A$ "--- область целостности. Пусть представление не единственно.
+
+	\begin{gather*}
+	g = fq + r = f \tilde{q} + \tilde{r}; \\
+	\deg r, \deg \tilde{r} < f; \\
+	f (q - \tilde{q}) = \tilde{r} - r;
+	\end{gather*}
+
+	Если $q - \tilde{q} \neq 0$, то степень левого многочлена $\geq \deg f$ и степень правого $< \deg f$, а
+	это невозможно. $\Ra$
+	$q -\tilde{q} = 0, r - \tilde{r} = 0 \Ra q = \tilde{q}, r = \tilde{r}$
+\end{itemize}
+\end{proof}
+
+\begin{Rem}
+	Условие обратимости старших коэффицентов существенно, пример:
+	$A = \Z$, $f = 2x, g = x^2 + 1$. Разложения в $\Z[x]$ не существует, а вот в $\R[x]$ существует
+	и единственно: $g=0.5x \cdot f + 1$.
+\end{Rem}

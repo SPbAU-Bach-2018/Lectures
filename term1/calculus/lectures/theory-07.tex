@@ -1,0 +1,288 @@
+﻿Свойства фундаментальных последовательностей:
+\begin{enumerate}
+\item Ограничена
+\item Если есть сходящаяся подпоследовательность, то она сходится.
+\begin{proof}
+$$\forall \epsilon > 0\: \exists K\colon \forall k > K\: \rho(x_{n_k}, a) < \epsilon$$
+$$\forall \epsilon > 0\: \exists N\colon \forall n,m > K\: \rho(x_n, x_m) < \epsilon$$
+
+Т.о.
+$$\exists n_k > M = \max\{N, K\}\colon \forall n > n_k \rho(x_n, a) \leqslant \rho(x_{n_k}, a) + \rho(x_{n_k}, x_k) < 2\epsilon$$
+\end{proof}
+\end{enumerate}
+
+\begin{Def}
+Пространство называют полным, если любая фундаментальная последовательность имеет предел.
+\end{Def}   
+
+\begin{theorem}{О сходимости фундаментальных последовательностей}
+\begin{enumerate}
+\item Любая сходящаяся последовательность фундаментальна.
+\item В $\R^d$ фундаментальная последовательность всегда сходится.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$\lim x_n = a$
+$$\forall \epsilon > 0\: \exists N\colon \begin{aligned}\forall n>N \rho(x_n, a) &< \epsilon \\ \forall m>N \rho(x_m, a) &< \epsilon\end{aligned} \Ra \forall \epsilon>0\: \exists N\colon \forall n,m>N\: \rho(x_m, x_n) < 2\epsilon$$
+
+$x_n$~--- фундаментальная последовательность в $\R^d$. $E_n \lrh \{x_n, x_{n+1}, \ldots\}$~--- ограниченно.
+$\cl E_n$~--- ещё и замкнуто. Т.е. компактно.
+$$\cl E_1 \supset \cl E_2 \supset \cl E_3 \supset \cdots$$
+$$\diam \cl E_n = \diam E_n \ra 0$$
+
+Т.о.
+$$\exists! a\colon a \in \bigcap_{i=1}^{\infty} \cl E_n$$
+$$a \in \cl E_n \Ra \forall i>n\:0\leqslant\rho(a, x_i) \leqslant \diam E_n \ra 0$$
+
+Т.о $x_n \ra a$.
+\end{proof}
+                                                
+\begin{Rem}
+$\R^d$ полно. $\left<\Q, \rho\right>$ не полно. Пространство с дискретной метрикой полно.
+\end{Rem}
+
+\begin{theorem}{О полноте компактного пространства}
+Компактное метрическое пространство полно.
+\end{theorem}
+\begin{proof}
+В компакте у любой последовательности есть сходящаяся подпоследовательность. А значит любая фундаментальная последовательность имеет сходящуюся подпоследовательность.
+А значит она сама сходится. А значит пространство полно.
+\end{proof}
+
+\section{Верхний и нижний предел}
+
+\begin{Def}
+Верхний и нижний предел
+$$\liminf x_n = \varliminf x_n = \lim_{x\ra\infty}\inf_{k>n} x_k$$
+$$\limsup x_n = \varlimsup x_n = \lim_{x\ra\infty}\sup_{k>n} x_k$$
+\end{Def}
+\begin{Rem}
+$y_n \lrh \inf_{k>n} x_n$, $z_n \lrh \sup_{k>n} x_n$.
+$$y_n<x_n<z_n$$
+$$y_n \nearrow{}; z_n \searrow$$
+\end{Rem}
+
+\begin{Def}
+$a$~--- частичный предел последовательности, если $a$ предел подпоследовательности.
+\end{Def}
+
+\begin{lemma}
+Если $x_n$ монотонно возрастает и неограничена, то $\lim x_n = +\infty$
+\end{lemma}
+
+\begin{theorem}{Существование верхнего и нижнего пределов}
+У любой последовательности есть верхний и нижний предел в $\bar\R$, при этом
+$$\varliminf x_n \leqslant \varlimsup x_n$$
+\end{theorem}
+\begin{proof}
+$y_n \lrh \inf_{k>n} x_n$, $z_n \lrh \sup_{k>n} x_n$.
+Если $x_n$ ограниченно, то и $y_n$ ограниченно. Если $x_n$ не ограниченно снизу, то и $y_n$ не ограниченно снизу. Т.о. $\lim y_n = \varliminf x_n$. Аналогично 
+существует верхний предел.
+\end{proof}
+
+\begin{theorem}{Верхний и нижний предел и частичные пределы}
+\begin{enumerate}
+\item $\limsup$~--- наибольший частичный предел.
+\item $\liminf$~--- наименьший частичный предел.
+\item $\lim\text{ существует}\Lra\varlimsup = \varliminf$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 
+$a = \limsup x_n$. Покажем, что $a$~--- частичный предел.
+$$z_n \searrow{} \Ra \sup_{k>n} x_k \geqslant a$$
+
+Выберем $$x_{k_m}\colon x_{k_m} > a - \frac1m; k_{m+1} > k_m$$
+Оно стремится к $a$.
+
+Пусть есть больший частичный предел. Но тогда с какого-то места последовательность, сходящаяся к $b$, уйдёт выше супремума, что плохо.
+\item Аналогично.
+\item Два миллиционера.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{Определение верхнего и нижнего предела через $N$ и $\epsilon$}
+\begin{enumerate}
+\item $$a = \varliminf x_n \Lra \begin{cases}\forall \epsilon > 0\: \exists N\colon \forall n>N\: x_n > a - \epsilon \\ \forall \epsilon > 0\: \forall N\colon \exists n>N\: x_n < a + \epsilon\end{cases}$$
+\item $$a = \varlimsup x_n \Lra \begin{cases}\forall \epsilon > 0\: \forall N\colon \exists n>N\: x_n > a - \epsilon \\ \forall \epsilon > 0\: \exists N\colon \forall n>N\: x_n < a + \epsilon\end{cases}$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Запишем в терминах $y_n$:
+$$\forall \epsilon > 0\: \exists N\colon \inf_{n>N} > a-\epsilon ; \forall \epsilon > 0\: \exists N\colon \inf_{n>N} < a+\epsilon$$
+Уже видно, что эти условия и задают предел.
+\item Аналогично.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{О предельном переходе в неравенстве}
+$$a_n \leqslant b_n \Ra \begin{cases}\varliminf a_n \leqslant \varliminf b_n \\ \varlimsup a_n \leqslant \varlimsup b_n\end{cases}$$
+\end{theorem}                                                                                                                       
+\begin{proof}
+Просто сводим к пределам инфимумов. 
+\end{proof}
+
+\begin{theorem}{Неравенство Бернулли}
+$$\forall x>-1\: \forall n \in \N\: (1+x)^n \geqslant 1 + nx$$
+\end{theorem}
+\begin{proof}
+Индукция: база очевидна. Пусть $(1+x)^k \geqslant 1 + nk$. Тогда
+$$(1+x)^{k+1} = \underbrace{(1+x)^k}_{>0} (1+x) \geqslant (1+kx)(1+x) = 1 + kx + x + kx^2 \geqslant 1 + (k+1)x$$
+\end{proof}
+\begin{conseq}
+Если $|t| > 1$, то $\lim t^n = +\infty$. Если $|t| < 1$, то $\lim t^n = 0$.
+\end{conseq}
+
+\begin{theorem}{Предел убывающей по отношению}
+$x_n > 0$, $\lim \frac{x_{n+1}}{x_n} < 1$. Тогда $x_n \ra 0$.
+\end{theorem}
+\begin{proof}
+С какого-то места отношение довольно мало (меньше 1).
+\end{proof}
+\begin{conseq}
+$$\lim_{n\ra\infty} \frac{n^k}{a^n} = 0\quad a>1$$
+\end{conseq}
+\begin{proof}
+$$x_n = \frac{n^k}{a^n}$$
+$$\frac{x_{n+1}}{x_n} = \left(\frac{n+1}n\right)^k \frac1a < 1$$
+\end{proof}
+\begin{conseq}
+$$\lim \frac{a^n}{n!} = 0$$
+\end{conseq}
+
+Определим число $e$:
+$$x_n = \left(1+\frac1n\right)^n; y_n=\left(1+\frac1n\right)^{n+1}$$
+Покажем, что $x_n \uparrow; y_n \downarrow$.
+\begin{proof}
+$$x_n < x_{n+1} \La \frac{(n+1)^n}{n^n} < \frac{(n+2)^{n+1}}{(n+1)^{n+1}} \La \frac{n+1}{n+2} < \frac{n^n(n+2)^n}{(n+1)^{2n}} \La $$
+$$ \La \frac{n+1}{n+2} < \left(1-\frac1{n^2+2n+1}\right)^n \La 1 - \frac{1}{n+2} < 1 - \frac{n}{n^2+2n+1} \leqslant \left(1-\frac1{n^2+2n+1}\right)^n$$
+
+$$y_n < y_{n-1} \La \frac{(n+1)^{n+1}}{n^{n+1}} < \frac{n^n}{(n-1)^n} \La \frac{n+1}{n} < \frac{n^{2n}}{(n-1)^n(n+1)^n} \La $$
+$$\La \frac{n+1}{n} < \left(1+\frac1{n^2-1}\right)^n \La 1 + \frac1n < 1 - \frac{n}{n^2-1} \leqslant \left(1-\frac1{n^2-1}\right)^n$$
+\end{proof}
+
+Заметим, что при этом $x_n < y_n$. Собственно, тогда $\lim x_n$ существует.
+$$\lim \left(1+\frac1n\right)^n \lrh e$$
+
+Свойства:
+\begin{enumerate}
+\item $\lim y_n = e$
+\item $x_n < e < y_n$
+\end{enumerate}
+
+\begin{conseq}
+$$\lim \frac{n!}{n^n} = 0$$
+\end{conseq}
+\begin{proof}
+$$x_n = \frac{n!}{n^n}$$
+$$\frac{x_{n+1}}{x_n} = (1+\frac1n)^{-n} \ra \frac1e < 1$$
+\end{proof}
+
+\begin{theorem}{Теорема Штольца для бесконечно малых}
+$0<y_n<y_{n-1}$, $\lim x_n = \lim y_n = 0$, $\lim \frac{x_n-x_{n-1}}{y_n-y_{n-1}} = a \in \bar\R$.
+Тогда 
+$$\lim \frac{x_n}{y_n} = a$$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $a = 0$.
+$$\epsilon_n = \frac{x_n - x_{n - 1}}{y_n - y_{n - 1}} \to 0$$
+$n > m$:
+$$x_n - x_m = \sum_{k = m + 1}^{n}(x_k - x_{k - 1}) = \sum_{k = m + 1}^{n}\epsilon_k(y_k - y_{k - 1})$$
+
+$$|x_n - x_m| = \left|\sum_{k = m + 1}^{n}\epsilon_k(y_k - y_{k - 1})\right| = \sum_{k = m + 1}^{n} |\epsilon_k|(y_{k-1} - y_k) < $$
+
+$$\forall \epsilon < 0\: \exists N\colon \forall k > N\: |\epsilon_k| < \epsilon$$
+
+Тогда при $n > m > N$
+$$< \sum^{n}_{k = m + 1}\epsilon(y_{k - 1} - y_k) = \epsilon\sum_{k = m + 1}^{n}(y_{k - 1} - y_k) = \epsilon(y_m - y_n)$$
+
+$$|x_n - x_m| < \epsilon|y_n - y_m|$$
+$n \ra \infty$
+
+$$|x_m| < \epsilon y_m$$
+$$\frac{x_m}{y_m} < \epsilon$$
+
+\item $a \in \R$: $\tilde x_n = x_n - a y_n$.
+\item $a = +\infty$: Поменяем местами $x_n$ и $y_n$. Проверим свойство для $x$:
+$$\lim \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = +\infty \Ra \frac{x_n - x_{n-1}}{y_n - y_{n-1}} > 1$$
+$$x_n - x_{n-1} < y_n - y_{n-1} < 0$$
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}{Теорема Штольца для бесконечно больших}
+$0<y_n<y_{n+1}$, $\lim x_n = \lim y_n = +\infty$, $\lim \frac{x_n-x_{n-1}}{y_n-y_{n-1}} = a \in \bar\R$.
+Тогда 
+$$\lim \frac{x_n}{y_n} = a$$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item $a = 0$:
+$$\epsilon_n \lrh \frac{x_n - x_{n-1}}{y_n - y_{n-1}}$$
+$$x_n = x_1 + \sum_{i=2}^n (x_i - x_{i-1}) = x_1 + \sum_{i=2}^n \epsilon_i(y_i - y_{i-1})$$
+$$\frac{x_n}{y_n} = \frac{x_1}{y_n} + \sum_{i=2}^n \epsilon_i \frac{y_i - y_{i-1}}{y_n} = $$
+$$\forall \epsilon > 0\: \exists N\colon \forall n > N\: |\epsilon_n| < \epsilon$$
+$$= \frac{x_1}{y_n} + \sum_{i=2}^N \epsilon_i \frac{y_i - y_{i-1}}{y_n} + \sum_{i=N+1}^n \epsilon_i \frac{y_i - y_{i-1}}{y_n}$$
+
+$$\left|\sum_{i=N+1}^n \epsilon_i \frac{y_i - y_{i-1}}{y_n}\right| = \sum_{i=N+1}^n |\epsilon_i| \frac{y_i - y_{i-1}}{y_n} < 
+\sum_{i=N+1}^n \epsilon \frac{y_i - y_{i-1}}{y_n} <$$
+$$< \frac{\epsilon}{y_n}\sum_{i=N+1}^n (y_i - y_{i-1}) = \epsilon \frac{y_n - y_N}{y_n} < \epsilon$$
+
+$$\sum_{i=2}^N \epsilon_i \frac{y_i - y_{i-1}}{y_n} \leqslant \frac{1}{y_n}\sum_{i=2}^N \epsilon_i(y_i - y_{i-1}) < \epsilon$$
+
+$$\frac{x_1}{y_n} < \epsilon$$
+
+Т.о.
+$$\left|\frac{x_n}{y_n}\right| < \epsilon \Ra \frac{x_n}{y_n} \ra 0$$
+
+\item $a\in\R$:
+$\tilde x_n = x_n - a y_n$. Фактом $x_n\ra\infty$ мы не пользовались.
+
+$$\frac{\tilde x_n - \tilde x_{n - 1}}{y_n - y_{n - 1}} = \frac{(x_n - ay_n) - (x_{n - 1} - ay_{n - 1})}{y_n - y_{n - 1}} = \frac{x_n - x_{n - 1}}{y_n - y_{n - 1}} - a \to 0$$
+
+\item $a=+\infty$: Поменяем местами $x_n$ и $y_n$. Проверим, что $x_n$ монотонно растёт и не ноль.
+$$\frac{x_n - x_{n-1}}{y_n - y_{n-1}} = +\infty \Ra \frac{x_n - x_{n-1}}{y_n - y_{n-1}} > 1$$
+$$x_n - x_{n-1} > y_n - y_{n-1} > 0$$
+
+\item $a=-\infty$: Сменим знаки $x_n$.
+\end{enumerate}
+\end{proof}
+
+\chapter{Пределы и непрерывность отображений}
+\section{Пределы функций}
+
+\begin{Def}
+$(X, \rho_x)$ и $(Y, \rho_y)$~--- метрические пространства. $E \subset X$, $a$~--- предельная точка $E$. $f\colon E \ra Y$.
+Тогда $b$ является пределом $f$ в $a$ по Коши
+$$\lim_{x \ra a} f(x) = b$$
+если $b \in Y$ и
+$$\forall \epsilon>0\: \exists \delta > 0\colon \forall x\: x \in \dot B_\delta(a) \cap E \Ra f(x) \in B_\epsilon (b)$$
+или, что то же самое
+$$\forall \epsilon>0\: \exists \delta > 0\colon \forall x\in E \: (x \ne a \land \rho(x, a) < \delta) \Ra \rho(f(x), b) < \epsilon$$
+\end{Def}
+
+\begin{Rem}
+Для бесконечности на $\R$ есть частные случаи.
+\end{Rem}
+
+\begin{Def}
+По Гейне,
+$$\lim_{x \ra a} f(x) = b \Lra \forall \{x_n\}\subset E\colon x_n \ne a\: \lim_{n\ra \infty} x_n = a \Ra \lim_{n \ra \infty} f(x_n) = b$$
+\end{Def}
+
+\begin{theorem}{Равносильность определений предела функции}
+Определения равносильны.
+\end{theorem}
+\begin{proof}
+Коши $\Ra$ Гейне:
+$$\forall \epsilon>0\: \exists \delta > 0\colon \forall x\: x \in \dot B_\delta(a) \cap E \Ra f(x) \in B_\epsilon (b)$$
+Рассмотрим произвольную $\{x_n\} \subset E \setminus \{a\}$, $\lim_{n\ra\infty} x_n = a$. Для неё выполнено указанное выше. Тогда $\{f(x_n)\}$ сходится к $b$.
+
+Гейне $\Ra$ Коши: от противного. Пусть
+$$\exists \epsilon>0\colon \forall \delta > 0\: \exists x\: x \in \dot B_\delta(a) \cap E \land f(x) \notin B_\epsilon(b)$$
+Возьмём данный $\epsilon$ и выберем последовательность $\delta_n = \frac1n$. Тогда получим, что
+$$\exists \{x_n\}\colon x_n /ne a \land x_n \ra a \land f(x_n) \nrightarrow b$$
+что противоречит Гейне.
+\end{proof}

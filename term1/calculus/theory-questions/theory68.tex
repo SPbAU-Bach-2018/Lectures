@@ -1,0 +1,24 @@
+\section{Производные элементарных функций}
+
+\begin{align*}
+c' &= 0 \\
+(x^p)' &= px^{p-1} \\
+(a^x)' &= \ln a a^x \\
+(\ln x)' &= \frac1x \\
+\sin' x &= \cos x \\
+\cos' x &= -\sin x \\
+\tg' x &= \frac1{\cos^2 x} \\
+\ctg' x &= -\frac1{\sin^2 x} \\
+\arctg' x &= \frac1{1+x^2} \\
+\arcsin' x &= \frac1{\sqrt{1-x^2}} \\
+\end{align*}
+\begin{proof}
+$$\lim_{h\ra 0} \frac{(x+h)^p - x^p}h = \lim_{h\ra 0} \left(\frac{x^p}{x} \frac{\left(\left(1+\frac{h}x\right)^p-1\right)}{\frac{h}x}\right) = x^{p-1}p$$
+$$\lim_{h\ra 0} \frac{a^{x+h}-a^x}h = \lim_{h\ra 0} a_x \frac{a^h-1}h = a_x \ln a$$
+$$\lim_{h\ra 0} \frac{\ln (x+h) - \ln x}h = \lim_{h\ra 0} \frac{\ln\left(1+\frac{h}x\right)}{\frac{h}x}\frac1x = \frac1x$$
+Лооооооооол что такое, Таня? \\
+$\sin x = y$
+$$\arcsin' y = (\sin^{-1} y)' = \frac1{\cos y} = \frac1{\sqrt{1-x^2}}$$
+$\tg x = y$
+$$\arctg' y = (\tg^{-1} y)' = \frac1{\cos^2 y} = \frac1{1+x^2}$$
+\end{proof}

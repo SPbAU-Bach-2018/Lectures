@@ -1,0 +1,282 @@
+%% texify: XeLaTeX + MakeIndex + BibTeX, modificated
+%% texify
+%% --pdf
+%% --engine=xelatex
+%% --tex-option=$synctexoption // You may delete this, affords to skip from preview to code in one click, that i seldom do
+%% --tex-option=-8bit // Else minted fails on tabs
+%% --tex-option=--shell-escape // For minted to live
+%% $fullname
+%% I prefer to build with TeXworks for better view of errors and warnings. It's hard to read all log file. 
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{polyglossia} %% Better than babel on XeLaTeX
+\usepackage{amsmath, amssymb} %% Cool math!
+\usepackage{color} %% Coloring almost anything
+\usepackage[russian]{hyperref} %% Clickable links is pdf
+\usepackage{indentfirst}
+\usepackage{ifthen}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{wrapfig}
+%% WARNING: latest minted is used. Download from github!
+%% Works fine, though
+%\usepackage{minted} %% Highlighting code. Installation is hard: requires python2 and script Pygments. Look at documentation for help!
+\usepackage[math-style=ISO,vargreek-shape=unicode]{unicode-math} %% MAGIC! INCLUDE AS LAST!
+
+\setdefaultlanguage[spelling=modern]{russian} %% Languages for polyglossia
+\setotherlanguage{english}
+
+\defaultfontfeatures{Ligatures={TeX}} %% Fonts and ligatures.
+\setmainfont{CMU Serif} %% There are original Knuth's fonts in Unicode, called Computer Modern Unicode. Download anywhere, just install them
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}  
+\setmathfont{Latin Modern Math} %% Download too. You may change it :)
+\AtBeginDocument{\def\setminus{\mathbin{\backslash}}}
+%\setmathfont{XITS}
+
+%% Magic as black as my working table
+%\DeclareSymbolFont{cyrletters}{\encodingdefault}{\familydefault}{m}{it}
+%\newcommand{\makecyrmathletter}[1]{%
+%  \begingroup\lccode`a=#1\lowercase{\endgroup
+%  \Umathcode`a}="0 \csname symcyrletters\endcsname\space #1
+%}
+%\count255="409
+%\loop\ifnum\count255<"44F
+%  \advance\count255 by 1
+%  \makecyrmathletter{\count255}
+%\repeat
+%% Simpy adds cyrillic to maths!
+
+\frenchspacing %% One space before sentence, not two!
+
+%% Shortcuts:
+\def\la{\leftarrow}
+\def\ra{\rightarrow}
+\def\lra{\leftrightarrow}
+\def\La{\Leftarrow}
+\def\Ra{\Rightarrow}
+\def\Lra{\Leftrightarrow}
+\def\lrh{\leftrightharpoons}
+\def\xra{\xrightarrow}
+\def\btu{\bigtriangleup}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+
+\def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
+\def\eqDef{\stackrel{\mathrm{Def}}{=}}
+\def\d{\mathup{d}}
+
+% ======================================
+
+%% Change Chapter and Section numeration style
+%%\renewcommand{\thechapter}{\Roman{chapter}}
+%%\renewcommand{\thesection}{\thechapter.\arabic{section}}
+
+%% Indent for first par in chapter
+\makeatletter
+%%\renewcommand{\chapter}{\clearpage %% no double page, only
+\thispagestyle{empty}%% not plain, empty. wanna number of page!
+\global\@topnum=0
+\@afterindenttrue %% Set to true!
+%%\secdef\@chapter\@schapter}
+\makeatother
+
+%% Environment for theorem body
+\newcounter{theorem}[section]
+\renewcommand{\thetheorem}{\thesection.\arabic{theorem}}
+\newcommand*{\theoremheader}[1]{\par\refstepcounter{theorem}%
+\textbf{Теорема \thetheorem.\ifthenelse{\equal{#1}{}}{}{ #1.}}}
+\newenvironment*{theorem}[1]{
+\theoremheader{#1}%
+}{%
+\par%
+}
+
+%% Environment for consequence body
+\newcounter{conseq}[theorem]
+\renewcommand{\theconseq}{\thetheorem.\arabic{conseq}}
+\newcommand*{\conseqheader}{\par\refstepcounter{conseq}%
+\textit{Следствие \theconseq.}}
+\newenvironment*{conseq}{
+\conseqheader%
+}{%
+\par%
+}
+
+\newcounter{lemma}[section]
+\renewcommand{\thelemma}{\thesection.\arabic{lemma}}
+\newcommand*{\lemmaheader}{\par\refstepcounter{lemma}%
+\textit{Лемма \thelemma.}}
+\newenvironment*{lemma}{
+	\lemmaheader%
+}{%
+}
+
+\newenvironment{assertion}{%
+\par\textbf{Утверждение. }%
+}{%
+\par%
+}
+
+%% Environment for proof body. I like this style, but you are free to change it.
+\newenvironment{proof}{%
+\par$\blacktriangleright$%
+}{%
+\hfill$\blacktriangleleft$%
+}
+
+%% Environment for definitions. Pretty raw one.
+\newenvironment{Def}{%
+\par$\mathfrak{Def\colon}$%
+}{%
+\par%
+}
+
+%% Environment for remarks.
+\newenvironment{Rem}{%
+\par\textit{REM: }%
+}{%
+\par%
+}
+
+\setcounter{MaxMatrixCols}{40}
+
+% ==================================
+
+%% In-line code highlighting. Using: \py|a = input()|
+%\newmintinline[cinl]{c}{} %\c is defined :(
+%\newmintinline[cpp]{cpp}{}
+%\newmintinline[python]{python}{}
+%\newmintinline[bash]{bash}{}
+%\newmintinline[make]{make}{}
+
+%% Escaped code highlighting. Using: \begin{cppcode} ... \end{cppcode}
+%\setminted{obeytabs,tabsize=4,linenos,texcomments}
+%\newminted{c}{}
+%\newminted{cpp}{}
+%\newminted{python}{}
+%\newminted{bash}{}
+%\newminted{make}{}
+
+% ==================================
+\DeclareMathOperator{\Int}{int}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
+
+\newcommand{\Choose}[2]{{\left(#1 \atop #2\right)}}
+
+\begin{document}
+\begin{center}
+  {\Large \bf Лекции по математическому анализу} \\ 
+  \vspace{0.5em}
+  {\Large \bf Лектор: Храбров Александр Игоревич} \\
+  \vspace{0.5em}
+  {\Large Автор конспекта: Лапшин Дмитрий} \\
+\end{center}
+
+\vspace{-1em}
+\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}
+
+\vspace{1em}
+\tableofcontents
+\pagebreak
+
+\input{theory01.tex}
+\input{theory02.tex}
+\input{theory03.tex}
+\input{theory04.tex}
+\input{theory05.tex}
+\input{theory06.tex}
+\input{theory07.tex}
+\input{theory08.tex}
+\input{theory09.tex}
+\input{theory10.tex}
+\input{theory11.tex}
+\input{theory12.tex}
+\input{theory13.tex}
+\input{theory14.tex}
+\input{theory15.tex}
+\input{theory16.tex}
+\input{theory17.tex}
+\input{theory18.tex}
+\input{theory19.tex}
+\input{theory20.tex}
+\input{theory21.tex}
+\input{theory22.tex}
+\input{theory23.tex}
+\input{theory24.tex}
+\input{theory25.tex}
+\input{theory26.tex}
+\input{theory27.tex}
+\input{theory28.tex}
+\input{theory29.tex}
+\input{theory30.tex}
+\input{theory31.tex}
+\input{theory32.tex}
+\input{theory33.tex}
+\input{theory34.tex}
+\input{theory35.tex}
+\input{theory36.tex}
+\input{theory37.tex}
+\input{theory38.tex}
+\input{theory39.tex}
+\input{theory40.tex}
+\input{theory41.tex}
+\input{theory42.tex} 
+\input{theory43.tex} 
+\input{theory44.tex} 
+\input{theory45.tex} 
+\input{theory46.tex} 
+\input{theory47.tex} 
+\input{theory48.tex} 
+\input{theory49.tex} 
+\input{theory50.tex} 
+\input{theory51.tex} 
+\input{theory52.tex} 
+\input{theory53.tex} 
+\input{theory54.tex} 
+\input{theory55.tex} 
+\input{theory56.tex} 
+\input{theory57.tex} 
+\input{theory58.tex} 
+\input{theory59.tex} 
+\input{theory60.tex}
+\input{theory61.tex}
+\input{theory62.tex}
+\input{theory63.tex}
+\input{theory64.tex}
+\input{theory65.tex}
+\input{theory66.tex}
+\input{theory67.tex}
+\input{theory68.tex}
+\input{theory69.tex} 
+\input{theory70.tex} 
+\input{theory71.tex} 
+\input{theory72.tex}
+\input{theory73.tex}  
+\input{theory74.tex}
+\input{theory75.tex} 
+\input{theory76.tex} 
+\input{theory77.tex} 
+\input{theory78.tex} 
+\input{theory79.tex} 
+\input{theory80.tex} 
+\input{theory81.tex} 
+\input{theory82.tex} 
+\input{theory83.tex} 
+\input{theory84.tex} 
+\input{theory85.tex} 
+\input{theory86.tex} 
+\input{theory87.tex} 
+\input{theory88.tex} 
+\input{theory89.tex}
+\input{theory90.tex} 
+\input{theory91.tex} 
+\input{theory92.tex}
+
+\noindent \underline{\hbox to 1\textwidth{{ } \hfil{ } \hfil{ } }}
+\end{document}

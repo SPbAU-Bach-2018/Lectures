@@ -1,0 +1,35 @@
+﻿\section{Алгебраические замкнутые поля}
+\begin{Def}
+Поле $A$ алгебраически замкнуто, если любой $f \in A[x] \setminus A$ имеет в $A$ хотя бы 1 корень.
+\end{Def}
+
+\begin{theorem}{}
+Следующие условия равносильны. 
+\begin{enumerate}
+\item $A$ "--- алгебраически замкнуто. 
+\item $\forall f \in A[x]\colon \deg f \ge 1$ делится на линейный многочлен. 
+\item $\forall f \in A[x]\colon \deg f \ge 1$ имеет $\deg f$ корней (с учетом кратности).
+\item $\forall f \in A[x]\colon \deg f \ge 1$ полностью раскладывается на линейные в кольце многочленов.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$1 \Lra 2$: Следствие теоремы Безу.
+
+$3 \Ra 1$: Очевидно.
+
+$1 \Ra 3$ Индукция по $\deg f$.
+\begin{itemize}
+\item[База:] $\deg f = 1$: $ax = b$. $x = \frac{b}{a}$ "--- корень.
+\item[Переход:] $\deg f \ge 2$.
+\[ \exists c \in A\colon \text{$c$ "--- корень $f$ кратности $k \ge 1$} \Ra f = (x - c)^kg \]
+По индукционному предположению число корней $g$ равно $\deg g$. 
+Все корни $f$, отличные от $c$, это в точности корни $g$, причем той же кратности.
+Тогда число корней $f$ есть
+\[ C(f) = k + \deg g = \deg f \]
+
+$4 \Ra 2$ Очевидно.
+
+$2 \Ra 4$ Индукция по $\deg f$.
+\end{itemize}
+\end{proof}

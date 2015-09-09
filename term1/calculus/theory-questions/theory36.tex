@@ -1,0 +1,11 @@
+﻿\section{Неравенство Бернули}
+\begin{theorem}{Неравенство Бернулли}
+$$\forall x>-1\: \forall n \in \N\: (1+x)^n \geqslant 1 + nx$$
+\end{theorem}
+\begin{proof}
+Индукция: база очевидна. Пусть $(1+x)^k \geqslant 1 + nk$. Тогда
+$$(1+x)^{k+1} = \underbrace{(1+x)^k}_{>0} (1+x) \geqslant (1+kx)(1+x) = 1 + kx + x + kx^2 \geqslant 1 + (k+1)x$$
+\end{proof}
+\begin{conseq}
+Если $|t| > 1$, то $\lim t^n = +\infty$. Если $|t| < 1$, то $\lim t^n = 0$.
+\end{conseq}

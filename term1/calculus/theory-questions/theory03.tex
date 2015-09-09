@@ -1,0 +1,87 @@
+\section{Вещественные числа}
+\begin{Def}
+Множество вещественных чисел можно определить как множество, на котором есть операции $+$ и $\times$, причём:
+\begin{enumerate}
+\item Коммутативность $\forall a, b\: a + b = b + a; a \times b = b \times a$
+\item Ассоциативность $\forall a, b, c\: a + (b + c) = (a + b) + c; a \times (b \times c) = (a \times b) \times c$
+\item Нейтральный элемент
+$\exists o\colon \forall a\: a + o = a; \exists e\colon \forall a\:a \times e = a; o \ne e$
+\item Обратный элемент
+$\forall a\: \exists{-a}\colon a + -a = o; \forall a \ne o\: \exists a^{-1}: a \times a^{-1} = a$
+\item Дистрибутивность $\forall a, b, c\: a \times (b + c) = (a \times b) + (a \times c)$
+\end{enumerate}
+Кроме того, есть отношения $\leqslant$ (и аналогично $<$, также определены обратные):
+\begin{enumerate}
+\item Рефлексивно
+\item Антисимметрично
+\item Транзитивно
+\item Любые два элемента сравнимы
+\item $\forall a, b, c\: a \leqslant b => a + c \leqslant b + c$
+\item $\forall a, b\: a > 0 \land b \geqslant 0 \Ra ab \geqslant 0$
+\end{enumerate}
+\end{Def}
+
+Также выполнена аксиома полноты: $A, B \subset \R$, $A \cup B \ne \varnothing$, $ \forall a \in A\: \forall b \in B\: a \leqslant b $. Тогда 
+$$\exists c \in \R\colon \forall a \in A\: a \leqslant c \land \forall b \in B\: c \leqslant b$$
+
+\begin{Rem}
+На $\Q$ аксиома не выполняется: 
+$$A = \left\{r \in \Q \mid r^2 < 2\right\}; B = \left\{r \in \Q_{+}\mid r ^ 2 > 2\right\}; c = \sqrt{2} \notin \Q$$
+\end{Rem}
+\begin{theorem}{Принцип Архимеда}
+Пусть $ x, y \in \R, y > 0 $.
+Тогда $$ \exists n \in \N: x < ny$$
+\end{theorem}
+\begin{proof}
+$$ A \lrh \left\{u \in \R \mid \exists n \in \N: u < ny\right\}; y \in A$$
+Пусть $A \ne \R$. Тогда $B \lrh \R - A \ne \varnothing$.
+Рассмотрим $a \in A; b \in B$.
+$$b < a \Ra b < a < ny \Ra b \in A \text{ --- противоречие}$$
+Таким образом 
+$$\forall a \in A\: \forall b \in B\: a \leqslant b$$
+Тогда 
+$$\exists c \in \R\colon \forall a \in A\: a \leqslant c \land \forall b \in B\: c \leqslant b$$
+$$c \in A \Ra c + y \in A \Ra c > c + y \Ra y < 0 \text{~--- противоречие}$$
+Тогда $c \in B$.
+Пусть $c - y \notin B$, тогда 
+$$c - y \in A \Ra c - y < ny \Ra c < (n + 1)y \Ra c \in A \text{~--- противоречие}$$
+Значит 
+$$c - y \in B \Ra c - y \geqslant c \Ra y \leqslant 0 \text{~--- противоречие}$$
+Таким образом $A = \R$
+\end{proof}
+
+\begin{conseq}
+$$\forall \epsilon > 0\: \exists n \in \N\colon \frac{1}n < \epsilon$$
+\end{conseq}
+\begin{proof}
+Рассмотрим $x=1, y=\epsilon$
+\end{proof}
+
+\begin{conseq}
+$x, y \in \R, x < y$
+$$\exists r \in \Q: x < r < y$$
+\end{conseq}
+\begin{proof} 
+$$y - x > 0 \Ra \exists n \in \N\colon \frac1n < y - x$$
+Покажем, что $ \exists m \in \Z\colon m \leqslant nx < m + 1$. Вообще говоря, $m \eqDef \lfloor nx \rfloor$.
+$$M \lrh \{m \in \Z\mid m \leqslant nx\}$$
+$$x \geqslant 0 \Ra M \neq \varnothing$$
+$$x < 0 \Ra \exists \tilde m \in \N\colon \tilde m-1 > n(-x) \Ra -\tilde m \in M \Ra M \neq \varnothing$$
+Рассмторим $ y = 1; x = nx; y > 0$. По принципу Архимеда 
+$$ \exists k \in \N\colon k > nx $$
+Тогда 
+$$\forall m \in M\: m < k \Ra \exists m = \max M\colon m \leqslant nx < m + 1$$
+$$m \leqslant nx < m + 1 \Ra \frac{m}n \leqslant x \leqslant \frac{m + 1}n$$
+Осталось проверить $\frac{m+1}n < y$.
+$$\frac{m}n \leqslant x \land \frac1n < y - x \Ra \frac{m+1}n < y$$
+\end{proof}
+
+\begin{conseq}
+$x, y \in \R$, $x < y$. 
+$$\exists z \in \R \setminus \Q: x < z < y$$
+\end{conseq}
+\begin{proof}
+$$\sqrt{2} \in \R - \Q$$
+$$x < y \Ra x - \sqrt{2} < y - \sqrt{2} \Ra \exists r \in \Q: x - \sqrt{2} < r < y - \sqrt{2} \Ra $$
+$$\Ra \exists z = r + \sqrt{2}: z \in \R - \Q: x < z < y$$
+\end{proof}

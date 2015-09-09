@@ -1,0 +1,35 @@
+﻿\section{Полнота компактных метрических пространств}
+
+\begin{theorem}{О сходимости фундаментальных последовательностей}
+\begin{enumerate}
+\item Любая сходящаяся последовательность фундаментальна.
+\item В $\R^d$ фундаментальная последовательность всегда сходится.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+$\lim x_n = a$
+$$\forall \epsilon > 0\: \exists N\colon \begin{aligned}\forall n>N \rho(x_n, a) &< \epsilon \\ \forall m>N \rho(x_m, a) &< \epsilon\end{aligned} \Ra \forall \epsilon>0\: \exists N\colon \forall n,m>N\: \rho(x_m, x_n) < 2\epsilon$$
+
+$x_n$~--- фундаментальная последовательность в $\R^d$. $E_n \lrh \{x_n, x_{n+1}, \ldots\}$~--- ограниченно.
+$\cl E_n$~--- ещё и замкнуто. Т.е. компактно.
+$$\cl E_1 \supset \cl E_2 \supset \cl E_3 \supset \cdots$$
+$$\diam \cl E_n = \diam E_n \ra 0$$
+
+Т.о.
+$$\exists! a\colon a \in \bigcap_{i=1}^{\infty} \cl E_n$$
+$$a \in \cl E_n \Ra \forall i>n\:0\leqslant\rho(a, x_i) \leqslant \diam E_n \ra 0$$
+
+Т.о $x_n \ra a$.
+\end{proof}
+                                                
+\begin{Rem}
+$\R^d$ полно. $\left<\Q, \rho\right>$ не полно. Пространство с дискретной метрикой полно.
+\end{Rem}
+
+\begin{theorem}{О полноте компактного пространства}
+Компактное метрическое пространство полно.
+\end{theorem}
+\begin{proof}
+В компакте у любой последовательности есть сходящаяся подпоследовательность. А значит любая фундаментальная последовательность имеет сходящуюся подпоследовательность.
+А значит она сама сходится. А значит пространство полно.
+\end{proof}

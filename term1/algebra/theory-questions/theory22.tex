@@ -1,0 +1,80 @@
+\section{Кольца многочленов}
+
+\begin{Def}
+$A$ "--- коммутативное кольцо с $1$.
+Введём кольцо многочленов от одной переменной $A[x]$ над кольцом $A$:
+\begin{gather*}
+A[x] = \{ \underbrace{a_0, a_1, a_2, \ldots, a_n, \ldots}_{\text{счётная последовательность}} \mid a_i \in A \land\text{почти все нули}\}
+\end{gather*}
+\end{Def}
+		 
+\begin{Rem}
+<<Почти все>> "--- все, кроме конечного числа.
+\end{Rem}
+	 
+\begin{Def}	
+Сложение многочленов: 
+\begin{gather*}
++\colon A[x] \times A[x] \to A[x] \\ 
+(a_0, a_1, a_2, \ldots) + (b_0, b_1, b_2, \ldots) = (a_0 + b_0, a_1 + b_1, a_2 + b_2, \ldots)
+\end{gather*}
+\end{Def}
+	
+\begin{Rem}
+Сложение тоже порождает многочлен: пусть начиная с позиции $n$ в $a_i$ все нули,
+а начиная с позиции $m$ в $b_i$ все нули, тогда начиная с $\max(n, m)$ элементы $a_i+b_i$ все нули.
+\end{Rem}
+	 
+\begin{Def}	
+Умножение многочленов:
+\begin{gather*}
+\cdot\colon A[x] \times A[x] \to A[x] \\
+(a_0, a_1, a_2, \ldots) \cdot (b_0, b_1, b_2, \ldots) = (c_0, c_1, c_2, \ldots) \\
+c_n = \sum_{i=0}^n a_ib_{n - i} = \sum_{i + j = n} a_ib_j
+\end{gather*}
+\end{Def}
+		 
+\begin{Rem}
+$\exists n, m\colon \forall i>n, \forall j>m \colon a_i = 0 \land b_j = 0 \Ra \forall k > n + m\colon c_k = 0 $
+\end{Rem}
+	
+\begin{proof}
+\begin{gather*}
+c_k = \sum_{i=0}^k a_ib_{k - i} = \underbrace{\sum_{i=0}^n a_ib_{k - i}}_{0\leq i\leq n \Ra k-i \geq k-n \geq n+m-n = m \Ra b_{k - i} = 0 \Ra \sum = 0} +
+\underbrace{\sum_{i=n+1}^k a_ib_{k-i}}_{i>n \Ra a_i = 0 \Ra \sum = 0} = 0
+\end{gather*}
+\end{proof}	
+	
+\begin{theorem}{}
+$\left<A[x], +, \cdot\right>$ "--- коммутативное кольцо с $1$.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Аксиомы 1"---4 покомпонентно выполнены в $A$
+\item $\exists 0 = (0, 0, 0, \ldots)$
+\item $\exists 1 = (1, 0, 0, \ldots)$ \\
+По определению операции умножения:
+\begin{gather*}
+(1, 0, 0, \ldots)(a_0, a_1, a_2, \ldots) = (a_0, \underbrace{0a_0 + 1a_1}_{=a_1}, \underbrace{0a_0 + 0a_1 + 1a_2}_{=a_2}, \ldots) = (a_0, a_1, a_2, \ldots)
+\end{gather*}
+
+\item Коммутативность:
+$\beta = (b_0, b_1, ...)$, $\alpha = (a_0, a_1, ...)$. $\alpha\beta = \beta\alpha$.
+\begin{gather*}
+\alpha\beta = (c_0, c_1, ...) \Ra c_k = \sum_{i = 0}^k a_ib_{k - i} \\
+\beta\alpha = (d_0, d_1, ...) \Ra d_k = \sum_{i = 0}^k b_ia_{k - i} = \sum_{j = 0}^k b_{k - j}a_j = \\
+j = k - i, i = k - j \\
+= \sum_{i = 0}^k b_{k - i}a_i \xlongequal{\text{$A$ коммутативно}} \sum_{i = 0}^k a_ib_{k - i} = c_k
+\end{gather*}
+\item Дистрибутивность "--- упражнение
+\item Ассоциативность: 
+$\alpha = (a_0, a_1, ...)$, $\beta = (b_0, b_1, ...)$, $\gamma = (c_0, c_1, ...)$. $\alpha\beta = d$, $(\alpha\beta)\gamma = e$. $\beta\gamma = f$, $\alpha(\beta\gamma) = g$. $e=g$.
+\begin{gather*}
+e_k = \sum_{i = 0}^k f_ic_{k-i} = \sum_{i = 0}^k \left(\sum_{j = 0}^i a_jb_{i-j}\right)c_{k-i} = \\
+ = \sum_{j = 0}^k \left(\sum_{i = j}^k a_jb_{i - j}c_{k - i}\right) = \sum_{j = 0}^k a_j \left(\sum_{i = j}^k b_{i - j}c_{k - i}\right) = \\
+l = i - j \\
+ = \sum_{j = 0}^k a_j\left(\sum_{l = 0}^{k - j} b_lc_{k - l - j}\right) = \sum_{j = 0}^k a_jf_{k-j} = g_k
+\end{gather*}
+\end{enumerate}
+\end{proof}

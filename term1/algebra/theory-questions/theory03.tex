@@ -1,0 +1,92 @@
+﻿\section{Тождественное отображение. Теорема о свойствах отображений, композиция которых есть
+тождественное отображение}
+
+\subsection{Тождественное отображение}
+
+\begin{Def} Пусть есть $A$. Тогда тождественное отображение $id_{A}: A \to A$ задаётся как:
+
+\[\forall a \in A\colon id_A(a) = a\]
+
+$\Gamma_{id_A}$ есть диагональ $A \times A$, то есть $\Gamma_{id_a} = \{(a, a) \mid a \in A\}$
+\end{Def}
+
+\begin{theorem}{}
+$f: A \to B$, тогда:
+
+\[f \circ id_A = f =  id_B \circ f\]
+\end{theorem}
+
+\begin{proof}
+
+Области определения и назначения совпадают.
+
+Пусть $a \in A$. Проверим первое равенство:
+\[(f \circ id_A)(a) = f(id_A(a)) = f(a)\]
+и второе:
+\[(id_B \circ f)(a) = id_B(f(a)) = f(a)\]
+\end{proof}
+
+\subsection{Инъекция, сюръекция, биекция}
+\begin{Def}
+$f: A \to B$. Тогда $f$ "--- инъективное отображение (инъекция), если:
+
+\begin{enumerate}
+\item $\forall a_1, a_2 \in A, \exists b\colon (a_1, b) \in \Gamma_f \wedge (a_2, b) \in \Gamma_f \Ra a_1 = a_2$
+\item $\forall a_1, a_2 \in A\colon f(a_1) = f(a_2) \Ra a_1 = a_2$
+\end{enumerate}
+
+Обозначается $f: A \rat B$.
+\end{Def}
+
+\begin{Def}
+Отображение $f: A \to B$ назывется сюръективным (сюрекцией, или <<отображение \textit{на} $B$>>), если:
+\[\forall b \in B, \exists a \in A\colon b = f(a)\]
+
+Обозначние: $f: A \thra B$
+\end{Def}
+
+\begin{Def}
+$f$ называется биективным (или биекцией), если $f$ и сюръективно, и инъективно.
+
+Обозначение: $f: A \thrat B$.
+\end{Def}
+
+\begin{Def} 
+Образ $C \subset A$: $f(C) = \{b \in B \mid \exists c \in C b = f(c)\}$.
+\end{Def}
+
+\begin{Def} 
+Полный прообраз $D \subset B$: $f^{-1}(D) = \{a \in A \mid f(a) \in D\}$.
+\end{Def}
+
+$f(f^{-1}(D)) \subseteq D$, но может не совпадать.
+
+$f$ инъективно $\iff$ прообраз любого одноэлементного множества содержит не более одного элемента.
+
+$f : A \to B$ сюръективно $\iff$ $f(A) = B$.
+
+\subsection{Теорема}
+\begin{theorem}{}
+$f:A \to B$, $g:B \to A$. Если $g \circ f = id_A$, то $f$ "--- инъективно, $g$ "--- сюръективно.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+\item Пусть $a_1, a_2 \in A\colon f(a_1) = f(a_2)$. Тогда:
+\begin{gather*}
+g(f(a_1)) = g(f(a_2)); \\
+(g \circ f)(a_1) = (g \circ f)(a_2); \\
+id_A(a_1) = id_A(a_2); \\
+a_1 = a_2; \\
+\Ra f \text{ "--- инъекция}
+\end{gather*}
+
+\item Пусть $a \in A$ и $b=f(a)$, тогда:
+\begin{gather*}
+g(f(a)) = (g \circ f)(a) = id_A(a) = a; \\
+a = g(b); \\
+\Ra \forall a \in A, \exists b \in B\colon a = g(b) \Ra g \text{ "--- сюръекция}
+\end{gather*}
+
+\end{enumerate}
+\end{proof}
