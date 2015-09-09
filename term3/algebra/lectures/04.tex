@@ -1,0 +1,261 @@
+\section{Изометрии}
+$$V, (, )$$
+Интересующие нас ситуации. 
+
+\begin{enumerate}
+    \item симметрическая, билинейная. 
+    \item кососимметрическая, билинейная. 
+    \item эрмитовосимметричная, полуторалинейная. 
+\end{enumerate}
+
+\begin{Def}
+$\mathscr{A} \in \End(V)$ "--- изометрия V, (, )
+если $\forall x, y \in V \colon (\mathscr{A}x, \mathscr{A}y) = (x, y)$
+\end{Def}
+
+\begin{exmp}
+
+$\R^2$, поворот "--- изометрия. 
+
+\end{exmp}
+
+\begin{theorem}
+$$\dim V = n < \infty$$
+$\{e_i\} $ "--- базис V.
+
+$\Gamma$ "--- матрица Грама относительно базиса $\{e_i\}$
+
+$A = [\mathscr{A}]_{<e_i>}$ "--- матрица линейного отображения $\mathscr{A}$.
+
+Следующие условия равносильны:
+\begin{enumerate}
+    \item $\mathscr{A}$ "--- изометрия.
+    \item $A^T\Gamma\overline{A} = \Gamma$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$$x \lra [x] = \begin{pmatrix} x_1\\ \cdots\\ x_n\\ \end{pmatrix} $$
+$$y \lra [y] = \begin{pmatrix} y_1\\ \cdots\\ y_n\\ \end{pmatrix} $$
+
+$$[\mathscr{A}x] = A[x]$$
+$$[\mathscr{A}y] = A[y]$$
+
+$$(x, y) = [x]^T \Gamma \overline{[y]}$$
+
+$$(\mathscr{A}x, \mathscr{A}y) = [x]^TA^T\Gamma \overline{A} \overline{[y]}$$
+$$(x, y) = [x]^T\Gamma\overline{[y]}$$
+
+\begin{enumerate}
+\item $1 \to 2$ очевидно. 
+\item $2 \to 1$
+$$\forall [x][y] \colon [x]^TA^T\Gamma\overline{A}\overline{[y]} = [x]^{T} \Gamma \overline{[y]}$$
+
+$$[x] = \begin{pmatrix} 0 \\ 0 \\ 1\\ 0 \\ \end{pmatrix}$$
+$$[y] = \begin{pmatrix} 0\\ 1\\ 0\\ 0\\ \end{pmatrix}$$
+
+$$(A^T \Gamma \overline{A})_{ij} = \Gamma_{ij} \Ra A^T \Gamma \overline{A} = \Gamma$$
+\end{enumerate}
+\end{proof}
+
+\begin{conseq}
+Так как форма невырожденная, то изометрия обратимое преобразование. 
+\end{conseq}
+\begin{proof}
+$$A^{T}\Gamma \overline{A} = \Gamma, \det \Gamma \ne 0 \Ra \det A \ne 0$$
+
+$A = [\mathscr{A}]$ обратима $\Ra$ A "--- обратим.  
+\end{proof}
+
+\begin{conseq}
+Изометрия пространства V, (,)
+образуют группу (относительно композиции).
+\end{conseq}
+
+\begin{proof}
+$id_{V}$  "--- изометрия. 
+
+$$(\mathscr{A}\mathscr{B}x, \mathscr{A}\mathscr{B}y) = (\mathscr{B}x, \mathscr{B}y) = (x, y)$$
+
+$\mathscr{A}, \mathscr{A}^{-1}$
+$$E = [\mathscr{A}\mathscr{A}^{-1}] = [\mathscr{A}][\mathscr{A}^{-1}]$$
+$$[\mathscr{A}] = A$$
+$$[\mathscr{A}^{-1}] = \mathscr{A}^{-1}$$
+
+$$A^{T}\Gamma \overline{A} = \Gamma$$
+$$\Gamma = (A^T)^{-1} \Gamma (\overline{A})^{-1} = (A^{-1})^{T} \Gamma \overline{(A^{-1})}$$
+
+$\mathscr{A}^{-1}$ "--- изометрия.  
+\end{proof}
+
+\begin{Def}
+V "--- векторное конечномерное пространство над K. $\dim V = n < \infty$ 
+
+$B = (, )$ "--- невырожденная, симметричная билинейная форма. 
+
+Группа изометрии $O(V, B)$ называется ортогональной группы связанной с формой $B$.
+
+В частности, если $V = \R^n$  евклидово пространство. $(x, y) = \sum x_i y_i$
+$O(n)$ "--- вещественная ортогональная группа. 
+\end{Def}
+
+В $\R^n$ могут быть билинейные формы $\sum_{i = 1}^{p}x_iy_i - \sum_{i = p + 1}^{p + q} x_i y_i$, $O(p, q), p + q = n$
+
+$O(1, 3)$ "--- группа изометрий пространства Минковского. 
+
+Любая билинейная форма будет эквивалента одной из этой. Это будет показано позже.
+
+\begin{Def}
+$B$ "--- кососимметрическая, билинейная
+
+Группа изометрий (V, B) "--- симплектическая группа.
+$Sp(V, B)$ 
+\end{Def}
+
+\begin{exmp}
+$$B \Gamma = \begin{pmatrix} 0& -E_n\\ E_n & 0\\ \end{pmatrix}$$
+$$K^{2n} Sp(K^{2n}, B)$$
+
+Симплектические группы исчерпываются группами заданными такой матрицей Грамма. 
+\end{exmp}
+
+\begin{Def}
+K "---- поле с инволюцией. 
+
+B "--- эрмитовосимметричная, полуторалинейная, невырожденная. 
+
+Группа изометрий пространства $(V, B)$   называется унитарной группой, отвечающий форме B.
+
+$U(V, B)$. 
+
+\end{Def}
+
+\begin{exmp}
+$V = \C^n, U(n)$
+$\sum_{i = 1}^{n} x_i\overline{y_i}$
+
+
+$U(p, q):$
+$$\sum_{i = 1}^{p} x_i\overline{y_i}  - \sum_{i = p + 1}^{p + q} x_i\overline{y_i}$$
+\end{exmp}
+
+\subsection{Матричная интерпретация}
+$O(n)$
+
+$\R^{n}$ "--- евклидово пространство. 
+$e_1, \cdots, e_n$ "--- стандартный базис $\Gamma = E$
+$A = [\mathscr{A}]$
+
+изометрии евклидова пространства = ортогональные операторы. 
+
+$A^TA = E \Lra A^{-1} = A^{T}$
+
+\begin{Def}
+$A \in M(n, \R)$ называется ортогональной, если $A^{-1} = A^{T}$
+\end{Def}
+
+Ортогональная матрица "--- это матрица ортогонального оператора в евклидовом пространстве. 
+
+\begin{conseq}{Ортогональных матриц}
+A "--- ортогональная матрица. 
+
+$A = (A_1| \cdots |A_n)$
+ 
+A "--- ортогональна $\Lra$ $A_i$ попарно ортогональны и длины 1.
+
+$A^TA = E$ означает, что произведение разных столбцов дает 0, а самого на себя дает 1.
+
+То есть это просто переформулировка условия ортогональности. 
+
+Но, оказывается, тоже самое верно и для строк. 
+
+$$A = \begin{pmatrix} A_1\\ \vdots\\ A_n \\ \end{pmatrix}$$
+
+$A$ "--- ортогональны $\Lra$ строки попарно ортогональны и длиня 1.
+
+$$A^{T}A = E \Ra A^{T} = A^{-1}$$
+$$AA^{T} = AA^{-1} = E$$
+$$AA^T = E$$
+
+$\mathscr{A}$ "--- ортогональный оператор в евклидовом пространстве $\Lra$ $\mathscr{A}$ переводит ортонормированный базис в ортонормированный. 
+
+$\{e_i\}$ "--- ортонормированный базис $\Gamma_{\{e_i\}} = E$
+$$(\mathscr{A}e_i, \mathscr{A}e_j)_{ij} = (e_i,e_j)_{i, j} = E$$
+$$(\mathscr{A}(\sum a_ie_i), \mathscr{A}(\sum b_i e_i)) = (a_1, \cdots, a_n) (\mathscr{A}e_i, \mathscr{A}e_j)_{i, j}
+\begin{pmatrix} b_1\\ \vdots\\ b_n\\ \end{pmatrix} = (a_1, \cdots, a_n) \begin{pmatrix} b_1 \\ \vdots \\ b_n\\ \end{pmatrix}$$
+$$(a_1e_1 + \cdots + a_n e_n,b_1e_1 + \cdots + b_ne_n)$$
+\end{conseq}
+
+\begin{exmp}
+\begin{enumerate}
+\item 
+$$O(1)$$
+$$a^{T}a = 1, a \in \R$$
+$$a = \pm 1 $$
+$$O(1) = \{\pm 1\} $$
+\item 
+$$O(2)$$
+$$\begin{pmatrix} a&c\\ b&d\\ \end{pmatrix}$$
+$$\begin{pmatrix} a&b\\ c&d\\ \end{pmatrix} \begin{pmatrix} a&c\\ b&d\\ \end{pmatrix} = E$$
+$$a^2 + b^2 = 1$$
+$$c^2 + d^2 = 1$$
+$$ac + bd = 0$$
+
+$A$ "--- ортогональный.
+$\Ra \det A = \pm 1$
+
+
+$$SO(n) = \{ A \in O(n), \det A = 1\} $$
+$$O(2) = SO(2) \cup \begin{pmatrix} 1 & 0 \\  0& -1\\ \end{pmatrix} SO(2)$$
+
+
+Матрицы с определителем 1:
+$$a^2 + b^2 = 1$$
+$$c^2 + d^2 = 1$$
+$$ac + bd = 0$$
+$$ad  - bc = 1$$
+
+Запишем тоже самое по строкам. 
+$$a^2 + c^2 = 1$$
+$$b^2 + d^2 = 1$$
+$$ab + cd = 0$$
+$$ad  - bc = 1$$
+
+Делаем выводы, что 
+$$a = \cos(\Phi), c = \sin(\Phi)$$
+$$c = -\sin(\Phi), d = \cos(\Phi)$$
+$c \ne \sin(\Phi)$ так как не подойдет под одно из условий. 
+
+
+Тогда матрица имеет вид:
+$$
+\begin{pmatrix}
+\cos \Phi & -\sin \Phi\\
+\sin \Phi & \cos \Phi\\
+\end{pmatrix}
+$$
+
+\item 
+$V = \C^n$ "--- унитарное пространство.
+
+Изометрия A называется  унитарным оператором, A его матрица в стандартном базисе "--- называется унитарной матрицей. 
+
+$A \in M(n, \C)$, $\Gamma = E$
+
+$A^{T}\overline{A} = E$
+$$\overline{A}^TA = E$$
+$$A^{-1} = \overline{A^T}$$
+
+\textbf{Упражнение:} A "--- унитарный $\Lra$ ортонормированный базис переводит в ортонормированный.
+
+\item 
+$U(1)$
+
+$$a^{T}\overline{a} = 1$$
+$$|a| = 1$$
+
+$$U(1) = S_1 \sim SO(2)$$
+$$SU(2) \to SO(3) $$
+
+\end{enumerate}
+\end{exmp} 
