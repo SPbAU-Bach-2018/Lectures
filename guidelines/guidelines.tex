@@ -17,6 +17,7 @@
 	{Авторы: Лапшин Дмитрий, Егор Суворов}
 
 \section{Введение}
+
 Это руководство "--- наша попытка унифицировать вид электронных конспектов.
 Мы написали рекомендации, которые кажутся нам достаточно разумными.
 Конечно, в некоторых местах мы можем ошибаться и другие варианты оформления могут оказаться логичнее.
@@ -33,37 +34,37 @@
 
 \begin{enumerate}
 \item
-	Не стоит как-то руками выставлять пробелы (в том числе неразрывные \verb'~') и
-	переводы строк (не используем \verb'\\' вне таблиц, где эта комбинация является частью синтаксиса).
+	Не стоит как-то руками выставлять пробелы (в том числе неразрывные \tex'~') и
+	переводы строк (не используем \tex'\\' вне таблиц, где эта комбинация является частью синтаксиса).
 	Просто аккуратно делите на абзацы.
-	Также не стоит использовать \verb`\vspace` и похожие команды, которые выставляют отступы.
+	Также не стоит использовать \tex`\vspace` и похожие команды, которые выставляют отступы.
 
 \item
-	Математические символы, записи следует оборачивать в \verb'$...$'.
+	Математические символы, записи следует оборачивать в \tex'$...$'.
 	Также следует оборачивать запятые и прочие символы пунктуации, если они
 	идут в одном <<математическом предложении>>.
 	Если пунктуация скорее относится к русскому языку, чем к математическому выражению, то её стоит вынести за доллары.
 	Примеры:
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb!Имеется n слагаемых! & Имеется n слагаемых \bad \\
-		\hline \verb!Имеется $n$ слагаемых! & Имеется $n$ слагаемых \ok \\
-		\hline \verb!с графиком $\Gamma_f,$ обозначим! & с графиком $\Gamma_f,$ обозначим \bad \\
-		\hline \verb!с графиком $\Gamma_f$, обозначим! & с графиком $\Gamma_f$, обозначим \ok \\
-		\hline \verb!пусть f, g непрерывны! & пусть f, g непрерывны \bad \\
-		\hline \verb!пусть $f, g$ непрерывны! & пусть $f, g$ непрерывны \bad \\
-		\hline \verb!пусть $f$, $g$ непрерывны! & пусть $f$, $g$ непрерывны \ok \\
-		\hline \verb!где a, b $\in \R$! & где a, b $\in \R$ \bad \\
-		\hline \verb!где $a$, $b \in \R$! & где $a$, $b \in \R$ \bad \\
-		\hline \verb!где $a$, $b$ $\in \R$! & где $a$, $b$ $\in \R$ \bad \\
-		\hline \verb!где $a, b \in \R$! & где $a, b \in \R$ \ok \\
+		\hline \tex!Имеется n слагаемых! & Имеется n слагаемых \bad \\
+		\hline \tex!Имеется $n$ слагаемых! & Имеется $n$ слагаемых \ok \\
+		\hline \tex!с графиком $\Gamma_f,$ обозначим! & с графиком $\Gamma_f,$ обозначим \bad \\
+		\hline \tex!с графиком $\Gamma_f$, обозначим! & с графиком $\Gamma_f$, обозначим \ok \\
+		\hline \tex!пусть f, g непрерывны! & пусть f, g непрерывны \bad \\
+		\hline \tex!пусть $f, g$ непрерывны! & пусть $f, g$ непрерывны \bad \\
+		\hline \tex!пусть $f$, $g$ непрерывны! & пусть $f$, $g$ непрерывны \ok \\
+		\hline \tex!где a, b $\in \R$! & где a, b $\in \R$ \bad \\
+		\hline \tex!где $a$, $b \in \R$! & где $a$, $b \in \R$ \bad \\
+		\hline \tex!где $a$, $b$ $\in \R$! & где $a$, $b$ $\in \R$ \bad \\
+		\hline \tex!где $a, b \in \R$! & где $a, b \in \R$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
 	В примере ниже это критично (хотя таких ситуаций лучше вообще избегать):
 	\begin{center}\begin{tabular}{|c|c|l|}
-		\hline \verb!$a < b, c < d$! & $a < b, c < d$ & Двойное неравенство на $b$, $c$ \\
-		\hline \verb!$a < b$, $c < d$! & $a < b$, $c < d$ & Два независимых неравенства \\
+		\hline \tex!$a < b, c < d$! & $a < b, c < d$ & Двойное неравенство на $b$, $c$ \\
+		\hline \tex!$a < b$, $c < d$! & $a < b$, $c < d$ & Два независимых неравенства \\
 	\hline
 	\end{tabular}\end{center}
 
@@ -71,28 +72,28 @@
 	В обычном тексте ставьте пробелы после знаков препинания, но не ставьте перед, тогда переносы будут производиться
 	в адекватных местах.
 	\begin{center}\begin{tabular}{|c|c|c|}
-		\hline \verb!Если погода будет хорошая, мы пойдем в лес Да.! \bad \\
-		\hline \verb!Если погода будет хорошая, мы пойдем в лес .Да.! \bad \\
-		\hline \verb!Если погода будет хорошая, мы пойдем в лес . Да.! \bad \\
-		\hline \verb!Если погода будет хорошая , мы пойдем в лес. Да.! \bad \\
-		\hline \verb!Если погода будет хорошая, мы пойдем в лес.Да.! \bad \\
-		\hline \verb!Если погода будет хорошая,мы пойдем в лес. Да.! \bad \\
-		\hline \verb!Если погода будет хорошая,мы пойдем в лес.Да.! \bad \\
-		\hline \verb!Если погода будет хорошая, мы пойдем в лес. Да.! \ok \\
+		\hline \tex!Если погода будет хорошая, мы пойдем в лес Да.! \bad \\
+		\hline \tex!Если погода будет хорошая, мы пойдем в лес .Да.! \bad \\
+		\hline \tex!Если погода будет хорошая, мы пойдем в лес . Да.! \bad \\
+		\hline \tex!Если погода будет хорошая , мы пойдем в лес. Да.! \bad \\
+		\hline \tex!Если погода будет хорошая, мы пойдем в лес.Да.! \bad \\
+		\hline \tex!Если погода будет хорошая,мы пойдем в лес. Да.! \bad \\
+		\hline \tex!Если погода будет хорошая,мы пойдем в лес.Да.! \bad \\
+		\hline \tex!Если погода будет хорошая, мы пойдем в лес. Да.! \ok \\
 		\hline
     \end{tabular}\end{center}
 
 \item
-	Выключные формулы (которые отдельно от текста), если их несколько подряд, набирайте в \verb'\begin{gather*}':
+	Выключные формулы (которые отдельно от текста), если их несколько подряд, набирайте в \tex'\begin{gather*}':
 	\begin{center}\begin{tabular}{|c|c|}
 	\hline
 		\begin{minipage}{8cm}
-\begin{verbatim}
-\begin{gather*}
-\int x \d x = \frac{x^2}{2} + c \\
-\int x^2 \d x = \frac{x^3}{3} + c
-\end{gather*}
-\end{verbatim}
+			\begin{texcode}
+				\begin{gather*}
+				\int x \d x = \frac{x^2}{2} + c \\
+				\int x^2 \d x = \frac{x^3}{3} + c
+				\end{gather*}
+			\end{texcode}
 		\end{minipage}
 		&
 		\begin{minipage}{8cm}
@@ -109,93 +110,99 @@
 	\text{gather*} и другими окружениями "--- будет слишком много пустого места.
 
 \item
-	Если хотим поставить одну выключную формулу, то вместо \verb!$$...$$! используем \verb!\[...\]!.
+	Если хотим поставить одну выключную формулу, то вместо \tex!$$...$$! используем \tex!\[...\]!.
 
 \item
-	Математику в условии теоремы, утверждения пишем в тексте (\verb'$...$'), а вывод "--- уже выделенно (\verb'\begin{gather*}'):
+	Математику в условии теоремы, утверждения пишем в тексте (\tex'$...$'), а вывод "--- уже выделенно (\tex'\begin{gather*}'):
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
 		Это... \\\hline
 		\begin{minipage}{11.5cm}
-\begin{verbatim}
-\begin{theorem}{Теорема Больцано "--- Коши}
-$f\colon [a, b] \ra \R$, $f$ "--- непрерывна
-на $[a, b]$. Тогда:
-\[\forall C\in [f(a), f(b)], \exists
-c \in (a, b)\colon f(c) = C\]
-\end{theorem}
-\end{verbatim}
+			\begin{texcode}
+				\begin{theorem}[Теорема Больцано "--- Коши]
+					$f\colon [a, b] \ra \R$, $f$ "--- непрерывна
+					на $[a, b]$. Тогда:
+					\begin{equation*}
+						\forall C\in [f(a), f(b)], \exists
+						c \in (a, b)\colon f(c) = C
+					\end{equation*}
+				\end{theorem}
+			\end{texcode}
 		\end{minipage}
 		\\\hline
 		... верстается так \\\hline
 		\begin{minipage}{11.5cm}
-			\begin{theorem}{Теорема Больцано "--- Коши}
-			$f\colon [a, b] \ra \R$, $f$ "--- непрерывна на $[a, b]$. Тогда:
-			\[\forall C\in [f(a), f(b)], \exists c \in (a, b)\colon f(c) = C\]
+			\begin{theorem}[Теорема Больцано "--- Коши]
+				$f\colon [a, b] \ra \R$, $f$ "--- непрерывна
+				на $[a, b]$. Тогда:
+				\begin{equation*}
+					\forall C\in [f(a), f(b)], \exists
+					c \in (a, b)\colon f(c) = C
+				\end{equation*}
 			\end{theorem}
 		\end{minipage}
 		\\\hline
 	\end{tabular}\end{center}
 
 \item
-	Последовательности кванторов отделяем запятыми и \verb'\colon' (в зависимости от квантора):
+	Последовательности кванторов отделяем запятыми и \tex'\colon' (в зависимости от квантора):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-$\forall a \exists b
-\forall c P(A, B, C)$
-\end{verbatim}
+			\begin{texcode}
+				$\forall a \exists b
+				\forall c P(A, B, C)$
+			\end{texcode}
 		\end{minipage} & $\forall a \exists b \forall c: P(A, B, C)$ \bad \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-$\forall a: \exists b:
-\forall c: P(A, B, C)$
-\end{verbatim}
+			\begin{texcode}
+				$\forall a: \exists b:
+				\forall c: P(A, B, C)$
+			\end{texcode}
 		\end{minipage} & $\forall a: \exists b: \forall c: P(A, B, C)$ \bad \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-$\forall a\colon \exists b\colon
-\forall c\colon P(A, B, C)$
-\end{verbatim}
+			\begin{texcode}
+				$\forall a\colon \exists b\colon
+				\forall c\colon P(A, B, C)$
+			\end{texcode}
 		\end{minipage} & $\forall a\colon \exists b\colon \forall c\colon P(A, B, C)$ \bad \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-$\forall a, \exists b\colon
-\forall c, P(A, B, C)$
-\end{verbatim}
+			\begin{texcode}
+				$\forall a, \exists b\colon
+				\forall c, P(A, B, C)$
+			\end{texcode}
 		\end{minipage} & $\forall a, \exists b\colon \forall c, P(A, B, C)$ \ok \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-$\exists a\colon \forall b,
-\exists c\colon P(A, B, C)$
-\end{verbatim}
+			\begin{texcode}
+				$\exists a\colon \forall b,
+				\exists c\colon P(A, B, C)$
+			\end{texcode}
 		\end{minipage} & $\exists a\colon \forall b, \exists c\colon P(A, B, C)$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
 \item
-	Текст посреди математики всегда включаем в \verb'\text'.
+	Текст посреди математики всегда включаем в \tex'\text'.
 	Иначе вы его даже не увидите, или увидите сильно не то!
 
 \item
 	Многоточия.
-	\verb!\ldots! "--- это многоточия снизу, \verb!\cdots! "--- посередине, \verb!\dots! автоматически выбирает нужное.
-	При этом \verb!...! распознаётся как многоточие \textit{только} в text-mode,
-	поэтому наша рекомендация "--- везде использовать \verb!\dots!.
+	\tex!\ldots! "--- это многоточия снизу, \tex!\cdots! "--- посередине, \tex!\dots! автоматически выбирает нужное.
+	При этом \tex!...! распознаётся как многоточие \textit{только} в text-mode,
+	поэтому наша рекомендация "--- везде использовать \tex!\dots!.
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb!Ого...! & Ого... \ok \\
-		\hline \verb!Ого\dots! & Ого\dots \ok \\
-		\hline \verb!Ого\ldots! & Ого\ldots \ok \\
-		\hline \verb!$a_1+...+a_n$! & $a_1+...+a_n$ \bad \\
-		\hline \verb!$a_1+\dots+a_n$! & $a_1+\dots+a_n$ \ok \\
-		\hline \verb!$a_1+\ldots+a_n$! & $a_1+\ldots+a_n$ \bad \\
-		\hline \verb!$a_1+\cdots+a_n$! & $a_1+\cdots+a_n$ \ok \\
-		\hline \verb!$a_1\cdot...\cdot a_n$! & $a_1\cdot ... \cdot a_n$ \bad \\
-		\hline \verb!$a_1\cdot\dots\cdot a_n$! & $a_1\cdot\dots\cdot a_n$ \ok \\
-		\hline \verb!$a_1\cdot\ldots\cdot a_n$! & $a_1\cdot\ldots\cdot a_n$ \ok \\
-		\hline \verb!$a_1\cdot\cdots\cdot a_n$! & $a_1\cdot\cdots\cdot a_n$ \bad \\
+		\hline \tex!Ого...! & Ого... \ok \\
+		\hline \tex!Ого\dots! & Ого\dots \ok \\
+		\hline \tex!Ого\ldots! & Ого\ldots \ok \\
+		\hline \tex!$a_1+...+a_n$! & $a_1+...+a_n$ \bad \\
+		\hline \tex!$a_1+\dots+a_n$! & $a_1+\dots+a_n$ \ok \\
+		\hline \tex!$a_1+\ldots+a_n$! & $a_1+\ldots+a_n$ \bad \\
+		\hline \tex!$a_1+\cdots+a_n$! & $a_1+\cdots+a_n$ \ok \\
+		\hline \tex!$a_1\cdot...\cdot a_n$! & $a_1\cdot ... \cdot a_n$ \bad \\
+		\hline \tex!$a_1\cdot\dots\cdot a_n$! & $a_1\cdot\dots\cdot a_n$ \ok \\
+		\hline \tex!$a_1\cdot\ldots\cdot a_n$! & $a_1\cdot\ldots\cdot a_n$ \ok \\
+		\hline \tex!$a_1\cdot\cdots\cdot a_n$! & $a_1\cdot\cdots\cdot a_n$ \bad \\
 		\hline
 	\end{tabular}\end{center}
 
@@ -204,64 +211,65 @@ $\exists a\colon \forall b,
 	Не забывайте, что одни и те же команды имеют разный смысл в math-mode и в text-mode (и могут иметь разные пробелы, соответственно):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb!A --> B! & A --> B \bad \\
-		\hline \verb!A $-->$ B! & A $-->$ B \bad \\
-		\hline \verb!A \rightarrow B! & A \rightarrow B \bad \\
-		\hline \verb!A $\rightarrow$ B! & A $\rightarrow$ B \ok \\
-		\hline \verb!A ==> B! & A ==> B \bad \\
-		\hline \verb!A $==>$ B! & A $==>$ B \bad \\
-		\hline \verb!A \Rightarrow B! & \bad \\
-		\hline \verb!A $\Rightarrow$ B! & A $\Rightarrow$ B \ok \\
-		\hline \verb!$\Sigma_l^r x_n$! & $\Sigma_l^r x_n$ \bad \\
-		\hline \verb!$\sum_l^r x_n$! & $\sum_l^r x_n$ \ok \\
-		\hline \verb!$\sqcap_l^r x_n$! & $\sqcap_l^r x_n$ \bad \\
-		\hline \verb!$\prod_l^r x_n$! & $\prod_l^r x_n$ \ok \\
-		\hline \verb!$o(||h||^2)$! & $o(||h||^2)$ \bad \\
-		\hline \verb!$o(\|h\|^2)$! & $o(\|h\|^2)$ \ok \\
+		\hline \tex!A --> B! & A --> B \bad \\
+		\hline \tex!A $-->$ B! & A $-->$ B \bad \\
+		\hline \tex!A \rightarrow B! & A \rightarrow B \bad \\
+		\hline \tex!A $\rightarrow$ B! & A $\rightarrow$ B \ok \\
+		\hline \tex!A ==> B! & A ==> B \bad \\
+		\hline \tex!A $==>$ B! & A $==>$ B \bad \\
+		\hline \tex!A \Rightarrow B! & \bad \\
+		\hline \tex!A $\Rightarrow$ B! & A $\Rightarrow$ B \ok \\
+		\hline \tex!$\Sigma_l^r x_n$! & $\Sigma_l^r x_n$ \bad \\
+		\hline \tex!$\sum_l^r x_n$! & $\sum_l^r x_n$ \ok \\
+		\hline \tex!$\sqcap_l^r x_n$! & $\sqcap_l^r x_n$ \bad \\
+		\hline \tex!$\prod_l^r x_n$! & $\prod_l^r x_n$ \ok \\
+		\hline \tex!$o(||h||^2)$! & $o(||h||^2)$ \bad \\
+		\hline \tex!$o(\|h\|^2)$! & $o(\|h\|^2)$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
 \item
 	Не используйте программистские обозначения в формулах, используйте математические:
-	\verb!\cdot! для умножения чисел, \verb!\times! для декартова произведения.
+	\tex!\cdot! для умножения чисел, \tex!\times! для декартова произведения.
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb!$2*n$! & $2*n$ \bad \\
-		\hline \verb!$2n$! & $2n$ \ok \\
-		\hline \verb!$2\cdot n$! & $2\cdot n$ \ok \\
-		\hline \verb!$2\times n$! & $2\times n$ \bad \\
-		\hline \verb!$[a,b]\cdot [c,d]$! & $[a,b]\cdot [c,d]$ \bad \\
-		\hline \verb!$[a,b]\times [c,d]$! & $[a,b]\times [c,d]$ \ok \\
+		\hline \tex!$2*n$! & $2*n$ \bad \\
+		\hline \tex!$2n$! & $2n$ \ok \\
+		\hline \tex!$2\cdot n$! & $2\cdot n$ \ok \\
+		\hline \tex!$2\times n$! & $2\times n$ \bad \\
+		\hline \tex!$[a,b]\cdot [c,d]$! & $[a,b]\cdot [c,d]$ \bad \\
+		\hline \tex!$[a,b]\times [c,d]$! & $[a,b]\times [c,d]$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
 \item
 	Используйте окружения для единого стиля:
 	\begin{enumerate}
-		\item \verb'theorem' для тела теорем, у которых может быть название (не для доказательств!).
-		\item \verb'conseq' для следствий. Они сами нумеруются, не вписывайте все следствия в одно.
-		\item \verb'lemma' для тел лемм.
-		\item \verb'proof' для доказательств чего угодно.
-		\item \verb'assertion' для утверждений.
-		\item \verb'Def' для определений.
-		\item \verb'Rem' для замечаний.
-		\item \verb'exmp' для примеров.
+		\item \tex'theorem' для тела теорем, у которых может быть название (не для доказательств!).
+		\item \tex'conseq' для следствий. Они сами нумеруются, не вписывайте все следствия в одно.
+		\item \tex'lemma' для тел лемм.
+		\item \tex'proof' для доказательств чего угодно.
+		\item \tex'assertion' для утверждений.
+		\item \tex'Def' для определений.
+		\item \tex'Rem' для замечаний.
+		\item \tex'exmp' для примеров.
 	\end{enumerate}
 
 \item
-	Части доказательства и шаги индукции мы набираем окружением \verb'\begin{description}' вот так:
+	Части доказательства и шаги индукции мы набираем окружением \tex'\begin{description}' вот так:
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline
 		\begin{minipage}{8cm}
-\begin{verbatim}
-Докажем по индукции:
-\begin{description}
-\item[База:] Для $n = 1$ всё
-очевидно
-\item[Переход:] Пусть для $k$ всё
-доказано...
-\end{description}
-\end{verbatim}
+			\begin{texcode}
+				Докажем по индукции:
+				\begin{description}
+					\item[База:]
+						Для $n = 1$ всё очевидно
+
+					\item[Переход:]
+						Пусть для $k$ всё доказано...
+				\end{description}
+			\end{texcode}
 		\end{minipage}
 		&
 		\begin{minipage}{7cm}
@@ -278,75 +286,75 @@ $\exists a\colon \forall b,
 	Некоторые правила набора символов
 	\begin{enumerate}
 	\item
-		Черта в множествах "--- \verb'\mid', а не \verb'|'.
+		Черта в множествах "--- \tex'\mid', а не \tex'|'.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$\{n | 2 \div n\}$' & $\{n | nx > y\}$ \bad \\
-			\hline \verb'$\{n \mid 2 \div n\}$' & $\{n \mid nx > y\}$ \ok \\
+			\hline \tex'$\{n | 2 \div n\}$' & $\{n | nx > y\}$ \bad \\
+			\hline \tex'$\{n \mid 2 \div n\}$' & $\{n \mid nx > y\}$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Двоеточие в определении отношения и функции "--- \verb'\colon', а не \verb':'.
+		Двоеточие в определении отношения и функции "--- \tex'\colon', а не \tex':'.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$f: \R \ra \R$' & $f:\R\ra\R$ \bad \\
-			\hline \verb'$f\colon \R \ra \R$' & $f\colon\R\ra\R$ \ok \\
+			\hline \tex'$f: \R \ra \R$' & $f:\R\ra\R$ \bad \\
+			\hline \tex'$f\colon \R \ra \R$' & $f\colon\R\ra\R$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Нестрогие равенства "--- \verb'\le' и \verb'\ge', а не \verb'\leq' и \verb'\geq'.
-		Вообще говоря, мы переопределили \verb'\le', чтобы она делала \verb'\leqslant'.
+		Нестрогие равенства "--- \tex'\le' и \tex'\ge', а не \tex'\leq' и \tex'\geq'.
+		Вообще говоря, мы переопределили \tex'\le', чтобы она делала \tex'\leqslant'.
 		Используем первую как короткую.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$a \le b$' & $a \le b$ \ok \\
-			\hline \verb'$a \leq b$' & $a \leq b$ \bad \\
-			\hline \verb'$a \leqslant b$' & $a \leqslant b$ \bad \\
+			\hline \tex'$a \le b$' & $a \le b$ \ok \\
+			\hline \tex'$a \leq b$' & $a \leq b$ \bad \\
+			\hline \tex'$a \leqslant b$' & $a \leqslant b$ \bad \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Черта над одной буквой "--- \verb'\bar', а не \verb'\overline'.
+		Черта над одной буквой "--- \tex'\bar', а не \tex'\overline'.
 		При этом если буква имеет индексы, черта всё равно ставится только над буквой.
-		Над выражением "--- \verb'\overline'.
+		Над выражением "--- \tex'\overline'.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
 			\hline
-			\begin{minipage}{10cm}
-\begin{verbatim}
-$\overline{z_1z_2} =
-\overline{z_1}\overline{z_2}$
-\end{verbatim}
+			\begin{minipage}{8cm}
+				\begin{texcode}
+					$\overline{z_1z_2} =
+					\overline{z_1}\overline{z_2}$
+				\end{texcode}
 			\end{minipage}
 			& $\overline{z_1z_2} = \overline{z_1}\overline{z_2}$ \bad \\
-			\hline \verb'$\overline{z_1z_2}=\bar{z_1} \bar{z_2}$' & $\overline{z_1z_2} = \bar{z_1} \bar{z_2}$ \bad \\
-			\hline \verb'$\overline{z_1z_2}=\bar z_1 \bar z_2$' & $\overline{z_1z_2} = \bar z_1 \bar z_2$ \ok \\
-			\hline \verb'$\overline{z_1z_2}=\bar{z}_1 \bar{z}_2$' & $\overline{z_1z_2} = \bar z_1 \bar z_2$ \ok \\
+			\hline \tex'$\overline{z_1z_2}=\bar{z_1} \bar{z_2}$' & $\overline{z_1z_2} = \bar{z_1} \bar{z_2}$ \bad \\
+			\hline \tex'$\overline{z_1z_2}=\bar z_1 \bar z_2$' & $\overline{z_1z_2} = \bar z_1 \bar z_2$ \ok \\
+			\hline \tex'$\overline{z_1z_2}=\bar{z}_1 \bar{z}_2$' & $\overline{z_1z_2} = \bar z_1 \bar z_2$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Треугольные скобки "--- \verb'\left< \right>' или хотя бы \verb'\langle \rangle', но никак не \verb'< >'!
+		Треугольные скобки "--- \tex'\left< \right>' или хотя бы \tex'\langle \rangle', но никак не \tex'< >'!
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$<G, \cdot>$' & $<G, \cdot>$ \bad \\
-			\hline \verb'$\langle G, \cdot \rangle$' & $\langle G, \cdot \rangle$ \ok \\
-			\hline \verb'$\left<G, \cdot \right>$' & $\left<G, \cdot \right>$ \ok \\
-			\hline \verb'$<a, \cfrac23>$' & $<a, \cfrac23>$ \bad \\
-			\hline \verb'$\langle a, \cfrac23\rangle$' & $\langle a, \cfrac23\rangle$ \bad \\
-			\hline \verb'$\left<a, \cfrac23\right>$' & $\left<a, \cfrac23\right>$ \ok \\
+			\hline \tex'$<G, \cdot>$' & $<G, \cdot>$ \bad \\
+			\hline \tex'$\langle G, \cdot \rangle$' & $\langle G, \cdot \rangle$ \ok \\
+			\hline \tex'$\left<G, \cdot \right>$' & $\left<G, \cdot \right>$ \ok \\
+			\hline \tex'$<a, \cfrac23>$' & $<a, \cfrac23>$ \bad \\
+			\hline \tex'$\langle a, \cfrac23\rangle$' & $\langle a, \cfrac23\rangle$ \bad \\
+			\hline \tex'$\left<a, \cfrac23\right>$' & $\left<a, \cfrac23\right>$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Тире ставим так: \verb'"---', окружая пробелами (не минусиками "--- это дефисы!!!).
+		Тире ставим так: \tex'"---', окружая пробелами (не минусиками "--- это дефисы!!!).
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'Слово - не воробей' & Слово - не воробей \bad \\
-			\hline \verb'Слово"---не воробей' & Слово"---не воробей \bad \\
-			\hline \verb'Слово "--- не воробей' & Слово "--- не воробей \ok \\
+			\hline \tex'Слово - не воробей' & Слово - не воробей \bad \\
+			\hline \tex'Слово"---не воробей' & Слово"---не воробей \bad \\
+			\hline \tex'Слово "--- не воробей' & Слово "--- не воробей \ok \\
 			\hline
 		\end{tabular}\end{center}
 
@@ -354,52 +362,52 @@ $\overline{z_1z_2} =
 		Используемые математические символы (обратите внимание, обычно они задаются наоборот, мы упростили жизнь):
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$\varepsilon$' & $\varepsilon$ \bad \\
-			\hline \verb'$\epsilon$' & $\epsilon$ \ok \\
-			\hline \verb'$\varphi' & $\varphi$ \bad \\
-			\hline \verb'$\phi$' & $\phi$ \ok \\
+			\hline \tex'$\varepsilon$' & $\varepsilon$ \bad \\
+			\hline \tex'$\epsilon$' & $\epsilon$ \ok \\
+			\hline \tex'$\varphi' & $\varphi$ \bad \\
+			\hline \tex'$\phi$' & $\phi$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Набор длинных стрелок с подписями идёт с помощью комманд \verb|\xlongrightarrow| и аналогичных:
+		Набор длинных стрелок с подписями идёт с помощью комманд \tex|\xlongrightarrow| и аналогичных:
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$\stackrel{ab=1}{\Ra}$' & $\stackrel{ab=1}{\Ra}$ \bad \\
-			\hline \verb'$\xLongrightarrow{ab=1}$' & $\xLongrightarrow{ab=1}$ \ok \\
-			\hline \verb'$\xLongrightarrow[cd=3]{ab=1}$' & $\xLongrightarrow[cd=3]{ab=1}$ \ok \\
-			\hline \verb'$\xrightarrow{f}$' & $\xrightarrow{f}$ \ok \\
+			\hline \tex'$\stackrel{ab=1}{\Ra}$' & $\stackrel{ab=1}{\Ra}$ \bad \\
+			\hline \tex'$\xLongrightarrow{ab=1}$' & $\xLongrightarrow{ab=1}$ \ok \\
+			\hline \tex'$\xLongrightarrow[cd=3]{ab=1}$' & $\xLongrightarrow[cd=3]{ab=1}$ \ok \\
+			\hline \tex'$\xrightarrow{f}$' & $\xrightarrow{f}$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Сложные индексы (перед выражением или если их много) набираем с помощью \verb'\tensor':
+		Сложные индексы (перед выражением или если их много) набираем с помощью \tex'\tensor':
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'$a {}_R \mid b$' & $a {}_R \mid b$ \bad \\
-			\hline \verb'$a \tensor[_R]{\mid}{} b$' & $a \tensor[_R]{\mid}{} b$ \ok \\
-			\hline \verb'${}_1^2_3^4 X_5^6_7^8$' & \bad \\
-			\hline \verb'$\tensor[_1^2_3^4]{X}{_5^6_7^8}$' & $\tensor[_1^2_3^4]{X}{_5^6_7^8}$ \ok \\
-			\hline \verb'$\tensor*{X}{*_5^{66}_{77}^8}$' & $\tensor*{X}{*_5^{66}_{77}^8}$ \ok \\
+			\hline \tex'$a {}_R \mid b$' & $a {}_R \mid b$ \bad \\
+			\hline \tex'$a \tensor[_R]{\mid}{} b$' & $a \tensor[_R]{\mid}{} b$ \ok \\
+			\hline \tex'${}_1^2_3^4 X_5^6_7^8$' & \bad \\
+			\hline \tex'$\tensor[_1^2_3^4]{X}{_5^6_7^8}$' & $\tensor[_1^2_3^4]{X}{_5^6_7^8}$ \ok \\
+			\hline \tex'$\tensor*{X}{*_5^{66}_{77}^8}$' & $\tensor*{X}{*_5^{66}_{77}^8}$ \ok \\
 			\hline
 		\end{tabular}\end{center}
 
 	\end{enumerate}
 
 \item
-	Используем команды \verb'\textbf{}' и \verb'\textit{}' вместо \verb'{\bf ...}' и \verb'{\it ...}'.
+	Используем команды \tex'\textbf{}' и \tex'\textit{}' вместо \tex'{\bf ...}' и \tex'{\it ...}'.
 
 \item
 	Чтобы в больших формулах скобки подстраивались по размеру под внутренности
-	используем \verb'\left(...\right)'
-	(команды \verb'\left' и \verb'\right' должны образовывать правильную скобочную последовательность,
+	используем \tex'\left(...\right)'
+	(команды \tex'\left' и \tex'\right' должны образовывать правильную скобочную последовательность,
 	они <<вытягивают>> соответствующие символы по вертикали):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb'\[(a+b)^2\]'                        & \begin{minipage}{3cm}\[(a+b)^2\]\end{minipage} \ok \\
-		\hline \verb'\[\left(a+b\right)^2\]'             & \begin{minipage}{3cm}\[\left(a+b\right)^2\]\end{minipage} \ok \\
-		\hline \verb'\[(\frac{a+b}{c+d})^2\]'            & \begin{minipage}{3cm}\[(\frac{a+b}{c+d})^2\]\end{minipage} \bad \\
-		\hline \verb'\[\left(\frac{a+b}{c+d}\right)^2\]' & \begin{minipage}{3cm}\[\left(\frac{a+b}{c+d}\right)^2\]\end{minipage} \ok \\
+		\hline \tex'\[(a+b)^2\]'                        & \begin{minipage}{3cm}\[(a+b)^2\]\end{minipage} \ok \\
+		\hline \tex'\[\left(a+b\right)^2\]'             & \begin{minipage}{3cm}\[\left(a+b\right)^2\]\end{minipage} \ok \\
+		\hline \tex'\[(\frac{a+b}{c+d})^2\]'            & \begin{minipage}{3cm}\[(\frac{a+b}{c+d})^2\]\end{minipage} \bad \\
+		\hline \tex'\[\left(\frac{a+b}{c+d}\right)^2\]' & \begin{minipage}{3cm}\[\left(\frac{a+b}{c+d}\right)^2\]\end{minipage} \ok \\
 		\hline
 	\end{tabular}\end{center}
 
@@ -407,17 +415,17 @@ $\overline{z_1z_2} =
 	Будьте осторожны с верхними и нижними индексами и фигурными скобками вокруг них:
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb'a_f(x)'      & $a_f(x)$ \bad \\
-		\hline \verb'a_{f(x)}'    & $a_{f(x)}$ \ok \\
-		\hline \verb'a_f^(n)'     & $a_f^(n)$ \bad \\
-		\hline \verb'a_f^{(n)}'   & $a_f^{(n)}$ \bad \\
-		\hline \verb'a_{f^{(n)}}' & $a_{f^{(n)}}$ \ok \\
-		\hline \verb'a^5'         & $a^5$ \ok \\
-		\hline \verb'a^{5}'       & $a^{5}$ \ok \\
-		\hline \verb'a^100'       & $a^100$ \bad \\
-		\hline \verb'a^{100}'     & $a^{100}$ \ok \\
-		\hline \verb'F_g_+'       & \bad \\
-		\hline \verb'F_{g_+}'     & $F_{g_+}$ \ok \\
+		\hline \tex'a_f(x)'      & $a_f(x)$ \bad \\
+		\hline \tex'a_{f(x)}'    & $a_{f(x)}$ \ok \\
+		\hline \tex'a_f^(n)'     & $a_f^(n)$ \bad \\
+		\hline \tex'a_f^{(n)}'   & $a_f^{(n)}$ \bad \\
+		\hline \tex'a_{f^{(n)}}' & $a_{f^{(n)}}$ \ok \\
+		\hline \tex'a^5'         & $a^5$ \ok \\
+		\hline \tex'a^{5}'       & $a^{5}$ \ok \\
+		\hline \tex'a^100'       & $a^100$ \bad \\
+		\hline \tex'a^{100}'     & $a^{100}$ \ok \\
+		\hline \tex'F_g_+'       & \bad \\
+		\hline \tex'F_{g_+}'     & $F_{g_+}$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 
@@ -431,33 +439,35 @@ $\overline{z_1z_2} =
 	\begin{center}\begin{tabular}{|c|c|}
 		\hline Это... & ...верстается так \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-\[\begin{aligned}
-    a &= b & c &= 0 + d \\
-0 + a &= b & c &= d \\
-\end{aligned}\]
-\end{verbatim}
+			\begin{texcode}
+				\[\begin{aligned}
+				    a &= b & c &= 0 + d \\
+				0 + a &= b & c &= d \\
+				\end{aligned}\]
+			\end{texcode}
 		\end{minipage}
         &
 		\begin{minipage}{0.35\linewidth}
-\[\begin{aligned}
-    a &= b & c &= 0 + d \\
-0 + a &= b & c &= d \\
-\end{aligned}\]\end{minipage} \\
+			\[\begin{aligned}
+			    a &= b & c &= 0 + d \\
+			0 + a &= b & c &= d \\
+			\end{aligned}\]
+		\end{minipage} \\
 		\hline \begin{minipage}{0.5\linewidth}
-\begin{verbatim}
-\begin{align*}
-    a &= b + 0 & c &= 0 + d \\
-0 + a &= b & 0 + c &= d \\
-\end{align*}
-\end{verbatim}
+			\begin{texcode}
+				\begin{align*}
+				    a &= b + 0 & c &= 0 + d \\
+				0 + a &= b & 0 + c &= d \\
+				\end{align*}
+			\end{texcode}
 		\end{minipage}
         &
 		\begin{minipage}{0.35\linewidth}
-\[\begin{aligned}
-    a &= b + 0 & c &= 0 + d \\
-0 + a &= b & 0 + c &= d \\
-\end{aligned}\]\end{minipage} \\
+			\[\begin{aligned}
+			    a &= b + 0 & c &= 0 + d \\
+			0 + a &= b & 0 + c &= d \\
+			\end{aligned}\]
+		\end{minipage} \\
 		\hline
 	\end{tabular}\end{center}
 
@@ -465,7 +475,7 @@ $\overline{z_1z_2} =
 	нескольких столбцов выражений "--- между соседними добавляется небольшое пространство.
 	На более низком уровне эти окружения представляю собой таблицу, нечётные столбцы
 	которой выравниваются вправо, а чётные "--- влево.
-	Таким образом знак \verb'&' надо ставить \textit{перед} оператором (не)равенства.
+	Таким образом знак \tex'&' надо ставить \textit{перед} оператором (не)равенства.
 
 \item
 	Для более сложного выравнивания (например, процесса выкладок) можно использовать
@@ -475,31 +485,31 @@ $\overline{z_1z_2} =
 	числом столбцов (как и раньше, они выравниваются в разные стороны в зависимости от чётности).
 	При этом требуется явно указать число таких пар столбцов как параметр.
 	Например:
-\begin{verbatim}
-\begin{alignat*}{2}
-y &= \sin^2 ax \cos bx = \\
-  &= (\sin ax \sin ax ) \cos bx =  \\
-  &= \frac 1 2 (\cos(ax-ax)-\cos(2ax)) \cos bx = \\
-  &= \frac {1-cos(2ax)} 2 \cos bx \neq \\
-  &\begin{alignedat}{4}
-   &\neq \frac 1 2 \cos bx &+& (-0.5) &\cdot& (0&\cdot&0+1) = \\
-   &=    \frac 1 2 \cos bx &+& (-0.25) &\cdot& [0.5 &+& 0.5] \neq \\
-   &\neq \frac 1{239} \cos bx &-& 0.25 &\cdot& 0.5 &-& 100 \\
-   \end{alignedat} \\
-\end{alignat*}
-\end{verbatim}
-будет свёрстано в:
-\begin{alignat*}{2}
-y &= \sin^2 ax \cos bx = \\
-  &= (\sin ax \sin ax ) \cos bx =  \\
-  &= \frac 1 2 (\cos(ax-ax)-\cos(2ax)) \cos bx = \\
-  &= \frac {1-cos(2ax)} 2 \cos bx \neq \\
-  &\begin{alignedat}{4}
-   &\neq \frac 1 2 \cos bx &+& (-0.5) &\cdot& (0&\cdot&0+1) = \\
-   &=    \frac 1 2 \cos bx &+& (-0.25) &\cdot& [0.5 &+& 0.5] \neq \\
-   &\neq \frac 1{239} \cos bx &-& 0.25 &\cdot& 0.5 &-& 100 \\
-   \end{alignedat} \\
-\end{alignat*}
+	\begin{texcode}
+		\begin{alignat*}{2}
+		y &= \sin^2 ax \cos bx = \\
+		  &= (\sin ax \sin ax ) \cos bx =  \\
+		  &= \frac 1 2 (\cos(ax-ax)-\cos(2ax)) \cos bx = \\
+		  &= \frac {1-cos(2ax)} 2 \cos bx \neq \\
+		  &\begin{alignedat}{4}
+		   &\neq \frac 1 2 \cos bx &+& (-0.5) &\cdot& (0&\cdot&0+1) = \\
+		   &=    \frac 1 2 \cos bx &+& (-0.25) &\cdot& [0.5 &+& 0.5] \neq \\
+		   &\neq \frac 1{239} \cos bx &-& 0.25 &\cdot& 0.5 &-& 100 \\
+		   \end{alignedat} \\
+		\end{alignat*}
+	\end{texcode}
+	будет свёрстано в:
+	\begin{alignat*}{2}
+	y &= \sin^2 ax \cos bx = \\
+	  &= (\sin ax \sin ax ) \cos bx =  \\
+	  &= \frac 1 2 (\cos(ax-ax)-\cos(2ax)) \cos bx = \\
+	  &= \frac {1-cos(2ax)} 2 \cos bx \neq \\
+	  &\begin{alignedat}{4}
+	   &\neq \frac 1 2 \cos bx &+& (-0.5) &\cdot& (0&\cdot&0+1) = \\
+	   &=    \frac 1 2 \cos bx &+& (-0.25) &\cdot& [0.5 &+& 0.5] \neq \\
+	   &\neq \frac 1{239} \cos bx &-& 0.25 &\cdot& 0.5 &-& 100 \\
+	   \end{alignedat} \\
+	\end{alignat*}
 	Обратите внимание, что такие окружения можно вкладывать.
 	Впрочем, иногда использование окружение \t{array} может оказаться проще.
 
@@ -514,50 +524,49 @@ y &= \sin^2 ax \cos bx = \\
 	Для набора кода используем команды пакета \t{minted}:
 	\begin{enumerate}
 	\item
-		Набор кода в строке (название классов, методов, операторы) используется аналог команды \verb'\verb':
-		\verb'\cpp' для плюсов, \verb'\java' для Java и так далее.
+		Набор кода в строке (название классов, методов, операторы) используется аналог команды \tex'\verb':
+		\tex'\cpp' для плюсов, \tex'\java' для Java и так далее.
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
-			\hline \verb'std::sort<int>'        & std::sort<int>        \bad \\
-			\hline \verb"\verb'std::sort<int>'" & \verb'std::sort<int>' \bad \\
-			\hline \verb"\cpp'std::sort<int>'"  & \cpp'std::sort<int>'  \ok  \\
+			\hline \tex'std::sort<int>'        & std::sort<int>        \bad \\
+			\hline \tex"\verb'std::sort<int>'" & \tex'std::sort<int>' \bad \\
+			\hline \tex"\cpp'std::sort<int>'"  & \cpp'std::sort<int>'  \ok  \\
 			\hline
 		\end{tabular}\end{center}
 
 	\item
-		Набор кусков кода уже делаем в аналоге окружения \verb'verbatim':
-		\verb'cppcode' для плюсов, \verb'javacode' для Java и так далее:
+		Набор кусков кода уже делаем в аналоге окружения \tex'verbatim':
+		\tex'cppcode' для плюсов, \tex'javacode' для Java и так далее:
 		\begin{center}\begin{tabular}{|c|c|c|}
 			\hline Это... & ...верстается так & \\
 			\hline \begin{minipage}{0.4\linewidth}
-\begin{verbatim}
-void main() {
-    cout
-        << "Hello, World!"
-        << endl;
-    return 1;
-}
-\end{verbatim}
+				\begin{texcode}
+					void main() {
+					    cout
+					        << "Hello, World!"
+					        << endl;
+					    return 1;
+					}
+				\end{texcode}
 			\end{minipage} & \begin{minipage}{0.4\linewidth}
-void main() {
-    cout
-        << "Hello, World"
-        << endl;
-    return 1;
-}
+				void main() {
+				    cout
+				        << "Hello, World"
+				        << endl;
+				    return 1;
+				}
 			\end{minipage} \bad \\
 			\hline \begin{minipage}{0.4\linewidth}
-\begin{verbatim}
-\begin{verbatim_}
-void main() {
-    cout
-        << "Hello, World!"
-        << endl;
-    return 1;
-}
-	\end{verbatim_}
-	%подчёркивания не нужны
-\end{verbatim}
+				\begin{texcode}
+					\begin{verbatim}
+					void main() {
+					    cout
+					        << "Hello, World!"
+					        << endl;
+					    return 1;
+					}
+					\end{verbatim}
+				\end{texcode}
 			\end{minipage} & \begin{minipage}{0.4\linewidth}
 \begin{verbatim}
 void main() {
@@ -569,25 +578,25 @@ void main() {
 \end{verbatim}
 			\end{minipage} \bad \\
 			\hline \begin{minipage}{0.4\linewidth}
-\begin{verbatim}
-\begin{cppcode}
-void main() {
-    cout
-        << "Hello, Wolrd!"
-        << endl;
-    return 1;
-}
-\end{cppcode}
-\end{verbatim}
+				\begin{texcode}
+					\begin{cppcode}
+					void main() {
+					    cout
+					        << "Hello, Wolrd!"
+					        << endl;
+					    return 1;
+					}
+					\end{cppcode}
+				\end{texcode}
 			\end{minipage} & \begin{minipage}{0.4\linewidth}
-\begin{cppcode}
-void main() {
-    cout
-        << "Hello, World!"
-        << endl;
-    return 1;
-}
-\end{cppcode}
+				\begin{cppcode}
+					void main() {
+					    cout
+					        << "Hello, World!"
+					        << endl;
+					    return 1;
+					}
+				\end{cppcode}
 			\end{minipage} \ok \\
 			\hline
 		\end{tabular}\end{center}
@@ -621,7 +630,7 @@ void main() {
 
 \item
 	Избегайте написания цифрами коротких числительных.
-	Сокращения "--- через дефис (\verb!-!, не тире!), максимально краткие (нельзя начинать с гласных!):
+	Сокращения "--- через дефис (\tex!-!, не тире!), максимально краткие (нельзя начинать с гласных!):
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Рассмотрим 2 случая: \bad \\
 		\hline Рассмотрим два случая: \ok \\
@@ -654,30 +663,30 @@ void main() {
 	До \\
 	\hline
 	\begin{minipage}{0.9\textwidth}
-\begin{verbatim}
-Архимед родился в Сиракузах, греческой колонии на
-острове Сицилия. Отцом Архимеда был математик и
-астроном Фидий, состоявший, как утверждает Плутарх,
-в близком родстве с Гиероном II, тираном Сиракуз.
-Отец привил сыну с детства любовь к математике,
-механике и астрономии. Для обучения Архимед отправился в
-Александрию Египетскую "--- научный и культурный
-центр того времени.
-\end{verbatim}
+		\begin{texcode}
+			Архимед родился в Сиракузах, греческой колонии на
+			острове Сицилия. Отцом Архимеда был математик и
+			астроном Фидий, состоявший, как утверждает Плутарх,
+			в близком родстве с Гиероном II, тираном Сиракуз.
+			Отец привил сыну с детства любовь к математике,
+			механике и астрономии. Для обучения Архимед отправился в
+			Александрию Египетскую "--- научный и культурный
+			центр того времени.
+		\end{texcode}
 	\end{minipage}
 	\\
 	\hline После \\
 	\hline
 	\begin{minipage}{0.9\textwidth}
-\begin{verbatim}
-Архимед родился в Сиракузах, греческой колонии на острове Сицилия.
-Отцом Архимеда был математик и астроном Фидий, состоявший, как
-утверждает Плутарх, в близком родстве с Гиероном II, тираном Сиракуз.
-Отец привил сыну с детства любовь к математике,
-механике и астрономии.
-Для обучения Архимед отправился в Александрию Египетскую "---
-научный и культурный центр того времени.
-\end{verbatim}
+		\begin{texcode}
+			Архимед родился в Сиракузах, греческой колонии на острове Сицилия.
+			Отцом Архимеда был математик и астроном Фидий, состоявший, как
+			утверждает Плутарх, в близком родстве с Гиероном II, тираном Сиракуз.
+			Отец привил сыну с детства любовь к математике,
+			механике и астрономии.
+			Для обучения Архимед отправился в Александрию Египетскую "---
+			научный и культурный центр того времени.
+		\end{texcode}
 	\end{minipage} \\
 	\hline
 	\end{tabular}\end{center}
@@ -686,48 +695,48 @@ void main() {
 	Отступы и пустые строки делаются так:
 	\begin{enumerate}
 	\item
-		Разделители, как \verb'\section', \verb'\chapter' и прочие не порождают отступа,
+		Разделители, как \tex'\section', \tex'\chapter' и прочие не порождают отступа,
 		ограждаются одной пустой строкой с каждой стороны.
 
 	\item
 		Все окружения порождают отступ внутри себя.
 		Если вы используете цепочку вложеных окружений, то можно сделать отступ один раз.
-\begin{verbatim}
-\begin{center}\begin{tabular}
-    %и поехали)
-\end{tabular}\end{center}
-\end{verbatim}
+		\begin{texcode}
+			\begin{center}\begin{tabular}
+			    %и поехали)
+			\end{tabular}\end{center}
+		\end{texcode}
 
 	\item
-		Если вы используете короткие строки в \verb'\item',
-		то пишите в одну строку и отступите перед \verb'\item', пустых строк не нужно.
-		Иначе \verb'\item' не сдвигается относительно \verb'enumerate', \verb'itemize' и \verb'description',
-		содержимое пишется со следующей строки со сдвигом, а перед следующим \verb'item'-ом ставится пустая строка:
-\begin{verbatim}
-\begin{itemize}
-    \item 1
-    \item 2
-    \item 3
-\end{itemize}
-\begin{itemize}
-\item
-    1
-    1
+		Если вы используете короткие строки в \tex'\item',
+		то пишите в одну строку и отступите перед \tex'\item', пустых строк не нужно.
+		Иначе \tex'\item' не сдвигается относительно \tex'enumerate', \tex'itemize' и \tex'description',
+		содержимое пишется со следующей строки со сдвигом, а перед следующим \tex'item'-ом ставится пустая строка:
+		\begin{texcode}
+			\begin{itemize}
+			    \item 1
+			    \item 2
+			    \item 3
+			\end{itemize}
+			\begin{itemize}
+			\item
+			    1
+			    1
 
-\item
-    2
-    2
-\end{itemize}
-\end{verbatim}
+			\item
+			    2
+			    2
+			\end{itemize}
+		\end{texcode}
 	\item
 		Если внутри многострочных окружений приходится переноситсь строчку в исходном файле, то желательно добавить отступ:
-\begin{verbatim}
-\begin{gather*}
-    2 + 2 = 4 \\
-    2 + 3
-        = 6
-\end{gather*}
-\end{verbatim}
+		\begin{texcode}
+			\begin{gather*}
+			    2 + 2 = 4 \\
+			    2 + 3
+			        = 6
+			\end{gather*}
+		\end{texcode}
 
 	\end{enumerate}
 
@@ -751,18 +760,18 @@ void main() {
 	Это не только позволит избежать ошибок с похожими символами, но и сделает код более читаемым.
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline Это... & ...верстается так & \\
-		\hline \verb'$f\colon A \xrightarrow{} B$' & $f\colon A \xrightarrow{} B$ \bad \\
-		\hline \verb'$f\colon A \rightarrow B$' & $f\colon A \rightarrow B$ \bad \\
-		\hline \verb'$f\colon A \ra B$' & $f\colon A \ra B$ \bad \\
-		\hline \verb'$f\colon A \to B$' & $f\colon A \to B$ \ok \\
-		\hline \verb'$a>0 \Leftarrow a \ge 0$' & $a>0 \Leftarrow a \ge 0$ \bad \\
-		\hline \verb'$a>0 \La a \ge 0$' & $a>0 \La a \ge 0$ \ok \\
-		\hline \verb'$a<b \Lra b>a$' & $a<b \Lra b>a$ \bad \\
-		\hline \verb'$a<b \iff b>a$' & $a<b \iff b>a$ \ok \\
+		\hline \tex'$f\colon A \xrightarrow{} B$' & $f\colon A \xrightarrow{} B$ \bad \\
+		\hline \tex'$f\colon A \rightarrow B$' & $f\colon A \rightarrow B$ \bad \\
+		\hline \tex'$f\colon A \ra B$' & $f\colon A \ra B$ \bad \\
+		\hline \tex'$f\colon A \to B$' & $f\colon A \to B$ \ok \\
+		\hline \tex'$a>0 \Leftarrow a \ge 0$' & $a>0 \Leftarrow a \ge 0$ \bad \\
+		\hline \tex'$a>0 \La a \ge 0$' & $a>0 \La a \ge 0$ \ok \\
+		\hline \tex'$a<b \Lra b>a$' & $a<b \Lra b>a$ \bad \\
+		\hline \tex'$a<b \iff b>a$' & $a<b \iff b>a$ \ok \\
 		\hline
 	\end{tabular}\end{center}
 	Если из имени символа понятно, что он предназначен для другой цели "--- не надо его использовать.
-	Например, не используйте \verb'\measuredangle' ($\measuredangle$) в качестве значка <<рассмотрим>>,
+	Например, не используйте \tex'\measuredangle' ($\measuredangle$) в качестве значка <<рассмотрим>>,
 	пишите это словами "--- лучше читается.
 
 \end{enumerate}
