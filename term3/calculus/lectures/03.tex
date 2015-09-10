@@ -1,0 +1,109 @@
+\begin{proof}\begin{description}
+\item[Покажем измеримость $\phi(Q_h)$.]
+	Покажем, что мера его границы ноль.
+	\[
+		\delta \phi(Q_h) = \phi(\delta Q_h)
+	\]
+	$\delta Q_h$ "--- это $2n$ кубиков меньшей размерности.
+	Образ таких кубиков "--- сужение графика $f$, то есть множество нулевой меры.
+
+\item[Доказательство формулы.]
+	$R_h = \linf{\phi}_{t_0} (Q_h)$.
+	\[ \frac{\mu R_h}{\mu Q_h} = |\det \d_{t^*} \phi| = |J_\phi(t^*)| \]
+	Теперь перейдём к $\phi(Q_h)$.
+	\begin{gather*}
+		\sigma(h) \lrh \sup_{t^*\colon Q_h \subset G} \sup_{t \in Q_h} \|\phi(t) - \linf{\phi}_{t^*}(t)\| \\
+		t, t^* \in Q_h \Ra \|t - t^*\| \le \sqrt{n} h \\
+		\frac{\sigma(h)}{\sqrt{n} h} \le S_n \ra 0
+	\end{gather*}
+	Значит $\sigma(h) = o(h)$.
+	Тогда посмотирм на $\phi(Q_h)$ и $R_h$.
+	\[
+		\forall t \in Q_h, \rho( \phi(t), \linf{\phi}_{t^*}(h) ) \le \sigma(h)
+	\]
+	Тогда $\phi(Q_h)$ содержится в $R_h$, раздутом на $\sigma(h)$ (обозначим $\tilde R_h$),
+	а также содержит $R_h$, сдутый на $\sigma(h)$ (обозначим $\tilde{\tilde R}_h$).
+
+	Хотим получить следующее:
+	\begin{gather*}
+		\tilde R_h \subset \phi(Q_h) \subset \tilde{\tilde R_h} \\
+		\mu \tilde R_h = \mu R_h + o(h^n) \quad \mu \tilde{\tilde R}_h = \mu R_h + o(h^n) \\
+		\Ra \frac{\mu \phi(Q_h)}{\mu Q_h} = \frac{\mu \phi(Q_h)}{h^n} = \frac{\mu R_h + o(h^n)}{h^n}
+		= \frac{\mu R_h}{\mu Q_h} + o(1) = |J_\phi(t^*)| + o(1)
+	\end{gather*}
+
+	Теперь смотрим на $R_h$. Если мы его раздули на $\sigma(h)$.
+	\begin{gather*}
+		0 \le \mu R_h - \mu \tilde R_h \le 2n \sigma(h) \mu (\text{грань кубика}) \\
+		(\text{сторона грани}) \le \|\d_{t^*} \phi\| h \le Mh \\
+		(\text{сторона увелчившейся грани}) \le Mh + 2\sigma(h) \\
+		(\text{объём грани кубика}) \le \sigma(h) (Mg + 2\sigma(h))^{n-1} = o(h^n)
+	\end{gather*}
+\end{description}\end{proof}
+
+\begin{lemma}
+	$G_1 \subset G_2 \subset G_3 \subset \dots \subset G_n \subset \dots \subset G$ "--- ограниченны и все измеримы.
+	$f\colon \cl G \ra \R$ непрерывна, $\mu (G \setminus G_n) \ra 0$.
+	Тогда
+	\[ \lim_{i \ra \infty} \int\limits_{G_n} = \int\limits_G f \]
+\end{lemma}
+\begin{proof}
+	$G$ ограничена, значит на замыкании тоже, значит $f$ непрерывна на комакте.
+	\begin{gather*}
+		\int\limits_G f - \int\limits_{G_n} f = \int\limits_{G \setminus G_n} f \\
+		\left| \int\limits_G f - \int\limits_{G_n} f \right| = \left| \int\limits_{G \setminus G_n} f \right|
+		\le \int\limits_{G \setminus G_n} |f| \le M \mu(G \setminus G_n) \ra 0
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Замена переменной в кратном интеграле]
+БЛАБЛАБЛАБЛА
+\end{theorem}
+\begin{proof}
+	$P \subset G$.
+	\[ \int\limits_{\phi(P)} f(x) \d x = \int\limits_P f(\phi(t)) |J_\phi(t)| \d t \]
+	Будем доказывать для разных $P$.
+	\begin{description}
+	\item[$P$ "--- куб со стороной $a$:]
+		Оба интеграла существуют.
+		$\tau_k$ "--- разбиение куба $P$ на кубики со стороной $\frac{a}k$.
+		Оснащение $\xi_k$ возьмём точки, минимальные по каждой координате.
+		$g(t) = f(\phi(t)) |J_\phi(t)|$.
+		\[
+			S(g, \tau_k, \xi_k) \xlongrightarrow{k \ra \infty} \int\limits_P g(t) \d t \\
+		\]
+		$\tilde \tau_k$ "--- разбиение $\phi(P)$  на $\phi(P_i)$, на оснащение тоже подействуем.
+		Надо бы понять, что $|\tilde \tau_k| \ra 0$.
+		Для этого хотим, что для любого $\epsilon > 0$ с какого-то $k$ мелкость $\tau_k$ меньше $\epsilon$.
+		Всопмним, что $\phi$ равномерно непрерывна:
+		\[
+			\forall \epsilon > 0, \exists \delta > 0\colon \forall t,s, \|t-s\| \le \delta \Ra \|\phi(t) - \phi(s)\| \le \epsilon
+		\]
+		Значит, можно выбрать такое $k$, что $P_i$ будут настолько малы, что и $\phi(P_i)$ будут малы.
+
+		Осталось сравнить интегралы через суммы.
+		\begin{gather*}
+			\sigma(g, \tau_k, \xi_k) - \sigma(f, \tilde \tau_k, \tilde \xi_k)
+			= \sum g(\xi_{ki}) \mu P_{ki} - \sum f(\tilde\xi_{ki}) \mu \phi(P_{ki}) = \\
+			= \sum \biggl( f(\phi(\xi_{ki})) |J_\phi (\xi_{ki})| \mu P_{ki} - f(\phi(\xi_{ki})) \mu \phi(P_{ki}) \biggr)
+			= \sum f(\phi(\xi_{ki})) \mu P_{ki} \left( |J_\phi (\xi_{ki})| - \frac{\mu \phi(P_{ki})}{\mu P_{ki}} \right) \\
+			\left| \sigma(g, \tau_k, \xi_k) - \sigma(f, \tilde \tau_k, \tilde \xi_k) \right|
+			\le \sum\left|f(\phi(\xi_{ki}))\right|\frac{a^n}{k^n} \left||J_\phi (\xi_{ki})| - \frac{\mu\phi(P_{ki})}{\mu P_{ki}} \right| \le \\ 
+			\le M \sum \frac{a^n}{k^n} \left| |J_\phi (\xi_{ki})| - \frac{\mu \phi(P_{ki})}{\mu P_{ki}} \right|
+			\le M a^n \sup_{t^*} \left| |J_\phi (t^*)| - \frac{\mu \phi\left(Q_{\frac{a}k}\right)}{\mu Q_{\frac{a}k}} \right| \ra 0
+		\end{gather*}
+
+	\item[$P$ "--- конечное объединение кубов:]
+		$P = \bigsqcup_{i=1}^m P_i$ "--- дизъюнктное объединение кубиков.
+		Разложили на слагаемые и победа.
+
+	\item[$P$ "--- измеримое и ограниченное:]
+		Подгоняем множество кубами: всё множество лежит в кубе, режем его по серединам рёбер, и так далее.
+		На каждом шаге есть объединение кубов $G_n$, целиком лежащих внутри $P$.
+		Покажем, что оно стремится к $P$.
+		Возьмём границу $P$ и приблизим её множеством параллелепипедов (клеточным множеством) меры меньше $\epsilon$.
+		Возьмём любой параллелепипед, смотрим, сколько кубиков, его задевающих целиком.
+		По мере измельчения объём задевающих стремится к объёму пареллелепипеда.
+		Значит с какого-то момента кубики, покрывающие границу, будут иметь суммарную меру не более $2\epsilon$.
+	\end{description}
+\end{proof}

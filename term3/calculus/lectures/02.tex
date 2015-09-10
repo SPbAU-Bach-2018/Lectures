@@ -1,0 +1,162 @@
+
+\begin{lemma}
+	$f\colon K \ra \R$, $K \subset \R^n$ "--- компакт, $f$ непрерывна.
+	Тогда $\Gamma_f$ измеримо, и мера его "--- ноль.
+\end{lemma}
+\begin{proof}
+	$K$ ограниченно, значит $K$ лежит в кубе $Q$.
+	$f$ непрерывна на $K$, значит равномерно непрерывна, значит
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall x, y \in K, |x-y| < \delta \Ra |f(x)-f(y)| < \epsilon \]
+	Нарежем $Q$ на маленькие кубики со стороной менее $\delta / \sqrt{n}$, тогда там разброс функции меньше $\epsilon$.
+	Тогда мера графика менее $\epsilon \mu K$.
+\end{proof}
+
+\begin{lemma}
+	$A$ линейное отображение и $P$ "--- косоугольный параллелепипед (натянут на $n$ линейно независимых векторов).
+	Тогда
+	\[ \mu(AP) = |\det A| \mu P \]
+\end{lemma}
+\begin{proof}
+	Из линейной алгебры: $P$ задан набором векторов $u_1, u_2, \dots, u_n$.
+	Его объём "--- определитель матрицы векторов.
+	\[ \mu P = \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix}\right| \]
+	Теперь
+	\begin{gather*}
+		\mu(AP) = \left|\det \left(A \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right)\right|
+			= |\det A| \cdot \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right| = |\det A| \mu P
+	\end{gather*}
+\end{proof}
+
+Ещё раз формула замены переменной:
+$G \subset \R^n$ "--- открыто и измеримо, \\
+$\phi\colon \cl G \ra \R^n$ биективна, непрерывна и непрерывно дифференцируема на $\cl G$ (*), \\
+Якобиан
+\[
+	J_\phi(t) = \det
+	\begin{pmatrix}
+		\partd{\phi_1}{t_1} & \partd{\phi_1}{t_2} & \cdots & \partd{\phi_1}{t_n} \\
+		\partd{\phi_2}{t_1} & \partd{\phi_2}{t_2} & \cdots & \partd{\phi_2}{t_n} \\
+		\vdots              & \vdots              & \ddots & \vdots              \\
+		\partd{\phi_n}{t_1} & \partd{\phi_n}{t_2} & \cdots & \partd{\phi_n}{t_n} \\
+	\end{pmatrix} \ne 0
+\]
+$\phi(G) = D$ измеримо.
+Тогда для непрерывной $f\colon \cl D \ra \R$. 
+\[
+	\int\limits_D f(x) \d x = \int\limits_G f(\phi(t)) |J_\phi(t)| \d t
+\]
+
+\begin{lemma}
+	$E_1 \subset E \subset G$ ограниченны, $\phi\colon \cl G \ra \R^n$ удовлетворяет условию (*).
+	Тогда
+	\begin{enumerate}
+		\item $\phi(E \setminus E_1) = \phi(E) \setminus \phi(E_1)$
+		\item $\phi(\cl E) = \cl \phi(E)$
+		\item $\phi(\Int E) = \Int \phi(E)$
+		\item $\phi(\delta E) = \delta \phi(E)$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}\begin{enumerate}
+\item
+	$\phi$ биективна.
+
+\item
+	\begin{description}
+	\item[$\supset$:]
+		$E \subset G$ ограниченно, значит $\cl E$ ограничено, значит $\cl E$ компакт,
+		значит $\phi(\cl E)$ непрерывный образ компакта, то есть компакт, то есть $\phi(\cl E)$ замкнуто.
+		\[
+			E \subset \cl E \Ra \phi(E) \subset \phi(\cl E) \Ra \cl \phi(E) \subset \cl \phi(\cl E) = \phi(\cl E)
+		\]
+
+	\item[$\subset$:]
+		Возьмём $a \in \cl E$. Есть последовательность $\{a_n\} \subset E$, что $\lim a_n = a$.
+		По непрерывности $\phi$
+		\[
+			\lim \phi(a_n) = \phi(\lim a_n) = \phi(a)
+		\]
+		откуда $\phi(a) \in \cl \phi(E)$.
+	\end{description}
+
+\item
+	\begin{description}
+	\item[$\subset$:]
+		$\Int E$ открыто, значит $\phi(\Int E)$ открыто по теореме об обратной функции.
+		\[
+			\Int E \subset E \Ra \phi(\Int E) \subset \phi(E) \Ra \underbrace{\Int \phi(\Int E)}_{= \phi(\Int E)} \subset \Int(\phi E)
+		\]
+
+	\item[$\supset$:]
+		Возьмём $a \in \Int \phi(E)$. Есть шарик $B_r(a) \subset \phi(E)$.
+		Тогда можно взять шарик $B_\epsilon(\phi^{-1}(a)) \subset E$, образ которого помещается в $B_r(a) \subset \phi(E)$.
+		По биекции можно снять $\phi$, и получили, что $\phi^{-1}(a) \in \Int E$.
+	\end{description}
+
+\item
+	\begin{gather*}
+		\delta E = \cl E \setminus \Int E \\
+		\phi(\delta E) = \phi(\cl E \setminus \Int E) = \phi(\cl E) \setminus (\Int E)
+		= \cl \phi(E) \setminus \Int \phi(E) = \delta \phi(E)
+	\end{gather*}
+\end{enumerate}\end{proof}
+
+\newcommand*{\linf}[1]{{#1}^{\mathup{lin}}}
+\begin{Def}
+	$\phi\colon G \ra \R^n$ дифферецируема в $t_0$.
+	Напишем Тейлора:
+	\[
+		\phi(t) = \phi(t_0) + \d_{t_0} \phi(t - t_0) + \dots
+	\]
+	Назовём эти первые два слагаемых линейной составляющей $\phi$:
+	\[
+		\phi^{\mathup{lin}}_{t_0} (t) \eqDef \phi(t_0) + d_{t_0} \phi(t - t_0) 
+	\]
+\end{Def}
+
+\begin{lemma}
+	Если $G$ ограничено и $\phi\colon \cl G \ra \R^n$ непрерывно дифферецируема на $\cl G$, то
+	\[
+		S_\delta \lrh \sup_{\substack{\|t-t_0\| \le \delta \\ [t, t_0] \subset G}} \frac{\|\phi(t) - \linf{\phi}_{t_0} (t)\|}{\|t-t_0\|} \xlongrightarrow{\delta \ra 0+} 0
+	\]
+\end{lemma}
+\begin{proof}
+	$g(t) = \phi(t) - \linf{\phi}_{t_0} (t)$, $g(t_0) = 0$.
+	Переберём точки на $[t_0, t]$ вида $\theta t_0 + (1-\theta) t$.
+
+	$h(\theta) = g(\theta t_0 + (1-\theta) t)$ "--- векторная функция одной переменной, дифференцируема.
+	Тогда по теореме Лагранжа для векторозначных функций
+	\begin{gather*}
+		\|h(1) - h(0)\| \le \|h'(\theta_0)\| \cdot (1-0) \\
+		\|h(1) - h(0)\| = \|g(t_0) - g(t)\| = \|g(t)\|
+	\end{gather*}
+	Мы только что оценили числитель дроби.
+	\begin{gather*}
+		\d_{\theta_0}h = \d_{\theta_0 t_0 + (1-\theta_0) t} g \circ \d_{\theta_0} (\theta t_0 + (1-\theta) t)
+			= \d_{\theta_0 t_0 + (1-\theta_0) t} g \circ (t_0 - t) \\
+		u \lrh \theta_0 t_0 + (1-\theta_0) t \\
+		\d_u g = \d_u \phi - \d_u \linf{\phi}_{t_0} = \d_u \phi - \d_{t_0} \phi \\
+		\|d_{\theta_0} h\| = \|(\d_u \phi - \d_{t_0} \phi)(t-t_0)\| \le \|\d_u \phi - \d_{t_0} \phi\| \|t-t_0\| \\
+		\frac{\|\phi(t) - \linf{\phi}_{t_0} (t)\|}{\|t-t_0\|} = \frac{\|g(t)\|}{\|t-t_0\|} \le \frac{\|\d_{\theta_0} h\|}{\|t-t_0\|}
+			\le \frac{\|\d_u \phi - \d_{t_0} \phi\| \|t-t_0\|}{\|t-t_0\|} = \|\d_u \phi - \d_{t_0} \phi\| \\
+		S_\delta \le \sup_{\substack{\|t-t_0\| \le \delta \\ [t, t_0] \subset G}} \|\d_u \phi - \d_{t_0} \phi\|
+			\le \sup_{\|u-t_0\|\le \delta} \|\d_u \phi - \d_{t_0} \phi\|
+	\end{gather*}
+	В конце написана матрица из разностей производных функции $\phi$ по разным координатам.
+	Эта вещь целиком непрерывна, поэтому норма матрицы при стремящейся к нулю $\delta$ стремится к нулю.
+\end{proof}
+
+\begin{theorem}[Геометрический смысл модуля Якобиана]
+	$\phi\colon \cl G \ra \R^n$ удовлетворяет (*).
+	$t^* \in G$, $Q_h \lrh \{t \mid t^*_i \le t_i \le t^*_i + h\}$ "--- куб на $t^*$.
+	Тогда $\phi(Q_h)$ измерима и
+	\[
+		\frac{\mu \phi(Q_h)}{\mu Q_h} \xlongrightarrow{h \ra 0+} |J_\phi(t^*)|
+	\]
+	Более того,
+	\[
+		\sup_{t^* \in G} \left| \frac{\mu \phi(Q_h)}{\mu Q_h} - |J_\phi(t^*)|\right| \xlongrightarrow{h \ra 0+} 0
+	\]
+\end{theorem}
+\begin{Rem}
+	Геометрический смысл тут такой: взяли маленький кубик, от воздействия на него $\phi$-шкой его объём вырос примерно в Якобиан.
+\end{Rem}
