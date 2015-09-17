@@ -1,0 +1,197 @@
+{\Large ЭГЕГЕГЕГЕЕЕЕЕЙ
+
+}
+\begin{lemma}
+	$K \subset \R^{n-1}$ выпуклый компакт, $f\colon K \ra \R^n$ непрерывна и непрерывно дифференцируема на замыкании.
+	Тогда $\mu f(K) = 0$.
+\end{lemma}
+\begin{proof}
+	\[ f = \begin{pmatrix}f_1 \\ f_2 \\ \vdots \\ f_n\end{pmatrix} \]
+	Все координаты равномерно непрерывны, значит все частные производные непрерывны и ограничены.
+	Тогда
+	\[ \forall x, y, \|f(x) - f(y)\| \le M \|x - y\| \]
+
+	Берём $K$, окружаем кубиком $Q$ и режем на куски диаметра не более $\delta$.
+	Хотим, чтобы диаметр разбиения был не более $\delta$, то есть сторона не более $\delta / \sqrt{n-1}$.
+	Тогда образ каждого кусочка имеет диаметр не более $M\delta$.
+	Значит $f(K_i)$ можно вписать в куб $C_i$ с ребром не более $M\delta$.
+	\begin{gather*}
+		f(K) = \bigcup f(K_i) \subset \bigcup C_i \\
+		\mu f(K) \le \left( \frac{a}{\delta / \sqrt{n-1}} \right)^{n-1} \cdot \left(M\delta\right)^n = const \cdot \delta
+	\end{gather*}
+	Получили, что можем оценить $\mu f(K)$ сколь угодно мало.
+\end{proof}
+
+\begin{Rem}
+	Выпуклость не так нужна, можно связные множества, а потом на связные куски разбить, но нам нужно только для куба.
+\end{Rem}
+
+\begin{Rem}
+	Без дифференцируемости неверно, можно привести какой-то пример.
+	\textit{Какой именно на лекции честно написать не получилось.}
+\end{Rem}
+
+{\Large ЭГЕГЕГЕГЕЕЕЕЕЙ
+
+}
+\begin{conseq}
+	$\phi\colon \cl G \ra \R^n$, $\phi(G) = D$, $\phi$ биективна между $G \setminus e_1$ и $D \setminus e_2$, где $\mu e_1 = \mu e_2 = 0$,
+	$\phi$ непрерывно дифференцируема на $\cl G$, $J_\phi \ne 0$ на $G \setminus e_1$.
+	Тогда если $f\colon \cl D \ra \R$ непрерывна, то
+	\[ \int\limits_G f(\phi(t)) |J_\phi(t)| \d t = \int\limits_D f(x) \d x \]
+\end{conseq}
+\begin{proof}
+	\[ \int\limits_G f(\phi(t)) |J_\phi(t)| \d t = \int\limits_{G \setminus e_1} f(\phi(t)) |J_\phi(t)| \d t =
+		\int\limits_{D \setminus e_2} f(x) \d x = \int\limits_D f(x) \d x \]
+\end{proof}
+
+\begin{exmp}
+	$\phi(t) = t + a$
+	\begin{gather*}
+		\int\limits_G f(t + a) \d t = \int\limits_D f(x) \d x \\
+		D = \{x \mid x - a \in G\} = \{x+a \mid x \in G\}
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	$\phi(t) = At$, $J_\phi(t) = \det A$.
+	\begin{gather*}
+		\int\limits_G f(At) \underbrace{|\det A|}_{const} \d t = \int\limits_D f(x) \d x \\
+		D = \{Ax \mid x \in G\}
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	Полярные координаты:
+	\begin{gather*}
+		(r, \phi) \ra (r \cos \phi, r \sin \phi) \\
+		J(r, \phi) = \begin{vmatrix} \cos \phi & -r \sin \phi \\ \sin \phi & r \cos \phi \end{vmatrix} = r \\
+		r \in [0, +\infty) \phi \in [0, 2\pi)
+	\end{gather*}
+	Биекция и ненулевой якобиан убивают $r = 0$, но это всего одна точка.
+	Но нужна ещё открытость, выкинем $\phi = 0$ туда же.
+	\begin{gather*}
+		\int\limits_G f(r \cos \phi, r \sin \phi) r \d r \d \phi = \int\limits_D f(x, y) \d x \d y
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	Сферические координаты: $\phi$ "--- долгота, $\psi$ "--- широта.
+	\begin{gather*}
+		(r, \phi, \psi) \ra (r \cos \phi \cos \psi, r \sin \phi \cos \psi, r \sin \psi) \\
+		r \in [0, +\infty) \quad \phi \in [0, 2\pi) \quad \psi \in [-\pi/2, \pi/2) \\
+		J(r, \phi, \psi) = r^2 \cos \psi
+	\end{gather*}
+	Опять-таки, выкинем кое-какое множество:
+	\begin{gather*}
+		r \in (0, +\infty) \quad \phi \in (0, 2\pi) \quad \psi \in (-\pi/2, \pi/2) \\
+		\int\limits_G f(r \cos \phi \cos \psi, r \sin \phi \cos \psi, r \sin \psi) r^2 \cos \psi \d r \d \phi \d \psi
+		= \int\limits_D f(x, y, z) \d x \d y \d z
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	\[
+		\lim_{a \ra \infty} \int\limits_{-a}^{a} e^{-x^2}
+	\]
+	Почситаем его так:
+	\begin{gather*}
+		\int\limits_{[-a,a]^2} e^{-x^2-y^2} \d x \d y = \int\limits_{[-a,a]^2} e^{-x^2} e^{-y^2} \d x \d y
+		= \int\limits_{[-a,a]} e^{-x^2} \left(\int\limits_{[-a,a]} e^{-y^2} \d y \right)\d x
+		= \left(\int\limits_{[-a,a]} e^{-x^2} \d x\right)^2
+	\end{gather*}
+	Будем считать предел не на квадратике, а на кружочке, приближая квадрат кругом снаружи и иннутри.
+	\begin{gather*}
+		\int\limits_{x^2+y^2\le a^2} e^{-x^2-y^2} \d x \d y
+		\le \int\limits_{[-a,a]^2} e^{-x^2-y^2} \d x \d y
+		\le \int\limits_{x^2+y^2\le2a^2} e^{-x^2-y^2} \d x \d y \\
+		\int\limits_{x^2+y^2 \le a^2} e^{-x^2-y^2} \d x \d y = \cdots \\
+		(r, \phi) \ra (r \cos \phi, r \sin \phi) \\
+		\cdots = \int\limits_{r=0}^a \int\limits_{0}^{2\pi} e^{-r^2} r \d \phi \d r
+		= 2 \pi \int\limits_{r=0}^a e^{-r^2} r \d r = \pi \int\limits_{t=0}^{a^2} e^{-t} \d t = \pi (1-e^{-a^2}) \ra \pi
+	\end{gather*}
+	Откуда
+	\[
+		\lim_{a \ra \infty} \int\limits_{-a}^{a} e^{-x^2} = \sqrt \pi
+	\]
+	Этот интеграл очень популярен.
+	Например, в теории вероятностей любят
+	\[ \Phi(x) = \int\limits_{-\infty}^x e^{-t^2} \d t \]
+\end{exmp}
+
+\begin{exmp}
+	Объём $n$-мерного шара.
+	\begin{gather*}
+		\int\limits_{\sum x_i^2 \le r^2} 1 \d x_1 \dots \d x_n
+		= r^n \int\limits_{\sum t_i^2 \le 1} 1 \d t_1 \dots \d t_n
+		= r^n C_n
+	\end{gather*}
+	где $C_n$ "--- объём единичного шара.
+	КАРТИНКА: Шар, горизонатльная проекция, радиус.
+	\begin{gather*}
+		c_n = \int\limits_{\sum t_i^2 \le 1} \d t_1 \dots \d t_n
+		= \int\limits_{-1}^1 c_{n-1} (\sqrt{1-\tau^2})^{n-1} \d \tau
+		= с_{n-1} \int\limits_0^\pi \sin^n \phi \d \phi = I_n
+	\end{gather*}
+	А это у нас было!
+	\begin{gather*}
+		I_{2k} = \frac{(2k-1)!!}{(2k)!!} \frac\pi2 \quad I_{2k+1} = \frac{(2k)!!}{(2k+1)!!} \\
+		c_n = 2c_{n-1} I_n = 4c_{n-2} I_n I_{n-1} = \dots = 2^{n-1} \cdot \underbrace{c_1}_{=2} I_n I_{n-1} \dots I_2
+		= 2^n \prod_{i=2}^n I_i
+	\end{gather*}
+	$n=2k$:
+	\begin{gather*}
+		\prod_{i=2}^n I_i = \frac{(2k-1)!!}{2k!!} \frac\pi2 \frac{(2k-2)!!}{(2k-1)!!} \frac{(2k-3)!!}{(2k-2)!!} \frac\pi2 \dots
+		= \left(\frac\pi2\right)^{k} \frac1{(2k)!!} = \frac{\pi^k}{2^k\cdot2^k k!} \\
+		c_n = \frac{\pi^k}{k!}
+	\end{gather*}
+	$n=2k+1$:
+	\begin{gather*}
+		\prod_{i=2}^n I_i = \frac{(2k)!!}{(2k+1)!!} \frac{(2k-1)!!}{(2k)!!}  \frac\pi2 \frac{(2k-3)!!}{(2k-2)!!} \dots
+		= \left(\frac\pi2\right)^{k} \frac1{(2k+1)!!} = \frac{\pi^k}{2^k\cdot(2k+1)!!} \\
+		c_n = \frac{2^{k+1}\pi^k}{(2k+1)!!}
+	\end{gather*}
+\end{exmp}
+
+На этой торжественной ноте кратные интегралы закончились.
+
+\chapter{Криволинейные интегралы}
+
+\section{Криволинейные интегралы I рода}
+
+Пусть есть кривая $\gamma$, на которой определена непрерывная функция $f\colon \gamma \ra \R$.
+Физический смысл "--- плотность вдоль линии, хотим массу (заряд, ...).
+\begin{Def}
+	Есть гладкий путь $\gamma\colon [a,b] \ra \R^n$, $f\colon \gamma([a, b]) \ra \R$ непрерывна.
+	\[
+		\int\limits_\gamma f \d x = \int\limits_a^b f(\gamma(t)) \|\gamma'(t)\| \d t
+	\]
+\end{Def}
+Это не просто так напоминает формулу замены переменной, это она и есть.
+
+Свойства:
+\begin{enumerate}
+\item
+	Интеграл по кривой не зависит от параметризации
+	\begin{proof}
+		Пусть $\gamma(\tau(x))$ "--- другая параметризация. $\tau$ строго монотонна, $\tau(\alpha) = a$, $\tau(\beta) = b$.
+		Достаточно показать, что
+		\[
+			\int\limits_a^b f(\gamma(t)) \|\gamma'(t)\| \d t
+			= \int\limits_\alpha^\beta f(\gamma(\tau(x))) \|(\gamma \circ \tau)'(\alpha)\| \d x
+			= \cdots
+		\]
+		есть просто замена переменной.
+		\begin{gather*}
+			(\gamma \circ \tau)' = \begin{pmatrix}
+				\gamma_1'(\tau(x)) \tau'(x) \\
+				\vdots \\
+				\gamma_n'(\tau(x)) \tau'(x)
+			\end{pmatrix} \\
+			\|(\gamma \circ \tau)'(x)\| = |\tau'(x)| \|\gamma'(\tau(x))\| \\
+			\cdots = \int\limits_\alpha^\beta \underbrace{|\tau'(x)|}_{\sign \tau' \cdot \tau'(x)} \|\gamma'(\tau(x))\| \d x
+			= \sign \tau' \int\limits_\alpha^\beta \tau'(x) \|\gamma'(\tau(x))\| \d x
+		\end{gather*}
+		Этот знак разберётся с тем, возрастала или убывала ли $\tau$.
+	\end{proof}
+\end{enumerate}

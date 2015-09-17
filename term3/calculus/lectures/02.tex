@@ -1,31 +1,64 @@
+\begin{Rem}\textbf{
+	Тут была другая лемма, из прошлого семестра, про то, что мера графика ноль.
+	Нам на следующей лекции уточнили, что нужна другая.
+	Вот она.
+}\end{Rem}
+% \begin{lemma}
+% 	$f\colon K \ra \R$, $K \subset \R^n$ "--- компакт, $f$ непрерывна.
+% 	Тогда $\Gamma_f$ измеримо, и мера его "--- ноль.
+% \end{lemma}
+% \begin{proof}
+% 	$K$ ограниченно, значит $K$ лежит в кубе $Q$.
+% 	$f$ непрерывна на $K$, значит равномерно непрерывна, значит
+% 	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall x, y \in K, |x-y| < \delta \Ra |f(x)-f(y)| < \epsilon \]
+% 	Нарежем $Q$ на маленькие кубики со стороной менее $\delta / \sqrt{n}$, тогда там разброс функции меньше $\epsilon$.
+% 	Тогда мера графика менее $\epsilon \mu K$.
+% \end{proof}
 
+% \begin{lemma}
+% 	$A$ линейное отображение и $P$ "--- косоугольный параллелепипед (натянут на $n$ линейно независимых векторов).
+% 	Тогда
+% 	\[ \mu(AP) = |\det A| \mu P \]
+% \end{lemma}
+% \begin{proof}
+% 	Из линейной алгебры: $P$ задан набором векторов $u_1, u_2, \dots, u_n$.
+% 	Его объём "--- определитель матрицы векторов.
+% 	\[ \mu P = \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix}\right| \]
+% 	Теперь
+% 	\begin{gather*}
+% 		\mu(AP) = \left|\det \left(A \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right)\right|
+% 			= |\det A| \cdot \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right| = |\det A| \mu P
+% 	\end{gather*}
+% \end{proof}
 \begin{lemma}
-	$f\colon K \ra \R$, $K \subset \R^n$ "--- компакт, $f$ непрерывна.
-	Тогда $\Gamma_f$ измеримо, и мера его "--- ноль.
+	$K \subset \R^{n-1}$ выпуклый компакт, $f\colon K \ra \R^n$ непрерывна и непрерывно дифференцируема на замыкании.
+	Тогда $\mu f(K) = 0$.
 \end{lemma}
 \begin{proof}
-	$K$ ограниченно, значит $K$ лежит в кубе $Q$.
-	$f$ непрерывна на $K$, значит равномерно непрерывна, значит
-	\[ \forall \epsilon > 0, \exists \delta > 0\colon \forall x, y \in K, |x-y| < \delta \Ra |f(x)-f(y)| < \epsilon \]
-	Нарежем $Q$ на маленькие кубики со стороной менее $\delta / \sqrt{n}$, тогда там разброс функции меньше $\epsilon$.
-	Тогда мера графика менее $\epsilon \mu K$.
-\end{proof}
-
-\begin{lemma}
-	$A$ линейное отображение и $P$ "--- косоугольный параллелепипед (натянут на $n$ линейно независимых векторов).
+	\[ f = \begin{pmatrix}f_1 \\ f_2 \\ \vdots \\ f_n\end{pmatrix} \]
+	Все координаты равномерно непрерывны, значит все частные производные непрерывны и ограничены.
 	Тогда
-	\[ \mu(AP) = |\det A| \mu P \]
-\end{lemma}
-\begin{proof}
-	Из линейной алгебры: $P$ задан набором векторов $u_1, u_2, \dots, u_n$.
-	Его объём "--- определитель матрицы векторов.
-	\[ \mu P = \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix}\right| \]
-	Теперь
+	\[ \forall x, y, \|f(x) - f(y)\| \le M \|x - y\| \]
+
+	Берём $K$, окружаем кубиком $Q$ и режем на куски диаметра не более $\delta$.
+	Хотим, чтобы диаметр разбиения был не более $\delta$, то есть сторона не более $\delta / \sqrt{n-1}$.
+	Тогда образ каждого кусочка имеет диаметр не более $M\delta$.
+	Значит $f(K_i)$ можно вписать в куб $C_i$ с ребром не более $M\delta$.
 	\begin{gather*}
-		\mu(AP) = \left|\det \left(A \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right)\right|
-			= |\det A| \cdot \left|\det \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \right| = |\det A| \mu P
+		f(K) = \bigcup f(K_i) \subset \bigcup C_i \\
+		\mu f(K) \le \left( \frac{a}{\delta / \sqrt{n-1}} \right)^{n-1} \cdot \left(M\delta\right)^n = const \cdot \delta
 	\end{gather*}
+	Получили, что можем оценить $\mu f(K)$ сколь угодно мало.
 \end{proof}
+
+\begin{Rem}
+	Выпуклость не так нужна, можно связные множества, а потом на связные куски разбить, но нам нужно только для куба.
+\end{Rem}
+
+\begin{Rem}
+	Без дифференцируемости неверно, можно привести какой-то пример.
+	\textit{Какой именно на лекции честно написать не получилось.}
+\end{Rem}
 
 Ещё раз формула замены переменной:
 $G \subset \R^n$ "--- открыто и измеримо, \\
