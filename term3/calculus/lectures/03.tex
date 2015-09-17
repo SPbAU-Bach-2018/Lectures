@@ -57,7 +57,23 @@
 \end{proof}
 
 \begin{theorem}[Замена переменной в кратном интеграле]
-БЛАБЛАБЛАБЛА
+	$G \subset \R^n$ "--- открыто и измеримо,
+	$\phi\colon \cl G \ra \R^n$ биективна, непрерывна и непрерывно дифференцируема на $\cl G$,
+	Якобиан
+	\[
+		J_\phi(t) = \det
+		\begin{pmatrix}
+			\partd{\phi_1}{t_1} & \partd{\phi_1}{t_2} & \cdots & \partd{\phi_1}{t_n} \\
+			\partd{\phi_2}{t_1} & \partd{\phi_2}{t_2} & \cdots & \partd{\phi_2}{t_n} \\
+			\vdots              & \vdots              & \ddots & \vdots              \\
+			\partd{\phi_n}{t_1} & \partd{\phi_n}{t_2} & \cdots & \partd{\phi_n}{t_n} \\
+		\end{pmatrix} \ne 0
+	\]
+	$\phi(G) = D$ измеримо.
+	Тогда для непрерывной $f\colon \cl D \ra \R$.
+	\[
+		\int\limits_D f(x) \d x = \int\limits_G f(\phi(t)) |J_\phi(t)| \d t
+	\]
 \end{theorem}
 \begin{proof}
 	$P \subset G$.
