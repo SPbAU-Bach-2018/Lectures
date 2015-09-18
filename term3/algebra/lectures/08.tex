@@ -1,0 +1,143 @@
+\section{Самосопряженные операторы в евклидовом и унитарном пространстве}
+
+\begin{theorem}{}
+$\mathscr{A}$ в унитарном пространстве самосопряжен $\Lra$
+$\exists$ ортонормированный базис, в котором $[\mathscr{A}]$ диагональная и вещественная. 
+\end{theorem}
+
+\begin{proof}
+
+Унитарное пространство:
+ $$\mathscr{A} = \mathscr{A}^*$$
+$\exists$ ортонормированный базис, в котором 
+$[\mathscr{A}] = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}$
+
+$$[\mathscr{A}] = [\mathscr{A}^*] = \overline{[\mathscr{A}]^{T}} = [\mathscr{A}] = \begin{pmatrix}
+\overline{\lambda_1}&0\\
+0&\overline{\lambda_n}\\
+\end{pmatrix} $$
+
+И наоборот если 
+$\exists$ ортонормированный базис в котором $[\mathscr{A}] = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}$ 
+
+$[\mathscr{A}^T] = [\mathscr{A}] \Ra \mathscr{A} = \mathscr{A}^*$ 
+
+\end{proof}
+
+\begin{conseq}
+Собственный числа самосопряженных операторов "--- вещественные. 
+\end{conseq}
+
+$\{e_{i}\}$ стандартный базис. 
+
+$\{v_i\}$ "--- ортонормированный базис. 
+В этом базисе $[\mathscr{A}] = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}$ 
+
+$$\mathscr{A} = \mathscr{A}^*$$
+
+$$[\mathscr{A}] = \overline{[\mathscr{A}]^T}$$
+
+$$U^{T}\overline{U} = E$$
+
+Унитарная матрица  = в точности матрицы, которые ортонормированный переводят в ортонормированные. 
+
+Пусть U матрица перехода от $\{e_i\}$ к $\{v_i\}$.
+
+$U$  "--- унитарная матрица. 
+
+$U^{-1}[\mathscr{A}]U = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}, \lambda_i \in \R$ 
+
+\begin{proof}
+Для всякой эрмитовосимметрической матрицы  $[\mathscr{A}] \exists$ унитарная U
+$$U^{-1}[\mathscr{A}]U = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}, \lambda_i \in \R$$
+\end{proof}
+
+\begin{theorem}{}
+$\C^n < >$ "--- полуторалинейная эрмитовосимметричная форма на $\C^n$,
+тогда $\exists$  базис $\C^n$ в котором 
+$\Gamma = \begin{pmatrix}
+1&0&\cdots&0&0\\
+0&-1&\cdots&0&0\\
+\cdot &\cdot & \cdot& \cdot& \cdot\\
+0&0&\cdots &1&0\\
+0&0&\cdots &0&1\\
+\end{pmatrix}$
+\end{theorem}
+
+\begin{proof}
+$<x, y> = (\mathscr{A}x, y)$ для некоторого самосопряженного $\mathscr{A}$.
+
+$\Gamma'_{<>} = [\mathscr{A}]^{T}$
+
+$\mathscr{A}$ "--- эрмитовосимметричная матрица. 
+$[\mathscr{A}]^T$ "---эрмитовосимметричная. 
+$\exists$ ортонормированный базис(относительно стандартного скалярного произведения). 
+
+$[\mathscr{A}]^{T}$ "--- диагональ с вещественными элементами. 
+
+$\Gamma' = \begin{pmatrix}
+\lambda_1&0\\
+0&\lambda_n\\
+\end{pmatrix}$ 
+
+Не умаляя общности могут сначала идти положительные, потом отрицательные, потом нулю. 
+
+$\{v_i\}$ "--- ортонормированный базис. 
+
+$w_i:$
+$\frac{1}{\sqrt{\lambda}v_i}$
+
+$\frac{1}{\sqrt{-\mu}v_i}$
+
+$v_i$ 
+
+$$<w_i, w_i> = \frac{1}{\lambda_i} <v_i, v_i> = 1$$
+$$<w_i, w_i> = \frac{1}{\mu_i} <v_i, v_i> = -1$$
+$$<w_i,w_i> = 0 $$
+
+$$\Gamma'' = \begin{pmatrix}
+1&0&\cdots&0&0\\
+0&-1&\cdots&0&0\\
+\cdot &\cdot & \cdot& \cdot& \cdot\\
+0&0&\cdots &1&0\\
+0&0&\cdots &0&1\\
+\end{pmatrix}$$
+
+\end{proof}
+
+Евклидово пространство. $\R^n$
+$$\mathscr{A} = \mathscr{A}^*$$
+$[\mathscr{A}] = [\mathscr{A}]^{T}$  "--- симметрическая матрица. 
+
+\begin{lemma}{}
+Если $\mathscr{A} = [\mathscr{A}]$ "--- симметрическая матрица, то ее собственный числа вещественные. 
+\end{lemma}
+
+\begin{proof}
+$\lambda$ "--- собственное число $\mathscr{A}$, $\lambda \in \C$
+
+$$\mathscr{A}x = \lambda x, x \in \C^n$$
+$$x \ne 0$$
+$$\overline{x^T} \mathscr{A}x  = \overline{x^T} \cdot \lambda x = \lambda \overline{x^t}x = \lambda(|x_1|^2 + \cdots + |x_n|^2)$$
+
+$$\overline{x^T} \mathscr{A}x = \overline{x^{T}} \overline{\mathscr{A}^{T}}x = \overline{(\mathscr{A}x)^T} \cdot x  = \overline{(\lambda x)^T} x = $$
+$$= \overline{\lambda}\overline{x}^Tx = \overline{\lambda}(|x_1|^2 + \cdots + |x_n|^2)$$
+
+$\lambda = \overline{\lambda} \Ra \lambda$ "--- вещественная. 
+\end{proof}
+

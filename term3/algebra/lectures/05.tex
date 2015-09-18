@@ -1,0 +1,126 @@
+\section{Сопряженный оператор}
+\begin{Def}
+$V$ "--- пространство с $(, )$ билинейной или полуторалинейной невырожденной формой. 
+
+$\mathscr{A} \in End(V)$
+
+$\mathscr{A}^* \in End(V)$ называется сопряжённым оператором к $A$, если 
+$$\forall x, y \in V \colon (\mathscr{A}x, y) = (x, \mathscr{A}^*y)$$
+\end{Def}
+
+\begin{theorem}{}
+$\dim V < \infty$, тогда $\mathscr{A}^*$ существует и единственный. 
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+    \item Предположим, что $\mathscr{A}^{*}$ существует. Убедимся, что существует всего одна. 
+    
+    $v_1, \cdots, v_n$ "--- базис V.
+    
+    $\Gamma$  "--- матрица Грамма.
+
+    $$(\mathscr{A}x, y) = [\mathscr{A}x]^{T}\Gamma \overline{[y]} = ([\mathscr{A}][x])^{T}\Gamma \overline{[y]} = 
+    [x]^{T}[\mathscr{A}]^{T}\Gamma \overline{[y]}$$ 
+    $$(x, \mathscr{A}^{*}y) = [x]^{T}\Gamma \overline{[\mathscr{A}^*]}\overline{[y]}$$ 
+
+    То есть для всех x и y верно, что $[\mathscr{A}]^{T} \Gamma = \Gamma \overline{[\mathscr{A}^*]}$
+
+    $(,)$ "--- невырожденная $\Ra \Gamma$ "--- невырожденная
+
+    $$\overline{[\mathscr{A}^*]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma$$
+    
+    \begin{equation}
+    \label{conj}
+    [\mathscr{A}^{*}] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}   
+    \end{equation}
+   
+    $\Ra \mathscr{A}^{*}$ определен однозначно.
+
+    \item Существование.
+
+    Возьмем $\mathscr{A}^{*}$ так, чтобы матрица $\mathscr{A}^*$ в базисе $v_1,\cdots, v_n$ задавалась равенством ~(\ref{conj})
+
+    $$[\mathscr{A}^{*}] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}$$
+    $$\overline{[\mathscr{A}^*]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma$$
+    $$[\mathscr{A}]^{T} \Gamma = \Gamma \overline{[\mathscr{A}^*]}$$
+
+    $$(\mathscr{A}x, y) = [x]^{T}[\mathscr{A}]^{T}\Gamma \overline{[y]} = [x]^{T}\Gamma \overline{[\mathscr{A}^*]}\overline{[y]} = (x, \mathscr{A}^{*}y)$$ 
+    
+    $$\Ra (\mathscr{A}x, y) = (x,  \mathscr{A}^*y)$$
+
+    В силу произвольности x и y $\mathscr{A}^*$ "--- сопряженный оператор.  
+    \end{enumerate}
+\end{proof}
+
+\begin{conseq}
+    \begin{enumerate}
+    \item $[\mathscr{A}^*] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}$
+    \item Если есть ортонормированный базис,то в этом базисе $[\mathscr{A}^*] = \overline{[\mathscr{A}]^T}$ "--- матрица, эрмитовосопряженная с $[\mathscr{A}]$
+
+    В случае билинейной формы в ортонормированном базисе $[\mathscr{A}^*] = [\mathscr{A}]^{T}$
+    \end{enumerate}
+\end{conseq}
+
+\begin{theorem}{}
+$V, (,)$ "--- невырожденная форма. 
+
+$U \le V, \mathscr{A} \in End(V)$
+
+$U$ "--- $\mathscr{A}$-инвариантно. 
+
+$\Ra U^{\bot}$ "--- $\mathscr{A}^{*}$ "--- инвариантно. 
+\end{theorem}
+
+\begin{proof}
+$$w \in U^{\bot}$$ 
+Хотим проверить, что $\mathscr{A}^{*}w \in U^{\bot}$
+
+$$u \in U$$
+$$(u, \mathscr{A}^*w) = (\mathscr{A}u, w) = 0$$
+$\Ra \mathscr{A}^{*}w \in U^{\bot} \Ra U^{\bot}$ "--- $\mathscr{A}^{*}$ "--- инвариантно. 
+\end{proof}
+
+\begin{exmp}
+$U \le V, dim V < \infty$
+
+Пусть есть ортонормированный базис $U$, дополненный до ортонормированного базиса $V$.
+
+
+$$[\mathscr{A}] = \begin{pmatrix}
+ \overbrace{*}^U & \overbrace{*}^{U^{\bot}} \\
+ 0 & * \\
+ \end{pmatrix}$$
+
+$U$ "--- $\mathscr{A}$ инвариантно.  
+
+$$ 
+[\mathscr{A}^{*}] = \overline{[\mathscr{A}]^T} = 
+\begin{pmatrix}
+\overbrace{*}^U& \overbrace{0}^{U^{\bot}}\\
+*& *\\
+\end{pmatrix}
+$$
+\end{exmp}
+
+\begin{theorem}{}
+$\dim V < \infty$
+
+$(,)$ "--- билинейная (симметрическая или кососимметрическая) или полуторалинейная и эрмитовосмметричная невырожденная форма. 
+
+$\Ra (\mathscr{A}^*)^* = \mathscr{A}$
+\end{theorem}
+
+\begin{proof}
+$$\forall x, y \colon (\mathscr{A}x, y) = (x, \mathscr{A}^* y) $$
+$$\epsilon \overline(y, \mathscr{A} x) = (\mathscr{A}x, y) = (x, \mathscr{A}^* y) = \epsilon \overline{\mathscr{A}^*y, x}$$
+
+$\epsilon = -1$ для кососимметричной. 
+
+$\epsilon = +1$ для симметричной и эрмитовосимметричной. 
+
+$-$ "--- инволюция для полуторалинейной формы. 
+
+$- = id$ "--- для билинейной формы. 
+
+$\forall x, y \colon (\mathscr{A}^{*}y, x) = (y, \mathscr{A}x) \Ra \mathscr{A} = (\mathscr{A}^*)^*$
+\end{proof}

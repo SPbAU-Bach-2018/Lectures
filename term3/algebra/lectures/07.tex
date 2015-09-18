@@ -1,0 +1,115 @@
+\section{Нормальные операторы в евклидовых и унитарных пространствах.}
+
+\begin{Def}
+$V$ "--- евклидово или унитарное (, ) "--- стандартное скалярное произведение.
+
+$\mathscr{A} \in End(V)$ 
+
+$\mathscr{A}$ "--- нормальный, если $\mathscr{A} \mathscr{A}^* = \mathscr{A}^*\mathscr{A}$.
+\end{Def}
+
+\begin{exmp}
+\begin{enumerate}
+    \item  самосопряженный "--- нормальный. 
+    \item Ортогональный и унитарный операторы так же нормальный. 
+
+    \begin{proof}
+    $(\mathscr{A}x, \mathscr{A}y) = (x, y)$
+
+    Изометрия "--- обратимое преобразование. 
+
+    $y = \mathscr{A}^{-1}z$
+    
+    $$(x, \mathscr{A}^*z) = (\mathscr{A}x, z) = (x, \mathscr{A}^{-1}z)$$
+
+    Если $\mathscr{A}$ "--- унитарное или ортогональное, тогда $\mathscr{A}^{*} = \mathscr{A}^{-1}$.
+
+    $$\forall x (x, \mathscr{A}^{-1}z - \mathscr{A}^{*}z) = 0 \Ra \mathscr{A}^{-1} = \mathscr{A}^*$$
+
+    $\mathscr{A}$ и $\mathscr{A}^{-1}$ коммутируют. 
+    \end{proof}    
+\end{enumerate}
+\end{exmp}
+
+\begin{theorem}
+$V$ "--- унитарное пространство. 
+
+Следующие условия равносильны:
+    \begin{enumerate}
+    \item $\mathscr{A}$ "--- нормальна. 
+    \item $\exists$  ортонормированный базис $V$, в котором $[\mathscr{A}]$ диагональная. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$$2 \Ra 1$$
+$\{v_i\}$ "--- ортонормированный базис $\Gamma = E$
+$[\mathscr{A}] $ "--- диагональная. 
+
+$[\mathscr{A}^*] = \overline{[\mathscr{A}]^{T}}$ "--- диагональная. 
+
+$$[\mathscr{A}\mathscr{A}^*] = [\mathscr{A}][\mathscr{A}^*] = [\mathscr{A}^*][\mathscr{A}] = [\mathscr{A}^*\mathscr{A}] \Ra \mathscr{A}\mathscr{A}^* = \mathscr{A}^*\mathscr{A}$$
+$$1 \Ra 2$$
+
+$\mathscr{A}$ "--- нормальный оператор. 
+
+$\lambda$ "--- собственное число $\mathscr{A}$.
+
+$U(\lambda) = U_1(\lambda)$ "--- пространство собственных векторов отвечающих $\lambda$.
+
+$U$ "--- $\mathscr{A}$-инвариантное подпространство.
+
+$\mathscr{A}^*$ "--- инвариантно?
+
+Возьмем $u \in U$ и применим оператор $\mathscr{A}^*$, нас интересует, почему $\mathscr{A}^*u \in U$ 
+
+$$\mathscr{A}(\mathscr{A}^*u) = \mathscr{A}^*(\mathscr{A}u) = \mathscr{A}^*(\lambda u) = \lambda \mathscr{A}^*(u)$$
+
+$\mathscr{A}^*u$ "--- собственный вектор $\mathscr{A}$ отвечающий $\lambda$
+
+$$\Ra \mathscr{A}^*u \in U$$ 
+
+Мы нашли подпространство, которое одновременно $\mathscr{A}$ и $\mathscr{A}^*$ инвариантно. 
+
+$U^{\bot}$ "--- $\mathscr{A}^*$ и $\mathscr{A}^{**} = \mathscr{A}$  "--- инвариантно. 
+
+$V = U \oplus U^{\bot}$ и оба подпространства инвариантны $\mathscr{A}$ и $\mathscr{A}^*$.
+
+Значит определены. 
+$$\mathscr{A}|_{u}, \mathscr{A}^*|_{u} \in End(U)$$
+$$ \mathscr{A}|_{u^{\bot}}, \mathscr{A}'|_{u^{\bot}} \in End(U^{\bot})$$
+
+$\mathscr{A}|_{u}$ и $\mathscr{A}^*|_{u}$ "--- нормальные операторы на $U$.
+
+$\mathscr{A}|_{u^{\bot}}$ и $\mathscr{A}^*|_{u^{\bot}}$ "--- нормальные операторы на $U^{\bot}$.
+
+Выберем ортонормированный базис U.
+
+$[\mathscr{A}|_{u}] = \lambda E_{\dim U}$
+
+$[\mathscr{A}^{*}|_{u}] = \overline{[\mathscr{A}|_{u}]^{T}} = \overline{\lambda}E$
+
+Далее: доказательство по индукции (применить к $U^{\bot}$)
+\end{proof}
+
+\begin{conseq}
+    \begin{enumerate}
+    \item 
+    $\mathscr{A}$ "--- нормальный оператор. 
+    $u$ "--- собственный вектор A, отвечающй  $\lambda$
+    $\Ra$  $u$ "--- собственный вектор $\mathscr{A}^*$, отвечающий $\overline{\lambda}$
+    \item 
+    $\mathscr{A}$ "--- норма в унитарном пространстве. 
+
+    собственный вектор, отвечающий разным собственным числам ортогонального. 
+    $$\mathscr{A}u = \lambda u$$
+    $$\mathscr{A}v = \beta v$$
+    $$\beta(u, v) = (u, \overline{\beta v}) = (u, \mathscr{A}^*v) = (\mathscr{A}u, v) = (\lambda u, v) = \lambda (u, v)$$
+    $$\Ra (u, v) = 0$$
+    \item 
+
+    Всякий нормальный оператор в унитарном пространстве диагонализируемы. 
+    \end{enumerate}
+\end{conseq}
+
+

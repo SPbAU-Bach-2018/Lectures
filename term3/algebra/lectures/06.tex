@@ -1,0 +1,92 @@
+\section{Самосопряженный оператор}
+\begin{Def}
+$V, (,)$
+
+$\mathscr{A} \in End(V)$
+
+$\mathscr{A}$ называется самосопряженным, если 
+$\mathscr{A}^* = \mathscr{A}$
+\end{Def}
+
+$$V, (, ), \mathscr{A} \in End(V)$$
+$$<, >\colon V \times V \to K $$
+$$<x, y> = (\mathscr{A}x, y)$$
+
+$< >$ "--- билинейная или полуторалинейная форма. 
+
+Не вырожденность в общем случае может пропадать. 
+
+\begin{theorem}{}
+Пусть $(,)$ "--- симметричная (эрмитовосимметричная) невырожденная, у $\mathscr{A}$ есть сопряжение. 
+
+Следующие условия равносильны:
+    \begin{enumerate}
+    \item $<, >$  симметричная(эрмитовосимметричная)
+    \item $\mathscr{A}$  "--- самосопряженная.
+    \end{enumerate} 
+\end{theorem}
+
+\begin{proof}
+$$2 \Ra 1$$
+
+
+$$<y, x>  = (\mathscr{A}y, x) = (y, \mathscr{A}^{*}x) = (y, \mathscr{A}x) = \overline{(\mathscr{A}x, y)} = \overline{<x, y>}$$
+
+$$1 \Ra 2$$
+
+$$\forall y, x \colon <y, x> = \overline{<x, y>}$$
+$$\forall y, x \colon (\mathscr{A}y, x) = \overline{(\mathscr{A}x, y)}$$
+
+$$(y, \mathscr{A}^*x) = (\mathscr{A}y, x) = \overline{(\mathscr{A}x, y)} = (y, \mathscr{A}x)$$
+
+$$x \in V \colon \forall y \colon (y, \mathscr{A}^*x - \mathscr{A}x) = 0$$
+
+В силу не вырожденности (, ) $\Ra \mathscr{A}^*x - \mathscr{A}x = 0$
+
+В силу произвольности x $\mathscr{A}^* = \mathscr{A}$.
+\end{proof}
+
+\begin{exmp}
+$$\dim V = n < \infty, \{v_i\}, (,), \Gamma$$
+$$\mathscr{A}, [\mathscr{A}]$$
+
+$$<x, y> = (\mathscr{A}x, y)$$
+
+$\Gamma' "---$ матрица Грамма $<, >$
+$$\Gamma' = [\mathscr{A}]^{T}\cdot \Gamma$$
+
+Если $\mathscr{A}$ "--- самосопряжён, то
+$$\Gamma' = \overline{(\Gamma')^{T}} $$
+
+$$\overline{(\Gamma')^{T}} = \overline{(\Gamma)^{T}}[\overline{\mathscr{A}}] = \Gamma[\overline{\mathscr{A}}] = \Gamma \cdot \Gamma^{-1}[\mathscr{A}]^{T}\Gamma = \Gamma'$$
+$$[\mathscr{A}] = [\mathscr{A}^*] = \overline{\Gamma}^{-1} \overline{[\mathscr{A}]^{T}} \overline{\Gamma}$$
+$$\overline{[\mathscr{A}]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma $$
+\end{exmp}
+
+\begin{conseq}{}
+$$ \dim V < \infty$$
+$<,>$ "--- невырожденная $\Lra$ $\mathscr{A}$ "--- обратима. 
+\end{conseq}
+
+\begin{conseq}{}
+$$\dim V < \infty $$
+$(,)$ "--- невырожденная симметричная(эрмитовосимметричная)
+
+Тогда всякое симметричное(эрмитовосимметричное) скалярное произведение на $V$ имеет вид
+$<x, y> = (\mathscr{A}x, y) $ для некоторого самосопряженного оператора $\mathscr{A}$.
+
+\end{conseq}
+\begin{proof}
+$\{v_i\}$ "--- базис V, $(,) = \Gamma$
+
+$\forall <, >$ однозначно определяется $\Gamma'$ "--- своей матрицей Грамма. Хотим построить самосопряженный оператор у этой матрицы Грамма.  
+
+$$[\mathscr{A}] = (\Gamma' \Gamma^{-1})^{T} = (\Gamma^{T})^{-1}(\Gamma')^{T}$$
+$$\Gamma' = \overline(\Gamma')^{T}$$
+$$[\mathscr{A}^{*}] = \overline{\Gamma^{-1}} \overline{[\mathscr{A}]^{T}]} \overline{\Gamma} = $$
+$$ \overline{\Gamma^{-1}}(\overline{\Gamma' \Gamma^{-1}}) \overline{\Gamma} = $$
+$$ \overline{\Gamma^{-1}}\overline{\Gamma'}  = (\Gamma^{T})^{-1}(\Gamma')^{T}$$
+$$\overline{\Gamma^{T}} = \Gamma$$
+$$\overline{\Gamma'^{T}} = \Gamma'$$
+$$[\mathscr{A}] = [\mathscr{A}^{*}] \Ra \mathscr{A} = \mathscr{A}^{*}$$
+\end{proof}
