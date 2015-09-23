@@ -1,126 +1,109 @@
 \section{Сопряженный оператор}
+
 \begin{Def}
-$V$ "--- пространство с $(, )$ билинейной или полуторалинейной невырожденной формой. 
-
-$\mathscr{A} \in End(V)$
-
-$\mathscr{A}^* \in End(V)$ называется сопряжённым оператором к $A$, если 
-$$\forall x, y \in V \colon (\mathscr{A}x, y) = (x, \mathscr{A}^*y)$$
+	$V$ "--- пространство с $(,)$ билинейной или полуторалинейной невырожденной формой, $\mathcal A \in End(V)$.
+	$\mathcal A^* \in End(V)$ называется сопряжённым оператором к $A$, если
+$$\forall x, y \in V \colon (\mathcal Ax, y) = (x, \mathcal A^*y)$$
 \end{Def}
 
-\begin{theorem}{}
-$\dim V < \infty$, тогда $\mathscr{A}^*$ существует и единственный. 
+\begin{theorem}
+	$\dim V < \infty$, тогда $\mathcal A^*$ существует и единственный.
 \end{theorem}
 \begin{proof}
-    \begin{enumerate}
-    \item Предположим, что $\mathscr{A}^{*}$ существует. Убедимся, что существует всего одна. 
-    
-    $v_1, \cdots, v_n$ "--- базис V.
-    
-    $\Gamma$  "--- матрица Грамма.
+	\begin{description}
+	\item[Единственность:]
+		Предположим, что $\mathcal A^*$ существует.
+		Убедимся, что существует всего один.
 
-    $$(\mathscr{A}x, y) = [\mathscr{A}x]^{T}\Gamma \overline{[y]} = ([\mathscr{A}][x])^{T}\Gamma \overline{[y]} = 
-    [x]^{T}[\mathscr{A}]^{T}\Gamma \overline{[y]}$$ 
-    $$(x, \mathscr{A}^{*}y) = [x]^{T}\Gamma \overline{[\mathscr{A}^*]}\overline{[y]}$$ 
+		$v_1, \dots, v_n$ "--- базис $V$,
+		$\Gamma$ "--- матрица Грамма.
+		\begin{gather*}
+			(\mathcal Ax, y) = [\mathcal Ax]^T \Gamma \overline{[y]}
+			= ([\mathcal A][x])^T \Gamma \overline{[y]}
+			= [x]^T [\mathcal A]^T \Gamma \overline{[y]} \\
+			(x, \mathcal A^* y) = [x]^T \Gamma \overline{[\mathcal A^*]} \overline{[y]}
+		\end{gather*}
+		То есть для всех $x$ и $y$ верно, что $[\mathcal A]^T \Gamma = \Gamma \overline{[\mathcal A^*]}$.
 
-    То есть для всех x и y верно, что $[\mathscr{A}]^{T} \Gamma = \Gamma \overline{[\mathscr{A}^*]}$
+		$(,)$ невырожденная, откуда $\Gamma$ "--- невырожденная.
+		\[ \overline{[\mathcal A^*]} = \Gamma^{-1} [\mathcal A]^T \Gamma \]
+		\begin{equation}\label{conj}
+			[\mathcal A^*] = \overline{\Gamma^{-1}} \overline{[\mathcal A]^T}\overline{\Gamma}
+		\end{equation}
+		Значит $\mathcal A^*$ определен однозначно.
 
-    $(,)$ "--- невырожденная $\Ra \Gamma$ "--- невырожденная
-
-    $$\overline{[\mathscr{A}^*]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma$$
-    
-    \begin{equation}
-    \label{conj}
-    [\mathscr{A}^{*}] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}   
-    \end{equation}
-   
-    $\Ra \mathscr{A}^{*}$ определен однозначно.
-
-    \item Существование.
-
-    Возьмем $\mathscr{A}^{*}$ так, чтобы матрица $\mathscr{A}^*$ в базисе $v_1,\cdots, v_n$ задавалась равенством ~(\ref{conj})
-
-    $$[\mathscr{A}^{*}] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}$$
-    $$\overline{[\mathscr{A}^*]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma$$
-    $$[\mathscr{A}]^{T} \Gamma = \Gamma \overline{[\mathscr{A}^*]}$$
-
-    $$(\mathscr{A}x, y) = [x]^{T}[\mathscr{A}]^{T}\Gamma \overline{[y]} = [x]^{T}\Gamma \overline{[\mathscr{A}^*]}\overline{[y]} = (x, \mathscr{A}^{*}y)$$ 
-    
-    $$\Ra (\mathscr{A}x, y) = (x,  \mathscr{A}^*y)$$
-
-    В силу произвольности x и y $\mathscr{A}^*$ "--- сопряженный оператор.  
-    \end{enumerate}
+	\item[Существование:]
+		Возьмем $\mathcal A^*$ так, чтобы матрица $\mathcal A^*$ в базисе $v_1, \dots, v_n$ задавалась равенством~(\ref{conj}).
+		\begin{gather*}
+			[\mathcal A^*] = \overline{\Gamma^{-1}} \overline{[\mathcal A]^T} \overline{\Gamma} \\
+			\overline{[\mathcal A^*]} = \Gamma^{-1} [\mathcal A]^T \Gamma \\
+			[\mathcal A]^T \Gamma = \Gamma \overline{[\mathcal A^*]} \\
+			(\mathcal Ax, y) = [x]^T [\mathcal A]^T \Gamma \overline{[y]}
+			= [x]^T \Gamma \overline{[\mathcal A^*]} \overline{[y]} = (x, \mathcal A^*y)
+			\Ra (\mathcal Ax, y) = (x,  \mathcal A^*y)
+		\end{gather*}
+		В силу произвольности $x$ и $y$ получичи, что $\mathcal A^*$ "--- сопряженный оператор.
+	\end{description}
 \end{proof}
 
 \begin{conseq}
-    \begin{enumerate}
-    \item $[\mathscr{A}^*] = \overline{\Gamma^{-1}}\overline{[\mathscr{A}]^{T}}\overline{\Gamma}$
-    \item Если есть ортонормированный базис,то в этом базисе $[\mathscr{A}^*] = \overline{[\mathscr{A}]^T}$ "--- матрица, эрмитовосопряженная с $[\mathscr{A}]$
+	\begin{enumerate}
+	\item
+		$[\mathcal A^*] = \overline{\Gamma^{-1}} \overline{[\mathcal A]^T} \overline{\Gamma}$.
 
-    В случае билинейной формы в ортонормированном базисе $[\mathscr{A}^*] = [\mathscr{A}]^{T}$
-    \end{enumerate}
+	\item
+		Если есть ортонормированный базис, то в этом базисе
+		$[\mathcal A^*] = \overline{[\mathcal A]^T}$ "--- матрица, эрмитово сопряженная с $[\mathcal A]$.\\
+		В случае билинейной формы в ортонормированном базисе $[\mathcal A^*] = [\mathcal A]^T$.
+	\end{enumerate}
 \end{conseq}
 
-\begin{theorem}{}
-$V, (,)$ "--- невырожденная форма. 
-
-$U \le V, \mathscr{A} \in End(V)$
-
-$U$ "--- $\mathscr{A}$-инвариантно. 
-
-$\Ra U^{\bot}$ "--- $\mathscr{A}^{*}$ "--- инвариантно. 
+\begin{theorem}
+	$V, (,)$ "--- невырожденная форма, $U \le V$, $\mathcal A \in End(V)$.
+	$U$ "--- $\mathcal A$-инвариантно.
+	Тогда
+	$U^\bot$ "--- $\mathcal A^*$-инвариантно.
 \end{theorem}
-
 \begin{proof}
-$$w \in U^{\bot}$$ 
-Хотим проверить, что $\mathscr{A}^{*}w \in U^{\bot}$
+	$w \in U^\bot$.
+	Хотим проверить, что $\mathcal A^*w \in U^\bot$.
 
-$$u \in U$$
-$$(u, \mathscr{A}^*w) = (\mathscr{A}u, w) = 0$$
-$\Ra \mathscr{A}^{*}w \in U^{\bot} \Ra U^{\bot}$ "--- $\mathscr{A}^{*}$ "--- инвариантно. 
+	$u \in U$
+	\[ (u, \mathcal A^* w) = (\mathcal A u, w) = 0 \]
+	$\Ra \mathcal A^* w \in U^\bot$.
+	Получили, что $U^\bot$ "--- $\mathcal A^*$-инвариантно.
 \end{proof}
 
 \begin{exmp}
-$U \le V, dim V < \infty$
-
-Пусть есть ортонормированный базис $U$, дополненный до ортонормированного базиса $V$.
-
-
-$$[\mathscr{A}] = \begin{pmatrix}
- \overbrace{*}^U & \overbrace{*}^{U^{\bot}} \\
- 0 & * \\
- \end{pmatrix}$$
-
-$U$ "--- $\mathscr{A}$ инвариантно.  
-
-$$ 
-[\mathscr{A}^{*}] = \overline{[\mathscr{A}]^T} = 
-\begin{pmatrix}
-\overbrace{*}^U& \overbrace{0}^{U^{\bot}}\\
-*& *\\
-\end{pmatrix}
-$$
+	$U \le V$, $\dim V < \infty$.
+	Пусть есть ортонормированный базис $U$, дополненный до ортонормированного базиса $V$.
+	\[
+		[\mathcal A] = \begin{pmatrix}
+			\overbrace{*}^U & \overbrace{*}^{U^\bot} \\
+			0 & *
+			\end{pmatrix}
+	\]
+	$U$ "--- $\mathcal A$ инвариантно.
+	\[
+		[\mathcal A^*] = \overline{[\mathcal A]^T} = \begin{pmatrix}
+			\overbrace{*}^U & \overbrace{0}^{U^\bot} \\
+			* & *
+		\end{pmatrix}
+	\]
 \end{exmp}
 
-\begin{theorem}{}
-$\dim V < \infty$
-
-$(,)$ "--- билинейная (симметрическая или кососимметрическая) или полуторалинейная и эрмитовосмметричная невырожденная форма. 
-
-$\Ra (\mathscr{A}^*)^* = \mathscr{A}$
+\begin{theorem}
+	$\dim V < \infty$,
+	$(,)$ "--- билинейная (симметрическая или кососимметрическая) или полуторалинейная и эрмитовосмметричная невырожденная форма.
+	Тогда
+	\[ (\mathcal A^*)^* = \mathcal A\]
 \end{theorem}
-
 \begin{proof}
-$$\forall x, y \colon (\mathscr{A}x, y) = (x, \mathscr{A}^* y) $$
-$$\epsilon \overline(y, \mathscr{A} x) = (\mathscr{A}x, y) = (x, \mathscr{A}^* y) = \epsilon \overline{\mathscr{A}^*y, x}$$
-
-$\epsilon = -1$ для кососимметричной. 
-
-$\epsilon = +1$ для симметричной и эрмитовосимметричной. 
-
-$-$ "--- инволюция для полуторалинейной формы. 
-
-$- = id$ "--- для билинейной формы. 
-
-$\forall x, y \colon (\mathscr{A}^{*}y, x) = (y, \mathscr{A}x) \Ra \mathscr{A} = (\mathscr{A}^*)^*$
+	\begin{gather*}
+		\forall x, y, (\mathcal Ax, y) = (x, \mathcal A^* y) \\
+		\epsilon \overline{(y, \mathcal A x)} = (\mathcal Ax, y) = (x, \mathcal A^* y) = \epsilon \overline{(\mathcal A^*y, x)}
+	\end{gather*}
+	$\epsilon = -1$ для кососимметричной, $\epsilon = +1$ для симметричной и эрмитовосимметричной. \\
+	$\bar{\vphantom{x}}$ "--- инволюция для полуторалинейной формы, $id$ "--- для билинейной формы.
+	\[ \forall x, y, (\mathcal A^*y, x) = (y, \mathcal Ax) \Ra \mathcal A = (\mathcal A^*)^* \]
 \end{proof}
