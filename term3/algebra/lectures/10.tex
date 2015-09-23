@@ -1,0 +1,134 @@
+﻿\section{Канонический вид ортогонального оператора в евклидовом пространстве.}
+
+$$\R^n$$
+$A$ "--- ортогональная матрица(матрица ортогонального оператора) $A^TA = E$
+$$A \in M_n(\R) \subset M_n(\C)$$
+$$A^{T}\overline{A} = E$$
+$$\overline{A} = A$$
+
+$\Ra A$ "--- унитарная матрица (как комплексная матрица).
+
+Собственные числа A по модулю равны 1. 
+$\chi_A \in \R[t]$
+Корни $\chi_A$ "--- либо вещественные, либо
+распадаются на пары $\lambda, \overline{\lambda}$(причем кратности $\lambda, \overline{\lambda}$ одинаковые).
+
+Значит, вещественные собственные числа A это $\pm 1$.
+
+Комплексные имеют вид $\cos \phi + i \sin \phi$ и $\cos \phi - i \sin \phi$ для некоторых $\phi$.
+
+Существует ортонормированный базис $\C^n$ состоящий из комплексных
+собственных векторов $A$, такой что
+$C^{-1}AC$ "--- диагональная, на диагонали $\pm 1$ и числа $\cos \phi_k \pm i \sin \phi_k$, где
+С "--- матрица перехода от стандартного базиса к этому ортонормированному базису.
+
+Пусть $\lambda = \cos \phi + i \sin \phi, \phi \ne \pi k$и $\overline{\lambda}$ 
+это пара комплексных собственных чисел A.
+
+$$\exists v = u + iw, u, w\in \R^n$$
+$$Av = \lambda v$$
+$$A(u + iw) = (\cos \phi + i \sin \phi)(u + iw)$$
+
+
+$$\left\{
+\begin{aligned}
+Au &= \cos \phi u - \sin \phi w \\
+Aw &= \cos \phi w + \sin \phi u =  \sin \phi u + \cos \phi w
+\end{aligned}
+\right.$$
+
+
+$$Av = \lambda v$$
+$$\overline{Av} = \overline{\lambda} \overline{v}$$
+$A \overline{v} = \overline{\lambda} \overline{v}$, $\overline{v}$ "--- собственный вектор, отвечающий $\overline{\lambda}(\ne \lambda)$
+
+$v$ и $\overline{v}$ "--- линейно независимые над $\C$ (собственные вектора, отвечающие разным собственным числам.) 
+
+$\frac{v + \overline{v}}{2}$ и $\frac{v - \overline{v}}{2i}$ "--- линейно независимые над $\C$ так как порождают то же пространство, что и $v$, $\overline{v}$.
+
+$u$ и $w$ линейно независимые над $\C \Ra$ линейно независимые над $\R$
+
+Сужение оператора умножения на A на подпространство <u, w> в базисе u w 
+имеет вид матрица поворота на угол $\phi$. 
+$\begin{pmatrix}
+ \cos \phi& -\sin \phi\\
+ \sin \phi & \cos \phi\\
+\end{pmatrix}$
+
+\begin{theorem}{}
+$\mathscr{A}$ "---  ортогональный оператор в $\R^n \exists$ ортонормированный базис пространства $\R^n$, в котором 
+матрица $[\mathscr{A}]$ имеет вид: 
+$$\begin{pmatrix}
+ \cos \phi & -\sin \phi & \cdots\\
+ \sin \phi & \cos \phi & \cdots\\
+ \vdots & \ddots & \vdots\\
+ \cdots & \cdots & \pm 1\\
+ \end{pmatrix}$$
+\end{theorem}
+\begin{proof}
+$v, \bar v$ можно дополнить до ортонормированного базиса $\C^n$ в котором матрица оператора умножения на A  диагонализуема
+остальные вектора, кроме $v$ и $\bar v$ порождают ортогональное дополнение к <$v, \bar v$> в $\C$. 
+\end{proof}
+
+$A$ в стандартном базисе $x \to Ax$ ортогональный оператор $\mathscr{A}$, $[\mathscr{A}] = A$
+
+$\lambda$  и $\bar \lambda$ "--- собственные числа $\mathscr{A}$(как унитарного оператора) $v \in \C^n$
+
+$$|v| = 1$$
+$$\mathscr{A}v = \lambda v$$
+$$\mathscr{A}\overline{v} = \bar \lambda \bar v$$
+$$|\bar v| = |v| = 1$$
+Собственные вектора, отвечающие разным собственным числам "--- ортогональные. 
+
+$<v, \bar v>$
+
+$u, w$
+
+$$|v|^2 = |u|^2 + |w|^2$$
+$$v = u + iw$$
+$$0 = (v, \bar v) = (u + iw, u - iw) = |u|^2 + i(u, w) + i(w, u) - |w|^2 = |u|^2 - |w|^2 + 2i(u, w) $$
+$$\left\{
+\begin{aligned}
+|u|^2 + |w|^2 = 1\\
+|u|^2 - |w|^2 = 0\\
+(u, w) = 0\\
+\end{aligned}
+\right.$$
+
+$$|u| = |w| = \frac{1}{\sqrt{2}}$$
+$\sqrt{2}u, \sqrt{2} w$ "--- ортонормированный базис в $<u, w>$
+
+$$Au = \cos \phi u - \sin \phi w$$
+$$Aw = \sin \phi u + \cos \phi w$$
+
+
+$$A(\sqrt 2 u) = \cos \phi (\sqrt 2 u) - \sin \phi (\sqrt 2 w)$$
+$$A(\sqrt 2 w) = \sin \phi (\sqrt 2 u) + \cos \phi (\sqrt 2 w)$$
+
+$$\mathscr{A}|_{<\sqrt2 u, \sqrt2w>} = \begin{pmatrix}
+ \cos \phi & \sin \phi\\
+ - \sin \phi & \cos \phi\\
+ \end{pmatrix}$$
+
+$\mathscr{A}|_{<u, w>^{\bot}}$ "--- вновь ортогональный оператор. 
+
+$$\mathscr{A}|_{<u, w>^{\bot}} \colon <u, w>^{\bot}\to <u,w>^{\bot}$$
+$$x \bot u, w $$
+$$Ax \bot u, w$$
+$$(\mathscr{A}x, w) = (x, \mathscr{A}^*u) = (x, \mathscr{A}^{-1}u) = 0$$
+$\mathscr{A}^{-1}$ на $<u, w>$ действует как поворот в обратную сторону. 
+
+Описан шаг индукции, если есть пара комплексных собственных чисел, 
+если остались только вещественные, то они должны быть равны $\pm 1$ 
+В каждом из собственных подпространств $U(1), U(-1)$ выбираем по ортонормированному базису. 
+
+\begin{exmp}
+$\R^3$
+
+$$O(3) = \{ A \in GL_3(\R) \colon A^{T}A = E\} \Ra \det A^2 = 1, \det A = \pm 1$$
+$SO(3) = \{A \in O(3)\colon \det A = 1\} $ "--- специальная ортогональная группа. 
+\end{exmp}
+
+\textbf{Упражнение:} Докажите, что ортогональное преобразование $\R^n$ есть 
+композиция не более, чем n отображений. 
+

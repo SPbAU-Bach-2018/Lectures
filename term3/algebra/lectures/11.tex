@@ -1,0 +1,74 @@
+﻿\section{Овеществление и комплексификация}
+\subsection{Овеществление}
+$\C^n \sim \R^{2n}$
+
+$\mathscr{A} \in End(\C^n)$
+
+Рассмотрим $\mathscr{A}$ как оператор на $\R^{2n}$
+
+$e_1, \cdots, e_n$ "--- стандартный базис $\C^n$.
+
+$e_1, \cdots, e_n$, $ie_1, \cdots, e_n$ "--- базис в $\R^{2n}$
+
+$$v = \sum \lambda_j e_j = \sum (\Re \lambda_j)e_j + (\Im \lambda_j)(i e_j)$$
+
+$$\mathscr{A}(\sum a_j e_j + \sum b_j(i e_j)) = \mathscr{A}(\sum(a_j + i b_j)e_j) = \sum(a_j + ib_j)\mathscr{A}(e_j) =$$
+$$\sum a_j \mathscr{A}(e_j) + \sum b_j i \mathscr{A}(e_j) = \sum a_j \mathscr{A}(e_j) + \sum b_j \mathscr{A}(ie_j)$$
+$\Ra \mathscr{A}$ "--- линейный оператор в 2n "--- мерном вещественном пространстве.
+
+Над $\C\colon [\mathscr{A}] = (\alpha_{kj})_{k, j = 1, \cdots, n}$ 
+
+$[\mathscr{A}]$ "--- матрица $\mathscr{A}$ в стандартном базисе. 
+
+$\alpha_{kj} = \beta_{kj} + i \gamma_{kj}$
+
+$\mathscr{A} \in End(\C^n), e_1, ie_1, \cdots, e_n, ie_n$
+
+$\mathscr{A}e_j = \sum_k \alpha_{kj}e_j = \sum (\beta_{kj}e_j + \gamma_{kj}ie_j) = 
+\sum_k(-\gamma_{kj}e_j + \beta_{kj}(ie_j))$ 
+
+$\alpha_{kj} \to \begin{pmatrix}
+\beta_{kj} & -\gamma_{kj} \\
+\gamma_{kj} & \beta_{kj}\\
+\end{pmatrix}$
+
+Получили матрицу оператора $\mathscr{A}$  рассматриваемого как $\R$- оператор. 
+
+Дословно повторяется дла $V, \dim_{\C}V = n, \mathscr{A} \in \End_{\C}(V)$
+
+$\dim_{\R}V = 2n, \mathscr{A} \in End_{\R}(V)$
+
+$$U(1), SO(2)$$
+$$(\cos\phi + i \sin \phi) \to 
+\begin{pmatrix}
+\cos \phi & -\sin \phi\\
+\sin \phi & \cos \phi\\
+\end{pmatrix}$$
+
+\subsection{Комплексификация} 
+
+$V$ "--- пространство над $\R$  $\dim V = n$
+
+строим новое пространство $V_{\C}$ "--- над  $\R$ должно иметь размерность $2n$.
+
+$V_{\C} = V \oplus V'$ 
+$V' = $ "копия $V$"
+
+$V_{\C} = V \times V = \{(v, u)| v, u \in V\}$
+
+$V \sim V \times \{0\}$
+
+$V' \sim \{0\} \times V$ 
+
+$(v, u) = (v, 0) + (0, u)$
+
+$$\alpha = \beta = i \gamma$$
+$$\alpha(u, v) = (\beta + i \gamma)(u, v) = (\beta u - \gamma v, \beta v + \gamma u)$$
+
+Упражнение $V_{\C}$ "--- векторное пространство над $\C$.
+
+Отождествляем V с $V \times \{0\}$
+
+$i(u, 0) = (0, u)$
+
+$v_1, \cdots, v_n$ "--- базис $V_{\C}$ над $\C$.
