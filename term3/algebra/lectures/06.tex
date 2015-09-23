@@ -1,92 +1,89 @@
 \section{Самосопряженный оператор}
+
 \begin{Def}
-$V, (,)$
-
-$\mathscr{A} \in End(V)$
-
-$\mathscr{A}$ называется самосопряженным, если 
-$\mathscr{A}^* = \mathscr{A}$
+	$V$, $(,)$, $\mathcal A \in End(V)$.
+	$\mathcal A $ называется самосопряженным, если
+	\[ \mathcal A^* = \mathcal A \]
 \end{Def}
+\begin{gather*}
+	V, (,), \mathcal A \in End(V) \\
+	\left<, \right>\colon V \times V \to K \\
+	\left<x, y\right> = (\mathcal A x, y)
+\end{gather*}
+$\left<,\right>$ "--- билинейная или полуторалинейная форма.
+Невырожденность в общем случае может пропадать.
 
-$$V, (, ), \mathscr{A} \in End(V)$$
-$$<, >\colon V \times V \to K $$
-$$<x, y> = (\mathscr{A}x, y)$$
-
-$< >$ "--- билинейная или полуторалинейная форма. 
-
-Не вырожденность в общем случае может пропадать. 
-
-\begin{theorem}{}
-Пусть $(,)$ "--- симметричная (эрмитовосимметричная) невырожденная, у $\mathscr{A}$ есть сопряжение. 
-
-Следующие условия равносильны:
-    \begin{enumerate}
-    \item $<, >$  симметричная(эрмитовосимметричная)
-    \item $\mathscr{A}$  "--- самосопряженная.
-    \end{enumerate} 
+\begin{theorem}
+	Пусть $(,)$ "--- симметричная (эрмитово симметричная) невырожденная, у $\mathcal A $ есть сопряжение.
+	Тогда cледующие условия равносильны:
+	\begin{enumerate}
+		\item $\left<,\right>$  симметричная (эрмитово симметричная).
+		\item $\mathcal A$  "--- самосопряженная.
+	\end{enumerate}
 \end{theorem}
-
 \begin{proof}
-$$2 \Ra 1$$
+	\begin{description}
+	\item[$2 \Ra 1$:]
+		\[
+			\left<y, x\right> = (\mathcal A y, x) = (y, \mathcal A^*x)
+			= (y, \mathcal A x) = \overline{(\mathcal A x, y)} = \overline{\left<x, y\right>}
+		\]
 
-
-$$<y, x>  = (\mathscr{A}y, x) = (y, \mathscr{A}^{*}x) = (y, \mathscr{A}x) = \overline{(\mathscr{A}x, y)} = \overline{<x, y>}$$
-
-$$1 \Ra 2$$
-
-$$\forall y, x \colon <y, x> = \overline{<x, y>}$$
-$$\forall y, x \colon (\mathscr{A}y, x) = \overline{(\mathscr{A}x, y)}$$
-
-$$(y, \mathscr{A}^*x) = (\mathscr{A}y, x) = \overline{(\mathscr{A}x, y)} = (y, \mathscr{A}x)$$
-
-$$x \in V \colon \forall y \colon (y, \mathscr{A}^*x - \mathscr{A}x) = 0$$
-
-В силу не вырожденности (, ) $\Ra \mathscr{A}^*x - \mathscr{A}x = 0$
-
-В силу произвольности x $\mathscr{A}^* = \mathscr{A}$.
+	\item[$1 \Ra 2$:]
+		\begin{gather*}
+			\forall y, x, \left<y, x\right> = \overline{\left<x, y\right>} \\
+			\forall y, x, (\mathcal A y, x) = \overline{(\mathcal A x, y)} \\
+			(y, \mathcal A^*x) = (\mathcal A y, x) = \overline{(\mathcal A x, y)} = (y, \mathcal A x) \\
+			x \in V \colon \forall y, (y, \mathcal A^*x - \mathcal A x) = 0
+		\end{gather*}
+		В силу невырожденности $(,)$
+		\[ \mathcal A^*x - \mathcal A x = 0 \]
+		В силу произвольности $x$
+		\[ \mathcal A^* = \mathcal A \]
+	\end{description}
 \end{proof}
 
 \begin{exmp}
-$$\dim V = n < \infty, \{v_i\}, (,), \Gamma$$
-$$\mathscr{A}, [\mathscr{A}]$$
-
-$$<x, y> = (\mathscr{A}x, y)$$
-
-$\Gamma' "---$ матрица Грамма $<, >$
-$$\Gamma' = [\mathscr{A}]^{T}\cdot \Gamma$$
-
-Если $\mathscr{A}$ "--- самосопряжён, то
-$$\Gamma' = \overline{(\Gamma')^{T}} $$
-
-$$\overline{(\Gamma')^{T}} = \overline{(\Gamma)^{T}}[\overline{\mathscr{A}}] = \Gamma[\overline{\mathscr{A}}] = \Gamma \cdot \Gamma^{-1}[\mathscr{A}]^{T}\Gamma = \Gamma'$$
-$$[\mathscr{A}] = [\mathscr{A}^*] = \overline{\Gamma}^{-1} \overline{[\mathscr{A}]^{T}} \overline{\Gamma}$$
-$$\overline{[\mathscr{A}]} = \Gamma^{-1}[\mathscr{A}]^{T}\Gamma $$
+	$\dim V = n < \infty$, $\{v_i\}$, $(,)$, $\Gamma$, $\mathcal A$, $[\mathcal A]$.
+	\[ \left<x, y\right> = (\mathcal A x, y) \]
+	$\Gamma$ "--- матрица Грамма $\left<,\right>$.
+	\[ \Gamma' = [\mathcal A]^T \cdot \Gamma \]
+	Если $\mathcal A$ "--- самосопряжён, то
+	\begin{gather*}
+		\Gamma' = \overline{(\Gamma')^T} \\
+		\overline{(\Gamma')^T}
+		= \overline{(\Gamma)^T} [\overline{\mathcal A}]
+		= \Gamma[\overline{\mathcal A}] = \Gamma \cdot \Gamma^{-1}[\mathcal A]^T\Gamma = \Gamma' \\
+		[\mathcal A]
+		= [\mathcal A^*]
+		= \overline{\Gamma}^{-1} \overline{[\mathcal A]^T} \overline{\Gamma} \\
+		\overline{[\mathcal A]} = \Gamma^{-1} [\mathcal A]^T \Gamma
+	\end{gather*}
 \end{exmp}
 
-\begin{conseq}{}
-$$ \dim V < \infty$$
-$<,>$ "--- невырожденная $\Lra$ $\mathscr{A}$ "--- обратима. 
+\begin{conseq}
+	$\dim V < \infty$.
+	Тогда $\left<,\right>$ невырожденная тогда и только тогда, когда $\mathcal A$ обратима.
 \end{conseq}
 
-\begin{conseq}{}
-$$\dim V < \infty $$
-$(,)$ "--- невырожденная симметричная(эрмитовосимметричная)
-
-Тогда всякое симметричное(эрмитовосимметричное) скалярное произведение на $V$ имеет вид
-$<x, y> = (\mathscr{A}x, y) $ для некоторого самосопряженного оператора $\mathscr{A}$.
-
+\begin{conseq}
+	$\dim V < \infty$,
+	$(,)$ "--- невырожденная симметричная (эрмитово симметричная)/
+	Тогда всякое симметричное (эрмитово симметричное) скалярное произведение на $V$ имеет вид
+	\[ \left<x, y\right> = (\mathcal A x, y) \]
+	для некоторого самосопряженного оператора $\mathcal A$.
 \end{conseq}
 \begin{proof}
-$\{v_i\}$ "--- базис V, $(,) = \Gamma$
-
-$\forall <, >$ однозначно определяется $\Gamma'$ "--- своей матрицей Грамма. Хотим построить самосопряженный оператор у этой матрицы Грамма.  
-
-$$[\mathscr{A}] = (\Gamma' \Gamma^{-1})^{T} = (\Gamma^{T})^{-1}(\Gamma')^{T}$$
-$$\Gamma' = \overline(\Gamma')^{T}$$
-$$[\mathscr{A}^{*}] = \overline{\Gamma^{-1}} \overline{[\mathscr{A}]^{T}]} \overline{\Gamma} = $$
-$$ \overline{\Gamma^{-1}}(\overline{\Gamma' \Gamma^{-1}}) \overline{\Gamma} = $$
-$$ \overline{\Gamma^{-1}}\overline{\Gamma'}  = (\Gamma^{T})^{-1}(\Gamma')^{T}$$
-$$\overline{\Gamma^{T}} = \Gamma$$
-$$\overline{\Gamma'^{T}} = \Gamma'$$
-$$[\mathscr{A}] = [\mathscr{A}^{*}] \Ra \mathscr{A} = \mathscr{A}^{*}$$
+	$\{v_i\}$ "--- базис $V$, $(,) = \Gamma$.
+	Все $\left<,\right>$ однозначно определяются $\Gamma'$ "--- своей матрицей Грамма.
+	Хотим построить самосопряженный оператор у этой матрицы Грамма.
+	\begin{gather*}
+		[\mathcal A] = (\Gamma' \Gamma^{-1})^T = (\Gamma^T)^{-1} (\Gamma')^T \\
+		\Gamma' = \overline(\Gamma')^T \\
+		[\mathcal A^*] = \overline{\Gamma^{-1}} \overline{[\mathcal A]^T]} \overline{\Gamma} = \\
+		= \overline{\Gamma^{-1}} (\overline{\Gamma' \Gamma^{-1}}) \overline{\Gamma} = \\
+		= \overline{\Gamma^{-1}} \overline{\Gamma'} = (\Gamma^T)^{-1}(\Gamma')^T \\
+		\overline{\Gamma^T} = \Gamma \quad \overline{\Gamma'^T} = \Gamma' \\
+		[\mathcal A] = [\mathcal A^*] \Ra \mathcal A = \mathcal A^*
+	\end{gather*}
 \end{proof}
