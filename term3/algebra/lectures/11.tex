@@ -72,3 +72,62 @@ $$\alpha(u, v) = (\beta + i \gamma)(u, v) = (\beta u - \gamma v, \beta v + \gamm
 $i(u, 0) = (0, u)$
 
 $v_1, \cdots, v_n$ "--- базис $V_{\C}$ над $\C$.
+$$V_{\C} = \{(v, 0)\} \oplus \{(0, u)\} $$
+$$V_{\C} = V \oplus iV$$
+
+$\{v_i\}$ "--- базис V над $\R$.
+$\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$
+
+Отождествление $v_i$ и $(v_i, 0)$.
+
+По $V$ строим $V_{\C}$ (по $\R$ строим $\C$ соответствует $\dim V = 1$)
+
+$v_i{_{\C}} = (v_i,0)$
+
+\begin{Def}
+$$V, V_{\C}, \dim_{\R}V = n < \infty$$
+$$\mathcal{A} \in End(V)$$
+$\mathcal{A} \in End(V_{\C})$ "--- комплексикация $\mathcal{A}$.
+\end{Def}
+
+Положим $\mathcal{A}_{\C}((v, u)) = (\mathcal{A}v, \mathcal{A}u)$
+
+Адитивность $\mathcal{A}_{\C}$ очевидна.
+
+$$\mathcal{A}_{\C}((\alpha + \beta i)(v, u)) = \mathcal{A}_{\C}(\alpha v - \beta u, \beta v + \alpha u) = $$
+$$= (\mathcal{A}(\alpha v - \beta u), \mathcal{A}(\beta v + u)) = (\alpha \mathcal{A}(v) - \beta \mathcal{A}(u), \beta \mathcal{A}(v) + \alpha \mathcal{A}(u)) = $$
+$$= (\alpha + \beta i)(\mathcal{A}(v), \mathcal{A}(u)) = (\alpha + \beta i)\alpha_{\C}(v, u)$$
+
+$\mathcal{A}_{\C} \to \C$ "--- линейный оператор.
+
+$$\mathcal{A}_{\C}|_{V} = \mathcal{A}|_{v \times \{0\}}$$
+$$\mathcal{A}_{\C}|_{V} = \mathcal{A}$$
+$$\mathcal{A}_{\C}((v, 0)) = (\mathcal{A}v, 0)$$
+
+$$[\mathcal{A}]_{\{v_i\}} = (a_{ij})$$
+$$\mathcal{A} v_j = \sum_{i = 1}^n a_{ij}v_i$$
+
+$$\mathcal{A}_{\C}(v_{j_{\C}}) = \mathcal{A}_{\C}((v_j, 0)) = (\mathcal{A}v_j, 0) = $$
+$$= (\sum_{i = 1}^{n}a_{ij}v_i, 0) = \sum_{i = 1}^{n}a_{ij}(v_i, 0) = \sum_{i = 1}^{n}a_{ij}v_{i_{\C}}$$
+
+$$[\mathcal{A}_{\C}]_{v_{i_{\C}}} = [\mathcal{A}]_{\{v_i\}}$$
+
+$\{v_i\}$ "--- базис V, над $\R$.
+
+$\{(v_i, 0)\}$  "--- базис $V_{\C}$ над $\C$
+
+$$(v, u) = (\sum \alpha v_j, \sum \beta_{j}v_j) = \sum \alpha_j(v_j, 0) + \sum \beta_j(0, v_j) = $$
+$$= \sum \alpha(v_j, 0) + \sum i \beta_j(v_j, 0) = \sum(\alpha_j + i \beta_i)(v_j, 0)$$
+
+\begin{exmp}
+    \begin{enumerate}
+    \item Всякий самосопряженный оператор в евклидовом пространстве
+    можно рассматривать как самосопряженный оператор в унитарном пространстве той же
+    размерности. 
+    \item Всякий ортогональный оператор в $\R^n$ можно рассматривать как унитарный оператор той же
+    размерностью в $\C^n$
+    \end{enumerate}
+\end{exmp}
+\begin{conseq}
+   $$O(n) \le U(n)$$
+\end{conseq}
