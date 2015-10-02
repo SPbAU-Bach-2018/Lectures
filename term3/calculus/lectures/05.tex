@@ -1,0 +1,309 @@
+%%\begin{enumerate}
+\item
+	Интеграл не зависит от направления кривой.
+
+\item
+	Интеграл линеен.
+
+\item
+	Интеграл аддитивен по кривой:
+	\[ \int\limits{\gamma_1 \sqcup \gamma_2} f \d s = \int\limits_{\gamma_1} f \d s + \int\limits_{\gamma_2} f \d s \]
+	Имеется в виду две половинки одной кривой.
+	\begin{proof}
+		$\gamma\colon [a, b] \ra \R^n$.
+		Параметризируем:
+		\[ \gamma_1 = \gamma \bigr|_{[a, c]} \quad \gamma_2 = \gamma \bigr|_{[c, b]} \]
+		Тупо подставляем в определение.
+	\end{proof}
+
+\item
+	$\gamma$ "--- спрямляемая кривая, значит есть натуральная параметризация $\tilde \gamma\colon [0, S] \ra \R^n$ и
+	\[ \int\limits_\gamma f \d s = \int\limits_0^S f(\tilde \gamma(s)) \d s \]
+	\begin{proof}
+		\begin{gather*}
+			\int\limits_0^t \|\tilde\gamma'(\tau)\| \d \tau = l\left(\tilde \gamma \bigr|_{[a, t]}\right) = t \\
+			\|\tilde\gamma'(t)\| = 1 \\
+			\Ra \int\limits_\gamma f \d s = \int\limits_0^S f(\tilde\gamma(\t)) \underbrace{\|\tilde\gamma'(t)\|}_1 \d t
+		\end{gather*}
+	\end{proof}
+
+\item
+	\[ \int\limits_\gamma \d s = l(\gamma) \]
+
+\item
+	\[ \left| \int\limits_\gamma f \d s \right| \le \max f l(\gamma) \]
+	\begin{proof}
+		\begin{gather*}
+			\left| \int\limits_\gamma f \d s \right|
+			= \left| \int\limits_0^S f(\tilde\gamma(t)) \d t \right|
+			\le \int\limits_0^S \left| f(\tilde\gamma(t)) \right| \d t \le \max f S
+		\end{gather*}
+	\end{proof}
+
+\item
+	\[ f \le g \Ra \int\limits_\gamma f \d s \le \int\limits_\gamma g \d s \]
+	\begin{proof}
+		\[
+			\int\limits_\gamma f \d s = \int\limits_0^S f(\tilde\gamma(t)) \d t
+			\le \int\limits_0^S g(\tilde\gamma(t)) \d t = \int\limits_\gamma g \d s
+		\]
+	\end{proof}
+
+\item
+	Аналог интегральной суммы:
+	\[ \sum_{k=1}^m f(\gamma(\xi_k)) l\left(\gamma\bigr|_{[t_{k-1}, t_k]}\right) \]
+	Тогда для инеграла по пути
+	\[
+		\forall \epsilon>0, \exists \delta > 0\colon \forall \tau\colon |\tau|<\delta, \forall \xi,
+		\left| \int\limits_\gamma f \d s - \sum_{k=1}^m f(\gamma(\xi_k)) l\left(\gamma\bigr|_{[t_{k-1}, t_k]}\right)\right| < \epsilon
+	\]
+	\begin{proof}
+		\begin{gather*}
+			\int\limits_\gamma f \d s = \int\limits_a^b f(\gamma(t)) \|\gamma'(t)\| \d t
+		\end{gather*}
+		Пишем интегральную сумму:
+		\begin{gather*}
+			\sum_{k=1}^m f(\gamma(\xi_k)) \|\gamma'(\xi_k)\| (t_k - t_{k-1}) \lrh A \\
+			\sum_{k=1}^m f(\gamma(\xi_k)) l\left(\gamma\bigr|_{[t_{k-1}, t_k]}\right)
+			= \sum_{k=1}^m f(\gamma(\xi_k)) \int\limits_{t_{k-1}}^{t_k} \|\gamma'(t)\| \d t \lrh B \\
+			\int\limits_{t_{k-1}}^{t_k} \|\gamma'(t)\| \d t = \|\gamma'(\eta_k)\| (t_k - t_{k-1}) \quad \eta_k \in [t_{k-1}, t_k] \\
+			A - B = \sum_{k=1}^m f(\gamma(\xi_k)) \left(\|\gamma'(\xi_k)-\gamma'(\eta_k)\|\right) (t_k - t_{k-1})
+		\end{gather*}
+		$\|\gamma'\|$ нерерывна.
+		\begin{gather*}
+			\forall \epsilon > 0, \exists \delta > 0\colon |x - y| < \delta \Ra |\|\gamma'(x)\| - \|\gamma'(y)\|| < \epsilon \\
+			\sum_{k=1}^m
+				\underbrace{f(\gamma(\xi_k))}_{\text{ограничена}}
+				\underbrace{\left(\|\gamma'(\xi_k)-\gamma'(\eta_k)\|\right)}_{< \epsilon}
+				\underbrace{(t_k - t_{k-1})}_{\ra (b - a)} \\
+			|A - B| \le M\epsilon(b-a)
+		\end{gather*}
+	\end{proof}
+\end{enumerate}
+
+\section{Криволинейные ингегралы второго рода}
+
+Они же "--- интегралы дифференциальной формы.
+\begin{Def}
+	$\gamma\colon [a, b] \ra \R^n$ "--- гладкий путь, $f\colon (\gamma([a, b])) \ra \R$ непрерывна.
+	Тогда
+	\[
+		\int\limits_\gamma \left(f_1 \d x_1 + f_2 \d x_2 + \dots + f_n \d x_n \right)
+		\eqDef \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + f_2(\gamma(t))\gamma'_2(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
+	\]
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item
+	Инетграл не зависит от параметров, сохраняющих ориентацию кривой.
+	\begin{proof}
+		$\tau\colon [\alpha, \beta] \ra [a, b]$, $\tau' > 0$, $\tau(\alpha) = a$, $\tau(\beta) = b$.
+		\begin{gather*}
+			\int\limits_\alpha^\beta \left(f_1(\gamma(\tau(s))(\gamma_1(\tau(s)))' + \dots + f_n(\gamma(t))(\gamma_n(\tau(s)))' \right) \d s =\\
+			= \int\limits_\alpha^\beta \left(f_1(\gamma(\tau(s))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \tau'(s) \d s = \\
+			= \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
+		\end{gather*}
+	\end{proof}
+
+\item
+	Смена направления на кривой меняет знак интеграла.
+	\begin{proof}
+		$\gamma\colon [a, b] \ra \R^n$
+		\[
+			\int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n
+			= \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
+		\]
+		$\tilde\gamma = \gamma(a+b-t)$ "--- обратная параметризация.
+		\[
+			\int\limits_{\tilde\gamma} f_1 \d x_1 + \dots + f_n \d x_n
+			= \int\limits_a^b \left(f_1(\gamma(a+b-t))\gamma'_1(a+b-t) + \dots + f_n(\gamma(a+b-t))\gamma'_n(a+b-t) \right) \d t
+			= -\int\limits_b^a \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d (-s)
+			= -\int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n
+		\]
+	\end{proof}
+
+\item
+	Пусть $\vec\sigma$ "--- единичный касательный вектор, соноправленный направлению обхода.
+	Тогда
+	\[ \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n = \int\limits_\gamma \left<f, \sigma\right> \d s \]
+	\begin{proof}
+		$\gamma\colon[a, b] \ra \R$.
+		Единичный касательные вектор будет выглядеть
+		\[ \frac{\gamma'}{\|\gamma'\|} \quad \gamma' = \begin{pmatrix} \gamma_1' \\ \gamma_2' \\ \vdots \\ \gamma_n' \end{pmatrix} \]
+		Тогда
+		\begin{gather*}
+			\int\limits_\gamma \left<f, \sigma\right> \d s
+			= \int\limits_a^b \left<f(\gamma(t)), \sigma(\gamma(t))\right> \|\gamma'(t)\| \d t
+			= \int\limits_a^b \left<f(\gamma(t)), \frac{\gamma'(t)}{\|\gamma'(t)\|}\right> \|\gamma'(t)\| \d t
+			= \int\limits_a^b \left<f(\gamma(t)), \gamma'(t)\right> \d t
+			= \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
+		\end{gather*}
+	\end{proof}
+
+\item
+	Линейность по функции.
+
+\item
+	Аддитивность по кривой при сохранении ориентации: $\gamma\colon[a, b] \ra \R^n$, $\gamma_1 = \gamma\bigr|_{[a,c]}$, $\gamma_2 = \gamma\bigr|_{[c, b]}$
+	\[ \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n = \int\limits_{\gamma_1} \ldots + \int\limits_{\gamma_2} \ldots \]
+
+\item
+	\[ \left| \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n \right| \le \int\limits_\gamma \|f|\| \d s \le \max \|f\| l(\gamma) \]
+	\begin{proof}
+		\begin{gather*}
+			\left| \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n \right|
+			= \left| \int\limits_\gamma \left<f, \sigma\right> \d s \right|
+			\le \int\limits_\gamma \left|\left<\|f\|, \sigma\right>\right| \d s
+			\le \int\limits_\gamma \|f\| \underbrace{\|\sigma\|}_1 \d s
+		\end{gather*}
+		Последнее неравенство "--- Коши-Буняковский.
+	\end{proof}
+
+\item
+	Интегральная сумма
+	\[
+		\sum_{k=1}^m \sum_{j=1}^n f_i(g(\xi_k)) (\gamma_j(t_k) - \gamma_j(t_{k-1}))
+	\]
+	Догадайтесь, что дальше:
+	\[
+		\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \epsilon, \forall \xi,
+		\left| \sum_{k=1}^m\sum_{j=1}^n f_j(g(\xi_k))(\gamma_j(t_k)-\gamma_j(t_{k-1})) - \int\limits_\gamma (f_1\d x_1+\dots+f_n \d x_n)\right|
+		< \epsilon
+	\]
+	\begin{proof}
+		\begin{gather*}
+			\gamma_j (t_n) - \gamma_j(t_{n-1}) = \gamma'_j(\eta_{jk})(t_k - t_{k-1}) \\
+			\sum_{k=1}^m \sum_{j=1}^n f_i(g(\xi_k)) (\gamma_i(t_k) - \gamma_i(t_{k-1}))
+			= \sum_{k=1}^m \left( \sum_{j=1}^n f_i(g(\xi_k)) \gamma_j'(\eta_{jk}) - \gamma_i(t_{k-1})) \right) (t_k - t_{k-1})
+		\end{gather*}
+		Дальше опять рассуждаем про то, что $\gamma_j'$ равномерно непрерынвы.
+	\end{proof}
+\end{enumerate}
+
+\begin{Rem}
+	Оба эти криволинейных интеграла можно доопределить на кусочногладких функциях:
+	делим на гладкие куски, считаем интеграл на кусках, складываем.
+\end{Rem}
+
+\begin{Def}
+	Первообразная дифференциальной формы $f_1 \d x_1 + \dots + f_n \d x_n$ "--- такая дифференцируемая функция $F$, что
+	\[ \d F = f_1 \d x_1 + \dots + f_n \d x_n \]
+\end{Def}
+
+\begin{theorem}
+	Если $F$ "--- первообразная дифференциальной формы и $\gamma$ "--- кривая, соединяющая точки $A$ и $B$, то
+	\[ \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n = F(B) - F(A) \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n
+			= \int\limits_a^b ( f_1(\gamma(t)) \gamma_1'(t) + \dots + f_n(\gamma(t)) \gamma_n'(t) ) \d t \\ =
+		= \int\limits_a^b \left( \partd{F}{x_1}(\gamma(t)) \gamma_1'(t) + \dots + \partd{F}{x_1} \gamma_n'(t) \right) \d t
+			= \int\limits_a^b (F \circ \gamma)'(t) \d t = (F \circ \gamma)(b) - (F \circ \gamma)(a) = F(B) - F(A)
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	Если у формы есть первообразная, то от пути интеграл не зависит.
+	Физический смысл: поле, заданное этой формой, потенциальное.
+\end{conseq}
+
+\begin{Def}
+	$G \subset \R^n$ называется областью, если $G$ открыто и линейно связно.
+\end{Def}
+
+\begin{theorem}
+	$G$ "--- область, $f_1, \dots, f_n\colon G \ra \R$ непрерывны.
+	Тогда $f_1 \d x_1 + \dots + f_n \d x_n$ имеет первообразную тогда и только тогда,
+	когда интеграл по любому замкнутому пути равно нулю.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		Следует из предыдущей теоремы.
+
+	\item[$\La$:]
+		Возьмём произвольную точку $a$ и переберём точки $x$.
+		Построим
+		\[ F(x) = \int\limits_{\gamma(a, x)} f_1 \d x_1 + \dots + f_n \d x_n \]
+		В силу того, что по замкноту контуру ноль, любая $\gamma$ даст одно и то же значение интеграла.
+		Таким образом, $F$ корректная функция.
+
+		Проверим, что оно подходит:
+		\begin{gather*}
+			\partd{F}{x_1} = \lim_{h \ra 0} \frac{F(x_1 + h, x_2, \dots, x_n) - F(x_1, x_2, \dots, x_n)}h
+			= \lim_{h \ra 0} \frac{\int\limits_[x, (x_1 + h, x_2, \dots, x_n)] f_1 \d x_1 + \dots + f_n \d x_n}h = \\
+			\gamma\colon [0, h] \ra [x, (x_1 + h, x_2, \dots, x_n)] \quad t \mapsto \begin{pmatrix} x_1 + t\\x_2\\\vdots\\x_n\end{pmatrix} \\
+			= \lim_{h \ra 0} \frac{\int\limits_0^h f_1(x_1+t, x_2, \dots x_n) \d t}h
+			= \lim_{h \ra 0} \frac{h f_1(x_1 + \theta h, x_2, \dots, x_n)) \d t}h = f_1(x) \quad \theta \in [0, 1]
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{theorem}[формула Грина]
+	$G \subset \R^2$ "--- область, граница которой состоит из конечного чилса не(само)пересекающихся замкнутых кусочно-гладких кривых,
+	$P, Q\colon G \ra \R$ непрерывно дифференцируема.
+	Тогда
+	\[ \int\limits_{\delta G} P \d x + G \d y = \int\limits_G \left(\partd{Q}x - \partd{P}y\right) \d x \d y\]
+	Направления обхода: идём по границе так, чтобы $G$ была слева.
+\end{theorem}
+\begin{proof}
+	Покажем, что формула верна для хорошей фигурки $G$: ограничена горизонтальным и вертикальным отрезками, а на концах натянута !!!КАРТИНКА!!!
+	\begin{gather*}
+		\int\limits_G \partd{P}y \d y \d x
+			= \int\limits_a^b \int\limits_{\phi(a)}^{\phi(x)} \partd{P}y(x, y) \d y \d x
+			= \int\limits_a^b (P(x, \phi(x)) - P(x, \phi(a))) \d x=
+			= \int\limits_a^b P(x, \phi(x) \d x - \int\limits_a^b P(x, \phi(a)) \d x
+			= -\int\limits_{C\ra A} P \d x - \int\limits_{[A, B]} P \d x
+			= -\int\limits_{C\ra A} P \d x - \int\limits_{[A, B]} P \d x - \int\limits_{[B, C]} P \d x
+			= -\int\limits_{\delta G} P \d x
+	\end{gather*}
+	Аналогично можно показать
+	\[ \int\limits_G \partd{Q}x \d y \d x = \int\limits_{\delta G} Q \d y \]
+	
+	После этого можно заметить, что при разрезе области кривой на две, если доказаны формулы для половинок, то получим для целой:
+	обход этой кривой войдёт два раза с разными знаками, а сдругой стороны они дают нулевой вклад.
+	
+	$G$ простая, если она криволинейная с гладкой верхушкой и экстремумов конечное число. 
+	Режем её по экстремумам, потом до трегуольников доводим.
+
+	Можно доказать, что уловие на экстремумы не требуется, но трудно. И дифференцируемости даже.
+\end{proof}
+
+\begin{exmp}
+	Порасуждаем про интеграл:
+	\begin{gather*}
+		\int\limits_\gamma P \d x + Q \d y \\
+		P = \frac{y}{x^2+y^2} \quad Q = \frac{-x}{x^2+y^2} \\
+		P = \partd{\arctg \frac{x}y}x \quad Q = \partd{\arctg \frac xy}y
+	\end{gather*}
+	$\arctg$ "--- первообразная, значит, если замкнутая кривая не касается $y=0$, то интеграл ноль.
+	Покажем, что если кривая на $\R^2$ не касается всего лишь нуля, то интеграл ноль:
+	\begin{gather*}
+		\int\limits_\gamma P \d x + Q \d y
+		= \int\limits_G \left(\partd Qx - \partd Py\right) \d x \d y = \cdots \\
+		\partd Qx = \partd Py \\
+		\cdots = 0 \\
+	\end{gather*}
+	А теперь по окружности:
+	\begin{gather*}
+		x = r \cos t \quad y = r \sin t \\
+		x' = -r \sin t \quad y' = r \cos t \\
+		\int\limits_\gamma P \d x + Q \d y
+		= \int\limits_0^{2\pi} \left(\frac{r\sin t}{r^3}(-r\sin t)+\frac{-r\cos t}{r^3}r\cos t\right)\d t=
+		-2\pi
+	\end{gather*}
+\end{exmp}
+
+\begin{conseq}
+	Для фигурок из теоремы Грина
+	\[ \mu G = \int\limits_{\delta G} x \d y = - \int\limits_{\delta G} y \d x = \frac12 \int\limits_{\delta G} (x \d y - y \d x) \]
+\end{conseq}
+\begin{proof}
+	\begin{enumerate}
+		\item $Q = x$, $P = 0$
+		\item $P = -y$, $Q = 0$
+		\item $Q = x/2$, $P = -y/2$
+	\end{enumerate}
+\end{proof}
