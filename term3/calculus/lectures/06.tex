@@ -1,0 +1,250 @@
+\chapter{Несобственные интегралы}
+
+\section{Несобственные интегралы}
+
+\begin{Def}
+	$-\infty < a < b \le +\infty$, $f \in C[a,b)$.
+	Если существует предел
+	\[ \lim_{B \ra b-0} \int\limits_a^B f(x) \d x \]
+	то
+	\[ \int\limits_a^b f(x) \d x \eqDef \lim_{B \ra b-0} \int\limits_a^B f(x) \d x \]
+\end{Def}
+
+\begin{Def}
+	$-\infty \le a < b +\infty$, $f \in C(a,b]$.
+	Если существует предел
+	\[ \lim_{A \ra a+0} \int\limits_A^b f(x) \d x \]
+	то
+	\[ \int\limits_a^b f(x) \d x \eqDef \lim_{A \ra a+0} \int\limits_A^b f(x) \d x \]
+\end{Def}
+
+\begin{Rem}
+	Если $f \in C[a, b]$, то определение не даёт ничего нового:
+	\[ \int\limits_a^b f(x) \d x = \int\limits_a^B f(x) \d x + \underbrace{\int\limits_B^b f(x) \d x}_{\ra0} \]
+\end{Rem}
+
+Далее свойства про верхнюю точку, про нижнюю всё то же самое.
+
+\begin{theorem}[Критерий Коши сходимости интеграла]
+	$f \in C[a, b)$. Тогда сходимость ингеграла
+	\[ \int\limits_a^b f \]
+	равносильна
+	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B > c, \left|\int\limits_A^B f\right| < \epsilon \]
+\end{theorem}
+\begin{proof}
+	\[ F \lrh \int\limits_a^x f(t) \d t \]
+	Тогда
+	\[ \int\limits_a^B f = F(B) - F(a) = F(B) \]
+	и наличие предела $\lim_{B \ra b-0} \int\limits_a^B f$ равносильно наличию предела у $\lim_{B \ra b-0} F(B)$,
+	что уже равносильно
+	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B > c, |F(B) - F(A)| < \epsilon \]
+\end{proof}
+
+\begin{Rem}
+	Обычно этот критерий, что характерно, используют для доказательства расходимости интеграла.
+	Если существуют $A_n, B_n \ra b-0$, что
+	\[ \int\limits_{A_n}^{B_n} > \epsilon \]
+	то интеграл расходится.
+\end{Rem}
+
+\begin{Rem}
+	Пусть $f$ "--- первообразая $f$ на $[a, b)$.
+	Тогда
+	\[ \int\limits_a^b f = \lim_{B \ra b-0} F(B) - f(a) \]
+	Сходимость интеграла равносильна тому, что $F$ непрерывно продолжается на $[a, b]$.
+\end{Rem}
+
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_1^{+\infty} \frac{\d x}{x^p} = \lim_{B \ra +\infty} \int\limits_1^B \frac{\d x}{x^p} = \cdots \\
+		\int \frac{\d x}{x^p} = \begin{cases}
+			\ln x & p = 1 \\
+			-\frac1{(p-1)x^{p-1}} & p \ne 1
+		\end{cases} \\
+		\cdots = \begin{cases}
+			\lim_{B \ra +\infty} \ln B & p = 1 \\
+			\lim_{B \ra +\infty} \frac1{p-1}\left(1-\frac1{B^{p-1}}\right) & p \ne 1
+		\end{cases}
+	\end{gather*}
+	При $p > 1$ интеграл сходится и равен $\frac1{p - 1}$, иначе не сходится.
+\end{exmp}
+
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_0^1 \frac{\d x}{x^p} = \lim_{A \ra 0+} \int\limits_A^1 \frac{\d x}{x^p} = \\
+		= \begin{cases}
+			\lim_{A \ra 0+} -\ln A & p = 1 \\
+			\lim_{A \ra 0+} \frac1{p-1}\left(\frac1{B^{p-1}}\right)-1) & p \ne 1
+		\end{cases}
+	\end{gather*}
+	При $p < 1$ интеграл сходится и равен $\frac1{1 - p}$, иначе не сходится.
+\end{exmp}
+
+Свойства несобственных интегралов:
+\begin{enumerate}
+\item
+	$c \in (a, b)$. Следующие два интеграла сходятся или расходятся одновременно:
+	\[ \int\limits_a^b f \quad \int\limits_c^b f \]
+	причём в случае сходимости
+	\[ \int\limits_a^b f = \int\limits_a^c f + \int\limits_c^b f \]
+	\begin{proof}
+		\[ \lim_{B\ra b-0} \int\limits_a^B f = \int\limits_a^c f + \lim_{B\ra b-0} \int\limits_c^B f \]
+	\end{proof}
+
+\item
+	Если $\int_a^b f$ сходится, то
+	\[ \lim_{c \ra b-0} \int\limits_c^b f = 0 \]
+	\begin{proof}
+		Из предыдущего пункта
+		\[ \int\limits_c^b f = \int\limits_a^b f - \int\limits_a^c f \ra \int\limits_a^b f - \int\limits_a^b f = 0 \]
+	\end{proof}
+
+\item
+	Линейность: если на $[a, b)$ сходятся интегралы от $f$ и $g$, то
+	\[ \int\limits_a^b (\alpha f  + \beta g) = \alpha \int\limits_a^b f + \beta \int\limits_a^b g \]
+	\begin{proof}
+		\[
+			\lim_{B\ra b-0} \int\limits_a^B (\alpha f + \beta g)
+			= \lim_{B\ra b-0} \left(\alpha \int\limits_a^B f + \beta \int\limits_a^B g\right) 
+			= \alpha \lim_{B\ra b-0} \int\limits_a^B f + \beta \lim_{B\ra b-0} \int\limits_a^B g
+		\]
+	\end{proof}
+	\begin{Rem}
+		Сумма сходящегося и расходящегося интегралов будет расходиться.
+		\begin{proof}
+			Пусть сходятся, тогда и разность $\int_a^b (f+g)-f$ будет сходиться.
+		\end{proof}
+	\end{Rem}
+
+	\begin{Rem}
+		Сумма двух расходящихся интегралов может и сходиться:
+		\begin{gather*}
+			\int\limits_1^{+\infty} \frac{\d x}x \quad \int\limits_1^{+\infty} -\frac{\d x}x \\
+			\int\limits_0^1 \frac{\d x}x \quad \int\limits_0^1 \left(1-\frac1x\right) \d x \\
+		\end{gather*}
+	\end{Rem}
+
+\item
+	Монотонность: если $f \le g$ и их интегралы сходится, то
+	\[ \int\limits_a^b f \le \int\limits_a^b g \]
+	\begin{Rem}
+		Вместо сходимости можно потребовать существование в $\bar \R$.
+	\end{Rem}
+
+\item
+	Интегрирование по частям: пусть $f, g \in C^1[a,b)$.
+	\[ \int\limits_a^b fg' = fg \biggr|_a^b - \int\limits_a^b f'g \]
+	Для существования любого слагаемого достаточно существования других двух.
+
+\item
+	Замена переменной: $\phi\colon [\alpha, \beta) \ra [a, b)$, $\phi \in C^1[\alpha, \beta)$, $\lim_{t\ra\beta-0} \in \bar \R$,
+	$f \in C[a, b)$.
+	Тогда
+	\[ \int\limits_\alpha^\beta f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^c f(x) \d x \]
+	Существование одного даёт существование другого.
+	\begin{proof}
+		Пусть существует левый интеграл.
+		Покажем, что есть правый и равен.
+		\begin{gather*}
+			\Phi(\gamma) \lrh \int\limits_\alpha^\gamma f(\phi(t)) \phi'(t) \d t \Ra \exists \lim_{gamma\ra\beta-0} \Phi(\gamma) \\
+			\int\limits_\alpha^\gamma f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^{\phi(\gamma)} f(x) \d x \\
+			F(y) \lrh \int\limits_{\phi(\alpha)}^y f(x) \d x \\
+			\lim_{y\ra b-0} F(y) = \lim_{\gamma\ra\beta-0} F(\phi(\gamma))
+			= \lim_{\gamma\ra\beta-0} \Phi(\gamma) = \int\limits_a^b f(\phi(t)) \phi'(t) \d t
+		\end{gather*}
+		Пусть существует левый интеграл.
+		\begin{gather*}
+			F(y) \xLongrightarrow{y\ra c} \int\limits_{\phi(\alpha)}^c f
+			\Ra F(\phi(\gamma)) \xLongrightarrow{\gamma\ra\beta-0} \int\limits_{\phi(\alpha)}^c f \\
+			F(\phi(\gamma)) = \Phi(\gamma)
+		\end{gather*}
+	\end{proof}
+	
+	\begin{Rem}
+		Вместо сходимости можно потребовать существование в $\bar \R$.
+	\end{Rem}
+
+	\begin{Rem}
+		\[ \int\limits_a^b f(x) \d x \]
+		$\phi(t) = b - \frac1t$, $\phi'$
+		\[ \int\limits_a^b f(x) \d x = \int\limits_{\frac1{b-a}}^{+\infty} f\left(b - \frac1t\right)\frac1{t^2} \d t \]
+	\end{Rem}
+\end{enumerate}
+
+\section{Интеграл знакопостоянной функции}
+
+Знакопостоянство, не умаляя общности, считаем неотрицательностью.
+
+\begin{theorem}[Признак сравнения]
+	$f, g \in C[a,b)$, $0 \le f \le g$.
+	Тогда
+	\begin{enumerate}
+		\item Если $\int_a^b g$ сходится, то и $\int_a^b f$ сходится.
+		\item Если $\int_a^b f$ рассходится, то и $\int_a^b g$ рассходится.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\begin{enumerate}
+\item
+	$F(B) = \int\limits_a^B f(x) \d x$ и $G(B) = \int\limits_a^B g(x) \d x$ монотонно возрастают.
+	Но $G$ имеент предел, значит ограничена.
+	Но тогда $F$ возрастает и ограниченна, значит имеет предел.
+
+\item
+	От противного по пункту 1.
+\end{enumerate}\end{proof}
+
+\begin{conseq}
+	Если $f, g \in C[a, b)$, $f, g \ge 0$, $f = O(g)$ и $\int_a^b g$ сходится, то и $\int_a^b f$ сходится.
+\end{conseq}
+
+\begin{conseq}
+	Если $f, g \in C[a, b)$, $f, g \ge 0$ и $f(x) \sim g(x)$ при $x \ra b-0$, то интегралы $f$ и $g$ ведут себя одинаково.
+\end{conseq}
+
+\begin{conseq}
+	Если $f \in C[a, +\infty)$ и $f = O\left(\frac1{x^{1+\epsilon}}\right)$, то интеграл $\int_a^{+\infty} f$ сходится.
+\end{conseq}
+
+\begin{conseq}
+	Если $f \in C[a, +\infty)$ и $f \ge \frac{c}x$, то интеграл $\int_a^{+\infty} f$ расходится.
+\end{conseq}
+
+\begin{Rem}
+	Из того, что интеграл сходится, не следует то, что интеграл ноль.
+	Не следует даже, что функция ограничена.
+\end{Rem}
+\begin{exmp}
+	Функция вида: везде ноль, но есть галочки:
+	\begin{itemize}
+		\item на отрезке $\left[1 - \frac12, 1 + \frac12\right]$ галочка до 1,
+		\item на отрезке $\left[2 - \frac14, 2 + \frac14\right]$ галочка до 2,
+		\item ...
+		\item на отрезке $\left[n - \frac1{2^n}, n + \frac1{2^n}\right]$ галочка до $n$,
+	\end{itemize}
+	Проверим, что первообразная ограничена, то есть сумма площадей треугольничков ограничена:
+	\[
+		\sum_{i=1}^n \frac1{2^i} \cdot i
+		= \sum_{i=1}^n \underbrace{\frac1{\sqrt{2}^i}}_{\le C} \cdot \frac1{\sqrt{2}^i}
+		< \frac{C}{1-\frac1{\sqrt 2}}
+	\]
+\end{exmp}
+
+\section{Несобственные интегралы от знакопостоянной функции}
+
+\begin{Def}
+	$f \in C[a, b)$.
+	Интеграл $\int_a^b f$ сходится абсолютно, если сходтися интеграл её модуля.
+\end{Def}
+
+\begin{theorem}
+	$f \in C[a, b)$.
+	Из абсолютной сходимости следует простая сходимость.
+\end{theorem}
+\begin{proof}
+	$\int_a^b f$ абсолютно сходится, значит $\int_a^b |f|$ сходится.
+	По критерию Коши,
+	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B, \left|\int\limits_A^B |f|\right| < \epsilon \]
+	Но
+	\[ \left|\int\limits_A^B |f|\right| \le \int\limits_A^B |f| \]
+	и получили критерий Коши для $\int_a^b f$.
+\end{proof}
