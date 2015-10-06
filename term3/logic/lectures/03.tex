@@ -1,0 +1,171 @@
+\setauthor{Надежда Бугакова}
+\section{Тезис Чёрча}
+
+Алгоритм и машина Тьюринга - одно и то же.
+
+\begin{theorem}
+	Если функция f вычисляется с помощью программы с конечным количеством переменных, то она вычисляется и с помощью машины Тьюринга.
+\end{theorem}
+\begin{proof}
+	Промоделируем значение переменных: \#значение1\#значение2\#значение3\dots
+
+	Состояние: текущая строка и описание текущего действия. Состояний конечное количество.
+\end{proof}
+
+\begin{theorem}
+	Если функция вычисляется на машине Тюринга, то она вычисляется и с помощью программмы с конечным количеством переменных.
+\end{theorem}
+\begin{proof}
+	Конфигурация машины Тьюринга: (текущее состояние, лента левее головки, символ под головкой, лента правее головки).
+
+	Ленту левее и ленту правее можно реализовать через стек, текущее состояние и символ под головкой - 2 переменные.
+
+	Мы хотим представлять стек в виде одного числа. Если в алфавите k символов, то возьмём систему счисления по основанию k.
+	Стек: $a_1, a_2, \dots, a_l$ $\longrightarrow$ $n = a_1 + ka_2 + \dots + k^la_l$. Верхний элемент: $n$ mod $k$; удалить верхний элемент: 
+	$n \longrightarrow \lfloor \frac{n}{k} \rfloor$; добавить элемент: $x + nk$.
+
+	Таким образом получили 4 переменных, описывающих состояние МТ.
+
+	Проблемы:
+	\begin{enumerate}
+		\item Если стек правее ленты пустой, добавить пробел
+		\item Преобразование входов и выходов.
+	\end{enumerate} 
+\end{proof}
+
+\underline{Универсальная МТ}: U(M, x), где M - описание МТ, x - её вход. U(M, x) - запускает M на входе x.
+
+U(M, x) выглядит примерно так: \#описание M\#состояние М\#лента M(вход.....)
+
+Если передвигаем головку, то вместе с ней и описание М, то есть информацию, чтобы было быстрее:
+
+\#описание M\#состояние\#"вход" $\rightarrow$ "в"\#описание M\#состояние\#"ход"
+
+\section{Ассоциативное исчисление}
+\underline{Задача:}
+
+Правила - $\left\{
+	\begin{aligned}
+	&MAM \longleftrightarrow AA \\
+	&AM \longleftrightarrow MAA \\
+	&MM \longleftrightarrow MAM 
+	\end{aligned}
+\right.$
+
+Можно ли из MAM получить AMA? 
+
+Оказывается что нет алгоритма, решающего эту задачу(на вход правила и 2 слова).
+
+\begin{Def}
+	Одностороннее ассоциативное исчисление:
+	
+	$\Sigma^{*}$ - множество слов алфавита $\Sigma$. $x_1 \rightarrow y_1$, $x_2 \rightarrow y_2$, \dots. $x_k \rightarrow y_k$
+	$x_i, y_i \in \Sigma^{*}$ - правила(односторонние). $a \xrightarrow{?} b$.
+
+    Двустороннее ассоциативное исчисление:
+
+    Как одностороннее, только стрелочки в обе стороны.
+\end{Def}
+
+Двустороннее - частный случай одностороннего.
+\begin{theorem}
+Выводимость в одностороннем ассоциативном исчислении алгоритмически невычислимо.
+\end{theorem}
+\begin{proof}
+	M - машина Тьюринга. Остановится ли она на входе x?
+	
+	\cimg{02_02}{0.5}
+
+	'[$\alpha \widetilde{q} \beta$]' - представление МТ в виде строки($\widetilde{q}$ - текущее состояние МТ).
+
+	$\left[
+		\begin{aligned}
+			&\text{Шаг машины Тьюринга: } (\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \rightarrow)  \\
+			&\text{Строковая интерпретация: } \widetilde{q}c \longrightarrow b\widetilde{q'} 
+		\end{aligned}
+	\right.$
+
+	$\left[
+		\begin{aligned}
+			&(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \leftarrow)  \\
+			&x\widetilde{q}c \longrightarrow \widetilde{q'}xb\text{ для } \forall x\text{, кроме '['}
+		\end{aligned}
+	\right.$
+
+	$\left[
+		\begin{aligned}
+   			&(\widetilde{q}, \textvisiblespace) \longrightarrow (\widetilde{q'}, b, \rightarrow) \\
+   			&\widetilde{q}] \longrightarrow b\widetilde{q'}]\text{, если } \textvisiblespace\text{ - конечный. }
+   		\end{aligned}
+   	\right.$
+
+   Тогда $M$ остановится на x $\Leftrightarrow$ [$q_0$, x] $\rightarrow$ *, где *:
+   			
+   			$q_f$, x $\rightarrow$ *
+   			
+   			*a $\rightarrow$ *
+
+   			b* $\rightarrow$ *
+
+   Таким образом, мы построили сведение. А задача останова неразрешима.
+\end{proof}
+\begin{theorem}
+	Теперь двусторонняя ассоциативность.
+\end{theorem}
+\begin{proof}
+	В правила из предыдущего доказательства к каждой стрелке добавим обратную.
+	\begin{enumerate}
+		\item В * по обратной стрелке не прийти
+		\item Если есть путь в *, то есть путь туда же, но по прямым стрелкам.
+		\begin{proof}
+			Рассмотрим кратчайший путь в *. По п.1 последняя стрелка прямая. Пусть в пути есть обратные стрелки. Тогда существует ситуация
+			$\leftarrow \rightarrow$ - их можно сократить и мы получим путь меньше(а сократить мы можем, поскольку стрелка "туда"(направо)
+			всегда однозначна). Противоречие. 
+		\end{proof}
+	\end{enumerate}
+	М останавливается на x $\Leftrightarrow$ [$q_0$x] $\longrightarrow$ *
+\end{proof}
+
+Интерпретация в теории групп: полугруппа, заданная соотношениями $x_1 = y_1$, $x_2 = y_2$, \dots, $x_k = y_k$. Сравнение a и b алгоритмически 
+неразрешимо.
+
+\section{Теорема Успенского-Райсе}
+A, B - алгоритмы
+\begin{Def}
+	A $\sim$ B, если $\forall$ 
+	x $\left\{
+		\begin{aligned}
+		&A(x) \text{остановится } \Leftrightarrow B(x) \text{остановится} \\
+		&A(x) \text{остановится } \Rightarrow A(x) = B(x) 
+		\end{aligned}
+	\right.$
+
+	n $\nequiv$ m $\Leftrightarrow$ <n> $\sim$ <m>
+\end{Def}
+
+\begin{Def}
+	S $\subseteq$ $\mathcal{N}$, S называется инвариантным, если $\forall$ a $\in$ S, $\forall$ b $\in$ $\mathcal{N}$ \backslash S, 
+	a $\nequiv$ b
+\end{Def}
+
+\begin{theorem}{Успенский-Райс}
+	Если S - инвариантно, S $\ne$  $\emptyset$, S $\ne$ $\mathcal{N}$, то S - неразрешимо.	
+\end{theorem}
+\begin{proof}
+	От противного. Пусть S - разрешимо  и нетривиально. Пусть $\Lambda$ - алгоритм, который не останавливается ни на каком входе.
+	НУО \#$\Lambda$ $\in$ S. Пусть $a \in \bar{S}$.
+
+	$W$ - перечеслимое, неразрешимое множество.
+
+	Алгоритм V(n, x) = запускает полуразрешающий алгоритм $W$ и если он остановится, то запускаем $a(x)$ и выдаём результат.
+
+	$V_n(x) = V(n, x)$ Таким образом, у нас есть много алгоритмов: $V_1(x), V_2(x), \dots$.
+
+	n $\in$ W $\Rightarrow$ \#$V_n$ $\equiv$ a
+
+	n $\notin$ W $\Rightarrow$ \#$V_n$ $\equiv$ $\Lambda$
+
+	W $\le_m$ $\bar{S}$ : n $\longrightarrow$ \#$V_n$ - сведение
+
+	W - неразрешимо $\Rightarrow$ $\bar{S}$ - неразрешимо $\Rightarrow$  S - неразрешимо.
+\end{proof}
