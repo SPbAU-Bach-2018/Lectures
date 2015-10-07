@@ -235,3 +235,248 @@ $hzh$
 $$hah^{-1} = a$$
 
 $<1>^{\bot} = <\i, \j, \k>$
+
+Утеверждение: $(z_1, z_2) = (hz_1h^{-1}, hz_2h^{-1})$
+
+\begin{Rem}
+Доказательство с помощью матричного представления. 
+
+$h = \begin{pmatrix}
+a+bi & c + di\\
+-c + di & a - bi\\
+\end{pmatrix}, 
+z = 
+\begin{pmatrix}
+x_0 + x_1i & x_2 + x_3i\\
+-x_2 + x_3i & x_0 - x_1i\\
+\end{pmatrix}
+$
+
+$$(z_1, z_2) = \frac{1}{2}Tr(z_1, \bar{z_2}^{T})$$
+$$(hzh^{-1}, hz_2h^{-1}) = \frac{1}{2}Tr(hzh^{-1}\cdot \overline{(h z_2 h^{-1})}^{T}) = $$
+$$= \frac{1}{2}Tr(hzh^{-1}\bar{h}^{-1})^{T}z_2^Th^T) = \frac{1}{2}Tr(hz\bar z_2^T \bar h^{T}) = \frac{1}{2}Tr(z\bar z_2^{T}\bar h^{T}h) = \frac{1}{2}Tr(z\bar z_2^T)$$
+
+\end{Rem}
+
+\begin{conseq}
+ $\{z \in \H\colon Re z = 0\} = <1>^{\bot}$ "--- инвариатно 
+ относительно действия h сопряжением.
+\end{conseq}
+
+\begin{proof}
+$z \in <1>^{\bot}$
+
+$$(1, z) = 0$$
+$$(h1h^{-1}, hzh^{-1}) = 0 \Ra hzh^{-1} \in <1>^{\bot}$$
+\end{proof}
+
+Можно рассмотреть сужение действия сопряжения при помощи h на пространство линейных кватернионов.  
+
+$V = <1>^{\bot}$
+
+$\phi_h|_{v} \colon V \to V$
+
+Сохраняет скалярное произведение (так как $\phi_2$ изометрия на всем $\H$)
+
+$V = <\i, \j, \k> \sim \R^3$
+
+$\phi_h|_{v} \in O(3)$
+
+$$h \in \H_1 \sim SU(2)$$
+$$h \to \phi_h|_{V}$$
+$$SU(2) \to O(3)$$
+$$\phi_{h_1h_2}(z) = h_1h_2zh_2^{-1}h_1^{-1} = \phi_{h_1}(\phi_{h_2}(z))$$
+$$\phi_{h_1h_2} = \phi_{h_1}\circ \phi_{h_2}$$
+$$\phi_{h_1h_2}|_{v} = \phi_{h_1}|_{v} \circ \phi_{h_2}|_{v} $$
+
+Отображение $h \to \phi_h|_{v}$ является гомоморфизмом. 
+
+\begin{theorem}
+    Отображение из $\H_1 \sim SU(2)$  h ставится 
+    в соответствие $\phi_h|_V$  является гомоморфизмом из
+    $SU(2)$ на $SO(3) = \{g \in O(3) \colon \det g = 1\}$
+    причем ядро этого отображение есть $\{\pm1\}$
+
+    $h \to \phi_h|_{v}$
+\end{theorem}
+
+\begin{Rem}
+С топологической точки зрения 
+$SU(2)$  гомеоморфна $S^3$
+
+$$ 
+\begin{pmatrix}
+a + bi & c + di\\
+-c + di & a - bi\\
+\end{pmatrix}
+$$
+
+$$a^2 + b^2 + c^2 + d^2 = 1$$
+
+C топологической точки зрения $SO(3)$  устроено как $RP^3$.
+
+$RP^3$  можно вложить в $\R^9$
+
+$SO(3)$ "--- зависит от 9 параметров удовлетворяющее 7 условиям. 
+
+$$f \in SO(3)$$
+$$
+\begin{pmatrix}
+a_1 & a_2 & a_3\\
+a_4 & a_5 & a_6\\
+a_7 & a_8 & a_9\\
+\end{pmatrix}
+$$
+
+$$a_1^2 + a_4^2 + a_7^2 = 1$$
+$$a_2^2 + a_5^2 + a_8^2 = 1$$
+$$a_3^2 + a_6^2 + a_9^2 = 1$$
+$$a_1a_2 + a_4a_5 + a_7a_8 = 0$$
+$$\cdots$$
+$$\det(\cdots) = 1$$
+\end{Rem}
+\begin{proof}
+$h \to [\phi_h|_v]$ в базисе из матриц Пауля.
+
+$$
+h = \begin{pmatrix}
+a + b_i & c + d_i\\
+-c = d_i & a - b_i\\
+\end{pmatrix}
+$$ 
+
+$$ 
+h \begin{pmatrix}
+i & 0\\
+0 & -i\\
+\end{pmatrix}
+h^{-1} 
+= 
+\begin{pmatrix}
+(a^2 + b^2 - c^2 -d^2)i & 2ad + 2bc + (2bd - 2ac)i\\
+-2ad - 2bc + (2bd - 2ac)i & (-a^2 -b^2 + c^2 + d^2)i\\
+\end{pmatrix}
+$$
+$$
+h
+\begin{pmatrix}
+0 & 1\\
+-1 & 0\\
+\end{pmatrix}
+h^{-1} = 
+\begin{pmatrix}
+(-2ad + 2bc)i & a^2 - b^2 + c^2 - d^2 + (2ab + 2cd)i\\
+*&*\\
+\end{pmatrix}
+$$
+$$
+h 
+\begin{pmatrix}
+0 & i\\
+i & 0\\
+\end{pmatrix}
+h^{-1} = 
+\begin{pmatrix}
+(2ac + 2bd)i & (2cd - 2ab) + (a^2 - b^2 - c^2 - d^2)i\\
+*&*\\
+\end{pmatrix}
+$$
+$$
+[\phi_h|_{V}] = 
+\begin{pmatrix}
+a^2 + b^2 - c^2 - d^2 & -2ad + 2bc & 2ac + 2bd\\
+2ad + 2bc & a^2 - b^2 + c^2 - d^2 & -2ab + 2cd\\
+2bd - 2ac & 2ab + 2cd & a^2 - b^2 - c^2 + d^2\\
+\end{pmatrix}
+$$
+$$\det [\phi|_{v}] = (a^2 + b^2 + c^2 + d^2)^3 = 1$$
+$$[\phi][\phi]^t = (a^2 + b^2 + c^2 + d^2)^2E = E$$
+\end{proof}
+
+Отступление: кватернионы и трехмерная геометрия. 
+$$z = x_0 + x_1i + x_2j + x_3k = [x_0, \bar w]$$
+$$z' = x_0' + x_1'i + x_2'j + x_3'k = [x_0', \bar w]$$
+$$zz' = [x_0x_0' - (\bar w, \bar w'), x_0\bar w' + x_0'\bar w + (x_1x_2' - x_2 x_1')k + (x_3x_1' - x_1x_3')j + (x_2x_3' - x_3x_2')i]  =$$
+$$= [x_0x_0' - (\bar w, \bar w'), x_0\bar w + x_0'\bar w + \begin{vmatrix}
+i & j & k\\
+x_1 & x_2 & x_3\\
+x_1' & x_2' & x_3'\\
+\end{vmatrix}] =$$
+$$= [x_0x_0' - (\bar w, \bar w'), x_0\bar w' + x_0'\bar w + \bar w \times \bar w'] $$
+
+\begin{proof}
+Доказательство, что отображение $h \to \phi_h|_{v}$  "--- сюръекция. 
+$A \in SO(3)$, если $A = E$, то $h = 1$
+
+Ищем h, чтобы $A = [\phi_h|_V]$
+
+Если $A \ne E$, то существует ортонормированный базис V в котором оператор усножения на A имеет вид
+$$
+\begin{pmatrix}
+\cos \alpha & - \sin \alpha & 0\\
+\sin \alpha & \cos\alpha & 0\\
+0 & 0 & 1\\
+\end{pmatrix}
+$$
+Есть $w_1 \ne 0, A\bar w_1 = \bar w_1, |w_1| = 1$
+
+A "--- Поворот оси $\bar w_1$  на угол $\phi$
+
+Выберем какой-то $\bar w_2 \bot w_1$, $|w_2| = 1$
+
+$\bar w_1, \bar w_2$ и $\bar w_1 \times \bar w_2$ "--- базис V.
+$\bar w_2$ и $\bar w_1 \times \bar w_2$ "--- ортонормированный базис $<w_1>^{\bot}$
+
+$$h = ?$$
+$$h - [x_0, \bar w]$$
+$$h \bar w h^{-1} = (x_0 + \bar w)\bar w(x_0 - \bar w) = \bar w(x_0 + \bar w)(x_0 - \bar w) = \bar w h h^{-1} = \bar w$$
+$$|h| = 1$$
+Если хотим, чтобы ось вращения совпадала с осью натянотой на $w_1$, то $w = \lambda w_1$
+
+$h = [x_0, \lambda w_1]$
+$1 = |h|^2 = x_0^2 + \lambda^2|w_1|^2 = x_0^2 + \lambda^2  \Ra \exists \in \R x_0 = \cos \psi, \lambda = \sin \psi$
+$$h = \cos \psi + \sin \psi \bar w_1, hw_1h^{-1} = w_1$$
+$$hw_2h^{-1} = (\cos \psi  + \sin \psi \bar w_1 )(0 + \bar w_2)(\cos \psi - \sin \psi \bar w_1) = $$
+$$= (\cos \psi 0 - \sin \psi (\bar w_1 \bar w_2) + \cos \psi \bar w_2 + 0 + $$
+$$\sin \psi \cdot \bar w_1 \times \bar w_2)(\cos \psi - \sin \psi \bar w_1)$$
+$$= (\cos \psi \bar w_2 + \sin \psi \bar w_1 \times \bar w_2)(\cos \psi - \sin \psi \bar w_1) = $$
+$$= 0 + \cos^2 \psi \bar w_2 + \cos \psi \sin \psi \bar w_1 \times \bar w_2 - \cos \psi \sin \psi \bar w_2 \times \bar w_1 - $$
+$$- \sin^2 \psi(\bar w_1 \times \bar w_2) \bar w_1 = $$
+
+$(w_1 \times w_2) \times w_1$ "--- нормированный $\bot w_1 \times w_2$, $\bot w_1$
+
+$w_1, w_2, w_1 \times w_2$ "--- ортонормированный базис. 
+
+$(w_1 \times w_2) \times w_1 = \pm w_2$
+$(w_1 \times w_2, w_1, \pm w_2)$ "--- правая тройка. $\Ra$ знак +.  
+
+$$= (\cos^2 \psi - \sin^2 \psi)\bar w_2 + 2 \cos \psi \sin \psi \bar w_1 \bar w_2 =  $$
+$$= \cos 2 \psi \bar w_2 + \sin 2 \psi \bar w_1 \times \bar w_2$$
+$$2 \psi = \alpha$$
+
+\end{proof}
+
+\begin{proof}
+$h = \pm$
+
+$1 z 1^{-1} = z, \phi_1 = id$
+
+$(-1)z(-1)^{-1} = z, \phi_2 = id$
+
+Когда образ есть $E_3$?
+    $$4ab = 0$$
+    $$4ad = 0$$
+    $$4ac = 0$$
+    \begin{enumerate}
+    \item a = 0
+    $$2bc = 0$$
+    $$2bd = 0 $$
+    $$2cd =0 $$
+    $\Ra $ хотя бы 2 из трех $b, c, d$ равны 0.
+    $1 ненулевой$, остальные 0. На диагонали найдем противоречие. 
+    $$\Ra a \ne 0 \Ra b = c = d = 0$$
+    $$a^2 = 1$$
+    $$a = \pm 1$$
+    \end{enumerate}
+\end{proof}
+

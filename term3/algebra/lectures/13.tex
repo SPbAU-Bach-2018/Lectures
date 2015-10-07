@@ -1,0 +1,102 @@
+﻿\section{Ортогональные многочлены}
+\begin{enumerate}
+    \item Многочлены Лежандра
+    $V = \R[x]$ или ($V_n = \{g \in \R[x] \deg g \le n\}$)
+    $V_0 \subset V_1 \cdots = \cup_{i = 0}^{\infty}V_i = V$ 
+
+    $1,x, x^2, \cdots$ "--- базис. 
+
+    $(f, g) = \int_{-1}^{1}f(x)g(x)dx$ "--- невырожденная. 
+
+    Процесс ортогонализации $\exists$ ортогональный базис многочленов $P_i$, $\deg P_i = i$.
+
+    \begin{theorem}{}
+        Многочлены $P_i = \frac{1}{2^nn!}\frac{d^n}{dx^n}(x^2 - 1)^n$
+
+        являются ортогональным базисом пространства $\R[x]$ со сколярным произведением $\int_{-1}^{1}fgdx$.
+
+        Причем $\deg P_n = n$, $\deg P_n(1) = 1$
+    \end{theorem}
+    \begin{Def}
+    $P_n$ $n$-ый многочлен Лежандра
+    $P_n(x) = \frac{1}{2^nn!}\frac{d^n}{dx^n}(x^2 - 1)^n$ "--- формула Родрига. 
+    \end{Def}
+    \begin{proof}
+    $$\deg P_n = n$$
+    $$<P_0> = V_0$$
+    $$<P_1, P_0> = <P_1> + V_0 = V_1$$
+    $$<P_0, \cdots, P_n> = <P_n> + <P_0, \cdots, P_{n - 1}> = V_n$$
+
+    $$\alpha_nP_n + \cdots + \alpha_0P_0 = 0$$
+
+    $$\forall n \colon P_n \bot P_0 \cdots P_{n - 1}$$
+    $$P_n \bot <P_0, \cdots, P_{n - 1}> = V_{n - 1} = <1, \cdots, x^{n - 1}> $$
+
+    Для ортогональности достаточно проверить: $P_n \bot x^{k}$ для всех $k = 0, \cdots, n - 1$
+
+    $P_n \bot f$ для любого многочлена f степени $\le n - 1$
+
+    $$\forall n \forall f \colon \deg f < n \colon \int_{-1}^{1}P_{n}(x)f(x)dx = 0$$
+    $$\int_{-1}^{1}\frac{d^n}{dx^n}(x^2 - 1)^n f(x)dx = 0$$
+    $$ = - \int_{-1}^{1}\frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^n\frac{d}{dx}f(x) + \frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^nf(x)|_{-1}^{1} $$
+    $$ = - \int_{-1}^{1}\frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^n\frac{d}{dx}f(x)dx = (-1)^n\int_{-1}^{1}(x^2 - 1)^n\frac{d^n}{dx^n}f(x)dx = 0$$
+
+    $$\frac{d^n}{dx^n}(x^2 - 1)^n|_{x = 1} = \frac{d^n}{dx^n}(x - 1)^n(x + 1)^n|_{x = 1} = \sum_{k = 0}\binom{n}{k}\frac{d^k}{dx^k}(x - 1)^n\frac{d^{n - k}}{dx^{n - k}}(x + 1)^n|_{x = 1} = $$
+    $$ \binom{n}{k}(\frac{d^n}{dx^n}(x - 1)^n)(x + 1)^n|_{x = 1} = n!(1 + 1)^n = 2^nn!$$
+
+    $$P_n(1) = \frac{1}{2^nn!}2^nn! = 1$$
+    \end{proof}
+
+    \begin{theorem}
+    \begin{enumerate}
+    \item
+    $$\sum_{n = 0}^{\infty}P_n(x)z^n = \frac{1}{\sqrt{1 - 2xz + z^2}}$$
+    $x \in [-1,1]$ z в некоторой окрестности 0.
+    \item
+    $$\sum_{n = 0}^{\infty}P_n(1)z^n = \frac{1}{1 - z} = 1 + z + z^2 + \cdots $$
+    $$P_n(1) = 1$$
+    \item
+    $$\sum_{n = 0}^{\infty}P_n(-1)z^n = \frac{1}{1 + z} = 1 - z + z^2 - \cdots$$
+
+    $$P_n(-1) = (-1)^n $$
+    \end{enumerate}
+    \end{theorem}
+\item Многочлены Чебышева
+$$\int_{-1}^{1} \frac{f(x)g(x)}{\sqrt{1 - x^2}}dx=$$
+
+$$x = \cos \phi, \phi \in (0, \pi]$$
+$$dx = -\sin \phi \d\phi $$
+$$\sqrt{1 - x^2} = \sin \phi$$
+
+$$= \int_{0}^{\pi}f(\cos \phi)g(\cos \phi) d \phi$$
+
+$\int_{0}^{pi}\cos(n\phi)\cos(m\phi) d \phi = 0$, если $n \ne m$.
+
+$\cos(n \phi) = T_n(\cos \phi)$
+
+$T_n$ "--- многочлен Чебышева. 
+
+$$T_n(x) = 2xT_{n - 1}(x) - T_{n - 2}(x)$$
+
+$T_n$ ортогональна для $(f, g) = \int_{-1}^{1}\frac{f(x)g(x)}{\sqrt{1 - x^2}}dx$
+
+$$\int_{0}^{\pi}\frac{(e^{inx\phi} + e^{-inx})(e^{im\phi} + e^{-im\phi})}{4} d\phi =  $$
+$$= \int_{0}^{\pi}\frac{e^{i(n + m)\phi} + e^{i(m - n) \phi} + e^{i(n - m) \phi} + e^{-(n + m)\phi}}{4}d\phi $$
+
+$$\int_{-1}^{1}\sqrt{1 - x^2}f(x)g(x)dx = \int_{0}^{\pi}\sin^2(\phi)f(\cos \phi)g(\cos \phi) d \phi$$
+$$\sin(n + 1)\phi= U_n(\cos(\phi))\sin(\phi)$$
+$U_n(x)$ "--- ортогональные многочлены с весом $\sqrt{1 - x^2}$.
+
+$$T_n(x) = \frac{(-2)^nn!}{2n!}\sqrt{1 - x^2}\frac{d^n}{dx^n}((1 - x^2)^n \cdot (1 - x^2)^{-\frac{1}{2}}) $$
+\begin{exmp}
+\begin{enumerate}
+\item
+Многочлены Лагерра. 
+$$\int_{0}^{\infty}f(x)g(x)e^{-x}$$
+$$L_n(x) = c_ne^x \frac{d^n}{dx^n}(x^ne^{-x}) $$
+\item 
+$\int_{- \infty}^{\infty}f(x)g(x)e^{-x^2}$  "--- многочлены Эрмита $H_n$
+$$H_n(x) = (-1)^ne^x\frac{d}{dx^n}(e^{-x^2})$$
+\end{enumerate}
+\end{exmp}
+\end{enumerate}
