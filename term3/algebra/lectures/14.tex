@@ -1,0 +1,85 @@
+﻿\section{Дифференциальные операторы и ортогональные многочлены.}
+\begin{enumerate}
+\item
+$$V = \R[x]$$
+$$V_n = \{g \in \R[x], \deg g \le n\}, n = 0, 1, \cdots$$
+$$(f, g) = \int_{-1}^{1}f(x)g(x)dx$$
+$$D \colon V \to V$$
+$$D = \frac{d}{dx}(x^2 - 1)\frac{d}{dx} = (x^2 - 1)\frac{d^2}{dx^2} + 2x\frac{d}{dx}$$
+$$D(f) = (x^2 - 1)\frac{d^2}{dx^2}f + 2x\frac{d}{dx}f$$
+$$D \colon V_n \to V_n$$
+$$D^* = ?$$
+
+$$\int_{-1}^{1}D(f)gdx = \int_{-1}^{1}fD^*(g)dx$$
+$$(Df, g) = (f, D^*g)$$
+$$\int_{-1}^{1}\frac{d}{dx}((x^2 - 1)\frac{d}{dx}f)gdx = -\int_{-1}^{1}(x^2 - 1)\frac{d}{dx}f\frac{d}{dx}gdx + (x^2 - 1)\frac{d}{dx}fg|_{-1}^{1} =$$
+$$= -\int_{-1}^{1}(x^2 - 1)\frac{d}{dx}f\frac{d}{dx}gdx = \int_{-1}^{1}f\frac{d}{dx}((x^2 - 1)\frac{d}{dx}g)dx$$
+
+$D = D^*$ "--- самосопряженный. 
+
+$D \colon V_n \to V_n, D = D^*$
+
+$\Ra \exists$ ортонормированный базис из собственных функций(многочленов).
+
+\begin{theorem}{}
+$P_m$ "--- собственная функция оператора $D$ с собственными числами $m(m + 1), m = 0, 1, \cdots, n$.
+\end{theorem}
+\begin{proof}
+    Почему собствнные числа обязаны иметь вид $m(m + 1)$?
+    $$D(f) = \lambda f, \deg f = m, f = a_mx^m + \cdots$$
+    $$D(f) = m(m + 1)a_mx^m + \cdots \Ra \lambda = m(m + 1)$$
+
+    $$(x^2 - 1)\frac{d}{dx}(x^2 - 1)^m = 2mx(x^2 - 1)^m$$
+    Продиффиренцируем по переменной x  m + 1 раз и применем формулу Лейбница.
+    $$(x^2 - 1)\frac{d^{m + 2}}{dx^{m + 2}}(x^2 - 1)^m + (m + 1)2x\frac{d^{m + 1}}{dx^{m + 1}}(x^2 - 1)^{m} + \frac{2m(m + 1)}{2}\frac{d^m}{dx^m}(x^2 - 1)^m =$$
+    $$2mx\frac{d^{m + 1}}{dx^{m + 1}}(x^2 - 1)^m + (m + 1)2m\frac{d^m}{dx^m}(x^2 - 1)^m$$
+
+    $$(x^2 - 1)\frac{d^{m + 2}}{dx^{m + 2}}(x^2 - 1)^m + 2x\frac{d^{m + 1}}{dx^m}(x^2 - 1)^m = m(m + 1)\frac{d^m}{dx^m}(x^2 - 1)^m$$
+    Что бы получились многочлены Лежандра нужно еще домножить на $\frac{1}{2^nn!}$.
+
+    $$(x^2 - 1)\frac{d^2}{dx^2}(\frac{1}{2^nn!}\frac{d^m}{dx^m}(x^2 - 1)^m) + 2x\frac{d}{dx}(\frac{1}{2^nn!}\frac{d^m}{dx^m}(x^2 - 1)^m) =$$
+    $$= m(m + 1)\frac{1}{2^nn!}\frac{d^m}{dx^m}(x^2 - 1)^m $$
+
+    $$D(P_m(x)) = (x^2 - 1)\frac{d^2}{dx^2}P_{m}(x) + 2x \frac{d}{dx}P_m(x) = m(m + 1)P_m(x)$$
+
+    $V_n, m  =0, 1, \cdots, n$
+    $\{P_m\}$ "--- базис $V_m$ 
+\end{proof}
+
+Упражнение: 
+    \begin{enumerate}
+    \item 
+    Проверить ортогональность многочленов Чебышева, Лагерра, Эрмита(для соответствующих весов). 
+    \item
+    Попробуйте найти дифференциальные операторв, чьими собственными функциями являются многочлен Чебышева, Лагерра и Эрмита. 
+    \end{enumerate}
+
+\item Тригонометрические многочлены. 
+$$V = \{a_0 + a_1 \cos (x) + \cdots + a_n\cos(nx) + b_1 \sin x + \cdots + b_n \sin nx$$
+$$\dim_{\R}V = 2n + 1$$
+
+$$(f, g) = \int_{0}^{2 \pi}f(x)g(x)dx$$
+$$D = \frac{d}{dx} \colon V \to V$$
+$$D^* = ?$$
+
+$$\int_{0}^{2\pi}D(f) \cdot g dx  = \int_{0}^{2\pi}f'g dx = -\int_{0}^{2\pi}fg'dx + fg|_{0}^{2\pi}$$
+$$f(2\pi)g(2\pi) - f(0)g(0) = 0$$
+
+$$D^* = -D$$
+
+$(\frac{d^2}{dx^2})^* = \frac{d^2}{dx^2}$ "--- самосопряженный. 
+
+Упражнение: проверьте самосопряженность 
+
+$$\frac{d^2}{dx^2}(1) = 0$$
+собственное число = 0.
+$$\frac{d^2}{dx^2}(\cos(mx)) = -m^2\cos mx$$
+$$\frac{d^2}{dx^2}(\sin(mx)) = -m^2\sin mx$$
+собственные числа $0, -1,-n, \cdots, -n^2$
+$$\int_{0}^{2\pi}\cos mx \sin mx dx = 0$$
+
+$$<1,\cos x, \cdots, \cos nx, \cdots, \sin nx> $$
+$$\dim \le 2n + 1$$
+$1, \cos x, \cdots, \sin nx$ "--- попарноортогональные и не ноль, значит базис.
+ 
+\end{enumerate}

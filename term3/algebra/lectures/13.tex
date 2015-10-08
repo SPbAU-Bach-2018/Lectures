@@ -88,6 +88,8 @@ $$\sin(n + 1)\phi= U_n(\cos(\phi))\sin(\phi)$$
 $U_n(x)$ "--- ортогональные многочлены с весом $\sqrt{1 - x^2}$.
 
 $$T_n(x) = \frac{(-2)^nn!}{2n!}\sqrt{1 - x^2}\frac{d^n}{dx^n}((1 - x^2)^n \cdot (1 - x^2)^{-\frac{1}{2}}) $$
+
+$$\sum_{n = 0}^{\infty} T_n(x)z^n = \frac{1 - xz}{1 - 2xz + z^2} $$
 \begin{exmp}
 \begin{enumerate}
 \item
@@ -97,6 +99,10 @@ $$L_n(x) = c_ne^x \frac{d^n}{dx^n}(x^ne^{-x}) $$
 \item 
 $\int_{- \infty}^{\infty}f(x)g(x)e^{-x^2}$  "--- многочлены Эрмита $H_n$
 $$H_n(x) = (-1)^ne^x\frac{d}{dx^n}(e^{-x^2})$$
+\item 
+$$(f, g) = \int_{-1}^{1}(x - 1)^{\alpha}(x + 1)^{\beta}f(x)g(x)dx, \alpha > -1, \beta > -1$$
+
+многочлены Якоби $J_n^{\alpha, \beta}(x)$ "--- ортогональный базис пространства $\R[x]$ с данным скалярным произведением. 
 \end{enumerate}
 \end{exmp}
 \end{enumerate}
