@@ -173,22 +173,40 @@
 		Размерности совпадают и одно подпространство другого, значит пространства совпадают.
 
 		\begin{exmp}
-			Обонсуем, зачем конечномерность.
+			Обоснуем, зачем конечномерность.
+			Рассмотрим следующее бесконечномерное векторное пространство:
 			\[ V = l^2 = \{(a_1, a_2, \dots) \mid a_i \in \R, \sum_{i=1}^\infty a_i^2 < \infty\} \]
-			$A = (a_1, \dots)$, $B = (b_1, \dots)$.
-			$(A, B) = \sum_{i = 1}^\infty a_i b_i$ "--- почему ряд сходится?
+			И введём на нём скалярное произведение:
 			\begin{gather*}
-				\sum_{i=1}^\infty |a_i b_i|
-				\le \sum_{i=1}^\infty \frac{a_i^2 + b_i^2}2 = \frac12 \sum_{i = 1}^\infty a_i^2 + \frac12\sum_{i = 1}^\infty b_i^2 < \infty \\
-				|a_i b_i| \le \frac{a_i^2 + b_i^2}2 \Lra (|a_i| - |b_i|)^2 \ge 0 \\
-				(A_1 + A_2, B) = (A_1, B) + (A_2, B) \\
-				A_1 = (a_1', a_2', \dots) \quad A_2 = (a_1'', a_2'', \dots) \\
-				\sum(a_i' + a_i'')b_i = \sum a_i'b_i + \sum a_i''b_i \\
-				\left(1, \frac12, \frac13, \dots\right) \in l^2 \\
+			A = (a_1, \dots) \\
+			B = (b_1, \dots) \\
+            (A, B) = \sum_{i = 1}^\infty a_i b_i
+            \end{gather*}
+            Следует показать, что это действительно скалярное произведение (определено и билинейно):
+            \begin{proof}
+				Покажем, что ряд сходится, даже абсолютно:
+				\begin{gather*}
+					|a_i b_i| \le \frac{a_i^2 + b_i^2}2 \Lra (|a_i| - |b_i|)^2 \ge 0 \\
+					\sum_{i=1}^\infty |a_i b_i|
+					\le \sum_{i=1}^\infty \frac{a_i^2 + b_i^2}2 = \frac12 \sum_{i = 1}^\infty a_i^2 + \frac12\sum_{i = 1}^\infty b_i^2 < \infty \\
+				\end{gather*}
+				Линейность:
+				\begin{gather*}
+					(A_1 + A_2, B) = (A_1, B) + (A_2, B) \\
+					A_1 = (a_1', a_2', \dots) \quad A_2 = (a_1'', a_2'', \dots) \\
+					\sum(a_i' + a_i'')b_i = \sum a_i'b_i + \sum a_i''b_i \\
+				\end{gather*}
+			\end{proof}
+			Несколько примеров:
+			\begin{gather*}
+				\left(1, \frac12, \frac13, \dots\right) \in l^2
+				\La
 				\sum_{n = 1}^\infty \frac1{n^2} = \frac{\pi^2}6 \\
 				\left(1, \frac1{\sqrt{2}}, \frac1{\sqrt{3}}, \dots\right) \notin l^2
 			\end{gather*}
+			Теперь рассмотрим подпространство
 			$l^2_0 = \{(a_1, \dots) \mid \text{почти все $a_i = 0$}\}$
+			(очевидно, что $\langle l^2_0 \rangle = l^2_0$) и покажем контрпример к утверждению:
 			\begin{gather*}
 				l_0^2 \le l^2 \\
 				A \in (l_0^2)^\bot \\
