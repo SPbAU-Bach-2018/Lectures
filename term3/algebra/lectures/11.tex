@@ -1,133 +1,129 @@
 ﻿\section{Овеществление и комплексификация}
 \subsection{Овеществление}
-$\C^n \sim \R^{2n}$
 
-$\mathscr{A} \in End(\C^n)$
+\[ \C^n \sim \R^{2n} \]
 
-Рассмотрим $\mathscr{A}$ как оператор на $\R^{2n}$
+$\mathcal A \in End(\C^n)$.
+Рассмотрим $\mathcal A$ как оператор на $\R^{2n}$.\\
+$e_1, \dots, e_n$ "--- стандартный базис $\C^n$.
+$e_1, \dots, e_n, ie_1, \dots, e_n$ "--- базис в $\R^{2n}$.
+\begin{gather*}
+	v
+	= \sum \lambda_j e_j
+	= \sum (\Re \lambda_j) e_j + (\Im \lambda_j) (i e_j) \\
+	\mathcal A \left(\sum a_j e_j + \sum b_j(i e_j)\right)
+	= \mathcal A \left(\sum(a_j + i b_j)e_j \right)
+	= \sum (a_j + ib_j) \mathcal A(e_j) = \\
+	= \sum a_j \mathcal A(e_j) + \sum b_j i \mathcal A(e_j)
+	= \sum a_j \mathcal A(e_j) + \sum b_j \mathcal A(ie_j)
+\end{gather*}
+Получили, что$\mathcal A$ "--- линейный оператор в $2n$-мерном вещественном пространстве.
 
-$e_1, \cdots, e_n$ "--- стандартный базис $\C^n$.
+Над $\C$: $[\mathcal A] = (\alpha_{kj})_{k, j = 1..n}$.
+$[\mathcal A]$ "--- матрица $\mathcal A$ в стандартном базисе.
+\begin{gather*}
+	\alpha_{kj} = \beta_{kj} + i \gamma_{kj} \\
+	\mathcal A \in End(\C^n) \quad e_1, ie_1, \cdots, e_n, ie_n \\
+	\mathcal Ae_j
+	= \sum_k \alpha_{kj}e_j
+	= \sum (\beta_{kj}e_j + \gamma_{kj}ie_j)
+	= \sum_k(-\gamma_{kj}e_j + \beta_{kj}(ie_j)) \\
+	\alpha_{kj} \to \begin{pmatrix}
+		\beta_{kj}  & -\gamma_{kj} \\
+		\gamma_{kj} & \beta_{kj}
+	\end{pmatrix}
+\end{gather*}
+Получили матрицу оператора $\mathcal A$ рассматриваемого как $\R^{2n}$-оператор.
+Дословно повторяется дла $V$, $\dim_{\C}V = n$, $\mathcal A \in \End_{\C}(V)$.
+\begin{gather*}
+	\dim_{\R}V = 2n, \mathcal A \in End_{\R}(V) \\
+	U(1) \quad SO(2) \\
+	(\cos\phi + i \sin \phi) \to \begin{pmatrix}
+		\cos \phi & -\sin \phi \\
+		\sin \phi &  \cos \phi
+	\end{pmatrix}
+\end{gather*}
 
-$e_1, \cdots, e_n$, $ie_1, \cdots, e_n$ "--- базис в $\R^{2n}$
+\subsection{Комплексификация}
 
-$$v = \sum \lambda_j e_j = \sum (\Re \lambda_j)e_j + (\Im \lambda_j)(i e_j)$$
+$V$ "--- пространство над $\R$, $\dim V = n$.
+Cтроим новое пространство $V_{\C}$ "--- над $\R$ должно иметь размерность $2n$.
+\[ V_{\C} = V \oplus V' \]
+$V'$ "--- <<копия>> $V$.
+\begin{gather*}
+	V_{\C} = V \times V = \{(v, u)| v, u \in V\} \\
+	\begin{aligned}
+		V  &\sim V \times \{0\} \\
+		V' &\sim \{0\} \times V
+	\end{aligned} \\
+	(v, u) = (v, 0) + (0, u) \\
+	\alpha = \beta + i \gamma \\
+	\alpha(u, v) = (\beta + i \gamma)(u, v) = (\beta u - \gamma v, \beta v + \gamma u)
+\end{gather*}
 
-$$\mathscr{A}(\sum a_j e_j + \sum b_j(i e_j)) = \mathscr{A}(\sum(a_j + i b_j)e_j) = \sum(a_j + ib_j)\mathscr{A}(e_j) =$$
-$$\sum a_j \mathscr{A}(e_j) + \sum b_j i \mathscr{A}(e_j) = \sum a_j \mathscr{A}(e_j) + \sum b_j \mathscr{A}(ie_j)$$
-$\Ra \mathscr{A}$ "--- линейный оператор в 2n "--- мерном вещественном пространстве.
+\textbf{Упражнение: }
+$V_{\C}$ "--- векторное пространство над $\C$.
 
-Над $\C\colon [\mathscr{A}] = (\alpha_{kj})_{k, j = 1, \cdots, n}$ 
-
-$[\mathscr{A}]$ "--- матрица $\mathscr{A}$ в стандартном базисе. 
-
-$\alpha_{kj} = \beta_{kj} + i \gamma_{kj}$
-
-$\mathscr{A} \in End(\C^n), e_1, ie_1, \cdots, e_n, ie_n$
-
-$\mathscr{A}e_j = \sum_k \alpha_{kj}e_j = \sum (\beta_{kj}e_j + \gamma_{kj}ie_j) = 
-\sum_k(-\gamma_{kj}e_j + \beta_{kj}(ie_j))$ 
-
-$\alpha_{kj} \to \begin{pmatrix}
-\beta_{kj} & -\gamma_{kj} \\
-\gamma_{kj} & \beta_{kj}\\
-\end{pmatrix}$
-
-Получили матрицу оператора $\mathscr{A}$  рассматриваемого как $\R$- оператор. 
-
-Дословно повторяется дла $V, \dim_{\C}V = n, \mathscr{A} \in \End_{\C}(V)$
-
-$\dim_{\R}V = 2n, \mathscr{A} \in End_{\R}(V)$
-
-$$U(1), SO(2)$$
-$$(\cos\phi + i \sin \phi) \to 
-\begin{pmatrix}
-\cos \phi & -\sin \phi\\
-\sin \phi & \cos \phi\\
-\end{pmatrix}$$
-
-\subsection{Комплексификация} 
-
-$V$ "--- пространство над $\R$  $\dim V = n$
-
-строим новое пространство $V_{\C}$ "--- над  $\R$ должно иметь размерность $2n$.
-
-$V_{\C} = V \oplus V'$ 
-$V' = $ "копия $V$"
-
-$V_{\C} = V \times V = \{(v, u)| v, u \in V\}$
-
-$V \sim V \times \{0\}$
-
-$V' \sim \{0\} \times V$ 
-
-$(v, u) = (v, 0) + (0, u)$
-
-$$\alpha = \beta = i \gamma$$
-$$\alpha(u, v) = (\beta + i \gamma)(u, v) = (\beta u - \gamma v, \beta v + \gamma u)$$
-
-Упражнение $V_{\C}$ "--- векторное пространство над $\C$.
-
-Отождествляем V с $V \times \{0\}$
-
-$i(u, 0) = (0, u)$
-
-$v_1, \cdots, v_n$ "--- базис $V_{\C}$ над $\C$.
-$$V_{\C} = \{(v, 0)\} \oplus \{(0, u)\} $$
-$$V_{\C} = V \oplus iV$$
-
+Отождествляем $V$ с $V \times \{0\}$.
+$i(u, 0) = (0, u)$.
+$v_1, \dots, v_n$ "--- базис $V_{\C}$ над $\C$.
+\begin{gather*}
+	V_{\C} = \{(v, 0)\} \oplus \{(0, u)\} \\
+	V_{\C} = V \oplus iV
+\end{gather*}
 $\{v_i\}$ "--- базис V над $\R$.
-$\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$
+$\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$.
 
 Отождествление $v_i$ и $(v_i, 0)$.
-
-По $V$ строим $V_{\C}$ (по $\R$ строим $\C$ соответствует $\dim V = 1$)
-
-$v_i{_{\C}} = (v_i,0)$
-
+По $V$ строим $V_{\C}$ (по $\R$ строим $\C$ соответствует $\dim V = 1$).
+\[ v_{i\C} = (v_i,0) \]
 \begin{Def}
-$$V, V_{\C}, \dim_{\R}V = n < \infty$$
-$$\mathcal{A} \in End(V)$$
-$\mathcal{A} \in End(V_{\C})$ "--- комплексикация $\mathcal{A}$.
+	$V$, $V_{\C}$, $\dim_{\R}V = n < \infty$, $\mathcal A \in End(V)$.
+	$\mathcal A \in End(V_{\C})$ "--- комплексикация $\mathcal A$.
 \end{Def}
-
-Положим $\mathcal{A}_{\C}((v, u)) = (\mathcal{A}v, \mathcal{A}u)$
-
-Адитивность $\mathcal{A}_{\C}$ очевидна.
-
-$$\mathcal{A}_{\C}((\alpha + \beta i)(v, u)) = \mathcal{A}_{\C}(\alpha v - \beta u, \beta v + \alpha u) = $$
-$$= (\mathcal{A}(\alpha v - \beta u), \mathcal{A}(\beta v + u)) = (\alpha \mathcal{A}(v) - \beta \mathcal{A}(u), \beta \mathcal{A}(v) + \alpha \mathcal{A}(u)) = $$
-$$= (\alpha + \beta i)(\mathcal{A}(v), \mathcal{A}(u)) = (\alpha + \beta i)\alpha_{\C}(v, u)$$
-
-$\mathcal{A}_{\C} \to \C$ "--- линейный оператор.
-
-$$\mathcal{A}_{\C}|_{V} = \mathcal{A}|_{v \times \{0\}}$$
-$$\mathcal{A}_{\C}|_{V} = \mathcal{A}$$
-$$\mathcal{A}_{\C}((v, 0)) = (\mathcal{A}v, 0)$$
-
-$$[\mathcal{A}]_{\{v_i\}} = (a_{ij})$$
-$$\mathcal{A} v_j = \sum_{i = 1}^n a_{ij}v_i$$
-
-$$\mathcal{A}_{\C}(v_{j_{\C}}) = \mathcal{A}_{\C}((v_j, 0)) = (\mathcal{A}v_j, 0) = $$
-$$= (\sum_{i = 1}^{n}a_{ij}v_i, 0) = \sum_{i = 1}^{n}a_{ij}(v_i, 0) = \sum_{i = 1}^{n}a_{ij}v_{i_{\C}}$$
-
-$$[\mathcal{A}_{\C}]_{v_{i_{\C}}} = [\mathcal{A}]_{\{v_i\}}$$
-
+Положим $\mathcal A_{\C} (v, u) = (\mathcal Av, \mathcal Au)$.
+Адитивность $\mathcal A_{\C}$ очевидна.
+\begin{gather*}
+	\mathcal A_{\C}((\alpha + \beta i)(v, u))
+	= \mathcal A_{\C}(\alpha v - \beta u, \beta v + \alpha u) = \\
+	= (\mathcal A(\alpha v - \beta u), \mathcal A(\beta v + u))
+	= (\alpha \mathcal A(v) - \beta \mathcal A(u), \beta \mathcal A(v) + \alpha \mathcal A(u)) = \\
+	= (\alpha + \beta i)(\mathcal A(v), \mathcal A(u)) = (\alpha + \beta i)\alpha_{\C}(v, u)
+\end{gather*}
+$\mathcal A_{\C} \to \C$ "--- линейный оператор.
+\begin{gather*}
+	\mathcal A_{\C}|_{V} = \mathcal A|_{v \times \{0\}} \\
+	\mathcal A_{\C}|_{V} = \mathcal A \\
+	\mathcal A_{\C}((v, 0)) = (\mathcal Av, 0) \\
+	[\mathcal A]_{\{v_i\}} = (a_{ij}) \\
+	\mathcal A v_j = \sum_{i = 1}^n a_{ij}v_i \\
+	\mathcal A_{\C}(v_{j_{\C}})
+	= \mathcal A_{\C}((v_j, 0))
+	= (\mathcal Av_j, 0)
+	= \left(\sum_{i = 1}^{n}a_{ij}v_i, 0\right)
+	= \sum_{i = 1}^{n}a_{ij}(v_i, 0)
+	= \sum_{i = 1}^{n}a_{ij}v_{i_{\C}} \\
+	[\mathcal A_{\C}]_{v_{i\C}} = [\mathcal A]_{\{v_i\}}
+\end{gather*}
 $\{v_i\}$ "--- базис V, над $\R$.
-
-$\{(v_i, 0)\}$  "--- базис $V_{\C}$ над $\C$
-
-$$(v, u) = (\sum \alpha v_j, \sum \beta_{j}v_j) = \sum \alpha_j(v_j, 0) + \sum \beta_j(0, v_j) = $$
-$$= \sum \alpha(v_j, 0) + \sum i \beta_j(v_j, 0) = \sum(\alpha_j + i \beta_i)(v_j, 0)$$
+$\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$
+\begin{gather*}
+	(v, u)
+	= \left(\sum \alpha v_j, \sum \beta_{j}v_j\right)
+	= \sum \alpha_j(v_j, 0) + \sum \beta_j(0, v_j)
+	= \sum \alpha(v_j, 0) + \sum i \beta_j(v_j, 0)
+	= \sum(\alpha_j + i \beta_i)(v_j, 0)
+\end{gather*}
 
 \begin{exmp}
-    \begin{enumerate}
-    \item Всякий самосопряженный оператор в евклидовом пространстве
-    можно рассматривать как самосопряженный оператор в унитарном пространстве той же
-    размерности. 
-    \item Всякий ортогональный оператор в $\R^n$ можно рассматривать как унитарный оператор той же
-    размерностью в $\C^n$
-    \end{enumerate}
+	\begin{enumerate}
+	\item
+		Всякий самосопряженный оператор в евклидовом пространстве можно рассматривать как
+		cамосопряженный оператор в унитарном пространстве той же размерности.
+	\item
+		Всякий ортогональный оператор в $\R^n$ можно рассматривать как унитарный оператор той же размерности в $\C^n$.
+	\end{enumerate}
 \end{exmp}
 \begin{conseq}
-   $$O(n) \le U(n)$$
+   \[ O(n) \le U(n) \]
 \end{conseq}
