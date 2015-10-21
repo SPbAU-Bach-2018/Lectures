@@ -1,8 +1,8 @@
 \section{Нормальные операторы в евклидовых и унитарных пространствах.}
 
 \begin{Def}
-	$V$ "--- евклидово или унитарное, $(,)$ "--- стандартное скалярное произведение, $\mathscr A \in End(V)$.
-	$\mathscr A$ "--- нормальный, если $\mathscr A \mathscr{A}^* = \mathscr{A}^*\mathscr A$.
+	$V$ "--- евклидово или унитарное, $(,)$ "--- стандартное скалярное произведение, $\mathcal A \in End(V)$.
+	$\mathcal A$ "--- нормальный, если $\mathcal A \mathcal{A}^* = \mathcal{A}^*\mathcal A$.
 \end{Def}
 
 \begin{exmp}
@@ -10,13 +10,13 @@
 		\item Самосопряженный "--- нормальный.
 		\item Ортогональный и унитарный операторы также нормальные.
 		\begin{proof}
-			\[ (\mathscr Ax, \mathscr Ay) = (x, y) \]
+			\[ (\mathcal Ax, \mathcal Ay) = (x, y) \]
 			Изометрия "--- обратимое преобразование.
-			$y = \mathscr{A}^{-1}z$.
-			\[ (x, \mathscr{A}^*z) = (\mathscr Ax, z) = (x, \mathscr{A}^{-1}z) \]
-			Если $\mathscr A$ "--- унитарное или ортогональное, тогда $\mathscr{A}^* = \mathscr{A}^{-1}$.
-			\[ \forall x (x, \mathscr{A}^{-1}z - \mathscr{A}^*z) = 0 \Ra \mathscr{A}^{-1} = \mathscr{A}^* \]
-			$\mathscr A$ и $\mathscr{A}^{-1}$ коммутируют.
+			$y = \mathcal{A}^{-1}z$.
+			\[ (x, \mathcal{A}^*z) = (\mathcal Ax, z) = (x, \mathcal{A}^{-1}z) \]
+			Если $\mathcal A$ "--- унитарное или ортогональное, тогда $\mathcal{A}^* = \mathcal{A}^{-1}$.
+			\[ \forall x (x, \mathcal{A}^{-1}z - \mathcal{A}^*z) = 0 \Ra \mathcal{A}^{-1} = \mathcal{A}^* \]
+			$\mathcal A$ и $\mathcal{A}^{-1}$ коммутируют.
 		\end{proof}
 	\end{enumerate}
 \end{exmp}
@@ -25,8 +25,8 @@
 	$V$ "--- унитарное пространство.
 	Следующие условия равносильны:
 	\begin{enumerate}
-		\item $\mathscr A$ "--- нормальна.
-		\item Существует ортонормированный базис $V$, в котором $[\mathscr A]$ диагональная.
+		\item $\mathcal A$ "--- нормальна.
+		\item Существует ортонормированный базис $V$, в котором $[\mathcal A]$ диагональная.
 	\end{enumerate}
 \end{theorem}
 
@@ -34,45 +34,45 @@
 	\begin{description}
 	\item[$2 \Ra 1$:]
 		$\{v_i\}$ "--- ортонормированный базис, $\Gamma = E$.
-		$[\mathscr A] $ "--- диагональная.
-		$[\mathscr{A}^*] = \overline{[\mathscr A]^T}$ "--- диагональная.
+		$[\mathcal A] $ "--- диагональная.
+		$[\mathcal{A}^*] = \overline{[\mathcal A]^T}$ "--- диагональная.
 		\[
-			[\mathscr A\mathscr{A}^*]
-			= [\mathscr A][\mathscr{A}^*]
-			= [\mathscr{A}^*][\mathscr A]
-			= [\mathscr{A}^*\mathscr A]
-			\Ra \mathscr A\mathscr{A}^*
-			= \mathscr{A}^*\mathscr A
+			[\mathcal A\mathcal{A}^*]
+			= [\mathcal A][\mathcal{A}^*]
+			= [\mathcal{A}^*][\mathcal A]
+			= [\mathcal{A}^*\mathcal A]
+			\Ra \mathcal A\mathcal{A}^*
+			= \mathcal{A}^*\mathcal A
 		\]
 
 	\item[$1 \Ra 2$:]
-		$\mathscr A$ "--- нормальный оператор.
-		$\lambda$ "--- собственное число $\mathscr A$.
+		$\mathcal A$ "--- нормальный оператор.
+		$\lambda$ "--- собственное число $\mathcal A$.
 		$U(\lambda) = U_1(\lambda)$ "--- пространство собственных векторов отвечающих $\lambda$.
-		$U$ "--- $\mathscr A$-инвариантное подпространство.
-		$\mathscr{A}^*$ "--- инвариантно?
+		$U$ "--- $\mathcal A$-инвариантное подпространство.
+		$\mathcal{A}^*$ "--- инвариантно?
 
-		Возьмем $u \in U$ и применим оператор $\mathscr{A}^*$, нас интересует, почему $\mathscr{A}^*u \in U$.
-		\[ \mathscr A(\mathscr{A}^*u) = \mathscr{A}^*(\mathscr Au) = \mathscr{A}^*(\lambda u) = \lambda \mathscr{A}^*(u) \]
-		$\mathscr{A}^*u$ "--- собственный вектор $\mathscr A$, отвечающий $\lambda$.
-		Тогда $\mathscr{A}^*u \in U$.
+		Возьмем $u \in U$ и применим оператор $\mathcal{A}^*$, нас интересует, почему $\mathcal{A}^*u \in U$.
+		\[ \mathcal A(\mathcal{A}^*u) = \mathcal{A}^*(\mathcal Au) = \mathcal{A}^*(\lambda u) = \lambda \mathcal{A}^*(u) \]
+		$\mathcal{A}^*u$ "--- собственный вектор $\mathcal A$, отвечающий $\lambda$.
+		Тогда $\mathcal{A}^*u \in U$.
 
-		Мы нашли подпространство, которое одновременно $\mathscr A$- и $\mathscr{A}^*$-инвариантно.
-		$U^{\bot}$ "--- $\mathscr{A}^*$- и $\mathscr{A}^{**} = \mathscr A$-инвариантно.
+		Мы нашли подпространство, которое одновременно $\mathcal A$- и $\mathcal{A}^*$-инвариантно.
+		$U^{\bot}$ "--- $\mathcal{A}^*$- и $\mathcal{A}^{**} = \mathcal A$-инвариантно.
 
-		$V = U \oplus U^{\bot}$ и оба подпространства инвариантны $\mathscr A$ и $\mathscr{A}^*$.
+		$V = U \oplus U^{\bot}$ и оба подпространства инвариантны $\mathcal A$ и $\mathcal{A}^*$.
 		Значит определены.
 		\begin{gather*}
-			\mathscr A|_U, \mathscr{A}^*|_U \in End(U) \\
-			\mathscr A|_{U^{\bot}}, \mathscr{A}^*|_{U^{\bot}} \in End(U^{\bot})
+			\mathcal A|_U, \mathcal{A}^*|_U \in End(U) \\
+			\mathcal A|_{U^{\bot}}, \mathcal{A}^*|_{U^{\bot}} \in End(U^{\bot})
 		\end{gather*}
-		$\mathscr A|_U$ и $\mathscr{A}^*|_U$ "--- нормальные операторы на $U$.
-		$\mathscr A|_{U^{\bot}}$ и $\mathscr{A}^*|_{U^{\bot}}$ "--- нормальные операторы на $U^{\bot}$.
+		$\mathcal A|_U$ и $\mathcal{A}^*|_U$ "--- нормальные операторы на $U$.
+		$\mathcal A|_{U^{\bot}}$ и $\mathcal{A}^*|_{U^{\bot}}$ "--- нормальные операторы на $U^{\bot}$.
 
 		Выберем ортонормированный базис U.
 		\begin{gather*}
-			[\mathscr A|_u] = \lambda E_{\dim U} \\
-			[\mathscr{A}^*|_u] = \overline{[\mathscr A|_u]^T} = \overline{\lambda}E \\
+			[\mathcal A|_u] = \lambda E_{\dim U} \\
+			[\mathcal{A}^*|_u] = \overline{[\mathcal A|_u]^T} = \overline{\lambda}E \\
 		\end{gather*}
 		Далее: доказательство по индукции (применить к $U^{\bot}$).
 	\end{description}
@@ -81,15 +81,15 @@
 \begin{conseq}
 	\begin{enumerate}
 	\item
-		$\mathscr A$ "--- нормальный оператор, $u$ "--- собственный вектор $\mathscr A$, отвечающй  $\lambda$.
-		Тогда $u$ "--- собственный вектор $\mathscr{A}^*$, отвечающий $\overline{\lambda}$.
+		$\mathcal A$ "--- нормальный оператор, $u$ "--- собственный вектор $\mathcal A$, отвечающй  $\lambda$.
+		Тогда $u$ "--- собственный вектор $\mathcal{A}^*$, отвечающий $\overline{\lambda}$.
 	
 	\item
-		$\mathscr A$ "--- нормальный в унитарном пространстве.
+		$\mathcal A$ "--- нормальный в унитарном пространстве.
 		Cобственный вектора, отвечающие разным собственным числам, ортогональны.
 		\begin{gather*}
-			\mathscr Au = \lambda u \quad \mathscr Av = \beta v \\
-			\beta(u, v) = (u, \overline{\beta v}) = (u, \mathscr{A}^*v) = (\mathscr Au, v) = (\lambda u, v) = \lambda (u, v) \\
+			\mathcal Au = \lambda u \quad \mathcal Av = \beta v \\
+			\beta(u, v) = (u, \overline{\beta v}) = (u, \mathcal{A}^*v) = (\mathcal Au, v) = (\lambda u, v) = \lambda (u, v) \\
 			\Ra (u, v) = 0
 		\end{gather*}
 	
