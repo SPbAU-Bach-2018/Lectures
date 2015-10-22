@@ -1,0 +1,167 @@
+\[ \int_a^{+\infty} f(x) g(x) \d x \], $f \in C[a, +\infty)$, $g \in C^1[a, +\infty)$.
+
+Два признака сходимости:
+\begin{theorem}[Признак Дирихле]
+	\begin{enumerate}
+		\item $F(x) = \int_a^x f(t) \d t$ ограниченная функция
+		\item $g(x)$ монотонно стремится к нулю при $x \ra +\infty$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Признак Абеля]
+	\begin{enumerate}
+		\item $\int_a^{+\infty} f(x) \d x$ сходится
+		\item $g(x)$ монотонна и ограничена
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\[ \int\limits_a^A f(x) g(x) \d x = F(x) g(x) \biggr|_a^A - \int\limits_a^A F(x) g'(x) \d x \]
+	Знаем, что $F(x)$ ограниченная, а $g(x)$ стремится к нулю, значит первое слагаемое сходится.
+	Для второго покажем, что сходится абсолютно:
+	\[ \int\limits_a^{+\infty} |F(x)|\cdot|g'(x)| \d x \]
+	$|F(x) \le M|$, $g$ монотонна, значит $g'$ знакопостоянна.
+	Не умаляя общности, пусть $g' \ge 0$.
+	\begin{gather*}
+		|F(x)| \cdot |g'(x)| \le Mg'(x) \\
+		\int\limits_a^{+\infty} Mg'(x) \d x = Mg(x) \biggr|_a^{+\infty} = -Mg(x)
+	\end{gather*}
+	Таким образом, всё сходится.
+\end{proof}
+
+\begin{proof}
+	\[ F(x) \xlongrightarrow{x \ra +\infty} \int\limits_a^{+\infty} f(t) \d t\]
+	Значит $F(x)$ ограничена.
+	$g(x)$ монотонна и ограничена, значит существует конечный предел $\lim_{x\ra+\infty} g(x) = K$.
+	$\tilde g(x) = g(x) - K$.
+	Применим признак Дирихле для интеграла
+	\[ \int\limits_a^{+\infty} f(x) \tilde g(x) \d x \]
+	Он сойдётся.
+	\[ \int\limits_a^{+\infty} f(x) g(x) \d x = \int\limits_a^{+\infty} f(x) \tilde g(x) \d x + K \int\limits_a^{+\infty} f(x) \d x \]
+	Второй сходится по условию.
+\end{proof}
+
+\begin{Rem}
+	Непрерывная дифференуируемость $g$ не нужна, но без неё сложно.
+\end{Rem}
+
+\begin{conseq}
+	$f$ непрерывна и $T$-периодична, $g \in C^1[a, +\infty)$ и монотонно стремится к нулю.
+	Тогда
+	\[ \int\limits_a^{+\infty} f(x) g(x) \d x < \infty \La \int\limits_a^{a+T} f(x) \d x = 0 \]
+	а если второй инеграл не 0, то
+	\[ \int\limits_a^{+\infty} f(x) g(x) \d x < \infty \Lra \int\limits_a^{a+T} g(x) < \infty \]
+\end{conseq}
+
+\begin{proof}
+	Хотим сказать, что если интеграл по периоду ноль, то
+	\[ \int\limits_a^x f(t) \d t = \int\limits_{a+kT}^x f(t) \d t = \int\limits_0^{x-kT} f(t) \d t = F(x - kT) \]
+	где $k = \left\lfloor \frac{x - a}T \right\rfloor$.
+	Отсюда $\max |F(x)| = \max_{a \le x < a + T} |F(x)| \le M$.
+
+	Обратно: пусть инеграл периода не нулевой и равен $c$.
+	Рассморим $\tilde f(x) = f(x) - \frac{c}T$.
+	Воспользуемся уже доказанным направлением следствия.
+	\[ \int\limits_a^{+\infty} f(x) g(x) \d x = \int\limits_a^{+\infty} \tilde f(x) g(x) \d x + \frac{c}T \int\limits_a^{+\infty} g(x) \d x \]
+	Средний интешрал сходится, значит сходимость первого и последнего равносильны.
+\end{proof}
+
+\begin{exmp}
+	$p > 0$:
+	\[ \int\limits_1^{+\infty} \frac{\sin x}{x^p} \d x \]
+	$g(x) = 1 / x^p$, $g \downarrow 0$, $\sin$ периодическая и инеграл по периоду есть 0.
+	Значит интеграл сходтися.
+
+	Теперь рассмотрим абсолютную сходимость.
+	Для $p > 1$ точно сходится.
+	Иначе интеграл модуля синуса по периоду не ноль, и интеграл сойдётся тогда и только тогда, когда сойдётся
+	\[ \int\limits_1^{+\infty} \frac{\d x}{x^p} \]
+	то есть при $p = 1$.
+
+	При $p < 0$ не сходится:
+	\[ \int\limits_{\pi/6+2\pi k}^{5 \pi/6 + 2\pi k} \frac{\sin x}{x^p} \ge \frac12 (\frac{5\pi}6 - \frac\pi6) = \frac\pi3 \]
+	Не сходится по критерию Коши.
+\end{exmp}
+
+\section{Несосбвтенные кратные интегралы}
+
+\begin{Def}
+	$G \subset \R^n$ открыто.
+	${G_i}$ монотонно исчерпывет $G$, если $G_n$ открыто, $G_k \supset \cl G_{k-1}$ и $G = \bigcup G_k$.
+\end{Def}
+
+\begin{theorem}
+	$G \subset \R^n$ открыто.
+	Тогда существует последовательность $G_i$ открытых измеримых монотонно исчерпывающих $G$ множеств.
+\end{theorem}
+
+\begin{proof}
+	Нарежем $\R^n$ на замкнутые кубики с единичной стороной.
+	Беру те, что целиком влезли в $G$, беру внутренность выбранного множества как $G_1$.
+	Продолжим алгоритм с кубиками со стрононами $1/2$, $1/4$ и так далее.
+	Получим множества, открытые, измеримые, также покрывающие в конце $G$.
+
+	Покажем, что для каждого $k$ есть $m$, что $\cl G_k \subset G_m$.
+	Возьмём граничную точку $G_k$. Его граничная точка лежит в открытом $G$, при каком-то $m_1$ эту точку накроет.
+	Теперь покажем, что можно выбрать $m$ сразу для всех точек $\cl G_k$.
+	Рассмотрим фнукцию расстояния от точки $\cl G_k$ до $\partial G$.
+	Она непрерывна на компакте и больше нуля, значит есть минимум, больший нуля.
+	Подгоним $m$ под него.
+\end{proof}
+
+\begin{Def}
+	$f\colon G \ra \R^n$, интегрируема на любом измеримом $D \subset G$, таких что $\cl D \subset G$, $G$ открыто.
+	\[ \int\limits_G f(x) \d x = A \]
+	если для любой последовательности ихзмеримых $G_k$ монотонно исчерпывающих $G$
+	\[ \lim_{n\ra+\infty} \int\limits_{G_k} f(x) \d x = A \]
+\end{Def}
+\begin{Rem}
+	Для $n = 1$ определение \underline{\bf совсем} другие определения.
+\end{Rem}
+
+\begin{theorem}
+	$f \ge 0$, $f\colon G \ra \R$, $G$ открыто.
+	Тогда для каждой последовательности $G_k$ предел существует: конечный или бесконечный, и не зависит от выбора $G_k$.
+\end{theorem}
+\begin{proof}
+	Так как $G_k \subset G_{k+1}$, то $\int_{G_k} f \le \int_{G_{k+1}} f$.
+	Эта последовательность монотонно растёт, значит есть предел (возможно, не конечный).
+
+	Едиснтвенность: пусть есть другая последовательность $G'_k$.
+	Замыкание конечного измеримого множества есть компакт.
+	\[ \cl G'_m \subset \bigcup G_k = G \]
+	Компакт $\cl G'_i$ покрыт конечным числом открытых, можно выбрать конечное подпокрытие, но они все вложенны, значит лежит в самом большом:
+	\[ G'_m \subset \cl G'_m \subset G_l \]
+	Значит множества $G'_k$ зажаты $G_k$-ыми, значит интералы зажаты, значит у $\int_{G'_i} f$ предел такой же, как у $\int_{G_i} f$.
+\end{proof}
+
+\begin{conseq}[Признак сравнения]
+	$f \ge g \ge 0$, $f,g \colon G \ra \R$, $G$ открыто.
+	\begin{enumerate}
+		\item Если $\int_G f$ сходится, то и $\int_G g$ сходится.
+		\item Если $\int_G g$ расходится, то и $\int_G f$ расходится.
+	\end{enumerate}
+\end{conseq}
+\begin{proof}
+	Перейдём к последовательностям, там знаки сохранятся.
+\end{proof}
+
+\begin{Def}
+	Интеграл функции абсолютно сходится, если сходится интеграл модуля.
+\end{Def}
+
+\begin{theorem}
+	Для $n > 1$ абсолютная сходимость равносильна сходимости.
+\end{theorem}
+% \begin{proof}
+% 	\begin{description}
+% 	\item[$\Ra:$]
+% 		Возьмём последовательность $G_k$ монотонно исчерпывающих $G$.
+% 		\begin{gather*}
+% 			\int\limits_{G_k} f \lrh a_k \quad \int\limits_{G_{k+1}} |f| \lrh b_k \\
+% 			b_{k+1} - b_k \ge |a_{k+1} - a_k| \\
+% 			b_m - b_l = \int\limits_{G_m \setminus G_l} f \ge \left| \int\limits_{G_m \setminus G_l} f \right| = |a_m - a_l|
+% 		\end{gather*}
+% 		Отсюда $a_i$ фундаментальна.
+% 	\end{description}
+% \end{proof}
