@@ -1,0 +1,105 @@
+﻿\section{Размерность тензорного произведения и базисы.}
+
+\begin{lemma}
+Если среди $V_i,  i = 1 \cdots n$ есть нулевое пространство, 
+то $V_1 \otimes \cdots \otimes V_n$  также нульмерно. 
+\end{lemma}
+\begin{proof}
+    $$V_i = \{0\}$$
+    $$V_1 \times \cdots \times V_i \cdots \times V_n \to K$$
+    $$\alpha \in \mathcal{L}(V_1, \cdots, V_i, \cdots, V_n, K)$$
+    Зафиксируем все элементы кроме i-ого: $\alpha(V_1, \cdots, ., \cdots, V_n) \colon V_i \to K$
+    $V_i = \{0\}$ линейные отображения 0-мерного пространства только 0-мерное отображение. 
+    $$\Ra \alpha(V_1, \cdots, 0, \cdots, V_n) = 0 \Ra \alpha = 0$$
+    То есть, если $V_i = \{0\}$, то 
+    $$\mathcal{L}(V_1, \cdots, V_n, K) = \{0\}$$
+    $= \mathcal{L}(V_1 \otimes \cdots \otimes, K) = (V_1 \otimes \cdots \otimes V_n)^*$ "--- двойствнное пространство. 
+    $$\Ra V_1 \otimes \cdots \otimes V_n = \{0\}$$
+
+    Если бы $V_1 \otimes \cdots \otimes V_n$ содеражло бы ненулевой элемент, скажем e, 
+    то тогда бы мы могли дополнить e до базиса, тензорного произведения  и определим функционал $e^*$
+    $e^*(e) = 1$, e(остальных базисных) = 0.
+
+    Противоресие с тем, что $(V_1 \otimes \cdots \otimes V_n)^* = \{0\}$.
+\end{proof}
+\begin{theorem}
+    $V_1, \cdots, V_n$ "--- векторное пространство над $K$, $\dim V_i = d_i < \infty$, 
+    тогда $\dim(V_1 \otimes \cdots \otimes V_n) = d_1 \cdot \cdots \cdot d_n$
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+    \item $\exists i, \dim V_i = 0$ очевидно по лемме.
+    \item Все $d_i \ne 0$
+    $$\mathcal{L}(V_1, \cdots, V_n, K)$$
+    $e_1^{j}, \cdots, e_{d_j}^j$  "--- базис $V_j$
+    $(e_i^j)^*$ "--- элементы двойственного базиса (базиса в $V_j^*$)
+    $$(e_i^j)*(e_{k}^j) =  1, i = k; 0, i \ne k$$
+    Рассмотрим все такие произведения:
+    $$(e^{(1)}_{i_1})^* \cdots (e_{i_n}^{(n)})^* \colon V_1 \times \cdots \times V_n \to K$$
+    $$(e_{i_1}^{(1)})^* \cdots (e^{(n)}_{i_n})^*((v_1, \cdots, v_n)) = (e_{i_1}^{(1)})^*(v_1) \cdots (e_{i_n}^{(n)})^*(v_n)$$
+    $$(e_{i_1}^{(1)})^* \cdots (e_{i_n}^{(n)})^* \in \mathcal{L}(V_1, \cdots, V_n, K)$$
+
+    Таких произведений $d_1, \cdots, d_n$ 
+    $$\{ (e_{i_1}^{(1)})^* \cdots (e_{i_n}^{(n)})^* \colon 1 \le i_1 \le d_1, \cdots, 1 \le i_n \le d_n$$ "--- базис
+    пространства полилинейного отображени из $V_1 \times \cdots \times V_n$ в K.
+
+    $f \colon V_1 \times \cdots \times V_n \to K$, полилинейная. 
+    $$f(v_1, \cdots, v_n) = \sum_{i_1, \cdots, i_n}f(e_{i_1}, \cdots, e_{i_n})(e_{i_1}^{(1)} \cdots (e_{i_n}^{(n)})^{*})$$
+    $$f(v_1, \cdots, v_n) = f(\sum \alpha_i^{(1)}e_i^{(1)}, \cdots, \sum\alpha_i^{(n)}e_i^{(n)}) = \sum_{i_1, \cdots, i_n}\alpha_{i_1}^{1} \cdots \alpha_{i_n}^{(n)}f(e_1, \cdots, e_n) = $$
+    $$= \sum_{i_1, \cdots, i_n} \alpha_i^{(1)} \cdots \alpha_{i_n}^{(n)} \cdot f(e_{i}^{1}, \cdots, e_{i_n}^{(n)})(e_{i_1}^{(1)})^*(e_{i_1}^{(1)}) \cdots (e_{i_n}^{(n)})^*(e_{i_n}^{(n)})$$
+    $f$ однозначно определяется совими значениями на $f(e_{i_1}^{(1)}, \cdots, e_{i_n}^{(n)})$
+    f и правая часть формулы (1) принимают одинаковые значения на всех наборах $\{(e_{j_1}^{(1)}, \cdots, e_{j_n}^{(n)})\}$
+    В силу полилинейности f и правая часть(1) совпадают всюду.
+   
+    Теперь нужно доказать, что наш предполагаемый базис линейно независимый. 
+
+    $$0 = \sum_{i_1, \cdots, i_n}a_{i_1, \cdots, i_n}(e_{i_1}^{(1)})^* \cdots (e_{i_n}^{(1)})^*$$
+    Переберем в качестве аргументов все наборы $(e_{j_1}^{(1)}, \cdots, e_{j_n}^(1))$
+    Тогда спарава всегда 0, а слева останется одина аргумент
+    $0 = a_{j_1, \cdots, j_n} \Ra$  линейно независимые. 
+
+    Доказали: $\dim \mathcal{L}(V_1, \cdots, V_n, K) = d_1 \cdots, d_n$
+    $$\dim \mathcal{L}(V_1 \otimes \cdots \otimes V_n, K) = d_1 \cdots d_n$$
+    $$\dim (V_1, \otimes \cdots \otimes V_n)^* = d_1 \cdots d_n$$
+    $$\dim (V_1, \otimes \cdots \otimes V_n) = d_1 \cdots d_n$$
+    $$(V_1 \otimes \cdots \otimes V_n) \subset (V_1, \otimes \cdots V_n)^{**} = $$
+    $$= ((V_1 \otimes \cdots \otimes V_n)^*)^*$$
+    Все конечномерное 
+    $$(V_1, \otimes \cdots \otimes V_n) = (V_1, \otimes \cdots \otimes V_n)^*$$
+    и размерности совпадают. 
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+$$V_1, \cdots V_n$$ в.п над K, $\dim V_i = d_i < \infty$
+$\{e_{i}^{(j)}\}_{i = 1}^{d_j}$ "--- базисы $V_1, \cdots, V_n$.
+Тогда $\{e_{i_1}^{(1)} \otimes \cdots \otimes e_{i_n}^{(n)}\}$ "--- базиc $V_1 \otimes \cdots \otimes V_n$.
+\end{theorem}
+\begin{proof}
+    Семейство образующих:
+    $V_1 \otimes \cdots \otimes V_n$ пораждаются разложимами тензорами $V_1 \otimes \cdots \otimes V_n$
+    $$= (\sum \alpha_{i_1} e_1^{(1)}) \otimes \cdots \otimes (\sum_{i_k}\alpha_ie_i^{(n)}) =$$
+    $$= \sum_{i_1 \cdots i_n}\alpha_{i_1} \cdots \alpha_{i_n} e_{i_1}^{(1)} \otimes\cdots \otimes e_{i_n}^{(n)}$$
+    $$\cdots \otimes (u + u') \otimes \cdots = \cdots \otimes u \otimes \cdots + \cdots \otimes u' \otimes \cdots$$
+    $$\cdots \otimes (au) \otimes \cdots = a(\cdots \otimes u \otimes \cdots) $$
+
+    Произвеление $e_{i_1}^{(1)} \otimes \cdots \otimes e_{i_n}^{(n)}$ в точности $d_1 \cdots d_n$ то есть 
+    в точности размерность пространства $\Ra$ базис. 
+\end{proof}
+\begin{Rem}
+Теорема остается верной и для бесконечномерных пространств. 
+\end{Rem}
+\begin{proof}
+    Доказательство того, что это семейство образующих дословно повторяет рассуждение в конечномерном случае. 
+
+    Линейная независимость в общем случае. 
+    $$\sum_{i_1,  \cdots i_n}\alpha_{i_1,\cdots, i_n}e_{i_1}^{(1)} \otimes \cdots \otimes e_{i_n}^{(n)} = 0$$
+    Лишь конечное число ненулевых коэффицентов. 
+    $\Ra$ из каждого пространства присутствует лишь конечное число базисных векторв. 
+
+    Рассмотрим соответсвующие (конечномерные) пространства $U_i \le V_i$ порожденные этими базисными векторами. 
+
+    Тогда лежить не только в $V_1 \otimes \cdots \otimes V_n$, а в $U_1 \otimes \cdots \otimes U_n$(конечномерные)
+    $\Ra$ по теореме эти $e_{i_1}^{(1)} \otimes \cdots e_{i_n}^{(n)}$ "--- линейно независимые в $U_1 \otimes \cdots \otimes U_n \Ra$
+    $\alpha_{i_1 \cdots i_n} = 0$ для всех $i_1 \cdots i_n$. 
+\end{proof}
