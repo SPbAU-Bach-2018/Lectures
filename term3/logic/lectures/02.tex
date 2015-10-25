@@ -204,6 +204,7 @@ d := c
 Вопрос: по начальным данным ($\{r_i\}$ и $m$) определить, закончиться ли процесс?
 
 \begin{exmp}
+	\hfill
 	\begin{enumerate}
 		\item $\frac{2}{3}$ $\frac{3}{2}$, m = 2. Процесс не остановится.
 		\item $\frac{2}{3}$ $\frac{1}{17}$, m = 3. Процесс остановится.
@@ -287,46 +288,47 @@ d := c
 \cimg{02_1.jpg}{0.5}
 
 $\Sigma$ -алфавит символов, которые используются на ленте.
-$\blacktriangleright$ - символ начала ленты, далее входа в ячейках записаны пробелы(бесконечное число).
+$\blacktriangleright$ - символ начала ленты, после входа в ячейках записаны пробелы (бесконечное число).
 
 Есть каретка, которая всегда указывает на какую-нибудь ячейку, изначально она указывает на первый символ после начала ленты.
 
-Q - конечное множество состояний. $q_0$ - начальное состояние, $q_f$ - конечное состояние. 
+Q "--- конечное множество состояний.
+$q_0$ "--- начальное состояние, $q_f$ "--- конечное состояние.
 
-$\delta: Q \times \Sigma \longrightarrow Q \times \Sigma \times \{\leftarrow, 
-\rightarrow, \cdot\}$ ($\cdot$ - стоять на месте, стрелочки - соответственно передвинуться, то есть мы записываем какой-то символ в ячейку,
-куда указывает каретка, а затем двигаемся и переходим в новое состояние).
+Есть правила переходов:
+\[ \delta: Q \times \Sigma \longrightarrow Q \times \Sigma \times \{\leftarrow, \rightarrow, \cdot\} \]
+По символу под картекой и текущему состоянию мы пишем какой-то новый символ, переходим в новое состояние и можем опционально сдвинуть каретку
+($\cdot$ "--- стоять на месте, стрелочки "--- движение).
 
-Результат работы - то, что написано на ленте до бесконечного числа пробелов в конце программы.
+Результат работы "--- то, что после завершения программы написано на ленте до бесконечного числа пробелов.
 
-\begin{exmp} .\\
+\begin{exmp}
+	\hfill
 	\begin{enumerate}
-		\item ВХОД $\longrightarrow$ УХОД
+		\item
+			Хотим преобразовать \t{ВХОД} $\longrightarrow$ \t{УХОД}
 
-		($q_0$, B) $\longrightarrow$ ($q_f$, У, $\rightarrow$)
-		\item Хотим к числу, которое нам дано в двоичной записи, прибавить 1: 11001 + 1 = 00101 (то есть записано оно справа налево)
+			Правило перехода: $(q_0, \t{B}) \longrightarrow (q_f, \t{У}, \rightarrow)$.
 
-		($q_0$, 0) $\longrightarrow$ ($q_f$, 1, $\cdot$)
+		\item
+			Хотим к числу, которое нам дано в двоичной записи, прибавить 1: 11001 + 1 = 00101 (то есть записано оно на ленте справа налево).
+			\begin{itemize}
+			\item ($q_0$, 0) $\longrightarrow$ ($q_f$, 1, $\cdot$)
+			\item ($q_0$, 1) $\longrightarrow$ ($q_0$, 0, $\rightarrow$)
+			\item ($q_0$, \textvisiblespace) $\longrightarrow$ ($q_f$, 1, $\cdot$)
+			\end{itemize}
 
-		($q_0$, 1) $\longrightarrow$ ($q_0$, 0, $\rightarrow$)
-
-		($q_0$, \textvisiblespace) $\longrightarrow$ ($q_f$, 1, $\cdot$)
-		\item Теперь число двоичное, но записано слева направо. И тоже хотим прибавить 1: 10011 + 1 = 10100
-
-		($q_0$, 0/1) $\longrightarrow$ ($q_0$, 0/1, $\rightarrow$)
-
-		($q_0$, \textvisiblespace) $\longrightarrow$ ($q_1$, \textvisiblespace, $\leftarrow$)
-
-		($q_1$, 1) $\longrightarrow$ ($q_1$, 0, $\rightarrow$)
-
-		($q_1$, 0) $\longrightarrow$ ($q_f$, 1, $\cdot$)
-
-		($q_1$, $\blacktriangleright$) $\longrightarrow$ ($q_2$, $\blacktriangleright$, $\rightarrow$)
-
-		($q_2$, 0) $\longrightarrow$ ($q_3$, 1, $\rightarrow$)
-
-		($q_3$, 0/1) $\longrightarrow$ ($q_3$, 0/1, $\rightarrow$)
-
-		($q_3$, \textvisiblespace) $\longrightarrow$ ($q_f$, 0, $\cdot$)
+		\item
+			Теперь число двоичное, но записано слева направо. И тоже хотим прибавить 1: 10011 + 1 = 10100
+			\begin{itemize}
+			\item ($q_0$, 0/1) $\longrightarrow$ ($q_0$, 0/1, $\rightarrow$)
+			\item ($q_0$, \textvisiblespace) $\longrightarrow$ ($q_1$, \textvisiblespace, $\leftarrow$)
+			\item ($q_1$, 1) $\longrightarrow$ ($q_1$, 0, $\rightarrow$)
+			\item ($q_1$, 0) $\longrightarrow$ ($q_f$, 1, $\cdot$)
+			\item ($q_1$, $\blacktriangleright$) $\longrightarrow$ ($q_2$, $\blacktriangleright$, $\rightarrow$)
+			\item ($q_2$, 0) $\longrightarrow$ ($q_3$, 1, $\rightarrow$)
+			\item ($q_3$, 0/1) $\longrightarrow$ ($q_3$, 0/1, $\rightarrow$)
+			\item ($q_3$, \textvisiblespace) $\longrightarrow$ ($q_f$, 0, $\cdot$)
+			\end{itemize}
 	\end{enumerate}	
 \end{exmp}
