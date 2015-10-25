@@ -1,0 +1,404 @@
+\begin{proof}
+	\begin{description}
+	\item[$\La$:]
+		Рассмотрим
+		\[ f_\pm = \frac{|f| \pm f}2 \]
+		Для них справедливо, что $0 \le f_\pm \le |f|$.
+		Если $\int_G |f|$ сходится, то сходятся $\int_G f_\pm$, а
+		\[ \int\limits_G f = \int\limits_G f_+ - \int\limits_G f_i\]
+		что тоже тогда сходится.
+
+	\item[$\Ra$:]
+		От противного: пусть $\int_G |f|$ расходится.
+		Тогда
+		\[ \lim_{k \ra +\infty} \int\limits_{\bar G_k} |f| = +\infty \quad \int\limits_{\bar G_k} |f| \uparrow \TODO \]
+		Прорядим последовательность так, чтобы
+		\[ \int\limits_{\bar G_{k_{j+1}}} |f| > 3 \int_{\bar G_{k_j}} |f| + 2j \]
+		Переобозначим до
+		\[ \int\limits_{G_{k+1}} |f| > 3 \int_{G_{k}} |f| + 2k \]
+		$A_k = G_{k+1} \setminus \cl G_k$ "--- открытое.
+		\[ \int\limits_{A_k} f_+ + \int\limits_{A_k} f_- = \int\limits_{A_k} |f| > 2 \int_{G_{k}} |f| + 2k \]
+		Отсюда $\int_{A_k} f_+ > \int_{G_{k}} |f| + k$ или\footnote{математическое} $\int_{A_k} f_- > \int_{G_{k}} |f| + k$.
+
+		Не умаляя общности, пусть $\int_{A_k} f_+ > \int_{G_{k}} |f| + k$.
+		Рассмотрим суммы Римана.
+		Можем взять настолько мелкое разбиение $A_k$ на $E_j$, что
+		\[ \sum f_+(\xi_j) \mu E_j > \int\limits_{A_k} + k \]
+		при произвольном выборе $\xi_j \in E_j$.
+		Выберем такие $\xi_j$, чтобы все $E_j$, где как-то достигается ноль $f_+$, он был достигнут.
+		Теперь выкинем все такие $E_j$ и все $E_j$ нулевой меры, сумма не изменится.
+		Обозначим объединение внутренностей всех $E_j$, что остались, за $B_k$.
+		$B_k \subset A_k$, $B_k$ "--- открытое, $f_+ = |f| > 0$ на $B_k$.
+		\[ \int\limits_{B_k} f = \int\limits_{B_k} f_+ > \int\limits_{G_k} |f| + k \ge -\int\limits_{G_k} + k \]
+		$C_k = B_k \cup G_k \subset G_{k+1}$ "--- открытое.
+		\[ \int\limits_{C_k} f = \int\limits_{B_k} f + \int\limits_{G_k} f > k \]
+		Получили последовательность $C_k$, что $G_k \subset C_k \subset G_{k+1}$ и $\cl C_{2k} \subset \cl G_{2k+1} \subset G_{2k+2} \subset C_{2k+2}$.
+		Теперь $C_{2k}$ монотонно исчерпывает $G$, и при этом $\int_{C_{2k}} f > 2k$, что противоречит сходимости $f$.
+	\end{description}
+\end{proof}
+
+\begin{center}
+\LARGE
+Тут кончился материал на коллоквиум. Вроде бы.
+\end{center}
+
+\chapter{Ряды}
+
+\section{Числовые ряды}
+
+\begin{Def}
+	Конструкция $\sum_{n=1}^\infty a_n$ "--- ряд.
+\end{Def}
+\begin{Rem}
+	Начинаться может с любого целого индекса.
+\end{Rem}
+
+\begin{Def}
+	Частичная сумма ряда $S_k = \sum_{n=1}^k a_n$.
+\end{Def}
+
+\begin{Def}
+	Если есть предел $\lim_{n \ra \infty} S_n \in \bar \R$, то суммой ряда называют
+	\[ \sum_{n=1}^\infty a_n \eqDef \lim_{n \ra \infty} S_n = \lim_{n \ra \infty} \sum_{k=1}^n a_k \]
+\end{Def}
+
+\begin{Def}
+	Ряд сходится, если его сумма конечна.
+	Соотвественно, ряд расходится, когда его сумма бесконечна или не сущесвтует.
+\end{Def}
+
+\begin{exmp}
+	\[
+		\sum_{n=1}^\infty 1 \quad S_n = n
+	\]
+	Расходится, сумма есть $+\infty$.
+\end{exmp}
+
+\begin{exmp}
+	\[
+		\sum_{n=1}^\infty (-1)^n \quad S_n = n \bmod 2
+	\]
+	Расходится, сумма не существует.
+\end{exmp}
+
+\begin{exmp}[Геометрическая прогрессия]
+	$q \in (0, 1)$.
+	\[
+		\sum_{n=0}^\infty q^n \quad S_n = \frac{1-q^{n+1}}{1-q} \xLongrightarrow{n \ra \infty} \frac1{1-q}
+	\]
+	Сходится к $\frac1{1-q}$.
+\end{exmp}
+
+\begin{exmp}
+	\[
+		\sum_{n=1}^\infty \frac1{n(n+1)} \quad S_n = \sum_{k=1}^n \left(\frac1k - \frac1{k+1}\right) = 1 - \frac1{n+1} \ra 1
+	\]
+	Сходится к 1.
+\end{exmp}
+
+\begin{exmp}[Гармонический ряд]
+	\[
+		\sum_{n=1}^\infty \frac1n \quad H_n = \sum_{k=1}^n \frac1k > \ln n
+	\]
+	Расходится, сумма бесконечна.
+\end{exmp}
+
+Свойства:
+\begin{enumerate}
+\item
+	Ряды $\sum_{n=1}^\infty a_n$ и $\sum_{n=m}^\infty a_n$ сходятся одновременно.
+
+\item
+	$\sigma_m = \sum_{n=m+1}^\infty a_n$ "--- остаток (хвост) ряда.
+	Если ряд сходится, то остаток стремится к нулю.
+	\begin{proof}
+		\begin{gather*}
+			S_n = \sum_{k=0}^n a_k \ra 0 \\
+			S_n - S_m \xLongrightarrow{n \ra \infty} S - S_m
+		\end{gather*}
+		$S_n - S_m$ "--- частичная сумма для остатка, значит $\sigma_m = S - S_m \ra S$.
+	\end{proof}
+
+\item
+	Если ряды $\sum a_n$ и $\sum b_n$ сходятся, то $\sum (\alpha a_n + \beta b_n)$ сходится и
+	\[ \sum_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha \sum_{n=1}^\infty a_n + \beta \sum_{n=1}^\infty b_n \]
+	\begin{proof}
+		Следует из свойств пределов.
+	\end{proof}
+
+\item
+	Если ряды $\sum a_n$ и $\sum b_n$ сходятся и $a_n \le b_n$, то $\sum a_n \le \sum b_n$
+
+\begin{Def}
+	Если $a_n \in \C$, то $\sum_{k=1}^n a_k \in \C$. Ряд сходится в $\C$, если существует предел $\lim_{n\ra\infty} S_n \in \C$.
+\end{Def}
+\begin{Rem}
+	Сходимость комплексного ряда равносильна сходимости вещественной и мнимой частей ряда как вещесвтенных рядов.
+\end{Rem}
+\end{enumerate}
+
+\begin{theorem}[Необходимое условие сходимости ряда]
+	Если $\sum_{n=1}^\infty a_n$ сходится, то $a_n \ra 0$.
+\end{theorem}
+\begin{proof}
+	\[ a_n = S_n - S_{n-1} \ra S - S = 0 \]
+\end{proof}
+
+\begin{theorem}[Критерий Коши]
+	$\sum_{n=1}^\infty$ сходится тогда и только тогда, когда
+	\[ \forall \epsilon > 0\, \exists N\colon \forall n \ge m > N\, \left|\sum_{k=m}^n a_k\right| < \epsilon \]
+\end{theorem}
+\begin{proof}
+	$\sum_{n=1}^\infty$ сходится тогда и только тогда, когда сходятся частичные суммы, а для них есть критерий Коши:
+	\[ \forall \epsilon > 0\, \exists N\colon \forall n \ge m > N\, \left|S_n - S_m\right| < \epsilon \]
+\end{proof}
+
+\begin{Def}
+	Группировка членов ряда:
+	\begin{gather*}
+		a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7 + a_8 + a_9 + a_{10} + \ldots \\
+		\underbrace{(a_1 + a_2 + a_3)}_{A_1}
+		+ \underbrace{(a_4 + a_5)}_{A_2}
+		+ \underbrace{a_6}_{A_3}
+		+ \underbrace(a_7 + a_8)_{A_4}
+		+ \underbrace{(a_9 + a_{10})}_{A_5} + \ldots
+	\end{gather*}
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item
+	Если ряд имеет сумму в $\bar R$/$\C$, то группировка имеет ту же сумму.
+	\begin{proof}
+		Частичные суммы для $A_n$ есть подпоследовательность частичных сумм для $a_n$.
+	\end{proof}
+	\begin{Rem}
+		Обратное неверно:
+		\[ (1 - 1) + (1 - 1) + (1 - 1) + \dots \]
+	\end{Rem}
+
+\item
+	Если $a_n \ra 0$ и в каждой группе не более $M$ членов, то из сходимости сгрупированного ряда следует сходимость исходного.
+	\begin{proof}
+		Пусть $S_{n_m}$ "--- подпоследовательность частичных сумм, которую даёт сгрупированный ряд.
+		$S_{n_m} \ra S$.
+		\[
+			\forall \epsilon>0\, \exists N\colon \forall m > N\, |S_{n_m} - S| < \epsilon
+		\]
+		Если $n_m \le n < n_{m+1}$, то
+		\[ S_n = S_{n_m} + \underbrace{a_{n_m+1} + a_{n_m+1} + \dots}_{\text{не более $M$ штук}} \]
+		Мы знаем, что $\forall \epsilon > 0\, \exists N_1 \colon \forall k > N_1, |a_k| < \epsilon$
+		Возьмём $n > \max \{N_1, n_N\}$, тогда
+		\[ |S_n - S| \le |S_n - S_{n_m}| + |S_{n_m} - S| < M\epsilon + \epsilon = (M+1)\epsilon \]
+	\end{proof}
+
+\item
+	Если при группировке ряда в каждой группе члены одного знака и группировка сходится, то сходится и исходный ряд.
+	\begin{proof}
+		Пусть $S_{n_m}$ "--- подпоследовательность частичных сумм, которую даёт сгрупированный ряд.
+		$S_{n_m} \ra S$.
+
+		Если $n_m \le n < n_{m+1}$, то
+		\[ S_n = S_{n_m} + \underbrace{a_{n_m+1} + a_{n_m+1} + \dots}_{\text{одного знака}} \]
+		Если они положительны, то $S_{n_m} \le S_n \le S_{n_{m+1}}$.
+		Иначе знаки противоположны.
+		Отсюда $S_n$ зажато $S_{n_m}$ и $S_{n_{m+1}}$, а они сходятся к $S$, значит $S_n \ra S$.
+	\end{proof}
+\end{enumerate}
+
+\section{Знакопостоянные ряды}
+
+\begin{theorem}
+	$a_n \ge 0$.
+	$\sum a_n$ сходится тогди и только тогда, когда частичные суммы ограниченны.
+\end{theorem}
+\begin{proof}
+	$S_n$ "--- монотонная последовательность.
+\end{proof}
+
+\begin{theorem}[Признак сравнения]
+	$0 \le a_n \le b_n$.
+	\begin{enumerate}
+		\item Если $\sum b_n$ сходится, то $\sum a_n$ сходится.
+		\item Если $\sum a_n$ расходится, то $\sum b_n$ расходится.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	$A_n$, $B_n$ "--- частичные суммы, $0 \le A_n \le B_n$, $A_n, B_n \uparrow$.
+	Теперь если сошлась $B_n$, сойдётся и $A_n$.
+	Если $A_n$ не сошлась, то $B_n$ тоже стремится к бесконечности.
+\end{proof}
+
+\begin{conseq}
+	Если $a_n, b_b \ge 0$ и $a_n \sim b_n$, то их ряды ведут себя одинакого.
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		a_n \sim b_n \Ra \exists N\colon \forall n > N\, \left|\frac{a_n}{b_n} - 1\right| < \epsilon \\
+		1 - \epsilon < \frac{a_n}{b_n} < 1 + \epsilon \ra a_n < (1+\epsilon) b_n \land b_n < \frac{a_n}{1+\epsilon}
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Признак Коши]
+	$a_n \ge 0$.
+	\begin{enumerate}
+	\item
+		Если $\sqrt[n]{a_n} \le q < 1$, то ряд $\sum a_n$ сходится.
+
+	\item
+		Если $\sqrt[n]{a_n} \ge 1$, то ряд $\sum a_n$ расходится.
+
+	\item
+		Пусть $\lim_{n\ra\infty} \sqrt[n]{a_n} = q^*$.
+		Тогда
+		\begin{enumerate}
+			\item Если $q^* < 1$, то ряд $\sum a_n$ сходится.
+			\item Если $q^* > 1$, то ряд $\sum a_n$ расходится.
+			\item Если $q^* = 1$, то бывает и так, и так.
+		\end{enumerate}
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\[ \sqrt[n]{a_n} \le q \Ra a_n \le q^n \]
+		Значит $a_n$ зажата нулём и геометрической прогрессией.
+
+	\item
+		\[ \sqrt[n]{a_n} \ge 1 \Ra a_n \ge 1 \Ra a_n \not\ra 0 \]
+
+	\item
+		$q^* = \lim_{n\ra\infty}$.
+		Пусть $q^* < 1$.
+		Тогда начиная с некоторого номера $\sqrt[n]{a_n} \le \frac{1+q^*}2 = q < 1$.
+
+		Пусть $q^* > 1$.
+		Тогда начиная с некоторого номера $\sqrt[n]{a_n} > 1$.
+	\end{enumerate}
+\end{proof}
+
+\begin{exmp}
+	$\sum 1$ расходится, а $\sqrt[n]{1} = 1$.
+	В то же время для $\sum \frac1{n(n+1)}$
+	\[ \sqrt[n]{a_n} = \frac1{\underbrace{\sqrt[n]{n}}_{\ra 1}\underbrace{\sqrt[n]{n+1}}_{\ra 1}} \ra 1\]
+\end{exmp}
+
+\begin{theorem}[Признак Даламбера]
+	$a_n > 0$.
+	\begin{enumerate}
+	\item
+		Если $\frac{a_{n+1}}{a_n} \le d < 1$, то $\sum a_n$ сходится.
+
+	\item
+		Если $\frac{a_{n+1}}{a_n} \ge 1$, то $\sum a_n$ рассходится.
+
+	\item
+		Пусть $\lim_{n\ra\infty} \frac{a_{n+1}}{a_n} = d^*$.
+		Тогда
+		\begin{enumerate}
+			\item Если $d^* < 1$, то ряд сходится.
+			\item Если $d^* > 1$, то ряд расходится.
+			\item Если $d^* = 1$, то бывает и так, и так.
+		\end{enumerate}
+	\end{enumerate}
+\end{theorem}
+\begin{Rem}
+	D'Alembera Cauchy
+\end{Rem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\[ \frac{a_{n+1}}{a_n} \le d \Ra a_n = \frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}} \dots \le d^n a_1 \]
+
+	\item
+		\[ \frac{a_{n+1}}{a_n} \ge 1 \Ra a_{n+1} \ge a_n \]
+		
+	\item
+		$\lim_{n\ra\infty} \frac{a_{n+1}}{a_n} = d^*$.
+		Пусть $d^* < 1$.
+		Тогда с некоторого места $\frac{a_{n+1}}{a_n} < \frac{1+d^*}2 = d < 1$.
+
+		Пусть $d^* > 1$.
+		Тогда с некоторого места $\frac{a_{n+1}}{a_n} \ge 1$. 
+	\end{enumerate}
+\end{proof}
+\begin{Rem}
+	Подходят те же примеры.
+\end{Rem}
+\begin{exmp}
+	\[ \sum_{n=0}^\infty \frac{x^n}{n!} \]
+	$a_n = \frac{x^n}{n!}$
+	\[ \frac{a_{n+1}}{a_n} = \frac{x}{n+1} \ra 0 < 1 \]
+	Ряд сходится.
+	Мы даже знаем, что это на самом деле $e^x$.
+\end{exmp}
+
+\begin{theorem}
+	$a_n > 0$.
+	Если $\lim_{n\ra\infty} \frac{a_{n+1}}{a_n} = d^*$, то $\lim_{n\ra\infty} \sqrt[n]{a_n} = d^*$.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\lim_{n\ra\infty} \frac{a_{n+1}}{a_n} = d^* \Lra \lim_{n\ra\infty} (\ln a_{n+1} - \ln a_n) = \ln d^* \\
+		\lim_{n\ra\infty} \sqrt[n]{a_n} = d^* \Lra \lim_{n\ra\infty} \frac{\ln a_n}n = \ln d^*
+	\end{gather*}
+	Применим ко второму теорему Штольца:
+	\[
+		\lim_{n\ra\infty} \frac{\ln a_n}n
+		= \lim_{n\ra\infty} \frac{\ln a_n - \ln a_{n-1}}{n - (n - 1)}
+		= \lim_{n\ra\infty} (\ln a_n - \ln a_{n-1})
+		= d^* 
+	\]
+\end{proof}
+
+Есть ещё бесконечное количество признаков.
+Они появлялись, когда для нужного кому-нибудь ряда не хватало уже существовавших, и из доказательства его сходимости получался новый признак.
+Их можно в справочниках найти в огромных количествах.
+
+\begin{theorem}
+	$f\colon [a, b] \ra \R$ неотрицательна и монотонна, $a, b \in \Z$.
+	Тогда
+	\[ \left| \sum_{k=a}^b f(k) - \int\limits_a^b f(x) \d x\right| \le \max \{f(a), f(b)\} \]
+\end{theorem}
+\begin{proof}
+	\TODO Картинка.
+
+	Рассмотрим случай убывания.
+	\[ \sum_{k=a+1}^b f(k) \le \int\limits_a^b f(x) \d x \le \sum_{k=a}^{b-1} f(k) \]
+	Вычтем из $\sum_{k=a}^b f(x)$ все слагаемые:
+	\[ 0 \le f(b) \le \sum_{k=a}^b f(k) - \int\limits_a^b f(x) \d x \le f(a) \]
+\end{proof}
+\begin{Rem}
+	Если нет неотрицательности, то
+	\[ \left| \sum_{k=a}^b f(k) - \int\limits_a^b f(x) \d x\right| \le \max \{|f(a)|, |f(b)|\} \]
+\end{Rem}
+\begin{Rem}
+	Посмотим на случай убывания ещё раз.
+	КАРТИНКААА.
+	\[ c_b = \sum_{k=a}^{b-1} f(k) - \int\limits_a^b f(x) \d x\]
+	Она ограничена сверху $f(a)$ и растёт.
+	Значит есть предел
+	\[ \sum_{k=a}^{b-1} f(k) = \int\limits_a^b f(x) \d x + C + o(1) \]
+\end{Rem}
+
+\begin{exmp}
+	\[
+		\sum_{k=1}^n \frac1{x^p}
+		= \frac1{n^p} + \int\limits_1^n \frac{\d x}{x^p} + C_p + o(1)
+		= \frac1{n^p} + \frac{x^{1-p}}{1-p} \biggr|_1^n + C_p + o(1)
+		= \frac{n^{1-p}}{1-p} + \tilde C_p + o(1)
+	\]
+\end{exmp}
+
+\begin{theorem}[Интегральный признак сходимости]
+	$f \ge 0$ и монотонно убывает.
+	Тогда $\sum_{k=1}^\infty f(k)$ и $\int_1^\infty f(x) \d x$ ведут себя одинакого.
+\end{theorem}
+\begin{proof}
+	$S_n = \sum_{k=1}^n f(k)$
+	\begin{gather*}
+		\left|S_n - \int\limits_1^n f(x) \d x\right| \le f(1) \\
+		S_n \le \int\limits_1^n f(x) \d x + f(1) \\
+		\int\limits_1^n f(x) \d x \le S_n + f(1)
+	\end{gather*}
+\end{proof}

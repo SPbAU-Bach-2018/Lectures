@@ -1,310 +1,259 @@
-﻿\section{SU(2), кватернионы и SO(3)}
+﻿\section{\texorpdfstring{$SU(2)$}{SU(2)}, кватернионы и \texorpdfstring{$SO(3)$}{SO(3)}}
 
 \begin{Def}
-$SU(n) = \{g \in U(n)\colon \det g = 1\}$ 
+    \[ SU(n) = \{g \in U(n) \mid \det g = 1\} \]
 \end{Def}
+$g \in SU(2)$
+\begin{gather*}
+    g = \begin{pmatrix}
+        w_1 & w_2 \\
+        w_3 & w_4
+    \end{pmatrix} \\
+    g^T\bar g = E_2 \\
+    \begin{pmatrix}
+        w_1 & w_3 \\
+        w_2 & w_4
+    \end{pmatrix} \cdot \begin{pmatrix}
+        \bar w_1 & \bar w_2 \\
+        \bar w_3 & \bar w_4
+    \end{pmatrix} = E = \begin{pmatrix}
+        \bar w_1 & \bar w_2 \\
+        \bar w_3 & \bar w_4
+    \end{pmatrix} \cdot \begin{pmatrix}
+        w_1 & w_3 \\
+        w_2 & w_4
+    \end{pmatrix} \\
+    g^T\bar g = E \Ra \bar g g^T = E \\
+    \bar g = (g^T)^{-1} \\
+    |w_1|^2 = |w_2|^2 = 1 \\
+    |w_3|^2 + |w_4|^2 = 1 \\
+    \bar w_1w_3 + \bar w_2 w_4 = 0 \\
+    \bar w_3w_1 + \bar w_4 w_2 = 0 \\
+    \det g = 1 \Ra w_1w_4 - w_2w_3 = 1 \\
+    \begin{pmatrix}
+        \bar w_1 & \bar w_2 \\
+        -w_2 & w_1
+    \end{pmatrix}\begin{pmatrix}
+        w_3 \\
+        w_4
+    \end{pmatrix} = \begin{pmatrix}
+        0 \\
+        1
+    \end{pmatrix} \\
+    \det = |w_1|^2+|w_2|^2 = 1 \\
+    \begin{pmatrix}
+        w_3 \\
+        w_4
+    \end{pmatrix} = \begin{pmatrix}
+        w_1 &-\bar w_2 \\
+        w_2 & \bar w_1
+    \end{pmatrix}\begin{pmatrix}
+        0 \\
+        1
+    \end{pmatrix} \\
+    w_3 = -\bar w_2 \quad w_4 =  \bar w_1
+\end{gather*}
+% OH MY GOD
+\begin{gather*}
+    g \in SU(2) \Ra g = \begin{pmatrix}
+        w_1 & w_2 \\
+        -\bar w_2 & \bar w_1
+    \end{pmatrix} \\
+    |w_1|^2 + |w_2|^2 = 1 \\
+    g^T\bar g = \begin{pmatrix}
+        w_1 & -\bar w_2 \\
+        w_2 &  \bar w_1
+    \end{pmatrix}\begin{pmatrix}
+        \bar w_1 & \bar w_2 \\
+        -w_2 & w_1
+    \end{pmatrix} = \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix} \\
+    g = \begin{pmatrix}
+         a + bi & c + di \\
+        -c + di & a - bi
+    \end{pmatrix} \\
+    a, b, c, d \in \R, a^2 + b^2 + c^2 + d^2 = 1
+\end{gather*}
 
-
-$$g \in SU(2)$$
-
-$$g = 
-\begin{pmatrix}
-w_1&w_2\\
-w_3&w_4\\
-\end{pmatrix}$$
-
-$$g^T\bar g = E_2$$
-
-$$
-\begin{pmatrix}
-w_1&w_3\\
-w_2&w_4\\
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-\bar w_1& \bar w_2\\
-\bar w_3& \bar w_4\\
-\end{pmatrix} = E =
-\begin{pmatrix}
-\bar w_1& \bar w_2\\
-\bar w_3& \bar w_4\\
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-w_1&w_3\\
-w_2&w_4\\
-\end{pmatrix}
-$$
-
-$$g^T\bar g = E \Ra \bar g g^T = E$$
-$$\bar g = (g^{T})^{-1}$$
-
-$$|w_1|^{2} = |w_2|^2 = 1$$
-$$|w_3|^2 + |w_4|^2 = 1$$
-$$\bar w_1w_3 + \bar w_2 w_4 = 0$$
-$$\bar w_3w_1 + \bar w_4 w_2 = 0$$
-
-$$\det g = 1 \Ra w_1w_4 - w_2w_3 = 1$$
-
-$$
-\begin{pmatrix}
-\bar w_1 & \bar w_2\\
--w_2&w_1\\
-\end{pmatrix}
-\begin{pmatrix}
-w_3\\
-w_4\\
-\end{pmatrix}
-= 
-\begin{pmatrix}
-0\\
-1\\
-\end{pmatrix}
-$$
-
-$$
-det = |w_1|^2+|w_2|^2 = 1 
-$$
-
-$$
-\begin{pmatrix}
-w_3\\
-w_4\\
-\end{pmatrix}
-= 
-\begin{pmatrix}
-w_1&-\bar{w_2}\\
-w_2& \bar{w_1}\\
-\end{pmatrix}
-\begin{pmatrix}
-0\\
-1\\
-\end{pmatrix}
-$$
-
-$$w_3 = -\bar{w_2}$$
-$$w_4 = \bar{w_1}$$
-
-$$g \in SU(2) \Ra g = 
-\begin{pmatrix}
-w_1&w_2\\
--\bar w_2& \bar w_1\\
-\end{pmatrix}$$
-
-$$|w_1|^2 + |w_2|^2 = 1$$
-
-$$g^T\bar{g} = \begin{pmatrix}
-  w1& -\bar{w_2}\\
-  w_2 & \bar{w_1}\\
- \end{pmatrix}
- \begin{pmatrix}
- \bar{w_1}&\bar w_2\\
- -w_2&w_1\\
- \end{pmatrix} = 
- \begin{pmatrix}
- 1&0\\
- 0&1\\
- \end{pmatrix}
-$$
-
-$$
-g = \begin{pmatrix}
-a+ bi& c+di\\
--c+di&a - bi\\
-\end{pmatrix}
-$$
-
-
-$$a, b, c, d \in \R, a^2 + b^2 + c^2 + d^2 = 1$$
-
-Унитарные матрицы SU(2), матрицы Паули:
-$$ 
-\begin{pmatrix}
-1&0\\
-0&1\\
-\end{pmatrix},
-\begin{pmatrix}
-i, 0\\
-0,  -i\\
-\end{pmatrix},
-\begin{pmatrix}
-0 & 1\\
--1&0\\
-\end{pmatrix},
-\begin{pmatrix}
-0, i\\
-i, 0\\
-\end{pmatrix}
-$$
-
-$$\i^2 = \j^2 = \k^2 = -E$$
-$$\i\j = \k = -\j\i$$
-$$ g = aE + b i + c j + d k $$
-$$a^2 + b^2 + c^2 + d^2$$
-
-$$\H_1 = \{z \in \H \colon |z| = 1\}$$
+Унитарные матрицы $SU(2)$, матрицы Паули:
+\begin{gather*}
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix},\begin{pmatrix}
+        i,  0 \\
+        0, -i
+    \end{pmatrix},\begin{pmatrix}
+         0 & 1 \\
+        -1 & 0
+    \end{pmatrix},\begin{pmatrix}
+        0, i \\
+        i, 0
+    \end{pmatrix} \\
+    \i^2 = \j^2 = \k^2 = -E \\
+    \i\j = \k = -\j\i \\
+    g = aE + b\i + c\j + d\k \\
+    a^2 + b^2 + c^2 + d^2 \TODO? \\
+    \H_1 = \{z \in \H \mid |z| = 1\}
+\end{gather*}
 $\H_1 \to SU(2)$ "--- изоморфизм групп.
-$$a+ b\i + c\j + d\k \to \begin{pmatrix}
- a + bi & c + di\\
- -c + di & a - bi\\
- \end{pmatrix}$$
+\begin{gather*}
+    a + b\i + c\j + d\k \to \begin{pmatrix}
+         a + bi & c + di \\
+        -c + di & a - bi
+    \end{pmatrix} \\
+    \begin{pmatrix}
+        w_1 & w_2 \\
+        -\bar w_2& \bar w_1
+    \end{pmatrix}\begin{pmatrix}
+        u_1 & u_2 \\
+        -\bar u_2 & \bar u_1
+    \end{pmatrix} = \begin{pmatrix}
+        w_1u_1 - w_2\bar u_2 & w_1u_2 + w_2 \bar u_1 \\
+        -u_1\bar w_2 - \bar u_2 \bar w_1 & -u_2\bar w_2 + \bar w_1 \bar u_1
+    \end{pmatrix}
+\end{gather*}
 
-$$ 
-\begin{pmatrix}
-w_1 & w_2\\
--\bar w_2& \bar w_1\\
-\end{pmatrix}
-\begin{pmatrix}
-u_1 & u_2\\
--\bar u_2 & \bar u_1
-\end{pmatrix}
-=
-\begin{pmatrix}
-w_1u_1 - w_2\bar u_2 & w_1u_2 + w_2 \bar u_1\\
--u_1\bar w_2 - \bar u_2 \bar w_1 & -u_2\bar w_2 + \bar w_1 \bar u_1\\
-\end{pmatrix}
-$$
-
-Было: $$\H \sim { 
-\begin{pmatrix}
-a + bi & c + di\\
--c + di & a - bi\\
-\end{pmatrix} | a, b, c,  d \in \R
-}$$
-
-$$a + b\i + c\j + d\k  \to 
-\begin{pmatrix}
-a + bi & c + di\\
--c + di & a - bi\\
-\end{pmatrix}$$
-
-гомоморфизм колец $\Ra$  сужение на $\H_1$  сохраняет 
-операцию умножения, то есть является гомоморфизмом $\H_1$ в $SU(2) \Ra$ изоморфизм.
-
-$$\dim_{\R}(\H) = 4$$
-
+Было:
+\begin{gather*}
+    \H \sim \left\{ \begin{pmatrix}
+         a + bi & c + di \\
+        -c + di & a - bi
+    \end{pmatrix} \middle| a, b, c, d \in \R \right\} \\
+    a + b\i + c\j + d\k \to \begin{pmatrix}
+         a + bi & c + di \\
+        -c + di & a - bi
+    \end{pmatrix}
+\end{gather*}
+Гомоморфизм колец, значит сужение на $\H_1$ сохраняет операцию умножения,
+то есть является гомоморфизмом $\H_1$ в $SU(2)$, значит есть изоморфизм.
+\[ \dim_{\R}(\H) = 4 \]
+% ВЫТАЩИТЕ МЕНЯ ОТСЮДА
 \begin{enumerate}
-\item 
-$$\H = \{a + b\i + c\j + d\k \}$$
-$$\H_1 = \{z \in \H \colon |z| = 1\}$$
-$$(z_1, z_2) = Re(z_1, \bar{z_2})$$
-$$(z_1, z_1) = Re(z_1, \bar{z_1}) = |z_1|^2$$
-$$(z_1 + z_1', z_2) = (z_1, z_2) + (z_1', z_2)$$
-\item 
-$$
-g = \begin{pmatrix}
-a + bi & c+ di\\
--c + di & a - bi\\
- \end{pmatrix}$$
+\item
+    \begin{gather*}
+        \H = \{a + b\i + c\j + d\k \} \\
+        \H_1 = \{z \in \H \colon |z| = 1\} \\
+        (z_1, z_2) = Re(z_1, \bar z_2) \\
+        (z_1, z_1) = Re(z_1, \bar z_1) = |z_1|^2 \\
+        (z_1 + z_1', z_2) = (z_1, z_2) + (z_1', z_2)
+    \end{gather*}
 
-$g \in SU(2), \det g = 1$
-
-Вещественная часть "--- это $\frac12 Tr(g)$
-
-$(g_1, g_2) = \frac12 Tr(g_1, \bar g_2^{T})$
-
-$(g_1, g_1) = \det(g)$
-
-$$(g_1, g_1) = \frac{1}{2}Tr(g_1, \bar{g_1}^{T}) = \frac{1}{2}(a^2 + b^2 + c^2 + d^2 + a^2 + b^2 + c^2 + d^2) = \det(g)$$
+\item
+    \[
+        g = \begin{pmatrix}
+             a + bi & c + di \\
+            -c + di & a - bi
+        \end{pmatrix}
+    \]
+    $g \in SU(2)$, $\det g = 1$.
+    Вещественная часть "--- это $\frac12 \Tr(g)$
+    \begin{gather*}
+        (g_1, g_2) = \frac12 \Tr(g_1, \bar g_2^T) \\
+        (g_1, g_1) = \det g \\
+        (g_1, g_1) = \frac12 \Tr(g_1, \bar g_1^T) = \frac12(a^2 + b^2 + c^2 + d^2 + a^2 + b^2 + c^2 + d^2) = \det g
+    \end{gather*}
 \end{enumerate}
 
 Действие $\H_1$ на $\H \sim \R^4$
 
 $\H_1 \times \H \to \H$
 
-$B(x, y)$ "--- симметричная, билинейная 
+$B(x, y)$ "--- симметричная, билинейная
 
 $Q(x) = B(x, x)$
 
 $$B(x, y) = \frac{1}{2}(B(x + y, x + y) - B(x, x) - B(y, y)) = \frac{1}{2}(Q(x + y) - Q(x) - Q(y))$$
 
-Достаточно проверить, что сохраняется соответствующая квадратичная форма. 
+Достаточно проверить, что сохраняется соответствующая квадратичная форма.
 
-$(h, z) \to hzh^{-1}  = hz\bar h$  "--- это отображение "--- изометрия. 
+$(h, z) \to hzh^{-1}  = hz\bar h$  "--- это отображение "--- изометрия.
 
 $Q(z) = |z|^2$
 
-$Q(hzh^{-1}) = |hzh^{-1}|^2 = |h|^2|z|^2|h|^{-2} = |z|^2 = Q(z)$ 
+$Q(hzh^{-1}) = |hzh^{-1}|^2 = |h|^2|z|^2|h|^{-2} = |z|^2 = Q(z)$
 
 $z \to hzh^{-1}$ "--- изометрия $\H \sim \R^4$
 
-$<1>_{\R}$ "--- инвариантно относительно этого действия. 
+$<1>_{\R}$ "--- инвариантно относительно этого действия.
 
 $hzh$
 
 $$hah^{-1} = a$$
 
-$<1>^{\bot} = <\i, \j, \k>$
+$<1>^\bot = <\i, \j, \k>$
 
 Утеверждение: $(z_1, z_2) = (hz_1h^{-1}, hz_2h^{-1})$
 
 \begin{Rem}
-Доказательство с помощью матричного представления. 
+Доказательство с помощью матричного представления.
 
 $h = \begin{pmatrix}
 a+bi & c + di\\
 -c + di & a - bi\\
-\end{pmatrix}, 
-z = 
+\end{pmatrix},
+z =
 \begin{pmatrix}
 x_0 + x_1i & x_2 + x_3i\\
 -x_2 + x_3i & x_0 - x_1i\\
 \end{pmatrix}
 $
 
-$$(z_1, z_2) = \frac{1}{2}Tr(z_1, \bar{z_2}^{T})$$
-$$(hzh^{-1}, hz_2h^{-1}) = \frac{1}{2}Tr(hzh^{-1}\cdot \overline{(h z_2 h^{-1})}^{T}) = $$
-$$= \frac{1}{2}Tr(hzh^{-1}\bar{h}^{-1})^{T}z_2^Th^T) = \frac{1}{2}Tr(hz\bar z_2^T \bar h^{T}) = \frac{1}{2}Tr(z\bar z_2^{T}\bar h^{T}h) = \frac{1}{2}Tr(z\bar z_2^T)$$
+$$(z_1, z_2) = \frac{1}{2}Tr(z_1, \bar z_2^T)$$
+$$(hzh^{-1}, hz_2h^{-1}) = \frac{1}{2}Tr(hzh^{-1}\cdot \overline{(h z_2 h^{-1})}^T) = $$
+$$= \frac{1}{2}Tr(hzh^{-1}\bar h^{-1})^Tz_2^Th^T) = \frac{1}{2}Tr(hz\bar z_2^T \bar h^T) = \frac{1}{2}Tr(z\bar z_2^T\bar h^Th) = \frac{1}{2}Tr(z\bar z_2^T)$$
 
 \end{Rem}
 
 \begin{conseq}
- $\{z \in \H\colon Re z = 0\} = <1>^{\bot}$ "--- инвариатно 
+ $\{z \in \H\colon Re z = 0\} = <1>^\bot$ "--- инвариатно
  относительно действия h сопряжением.
 \end{conseq}
 
 \begin{proof}
-$z \in <1>^{\bot}$
+$z \in <1>^\bot$
 
 $$(1, z) = 0$$
-$$(h1h^{-1}, hzh^{-1}) = 0 \Ra hzh^{-1} \in <1>^{\bot}$$
+$$(h1h^{-1}, hzh^{-1}) = 0 \Ra hzh^{-1} \in <1>^\bot$$
 \end{proof}
 
-Можно рассмотреть сужение действия сопряжения при помощи h на пространство линейных кватернионов.  
+Можно рассмотреть сужение действия сопряжения при помощи h на пространство линейных кватернионов.
 
-$V = <1>^{\bot}$
+$V = <1>^\bot$
 
-$\phi_h|_{v} \colon V \to V$
+$\phi_h|_v \colon V \to V$
 
 Сохраняет скалярное произведение (так как $\phi_2$ изометрия на всем $\H$)
 
 $V = <\i, \j, \k> \sim \R^3$
 
-$\phi_h|_{v} \in O(3)$
+$\phi_h|_v \in O(3)$
 
 $$h \in \H_1 \sim SU(2)$$
-$$h \to \phi_h|_{V}$$
+$$h \to \phi_h|_V$$
 $$SU(2) \to O(3)$$
 $$\phi_{h_1h_2}(z) = h_1h_2zh_2^{-1}h_1^{-1} = \phi_{h_1}(\phi_{h_2}(z))$$
 $$\phi_{h_1h_2} = \phi_{h_1}\circ \phi_{h_2}$$
-$$\phi_{h_1h_2}|_{v} = \phi_{h_1}|_{v} \circ \phi_{h_2}|_{v} $$
+$$\phi_{h_1h_2}|_v = \phi_{h_1}|_v \circ \phi_{h_2}|_v $$
 
-Отображение $h \to \phi_h|_{v}$ является гомоморфизмом. 
+Отображение $h \to \phi_h|_v$ является гомоморфизмом.
 
 \begin{theorem}
-    Отображение из $\H_1 \sim SU(2)$  h ставится 
+    Отображение из $\H_1 \sim SU(2)$  h ставится
     в соответствие $\phi_h|_V$  является гомоморфизмом из
     $SU(2)$ на $SO(3) = \{g \in O(3) \colon \det g = 1\}$
     причем ядро этого отображение есть $\{\pm1\}$
 
-    $h \to \phi_h|_{v}$
+    $h \to \phi_h|_v$
 \end{theorem}
 
 \begin{Rem}
-С топологической точки зрения 
+С топологической точки зрения
 $SU(2)$  гомеоморфна $S^3$
 
-$$ 
+$$
 \begin{pmatrix}
 a + bi & c + di\\
 -c + di & a - bi\\
@@ -317,7 +266,7 @@ C топологической точки зрения $SO(3)$  устроено
 
 $RP^3$  можно вложить в $\R^9$
 
-$SO(3)$ "--- зависит от 9 параметров удовлетворяющее 7 условиям. 
+$SO(3)$ "--- зависит от 9 параметров удовлетворяющее 7 условиям.
 
 $$f \in SO(3)$$
 $$
@@ -343,15 +292,15 @@ h = \begin{pmatrix}
 a + b_i & c + d_i\\
 -c = d_i & a - b_i\\
 \end{pmatrix}
-$$ 
+$$
 
-$$ 
+$$
 h \begin{pmatrix}
 i & 0\\
 0 & -i\\
 \end{pmatrix}
-h^{-1} 
-= 
+h^{-1}
+=
 \begin{pmatrix}
 (a^2 + b^2 - c^2 -d^2)i & 2ad + 2bc + (2bd - 2ac)i\\
 -2ad - 2bc + (2bd - 2ac)i & (-a^2 -b^2 + c^2 + d^2)i\\
@@ -363,37 +312,37 @@ h
 0 & 1\\
 -1 & 0\\
 \end{pmatrix}
-h^{-1} = 
+h^{-1} =
 \begin{pmatrix}
 (-2ad + 2bc)i & a^2 - b^2 + c^2 - d^2 + (2ab + 2cd)i\\
 *&*\\
 \end{pmatrix}
 $$
 $$
-h 
+h
 \begin{pmatrix}
 0 & i\\
 i & 0\\
 \end{pmatrix}
-h^{-1} = 
+h^{-1} =
 \begin{pmatrix}
 (2ac + 2bd)i & (2cd - 2ab) + (a^2 - b^2 - c^2 - d^2)i\\
 *&*\\
 \end{pmatrix}
 $$
 $$
-[\phi_h|_{V}] = 
+[\phi_h|_V] =
 \begin{pmatrix}
 a^2 + b^2 - c^2 - d^2 & -2ad + 2bc & 2ac + 2bd\\
 2ad + 2bc & a^2 - b^2 + c^2 - d^2 & -2ab + 2cd\\
 2bd - 2ac & 2ab + 2cd & a^2 - b^2 - c^2 + d^2\\
 \end{pmatrix}
 $$
-$$\det [\phi|_{v}] = (a^2 + b^2 + c^2 + d^2)^3 = 1$$
+$$\det [\phi|_v] = (a^2 + b^2 + c^2 + d^2)^3 = 1$$
 $$[\phi][\phi]^t = (a^2 + b^2 + c^2 + d^2)^2E = E$$
 \end{proof}
 
-Отступление: кватернионы и трехмерная геометрия. 
+Отступление: кватернионы и трехмерная геометрия.
 $$z = x_0 + x_1i + x_2j + x_3k = [x_0, \bar w]$$
 $$z' = x_0' + x_1'i + x_2'j + x_3'k = [x_0', \bar w]$$
 $$zz' = [x_0x_0' - (\bar w, \bar w'), x_0\bar w' + x_0'\bar w + (x_1x_2' - x_2 x_1')k + (x_3x_1' - x_1x_3')j + (x_2x_3' - x_3x_2')i]  =$$
@@ -405,7 +354,7 @@ x_1' & x_2' & x_3'\\
 $$= [x_0x_0' - (\bar w, \bar w'), x_0\bar w' + x_0'\bar w + \bar w \times \bar w'] $$
 
 \begin{proof}
-Доказательство, что отображение $h \to \phi_h|_{v}$  "--- сюръекция. 
+Доказательство, что отображение $h \to \phi_h|_v$  "--- сюръекция.
 $A \in SO(3)$, если $A = E$, то $h = 1$
 
 Ищем h, чтобы $A = [\phi_h|_V]$
@@ -425,7 +374,7 @@ A "--- Поворот оси $\bar w_1$  на угол $\phi$
 Выберем какой-то $\bar w_2 \bot w_1$, $|w_2| = 1$
 
 $\bar w_1, \bar w_2$ и $\bar w_1 \times \bar w_2$ "--- базис V.
-$\bar w_2$ и $\bar w_1 \times \bar w_2$ "--- ортонормированный базис $<w_1>^{\bot}$
+$\bar w_2$ и $\bar w_1 \times \bar w_2$ "--- ортонормированный базис $<w_1>^\bot$
 
 $$h = ?$$
 $$h - [x_0, \bar w]$$
@@ -445,10 +394,10 @@ $$- \sin^2 \psi(\bar w_1 \times \bar w_2) \bar w_1 = $$
 
 $(w_1 \times w_2) \times w_1$ "--- нормированный $\bot w_1 \times w_2$, $\bot w_1$
 
-$w_1, w_2, w_1 \times w_2$ "--- ортонормированный базис. 
+$w_1, w_2, w_1 \times w_2$ "--- ортонормированный базис.
 
 $(w_1 \times w_2) \times w_1 = \pm w_2$
-$(w_1 \times w_2, w_1, \pm w_2)$ "--- правая тройка. $\Ra$ знак +.  
+$(w_1 \times w_2, w_1, \pm w_2)$ "--- правая тройка. $\Ra$ знак +.
 
 $$= (\cos^2 \psi - \sin^2 \psi)\bar w_2 + 2 \cos \psi \sin \psi \bar w_1 \bar w_2 =  $$
 $$= \cos 2 \psi \bar w_2 + \sin 2 \psi \bar w_1 \times \bar w_2$$
@@ -473,7 +422,7 @@ $(-1)z(-1)^{-1} = z, \phi_2 = id$
     $$2bd = 0 $$
     $$2cd =0 $$
     $\Ra $ хотя бы 2 из трех $b, c, d$ равны 0.
-    $1 ненулевой$, остальные 0. На диагонали найдем противоречие. 
+    $1 ненулевой$, остальные 0. На диагонали найдем противоречие.
     $$\Ra a \ne 0 \Ra b = c = d = 0$$
     $$a^2 = 1$$
     $$a = \pm 1$$
