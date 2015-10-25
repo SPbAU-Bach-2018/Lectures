@@ -602,6 +602,52 @@ void main() {
 		\end{tabular}\end{center}
 	\end{enumerate}
 	\textbf{Важно:} в последнем случае будут корректно работать отстубы табами. Используйте их!
+
+\item
+	Чтобы избежать некрасивого расположения пунктов списка, который начинается сразу в окружении (например, в \t{exmp}), используйте \tex'\hfill'.
+	При этом если между списком и началом окружения имеется какой-то текст, то \text'\hfill' не нужен.
+	\begin{center}\begin{tabular}{|c|c|c|}
+		\hline Это... & ...верстается так & \\
+		\hline \begin{minipage}{0.4\linewidth}
+			\begin{texcode}
+				\begin{exmp}
+					\begin{enumerate}
+					\item Раз
+					\item Два
+					\end{enumerate}
+				\end{exmp}
+			\end{texcode}
+		\end{minipage}
+        &
+		\begin{minipage}{0.35\linewidth}
+				\begin{exmp}
+					\begin{enumerate}
+					\item Раз
+					\item Два
+					\end{enumerate}
+				\end{exmp}
+		\end{minipage} \bad \\
+		\hline \begin{minipage}{0.4\linewidth}
+			\begin{texcode}
+				\begin{exmp} \hfill
+					\begin{enumerate}
+					\item Раз
+					\item Два
+					\end{enumerate}
+				\end{exmp}
+			\end{texcode}
+		\end{minipage}
+        &
+		\begin{minipage}{0.35\linewidth}
+			\begin{exmp} \hfill
+				\begin{enumerate}
+				\item Раз
+				\item Два
+				\end{enumerate}
+			\end{exmp}
+		\end{minipage} \ok \\
+		\hline
+	\end{tabular}\end{center}
 \end{enumerate}
 
 \section{Особенности правописания}
