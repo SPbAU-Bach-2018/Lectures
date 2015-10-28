@@ -65,11 +65,11 @@
 			\[ \forall x \colon P(x) = 1 \iff \exists y \colon Q(y, x) = 1 \]
 			Так как $Q \in \Pi_i$, то возьмём универсальный предикат $U_{\Pi_i}$ для двухместных из $\Pi_i$
 			(если $P$ больше, чем одноместный, то тут возьмёся универсальный предикат для трёхместных и так далее).
-			Значит, существует $x \in \N_0$ такое, что $Q(y, x) = \U_{\Pi_i}(q, y, x)$.
+			Значит, существует $x \in \N_0$ такое, что $Q(y, x) = U_{\Pi_i}(q, y, x)$.
 			Тогда:
-			\[ \forall x \colon P(x) = 1 \iff \exists y \colon \U_{\Pi_i}(q, y, x) \]
+			\[ \forall x \colon P(x) = 1 \iff \exists y \colon U_{\Pi_i}(q, y, x) \]
 			Теперь выпишем универсальный предикат для $\Sigma_{i+1}$:
-			\[ U_{\Sigma_{i+1}}(p, x) = 1 \iff \exists y \U_{\Pi_i}(p, y, x) \]
+			\[ U_{\Sigma_{i+1}}(p, x) = 1 \iff \exists y U_{\Pi_i}(p, y, x) \]
 			\TODO
 		\end{description}
 	\end{proof}
