@@ -157,30 +157,30 @@
 	Можно выразить все <<естественные>> операции из языков программирования:
 	\begin{enumerate}
 		\item Присваивание переменной нулю: \t{z := 0}.
-		\begin{listing}[1]{1}
+		\begin{abstractcode}
 if z > 0 then goto 2 else goto 4
 z--
 goto 1
-stop    \end{listing}
+stop    \end{abstractcode}
 		\item \t{a := b}
-		\begin{listing}[1]{1}
+		\begin{abstractcode}
 a := 0
 c := 0
-В цикле пока b > 0
+while (b > 0)
 	b--
 	a++
 	c++
-В цикле пока c > 0
+while (c > 0)
 	c--
-	b++ \end{listing}
+	b++ \end{abstractcode}
 	\item \t{a := b + c}
-	\begin{listing}[1]{1}
+	\begin{abstractcode}
 a := b
 d := c
-Пока d > 0
+while (d > 0)
 	d--
 	a++ 
-	\end{listing}
+	\end{abstractcode}
 	\item \t{a := bc}
 	\item Возведение в степень
 	\item Деление с остатком
