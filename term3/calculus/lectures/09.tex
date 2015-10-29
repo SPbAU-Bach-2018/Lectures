@@ -1,0 +1,247 @@
+\begin{exmp}
+	\[ \sum_{n=1}^\infty \frac1{n^p} \]
+	При $p \ge 0$ не сходится, потому что $1/n^p \not\ra 0$.
+	При $p > 0$ функция убывает, и ряд ведёт себя так же, как и интеграл
+	\[ \int\limits_1^\infty \frac{\d x}{x^p} \]
+	а мы уже знаем, что он сходится только при $p > 1$.
+\end{exmp}
+
+\begin{conseq}
+	Положительный ряд сходится, если он оценивается $\frac{c}{n^p}$ при $p > 1$.
+\end{conseq}
+
+\begin{conseq}
+	\[ \sum_{n=1}^\infty \]
+	$f(x) = 1/(x \ln x)$ когда-нибудь начнёт убывать.
+	Значит ряд и
+	\[ \int\limits_2^{+\infty} \frac{\d x}{x \ln x} \]
+	ведут себя одинакого, а он
+	\[ \int\limits_2^{+\infty} \frac{\d x}{x \ln x} = \int\limits_{\ln 2}^{+\infty} \frac{\d y}y = \ln y \biggr|_{\ln 2}^{+\infty} = +\infty \]
+\end{conseq}
+
+\section{Знакопеременные ряды}
+
+\begin{Def}
+	Ряд $\sum a_n$ абсолютно сходится, если сходится ряд $\sum |a_n|$.
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item
+	Если ряды $\sum a_n$ и $\sum b_n$ абсолютно, то абсолютно сходится и $\sum (\alpha a_n + \beta b_n)$.
+
+\item
+	Для вещественных рядов: если ряд абсолютно сходится, то сходятся и $\sum (a_n)_+$ и $\sum (a_n)_-$, где
+	\[ (a_n)_+ = \max \{0, a_n\} \quad (a_n)_- = \max \{0, -a_n\} \]
+
+\item
+	Если ряд абсолютно сходится, то он просто сходится и
+	\[ \left| \sum a_n \right| \le \sum |a_n| \]
+
+\item
+	Для комплексных рядов: если ряд абсолютно сходится, то абсолютно сходятся и $\sum \Re a_n$ и $\sum \Im a_n$.
+\end{enumerate}
+
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\[ |\alpha a_n + \beta b_n| \le |\alpha| |a_n| + |\beta| |b_n| \]
+
+	\item
+		\[ 0 \le (a_n)_\pm \le |a_n| \]
+
+	\item[4]
+		\begin{gather*}
+			0 \le |\Re a_n| \le |a_n| \\
+			0 \le |\Im a_n| \le |a_n|
+		\end{gather*}
+	\end{enumerate}
+
+	\item[3]
+		В вещественном случае: мы уже знаем, что $\sum (a_n)_\pm$ сходятся, значит $\sum a_n = \sum \left((a_n)_+ - (a_n)_-\right)$ тоже сходится.
+
+		В комплексном случае: мы уже знаем, что $\sum \Re a_n$ и $\sum \Im a_n$ абсолютно сходятся, значит по предыдущему абзацу они просто сходятся.
+		Отсюда $\sum a_n = \sum (\Re a_n + i \Im a_n)$ тоже сходится.
+
+		Неравенство: мы уже знаем, что пределы частичных сумм существуют, поэтому просто перейдём к пределу в
+		\[ \left| \sum_{n=1}^m a_n \right| \le \sum_{i=1}^m |a_n|\]
+\end{proof}
+
+\begin{Rem}
+	Абсолютная сходимость ряда равносильна абсолютной сходимости вещесвтенной и мнимой части.
+\end{Rem}
+\begin{proof}
+	\[ |a_n| \le |\Re a_n| + |\Im a_n| \]
+\end{proof}
+
+\begin{Rem}
+	Абсолютная сходимость ряда равносильна абсолютной сходимости $(a_n)_\pm$.
+\end{Rem}
+\begin{proof}
+	\[ |a_n| = (a_n)_+ + (a_n)_- \]
+\end{proof}
+
+\begin{Def}
+	Ряд, который сходится, но не сходится абсолютно, называется условно сходящимся.
+\end{Def}
+
+\begin{theorem}[Преобразование Абеля]
+	$A_n = a_1 + a_2 + \dots + a_n$, $A_0 = 0$.
+	\begin{gather*}
+		\sum_{k=1}^n a_k b_k = \sum_{k=1}^n (A_k - A_{k-1})b_k = \sum_{k=1}^n A_kb_k - \sum_{k=1}^n A_{k-1}b_k = \\
+		= \sum_{k=1}^n A_kb_k - \sum_{k=1}^{n-1} A_kb_{k+1} = A_nb_n + \sum_{k=1}^{n-1} A_k (b_k - b_{k+1})
+	\end{gather*}
+	Некоторый аналог интегрирования по частям.
+\end{theorem}
+
+\begin{exmp}
+	\begin{gather*}
+		\sum_{k=1}^n H_k = \sum_{k=1}^n 1 \cdot H_n = n H_n + \sum_{k=1}^{n-1} k(H_k - H_{k+1}) = \\
+		= n H_n - \sum_{i=1}^{n-1} \frac{k}{k+1} = n H_n - \sum_{k=1}^{n-1} \left(\frac{k}{k+1} - 1\right) + (n - 1) = \\
+		= n H_n + \sum_{i=1}^{n-1} \frac1{k-1} - (n-1) = (n+1) H_n - n
+	\end{gather*}
+\end{exmp}
+
+\begin{theorem}[Признак Дирихле]
+	$\left| \sum_{k=1}^n a_n \right| \le M$, $b_k$ монотонно стремятся к нулю.
+	Тогда
+	\[ \sum_{n=1}^\infty a_n b_n \]
+	сходится.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		S_n = \sum_{k=1}^n a_kb_k = \underbrace{A_n}_{\le M}\underbrace{b_n}_{\ra 0} + \sum_{k=1}^{n-1} A_k(b_k - b_{k+1})
+	\end{gather*}
+	Хотим показать, что абсолютно сходится $\sum_{k=1}^\infty A_k(b_k - b_{k+1})$.
+	\begin{gather*}
+		\sum_{k=1}^\infty |A_k||b_k - b_{k+1}|
+		\le M \sum_{k=1}^\infty |\underbrace{b_k - b_{k+1}}_{\text{одного знака}}|
+		= M|\sum_{k=1}^\infty (b_k - b_{k+1})|
+		= Mb_1
+	\end{gather*}
+	Получили.
+\end{proof}
+
+\begin{exmp}
+	$p > 0$
+	\[ \sum_{n=1}^\infty \frac{\sin n}{n^p} \]
+	Оно всегда сходится:
+	\begin{gather*}
+		a_n = \sin n \quad b_n = \frac1{n^p} \\
+		A_n = \sin 1 + \sin 2 + \dots + \sin n = \Im (e^i + e^{2i} + \dots + e^{ni}) = \Im \left( e_i \frac{e^{ni} - 1}{e^i - 1} \right) \\
+		|A_n|  \le \left| e_i \frac{e^{ni} - 1}{e^i - 1} \right| = \frac{|e^{ni} - 1|}{|e^i - 1|} \le \frac2{|e^i - 1|}
+	\end{gather*}
+	Абсолютная сходимость: при $p > 1$ оценивается сходящимся рядом $\sum 1/n^p$. Иначе не сходится:
+	\begin{gather*}
+		\sum_{n=1}^\infty \frac{|\sin n|}{n^p} \ge \sum_{n=1}^\infty \frac{\sin^2 n}{n^p} = \sum_{n=1}^\infty \frac{1 - \cos 2n}{n^p} = \\
+		= \frac12 \sum_{i=1}^\infty \frac1{n^p} - \frac12 \sum_{i=1}^\infty \frac{\cos 2n}{n^p}
+	\end{gather*}
+	Первое слагаемое расходится, второе сходится по Дирихле.
+\end{exmp}
+
+\begin{theorem}[Признак Абеля]
+	$\sum_{k=1}^n a_n$ сходится, $b_k$ монотонна и ограниченна.
+	Тогда
+	\[ \sum_{n=1}^\infty a_n b_n \]
+	сходится.
+\end{theorem}
+
+\begin{proof}
+	Существует предел $\lim b_n = b \in \R$.
+	\begin{gather*}
+		\sum_{n=1}^\infty a_n b_b = \sum_{n=1}^\infty a_n (b_n - b) + b \sum_{i=1}^\infty
+	\end{gather*}
+	Второе слагаемое сходится, а первое попадает под условие Дирихле: $b_n - b$ монотонно сходится к нулю.
+\end{proof}
+
+\begin{theorem}[Признак Лейбница]
+	$b_k \ge 0$ монотонны.
+	Тогда ряд $\sum (-1)^{n-1} b_n$ сходится тогда и только тогда, когда $b_n \ra 0$.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[Простое доказательство:]
+		$a_n = (-1)^{n-1}$, смотрим на принцип Дирихле.
+
+	\item[Прямое доказательство:]
+		Мы, вообще говоря, знаем, что $b_n$ убывает.
+		\begin{gather*}
+			S_n = \sum_{k=1}^n (-1)^{k-1} b_k \\
+			S_{2n+2} = S_{2n} + b_{2n+1} - b_{2n+2} \ge S_{2n} \\
+			S_{2n+1} = S_{2n-1} + b_{2n} - b_{2n+1} \le S_{2n-1} \\
+			[0, S_1] \supset [S_2, S_3] \supset [S_4, S_5] \supset \dots
+		\end{gather*}
+		Длины отрезков равны $b_{2n+1} \ra 0$.
+		Значит границы отрезков стремятся к единственной общей точке всех этих отрезков, и частичные суммы сходятся.
+	\end{description}
+\end{proof}
+\begin{Rem}
+	\[ S_{2n} \le S \le S_{2n+1} \]
+\end{Rem}
+
+\begin{exmp}
+	\[ \sum_{n=1}^\infty \frac{(-1)^{n-1}}{n^p} \]
+	сходится при $p > 0$.
+\end{exmp}
+
+\begin{exmp}[Ряд Лейбница]
+	\[ \sum_{n=1}^\infty \frac{(-1)^{n-1}}n = \ln 2 \]
+	Он сходится, это уже знаем.
+	\[
+		S_{2n}
+		= \left(1 + \frac12 + \frac13 + \dots\right) - 2\left(\frac12 + \frac14 + \frac16 + \dots\right)
+		= H_{2n} - H_n
+		= \ln(2n) - \ln n + o(1)
+		= \ln 2 + o(1)
+	\]
+\end{exmp}
+
+\begin{exmp}
+	\[ (1 - \frac12 - \frac14) + (\frac13 - \frac16 - \frac18) + (\frac15 - \frac1{10} - \frac1{12}) + \dots \]
+	Это в точности предыдущий ряд с изменённым порядком элементов.
+	Покажем, что оно сойдётся нетуда:
+	\[
+		\tilde S_{3n}
+		= \sum_{k=1}^n \left(\frac1{2k-1} - \frac1{4k-2} - \frac1{4k}\right)
+		= \sum_{k=1}^n \frac1k - \sum_{k=1}^n \frac1{2k} - \sum_{k=1}^{2n} \frac1{2k}
+		= H_{2n} - \frac12 H_n - \frac12 H_{2n} = \frac12 (H_{2n} - H_n) = \frac{12} (\ln 2 + o(1))
+	\]
+	Ой.
+\end{exmp}
+
+\begin{Def}
+	$\phi\colon \N \ra \N$ "--- биекция.
+	Перестановкой ряда $\sum a_n$ называется ряд
+	\[ \sum_{n=1}^\infty a_{\phi(n)} \]
+\end{Def}
+
+\begin{theorem}
+	Если ряд $\sum a_n$ абсолютно сходится и $\sum a_n = S \in \bar \R$, то любая его перестановка сходится к $S$.
+\end{theorem}
+\begin{Rem}
+	Ряд из неотрицательных элементов при перестановке ведёт себя также.
+\end{Rem}
+\begin{proof}
+	Пусть $a_n \ge 0$.
+	Докажем, что $\sum a_{\phi(n)} = S \in \bar \R$.
+	\begin{gather*}
+		S_n = \sum_{k=1}^n a_k \quad \bar S_n = \sum_{k=1}^n a_{\phi(n)} \\
+		\forall n\, \exists m\colon \bar S_n \le S_m \quad m = \max\{\phi(1), \phi(2), \dots, \phi(n)\} \\
+		\bar S_n \le \lim_{n\ra\infty} S_m = S \\
+		\bar S = \lim{n\ra\infty} \bar S_n \le \lim_{n\ra\infty} S_m = S \\
+		\bar S \le S
+	\end{gather*}
+	Применив обратную перестановку, получим $\bar S \ge S$.
+
+	Общий случай: раз $\sum a_n$ абсолютно сходятся, значит $\sum (a_n)_\pm$ сходятся.
+	Там мы можем переставлять, а потом сложим их после перестановки, получим то, что нужно.
+
+	А если был ещё и комплексный ряд, разбить его на комплексную и мнимую части.
+\end{proof}
+
+\begin{Rem}
+	Если ряд условно сходится, то $\sum (a_n)_+$ и $\sum (a_n)_-$ расходятся.
+\end{Rem}
+\begin{proof}
+	$\sum |a_n| = \sum (a_n)_+ + (a_n)_-$ расходится, а $\sum a_n = \sum (a_n)_+ - (a_n)_-$ сходится.
+\end{proof}
