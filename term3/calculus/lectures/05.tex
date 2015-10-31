@@ -115,12 +115,12 @@
 			= \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
 		\]
 		$\tilde\gamma = \gamma(a+b-t)$ "--- обратная параметризация.
-		\[
-			\int\limits_{\tilde\gamma} f_1 \d x_1 + \dots + f_n \d x_n
-			= \int\limits_a^b \left(f_1(\gamma(a+b-t))\gamma'_1(a+b-t) + \dots + f_n(\gamma(a+b-t))\gamma'_n(a+b-t) \right) \d t
+		\begin{gather*}
+			\int\limits_{\tilde\gamma} f_1 \d x_1 + \dots + f_n \d x_n = \\
+			= \int\limits_a^b \left(f_1(\gamma(a+b-t))\gamma'_1(a+b-t) + \dots + f_n(\gamma(a+b-t))\gamma'_n(a+b-t) \right) \d t = \\
 			= -\int\limits_b^a \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d (-s)
 			= -\int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n
-		\]
+		\end{gather*}
 	\end{proof}
 
 \item
@@ -135,7 +135,7 @@
 		\begin{gather*}
 			\int\limits_\gamma \left<f, \sigma\right> \d s
 			= \int\limits_a^b \left<f(\gamma(t)), \sigma(\gamma(t))\right> \|\gamma'(t)\| \d t
-			= \int\limits_a^b \left<f(\gamma(t)), \frac{\gamma'(t)}{\|\gamma'(t)\|}\right> \|\gamma'(t)\| \d t
+			= \int\limits_a^b \left<f(\gamma(t)), \frac{\gamma'(t)}{\|\gamma'(t)\|}\right> \|\gamma'(t)\| \d t = \\
 			= \int\limits_a^b \left<f(\gamma(t)), \gamma'(t)\right> \d t
 			= \int\limits_a^b \left(f_1(\gamma(t))\gamma'_1(t) + \dots + f_n(\gamma(t))\gamma'_n(t) \right) \d t
 		\end{gather*}
@@ -198,9 +198,9 @@
 \begin{proof}
 	\begin{gather*}
 		\int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n
-			= \int\limits_a^b ( f_1(\gamma(t)) \gamma_1'(t) + \dots + f_n(\gamma(t)) \gamma_n'(t) ) \d t \\ =
-		= \int\limits_a^b \left( \partd{F}{x_1}(\gamma(t)) \gamma_1'(t) + \dots + \partd{F}{x_1} \gamma_n'(t) \right) \d t
-			= \int\limits_a^b (F \circ \gamma)'(t) \d t = (F \circ \gamma)(b) - (F \circ \gamma)(a) = F(B) - F(A)
+		= \int\limits_a^b ( f_1(\gamma(t)) \gamma_1'(t) + \dots + f_n(\gamma(t)) \gamma_n'(t) ) \d t = \\
+		= \int\limits_a^b \left( \partd{F}{x_1}(\gamma(t)) \gamma_1'(t) + \dots + \partd{F}{x_1} \gamma_n'(t) \right) \d t = \\
+		= \int\limits_a^b (F \circ \gamma)'(t) \d t = (F \circ \gamma)(b) - (F \circ \gamma)(a) = F(B) - F(A)
 	\end{gather*}
 \end{proof}
 
@@ -253,9 +253,9 @@
 	\begin{gather*}
 		\int\limits_G \partd{P}y \d y \d x
 			= \int\limits_a^b \int\limits_{\phi(a)}^{\phi(x)} \partd{P}y(x, y) \d y \d x
-			= \int\limits_a^b (P(x, \phi(x)) - P(x, \phi(a))) \d x=
+			= \int\limits_a^b (P(x, \phi(x)) - P(x, \phi(a))) \d x = \\
 			= \int\limits_a^b P(x, \phi(x) \d x - \int\limits_a^b P(x, \phi(a)) \d x
-			= -\int\limits_{C\ra A} P \d x - \int\limits_{[A, B]} P \d x
+			= -\int\limits_{C\ra A} P \d x - \int\limits_{[A, B]} P \d x = \\
 			= -\int\limits_{C\ra A} P \d x - \int\limits_{[A, B]} P \d x - \int\limits_{[B, C]} P \d x
 			= -\int\limits_{\delta G} P \d x
 	\end{gather*}

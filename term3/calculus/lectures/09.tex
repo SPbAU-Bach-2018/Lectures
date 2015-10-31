@@ -200,12 +200,12 @@
 	\[ (1 - \frac12 - \frac14) + (\frac13 - \frac16 - \frac18) + (\frac15 - \frac1{10} - \frac1{12}) + \dots \]
 	Это в точности предыдущий ряд с изменённым порядком элементов.
 	Покажем, что оно сойдётся нетуда:
-	\[
+	\begin{gather*}
 		\tilde S_{3n}
 		= \sum_{k=1}^n \left(\frac1{2k-1} - \frac1{4k-2} - \frac1{4k}\right)
-		= \sum_{k=1}^n \frac1k - \sum_{k=1}^n \frac1{2k} - \sum_{k=1}^{2n} \frac1{2k}
-		= H_{2n} - \frac12 H_n - \frac12 H_{2n} = \frac12 (H_{2n} - H_n) = \frac{12} (\ln 2 + o(1))
-	\]
+		= \sum_{k=1}^n \frac1k - \sum_{k=1}^n \frac1{2k} - \sum_{k=1}^{2n} \frac1{2k} = \\
+		= H_{2n} - \frac12 H_n - \frac12 H_{2n} = \frac12 (H_{2n} - H_n) = \frac12 (\ln 2 + o(1))
+	\end{gather*}
 	Ой.
 \end{exmp}
 
