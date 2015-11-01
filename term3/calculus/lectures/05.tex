@@ -154,7 +154,7 @@
 		\begin{gather*}
 			\left| \int\limits_\gamma f_1 \d x_1 + \dots + f_n \d x_n \right|
 			= \left| \int\limits_\gamma \left<f, \sigma\right> \d s \right|
-			\le \int\limits_\gamma \left|\left<\|f\|, \sigma\right>\right| \d s
+			\le \int\limits_\gamma \left|\left<f, \sigma\right>\right| \d s
 			\le \int\limits_\gamma \|f\| \underbrace{\|\sigma\|}_1 \d s
 		\end{gather*}
 		Последнее неравенство "--- Коши-Буняковский.
@@ -227,13 +227,13 @@
 		Возьмём произвольную точку $a$ и переберём точки $x$.
 		Построим
 		\[ F(x) = \int\limits_{\gamma(a, x)} f_1 \d x_1 + \dots + f_n \d x_n \]
-		В силу того, что по замкноту контуру ноль, любая $\gamma$ даст одно и то же значение интеграла.
+		В силу того, что по замкнутому контуру ноль, любая $\gamma$ даст одно и то же значение интеграла.
 		Таким образом, $F$ корректная функция.
 
 		Проверим, что оно подходит:
 		\begin{gather*}
 			\partd{F}{x_1} = \lim_{h \ra 0} \frac{F(x_1 + h, x_2, \dots, x_n) - F(x_1, x_2, \dots, x_n)}h
-			= \lim_{h \ra 0} \frac{\int\limits_[x, (x_1 + h, x_2, \dots, x_n)] f_1 \d x_1 + \dots + f_n \d x_n}h = \\
+			= \lim_{h \ra 0} \frac{\int\limits_{[x, (x_1 + h, x_2, \dots, x_n)]} f_1 \d x_1 + \dots + f_n \d x_n}h = \\
 			\gamma\colon [0, h] \ra [x, (x_1 + h, x_2, \dots, x_n)] \quad t \mapsto \begin{pmatrix} x_1 + t\\x_2\\\vdots\\x_n\end{pmatrix} \\
 			= \lim_{h \ra 0} \frac{\int\limits_0^h f_1(x_1+t, x_2, \dots x_n) \d t}h
 			= \lim_{h \ra 0} \frac{h f_1(x_1 + \theta h, x_2, \dots, x_n)) \d t}h = f_1(x) \quad \theta \in [0, 1]
