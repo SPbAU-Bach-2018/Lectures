@@ -142,7 +142,7 @@
 		Достаточно показать, что
 		\[
 			\int\limits_a^b f(\gamma(t)) \|\gamma'(t)\| \d t
-			= \int\limits_\alpha^\beta f(\gamma(\tau(x))) \|(\gamma \circ \tau)'(\alpha)\| \d x
+			= \int\limits_\alpha^\beta f(\gamma(\tau(x))) \|(\gamma \circ \tau)'(x)\| \d x
 			= \cdots
 		\]
 		есть просто замена переменной.
@@ -153,8 +153,8 @@
 				\gamma_n'(\tau(x)) \tau'(x)
 			\end{pmatrix} \\
 			\|(\gamma \circ \tau)'(x)\| = |\tau'(x)| \|\gamma'(\tau(x))\| \\
-			\cdots = \int\limits_\alpha^\beta \underbrace{|\tau'(x)|}_{\sign \tau' \cdot \tau'(x)} \|\gamma'(\tau(x))\| \d x
-			= \sign \tau' \int\limits_\alpha^\beta \tau'(x) \|\gamma'(\tau(x))\| \d x
+			\cdots = \int\limits_\alpha^\beta f(\gamma(\tau(x)))\underbrace{|\tau'(x)|}_{\sign \tau' \cdot \tau'(x)} \|\gamma'(\tau(x))\| \d x
+			= \sign \tau' \int\limits_\alpha^\beta f(\gamma(\tau(x))) \tau'(x) \|\gamma'(\tau(x))\| \d x
 		\end{gather*}
 		Этот знак разберётся с тем, возрастала или убывала ли $\tau$.
 	\end{proof}
