@@ -48,9 +48,9 @@
 \end{Rem}
 
 \begin{Rem}
-	Пусть $f$ "--- первообразая $f$ на $[a, b)$.
+	Пусть $F$ "--- первообразая $f$ на $[a, b)$.
 	Тогда
-	\[ \int\limits_a^b f = \lim_{B \ra b-0} F(B) - f(a) \]
+	\[ \int\limits_a^b f = \lim_{B \ra b-0} F(B) - F(a) \]
 	Сходимость интеграла равносильна тому, что $F$ непрерывно продолжается на $[a, b]$.
 \end{Rem}
 
@@ -224,7 +224,7 @@
 	Проверим, что первообразная ограничена, то есть сумма площадей треугольничков ограничена:
 	\[
 		\sum_{i=1}^n \frac1{2^i} \cdot i
-		= \sum_{i=1}^n \underbrace{\frac1{\sqrt{2}^i}}_{\le C} \cdot \frac1{\sqrt{2}^i}
+		= \sum_{i=1}^n \underbrace{\frac i{\sqrt{2}^i}}_{\le C} \cdot \frac1{\sqrt{2}^i}
 		< \frac{C}{1-\frac1{\sqrt 2}}
 	\]
 \end{exmp}
@@ -245,6 +245,7 @@
 	По критерию Коши,
 	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B, \left|\int\limits_A^B |f|\right| < \epsilon \]
 	Но
-	\[ \left|\int\limits_A^B |f|\right| \le \int\limits_A^B |f| \]
-	и получили критерий Коши для $\int_a^b f$.
+	\[ \epsilon > \left|\int\limits_A^B |f|\right| = \int\limits_A^B |f| \ge \left| \int\limits_A^B f \right|\]
+	(у нас же тут интегралы собственные);
+	получили критерий Коши для $\int_a^b f$.
 \end{proof}
