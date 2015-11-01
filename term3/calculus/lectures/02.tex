@@ -142,7 +142,7 @@ $\phi(G) = D$ измеримо.
 	\]
 	Назовём эти первые два слагаемых линейной составляющей $\phi$:
 	\[
-		\phi^{\mathup{lin}}_{t_0} (t) \eqDef \phi(t_0) + d_{t_0} \phi(t - t_0) 
+		\phi^{\mathup{lin}}_{t_0} (t) \eqDef \phi(t_0) + \left( d_{t_0} \right) \cdot \phi(t - t_0)
 	\]
 \end{Def}
 
@@ -164,8 +164,8 @@ $\phi(G) = D$ измеримо.
 	\end{gather*}
 	Мы только что оценили числитель дроби.
 	\begin{gather*}
-		\d_{\theta_0}h = \d_{\theta_0 t_0 + (1-\theta_0) t} g \circ \d_{\theta_0} (\theta t_0 + (1-\theta) t)
-			= \d_{\theta_0 t_0 + (1-\theta_0) t} g \circ (t_0 - t) \\
+		\d_{\theta_0}h = \left(\d_{\theta_0 t_0 + (1-\theta_0) t} g\right) \cdot \left(\d_{\theta_0} (\theta t_0 + (1-\theta) t)\right)
+			= \left(\d_{\theta_0 t_0 + (1-\theta_0) t} g\right) \cdot (t_0 - t) \\
 		u \lrh \theta_0 t_0 + (1-\theta_0) t \\
 		\d_u g = \d_u \phi - \d_u \linf{\phi}_{t_0} = \d_u \phi - \d_{t_0} \phi \\
 		\|d_{\theta_0} h\| = \|(\d_u \phi - \d_{t_0} \phi)(t-t_0)\| \le \|\d_u \phi - \d_{t_0} \phi\| \|t-t_0\| \\
