@@ -8,7 +8,7 @@
 	Образ таких кубиков "--- сужение графика $f$, то есть множество нулевой меры.
 
 \item[Доказательство формулы.]
-	$R_h = \linf{\phi}_{t_0} (Q_h)$.
+	$R_h = \linf{\phi}_{t^*} (Q_h)$.
 	\[ \frac{\mu R_h}{\mu Q_h} = |\det \d_{t^*} \phi| = |J_\phi(t^*)| \]
 	Теперь перейдём к $\phi(Q_h)$.
 	\begin{gather*}
@@ -37,7 +37,7 @@
 		0 \le \mu R_h - \mu \tilde R_h \le 2n \sigma(h) \mu (\text{грань кубика}) \\
 		(\text{сторона грани}) \le \|\d_{t^*} \phi\| h \le Mh \\
 		(\text{сторона увелчившейся грани}) \le Mh + 2\sigma(h) \\
-		(\text{объём грани кубика}) \le \sigma(h) (Mg + 2\sigma(h))^{n-1} = o(h^n)
+		(\text{объём грани кубика}) \le (Mh + 2\sigma(h))^{n-1} = o(h^{n - 1})
 	\end{gather*}
 \end{description}\end{proof}
 
