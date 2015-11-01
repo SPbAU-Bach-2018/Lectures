@@ -42,7 +42,7 @@
 	Мы знаем, что $g(\eta_i)$ существуют, значит для каждого:
 	\[
 		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \tilde\tau\colon |\tilde\tau| < \delta_{\eta_i},
-		\forall \{y_k\}, \left| g(x) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
+		\forall \{y_k\}, \left| g(\eta_i) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
 	\]
 	Возьмём в качестве $\tilde\epsilon = \frac\epsilon{\mu E}$.
 	Мы хотим найти такую мелкость $\tilde\delta < \frac\delta2$ разбиения $[a, b]$, что будет выполнено
@@ -64,8 +64,8 @@
 		S(f, \tau, \xi) = \sum_{i,j} f(\eta_i, y_j) \mu(E_i \times I_j) = \sum_{i,j} f(\eta_i, y_j) \mu E_i \mu I_j
 			= \sum_i \underbrace{\left(\sum_j f(\eta_i, y_j) \mu I_j\right)}_{\text{сумма для $\int_a^b f(\eta_i,y) \d x$}} \mu E_i > \cdots\\
 		\sum_j f(\eta_i, y_j) \mu I_j > \int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E} \\
-		\cdots > \sum_i \left(\int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E}\right)
-			= \sum_i g(\eta_i) \mu E_i - \epsilon \sum_{i} \frac1{\mu E_i} \mu E_i = \sum_i g(\eta_i) \mu E_i - \epsilon \\
+		\cdots > \sum_i \left(\int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E}\right) \mu E_i
+			= \sum_i g(\eta_i) \mu E_i - \epsilon \sum_{i} \frac1{\mu E} \mu E_i = \sum_i g(\eta_i) \mu E_i - \epsilon \\
 		\sum_i g(\eta_i) \mu E_i < I + 2\epsilon
 	\end{gather*}
 	Аналогично
@@ -75,7 +75,7 @@
 	\end{gather*}
 \end{proof}
 \begin{Rem}
-	Пусть мы знаем, что $f$ непрерывна, а значит и равномерно непрерывна.
+	Пусть мы знаем, что $f$ непрерывна на компакте, а значит и равномерно непрерывна.
 	Тогда из определения равномерной непрерывности можно взять $\tilde\delta$ для $\tilde\epsilon = \frac\epsilon{\mu E}$.
 	Оно без игр с $\tilde\delta_{\eta_i}$ подойдёт везде.
 \end{Rem}
@@ -105,7 +105,7 @@
 \end{Rem}
 
 \begin{Rem}
-	Вспочинаем, что такое элементарное множество: взяли $\phi, \psi\colon E \subset \R^n \ra \R$, $\phi \le \psi$.
+	Вспоминаем, что такое элементарное множество: взяли $\phi, \psi\colon E \subset \R^n \ra \R$, $\phi \le \psi$.
 	\[ X = \{ (x, y) \in \R^{n+1} \mid x \in E \land \phi(x) \le y \le \psi(x)\} \]
 \end{Rem}
 \begin{theorem}
@@ -137,7 +137,7 @@
 \end{Def}
 
 Глобальная цель: есть открытое измеримое $G \subset \R^n$, $\phi\colon \cl G \ra \R^n$,
-$\phi(G) = D$ "--- открытое, $\phi$ является биекцией между $C$ и $D$, $\phi$ непрерывно дифференцируема на $\cl G$,
+$\phi(G) = D$ "--- открытое, $\phi$ является биекцией между $G$ и $D$, $\phi$ непрерывно дифференцируема на $\cl G$,
 Якобиан
 \[	\mathcal J_\phi(t) = \det \begin{pmatrix}
 		\partd{\phi_1}{t_1} & \cdots & \partd{\phi_1}{t_n} \\
