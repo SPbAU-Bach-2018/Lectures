@@ -14,12 +14,12 @@
 	\begin{gather*}
 		\sigma(h) \lrh \sup_{t^*\colon Q_h \subset G} \sup_{t \in Q_h} \|\phi(t) - \linf{\phi}_{t^*}(t)\| \\
 		t, t^* \in Q_h \Ra \|t - t^*\| \le \sqrt{n} h \\
-		\frac{\sigma(h)}{\sqrt{n} h} \le S_n \ra 0
+		\frac{\sigma(h)}{\sqrt{n} h} \le S_h \ra 0
 	\end{gather*}
 	Значит $\sigma(h) = o(h)$.
-	Тогда посмотирм на $\phi(Q_h)$ и $R_h$.
+	Тогда посмотрим на $\phi(Q_h)$ и $R_h$.
 	\[
-		\forall t \in Q_h, \rho( \phi(t), \linf{\phi}_{t^*}(h) ) \le \sigma(h)
+		\forall t \in Q_h, \| \phi(t) - \linf{\phi}_{t^*}(h) \| \le \sigma(h)
 	\]
 	Тогда $\phi(Q_h)$ содержится в $R_h$, раздутом на $\sigma(h)$ (обозначим $\tilde R_h$),
 	а также содержит $R_h$, сдутый на $\sigma(h)$ (обозначим $\tilde{\tilde R}_h$).
@@ -36,7 +36,7 @@
 	\begin{gather*}
 		0 \le \mu R_h - \mu \tilde R_h \le 2n \sigma(h) \mu (\text{грань кубика}) \\
 		(\text{сторона грани}) \le \|\d_{t^*} \phi\| h \le Mh \\
-		(\text{сторона увелчившейся грани}) \le Mh + 2\sigma(h) \\
+		(\text{сторона увеличившейся грани}) \le Mh + 2\sigma(h) \\
 		(\text{объём грани кубика}) \le (Mh + 2\sigma(h))^{n-1} = o(h^{n - 1})
 	\end{gather*}
 \end{description}\end{proof}
