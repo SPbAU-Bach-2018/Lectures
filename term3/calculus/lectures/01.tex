@@ -44,7 +44,7 @@
 	Мы знаем, что $g(\eta_i)$ существуют, значит, для каждого $\eta_i$ можно расписать существование интеграла $g(\eta_i)=\int_a^b f(\eta_i, y)\d y$:
 	\[
 		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \underbrace{\tilde\tau\colon |\tilde\tau| < \delta_{\eta_i}}_{\text{разбиение }[a, b]},
-		\forall \{y_k\}, \left| g(\eta_i) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
+		\forall \{y_k\}, \left| g(\eta_i) - S(f|_{x=\eta_i}, \tilde\tau, y_k) \right| < \tilde\epsilon
 	\]
 	Возьмём в качестве $\tilde\epsilon = \frac\epsilon{\mu E}$.
 	Теперь мы хотим найти такое разбиение отрезка $[a, b]$ мелкости $\tilde\delta < \frac\delta 2$, что $g(\eta_i)$ хорошо приблизится суммой Римана одновременно во всех точках.
