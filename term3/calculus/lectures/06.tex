@@ -29,7 +29,7 @@
 	$f \in C[a, b)$. Тогда сходимость ингеграла
 	\[ \int\limits_a^b f \]
 	равносильна
-	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B > c, \left|\int\limits_A^B f\right| < \epsilon \]
+	\[ \forall \epsilon > 0, \exists c < b\colon \forall c < A, B < b, \left|\int\limits_A^B f\right| < \epsilon \]
 \end{theorem}
 \begin{proof}
 	\[ F \lrh \int\limits_a^x f(t) \d t \]
@@ -42,7 +42,7 @@
 
 \begin{Rem}
 	Обычно этот критерий, что характерно, используют для доказательства расходимости интеграла.
-	Если существуют $A_n, B_n \ra b-0$, что
+	Если существуют $A_n, B_n \ra b_{-0}$, что
 	\[ \int\limits_{A_n}^{B_n} > \epsilon \]
 	то интеграл расходится.
 \end{Rem}
@@ -74,7 +74,7 @@
 		\int\limits_0^1 \frac{\d x}{x^p} = \lim_{A \ra 0+} \int\limits_A^1 \frac{\d x}{x^p} = \\
 		= \begin{cases}
 			\lim_{A \ra 0+} -\ln A & p = 1 \\
-			\lim_{A \ra 0+} \frac1{p-1}\left(\frac1{B^{p-1}}\right)-1) & p \ne 1
+			\lim_{A \ra 0+} \frac1{p-1}\left(\frac1{A^{p-1}}\right)-1) & p \ne 1
 		\end{cases}
 	\end{gather*}
 	При $p < 1$ интеграл сходится и равен $\frac1{1 - p}$, иначе не сходится.
@@ -137,7 +137,7 @@
 	Для существования любого слагаемого достаточно существования других двух.
 
 \item
-	Замена переменной: $\phi\colon [\alpha, \beta) \ra [a, b)$, $\phi \in C^1[\alpha, \beta)$, $\lim_{t\ra\beta-0} \in \bar \R$,
+	Замена переменной: $\phi\colon [\alpha, \beta) \ra [a, b)$, $\phi \in C^1[\alpha, \beta)$, $\lim_{t\ra\beta_{-0}} \phi(\beta) = c \in \bar \R$,
 	$f \in C[a, b)$.
 	Тогда
 	\[ \int\limits_\alpha^\beta f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^c f(x) \d x \]
@@ -146,13 +146,13 @@
 		Пусть существует левый интеграл.
 		Покажем, что есть правый и равен.
 		\begin{gather*}
-			\Phi(\gamma) \lrh \int\limits_\alpha^\gamma f(\phi(t)) \phi'(t) \d t \Ra \exists \lim_{gamma\ra\beta-0} \Phi(\gamma) \\
+			\Phi(\gamma) \lrh \int\limits_\alpha^\gamma f(\phi(t)) \phi'(t) \d t \Ra \exists \lim_{\gamma\ra\beta-0} \Phi(\gamma) \\
 			\int\limits_\alpha^\gamma f(\phi(t)) \phi'(t) \d t = \int\limits_{\phi(\alpha)}^{\phi(\gamma)} f(x) \d x \\
 			F(y) \lrh \int\limits_{\phi(\alpha)}^y f(x) \d x \\
 			\lim_{y\ra b-0} F(y) = \lim_{\gamma\ra\beta-0} F(\phi(\gamma))
 			= \lim_{\gamma\ra\beta-0} \Phi(\gamma) = \int\limits_a^b f(\phi(t)) \phi'(t) \d t
 		\end{gather*}
-		Пусть существует левый интеграл.
+		Пусть существует правый интеграл.
 		\begin{gather*}
 			F(y) \xLongrightarrow{y\ra c} \int\limits_{\phi(\alpha)}^c f
 			\Ra F(\phi(\gamma)) \xLongrightarrow{\gamma\ra\beta-0} \int\limits_{\phi(\alpha)}^c f \\
@@ -210,7 +210,7 @@
 \end{conseq}
 
 \begin{Rem}
-	Из того, что интеграл сходится, не следует то, что интеграл ноль.
+	Из того, что интеграл сходится, не следует то, что функция стремится ноль.
 	Не следует даже, что функция ограничена.
 \end{Rem}
 \begin{exmp}
@@ -245,7 +245,7 @@
 	По критерию Коши,
 	\[ \forall \epsilon > 0, \exists c < b\colon \forall A, B, \left|\int\limits_A^B |f|\right| < \epsilon \]
 	Но
-	\[ \epsilon > \left|\int\limits_A^B |f|\right| = \int\limits_A^B |f| \ge \left| \int\limits_A^B f \right|\]
+	\[ \epsilon > \left|\int\limits_A^B f\right| = \int\limits_A^B |f| \le \left| \int\limits_A^B |f| \right|\]
 	(у нас же тут интегралы собственные);
 	получили критерий Коши для $\int_a^b f$.
 \end{proof}
