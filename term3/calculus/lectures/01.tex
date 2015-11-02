@@ -25,23 +25,26 @@
 		\forall \epsilon > 0, \exists \delta > 0\colon \forall \tau\colon |\tau| < \delta,
 		\forall \xi, \left|S(f,\tau,\xi) - I\right| < \epsilon
 	\]
-	Тогда $\tau = \{\Omega_1, \dots, \Omega_m\}$, $\diam \Omega_i < \delta$.
+	Тут $\tau = \{\Omega_1, \dots, \Omega_m\}$, $\diam \Omega_i < \delta$.
+	Дальше мы будем интересоваться только некоторыми разбиениями $\Omega$.
 	Возьмём разбиение $E$ мелькостью менее $\frac\delta2$ и разбиение $[a, b]$ такой же мелкости.
 	Перемножим эти два разбиения, получим разбиение мелкостью менее $\delta$.
 	\begin{Rem}
 		Каждое измеримое множество--фрагмент $E$ декартого умножается на \\отрезок--фрагмент $[a, b]$, получаем измеримое.
 	\end{Rem}
-	Возьмём это разбиение в качестве $\Omega_i$.
 
-	Для доказательства теоремы зафиксируем $\epsilon$ и $\delta$.
-	Возьмём произвольное разбиение \\ $\tau = \{E_1, E_2, \dots\}$ и его оснащение $\{\eta_1, \eta_2, \dots\}$ мелкости менее $\frac\delta2$.
+	Возьмём это разбиение в  $\Omega_i$.
+	Для доказательства теоремы надо показать, что $g$ интегрируема.
+	Зафиксируем $\epsilon$, возьмём $\delta$ из интегрируемости $f$ по $\Omega$.
+	Осталось показать, что любое достаточно мелкое разбиение $E$ даст нам сумму $g$ Римана со значением $I$ с небольшой погрешностью.
+	Возьмём произвольное разбиение $\tau = \{E_1, E_2, \dots\}$ мелкости менее $\frac\delta2$ и его оснащение $\{\eta_1, \eta_2, \dots\}$.
 	Покажем из него, что
 	\[
 		\left| S(g, \tau, \eta) - I \right| < 2\epsilon
 	\]
-	Мы знаем, что $g(\eta_i)$ существуют, значит для каждого:
+	Мы знаем, что $g(\eta_i)$ существуют, значит, для каждого $\eta_i$ можно расписать существование интеграла $g(\eta_i)=\int_a^b f(\eta_x, y)\d y$:
 	\[
-		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \tilde\tau\colon |\tilde\tau| < \delta_{\eta_i},
+		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \underbrace{\tilde\tau\colon |\tilde\tau| < \delta_{\eta_i}}_{\text{разбиение }[a, b]},
 		\forall \{y_k\}, \left| g(\eta_i) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
 	\]
 	Возьмём в качестве $\tilde\epsilon = \frac\epsilon{\mu E}$.
