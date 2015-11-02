@@ -62,8 +62,7 @@
 
 Ещё раз формула замены переменной:
 $G \subset \R^n$ "--- открыто и измеримо, \\
-$\phi\colon \cl G \ra \R^n$ биективна, непрерывна и непрерывно дифференцируема на $\cl G$ (*), \\
-Якобиан
+$\phi\colon \cl G \ra D \subset \R^n$ биективна, непрерывна и непрерывно дифференцируема на $\cl G$ (*), а также имеет нулевой Якобиан:
 \[
 	J_\phi(t) = \det
 	\begin{pmatrix}
@@ -80,7 +79,7 @@ $\phi(G) = D$ измеримо.
 \]
 
 \begin{lemma}
-	$E_1 \subset E \subset G$ ограниченны, $\phi\colon \cl G \ra \R^n$ удовлетворяет условию (*).
+	$E_1 \subset E \subset G$ ограниченны, $\phi\colon \cl G \ra D \subset \R^n$ удовлетворяет условию (*).
 	Тогда
 	\begin{enumerate}
 		\item $\phi(E \setminus E_1) = \phi(E) \setminus \phi(E_1)$
@@ -179,7 +178,7 @@ $\phi(G) = D$ измеримо.
 \end{proof}
 
 \begin{theorem}[Геометрический смысл модуля Якобиана]
-	$\phi\colon \cl G \ra \R^n$ удовлетворяет (*).
+	$\phi\colon \cl G \ra D \subset \R^n$ удовлетворяет (*).
 	$t^* \in G$, $Q_h \lrh \{t \mid t^*_i \le t_i \le t^*_i + h\}$ "--- куб на $t^*$.
 	Тогда $\phi(Q_h)$ измерима и
 	\[
