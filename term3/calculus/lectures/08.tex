@@ -5,7 +5,7 @@
 		\[ f_\pm = \frac{|f| \pm f}2 \]
 		Для них справедливо, что $0 \le f_\pm \le |f|$.
 		Если $\int_G |f|$ сходится, то сходятся $\int_G f_\pm$, а
-		\[ \int\limits_G f = \int\limits_G f_+ - \int\limits_G f_i\]
+		\[ \int\limits_G f = 2\int\limits_G f_+ - \int\limits_G |f|\]
 		что тоже тогда сходится.
 
 	\item[$\Ra$:]
@@ -23,13 +23,13 @@
 		Не умаляя общности, пусть $\int_{A_k} f_+ > \int_{G_{k}} |f| + k$.
 		Рассмотрим суммы Римана.
 		Можем взять настолько мелкое разбиение $A_k$ на $E_j$, что
-		\[ \sum f_+(\xi_j) \mu E_j > \int\limits_{A_k} + k \]
+		\[ \sum f_+(\xi_j) \mu E_j > \int\limits_{G_k}|f| + k \]
 		при произвольном выборе $\xi_j \in E_j$.
 		Выберем такие $\xi_j$, чтобы все $E_j$, где как-то достигается ноль $f_+$, он был достигнут.
 		Теперь выкинем все такие $E_j$ и все $E_j$ нулевой меры, сумма не изменится.
 		Обозначим объединение внутренностей всех $E_j$, что остались, за $B_k$.
 		$B_k \subset A_k$, $B_k$ "--- открытое, $f_+ = |f| > 0$ на $B_k$.
-		\[ \int\limits_{B_k} f = \int\limits_{B_k} f_+ > \int\limits_{G_k} |f| + k \ge -\int\limits_{G_k} + k \]
+		\[ \int\limits_{B_k} f = \int\limits_{B_k} f_+ > \int\limits_{G_k} |f| + k \ge -\int\limits_{G_k} f + k \]
 		$C_k = B_k \cup G_k \subset G_{k+1}$ "--- открытое.
 		\[ \int\limits_{C_k} f = \int\limits_{B_k} f + \int\limits_{G_k} f > k \]
 		Получили последовательность $C_k$, что $G_k \subset C_k \subset G_{k+1}$ и $\cl C_{2k} \subset \cl G_{2k+1} \subset G_{2k+2} \subset C_{2k+2}$.
