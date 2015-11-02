@@ -26,50 +26,47 @@
 		\forall \xi, \left|S(f,\tau,\xi) - I\right| < \epsilon
 	\]
 	Тут $\tau = \{\Omega_1, \dots, \Omega_m\}$, $\diam \Omega_i < \delta$.
-	Дальше мы будем интересоваться только некоторыми разбиениями $\Omega$.
-	Возьмём разбиение $E$ мелькостью менее $\frac\delta2$ и разбиение $[a, b]$ такой же мелкости.
-	Перемножим эти два разбиения, получим разбиение мелкостью менее $\delta$.
+	Дальше мы будем интересоваться только некоторыми разбиениями $\Omega$, построенными так:
+	берётся разбиение $E$ мелькостью менее $\frac\delta2$ и разбиение $[a, b]$ мелкостью менее $\frac\delta 2$.
+	Перемножая эти два разбиения, получаем разбиение $\Omega$ мелкостью менее $\delta$.
 	\begin{Rem}
-		Каждое измеримое множество--фрагмент $E$ декартого умножается на \\отрезок--фрагмент $[a, b]$, получаем измеримое.
+		Каждое измеримое множество--фрагмент $E$ декартово умножается на \\отрезок--фрагмент $[a, b]$, получаем измеримое.
 	\end{Rem}
 
-	Возьмём это разбиение в  $\Omega_i$.
-	Для доказательства теоремы надо показать, что $g$ интегрируема.
+	Для доказательства теоремы надо показать, что $g$ интегрируема и интеграл равен $I$.
 	Зафиксируем $\epsilon$, возьмём $\delta$ из интегрируемости $f$ по $\Omega$.
-	Осталось показать, что любое достаточно мелкое разбиение $E$ даст нам сумму $g$ Римана со значением $I$ с небольшой погрешностью.
+	Тепрь покажем, что любое достаточно мелкое разбиение $E$ (а точнее "--- мелкости менее $\frac\delta 2$) даст нам сумму $g$ Римана со значением $I$ с небольшой погрешностью.
 	Возьмём произвольное разбиение $\tau = \{E_1, E_2, \dots\}$ мелкости менее $\frac\delta2$ и его оснащение $\{\eta_1, \eta_2, \dots\}$.
 	Покажем из него, что
 	\[
 		\left| S(g, \tau, \eta) - I \right| < 2\epsilon
 	\]
-	Мы знаем, что $g(\eta_i)$ существуют, значит, для каждого $\eta_i$ можно расписать существование интеграла $g(\eta_i)=\int_a^b f(\eta_x, y)\d y$:
+	Мы знаем, что $g(\eta_i)$ существуют, значит, для каждого $\eta_i$ можно расписать существование интеграла $g(\eta_i)=\int_a^b f(\eta_i, y)\d y$:
 	\[
 		\forall \tilde\epsilon>0, \exists \tilde\delta_{\eta_i} > 0\colon \forall \underbrace{\tilde\tau\colon |\tilde\tau| < \delta_{\eta_i}}_{\text{разбиение }[a, b]},
 		\forall \{y_k\}, \left| g(\eta_i) - S(f, \tilde\tau, y_k) \right| < \tilde\epsilon
 	\]
 	Возьмём в качестве $\tilde\epsilon = \frac\epsilon{\mu E}$.
-	Мы хотим найти такую мелкость $\tilde\delta < \frac\delta2$ разбиения $[a, b]$, что будет выполнено
+	Теперь мы хотим найти такое разбиение отрезка $[a, b]$ мелкости $\tilde\delta < \frac\delta 2$, что $g(\eta_i)$ хорошо приблизится суммой Римана одновременно во всех точках.
+
+	Действительно, в каждой точке $\eta_i$ есть своё $\tilde\delta_{\eta_i}$, которое приближает $g(\eta_i)$ с точностью $\tilde\epsilon$.
+	Точек $\eta_i$ у нас конечно, значит, существует такое $\tilde\delta$, которое меньше их всех и даже меньше $\frac\delta2$.
+	Значит, любое разбиение $[a, b]$ мелкости меньше $\tilde\delta$ подойдёт, чтобы приблизить $g(\eta_i)$ во всех точках.
+	Пусть это разбиение имеет вид $\{I_1, I_2, \dots\}$ с оснащением $\{y_1, y_2, \dots\}$:
 	\[
-		\left| S(g, \tau, \eta) - I \right| < 2\epsilon
+		\forall i\colon \left| g(\eta_i) - \sum_j f(\eta_i, y_j) \mu I_j \right| < \tilde\epsilon
 	\]
 
-	Делаем мы это так.
-	Взяли разбиение $E_i$.
-	У него есть оснащение $\eta_i$.
-	Для каждого такого есть $\tilde\delta_{\eta_i}$.
-	Их конечное число, значит есть такое $\tilde\delta$, которое меньше их всех и даже $\frac\delta2$.
-	Теперь возмьмём разбиение $E$ и умножаем его на дробление $[a, b]$ мелкости меньше $\tilde\delta$:
-	$\{I_1, I_2, \dots\}$ с оснащением ${y_1, y_2, \dots}$.
-
-	Получим:
+	Теперь возмьмём исходное разбиение $E_i$ и декартово умножим его на это разбиение $I_j$.
+	Получим оснащённое разбиение $\Omega$ мелкостью не более $\delta$:
 	\begin{gather*}
 		\tau\colon \Omega_{ij} = E_i \times I_j \quad \xi\colon \xi_{ij} = (\eta_i, y_j) \\
 		S(f, \tau, \xi) = \sum_{i,j} f(\eta_i, y_j) \mu(E_i \times I_j) = \sum_{i,j} f(\eta_i, y_j) \mu E_i \mu I_j
 			= \sum_i \underbrace{\left(\sum_j f(\eta_i, y_j) \mu I_j\right)}_{\text{сумма для $\int_a^b f(\eta_i,y) \d x$}} \mu E_i > \cdots\\
-		\sum_j f(\eta_i, y_j) \mu I_j > \int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E} \\
-		\cdots > \sum_i \left(\int\limits_a^b f(x, y) \d x - \frac\epsilon{\mu E}\right) \mu E_i
-			= \sum_i g(\eta_i) \mu E_i - \epsilon \sum_{i} \frac1{\mu E} \mu E_i = \sum_i g(\eta_i) \mu E_i - \epsilon \\
-		\sum_i g(\eta_i) \mu E_i < I + 2\epsilon
+		\sum_j f(\eta_i, y_j) \mu I_j > \int\limits_a^b f(\eta_i, y) \d y - \frac\epsilon{\mu E} = g(\eta_i) - \frac\epsilon{\mu E} \\
+		\cdots > \sum_i \left(\int\limits_a^b f(\eta_i, y) \d y - \frac\epsilon{\mu E}\right) \mu E_i
+			= \sum_i g(\eta_i) \mu E_i - \frac{\epsilon}{\mu E} \sum_{i} \mu E_i = \sum_i g(\eta_i) \mu E_i - \epsilon \\
+		\sum_i g(\eta_i) \mu E_i < S(f, \tau, \xi) + \epsilon < I + 2\epsilon
 	\end{gather*}
 	Аналогично
 	\begin{gather*}
