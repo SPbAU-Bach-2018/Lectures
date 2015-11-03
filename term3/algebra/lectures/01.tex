@@ -9,7 +9,7 @@
 \begin{conseq}
 	\begin{enumerate}
 	\item
-		$S^\bot \le V$.
+		$S^\bot \le V$.(подпространство векторного пространства)
 
 	\item
 		$S_1 \subset S_2 \Ra S_1^\bot \ge S_2^\bot$
@@ -42,6 +42,9 @@
 	\begin{enumerate}
 	\setcounter{enumi}{8}
 	\item
+	$$S \subset V$$
+	$$\left<S\right> \cap S^{\bot} = \{0\}$$
+	\item
 		Если $\dim V = n < \infty$, и форма положительно определенная, то
 		\[ U \le V, \dim U = k \Ra \dim U^\bot = n - k \]
 		В частности $V = U \oplus U^\bot$.
@@ -63,8 +66,10 @@
 		В силу произвольности $s$,
 		\[ \alpha_1 v_1 + \alpha_2 v_2 \in S^\bot \]
 
+		То есть $S^{\bot}$ замкнуто относительно $+$ и $\cdot$.
+
 	\item
-		$v \in S_2^\bot$, $S_2 \subset S_1$:
+		$v \in S_2^\bot$, $S_1 \subset S_2$:
 		\[
 			\forall s \in S_2, (v, s) = 0
 			\Ra \forall s \in S_1, (v, s) = 0
@@ -97,7 +102,7 @@
 		Предположение о форме влечет, что отношение ортогональности между векторами симметрично:
 		\begin{gather*}
 			(u, v) = 0 \Lra (v, u) = 0 \\
-			S^\bot = \{v\colon \forall s \in S \colon (v, S) = 0\} \\
+			S^\bot = \{v\colon \forall s \in S \colon (v, s) = 0\} \\
 			s \in S, v \in S^\bot, (s, v) = (v, s) = 0 \Ra s \in (S^\bot)^\bot
 		\end{gather*}
 
@@ -132,6 +137,8 @@
 				v = (1, 1) \in \R^2 , (v, v) = 0 \\
 				v \in \left<v\right>^\bot, s = \left<(1, 1)\right>
 			\end{gather*}
+			
+			Положительная определенность существена. 
 		\end{exmp}
 		\begin{exmp}
 			$\R^4$
@@ -152,12 +159,14 @@
 		$u_1, \dots, u_k$ "--- базис $U$.
 		Дополним до базиса $V$, ортогонализуем.
 		$e_1, \dots, e_k, e_{k + 1}, \dots, e_n$ "--- ортонормированный базис $V$.
-		$e_1, \dots, e_k$ "--- ортонормированный базис $u$ по построению в процессе ортогонализации Грамма-Шмита.
+		$e_1, \dots, e_k$ "--- ортонормированный базис $u$ по построению в процессе ортогонализации Грама-Шмита.
 		\[ U^\bot \ge \left<e_{k + 1}, \dots, e_n\right> \]
-		$v \in U^\bot$, $v = \sum \alpha_i e_i$:
+		Рассмотрим $v \in U^\bot$ и разложим по базису $v = \sum \alpha_i e_i$:
 		\begin{gather*}
-			j = 1..k, (v, e_j) = 0 \Ra \alpha_1 = \dots = \alpha_k = 0 \\
-			\Ra U^\bot \le \left<e_{k + 1}, \dots, e_n\right> \\
+			j = 1..k, (v, e_j) = 0 \Ra \alpha_1 = \cdots = \alpha_k = 0 \\
+			\Ra U^\bot \le \left<e_{k + 1}, \cdots, e_n\right> \\
+			\Ra U^{\bot} = \left<e_{k + 1}, \cdots, e_n\right> \\
+			\Ra U^{\bot} = n\\
 			U + U^\bot \le V \\
 			\dim (U + U^\bot) = k + n - k - \dim (U \cap U^\bot) = n \\
 			\Ra U + U^\bot = V \Ra U \oplus U^\bot = V
