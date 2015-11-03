@@ -5,6 +5,7 @@ $\dim_k V < \infty$
 $B \colon V \times V \to K$ (полуторолинейная(билинейная форма))
 $v_1, \cdots, v_n$ "--- базис V.
 
+$$\Gamma \in M(n \times n,  K)$$
 $\Gamma = (B(v_i, v_j))_{i,j = 1,n}$ "--- матрица Грама формы B, отвечающая базису $v_1, \cdots, v_n$.
 \end{Def}
 
@@ -18,8 +19,10 @@ $$= \sum_{i = 1}^{n}\sum_{j = 1}^{n}x_i \overline{y_j} B(v_i, v_j) = $$
 $$= \sum_{i = 1}^{n}\sum_{j = 1}^{n}x_i B(v_i, v_j)\overline{y_j} = $$
 $$= (x_1, \cdots, x_n) B(v_i, v_j) \begin{pmatrix}\overline{y_1}\\ \vdots \\ \overline{y_n} \end{pmatrix} $$
 
+$$B(x, y) = x^{T}\Gamma\bar y$$
+
 \begin{Rem}
-Замечание о бесконечно мерном случае.
+Замечание о бесконечномерном случае.
 $x = \sum x_i v_i$, где почти все $x_i = 0$
 $y = \sum y_i v_j$, где почти все $y_i = 0$ 
 
@@ -106,6 +109,8 @@ $K = \C B$ "--- полуторалинейная эрмитово симметр
 
 $$\forall x \ne 0, x^T \Gamma \overline{x} > 0$$
 $$\Gamma^T = \overline{\Gamma}$$
+
+Такая матрица грамма "--- положительно определенная эрмитова матрица. 
 \end{Def}
 
 \begin{lemma}{}
@@ -115,7 +120,7 @@ B "--- полуторолинейная(билинейная) форма на V.
 
 $\Gamma, \Gamma'$ "--- матрица Грама в соответствующих базисах. 
 
-C "--- матрица переходв от $v_1, \cdots, v_n$ к  $v_1', \cdots, v_n'$,
+C "--- матрица переходв от $v_1, \cdots, v_n$ к  $v'_1, \cdots, v'_n$,
 тогда
 $$\Gamma' = C^{T}\Gamma \overline{C}$$
 \end{lemma}
@@ -127,7 +132,7 @@ $x', y'$ "--- столбцы координат в новом базисе.
 $$u = \sum x_i v_i = \sum x_i' v_i'$$
 $$v = \sum y_i v_i = \sum y_i' v_i'$$
 $$x = C x', y = Cy'$$
-$$x'^{T}C^T\Gamma\overline{C}\overline{y} = x^T\Gamma \overline{y} = B(u, v) = x^{T}\Gamma'\overline{y'} $$
+$$x'^{T}C^T\Gamma\overline{C}\overline{y} = x^T\Gamma \overline{y} = B(u, v) = x'^{T}\Gamma'\overline{y'} $$
 
 $\forall$ столбцов $x', y'$
 $$x'^T \Gamma'\overline{y'} = x'^TC^T \Gamma \overline{C}\overline{y'}$$
