@@ -1,6 +1,6 @@
 ﻿\section{Ортогональные многочлены}
-\begin{enumerate}
-    \item Многочлены Лежандра
+\begin{description}
+    \item[Многочлены Лежандра]
     $V = \R[x]$ или ($V_n = \{g \in \R[x] \deg g \le n\}$)
     $V_0 \subset V_1 \cdots = \cup_{i = 0}^{\infty}V_i = V$ 
 
@@ -8,14 +8,13 @@
 
     $(f, g) = \int_{-1}^{1}f(x)g(x)dx$ "--- невырожденная. 
 
-    Процесс ортогонализации $\exists$ ортогональный базис многочленов $P_i$, $\deg P_i = i$.
+    Процесс ортогонализации. $\exists$ ортогональный базис из многочленов $P_i$, $\deg P_i = i$.
 
     \begin{theorem}{}
-        Многочлены $P_i = \frac{1}{2^nn!}\frac{d^n}{dx^n}(x^2 - 1)^n$
-
+        Многочлены $P_n(x) = \frac{1}{2^nn!}\frac{d^n}{dx^n}(x^2 - 1)^n$
         являются ортогональным базисом пространства $\R[x]$ со сколярным произведением $\int_{-1}^{1}fgdx$.
 
-        Причем $\deg P_n = n$, $\deg P_n(1) = 1$
+        Причем $\deg P_n = n$, $P_n(1) = 1$
     \end{theorem}
     \begin{Def}
     $P_n$ $n$-ый многочлен Лежандра
@@ -23,12 +22,14 @@
     \end{Def}
     \begin{proof}
     $$\deg P_n = n$$
-    $$<P_0> = V_0$$
+    $$<P_0> = V_0 \text{"--- пространство констант, порождается} P_0$$
     $$<P_1, P_0> = <P_1> + V_0 = V_1$$
     $$<P_0, \cdots, P_n> = <P_n> + <P_0, \cdots, P_{n - 1}> = V_n$$
 
     $$\alpha_nP_n + \cdots + \alpha_0P_0 = 0$$
 
+    Надо проверить, что базис ортогональный. 
+    Проверим, что:
     $$\forall n \colon P_n \bot P_0 \cdots P_{n - 1}$$
     $$P_n \bot <P_0, \cdots, P_{n - 1}> = V_{n - 1} = <1, \cdots, x^{n - 1}> $$
 
@@ -37,6 +38,7 @@
     $P_n \bot f$ для любого многочлена f степени $\le n - 1$
 
     $$\forall n \forall f \colon \deg f < n \colon \int_{-1}^{1}P_{n}(x)f(x)dx = 0$$
+    Проверим это:
     $$\int_{-1}^{1}\frac{d^n}{dx^n}(x^2 - 1)^n f(x)dx = 0$$
     $$ = - \int_{-1}^{1}\frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^n\frac{d}{dx}f(x) + \frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^nf(x)|_{-1}^{1} $$
     $$ = - \int_{-1}^{1}\frac{d^{n - 1}}{dx^{n - 1}}(x^2 - 1)^n\frac{d}{dx}f(x)dx = (-1)^n\int_{-1}^{1}(x^2 - 1)^n\frac{d^n}{dx^n}f(x)dx = 0$$
@@ -61,13 +63,12 @@
     $$P_n(-1) = (-1)^n $$
     \end{enumerate}
     \end{theorem}
-\item Многочлены Чебышева
-$$\int_{-1}^{1} \frac{f(x)g(x)}{\sqrt{1 - x^2}}dx=$$
-
+\item[Многочлены Чебышева]
+$$(f, g) = \int_{-1}^{1} \frac{f(x)g(x)}{\sqrt{1 - x^2}}dx$$
 $$x = \cos \phi, \phi \in (0, \pi]$$
 $$dx = -\sin \phi \d\phi $$
 $$\sqrt{1 - x^2} = \sin \phi$$
-
+$$\Ra (f, g) = (-1)\int_{0}^{\phi}\frac{f(\cos(\phi))g(\cos \phi)}{\sin \phi}\sin \phi \d \phi = $$
 $$= \int_{0}^{\pi}f(\cos \phi)g(\cos \phi) d \phi$$
 
 $\int_{0}^{pi}\cos(n\phi)\cos(m\phi) d \phi = 0$, если $n \ne m$.
@@ -90,19 +91,14 @@ $U_n(x)$ "--- ортогональные многочлены с весом $\sq
 $$T_n(x) = \frac{(-2)^nn!}{2n!}\sqrt{1 - x^2}\frac{d^n}{dx^n}((1 - x^2)^n \cdot (1 - x^2)^{-\frac{1}{2}}) $$
 
 $$\sum_{n = 0}^{\infty} T_n(x)z^n = \frac{1 - xz}{1 - 2xz + z^2} $$
-\begin{exmp}
-\begin{enumerate}
-\item
-Многочлены Лагерра. 
+\item [Многочлены Лагерра]. 
 $$\int_{0}^{\infty}f(x)g(x)e^{-x}$$
 $$L_n(x) = c_ne^x \frac{d^n}{dx^n}(x^ne^{-x}) $$
-\item 
+\item [Многочлены Эрмита]
 $\int_{- \infty}^{\infty}f(x)g(x)e^{-x^2}$  "--- многочлены Эрмита $H_n$
 $$H_n(x) = (-1)^ne^x\frac{d}{dx^n}(e^{-x^2})$$
-\item 
+\item [Многочлены Якоби]
 $$(f, g) = \int_{-1}^{1}(x - 1)^{\alpha}(x + 1)^{\beta}f(x)g(x)dx, \alpha > -1, \beta > -1$$
 
 многочлены Якоби $J_n^{\alpha, \beta}(x)$ "--- ортогональный базис пространства $\R[x]$ с данным скалярным произведением. 
-\end{enumerate}
-\end{exmp}
-\end{enumerate}
+\end{description}

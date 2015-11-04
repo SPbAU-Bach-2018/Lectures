@@ -25,10 +25,14 @@ $g \in SU(2)$
     \end{pmatrix} \\
     g^T\bar g = E \Ra \bar g g^T = E \\
     \bar g = (g^T)^{-1} \\
-    |w_1|^2 = |w_2|^2 = 1 \\
+    \left\{
+    \begin{aligned}
+    |w_1|^2 + |w_2|^2 = 1 \\
     |w_3|^2 + |w_4|^2 = 1 \\
     \bar w_1w_3 + \bar w_2 w_4 = 0 \\
     \bar w_3w_1 + \bar w_4 w_2 = 0 \\
+    \end{aligned}
+    \right.
     \det g = 1 \Ra w_1w_4 - w_2w_3 = 1 \\
     \begin{pmatrix}
         \bar w_1 & \bar w_2 \\
@@ -55,11 +59,12 @@ $g \in SU(2)$
 \end{gather*}
 % OH MY GOD
 \begin{gather*}
-    g \in SU(2) \Ra g = \begin{pmatrix}
+    g \in SU(2) \Lra g = \begin{pmatrix}
         w_1 & w_2 \\
         -\bar w_2 & \bar w_1
     \end{pmatrix} \\
     |w_1|^2 + |w_2|^2 = 1 \\
+    \La\\
     g^T\bar g = \begin{pmatrix}
         w_1 & -\bar w_2 \\
         w_2 &  \bar w_1
@@ -69,7 +74,7 @@ $g \in SU(2)$
     \end{pmatrix} = \begin{pmatrix}
         1 & 0 \\
         0 & 1
-    \end{pmatrix} \\
+    \end{pmatrix} = E\\
     g = \begin{pmatrix}
          a + bi & c + di \\
         -c + di & a - bi
@@ -79,31 +84,34 @@ $g \in SU(2)$
 
 Унитарные матрицы $SU(2)$, матрицы Паули:
 \begin{gather*}
-    \begin{pmatrix}
+    1 = \begin{pmatrix}
         1 & 0 \\
         0 & 1
-    \end{pmatrix},\begin{pmatrix}
+    \end{pmatrix},\i = \begin{pmatrix}
         i,  0 \\
         0, -i
-    \end{pmatrix},\begin{pmatrix}
+    \end{pmatrix},\j = \begin{pmatrix}
          0 & 1 \\
         -1 & 0
-    \end{pmatrix},\begin{pmatrix}
+    \end{pmatrix},\k = \begin{pmatrix}
         0, i \\
         i, 0
     \end{pmatrix} \\
     \i^2 = \j^2 = \k^2 = -E \\
     \i\j = \k = -\j\i \\
     g = aE + b\i + c\j + d\k \\
-    a^2 + b^2 + c^2 + d^2 \TODO? \\
-    \H_1 = \{z \in \H \mid |z| = 1\}
+    a^2 + b^2 + c^2 + d^2 = 1\\
+    \H_1 = \{z \in \H \mid |z| = 1\} \text{"--- кватернионы нормы 1}
 \end{gather*}
 $\H_1 \to SU(2)$ "--- изоморфизм групп.
 \begin{gather*}
     a + b\i + c\j + d\k \to \begin{pmatrix}
          a + bi & c + di \\
         -c + di & a - bi
-    \end{pmatrix} \\
+    \end{pmatrix}\text{(биекция)} \\
+\end{gather*}
+Сохраняется ли групповая операция(то есть гоморфизм)?
+\begin{gather*}    
     \begin{pmatrix}
         w_1 & w_2 \\
         -\bar w_2& \bar w_1
@@ -115,6 +123,16 @@ $\H_1 \to SU(2)$ "--- изоморфизм групп.
         -u_1\bar w_2 - \bar u_2 \bar w_1 & -u_2\bar w_2 + \bar w_1 \bar u_1
     \end{pmatrix}
 \end{gather*}
+$$
+\left\{
+\begin{aligned}
+g = a + b\i + c\j + d\k\\
+g_1 = a_1 + b_1\i + c_1\j = d_1\k\\
+\end{aligned}
+\right.
+$$
+
+$gg_1 = $ то же, что при перемножение кватернионов. 
 
 Было:
 \begin{gather*}
@@ -136,9 +154,10 @@ $\H_1 \to SU(2)$ "--- изоморфизм групп.
     \begin{gather*}
         \H = \{a + b\i + c\j + d\k \} \\
         \H_1 = \{z \in \H \colon |z| = 1\} \\
-        (z_1, z_2) = Re(z_1, \bar z_2) \\
-        (z_1, z_1) = Re(z_1, \bar z_1) = |z_1|^2 \\
-        (z_1 + z_1', z_2) = (z_1, z_2) + (z_1', z_2)
+        (z_1, z_2) = Re(z_1, \bar z_2) \text{скалярное произведение}\\
+        (z_1, z_1) = Re(z_1, \bar z_1) = |z_1|^2 = a_1^2 + b_1^2 + c_1^2 + d_1^2\
+        (z_1 + z_1', z_2) = (z_1, z_2) + (z_1', z_2) \Ra \text{билинейная форма}\\
+        z \to \bar{z}
     \end{gather*}
 
 \item
@@ -152,9 +171,15 @@ $\H_1 \to SU(2)$ "--- изоморфизм групп.
     Вещественная часть "--- это $\frac12 \Tr(g)$
     \begin{gather*}
         (g_1, g_2) = \frac12 \Tr(g_1, \bar g_2^T) \\
-        (g_1, g_1) = \det g \\
-        (g_1, g_1) = \frac12 \Tr(g_1, \bar g_1^T) = \frac12(a^2 + b^2 + c^2 + d^2 + a^2 + b^2 + c^2 + d^2) = \det g
+        (g_1, g_1) = \det g_1 \\
+        (g_1, g_1) = \frac12 \Tr(g_1, \bar g_1^T) = \frac12(a^2 + b^2 + c^2 + d^2 + a^2 + b^2 + c^2 + d^2) = \det g_1
     \end{gather*}
+    $$g \to \bar g^T$$
+    $$\bar g = 
+    \begin{pmatrix}
+     a - bi & -c-di\\
+     c - di & a + bi\\
+     \end{pmatrix}$$
 \end{enumerate}
 
 Действие $\H_1$ на $\H \sim \R^4$
@@ -163,12 +188,13 @@ $\H_1 \times \H \to \H$
 
 $B(x, y)$ "--- симметричная, билинейная
 
-$Q(x) = B(x, x)$
+$Q(x) = B(x, x)$  "--- квадратичная форма.
 
+По $Q(x)$ можно востановить $B(x, y):$
 $$B(x, y) = \frac{1}{2}(B(x + y, x + y) - B(x, x) - B(y, y)) = \frac{1}{2}(Q(x + y) - Q(x) - Q(y))$$
 
-Достаточно проверить, что сохраняется соответствующая квадратичная форма.
-
+Достаточно проверить, что сохраняется соответствующая квадратичная форма
+$$\H_1\times \H \to \H $$
 $(h, z) \to hzh^{-1}  = hz\bar h$  "--- это отображение "--- изометрия.
 
 $Q(z) = |z|^2$
@@ -177,7 +203,7 @@ $Q(hzh^{-1}) = |hzh^{-1}|^2 = |h|^2|z|^2|h|^{-2} = |z|^2 = Q(z)$
 
 $z \to hzh^{-1}$ "--- изометрия $\H \sim \R^4$
 
-$<1>_{\R}$ "--- инвариантно относительно этого действия.
+$\{a\colon a \in \R\} = <1>_{\R}$ "--- инвариантно относительно этого действия.
 
 $hzh$
 
@@ -185,6 +211,11 @@ $$hah^{-1} = a$$
 
 $<1>^\bot = <\i, \j, \k>$
 
+$h \in \H_1$ действует на $\R^4 \sim \H$.
+$z \to hzh^{-1} = hz\bar h$ (так как $|z| = 1$, то $z^{-1} = \bar z$)
+$$\phi_h \colon \H \to \H$$
+изометрия 4х мерного пространства.
+  
 Утеверждение: $(z_1, z_2) = (hz_1h^{-1}, hz_2h^{-1})$
 
 \begin{Rem}
