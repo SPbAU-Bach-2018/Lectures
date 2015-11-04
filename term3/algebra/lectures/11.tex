@@ -27,6 +27,7 @@ $[\mathcal A]$ "--- матрица $\mathcal A$ в стандартном баз
 	\mathcal Ae_j
 	= \sum_k \alpha_{kj}e_j
 	= \sum (\beta_{kj}e_j + \gamma_{kj}ie_j)
+	\mathcal A(ie_j) = \cdots 
 	= \sum_k(-\gamma_{kj}e_j + \beta_{kj}(ie_j)) \\
 	\alpha_{kj} \to \begin{pmatrix}
 		\beta_{kj}  & -\gamma_{kj} \\
@@ -35,19 +36,22 @@ $[\mathcal A]$ "--- матрица $\mathcal A$ в стандартном баз
 \end{gather*}
 Получили матрицу оператора $\mathcal A$ рассматриваемого как $\R^{2n}$-оператор.
 Дословно повторяется дла $V$, $\dim_{\C}V = n$, $\mathcal A \in \End_{\C}(V)$.
+
+    $$\dim_{\R}V = 2n, \mathcal A \in End_{\R}(V)$$
+\begin{exmp}
 \begin{gather*}
-	\dim_{\R}V = 2n, \mathcal A \in End_{\R}(V) \\
 	U(1) \quad SO(2) \\
 	(\cos\phi + i \sin \phi) \to \begin{pmatrix}
 		\cos \phi & -\sin \phi \\
 		\sin \phi &  \cos \phi
 	\end{pmatrix}
 \end{gather*}
+\end{exmp}
 
 \subsection{Комплексификация}
 
-$V$ "--- пространство над $\R$, $\dim V = n$.
-Cтроим новое пространство $V_{\C}$ "--- над $\R$ должно иметь размерность $2n$.
+$V$ "--- векторное пространство над $\R$, $\dim V = n$.
+Cтроим новое пространство $V_{\C}$ векторное пространчтво над $\C$ "--- над $\R$ должно иметь размерность $2n$.
 \[ V_{\C} = V \oplus V' \]
 $V'$ "--- <<копия>> $V$.
 \begin{gather*}
@@ -63,8 +67,9 @@ $V'$ "--- <<копия>> $V$.
 
 \textbf{Упражнение: }
 $V_{\C}$ "--- векторное пространство над $\C$.
-
-Отождествляем $V$ с $V \times \{0\}$.
+$$V_{\C} = \{(v, 0)\} \oplus \{(0, u)\}$$
+$$i(v, 0) = (0, u)$$
+Отождествляем $V$ с вещественным подпространством $V \times \{0\}$.
 $i(u, 0) = (0, u)$.
 $v_1, \dots, v_n$ "--- базис $V_{\C}$ над $\C$.
 \begin{gather*}
@@ -79,9 +84,9 @@ $\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$.
 \[ v_{i\C} = (v_i,0) \]
 \begin{Def}
 	$V$, $V_{\C}$, $\dim_{\R}V = n < \infty$, $\mathcal A \in End(V)$.
-	$\mathcal A \in End(V_{\C})$ "--- комплексикация $\mathcal A$.
+	$\mathcal A_{\C} \in End(V_{\C})$ "--- комплексикация $\mathcal A$.
 \end{Def}
-Положим $\mathcal A_{\C} (v, u) = (\mathcal Av, \mathcal Au)$.
+Положим $\mathcal A_{\C} ((v, u)) = (\mathcal Av, \mathcal Au)$.
 Адитивность $\mathcal A_{\C}$ очевидна.
 \begin{gather*}
 	\mathcal A_{\C}((\alpha + \beta i)(v, u))
@@ -108,7 +113,7 @@ $\mathcal A_{\C} \to \C$ "--- линейный оператор.
 $\{v_i\}$ "--- базис V, над $\R$.
 $\{(v_i, 0)\}$ "--- базис $V_{\C}$ над $\C$
 \begin{gather*}
-	(v, u)
+	(v, v)
 	= \left(\sum \alpha v_j, \sum \beta_{j}v_j\right)
 	= \sum \alpha_j(v_j, 0) + \sum \beta_j(0, v_j)
 	= \sum \alpha(v_j, 0) + \sum i \beta_j(v_j, 0)
