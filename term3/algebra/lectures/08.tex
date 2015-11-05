@@ -96,6 +96,8 @@ $, $\lambda_i \in \R$.
 			0 & 0 &\cdots & 0 & 0\\
 		\end{pmatrix}
 	\]
+	То есть на диагонали сначала идут единицы, потом минус единицы, потом нули.
+	Не на диагонали тоже стоят нули.
 \end{theorem}
 
 \begin{proof}
@@ -113,18 +115,22 @@ $, $\lambda_i \in \R$.
 			0 & \cdots & \lambda_n
 		\end{pmatrix}
 	\]
-	Не умаляя общности могут сначала идти положительные, потом отрицательные, потом нулю.
+	Не умаляя общности могут сначала идти положительные, потом отрицательные, потом нули.
 
-	$\{v_i\}$ "--- ортонормированный базис.\\
-	Перейдем в ортонормированный базис $w_i:$
-	$$w_i = \frac{1}{\sqrt{\lambda}v_i}, i = 1, \cdots k$$
-	$$\left<w_i, w_i\right> = \frac1{\lambda_i} \left<v_i, v_i\right> = 1$$
-	
-	$$w_i = \frac{1}{\sqrt{-\mu}v_i}, i = k, \cdots l$$
-	$$\left<w_i, w_i\right> = \frac1{\mu_i} \left<v_i, v_i\right> = -1$$
-	
-	$$w_i = v_i, i = l, \cdots n$$
-	$$\left<w_i, w_i\right> = \left<v_i, v_i \right> = 0$$
+	$\{v_i\}$ "--- ортонормированный базис.
+	В нём первые $k$ элементов на диагонали матрицы Грамма имеют положительное значение $\lambda_i$,
+	потом от $k+1$ до $l$ имеют отрицательные $\lambda_i$, а потом идут нули.
+	Перейдем в ортонормированный базис $w_i$:
+	\begin{gather*}
+		w_i = \frac{1}{\sqrt{\lambda_i}v_i}, i = 1..k \\
+		\left<w_i, w_i\right> = \frac1{\lambda_i} \left<v_i, v_i\right> = 1 \\
+		\\
+		w_i = \frac{1}{\sqrt{-\lambda_i}v_i}, i = k+1..l \\
+		\left<w_i, w_i\right> = \frac1{-\lambda_i} \left<v_i, v_i\right> = -1 \\
+		\\
+		w_i = v_i, i = l+1..n \\
+		\left<w_i, w_i\right> = \left<v_i, v_i \right> = 0
+	\end{gather*}
 	
 	В $\{w_i\}$ матрица Грама имеет вид:
 	\begin{gather*}
