@@ -49,16 +49,15 @@ $\left<,\right>$ "--- билинейная или полуторалинейна
 	\[ \left<x, y\right> = (\mathcal A x, y) \]
 	$\Gamma'$ "--- матрица Грамма $\left<,\right>$.
 	\[ \Gamma' = [\mathcal A]^T \cdot \Gamma \]
-	Если $\mathcal A$ "--- самосопряжён, то
+	Если $\mathcal A$ "--- самосопряжён, то $\Gamma' = \overline{(\Gamma')^T}$:
 	\begin{gather*}
-		\Gamma' = \overline{(\Gamma')^T} \\
-		\overline{(\Gamma')^T}
-		= \overline{(\Gamma)^T} [\overline{\mathcal A}]
-		= \Gamma[\overline{\mathcal A}] = \Gamma \cdot \Gamma^{-1}[\mathcal A]^T\Gamma = \Gamma' \\
 		[\mathcal A]
 		= [\mathcal A^*]
-		= \overline{\Gamma}^{-1} \overline{[\mathcal A]^T} \overline{\Gamma} \\
-		\overline{[\mathcal A]} = \Gamma^{-1} [\mathcal A]^T \Gamma
+		= \bar \Gamma^{-1} \overline{[\mathcal A]^T} \bar \Gamma \\
+		\overline{[\mathcal A]} = \Gamma^{-1} [\mathcal A]^T \Gamma \\
+		\overline{(\Gamma')^T}
+		= \overline{(\Gamma)^T} [\overline{\mathcal A}]
+		= \Gamma[\overline{\mathcal A}] = \Gamma \cdot \Gamma^{-1}[\mathcal A]^T\Gamma = \Gamma'
 	\end{gather*}
 \end{exmp}
 
