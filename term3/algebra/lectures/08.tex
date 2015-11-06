@@ -47,33 +47,7 @@
 	Собственный числа самосопряженных операторов "--- вещественные.
 \end{conseq}
 \begin{theorem}
-$\{e_i\}$ стандартный базис, $\{v_i\}$ "--- ортонормированный базис.
-В этом базисе
-$
-	[\mathcal A] = \begin{pmatrix}
-		\lambda_1 & \cdots & 0 \\
-		\vdots & \ddots & \vdots \\
-		0 & \cdots & \lambda_n
-	\end{pmatrix}
-$
-\begin{gather*}
-	\mathcal A = \mathcal{A}^* \\
-	[\mathcal A] = \overline{[\mathcal A]^T} \\
-	U^T\bar U = E
-\end{gather*}
-Унитарные матрицы "--- в точности матрицы, которые ортонормированный переводят в ортонормированные.
-Пусть $U$ "--- матрица перехода от $\{e_i\}$ к $\{v_i\}$.
-$U$  "--- унитарная матрица.
-$
-	U^{-1} [\mathcal A] U = \begin{pmatrix}
-		\lambda_1 & \cdots & 0 \\
-		\vdots & \ddots & \vdots \\
-		0 & \cdots & \lambda_n
-	\end{pmatrix}
-$, $\lambda_i \in \R$.
-\end{theorem}
-\begin{proof}
-	Для всякой эрмитовосимметрической матрицы  $[\mathcal A]$ существует унитарная $U$
+	Для всякой эрмитовосимметрической матрицы  $[\mathcal A]$ существует унитарная $U$ такая, что:
 	\[
 		U^{-1}[\mathcal A]U = \begin{pmatrix}
 			\lambda_1 & \cdots & 0 \\
@@ -81,7 +55,36 @@ $, $\lambda_i \in \R$.
 			0 & \cdots & \lambda_n
 		\end{pmatrix}
 	\]
-	$\lambda_i \in \R$.
+	где $\lambda_i \in \R$.
+	Возможно, тут потеряно дополнительное условие на самосопряжённость оператора $\mathcal A$.
+\end{theorem}
+\begin{proof}
+Пусть $\{e_i\}$ "--- стандартный базис.
+Матрица $\mathcal A$ задаёт некоторый самосопряжённый оператор, который в ортонормированном базисе $\{v_i\}$ выглядит так:
+\[
+	[\mathcal A] = \begin{pmatrix}
+		\lambda_1 & \cdots & 0 \\
+		\vdots & \ddots & \vdots \\
+		0 & \cdots & \lambda_n
+	\end{pmatrix}
+\]
+Причём $\lambda_i \in \R$.
+
+\begin{gather*}
+	\mathcal A = \mathcal{A}^* \\
+	[\mathcal A] = \overline{[\mathcal A]^T} \\
+	U^T\bar U = E \text{\quad \textit{Егор не понял, к чему это}}
+\end{gather*}
+Унитарные матрицы "--- в точности матрицы, которые ортонормированный переводят в ортонормированные.
+Пусть $U$ "--- матрица перехода от $\{e_i\}$ к $\{v_i\}$.
+Тогда $U$  "--- унитарная матрица и:
+\[
+	U^{-1} [\mathcal A] U = \begin{pmatrix}
+		\lambda_1 & \cdots & 0 \\
+		\vdots & \ddots & \vdots \\
+		0 & \cdots & \lambda_n
+	\end{pmatrix}
+\]
 \end{proof}
 
 \begin{theorem}
