@@ -8,7 +8,7 @@
 \end{theorem}
 \begin{proof}
 	Доказательство относительно нестрого.
-	Алфавитом будет $\{0, 1, \#, \textvisiblespace\}$.
+	Алфавитом будет $\{0, 1, \#, \mathvisiblespace\}$.
 	На ленте мы будем записывать наши переменные в двоичном виде (от младших битов к старшим), разделяя их $\#$:
 	\t{\#$a$\#$b$\#$c$\#\dots\#}
 
@@ -172,8 +172,8 @@
 		\begin{tabular}{|l|rcl|rcl|}
 		\hline
 			Шаг машины Тюринга: &
-			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \ra)$ &
-			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \cdot)$
+			$(\widetilde{q}, \mathvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \ra)$ &
+			$(\widetilde{q}, \mathvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \cdot)$
 		\\\hline
 			Строковая интерпретация: &
 			$\widetilde{q}\t{]}$ & $\longrightarrow$ & $b\widetilde{q'}\t{]}$ &
@@ -186,7 +186,7 @@
 		\begin{tabular}{|l|rl|}
 		\hline
 			Шаг машины Тюринга: &
-			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow (\widetilde{q'}, b, \la)$
+			$(\widetilde{q}, \mathvisiblespace)$ & $\longrightarrow (\widetilde{q'}, b, \la)$
 		\\\hline
 			Строковая интерпретация: &
 			$x\widetilde{q}\t{]}$ & $\longrightarrow \widetilde{q'}xb\t{]}$
@@ -268,7 +268,7 @@
 	Возьмём какой-нибудь номер алгоритма $a \in \bar{S}$.
 
 	Возьмём какое-нибудь перечислимое и неразрешимое множество $W$ (например, область определения диагональной функции из доказательства теоремы \ref{diagonalFunc}).
-	Построим алгоритм $V(n, x)$ "--- запускает полуразрешающий алгоритм для $W$ на входе $n$ и, если тот остановится, запускает $\langle a \rangle(x)$ и выдаёт результат.
+	Построим алгоритм $V(n, x)$, он запускает полуразрешающий алгоритм для $W$ на входе $n$ и, если тот остановится, запускает $\langle a \rangle(x)$ и выдаёт результат.
 	На самом деле, у нас в каком-то смысле есть много алгоритмов (если зафиксировать первый аргумент): $V_1(x)=V(1, x), V_2(x)=V(2, x), \dots$.
 
 	Теперь посмотрим на номера этих алгоритмов, чему они эквивалентны и где лежат:
