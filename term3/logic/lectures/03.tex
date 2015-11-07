@@ -140,45 +140,63 @@
 	целью будет этот символ вывести.
 	\begin{itemize}
 	\item
-		Если в $\beta$ есть что-то, кроме пробелов; каретка не сдвигается или сдвигается вправо:
-		\begin{gather*}
-		\left[
-			\begin{array}{ll}
-				\text{Шаг машины Тьюринга: } &(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \rightarrow)  \\
-				\text{Строковая интерпретация: } &\widetilde{q}c \longrightarrow b\widetilde{q'}
-			\end{array}
-		\right.
-		\\
-		\left[
-			\begin{array}{ll}
-				\text{Шаг машины Тьюринга: } &(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \cdot)  \\
-				\text{Строковая интерпретация: } &\widetilde{q}c \longrightarrow \widetilde{q'}b
-			\end{array}
-		\right.
-		\end{gather*}
+		Правила на случай, если в $\beta$ есть что-то, кроме пробелов:
+
+		\begin{tabular}{|l|rcl|rcl|}
+		\hline
+			Шаг машины Тюринга: &
+			$(\widetilde{q}, c)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \ra)$ &
+			$(\widetilde{q}, c)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \cdot)$
+		\\\hline
+			Строковая интерпретация: &
+			$\widetilde{q}c$ & $\longrightarrow$ & $b\widetilde{q'}$ &
+			$\widetilde{q}c$ & $\longrightarrow$ & $\widetilde{q'}b$
+		\\\hline
+		\end{tabular}
+
+		А также для всех $x$, кроме \t{[}:
+
+		\begin{tabular}{|l|rl|}
+		\hline
+			Шаг машины Тюринга: &
+			$(\widetilde{q}, c)$ & $\longrightarrow (\widetilde{q'}, b, \la)$
+		\\\hline
+			Строковая интерпретация: &
+			$x\widetilde{q}c$ & $\longrightarrow \widetilde{q'}xb$
+		\\\hline
+		\end{tabular}
 
 	\item
-		Если каретка сдвигается влево:
-		\begin{gather*}
-		\left[
-			\begin{aligned}
-				(\widetilde{q}, c) &\longrightarrow (\widetilde{q'}, b, \leftarrow)  \\
-				x\widetilde{q}c &\longrightarrow \widetilde{q'}xb\text{ для всех $x$, кроме \t{[}}
-			\end{aligned}
-		\right.
-		\end{gather*}
+		Если в $\beta$ только пробелы, то надо аккуратнее разбираться с правой границей:
 
-	\item Если в $\beta$ только пробелы и каретка сдвигается вправо:
-		$\left[
-			\begin{aligned}
-				(\widetilde{q}, \textvisiblespace) &\longrightarrow (\widetilde{q'}, b, \rightarrow) \\
-				\widetilde{q}\t{]} &\longrightarrow b\widetilde{q'}\t{]}
-			\end{aligned}
-		\right.$
+		\begin{tabular}{|l|rcl|rcl|}
+		\hline
+			Шаг машины Тюринга: &
+			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \ra)$ &
+			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow$ & $(\widetilde{q'}, b, \cdot)$
+		\\\hline
+			Строковая интерпретация: &
+			$\widetilde{q}\t{]}$ & $\longrightarrow$ & $b\widetilde{q'}\t{]}$ &
+			$\widetilde{q}\t{]}$ & $\longrightarrow$ & $\widetilde{q'}b\t{]}$
+		\\\hline
+		\end{tabular}
+
+		А также для всех $x$, кроме \t{[}:
+
+		\begin{tabular}{|l|rl|}
+		\hline
+			Шаг машины Тюринга: &
+			$(\widetilde{q}, \textvisiblespace)$ & $\longrightarrow (\widetilde{q'}, b, \la)$
+		\\\hline
+			Строковая интерпретация: &
+			$x\widetilde{q}\t{]}$ & $\longrightarrow \widetilde{q'}xb\t{]}$
+		\\\hline
+		\end{tabular}
 	\end{itemize}
+	Таким образом на каждый переход в машине Тьюринга мы добавляем два правила (на случай, если $\beta$ пусто, и на случай, если непусто).
 
-   Тогда $M$ остановится на $x$ $\iff$ из \t{[$q_0$$x$]} $\rightarrow$ можно вывести \t{*}, где для \t{*} есть такие правила вывода
-   (\t{*} может появиться только из конечного состояния и, если она появилась, то мы можем <<съесть>> все остальные символы):
+	Тогда $M$ остановится на $x$ $\iff$ из \t{[$q_0$$x$]} $\rightarrow$ можно вывести \t{*}, где для \t{*} есть такие правила вывода
+	(\t{*} может появиться только из конечного состояния и, если она появилась, то мы можем <<съесть>> все остальные символы):
 
 	\begin{itemize}
 	\item $q_f$ $\rightarrow$ \t{*}
