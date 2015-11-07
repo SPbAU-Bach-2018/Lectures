@@ -1,0 +1,150 @@
+\subsection{Скорость роста примитивно рекурсивных}
+\setauthor{Егор Суворов, Елизавета Третькова}
+
+Хотим выяснить, существует ли всюду определённая вычислимая функция, не являющаяся
+примитивно рекурсивной.
+
+\begin{Def}
+	$n$-кратное применение функции $f$ к $x$ будем обозначать $f^{[n]}(x)$:
+	\[ f^{[n]}(x)=\underbrace{f(f(\dots(f(}_{n\text{ вызовов}}x))\dots)) \]
+\end{Def}
+\begin{Def}
+	Функция Аккермана $a_i(x)$ от двух параметров (просто с индексами писать удобнее) при $i, x \ge 0$:
+	\begin{gather*}
+		a_0(x) = x + 1 \\
+		a_{i+1}(x) = a_i^{[x+2]}(x)
+	\end{gather*}
+\end{Def}
+Свойства:
+\begin{enumerate}
+	\item $a_i(x) > x$ (индукция по $i$)
+	\item Для всех $i$: $a_i(x)$ монотонно возрастает по $x$, т.е. $a_i(x) < a_i(x+1)$.
+		\begin{proof}
+			Индукция по $i$:
+			\begin{description}
+				\item[База:]
+					$i=0$ "--- $a_i(x) = x + 1$, очевидно.
+				\item[Переход:]
+					$i \to i + 1$ "--- доказали для $a_i$, показываем для $a_{i+1}$.
+					Пусть $y > x \ge 0$
+					Тогда имеем:
+					\[ a_{i+1}(y)=a_i^{[y+2]}(y) > a_i^{[y+2]}(x) > a_i^{[x+2]}(x) = a_{i+1}(x) \]
+			\end{description}
+		\end{proof}
+	\item
+		Для всех $x$: $a_i(x)$ монотонно возрастает по $i$.
+		\[ a_{i+1}(x) = a_i^{[x+2]}(x) > a_i(x) \]
+	\item
+		$a_i(a_i(x)) \le a_{i+1}(x)$, так как при $x=0$ имеем в точности равенство, а при $x>0$:
+		\[ a_{i+1}(x) = a_i^{[x+2]}(x) = a_i(a_i(a_i^{[x]}(x))) > a_i(a_i(x)) \]
+\end{enumerate}
+
+\begin{theorem}
+	Если $f(x_1, \dots, x_n)$ "--- примитивно рекурсивная функция, то для некоторого $N$ имеем:
+	\[ \forall x_1, \dots, x_n \colon f(x_1, \dots, x_n) \le a_N(\max \{ x_1, \dots, x_n \}) \]
+\end{theorem}
+\begin{proof}
+	Индукция по построению примитивно рекурсивных функций.
+	Чуть формальнее: каждая примитивно рекурсивная функция получается за несколько операций из базисных,
+	индукция по числу этих операций.
+	\begin{enumerate}
+	\item Базисные функции "--- подходит $N=0$:
+		\begin{enumerate}
+		\item Для $0$ очевидно
+		\item $s(x) = x + 1 \le a_0(x)$
+		\item $\pi_n^k(x_1, \dots, x_n) = x_k \le \max \{ x_1, \dots, x_n \} \le a_0(\max \{ x_1, \dots, x_n \})$
+		\end{enumerate}
+	\item
+		Подстановка: $g(x_1, \dots, x_n) = f(h_1(x_1, \dots, x_n), h_2(x_1, \dots, x_n), \dots, h_k(x_1, \dots, x_n))$.
+
+		Положим $\vec x = (x_1, \dots, x_n)$, а $\max \{ x_1, \dots, x_n \} = x_{\max}$.
+		Тогда знаем, что для некоторых $N_0$ (оценка на функцию $f$) и $N_1, \dots, N_k$ (оценки на функции $h_i$):
+		\begin{align*}
+			g(\vec x) = f(\dots) &\le a_{N_0}(\max \{ h_1(\vec x), h_2(\vec x), \dots, h_k(\vec x) \}) \\
+			h_1(\vec x) &\le a_{N_1}(x_{\max}) \\
+			&\vdots \\\
+			h_k(\vec x) &\le a_{N_k}(x_{\max}) \\
+		\end{align*}
+		Тогда положим $N'=\max \{ N_0, N_1, \dots, N_k \}$:
+		\begin{align*}
+			g(\vec x) &\le a_{N'}(\max \{ h_1(\vec x), h_2(\vec x), \dots, h_k(\vec x) \}) \\
+			h_1(\vec x) &\le a_{N'}(x_{\max}) \\
+			&\vdots \\
+			h_k(\vec x) &\le a_{N'}(x_{\max}) \\
+		\end{align*}
+		Отсюда легко видно, что:
+		\[
+			g(\vec x) \le a_{N'}(\max \{ h_1(\vec x), h_2(\vec x), \dots, h_k(\vec x) \}) \le a_{N'}(a_{N'}(x_{\max})) \le a_{N'+1}(x_{\max})
+		\]
+		Таким образом, нашли искомое число: $N=N'+1$.
+	\item
+		Примитивная рекурсия (аналогично обозначили $\vec x$):
+		\begin{align*}
+			g(\vec x, 0) &= f(\vec x) \\
+			g(\vec x, y + 1) &= h(\vec x, y, g(\vec x, y))
+		\end{align*}
+		Возьмём общую оценку $N'$ на $f$ и $h$:
+		\begin{align*}
+			f(\vec x) &\le a_{N'}(x_{\max}) = a_{N'}(\max \{ x_{\max}, 0 \}) \\
+			h(\vec x, y) &\le a_{N'}(\max \{ x_{\max}, y \})
+		\end{align*}
+		Индукцией по $i$ покажем, что $g(\vec x, i + 1) \le a_{N'}^{[i+2]}(\max \{ x_{\max}, i \})$
+
+		\begin{description}
+			\item[База $i=0$:]
+				\begin{align*}
+				g(\vec x, 0 + 1)
+				&= h(\vec x, 0, g(\vec x, 0))
+				\le a_{N'}(\max\{x_{\max}, 0, g(\vec x, 0)\}) \le \\
+				&\le a_{N'}(\max\{x_{\max}, 0, a_{N'}(x_{\max})\})
+				\le a_{N'}^{[2]}(\max\{x_{\max}, 0, x_{\max}\})
+				\end{align*}
+
+			\item[Переход $(i-1) \to i$:]
+				Предполагаем, что $i \ge 1$:
+				\begin{align*}
+					g(\vec x, i + 1)
+					&= h(\vec x, i, g(\vec x, i))
+					 \le a_{N'}(\max \{ x_{\max}, i, g(\vec x, i) \}) \le \\
+					&\le a_{N'}(\max \{ x_{\max}, i, a_{N'}^{[i+1]}(\max\{ x_{\max}, i - 1 \}) \}) \le \\
+					&\le a_{N'}(a_{N'}^{[i+1]}(\max\{ x_{\max}, i \}))
+					   = (a_{N'}^{[i+2]}(\max\{ x_{\max}, i \}))
+				\end{align*}
+		\end{description}
+
+		Теперь мы имеем требуемую оценку на $N=N'+1$:
+		\begin{align*}
+			g(\vec x, 0) &\le a_{N'}(\max \{ x_{\max}, 0 \}) \le a_N(\max \{ x_{\max}, 0 \}) \\
+			g(\vec x, i + 1)
+			&\le a_{N'}^{[i+2]}(\max \{ x_{\max}, i \}) \\
+			&\le a_{N'}^{[2 + \max \{ x_{\max}, i \}]}(\max \{ x_{\max}, i \})
+			   = a_N(\max \{ x_{\max}, i \}) \le \\
+			&\le a_N(\max \{ x_{\max}, i + 1 \})
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{conseq}
+	Фукнция $b(n)=a_n(n)$ (от одного аргумента $n$) не является примитивно рекурсивной.
+\end{conseq}
+\begin{proof}
+	Пусть является.
+	Тогда существует $N$ такое, что $b(n) \le a_N(n)$ для всех $n$.
+	Рассмотрим случай $n=N+1$:
+	\begin{align*}
+		b(n) &\le a_N(n) \\
+		b(n) = b(N+1) &= a_{N+1}(N+1) > a_N(N+1) = a_N(n)
+	\end{align*}
+	Противоречие.
+\end{proof}
+
+\begin{conseq}
+	Функция Аккермана от двух аргументов не является примитивно рекурсивной.
+\end{conseq}
+\begin{proof}
+	Если $a(i, x)$ является примитивно рекурсивной, то $b(n)=a(\pi_1^1(n), \pi_1^1(n))$ тоже является, что не так.
+\end{proof}
+
+\begin{Exercise}
+	При фиксированном $k$ функция $a_k(x)$, тем не менее, является примитивно рекурсивной.
+\end{Exercise}
