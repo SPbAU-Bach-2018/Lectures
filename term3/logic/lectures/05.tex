@@ -254,9 +254,16 @@ $t_1, \dots, t_z$ ($t_k = a \bmod (kb + 1)$) связаны выражением
 
 	\begin{proof}
 		\begin{itemize}
-		\item $\Sigma_k \subseteq \Sigma_{k+1}$ "--- просто добавляем фиктивную переменную. \TODO
-		\item $\Sigma_k \subseteq \Pi_{k+1}$ "--- добавляем фиктивную переменную в начало. \TODO
+		\item $\Sigma_k \subseteq \Pi_{k+1}$ "--- добавляем фиктивную переменную в начало предиката: если $P(x) \in \Sigma_k$, то:
+			\[ (\forall y \colon P(x)) \in \Pi_{k+1} \]
+		\item $\Sigma_k \subseteq \Sigma_{k+1}$ "--- можно добавить фиктивный квантор в конец:
+			\begin{align*}
+				P(x_1, x_2, \dots, x_n) &\in \Sigma_k \\
+				P(x_1, x_2, \dots, x_n) &= \exists y_1 \colon \forall y_2 \colon \dots Q_k y_k \colon Q(y_1, \dots, y_k, x_1, \dots, x_n) = \\
+					&= \exists y_1 \colon \forall y_2 \colon \dots Q_k y_k Q_{k+1} y_{k+1} \colon Q(y_1, \dots, y_k, x_1, \dots, x_n) \in \Sigma_{k+1} \\
+			\end{align*}
 		\end{itemize}
+		Для вложений $\Pi_k$ всё симметрично.
 	\end{proof}
 
 \item
