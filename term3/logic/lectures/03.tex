@@ -70,120 +70,182 @@
 Тогда чтобы посмотреть состояние и описание $M$ нам потребуется сделать лишь константное число шагов по ленте.
 
 \section{Ассоциативное исчисление}
-\underline{Задача:}
-
-Правила - $\left\{
-	\begin{aligned}
-	&MAM \longleftrightarrow AA \\
-	&AM \longleftrightarrow MAA \\
-	&MM \longleftrightarrow MAM 
-	\end{aligned}
-\right.$
-
-Можно ли из MAM получить AMA? 
-
-Оказывается что нет алгоритма, решающего эту задачу(на вход правила и 2 слова).
+Еще одна задача, которая окажется нерешаемой.
 
 \begin{Def}
-	Одностороннее ассоциативное исчисление:
+	\textit{Одностороннее ассоциативное исчисление}:
+	пусть $\Sigma^{*}$ - множество слов алфавита $\Sigma$.
+	Еще есть множество правил (односторонних) $x_1 \rightarrow y_1$, $x_2 \rightarrow y_2$, \dots, $x_k \rightarrow y_k$,
+	где $x_i, y_i \in \Sigma^{*}$.
 	
-	$\Sigma^{*}$ "--- множество слов алфавита $\Sigma$.
-	$x_1 \rightarrow y_1$, $x_2 \rightarrow y_2$, \dots. $x_k \rightarrow y_k$
-	$x_i, y_i \in \Sigma^{*}$ "--- правила (односторонние).
-	$a \xrightarrow{?} b$.
-
-    Двустороннее ассоциативное исчисление:
-
-    Как одностороннее, только стрелочки в обе стороны.
+	Можно ли получить из строки $a$ строку $b$?
+	Разрешается брать подстроку $a$, равную некоторому $x_i$ и заменять её на соответствующую $y_i$.
+\end{Def}
+\begin{Def}
+    Двустороннее ассоциативное исчисление: как одностороннее, только стрелочки в обе стороны.
+    Частный случай одностороннего.
 \end{Def}
 
-Двустороннее - частный случай одностороннего.
+\begin{exmp}
+	Правила:
+	\[\left\{
+	\begin{aligned}
+	\t{AB} &\longleftrightarrow \t{BA} \\
+	\t{BC} &\longrightarrow \t{BB} \\
+	\t{C} &\longrightarrow \t{CC} \\
+	\end{aligned}
+	\right.\]
+	Можно ли из \t{ABAC} получить \t{ABBAC}?
+	Можно:
+	\begin{enumerate}
+	\item \t{A\textbf{BA}C} \to \t{A\textbf{AB}C}
+	\item \t{AAB\textbf{C}} \to \t{AAB\textbf{CC}}
+	\item \t{AA\textbf{BC}C} \to \t{AA\textbf{BB}C}
+	\item \t{A\textbf{AB}BC} \to \t{A\textbf{BA}BC}
+	\item \t{AB\textbf{AB}C} \to \t{AB\textbf{BA}C}
+	\end{enumerate}
+\end{exmp}
+
+\begin{exmp}
+	Правила:
+	\[\left\{
+	\begin{aligned}
+	\t{MAM} &\longleftrightarrow \t{AA} \\
+	\t{AM} &\longleftrightarrow \t{MAA} \\
+	\t{MM} &\longleftrightarrow \t{MAM}
+	\end{aligned}
+	\right.\]
+	Можно ли из \t{MAM} получить \t{AMA}?
+\end{exmp}
+
+Оказывается, что нет алгоритма, решающего эту задачу (на вход даются правила и два слова).
+
 \begin{theorem}
-Выводимость в одностороннем ассоциативном исчислении алгоритмически невычислимо.
+	Выводимость в одностороннем ассоциативном исчислении алгоритмически невычислима.
 \end{theorem}
 \begin{proof}
-	M - машина Тьюринга. Остановится ли она на входе x?
+	Сведём задачу останова к нашей задаче.
+	Пусть есть машина Тьюринга $M$, хотим узнать, остановится ли она на входе $x$?
+	Закодируем её строкой:
+	\t{[$\alpha \widetilde{q} \beta$]}, где $\widetilde{q}$ "--- текущее состояние МТ, а $\alpha$ и $\beta$ нарисованы ниже:
 	
 	\cimg{02_02}{0.5}
 
-	'[$\alpha \widetilde{q} \beta$]' - представление МТ в виде строки($\widetilde{q}$ - текущее состояние МТ).
+	Алфавит положим равным объединению алфавитов МТ, множества её состояний, а также символов \t{[}, \t{]} и \t{*}.
+	Теперь напишем правила, соответствующие переходам МТ.
+	Идея такова: любой шаг машины Тьюринга изменяет её состояние только в районе $\widetilde q$, поэтому можно написать
+	правила замены подстрок, содержащих $\widetilde q$.
+	Мы напишем их таким образом, чтобы в каждый момент можно было применить ровно одно правило.
+	Также мы добавим специальный символ \t{*}, который будет обозначать <<мы достигли конечного состояния в машине>>,
+	целью будет этот символ вывести.
+	\begin{itemize}
+	\item
+		Если в $\beta$ есть что-то, кроме пробелов; каретка не сдвигается или сдвигается вправо:
+		\begin{gather*}
+		\left[
+			\begin{array}{ll}
+				\text{Шаг машины Тьюринга: } &(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \rightarrow)  \\
+				\text{Строковая интерпретация: } &\widetilde{q}c \longrightarrow b\widetilde{q'}
+			\end{array}
+		\right.
+		\\
+		\left[
+			\begin{array}{ll}
+				\text{Шаг машины Тьюринга: } &(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \cdot)  \\
+				\text{Строковая интерпретация: } &\widetilde{q}c \longrightarrow \widetilde{q'}b
+			\end{array}
+		\right.
+		\end{gather*}
 
-	$\left[
-		\begin{aligned}
-			&\text{Шаг машины Тьюринга: } (\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \rightarrow)  \\
-			&\text{Строковая интерпретация: } \widetilde{q}c \longrightarrow b\widetilde{q'} 
-		\end{aligned}
-	\right.$
+	\item
+		Если каретка сдвигается влево:
+		\begin{gather*}
+		\left[
+			\begin{aligned}
+				(\widetilde{q}, c) &\longrightarrow (\widetilde{q'}, b, \leftarrow)  \\
+				x\widetilde{q}c &\longrightarrow \widetilde{q'}xb\text{ для всех $x$, кроме \t{[}}
+			\end{aligned}
+		\right.
+		\end{gather*}
 
-	$\left[
-		\begin{aligned}
-			&(\widetilde{q}, c) \longrightarrow (\widetilde{q'}, b, \leftarrow)  \\
-			&x\widetilde{q}c \longrightarrow \widetilde{q'}xb\text{ для } \forall x\text{, кроме '['}
-		\end{aligned}
-	\right.$
+	\item Если в $\beta$ только пробелы и каретка сдвигается вправо:
+		$\left[
+			\begin{aligned}
+				(\widetilde{q}, \textvisiblespace) &\longrightarrow (\widetilde{q'}, b, \rightarrow) \\
+				\widetilde{q}\t{]} &\longrightarrow b\widetilde{q'}\t{]}
+			\end{aligned}
+		\right.$
+	\end{itemize}
 
-	$\left[
-		\begin{aligned}
-   			&(\widetilde{q}, \textvisiblespace) \longrightarrow (\widetilde{q'}, b, \rightarrow) \\
-   			&\widetilde{q}] \longrightarrow b\widetilde{q'}]\text{, если } \textvisiblespace\text{ - конечный. }
-   		\end{aligned}
-   	\right.$
+   Тогда $M$ остановится на $x$ $\iff$ из \t{[$q_0$$x$]} $\rightarrow$ можно вывести \t{*}, где для \t{*} есть такие правила вывода
+   (\t{*} может появиться только из конечного состояния и, если она появилась, то мы можем <<съесть>> все остальные символы):
 
-   Тогда $M$ остановится на x $\Leftrightarrow$ [$q_0$, x] $\rightarrow$ *, где *:
-   			
-   			$q_f$, x $\rightarrow$ *
-   			
-   			*a $\rightarrow$ *
+	\begin{itemize}
+	\item $q_f$ $\rightarrow$ \t{*}
+	\item \t{*$a$} $\rightarrow$ \t{*} для всех символов $a$
+	\item \t{$b$*} $\rightarrow$ \t{*} для всех символов $b$
+	\end{itemize}
 
-   			b* $\rightarrow$ *
-
-   Таким образом, мы построили сведение. А задача останова неразрешима.
+   Таким образом, мы построили сведение.
+   А задача останова неразрешима.
+   Если бы умели решать ассоциативное исчисление, то задачу останова тоже.
 \end{proof}
+
 \begin{theorem}
-	Теперь двусторонняя ассоциативность.
+	Двустороннее ассоциативное исчисление также неразрешима.
 \end{theorem}
 \begin{proof}
 	В правила из предыдущего доказательства к каждой стрелке добавим обратную.
-	\begin{enumerate}
-		\item В * по обратной стрелке не прийти
-		\item Если есть путь в *, то есть путь туда же, но по прямым стрелкам.
-		\begin{proof}
-			Рассмотрим кратчайший путь в *. По п.1 последняя стрелка прямая. Пусть в пути есть обратные стрелки. Тогда существует ситуация
-			$\leftarrow \rightarrow$ - их можно сократить и мы получим путь меньше(а сократить мы можем, поскольку стрелка "туда"(направо)
-			всегда однозначна). Противоречие. 
-		\end{proof}
-	\end{enumerate}
-	М останавливается на x $\Leftrightarrow$ [$q_0$x] $\longrightarrow$ *
+	Покажем, что если существует путь в двухстороннем исчислении, то в одностороннем тоже (для наших конкретных правил).
+	В самом деле, пусть имеется какой-то путь, заканчивающийся в \t{*}.
+	В \t{*} по обратной стрелке не прийти, значит, последняя стрелка "--- <<прямая>>.
+
+	Теперь рассмотрим \textit{кратчайший} путь в \t{*}.
+	Пусть в нём есть обратные стрелки ($\la$).
+	Мы точно знаем, что последняя стрелка прямая ($\ra$)
+	Тогда где-то встречается сначала обратная стрелка ($B \la A$), а потом "--- прямая ($B \ra C$).
+	Заметим, что $A=C$, так как из каждой $B$ у нас направо может идти не более одной стрелки (мы так строили правила).
+	Значит, эти две стрелки можно сократить и получить путь меньшей длины, что противоречит предположению о его минимальной длине.
 \end{proof}
 
-Интерпретация в теории групп: полугруппа, заданная соотношениями $x_1 = y_1$, $x_2 = y_2$, \dots, $x_k = y_k$. Сравнение a и b алгоритмически 
-неразрешимо.
+Интерпретация в теории групп: есть полугруппа, заданная соотношениями $x_1 = y_1$, $x_2 = y_2$, \dots, $x_k = y_k$ (где $x_iy_i$ "--- какие-то последовательности элементов в произведении).
+Тогда сравнение элементов $a$ и $b$ алгоритмически неразрешимо.
 
-\section{Теорема Успенского-Райсе}
-A, B - алгоритмы
+\section{Теорема Успенского-Райса}
+Пусть $A$, $B$ "--- алгоритмы.
 \begin{Def}
-	A $\sim$ B, если $\forall$ 
-	x $\left\{
+	A $\sim$ B (\textit{эквивалентны}), если для всех $x$:
+	\[\left\{
 		\begin{aligned}
-		&A(x) \text{остановится } \Leftrightarrow B(x) \text{остановится} \\
-		&A(x) \text{остановится } \Rightarrow A(x) = B(x) 
+		&A(x) \text{ остановится} \iff B(x) \text{ остановится} \\
+		&A(x) \text{ остановится} \Ra A(x) = B(x)
 		\end{aligned}
-	\right.$
+	\right.\]
 
-	n $\nequiv$ m $\Leftrightarrow$ <n> $\sim$ <m>
+	Аналогичное обозначание для номеров: $n \equiv m \iff \langle n \rangle \sim \langle m \rangle$
 \end{Def}
 
 \begin{Def}
-	S $\subseteq$ $\mathcal{N}$, S называется инвариантным, если $\forall$ a $\in$ S, $\forall$ b $\in$ $\mathcal{N}$ \backslash S, 
-	a $\nequiv$ b
+	Пусть $S \subseteq \No$, тогда $S$ называется \textit{инвариантным}, если:
+	\[ \forall a \in S, \forall b \in \No \setminus S \colon a \nequiv b \]
 \end{Def}
+\begin{Rem}
+	Например, в будущем мы будем рассматривать множества алгоритмом, обладающих каким-то свойством.
+	Если это свойство зависит только от поведения алгоритма на входах, то такие множества будут инвариантны.
+\end{Rem}
+\begin{Rem}
+	$S$ инвариантно $\iff$ $\No \setminus S$ инвариантно.
+\end{Rem}
 
-\begin{theorem}{Успенский-Райс}
-	Если S - инвариантно, S $\ne$  $\emptyset$, S $\ne$ $\mathcal{N}$, то S - неразрешимо.	
+\begin{theorem}[Успенский-Райс]
+	Если $S$ инвариантно, $S \ne \varnothing$, $S \ne \No$, то $S$ неразрешимо.
 \end{theorem}
 \begin{proof}
-	От противного. Пусть S - разрешимо  и нетривиально. Пусть $\Lambda$ - алгоритм, который не останавливается ни на каком входе.
-	НУО \#$\Lambda$ $\in$ S. Пусть $a \in \bar{S}$.
+	От противного.
+	Пусть $S$ разрешимо и нетривиально.
+	Пусть $\Lambda$ - алгоритм, который не останавливается ни на каком входе.
+	Не умаляя общности можно считать, что $\#\Lambda \in S$.
+	Пусть $a \in \bar{S}$.
 
 	$W$ - перечеслимое, неразрешимое множество.
 
