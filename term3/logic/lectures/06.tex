@@ -1,7 +1,7 @@
 % Начало в 05.tex
 	\begin{proof}
 		У нас есть какая-то формула вида
-		\[\exists y_1 \forall y_2 \dots y_i Q(y_1, \dots, y_i, x_1, \dots, x_n)\]
+		\[\exists y_1 \forall y_2 \dots y_i \colon Q(y_1, \dots, y_i, x_1, \dots, x_n)\]
 		Формула $Q$ разрешима и, соответственно, арифметическая.
 		А в начале у нас просто идёт куча кванторов, которые мы можем дописывать в арифметическое выражение.
 	\end{proof}
@@ -14,8 +14,8 @@
 	Пусть $P_2(x_1, \dots, x_n) \in \Sigma_i$ и $P_2 \le_m P_1$.
 	Тогда $P_2 \in Sigma_i$.
 	\begin{proof}
-		Так как $P_2 \Sigma_i$, то существует разрешимый предикат $Q$ и
-		\[ \forall x_1, \dots, x_n P_1(x_1, \dots, x_n)=1 \iff \exists y_1, \forall y_2, \dots, y_i Q(y_1, y_2, \dots, y_i, x_1, \dots x_n) \]
+		Так как $P_2 \in \Sigma_i$, то существует разрешимый предикат $Q$ и для всех $x_1, \dots, x_n$ верно:
+		\[ P_1(x_1, \dots, x_n)=1 \iff \exists y_1, \forall y_2, \dots, y_i \colon Q(y_1, y_2, \dots, y_i, x_1, \dots x_n) \]
 		Так как $P_2 \le_m P_1$, то есть $f$ из определения $m$-сводимости.
 		Давайте представим $P_2$:
 		\begin{gather*}
@@ -29,17 +29,19 @@
 
 \item
 	\begin{Def}
-		Пусть $X$ "---- множество $k$-местных придикатов, $(k+1)$-местный предикат $u$
+		Пусть $X$ "--- множество $k$-местных предикатов, $(k+1)$-местный предикат $u$
 		называется универсальным для $x$, если:
 		\[
-		\forall P \in X \colon \exists p \in \N_0 \colon \forall x_1, \dots, x_n \in \N_0 \colon
-		P(x_1, \dots, x_n) = u(p_1, x_1, \dots, x_n)
+		\forall P \in X \colon \exists p \in \No \colon \forall x_1, \dots, x_n \in \No \colon
+		P(x_1, \dots, x_n) = u(p, x_1, \dots, x_n)
 		\]
 		То есть если любой предикат из $X$ можно получить из $u$ фиксацией первого аргумента.
 	\end{Def}
-	Для любого $i \ge 1$ и $k \in \N_0$ существует универсальный предикат для $k$-местных предикатов
-	из $\Sigma_i$, который сам лежит в $\Sigma_i$.
-	Аналогично для $\Pi_i$.
+	\begin{assertion}
+		Для любого $i \ge 1$ и $k \in \No$ существует универсальный предикат для $k$-местных предикатов
+		из $\Sigma_i$, который сам лежит в $\Sigma_i$.
+		Аналогично для $\Pi_i$.
+	\end{assertion}
 	\begin{proof}
 		\begin{description}
 		\item[База:]
@@ -59,18 +61,21 @@
 			Возьмём $P\in \Sigma_1$.
 			Пусть полуразрешающий алгоритм для $P$ имеет номер $p$.
 			Тогда $P(x)=1$ тогда и только тогда, когда $\langle p \rangle$ останавливается $\iff U(p, x)=1$.
+			Значит $U$ универсален для $\Sigma_1$.
+
 			Универсальным для $\Pi_1$ будет отрицание этого предиката ($\lnot U(p, x)$).
 		\item[Переход $i \to i+1$:]
-			Рассмотрим какой-нибудь $P \in \Sigma_{i+1}$, по определению существует предикат $Q \in \Pi_i$ такой, что:
-			\[ \forall x \colon P(x) = 1 \iff \exists y \colon Q(y, x) = 1 \]
-			Так как $Q \in \Pi_i$, то возьмём универсальный предикат $U_{\Pi_i}$ для двухместных из $\Pi_i$
+			Рассмотрим какой-нибудь $P \in \Sigma_{i+1}$, по определению существует предикат $Q \in \Pi_i$ такой, что для всех $x$:
+			\[ \P(x) = 1 \iff \exists y \colon Q(y, x) = 1 \]
+			Так как $Q \in \Pi_i$, то можем взять универсальный предикат $U_{\Pi_i}$ для двухместных из $\Pi_i$
 			(если $P$ больше, чем одноместный, то тут возьмёся универсальный предикат для трёхместных и так далее).
-			Значит, существует $x \in \N_0$ такое, что $Q(y, x) = U_{\Pi_i}(q, y, x)$.
-			Тогда:
-			\[ \forall x \colon P(x) = 1 \iff \exists y \colon U_{\Pi_i}(q, y, x) \]
+			Значит, существует $q \in \No$ такое, что $Q(y, x) = U_{\Pi_i}(q, y, x)$.
+			Тогда для всех $x$:
+			\[ P(x) = 1 \iff \exists y \colon U_{\Pi_i}(q, y, x) \]
 			Теперь выпишем универсальный предикат для $\Sigma_{i+1}$:
-			\[ U_{\Sigma_{i+1}}(p, x) = 1 \iff \exists y U_{\Pi_i}(p, y, x) \]
-			\TODO
+			\[ U_{\Sigma_{i+1}}(p, x) = 1 \iff \exists y \colon U_{\Pi_i}(p, y, x) \]
+
+			Осталось проверить, что $U_{\Sigma_{i+1}} \in \Sigma_{i+1}$, что несложно: он имеет вид $\exists y \colon X$, где $X \in \Pi_i$, что и требуется.
 		\end{description}
 	\end{proof}
 	\begin{Exercise}
@@ -91,14 +96,13 @@
 		\item
 			Так как $U_{\Sigma_i} \in \Pi_i$ (по предположению), то $T \in \Sigma_i$.
 		\item
-			Предикат $t(x)=T(x, x)$ тоже лежит в $\Sigma_i$, так как мы просто
-			заменили один аргумент на другой.
+			Предикат $t(x)=T(x, x)$ тоже лежит в $\Sigma_i$, так как мы просто выполнили подстановку.
 		\item
 			Тогда давайте выразим $t$ через наш универсальный предикат.
-			Существует $k \in \N_0$ такое, что:
-			\[ \forall x \colon t(x) = U_{\Sigma_i}	(k, x) \]
+			Существует $k \in \No$ такое, что для всех $x$:
+			\[ t(x) = U_{\Sigma_i} (k, x) \]
 		\item
-			С одной стороны, $t(k) = U_{\sigma_i} (k, k)$.
+			С одной стороны, $t(k) = U_{\Sigma_i} (k, k)$.
 			С другой стороны, это $\lnot U_{\sigma_i} (k, k)$.
 			Противоречие.
 		\end{enumerate}
@@ -113,7 +117,7 @@
 \item
 	$\Sigma_{i+1} \supsetneq \Sigma_i$.
 	\begin{proof}
-		$\Sigma_{i+1} \supset \Pi_i \supset \Pi_i \setminus \Sigma_i \neq \varnothing$.
+		$\Sigma_{i+1} \supseteq \Pi_i \supsetneq \Pi_i \setminus \Sigma_i \neq \varnothing$.
 	\end{proof}
 \end{enumerate}
 \TODO картинка с иерархией $\Sigma_i$ и $\Pi_i$.
@@ -222,7 +226,7 @@
 
 \begin{Def}
 	Операция подстановки:
-	пусть $h(x_1, \dots, x_k)$ "--- функция, и $g_1, g_2, \dots, g_k \colon \N_0^n \to \N_0 \cup \{\bot\}$, то можно составить
+	пусть $h(x_1, \dots, x_k)$ "--- функция, и $g_1, g_2, \dots, g_k \colon \No^n \to \No \cup \{\bot\}$, то можно составить
 	функцию
 	\[
 	h(g_1(x_1, \dots, x_n), g_2(x_1, \dots, x_n), \dots, g_k(x_1, \dots, x_n))
