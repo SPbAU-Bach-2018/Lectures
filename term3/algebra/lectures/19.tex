@@ -1,0 +1,73 @@
+﻿\section{Некоторые стандартные изоморфизмы для тензорных произведений.}
+В этом параграфе все векторные пространства конечномерные.
+
+\begin{theorem}{Ассоциативность}
+\begin{enumerate}
+    \item $(V_1 \otimes V_2) \otimes V_3 \cong V_1 \otimes V_2 \otimes V_3$
+    \item Более общий случай, для любой правильной расстановки скобок. 
+    $$(V_1 \otimes V_2)(\cdots \otimes V_n) \cong  V_1 \otimes \cdots \otimes V_n$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Для любых пространств ограничемся первым случаем. 
+$$\phi \colon V_1 \times V_2 \times V_3 \to V_1 \otimes V_2 \otimes V_3$$
+$$\alpha \colon V_1 \times V_2 \times V_3 \to (V_1 \otimes V_2) \otimes V_3$$
+$$\beta\colon V_1 \otimes V_2 \otimes V_3 \to (V_1 \otimes V_2)\otimes V_3$$
+$\beta$ "--- линейное отображение. $\alpha = \beta \circ \phi$
+
+$$V_1 \times V_2 \to V_1 \otimes V_2$$
+$$(v_1, v_2) \to V_1 \otimes V_2$$
+$$\alpha \colon V_1 \times V_2 \times V_3 \to (V_1 \otimes V_2) \otimes V_3$$
+$$(v_1, v_2, v_3) \to  (V_1 \otimes V_2) \otimes V_3$$
+$$\beta(V_1 \otimes V_2 \otimes V_3) = \alpha(V_1, V_2, V_3) = (V_1 \otimes V_2) \otimes V_3$$
+
+$\{e_i\}$ "--- базис $V_1$\\
+$\{f_j\}$ "--- базис $V_2$\\
+$\{h_k\}$ "--- базис $V_3$\\
+$$\beta(e_i \otimes f_j \otimes h_k) = (e_i \otimes f_j) \otimes h_k$$
+$\beta$ переводит базис в базис $\Ra$ изоморфизм.
+
+Второй способ:
+
+$(e_i \otimes f_j) \otimes h_k$ "--- базис $(V_1 \otimes V_2) \otimes V_3$
+и лежит в базисе $\beta \Ra \beta$ сюръективно.
+\begin{gather*}
+\dim(V_1 \otimes V_2 \otimes V_3) = \dim V_1 \cdot \dim V_2 \cdot \dim V_3 =\\
+=\dim(V_1 \otimes V_2) \cdot \dim V_3 = \dim((V_1 \otimes V_2) \otimes V_3)
+\end{gather*}
+$\Ra \beta$ "--- инъективно. 
+\end{proof}
+\begin{theorem}
+$V_1, \cdots, V_n$\\
+$\sigma \in S_n$\\
+Существует изоморфизм $f_{\sigma}\colon V_1 \otimes \cdots \otimes V_n \to V_{\sigma(1)} \otimes \cdots V_{\sigma(n)}$
+и при этом  $f_{\sigma \tau} = f_{\sigma} \circ f_{\tau}$
+\end{theorem}
+\begin{proof}
+$$\phi \colon V_1 \times \cdots V_n \to V_1 \otimes \cdots \otimes V_n$$
+$$\alpha \colon V_1 \times \cdots \times V_n \to V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$$
+$$\beta \colon V_1 \otimes \cdots \otimes V_n \to V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$$
+
+$\alpha$ "--- полилинейная \\
+$\beta(V_1 \otimes \cdots \otimes V_n) = V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$\\
+$\beta$ переводит тензорный базис в тензорный базис $\Ra$ изоморфизм.
+\end{proof}
+
+$$f_{\sigma \tau}(V_1 \otimes \cdots \otimes V_n) = V_{\sigma\tau(1)} \otimes \cdots \otimes V_{\sigma \tau(n)}$$
+$$f_{\tau}(V_1 \otimes \cdots \otimes V_n) = V_{\tau(1)} \otimes \cdots \otimes V_{\tau(n)} $$
+$$f_{\sigma}\cdot f_{\tau}(V_1 \otimes \cdots \otimes V_n) = f_{\sigma}(V_{\tau(1) \otimes \cdots \otimes V_{\tau(n)}}) =$$
+$$= V_{\sigma\tau(1)} \otimes \cdots \otimes V_{\sigma \tau(n)}$$
+
+\begin{theorem}{двойственность}
+
+$$(V_1 \otimes \cdots \otimes V_n)^* \cong V_1^* \times \cdots \times V_n^*$$
+
+\end{theorem}
+\begin{proof}
+$$g_{v_1^* \cdots v_n^*} \colon (u_1, \cdots, u_n) \to v_1^*(u_1) \cdot \cdots \cdot V_n^*(u_n)$$
+$$u_i \in V_i$$
+$$g_{v_1^* \cdots v_n^*} \in \mathcal{L}(v_1, \cdots, V_n, K) $$
+$$\alpha \colon V_1^* \times V_n^* \to \mathcal{L}(V_1, \cdots, V_n, K) $$
+$$\alpha(V_1^*, \cdots, V_n^*) = g_{v_1^* \cdots v_n^*} $$
+\end{proof}
+
