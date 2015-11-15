@@ -1,0 +1,272 @@
+\begin{theorem}[Римана]
+	Ряд $\sum a_n$ условно сходится.
+	Тогда для всех $s \in \bar \R$ существует перестановка $\sigma\colon \N \ra \N$, что
+	\[ \sum_{n=1}^\infty a_{\sigma(n)} = s \]
+	Также существует перестановка, для которой $\sum a_{\sigma(n)}$ расходится (не имеет никакого предела).
+\end{theorem}
+\begin{proof}
+	Рассмотрим
+	\[ \sum_{n=1}^\infty (a_n)_+ \quad \sum_{n=1}^\infty (a_n)_-\]
+	Они имеют бесконечную сумму.
+	Вспомним, что
+	\begin{align*}
+		\sum (a_n)_+ - \sum (a_n)_- &= \sum a_n \\
+		\sum (a_n)_+ + \sum (a_n)_- &= \sum |a_n| = +\infty
+	\end{align*}
+	Рассмотрим $\sum b_n$ "--- ряд $\sum a_n$, из которого стёрли все $a_n < 0$,
+	и $\sum c_n$ "--- ряд $\sum a_n$, из которого стёрли все $a_n \ge 0$.
+	Они вместе составляли $\sum a_n$.
+	\begin{align*}
+		\sum b_n &= \sum (a_n)_+ = +\infty \\
+		\sum c_n &= -\sum (a_n)_- = -\infty
+	\end{align*}
+	Мы уже знаем, что $\sum a_n$ сходится, откуда $\lim a_n = 0$, значит также $\lim b_n = \lim c_n = 0$.
+	\begin{description}
+	\item[Случай $0 \le S < +\infty$:]
+		Будем брать $b_i$ до тех пор, пока сумма не перевалит за $S$.
+		Это возможно, так как сумма $\sum_{n=1}^\infty b_n$ бесконечна.
+		\[ \underbrace{b_1 + b_2 + b_3 + \dots + b_{n_1 - 1}}_{\le S} + b_{n_1} > S \]
+		Затем будем брать $c_i$ до тех пор, пока сумма не станет меньше $S$:
+		Это также возможно, так как сумма $\sum_{n=1}^\infty с_n$ бесконечна.
+		\[ \underbrace{b_1 + \dots + b_n + c_1 + c_2 + c_3 + \dots c_{m_1 - 1}}_{\ge S} + c_{m_1} < S \]
+		Потом снова $b_i$, потом снова $c_i$, и так далее.
+		Получили перестановку, так как каждый элемент мы возьмём ровно один раз.
+		Покажем, что сумма ряда действительно $S$.
+		Мы знаем, если сгруппировать ряд так, что в каждой скобке будет один знак, то его сумма равна сумме исходного.
+		Сгруппируем так, как добавляли:
+		\[ (b_1 + \dots + b_{n_1}) + (c_1 + \dots + c_{m_1}) + (b_{n_1+1} + \dots + b_{n_2}) + (c_{m_1+1} + \dots + c_{m_2}) + \dots \]
+		Обозначим за $t_n$ частичную сумму из первых $n$ скобок.
+		Надо показать, что $t_n \ra S$.
+		Мы знаем, что
+		\begin{gather*}
+			t_{2k - 1} > S > t_{2k} \quad t_{2k - 1} - b_{n_k} \le S \le t_{2k} - c_{m_k} \\
+			S < t_{2k - 1} \le \underbrace{S + b_{2k}}_{\ra S} \quad \underbrace{c_{m_k} + S}_{\ra S} \le t_{2k} < S
+		\end{gather*}
+
+	\item[Случай $-\infty < S < 0$:]
+		Начнём с $c_i$, потом $b_i$ и так далее.
+
+	\item[Случай $S = +\infty$:]
+		Аналогично берём $b_i$: чтобы перевалило через 1, 2, 3 и так далее, между ними по одной $c_i$:
+		\[ \underbrace{(b_1 + \dots + b_{n_1})}_{> 1} + c_1 + \underbrace{(b_{n_1 + 1} + \dots + b_{n_2})}_{> 2} + c_2 + \dots \]
+		Как видно, частичные суммы достигают как угодно большие значения, и не сильно просидает вниз.
+
+	\item[Случай $S = -\infty$:]
+		Аналогично, только $c_i$ сначала берём.
+
+	\item[Расходится:]
+		Берём $b_i$ до 1, $c_i$ до -1, потом $b_i$ до 2, $c_i$ до -2, и так далее.
+	\end{description}
+\end{proof}
+
+\begin{theorem}[Коши]
+	Два ряда $\sum a_n = A$ и $\sum b_n = B$ сходятся абсолютно.
+	Рассмотрим ряд, состоящий из всевозможных $a_ib_j$ в произвольном порядке.
+	Этот ряд абсолютно сходится, и сумма его равна $AB$.
+\end{theorem}
+\begin{proof}
+	Покажем для какого-то одного порядка, что ряд сходится абсолютно.
+	Тогда для любой перестановки будет доказано автоматически.
+
+	Ряд такой:
+	\[\begin{array}{ccccc}
+		    & a_1    & a_2    & a_3    & a_4    \\
+		b_1 & a_1b_1 & a_2b_1 & a_3b_1 & a_4b_1 \\
+		b_2 & a_1b_2 & a_2b_2 & a_3b_2 & a_4b_2 \\
+		b_3 & a_1b_3 & a_2b_3 & a_3b_3 & a_4b_3 \\
+		b_4 & a_1b_4 & a_2b_4 & a_3b_4 & a_4b_4
+	\end{array}\]
+	Сначала возьмём всё из кваждратика $1 \times 1$, потом слой из квадратика $2 \times 2$, потом $3 \times 3$ и так далее.
+	За $S_n$ обозначим сумму модулей на квадратике $n \times n$.
+	\[ S_n = \sum_{k=1}^n |a_k| \cdot \sum_{k=1}^n |b_k| \le \sum_{k=1}^\infty |a_k| \cdot \sum_{k=1}^\infty |b_k| < +\infty \]
+	Также посчитаем $\tilde S_n$ "--- сумму без модулей.
+	\[ \tilde S_n \sum_{k=1}^n |a_k| \cdot \sum_{k=1}^n |b_k| \ra A \cdot B \]
+	Теперь надо понять, что остальные частичные суммы не сильно выбиваются из $\tilde S_n$.
+	Мы или не зашли за угол:
+	\[ \tilde S_n + (a_nb_1 + a_nb_2 + \dots a_nb_k) \]
+	или зашли за угол
+	\[ \tilde S_n + (a_nb_1 + a_nb_2 + \dots a_nb_n + a_{n-1}b_n + \dots + a_kb_n) \]
+	Оценим добавку:
+	\[
+		|a_n(b_1 + \dots + b_k)| 
+		\le |a_n| (|b_1| + \dots + |b_k|)
+		\le \underbrace{|a_n|}_{\ra 0} \underbrace{\sum_{k=1}^\infty |b_k|}_{<\infty} \ra 0
+	\]
+\end{proof}
+
+\begin{Def}
+	Произведением рядов $\sum a_n$ и $\sum b_n$ называется ряд $\sum c_n$, где $c_n$ "--- сумма на диагонали:
+	\[ c_n = \sum_{k=1}^n a_k b_{n-k}\]
+\end{Def}
+
+\begin{Rem}
+	Зачем так?
+	Возьмём кусок формулы Тейлора:
+	\[ \sum_{n=1}^\infty \frac{x^n}{n!} \]
+	И ещё один кусок Тейлора:
+	\[ \sum_{n=1}^\infty \frac{2^nx^n}{n!} \]
+	И перемножим их.
+	При $x_n$ получим как раз нужный коэффициент: 
+	\[ \frac{1}{0!} \cdot \frac{2^n}{n!} + \frac{1}{1!} \cdot \frac{2^{n-1}}{(n-1)!} + \dots + \frac{1}{n!}\cdot\frac{2^n}{0!} \]
+\end{Rem}
+
+\begin{theorem}[Мертенса]
+	Ряд $\sum a_n = A$ абсолютно сходится,
+	ряд $\sum b_n = B$ сходится.
+	Тогда ряд--произведение $\sum c_n$ сходится к $AB$.
+\end{theorem}
+\begin{Rem}
+	Порядок менять нельзя. Абсолютной сходимости не обещаем.
+\end{Rem}
+
+Доказывать не будем. Она сложная и ненужная \textcopyright Храбров.
+
+\begin{Exercise}
+	\[ \sum_{n=1}^\infty \frac{(-1)^{n-1}}{\sqrt n} \]
+	Его <<квадрат>> не сходится.
+\end{Exercise}
+
+\section[Функциональные посл-ти и ряды]{Функциональные последовательности и ряды}
+
+\begin{Def}
+	Есть последовательность $f_n \colon E \ra \R$ и $f \colon E \ra \R$.
+	$f_n$ поточечно сходится к $f$, если
+	\[ \forall x \in E, \lim_{n \ra \infty} f_n(x) = f(x) \]
+\end{Def}
+
+\begin{Def}
+	Есть последовательность $f_n \colon E \ra \R$ и $f \colon E \ra \R$.
+	$f_n$ равномерно сходится к $f$, если
+	\[ \forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f(x)| < \epsilon \]
+	Обозначается
+	\[ f_n \underset{E}\rra f \]
+\end{Def}
+
+Перепишем на кванторах первое определение:
+\[ \forall x \in E, \forall \epsilon > 0, \exists N\colon \forall n > N, |f_n(x) - f(x)| < \epsilon \]
+Отличие в том, что $\forall x \in E$ в первом снаружи, а во втором внутри.
+Из-за этого в первом случае $N$ выбирается для $x$ и $\epsilon$, а во втором для $\epsilon$ и сразу всех $x$.
+
+\begin{Rem}
+	Из равномерной сходимости следует поточечная.
+\end{Rem}
+\begin{Rem}
+	Если есть обе сходимости, то пределы равны.
+\end{Rem}
+
+\begin{exmp}
+	$E = (0, 1)$, $f_n(x) = x^n$.
+	Они поточечно сходятся к $0$.
+	\[ \forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in (0, 1), |x_n| < \epsilon \]
+	Заметим, что при фиксированном $n$ мы можем выбрать $x_n$ сколь угодно близко к 1.
+	Отсюда равномерной сходимости нет.
+\end{exmp}
+
+\begin{theorem}
+	\[ f_n \rra_E \lim_{n\ra\infty} \sup_{x \in E} |f_n(x) - f(x)| = 0 \]
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[Случай $\Ra$:]
+		\begin{gather*}
+			f_n \rra f
+			\Ra \forall \epsilon > 0, \exists N\colon \forall n > N, \underbrace{\forall x \in E, |f_n(x) - f(x)| < \epsilon}_{\sup_{x \in E} |f_n(x) - f(x)| \le \epsilon} \Ra \\
+			\Ra \lim_{n\ra\infty} \sup_{x \in E} |f_n(x) - f(x)| = 0
+		\end{gather*}
+
+	\item[Случай $\La$:]
+		\begin{gather*}
+			\lim_{n\ra\infty} \sup_{x \in E} |f_n(x) - f(x)| = 0
+			\Ra \forall \epsilon > 0, \exists N\colon \forall n > N, \underbrace{\sup_{x \in E} |f_n(x) - f(x)|}_{\ge |f_n(x) - f(x)|} < \epsilon \Ra \\
+			\Ra f_n \rra f
+		\end{gather*}
+	\end{description}
+\end{proof}
+
+\begin{conseq}
+	Если $\forall x \in E, |f_n(x) - f(x)| \le a_n$ и $\lim a_n = 0$, то $f \rra E$.
+\end{conseq}
+\begin{proof}
+	\[ \sup_{x \in E} |f_n(x) - f(x)| \le a_n \ra 0 \]
+\end{proof}
+
+\begin{conseq}
+	Если существует последовательность $x_n \in E$, что $f(x_n) - f(x) \nrightarrow 0$, то $f_n \not\rra f$.
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		|f_n(x_n) - f(x_n)| \nrightarrow 0
+		\Ra \forall k, |f_{n_k}(x_{n_k}) - f(x_{n_k})| > \epsilon \Ra \\
+		\Ra \left| \sup_{x \in E} |f_n(x) - f(x)| \right| > \epsilon
+	\end{gather*}
+\end{proof}
+
+\begin{Def}
+	$f_k$ раномерно ограниченны $M$, если $f_n(x) \le M$ при всех $n \in \N$ и $x \in E$.
+\end{Def}
+
+\begin{theorem}
+	$f_n$ равномерно ограниченно на $E$, $g_n \rra 0$ на $E$.
+	Тогда $f_ng_n \\ra 0$.
+\end{theorem}
+\begin{proof}
+	\[ \sup_{x \in E} |f_n(x)g_n(x) - f(x)g(x)| \le M \sup_{x \in E} |f_n(x) - f(x)| \]
+\end{proof}
+
+\begin{theorem}[Критерий Коши]
+	$f_n \rra f$ на $E$ для некоторой $f$ тогда и только тогда, когда
+	\[ \forall \epsilon > 0, \exists N\colon \forall n,m > N, \forall x \in E, |f_n(x) - f_m(x)| < \epsilon \]
+\end{theorem}
+\begin{proof}
+	\begin{description}
+	\item[Случай $\Ra$:]
+		Как обычно,
+		\begin{gather*}
+			\forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f(x)| < \epsilon \\
+			\forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f(x)| < \epsilon \\
+			\Ra \forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f_m(x)| < 2\epsilon
+		\end{gather*}
+
+	\item[Случай $\La$:]
+		Заметим, что при любом заданном $x \in E$ последовательность $f_n(x)$ фундаментальна.
+		Значит у неё есть какой-то предел $f(x)$.
+		\[
+			\forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f_m(x)| < \epsilon
+		\]
+		Устремим $m \ra \infty$:
+		\[
+			\forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in E, |f_n(x) - f(x)| \le \epsilon
+		\]
+		То, что нужно.
+	\end{description}
+\end{proof}
+
+\begin{theorem}
+	$f_n\colon E \ra \R$, $a \in E$, $f_n$ непрерывны в $a$, $f_n \rra f$ на $E$.
+	Тогда и $f$ непрерывна в $E$.
+\end{theorem}
+\begin{proof}
+	Надо показать:
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon |x - a| < \delta \Ra |f(x) - f_a| < \epsilon \]
+	Для $\epsilon > 0$ есть $N$, что
+	\[ \forall n > N, \forall x \in E, |f_n(x) - f(x)| < \epsilon \]
+	Возьмём одно такое $n$.
+
+	Далее, вспомним непрерывность:
+	\[ \forall \epsilon > 0, \exists \delta > 0\colon |x - a| < \delta \Ra |f_n(x) - f_n(a)| < \epsilon \]
+	Отсюда
+	\[
+		|f(x) - f(a)|
+		\le \underbrace{|f(x) - f_n(x)|}_{\text{$<\epsilon$ по выбору $n$}}
+		+ \underbrace{|f_n(x) - f_n(a)|}_{\text{$<\epsilon$ по выбору $\delta$}}
+		+ \underbrace{|f_n(a) - f(a)|}_{\text{$<\epsilon$ по выбору $n$}}
+		\le 3\epsilon
+	\]
+\end{proof}
+
+\begin{exmp}
+	Если равномерную сходимость убрать, то всё ломается.
+	$f_n(x) = x^n\colon [0, 1] \ra \R$.
+	\[ f_n(x) \ra \begin{cases} 1 & x = 1 \\ 0 & x \ne 1 \end{cases} \]
+	Это уже разрывная.
+\end{exmp}
