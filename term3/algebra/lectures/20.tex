@@ -1,0 +1,391 @@
+\setauthor{Глеб Валин}
+
+\begin{gather*}
+    f_{\sigma} : V_1 \otimes \cdots \oplus V_n \ra V_\sigma(1) \otimes \cdots \otimes V_{\sigma(n)} \\
+    f_{\sigma, \lambda}: V_{\lambda(i)} \otimes \cdots \otimes V_{\lambda(n)} \ra V_{\sigma\lambda(1)} \otimes \cdots \otimes V_{\sigma\
+    lambda(1)}
+\end{gather*}
+
+\begin{theorem} (О двойственности)
+    $$    \dim V_i < \infty \Ra V_1^* \otimes \cdots \otimes V_n^* \eqsim (V_1 \otimes \cdots \otimes V_n)^* $$ % заменить на знак изоморфности
+\end{theorem}
+
+\begin{proof}
+    \begin{gather*} 
+        \text{коммутативная диаграмма универсального свойства:} \\
+        V_1^* \times \cdots \times V_n^* \ra^{\phi} V_1^* \otimes \cdots \otimes V_n^* \\
+        V_1^* \times \cdots \times V_n^* \ra^{\alpha} \mathcal{L}(V_1, \cdots, V_n, K) \\
+        (v^*_1, \cdots, v^*_n) \mapsto \alpha(v_1^*, \cdots, v^*_n) \\
+        \alpha(v_1^*, \cdots, v_n^*)(u_1, \cdots, u_n) = v_1^*(u_1)  \cdots v_n^*(u_n) \\
+        \text{$\alpha$ каноническое отображение из $V_1^* \times \cdots \times V_n^*$} \\
+        \beta: V_1^* \otimes \cdots \otimes V_n^* \ra \mathcal{L}(V_1, \cdots, V_n, K) \eqsim \mathcal{L}(V_1 \otimes \cdots \otimes V_n, K) = (V_1 \otimes \cdots \otimes V_n)^* \\
+        \beta(v^*_1 \otimes \cdots \otimes v^*_n)(u_1, \cdots, u_n) = v_1^*(u_1) \cdots v_n^*(u_n) \\
+        \text{$\beta$ "--- является ли изоморфизмом? } \\
+        \text{т.к. всё конечномерно, то можем написать:} \\
+        \dim (V_1^* \otimes \cdots \otimes V_n^*) = \Pi(\dim V_i^*) = \Pi (\dim V_i) \\
+        \dim (V_1 \otimes \cdots \otimes V_n)^* = \dim (V_1 \otimes \cdots \otimes V_n) = \Pi (\dim V_i)
+	\end{gather*}
+    т.к. размерности совпадают, то для доказательства биективности достаточно проверить сюрективность (по теореме о размерности ядра будет следовать инъективность, т.к. размерность ядра равно нулю)
+	\begin{gather*}
+        f \in \mathcal{L}(V_1, \cdots, V_n, K) \\
+        \text{$\{e_i^{(j)}\}$ "--- базис $V_i$} \Ra \\
+		\TODO
+        ДОПИСАТЬ
+		\TODO \\
+        \beta(e_{i_1}^{(i)*} \otimes \cdots \otimes e_{i_n}^{(n)*}) = e_{i_1}^{(1)*} \cdot \cdots \cdot e_{i_n}^{(n)*} \\
+        \Ra \mathcal{L}(V_1, \cdots, V_n, K) \subseteq \Im \beta
+    \end{gather*}
+\end{proof}
+
+\section{Тензорное произведение и линейные отображения}
+Рассмотрим ещё одну интерпретацию тензорного произведения:
+
+\begin{theorem}
+    $U$, $V$ "--- конечномерные пр-ва над $K$, тогда
+	\[ U^* \otimes_{K} V \eqsim \mathcal{L}(U, V) \eqsim M(\dim V, \dim U, K) \]
+\end{theorem}
+\begin{proof}
+    Рисуем коммутатвную диаграмму универсального свойства:
+    \begin{gather*}
+        U^* \times V \ra^{\phi} U^* \otimes V \\
+        U^* \times V \ra^{\alpha} \mathcal{L}(U, V) \\
+        U^* \otimes V \ra^{\beta} \mathcal{L}(U, V) \\
+    \end{gather*}
+
+    Теперь расписываем: $\alpha(u^*, v)^{\in \mathcal{L}(U,V)}(x \in U) = u^*(x)\cdot v$
+    \begin{enumerate}
+        \item $\alpha(u^*, v)$  линейно по $x$
+        \item $\alpha$ "--- полилинейное отображение из $U^* \times V$
+    \end{enumerate}
+
+    \begin{gather*}
+        \beta: U^* \otimes V \ra \mathcal{L}(U, V) \\
+        \beta (u^* \otimes v)(\cdot) = u^*(\cdot)\cdot v
+    \end{gather*}
+
+    Размерность области определения $\beta$ и области назначения равны
+
+    Достаточно проверить, что $\beta$ сюрьективно:
+
+    $\epsilon_1, \cdots, \epsilon_n$ "--- базис $V$
+
+    $e_1 \cdots, em$ "--- базис $U$
+
+    $e_1^*, \cdots, e_m^*$ "--- базис $U^*$ двойственный к $e_1 \cdots, e_m$
+
+    \begin{gather*}
+        \beta(e_i^* \otimes \epsilon_j)(e_i) = 1 \cdot \epsilon_j = \epsilon_j \\
+        \beta(e_1^* \otimes \epsilon_j)(e_k) = 0 \cdot \epsilon_j = 0, k \neq j \\
+        U_{e_1, \cdots, e_n} \ra V_{\epsilon_1, \cdots, \epsilon_n} \\
+        [\beta(e_i^* \otimes \epsilon_j)] = j
+        \begin{pmatrix}
+        0 & \cdots & 0 \\
+        \vdots & 1 & \vdots \\
+        0 & \cdots & 0 \\
+        \end{pmatrix} \text{в позиции $(j, j$ стоит единичка}
+    \end{gather*}
+
+    Что то ещё что я не успел записать
+\end{proof}
+
+\begin{Rem} про обозначения:
+
+    $\beta(e^i \otimes \epsilon_j) = j \begin{pmatrix}
+        0 & \cdots & 0 \\
+        \vdots & 1 & \vdots \\
+        0 & \cdots & 0 \\
+        \end{pmatrix} = e_j^i = e_{ji}$
+\end{Rem}
+
+\begin{Rem}
+    (замечане про отличие разложимых тензоров от неразложимых)
+
+    $U^* \otimes V$, где 
+
+    $V = \sum^n_{j=1} a^j \epsilon_j$ (индекс вверху значит, сумирование по нему (уточнить???))
+
+    $U^* = \sum^n_{i=1}b_ie^i$
+
+	\begin{gather*}\beta(u^*\otimes v) = 
+            \beta((\sum_i b_i e^i)\otimes(\sum_j a^j \epsilon_j)) = 
+            \sum_i\sum_j b_i a^j \beta(e^i\otimes\epsilon_j) =
+            \sum_i\sum_j b_i a^j e_j^i = 
+            \begin{pmatrix}
+            a^1 \\
+            \vdots \\
+            a^n
+			\end{pmatrix} \cdot (b_1, \cdots, b_m),\\ \text{ если $u^* \neq 0$ и $v \neq 0$}
+	\end{gather*}
+
+    $\rang(\beta(u^* \otimes v)) = 1$
+
+    и наоборот, всякая матрица ранга $1$ есть столбец на строку
+
+    $\Ra$ всякая матрица ранга $1$ "--- образ разложимого тензора
+
+    $U^* \otimes V \eqsim M(n,m, K)$
+\end{Rem}
+
+\begin{Def}
+    $v \in V_1 \otimes \cdots \otimes V_n$
+
+    Тензорный ранг $v$ "--- наименьшее $m$, что $v$ сумма $m$ разложимых тензоров
+\end{Def}
+
+$n = 2$: $U^* \otimes V \eqsim M_2(\dim U, K)$
+
+Тензорный ранг матрицы равен $r$, если у отвечающего ей при этом изоморфизме тензора тензорный ранг равен $r$
+
+Тензорный ранг матрицы $A$ равен наименьшему $r$, что $A$ сумма $r$ матриц ранга $1$
+
+\begin{theorem}
+    Тензорный ранг матрицы совпадает с обычным рангом
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Тензорный ранг не больше обычного ранга
+        \item $\rang A = r$ $\Ra$ $\exists$ обратимые матрицы $C$ и $D$, что:
+            $C^-1AD = 
+            \begin{pmatrix}
+                 E_r & 0 \\
+                 0 & 0 
+            \end{pmatrix} == \sum_{i = 1}^r e_i^i$
+
+            тогда $A = \sum_{i=1}^n C(e_i^i)D{-1}$, где ранг каждого слагаемого $1$
+
+            $\rang (F G) \leq \min (\rang F, \rang G) \Ra$ тензорный ранг $\leq r$
+
+            $\rang A \leq $ тензорный ранг $A$
+
+            $\rang(F + G) \leq \rang(F) + \rang(G)$
+
+            $A = A_1 + \cdots + A_r$, тогда $\rang A \leq 1 + \cdot + 1 = r$
+    \end{enumerate}
+\end{proof}
+
+\section{Тензорный ранг и алгоритм Штрассена}
+
+в этом параграфе будут нетензорные обозначение $a_i^j = a_{ij}$ (уточнить)
+
+Будем пытаться что-то сказать про умножение матриц
+
+Рассмотрим отображение:
+
+$ M_n(K) \times M_n(K) \ra M_n(K)$
+$ (A, B) \mapsto AB$ "--- билинейное отображение
+
+\begin{itemize}
+    \item $\{e_{ij}\}$ "--- базис $M_n(K)$
+    \item $\epsilon_{ij}$ "--- базис $(M_n(K))^*$
+    \item $A = (a_{ij}), \epsilon_{ij}(A) = a_{ij}$
+\end{itemize}
+
+\begin{gather*}
+    A = \sum_{i,j} \epsilon_{i,j}(A)e_{ij} \\
+    B = \sum_{k,l} \epsilon_{k,l}(B)e_{kl} \\
+    e_{ij}e_{kl} = \left\{
+    \begin{matrix} 
+    0 & i \neq k \\
+    e_{il} & j = k
+    \end{matrix}
+    \right. \\
+    AB = ()() = \sum_{i,j,l} \epsilon_{ij}(A)\epsilon_{jl}(B)e_{il} = 
+    \sum_{i,j,l} \left(\epsilon_{ij}(A) \epsilon_{jl}\right)(B)e_{il}, 
+    \text{здесть $n^3$ умножений и $n^2(n-1)$ сложений} \\
+\end{gather*}
+
+теперь что значит это умножение с точки зрения тензоров
+
+\begin{gather*}
+    T \in M^*_n(K) \otimes M^*_n(K) \otimes M_n(K) \\
+    T = \sum_{i,j,l} \epsilon_{ij} \otimes \epsilon_{jl} \otimes e_{il} = 
+        \sum_{i,l} (\sum_{j} \epsilon_{ij} \otimes \epsilon_{jl}) \otimes e_{il}
+\end{gather*}
+$T$ задаёт билинейное отображение $M_n(K)\times M_n(K)$ в $M_n(K)$
+\begin{gather*}
+    T(A, B) = \sum_{i,j,l} \epsilon_{ij}(A) \epsilon_{jl}(B) e_{il} = AB
+\end{gather*}
+
+Заметим, что тензорный ранг $T \leq n^3$, из этого можно извлечь выгоду, ведь на самом деле
+ранг может быть меньше
+
+Предположим, что 
+$$(*): T = \sum^N_{p=1}    \underbrace{f_p}_{\in M_n^*(K)} \otimes 
+                    \underbrace{g_p}_{\in M_n^*(K)} \otimes
+                    \underbrace{H_p}_{\in M_n(K)} $$
+пусть все $H_p$ матрицы с целыми коэффицентами, т.е. каждый коэффицент $H_p$ это $1 + \cdots + 1$ или $-(1 + \cdots + 1)$ или $0$
+$$ AB = T(A, B) = \sum_{p=1}^N f_p(A)g_p(B)H_p $$
+Если такое разложение $(*)$, то для перемножения матриц нужно $N$ умножений
+
+Вопрос: верно ли, что тензорный ранг $T$ может быть меньше, чем $n^3$ ?
+
+Ответ: оказывается для матриц $2\times2$ ранг не $8$ а $7$
+
+Собственно умножений для матриц $2\times2$ нужно делать $7$ (Штрассен, 1969), сейчас построим формулу
+
+\begin{gather*}
+    \begin{matrix}
+        e_{11} & a & & \epsilon_{11} & \alpha
+        e_{12} & b & & \epsilon_{12} & \beta
+        e_{21} & c & & \epsilon_{21} & \gamma
+        e_{22} & d & & \epsilon_{22} & \delta
+    \end{matrix}\\
+    alpha \begin{matrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{matrix} = a_{11} \\
+    e_{11} = \begin{matrix}
+    1 & 0 \\
+    0 & 0
+    \end{matrix}\\
+    \text{обычное умножение:} \\
+    \begin{matrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{matrix}
+    \begin{matrix}
+        b_{11} & b_{12} \\
+        b_{21} & b_{22}
+    \end{matrix} \\
+    T = (\alpha \otimes \alpha + \beta  \otimes \gamma) \otimes a + \\
+        (\alpha \otimes \beta  + \beta  \otimes \delta) \otimes b + \\
+        (\gamma \otimes \alpha + \delta \otimes \gamma) \otimes c + \\
+        (\gamma \otimes \beta  + \delta \otimes \delta) \otimes d = \\
+        (\alpha - \delta) \otimes (\alpha - \delta) \otimes (a + d) + \\
+        \delta \otimes (\alpha + \gamma) \otimes (a + c) + \\
+        (\alpha - \beta) \otimes \delta \otimes (a - b) + \\
+        \alpha \otimes (\beta + \delta) \otimes (b + d)
+\end{gather*}
+
+Итого тут мы делаем 7 умножений и 18 сложений
+
+Мы докажем (т.к. чуть проще), что 7 умножений и 22 сложения
+
+\begin{gather*}
+    \begin{matrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{matrix}
+    \begin{matrix}
+        b_{11} & b_{12} \\
+        b_{21} & b_{22}
+    \end{matrix} = 
+    \begin{matrix}
+        c_{11} & c_{12} \\
+        c_{21} & c_{22}
+    \end{matrix}\\
+    \text{суммы:} \\
+    \text{смотрим на первую строчку: $(\alpha - \delta) \otimes (\alpha - \delta) \otimes (a + d)$} \\
+    S_1 = a_{11} - a_{22}, S_2 = b_{11} - b_{22} \\
+    \text{теперь на вторую строчку, далее аналогично} \\
+    S_3 = b_{11} - b_{21}, S_4 = b_{11} - a_{12} \\
+    S_5 = b_{12} + b_{22}, S_6 = a_{21} - a_{22} \\
+    S_7 = a_{12} - a_{22}, S_8 = b_{21} - b_{22} \\
+    S_9 = a_{21} - a_{11}, S_{10} = b_{11} + b_{12}
+    \text{произведения:} \\
+    P_1 = S_1 S_2    \\
+    P_2 = a_{22} S_3 \\
+    P_3 = S_4 b_{22} \\
+    P_4 = a_{11} S_5 \\
+    P_5 = S_6 b_{11} \\
+    P_6 = S_7 b_{11} \\
+    P_7 = S_7 S_8    \\
+    P_8 = S_9 S_{10} \\
+    \text{результат:} \\
+    c_{11} = P_1 + P_2 + P_3 + P_6, c_{12} = P_4 - P_3 \\
+    c_{12} = P_2 + P_5, c_{22} = P_1 + P_4 - P_5 + P_7
+\end{gather*}
+
+Заметим, что данное умножение справедливо и для матриц где значения "--- некоммутирующие 
+переменные, т.к. порядок множителей здесь сохраняется 
+(можно раскрыть скобки и увидеть, или понять, что $a_i$ всегда раньше $b_i$)
+
+Как можно перемножать блочные матрицы?
+
+$A_{11}, A_{12}, \cdots, B_{22}$  "--- квадратные матрицы одного размера
+
+$$\begin{matrix}
+        A_{11} & A_{12} \\
+        A_{21} & A_{22}
+    \end{matrix}
+    \begin{matrix}
+        B_{11} & B_{12} \\
+        B_{21} & B_{22}
+    \end{matrix} = 
+    \begin{matrix}
+        A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{21} \\
+        A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22}
+    \end{matrix}$$
+и теперь умножаем Штрассеном, где у нас будет 7 матричных умножений
+
+Не трудно заметить, что мы научились быстро умножать матрицы размера $n = 2^k$
+В таком случае для $n = 2^k$, число умножений:
+
+    \begin{gather*}
+        2^k \leq n \leq 2^{k+1} \Ra (2^{k+1})^{\log_2 7} \leq (n^{1 + \frac{1}{k}})^{\log_2 7} \sim n^{log_2 7 + O(1)} \\
+        7^k = (2^{\log_2 7})^k = (2^k)^{\log_2 7} = n^{\log_2 7} \sim n^{2.88}
+    \end{gather*}
+
+Есть ещё один результат: Coppersmith Vilwgrad 1981
+
+$O(n^{2.376})$ "--- но неприменимо из-за слишком большой константы
+
+Есть ещё гипотеза Штрассена, но её уже стёрли с доски
+
+\section{Тензорное произведение операторов}
+
+$V_1, \cdots, V_n, W_1, \cdots, W_n$ "--- все конечномерные
+
+$A_1: V_1 \ra W_1, \cdots, A_n: V_n \ra W_n$
+
+$A_1 \otimes \cdots A_n: V_1 \otimes \cdots \otimes V_n \ra W_1 \otimes \cdots \otimes W_n$
+
+$(A_1 \otimes \cdots A_n)(v_1 \otimes \cdots \otimes v_n) = A_1 v_1 \otimes \cdots \otimes A_n v_n$
+
+\begin{theorem}
+    Такой оператор существует и единственный
+\end{theorem}
+
+\begin{proof}
+    Доказываем, используя снова свойство универсальности, рисуем диаграмму:
+    \begin{enumerate}
+        \item $V_1 \times \cdots \times V_n \ra^\phi V_1 \otimes \cdots \otimes V_n$
+        \item $V_1 \times \cdots \times V_n \ra^\alpha W_1 \otimes \cdots \otimes W_n$
+        \item $V_1 \otimes \cdots \otimes V_n \ra^{\beta =  A_1 \otimes \cdots A_n} W_1 \otimes \cdots \otimes W_n$
+    \end{enumerate}
+
+    Хотим найти матрицу $[A_1 \otimes \cdots A_n]$ в тензорном базисе
+
+    $A_1 \otimes A_2: V_1 \otimes V_2 \ra W_1 \otimes W_2$
+
+    $\{e_i\}_{i=1\cdots n}$ "--- базис $V_1$
+
+    $\{f_i\}_{i=1\cdots n}$ "--- базис $V_2$
+
+    $\{\epsilon_i\}_{i=1\cdots n}$ "--- базис $W_1$
+
+    $\{\chi_i\}_{i=1\cdots n}$ "--- базис $W_w$
+
+    тогда $e_i \otimes f_j$ "--- базис $V_1 \otimes V_2$ и $\epsilon_r \otimes \ch_s$ "--- базис $W_1 \otimes W_2$
+
+    $[A_1]_{e, \epsilon} = (a_{ij})$
+
+    $[A_2]_{f, \chi} = (b_{rs})$
+
+    $[A_1 \otimes A_2]_{e \otimes f, \epsilon \otimes \chi}$ строки нумеруем парами $(r, s)$, столбцы нумеруем парами $(i, j)$
+
+	$[(A_1 \otimes A_2))(e_i \otimes f_j)]_{(r, s)} = [A_1e_i \otimes A_2f_j]_{(r,s)} = a_{(r, i)}b_{(s, j)}$
+
+    $r = 1, i = 1, \dim V_1$
+
+    $r = 2, i = 1, \dim V_2$
+
+    $\begin{pmatrix}
+        a_{11}[A_2] & a_{12}[A_2]\\
+        a_{21}[A_2] & 
+    \end{pmatrix}$
+
+    кронекерово произведение
+    
+\end{proof}
