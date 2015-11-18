@@ -1,0 +1,34 @@
+﻿\section{Классическое определение тензоров}
+$$V\colon e_1, \cdots, e_n$$
+$$V^* \colon e^1, \cdots, e^n$$ 
+
+$$T \in T_{p}^q(V)$$
+
+$$T = \sum_{i_1, \cdots i_p, j_1, \cdots, j_q} T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} e^{i_1} \otimes \cdots \otimes e^{j_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$$ 
+
+$e_i'$ "--- базис $V$\\
+$(e^i)'$ "--- базис $V^*$\\
+
+Матрица перехода от базиса к базису: $e_j' = \sum(A_j^i)e_i$
+
+$$\begin{pmatrix}
+A^1_j\\
+A^2_j\\
+\vdots\\
+A^n_j\\
+\end{pmatrix}$$
+"--- $j$-й столбец матрицы перехода от $\{e\}$ к $\{e'\}$
+
+$$(e^j)' = \sum_{i}B^{j}_ie^i$$
+
+Как связаны матрицы $A, B$.
+
+$$(e^j)'(e_i') = (\sum_k B_{k}^je^k)(\sum_{l}A_{i}^le_l) = \sum_k B_{k}^j A_{i}^k = \sum_k A_i^kB_k^j = {1, i = j; 0, i \ne j}$$
+$$(A_i^k)(B_k^j) = E$$
+
+Закон преобразования тензоров: 
+$$T = \sum T_{i_1 \cdots i_p}^{j_1, \cdots, j_q}e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \cdots \otimes e_{j_q}$$
+$$T = \sum {T_{k_1, \cdots, k_p}^{l_1, \cdots, l_q}}'{e^{k_1}}' \otimes \cdots \otimes {e^{k_p}}' \otimes {e_{l_1}}' \cdots \otimes {e_{l_q}}' = $$
+$$= \sum_{k,l}T'^{l_1, \cdots, l_q}_{k_1, \cdots, k_p}((\sum_{i_1}B_{i_1}^{k_1}e^{i_1}) \otimes \cdots \otimes (\sum A_{l_q}^{j}e_{j_q}))$$
+
+$$\sum_{i, \cdots, i_p, j,\cdots, j_n} (\sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q})e^{i_1} \otimes \cdots \otimes e_{j_q}$$

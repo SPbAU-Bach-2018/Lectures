@@ -1,0 +1,118 @@
+﻿\setauthor{Черникова Ольга}
+\section{Тензорная алгебра векторного пространства}
+$V$ "--- векторное пространство над $K$. $(\dim_{K}V < \infty)$\\
+Рассмотрим $T_p^q = V^*\otimes \cdots \otimes V^* \otimes V \otimes \cdots \otimes V$\\
+$p$ раз повторяется $V^*$ и $q$ раз повторяется $V$\\
+Элементы $T_{p}^q(V)$ "--- тензоры валентности $(p, q)$. ($p$ раз ковариантныеь $q$ раз контрвариантные)
+
+$T_0^1(V) = V$ элементы $T_0^1$ "--- векторы\\
+$T_1^0(V) = V^*$ элементы $T_1^0$ "--- ковекторы\\
+$$v^* \in T_1^0(V), v^* \colon V \to K$$
+$T_1^1(V) = V^* \otimes V \cong \mathcal{L}(V, V) = End(V) \cong M_n(K)$
+Можно понимать как матрица линейных отображений. 
+
+$T_2^0(V) = V^*\otimes V^* \cong (V \otimes V)^* = \mathcal{L}(V \otimes V, K) \cong \mathcal{L}(V, V, K)$ 
+
+Элементы $T_2^0(V)$ "--- билинейные формы на $V$.
+
+\subsection{Алгебра и их структурные константы}
+\begin{Def}
+Алгебра($A$) над полем $K$ "--- это алгебраическая  структураб которая является векторным пространством
+над $K$ и на котором задано "умножение", то есть билинейное отображение $\colon A \times A \to A$
+
+$$+ \colon A \times A \to A$$
+$$\cdot \colon K \times A \to A$$
+$$\cdot \colon A \times A \to A$$
+
+\end{Def}
+\begin{Def}
+    Ассоциативная алгеьра: $\cdot$ "--- ассоциативна и $(A, +, \cdot)$ "--- кольцо.\\ 
+    $\forall a_1, a_2 \in A, \forall k \in K \colon (ka_1)a_2 = a_1(ka_2) = k(a_1 \cdot a_2)$\\
+\end{Def}
+\begin{exmp}   
+    \begin{enumerate}
+    \item
+    $K[t]$ "--- алгебра многочленов.\\
+    \item
+    $M_n(K)$ "--- матричная алгебра.\\
+    \item
+    $\H$ "--- 4-мерная алгебра над $\R$\\
+    \item
+    $\C$ "--- 2-мерная алгебра над $\C$\\
+    \begin{Rem}
+    $\H$ "--- веторное пространство над $\C$, но не алгебра. 
+
+    $i(jk) = (ij) k = -1$\\
+    $j(ik) = j(-j) = 1 \ne i(jk)$
+     то есть форма не билинейная. 
+    \end{Rem}
+    \item
+    $\O$ "--- восьмимерная неассоциативная алгебра октав. 
+    $1, e_1, \cdots, e_7$ "--- базис $V$
+
+    %%im1
+
+    Идем по стрелке. Получается число, в которое мы пришли. Знак зависит от того, шли мы по стрелке или нет. 
+    \item Алгебра Ли
+    $[]\colon A \times A \to A $ "--- умножение\\
+    $[x, X] = 0 \Ra [X, Y] = -[Y, X]$ "--- кососимметричная\\
+    $$\forall X, Y, Z\in A \colon [X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0$$
+    \end{enumerate}
+\end{exmp}
+
+$A$  "--- алгебра.\\
+$\circ \colon A \times A \to A$(билинейное отображение)\\
+$$\mathcal{L}(A, A, A) \cong \mathcal{L}(A \otimes A, A) \cong (A \otimes A)^* \otimes A \cong A^* \otimes A^* \otimes A$$
+
+Билинейное умножение на алгебре $A$  соответствует тензорам $T_2^1(A)$.
+
+$\{e_i\}$ "--- базис $A$
+$$a = \sum_{i} a^i e_i$$
+$$b = \sum_{i} b^i e_j$$
+
+$a^i$ "--- коэффицент $a$ в базисе $e_i$
+
+$$e_ie_j = \sum \gamma_{ij}^ke_k$$
+$$ab = \sum_{k}(\sum_{ij}a^ib^j\gamma_{ij}^k)e_k$$
+
+\begin{Def}
+$\{\gamma_{ij}^k\}$ "--- структурные константы алгебры $A$.
+\end{Def}
+
+Если умножение ассоциативно:
+    $$(e_ie_j)e_l = e_i(e_je_l)$$
+    $$(e_ie_j)e_l = \sum_k\gamma_{ij}^ke_ke_l = \sum_{k}\sum_{s}\gamma_{ij}^k \gamma_{kl}^s e_s = \sum_s(\sum_k \gamma_{ij}^k \gamma_{kl}^s)e_s$$
+    $$e_i(e_je_l) = e_i(\sum_r \gamma_{jl}^re_r) = \sum_{r}\gamma_{jl}^{r}e_ie_r = \sum_s(\sum_r \gamma_{jl}^r\gamma_{ir}^s)e_s$$
+
+    $$\Ra \forall i, j, l, s \colon \sum_{k}\gamma_{ij}^k\gamma_{kl}^s = \sum_r\gamma_{jl}^r\gamma_{ir}^s$$
+
+В случае коммутативного умножения:
+    $$\forall i, j \colon e_ie_j = e_je_i$$
+    $$\forall i, j, k \colon \gamma_{ij}^k = \gamma_{ji}^k$$
+
+
+Вернемся  к общему случаю $T_p^q(V)$
+$$T_0^0 \cong K$$
+$$T(V) = \oplus_{p,q}T_{p}^{q}(V)$$
+
+$$\otimes \colon T(V) \times T(V) \to T(V)$$
+$$\otimes T_{p}^{q}(V) \times T_{p'}^{q'}(V) = T_{p + p'}^{q + q'}(V)$$
+
+$$T_{p}^{q} = V^* \otimes \cdots \otimes V^* \otimes V \cdots \otimes V \cong \mathcal{L}(V^*, \cdots, V^*, V, \cdots, V, K)$$
+$$\alpha\colon V^* \times \cdots \times V^* \times V \times \cdots \times V \to K$$
+
+$$\beta \in T_{p'}^{q'}$$
+$$\beta \colon V^* \times \cdots V^* \times V \times \cdots \times V \to K$$ 
+
+Хотим построить полилинейное отображение 
+$$(\alpha, \beta)\colon V^* \times \cdots V^* \times V \cdots \times V \to K$$ 
+Первых элемнетов $p + p'$, вторых $q + q'$
+
+На первых p действует как $\alpha$, на вторых p' как $\beta$, для q аналогично. 
+
+$$(\alpha, \beta) \colon (v_1^*, \cdots, v_{p + q}^*, v_1, \cdots, v_{q + q'}) = \alpha(v_1^*, \cdots, v_p^*, v_1, \cdots, v_q)\beta(v_{p + 1}^*, \cdots, v_{p + p'}^*, v_{q + 1}, \cdots, v^*_{q + q'})$$
+
+На самом деле можно все это получить пользуясь уже известными изоморфизмами:
+    $$T_{p}^q(V) \otimes T_{p'}^{q'}(V) \cong T_{p + p'}^{q + q'}(V)$$
+    Воспользуемся тем, что мы можем раскрывать скобки и переставлять элементы получим в точности $T_{p + p'}^{q + q'}$
+   
