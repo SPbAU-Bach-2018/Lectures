@@ -1,0 +1,299 @@
+% Теорема о полноте и в:
+% $\Gamma$ не противоречиво $\iff$ $\Gamma$ совместно ($\Gamma$ может быть бесконечным)
+% Стрелка из непротиворечивости в совместность
+\begin{Def}
+	$\Gamma$ является полным, если для любой формулы $\phi$, использующей те же переменные, что и $\Gamma$
+	либо $\Gamma \vdash \phi$, либо $\Gamma \vdash \lnot \phi$.
+\end{Def}
+\begin{lemma}
+	Любой непротиворечивый список $\Gamma$ можно расширить до полного непротиворечивого.
+\end{lemma}
+\begin{proof}
+	\begin{assertion}
+		Пусть $\Gamma$ непротиворечив и $\Gamma \not \vdash \lnot \phi$, тогда
+		$\Gamma, \phi$ непротиворечив.
+	\end{assertion}
+	\begin{proof}
+		От противного: пусть противоречиво, т.е. можно вывести и $A$, и $\lnot A$.
+		Тогда отсюда знаем, что $\Gamma \vdash \lnot \phi$, противоречие.
+	\end{proof}
+	Теперь доказываем лемму в конечном/счётном случае.
+	Переменных у нас тогда тоже конечно/счётно, соответственно, формул у нас тоже конечно/счётно.
+	Добавляем по одной: берём формулу $\phi$, если нельзя вывести ни её, ни отрицание, то добавляем её в $\phi$.
+	За каждый шаг получаем непротиворечивое.
+
+	Пусть $\Gamma'$ "--- это объединение всех $\Gamma$ по шагам (этакий предел).
+	Если оно противоречиво, то противоречие выводится за конечное число шагов, использует конечное число формул,
+	т.е. противоречие выводится уже на каком-то конечном шаге алгоритма, чего быть не может.
+
+	Доказательство для несчётного $\Gamma$ пока оставляется на конец курса "--- нам потребуется аксиома выбора/лемма Цорна.
+\end{proof}
+Теперь доказываем теорему.
+Был $\Gamma$, расширили до $\Gamma'$, для любой переменной $x$ выводится либо $x$, либо $\lnot x$.
+Теперь подставим значения: $x=1$, если выводится $x$, и $x=0$, если выводится $\lnot x$.
+\begin{assertion}
+	Все выводимые формулы в такой подстановке истинны, а все невыводимые "--- ложны.
+\end{assertion}
+\begin{proof}
+	Индукция по построению формулы.
+	База очевидна: это просто переменные.
+	Для перехода надо разобраться со связками:
+	\begin{itemize}
+		\item
+			Так как $\Gamma'$ непротиворечиво (оба быть выводимы не могут) и полно (хотя бы одно выводится): $\Gamma' \vdash \lnot \phi \iff \Gamma' \not\vdash \phi$
+		\item
+			$\Gamma' \vdash \phi \land \psi \iff (\Gamma' \vdash \phi) \land (\Gamma' \vdash \psi)$ "--- если докажем, то доказали соответствующий переход.
+			\begin{description}
+			\item[$\Ra$:]
+				Очевидно, так как есть две аксиомы.
+			\item[$\La$:]
+				Тоже вроде было какое-то правило.
+			\end{description}
+		\item
+			Надо доказать, что:
+			\[
+				\Gamma' \vdash \phi \lor \psi \iff
+				\left[
+					\begin{array}{l}
+					\Gamma' \vdash \phi \\
+					\Gamma' \vdash \psi
+					\end{array}
+				\right.
+			\]
+			\begin{description}
+			\item[$\La$:]
+				Вроде было две аксиомы.
+			\item[$\Ra$:]
+				Доказательство от противного, интересный случай:
+				$\phi \lor \psi$ выводится, а вот $\phi$ и $\psi$ "--- нет.
+				Давайте покажем противоречивость $\Gamma', \phi \lor \psi$: выведем из неё $\phi$ и $\lnot \phi$,
+				второе просто выводится по предположению.
+				Есть правило для дизъюнкции, т.е. надо проверить, что $\phi$ выводится в двух случаях:
+				\begin{itemize}
+					\item $\Gamma', \phi$ "--- берёт и выводится сразу
+					\item $\Gamma', \psi$ "--- из $\Gamma'$ выводится $\lnot \psi$, т.е. $\Gamma', \psi$ противоречиво и можно вывести что угодно, в том числе $\phi$.
+				\end{itemize}
+				Таким образом, $\Gamma', \phi \lor \psi$ противоречиво, противоречие.
+			\end{description}
+		\item
+			\begin{Exercise}
+				\[
+				\Gamma' \vdash (\phi \to \psi) \iff
+				\left[
+					\begin{array}{l}
+					\Gamma' \not\vdash \phi \\
+					\Gamma' \vdash \psi
+					\end{array}
+				\right.
+				\]
+			\end{Exercise}
+	\end{itemize}
+\end{proof}
+
+\subsection{Исчисление предикатов}
+% кажется, что-то похожее уже было на прошлой лекции
+\begin{Def}
+	Предикатная формула называется \textsl{общезначной} (или, реже, \textsl{тавтологией}),
+	если она истина во всех интерпретациях и во всех оценках свободных переменных.
+\end{Def}
+Список аксиом в исчислении предикатов: 11 старых плюс две новые аксиомы
+(для кванторов, иначе бы у нас кванторы навечно прилепились к атомарным формулам, что неинтересно,
+вывелось бы не всё, что хочется):
+\begin{enumerate}
+	\item $\forall x \colon \phi(x) \to \phi(t \mid x)$
+	\item $\phi(t \mid x) \to \exists x \colon \phi(x)$
+\end{enumerate}
+Здесь $\phi(t \mid x)$ "--- замена всех вхождений переменной $x$ на терм $t$, свободный для
+подстановки (то есть свободные переменные терма $t$ не попадают в область действия кванторов $\phi$,
+куда бы мы не подставили $t$).
+\begin{exmp}
+	\[ \forall y \colon (P(x, y) \to Q(x, y)) \]
+	Подстановка $y \mid x$ (вместо $x$ подставляем $y$) "--- не свободная.
+\end{exmp}
+\begin{exmp}
+	Всегда можно подставлять $t=x$, а также $t=c$, где $c$ "--- новая константа в смысле <<функциональный символ арности ноль>>.
+\end{exmp}
+Два новых правила вывода (modus ponens остаётся), правила Бернайса:
+\begin{enumerate}
+	\item $\frac{\phi \to \psi}{\phi \to \forall x \colon \psi}$, если $x$ не входит в свободные переменные $\phi$.
+	\item $\frac{\phi \to \psi}{\phi \to \exists x \colon \phi \to \psi}$, если $x$ не входит в свободные переменные $\psi$.
+\end{enumerate}
+
+\begin{Def}
+	Формула $\phi$ \textit{выводима}, если существует последовательность предикатных формул $A_1, \dots, A_k$ такая, что:
+	\begin{itemize}
+	\item $A_k = \phi$
+	\item Формула $A_i$ получена одним из двух способов:	
+		\begin{enumerate}
+		\item Аксиома 1--13, в которую подставлены произвольные формулы вместо переменных
+		\item Результат правил вывода для каких-то двух формул $A_a$ и $A_b$, где $a, b < i$.
+		\end{enumerate}
+	\end{itemize}
+\end{Def}
+\begin{theorem}[о корректности]
+	$\phi$ выводима $\Ra$ $\phi$ общезначна.
+\end{theorem}
+\begin{proof}
+	Для аксиом 1--11 общезначность мы знали, надо проверить для двух новых:
+	\begin{enumerate}
+		\item
+			Так как $x$ не входит в левую часть и формула сверху общезначна,
+			то независимо от значения $x$ верно $\phi \to \psi$, при этом $\phi$ от $x$ вообще не зависит,
+			т.е. $\phi \to \forall x \colon \psi$.
+		\item
+			Аналогично. \TODO
+	\end{enumerate}
+\end{proof}
+
+\begin{exmp}
+	Примеры выводимых формул:
+	\begin{enumerate}
+		\item Все, полученные из пропозициональных тавтологий подстановкой предикатных формул вместо переменных
+		\item Если выводима $\phi \to \psi$, то выводима \textsl{контрпозиция}: $\lnot \psi \to \lnot \phi$.
+			\begin{proof}
+				Такая штука просто является пропозициональной тавтологией: $(\phi \to \psi) \to (\lnot \psi \to \lnot \phi)$.
+				Тогда применяем modus ponens и получаем, что надо.
+			\end{proof}
+		\item $\phi \to \psi$, $\psi \to \tau$ выводимы, тогда $\psi \to \tau$ выводима.
+			\begin{proof}
+				Была пропозициональная тавтология $(\phi \to \psi) \to ((\psi \to \tau) \to (\phi \to \tau))$,
+				применяем два раза modus ponens
+			\end{proof}
+		\item $\forall x \colon \phi(x) \to \exists x \colon \phi(x)$
+			\begin{proof}
+				Есть аксиома $\forall x \colon \phi(x) \to \phi(x)$,
+				есть аксиома $\phi(x) \to \exists x \colon \phi(x)$,
+				дальше по пункту 3.
+			\end{proof}
+		\item $\exists y \colon \forall x \colon \phi \to \forall x \colon \exists y \colon \phi$
+			\begin{proof}
+				Есть аксиома $\forall x \colon \phi \to \phi$,
+				есть аксиома $\phi \to \exists y \colon \phi$,
+				по пункту 3 получаем $\forall x \colon \phi \to \exists y \colon \phi$.
+
+				Теперь применяем правило Бернайса: $\exists y \colon \forall x \colon \phi \to \exists y \colon \phi$.
+				И еще раз: $\exists y \colon \forall x \colon \phi \to \forall x \colon \exists y \colon \phi$.
+			\end{proof}
+		\item $\lnot \forall x \colon \phi(x) \to \exists \lnot \phi(x)$.
+			\begin{proof}
+				Воспользуемся контрпозицией.
+				Достаточно вывести $\lnot \exists x \colon \lnot \phi(x) \to \forall x \colon \phi(x)$.
+				Для этого достаточно вывести без квантора всеобщности справа (потому что правило Бернайса).
+				Еще раз контрпозицию: $\lnot \phi(x) \to \exists x \colon \lnot \phi(x)$ "--- а вот это уже аксиома.
+			\end{proof}
+	\end{enumerate}
+\end{exmp}
+
+\begin{theorem}
+	Пусть $\Gamma$ "--- список замкнутых формул.
+	Тогда что-то там. \TODO
+\end{theorem}
+\begin{Exercise}
+	Показать, что если $A(x)$ выводимо, то и $\forall x \colon A(x)$ выводимо.
+\end{Exercise}
+\begin{Rem}
+	Формула $A(x) \to \forall x \colon A(x)$ не является общезначимой.
+\end{Rem}
+
+\begin{lemma}[о дедукции]
+	Если $\Gamma$ "--- список замкнутых формул, $\phi$ замкнута, тогда:
+	\[ \Gamma \vdash \phi \to \psi \iff \Gamma, \phi \vdash \psi \]
+\end{lemma}
+\begin{proof}
+	\begin{description}
+	\item[$\Ra$:]
+		очевидно, так как можно вывести $\phi \to \psi$, а $\phi$ и modus ponens у нас уже  есть.
+	\item[$\La$:]
+		Берём какой-то вывод: $A_1, \dots, A_k$.
+		Убрав $\phi$, сразу получим последовательность $(\phi \to A_i)$, надо показать, что
+		это можно достроить до вывода.
+		Что-то идёт аналогично предыдущему доказательству (для пропозициональных формул).
+		
+		Покажем, что делать в случае с правилом Бернайса, хотим показать, что вот такое верно:
+		\[ \frac{\phi \to (A \to B)}{\phi \to (A \to \forall x \colon B)} \]
+		То, что сверху, пропозиционально эквивалентно $(\phi \lor A) \to B$, отсюда
+		по правилу Бернайса $(\phi \lor A) \to \forall x \colon B$,
+		что пропозиционально эквивалентно $\phi \to (A \to \forall x \colon B)$.
+		\begin{Rem}
+			<<Пропозиционально эквивалентно>> "--- взяли пропозициональную аксиому,
+			подставили в неё нужные переменные, применили modus ponens.
+		\end{Rem}
+
+		Другое правило Бернайса: \TODO
+	\end{description}
+\end{proof}
+
+Свойства выводимости из списка:
+\begin{enumerate}
+	\item Если $\Gamma \vdash A$, $\Gamma' \supseteq \Gamma$, то $\Gamma' \vdash A$.
+	\item Если $\Gamma \vdash A$, то существует конечное $\Gamma' \subseteq \Gamma$ такое, что $\Gamma' \vdash A$.
+	\item $\gamma_1, \gamma_2, \dots, \gamma_n \vdash A$, тогда выводимы формулы
+		$\gamma_1 \to (\gamma_2 \to (\dots \gamma_n \to A)\dots)$
+		и
+		$(\gamma_1 \land \gamma_2 \land \dots \land \gamma_n) \to A$.
+\end{enumerate}
+
+\begin{lemma}[о свежих константах]
+	Пусть $\Gamma \vdash \phi(c \mid x)$, где $c$ "--- некоторая константа (нульместный функциональный символ), не входящая, ни в $\phi$, ни в $\Gamma$,
+	то $\Gamma \vdash \phi$.
+\end{lemma}
+\begin{proof}
+	Везде в выводе заменим $c$ на $y$, где $y$ "--- какая-то новая переменная,
+	выведем $\phi(y \mid x)$.
+	Потом по какому-то упражнению выведем $\forall y \colon \phi(y \mid x)$,
+	потом будет аксиома $\forall y \colon \phi(y \mid x) \to \phi(x)$, потом modus ponens и успех.
+\end{proof}
+
+\begin{lemma}[о добавлении константы]
+	Пусть $\phi$ выводима в сигнатуре $\sigma'$, которая отличается от $\sigma$ добавлением константы,
+	не содержащейся ни в $\phi$, ни в $\sigma$.
+	Тогда $\phi$ выводима и в $\sigma$.
+\end{lemma}
+\begin{proof}
+	Возьмём эту новую константу, она где-то в выводе встречается.
+	Заменим её на какую-нибудь новую переменную.
+	Заметим, что вывод всё еще остался корректным, причём в конце мы всё еще получим $\phi$
+	(так как эта константа в $\phi$ не содержалась).
+\end{proof}
+
+\begin{Def}
+	Пусть $\Gamma$ "--- список замкнутых формул.
+	Тогда интерпретация $I$ называется \textsl{моделью} для $\Gamma$, если
+	она выполняет все формулы из $\Gamma$.
+\end{Def}
+\begin{theorem}[о полноте в сильной форме]
+	Список формул $\Gamma$ непротиворечив $\iff$ $\Gamma$ имеет модель.
+\end{theorem}
+\begin{proof}
+	\begin{description}
+		\item[$\La$:]
+			по ходу вывода модель сохраняется (то есть все новые формулы всё еще выполняются):
+			надо это проверить для всех аксиом, потом для правил вывода.
+		\item[$\Ra$:]
+			\begin{Def}
+				$\Gamma$ \textsl{полный}, если для любой замкнутой формулы $\phi$
+				либо $\Gamma \vdash \phi$, либо $\Gamma \vdash \lnot \phi$.
+			\end{Def}
+			\begin{lemma}
+				Непротиворечивый $\Gamma$ можно непротиворечиво расширить до полного списка.
+			\end{lemma}
+			\begin{Def}
+				Список $\Gamma$ "--- \textsl{экзистенциально полный}, если для любой замкнутой формулы $\phi$
+				верно: если $\Gamma \vdash \exists x \colon \phi$, то найдётся замкнутый терм $t$ такой,
+				что $\Gamma \vdash \phi(t \mid x)$.
+			\end{Def}
+			\begin{lemma}
+				Непротиворечивый $\Gamma$ можно непротиворечиво расширить до полного и экзистенциально полного списка.
+			\end{lemma}
+			\begin{Def}
+				Сначала продолжим $\Gamma$ за полного $\Gamma'$.
+				Теперь выводится любая формула или её отрицание, но экзистенциальной полноты может не быть.
+
+				Давайте если $\Gamma' \vdash \exists x \colon \phi$, то добавим $\phi(c)$, где $c$ "--- новая константа.
+
+				\TODO
+				Дальше будем на одном шаге делать экзистенциальное пополнение, потом обычное, и так чередуем.
+				ХРЕ-Е-Е-Е-НЬ.
+			\end{Def}
+	\end{description}
+\end{proof}
