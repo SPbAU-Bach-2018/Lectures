@@ -1,0 +1,235 @@
+\begin{theorem}
+	$f_n \in C^1[a, b]$, $c \in [a, b]$, $f_n' \rra g$ на $[a, b]$, $\lim_{n \ra \infty} f_n(c)$ существует и конечен.
+	Тогда
+	\begin{enumerate}
+		\item $f_h \rra h$ на $[a, b]$.
+		\item $h$ дифференцируема функция, и $h' = g$
+	\end{enumerate}
+	То есть
+	\[ \left(\underbrace{\lim_{n \ra \infty} f_n(x)}_{h(x)}\right)' = \underbrace{\lim_{n \ra \infty} f_n'(x)}_{g(x)} \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\int\limits_c^x g(t) \d t = \int\limits_c^x \lim_{n \ra \infty} f_n'(t) \d t = \lim_{n \ra \infty} \int\limits_c^x f_n'(x) \d x = \\
+		= \int\limits_c^x (f_n(x) - f_n(c)) = \lim_{n \ra \infty} f_n(x) - \lim_{n \ra \infty} f_n(c)
+	\end{gather*}
+	Отсюда $\lim_{n \ra \infty} f_n(x)$ существует и конечен.
+	Но из предыдущей теоремы мы также знаем, что
+	\[ f_n(x) - f_n(c) = \int\limits_c^x f_n'(t) \d t \rra \inf\limits_c g(t) \d t \]
+	откуда $f_n(x) - f_n(c)$ равномерно сходится на $[a, b]$, а так как $f_n(c)$ равномерно сходится (потому что от $x$ не зависит), то
+	$f_n(x)$ равномерно сходится на $[a, b]$.
+
+	Назовём этот предел $h$.
+	Тогда посмотрим на равенства выше:
+	\begin{gather*}
+		h(x) - h(c) = \lim_{n \ra \infty} f_n(x) - \lim_{n \ra \infty} f_n(c) = \int\limits_c^x g(t) \d t \Ra \\
+		\Ra h(x) = h(c) + \int\limits_c^x g(t) \d t
+	\end{gather*}
+	$g$ непрерывна как равномереный предел непрерывных функций, значит $\int\limits_c^x g(t) \d t$ дифференцируема и
+	\[ h'(x) = g(x) \]
+\end{proof}
+
+\begin{conseq}
+	$u_n \in C^1[a, b]$, $c \in [a, b]$, $\sum_{k=1}^n u_k'(x)$ равномерно сходится на $[a, b]$, $\sum_{n=1}^\infty u(n)$ сходится.
+	Тогда
+	\begin{enumerate}
+		\item $\sum_{k=1}^n u_k(x)$ равномерно сходится к дифференцируемой функции.
+		\item \[ \left(\sum_{n=1}^\infty u_n(x)\right)' = \sum_{n=1}^\infty u_n'(x) \]
+	\end{enumerate}
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		f_n(x) = \sum_{k=1}^n u_k(x) \\
+		f_n'(x) = \sum_{k=1}^n u_k'(x) \rra \sum_{n=1}^\infty u_n'(x) \lra g(x) \Ra f_n' \rra g_n
+	\end{gather*}
+	$f_n(x)$ имеет конечный предел.
+	\begin{gather*}
+		\left( \sum_{n=1}^\infty u_n(x) \right)'
+		= \left( \lim_{n \ra \infty} f_n(x) \right)'
+		= \lim_{n \ra \infty} f_n'(x)
+		= \lim_{n \ra \infty} \sum_{k=1}^n u_k'(x)
+		= \sum_{n=1}^\infty u_k'(x)
+	\end{gather*}
+\end{proof}
+
+\begin{exmp}
+	Условие на равномерную сходимость ряда производных нужно:
+	\begin{gather*}
+		\sum_{n=1}^\infty \frac{\sin nx}{n^2} \text{ "--- равномерно сходится по Вейерштрассу} \\
+		\left|\frac{\sin nx}{n^2}\right| \le \frac1{n^2} \quad \sum_{n=1}^\infty \frac1{n^2} \text{ сходится} \\
+		\sum_{n=1}^\infty \left(\frac{\sin nx}{n^2}\right)' = \sum_{n=1}^\infty \frac{\cos nx}{n} \text{ "--- расходится при $x=2\pi k$}
+	\end{gather*}
+\end{exmp}
+
+\section{Степеннные ряды}
+
+\begin{Def}
+	$a_n \in \C$, $z, z_0 \in C$.
+	Степенной ряд "--- это
+	\[ \sum_{n=0}^\infty a_n (z - z_0)^n \]
+\end{Def}
+
+\begin{Rem}
+	Далее считаем, что $z_0 = 0$.
+\end{Rem}
+
+\begin{theorem}[Абеля]
+	Если ряд $\sum_{n=0}^\infty a_n z^n$ сходится при $z = z_0$, то он абсолютно сойдется и при всех $z$, что $|z| < |z_0|$.
+\end{theorem}
+\begin{proof}
+	$\sum_{n=0}^\infty a_n z_0^n$ сходится, значит $a_n z_0^n$ сходятся и ограниченны, откуда
+	\begin{gather*}
+		|a_n z_0^n| \le M
+		\Ra |a_n z^n| = |a_n z_0^n| \cdot \left| \frac{z}{z_0} \right|^n \le M \left| \frac{z}{z_0} \right|^n
+	\end{gather*}
+	Но ряд $\sum_{n=0}^\infty M \left| \frac{z}{z_0} \right|^n$ сходится, так как это геометрическая прогрессия с основанием, меньшим 1.
+	Отсюда $\sum_{n=0}^\infty |a_n z^n|$ сходится, а $\sum_{n=0}^\infty a_n z^n$ сходится абсолютно.
+\end{proof}
+
+\begin{conseq}
+	Если ряд $\sum_{n=0}^\infty a_n z^n$ расходится при $z = z_0$, то он разойдется и при всех $z$, что $|z| > |z_0|$.
+\end{conseq}
+
+\begin{exmp}
+	Важно строгое равенство:
+	\[ \sum_{n=0}^\infty \frac{z^n}n \]
+	При $z = 1$ расходится, а при $z = -1$ сходится.
+\end{exmp}
+
+\begin{Def}
+	Радиус сходимости степенного ряда "--- такое $R \in [0, \infty]$, что этот ряд сходится при $|z| < R$ и расходится при $|z| > R$.
+\end{Def}
+
+\begin{Def}
+	Круг сходимости "--- открытый круг радиуса $R$.
+\end{Def}
+
+\begin{theorem}
+	\begin{enumerate}
+	\item
+		Радиус сходимости всегда существует.
+
+	\item
+		Если $R$ "--- радиус сходимости и $0 \le r < R$,
+		то в круге $|z| \le r$ ряд равномерно абсолютно сходится (как функциональный ряд от $z$).
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		Рассмотрим ряд $\sum_{n=0}^\infty a_n x^n$, и множество $A$ таких $x \ge 0$, на которых есть сходимость.
+		Оно не пусто, так как там есть ноль.
+		Значит $\sup A \in [0, \infty]$.
+
+		Поймём, что это и будет радиусом сходимости.
+		Пусть $|z| < \sup A$.
+		Тогда есть $x \in A$, что $|z| < |x|$ и $\sum_{n=0}^\infty a_n x^n$ сходится.
+		Отсюда по теореме Абеля $\sum_{n=0}^\infty a_n z^n$ сходится.
+
+		Аналогично, пусть $|z| > \sup A$.
+		Тогда есть $x \in \bar A$, что $|z| > |x|$ и $\sum_{n=0}^\infty a_n x^n$ расходится.
+		Отсюда по следствию $\sum_{n=0}^\infty a_n z^n$ расходится.
+
+	\item
+		Пусть $r < R$.
+		Тогда есть $x \in A$, что $r < x \le R$, значит ряд $\sum_{n=0}^\infty a_n x^n$ сходится,
+		откуда $a_n x^n$ ограниченно.
+
+		Возьмём $z\colon |z| \le r$.
+		\begin{gather*}
+			|a_nz^n| = |a_nx^n| \cdot \left| \frac zx \right|^n \le M \left( \frac zx \right)^n
+		\end{gather*}
+		Мы знаем, что $\sum_{n=0}^\infty M \left( \frac zx \right)^n$ сходится,
+		откуда $\sum_{n=0}^\infty |a_n z^n|$ равномерно сходится по сравнению.
+	\end{enumerate}
+\end{proof}
+
+\begin{exmp}
+	\[ \sum_{n=0}^\infty z^n \]
+	Радиус "--- 1.
+\end{exmp}
+
+\begin{exmp}
+	\[ \sum_{n=0}^\infty \frac{z^n}{n!} \]
+	Радиус "--- $+\infty$ по признаку Даламбера.
+\end{exmp}
+
+\begin{exmp}
+	\[ \sum_{n=0}^\infty n! z^n \]
+	Радиус "--- $0$ по признаку Даламбера.
+\end{exmp}
+
+\begin{theorem}[Абеля]
+	Пусть ряд $\sum_{n=0}^\infty a_n z^n$ сходится при $z = R \ge 0$.
+	Тогда ряд сходится равномерно на $[0, R]$.
+\end{theorem}
+\begin{proof}
+	$x \in [0, R]$
+	\begin{gather*}
+		\sum_{n=0}^\infty a_n x^n
+		= \sum_{n=0}^\infty a_n R^n \left(\frac xR\right)^n
+	\end{gather*}
+	Ряд $\sum_{n=0}^\infty a_n R^n$ равномерно сходится, поскольку от $x$ не зависит,
+	а $\left(\frac xR\right)^n$ равномерно ограниченна единицей и монотонна.
+	По признаку Абеля $\sum_{n=0}^\infty a_n x^n$ равномерно сходится на $[0, R)$.
+\end{proof}
+
+\begin{conseq}
+	Пусть ряд $\sum_{n=0}^\infty a_n z^n$ сходится при $z = R \ge 0$.
+	Тогда $f(x) = \sum_{n=0}^\infty a_n x^n$ непрерывна на $[0, R]$
+	и в частности
+	\[ \lim_{x \ra R-0} \sum_{n=0}^\infty a_n x^n = \sum_{n=0}^\infty a_n R^n \]
+	(непрерывность в $R$)
+\end{conseq}
+\begin{proof}
+	$S_n(x) = \sum_{k=0}^n a_k x^k$ непрерывна, $S_n \rra f$ на $[0, R]$, отсюда $f$ непрерывна на $[0, R]$.
+\end{proof}
+
+\begin{theorem}[Формула Коши-Адамара]
+	\[ R = \frac1{\varlimsup\limits_{n \ra \infty} \sqrt[n]{|a_n|}} \]
+\end{theorem}
+\begin{proof}
+	\[ \rho \lrh \varlimsup\limits_{n \ra \infty} \sqrt[n]{|a_n|} \in [0, \infty] \]
+	\begin{description}
+	\item[$\rho = 0$:]
+		Покажем, что $R = +\infty$ и при всех $z$ ряд сходится.
+		Так как $\sqrt[n]{|a_n|} \ge 0$ и $\rho = 0$, то
+		\[ \lim_{n \ra \infty} \sqrt[n]{|a_n|} = 0 \]
+		И тогда
+		\[ \exists N\colon \forall n > N, \sqrt[n]{|a_n|} < \frac1{2|z|} \Ra |a_n| < \frac1{2^n|z|^n} \Ra |a_nz^n| < \frac1{2^n} \]
+		\begin{Rem}
+			Можно было бы применить признак Коши.
+		\end{Rem}
+
+	\item[$\rho = +\infty$:]
+		Покажем, что $R = 0$ и при всех $z \ne 0$ ряд расходится.
+		\begin{gather*}
+			\varlimsup\limits_{n \ra \infty} \sqrt[n]{|a_n|} = +\infty
+			\Ra \exists \{n_k\}\colon \lim_{n \ra \infty} \sqrt[n_k]{\left|a_{n_k}\right|} = +\infty \Ra \\
+			\Ra \exists N\colon \forall k > N, \sqrt[n_k]{\left|a_{n_k}\right|} > \frac1z \Ra \left|a_{n_k} z^{n_k}\right| > 1
+		\end{gather*}
+		Отсюда $a_n z^n \nra 0$ и ряд расходится.
+
+	\item[$\rho \in (0, \infty)$:]
+		Покажем, что $R = \frac1\rho$.
+		Пусть $|z| < \frac1\rho$.
+		Возьмём $\epsilon > 0$, что $|z| < \frac1{\rho + \epsilon}$.
+		\begin{gather*}
+			\varlimsup\limits_{n \ra \infty} \sqrt[n]{|a_n|} = \rho
+			\Ra \lim_{n \ra \infty} \sup_{k \ge n} \sqrt[k]{|a_k|} = \rho \Ra \\
+			\Ra \exists N\colon \forall n > N, \sup_{k \ge N} \sqrt[k]{|a_k|} < \rho + \epsilon
+			\Ra \forall k > N, \sqrt[k]{|a_k|} < \rho + \epsilon \Ra \\
+			\Ra \forall k > N, |a_k z^k| < (\rho + \epsilon)^k |z|^k
+		\end{gather*}
+		Значит ряд с некоторого места мажорируется геометрической прогрессией с знаменателем $(\rho+\epsilon)|z| < 1$.
+		Пусть $|z| > \frac1\rho$.
+		Возьмём $\epsilon > 0$, что $|z| > \frac1{\rho - \epsilon}$.
+		\begin{gather*}
+			\varlimsup\limits_{n \ra \infty} \sqrt[n]{|a_n|} = \rho
+			\Ra \exists \{n_k\}\colon \lim_{n \ra \infty} \sqrt[n_k]{\left|a_{n_k}\right|} = \rho \Ra \\
+			\Ra \exists N\colon \forall k > N, \sqrt[n_k]{\left|a_{n_k}\right|} > \rho - \epsilon
+			\Ra \left|a_{n_k}\right| > (\rho - \epsilon)^{n_k} \Ra \\
+			\Ra \left|a_{n_k} z^{n_k}\right| > ((\rho - \epsilon)|z|)^{n_k} > 1
+		\end{gather*}
+	\end{description}
+\end{proof}

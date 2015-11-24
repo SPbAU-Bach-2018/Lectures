@@ -1,0 +1,246 @@
+\begin{conseq}
+	$f_n\colon E \ra \R$, $f_n$ равномерно сходятся на $E$, $a$ "--- предельная точка $E$ и предел $\lim_{x \ra a} f_n(x)$ существует.
+	Тогда
+	\[ \lim_{n \ra \infty} \lim_{x \ra a} f_n(x) = \lim_{x \ra a} \lim_{n \ra \infty} f_n(x) \]
+\end{conseq}
+\begin{proof}
+	Переопределим:
+	\[ f_n(a) \coloneqq \lim_{x \ra a} f_n(x) \]
+	Такая функция уже непрерывна в $a$.
+	По предыдущей теоремы их равномерный предел $f$ также непрерывен в $a$.
+	\[
+		\lim_{x \ra a} \lim_{n \ra \infty} f_n(x)
+		= \lim_{x \ra a} f(x)
+		= f(a)
+		= \lim_{n \ra \infty} f_n(a)
+		= \lim_{n \ra \infty} \lim_{x \ra a} f_n(x)
+	\]
+\end{proof}
+
+\begin{Def}
+	$K$ "--- компакт. $C(K)$ "--- пространство непрерыных функций на $K$ с нормой
+	\[ \|f\|_{C(K)} = \max_{x \in K} |f(x)| \]
+\end{Def}
+\begin{theorem}
+	$C(K)$ "--- полное нормированное пространство.
+\end{theorem}
+\begin{proof}
+	$\|\phantom{f}\|_{C(K)}$ "--- норма:
+	\begin{gather*}
+		\| f + g \| \le \| f \| + \| g \| \\
+		\| \alpha f \| = |\alpha| \| f \| \\
+		\| f \| \ge 0 \quad \| f \| = 0 \Lra f \equiv 0
+	\end{gather*}
+	Проверим полноту.
+	Пусть $f_k$ фундаментальна.
+	Это по определению:
+	\[ \forall \epsilon > 0, \exists N\colon \forall n,m > N, \| f_n - f_m \| < \epsilon \]
+	Но так как $\forall x, \| f_n - f_m \| \ge |f_n(x) - f_n(x)|$, таким образом $\{f_n(x)\}$ фундаментальна в $\R$, а значит есть предел $f(x)$.
+	Покажем, что $\| f_n - f \| \ra 0$:
+	\begin{gather*}
+		\forall \epsilon > 0, \exists N\colon \forall n,m > N, \forall x \in K, |f_n(x) - f_m(x)| < \epsilon \xLongrightarrow{m \ra \infty} \\
+		\Ra \forall \epsilon > 0, \exists N\colon \forall n > N, \forall x \in K, |f_n(x) - f(x)| \le \epsilon
+		\Ra \| f_n - f \| = \max |f_n(x) - f(x)| \le \epsilon
+	\end{gather*}
+	Получили
+	\[ \forall \epsilon > 0, \exists N\colon \forall n > N, \| f_n - f \| \le \epsilon \]
+	Это определение предела для $f_n$ в $C(K)$.
+	Теперь, раз мы знаем, что $f_n \rra E$, то мы знаем, что $f$ непрерывна и лежит в $C(K)$.
+\end{proof}
+
+\begin{Def}
+	Ряд $\sum_{n=1}^\infty u_n(x)$ сходится поточечно/равномерно, если частичные суммы
+	\[ S_n(x) = \sum_{k=1}^n u_k(x) \]
+	сходятся поточечно/равномерно.
+\end{Def}
+
+\begin{Def}
+	Если ряд $\sum_{n=1}^\infty u_n(x)$ сходится поточечно, то остатком (хвостом) называют
+	\[ r_n(x) = \sum_{k=n+1}^\infty u_n(x) \]
+\end{Def}
+
+\begin{theorem}
+	Ряд $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$ тогда и только тогда, когда его остаток стремится к нулю на $E$.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		S(x) = \sum_{n=1}^\infty u_n(x) \quad S_n(x) = \sum_{k=1}^n u_k(x) \\
+		S(x) = S_n(x) + r_n(x)
+	\end{gather*}
+	Отсюда ряд равномерно сходится тогда и только тогда, когда $S_n \rra S$, что равносильно $r_n = S - S_n \rra 0$.
+\end{proof}
+
+\begin{conseq}
+	Если $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$, то $u_n \\ra 0$.
+\end{conseq}
+\begin{proof}
+	\[ u_n = r_{n+1} - r_n \rra 0 - 0 = 0 \]
+\end{proof}
+
+\begin{theorem}[Критерий Коши для равномерной сходимости]
+	$\sum_{n=1}^\infty u_n(x)$ равномерно сходится на $E$ тогда и только тогда, когда
+	\[ \forall \epsilon > 0, \exists N\colon \forall m, n > 0, \forall x \in E, \left| \sum_{k=n}^m u_k(x) \right| < \epsilon \]
+\end{theorem}
+\begin{proof}
+	Применим критерий Коши для равномерной сходимости частичных сумм
+	\[ S_m(x) - S_n(x) = \sum_{k=n+1}^m u_k(x) \]
+\end{proof}
+
+\begin{Rem}
+	Если $x_n \in E$, и $u_n(x_n) \nra 0$, то ряд не сойдётся равномерно:
+	\[ u_n(x) \nra 0 \Ra \sup_{x \in E} |u_n(x)| \nra 0 \Ra u_n \not\rra 0 \]
+	Но из того, что $\sum_{n=1}^\infty u_n(x_n)$ расходится, ничего не следует.
+\end{Rem}
+\begin{exmp}
+	$u_n\colon [0, 1] \ra \R$:
+	\begin{gather*}
+		u_n = \begin{cases} \frac1n & x \in \left(\frac1{n-1}, \frac1n\right] \\ 0 & \end{cases} \\
+		u_n\left(\frac1n\right) = \frac1n \Ra \sum_{n=1}^\infty u_n\left(\frac1n\right) \text{расходится} \\
+		\sum_{n=1}^\infty u_n(x) \text{сходится} \La |r_n(x)| \le \frac1n \ra 0
+	\end{gather*}
+\end{exmp}
+
+\begin{theorem}[Признак сравнения]
+	$\forall x \in E, |u_n(x)| \le v_n(x)$.
+	Если ряд $\sum_{n=1}^\infty v_n(x)$ равномерно сходится, то сходится и $\sum_{n=1}^\infty u_n(x)$.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\text{$\sum v_n(x)$ равномерно сходится}
+		\Ra \forall \epsilon > 0, \exists N\colon \forall m,n > N, \forall x \in E, \left| \sum_{k=n}^m v_n(x) \right| < \epsilon \\
+		\left| \sum_{k=n}^m u_n(x) \right| \le \sum_{k=n}^m |u_n(x)| \le \sum_{k=n}^m v_n(x) = \left| \sum_{k=n}^m v_n(x) \right|
+	\end{gather*}
+	Значит $\sum u_n(x)$ равномерно сходится на $E$.
+\end{proof}
+
+\begin{conseq}[Признак Вейерштрасса]
+	$\forall x \in E, |u_n(x)| \le c_n$, $c_n$ сходится.
+	Если $\sum_{n=1}^\infty c_n$ сходится, то сходится и $\sum_{n=1}^\infty u_n(x)$.
+\end{conseq}
+\begin{proof}
+	$v_n(x) = c_n$. Для численных рядов поточечная и равномерная сходимость "--- одно и то же, так как от $x$ ничего не зависит.
+\end{proof}
+
+\begin{conseq}
+	Если $\sum_{n=1}^\infty |u_n(x)|$ сходтися равномерно на $E$, то $\sum_{n=1}^\infty u_n(x)$ тоже сходится равномерно.
+\end{conseq}
+\begin{proof}
+	$v_n(x) = |u_n(x)|$.
+\end{proof}
+
+\begin{theorem}[Признак Дирихле]
+	Если \nopagebreak[3]
+	\begin{enumerate}
+	\item
+		$\exists M\colon \forall n, \forall x \in E, \left| \sum_{k=1}^n a_k(x) \right| \le M$ (частичные суммы ограниченны)
+
+	\item
+		Для каждого $x$ функция $b_n(x)$ монотонна.
+
+	\item
+		$b_n \rra 0$ на $E$.
+	\end{enumerate}
+	Тогда $\sum_{n=1}^\infty a_n(x) b_n(x)$ равномерно сходится на $E$.
+\end{theorem}
+\begin{proof}
+	Преобразуем по Абелю:
+	\begin{gather*}
+		A_n(x) = \sum_{k=1}^n a_n(x) \\
+		S_n(x) = \sum_{k=1}^n a_k(x) b_k(x) = A_n(x) b_n(x) + \sum_{k=1}^{n-1} A_n(x) \left( b_k(x) - b_{k+1}(x) \right)
+	\end{gather*}
+	Первое слагаемое "--- произведение раномерно ограниченной на равномерно стремящуюся к $0$, значит равномерно сходится к $0$.
+	Второе слагаемое "--- возьмём $v_n(x) = M |b_k(x) - b_{k+1}(x)|$ и покажем, что $\sum v_n$ равномерно сходится.
+	\begin{gather*}
+		\sum_{k=1}^n v_k(x) = M \sum_{k=1}^n \underbrace{|b_k(x) - b_{k+1}(x)|}_{\text{для каждого $x$ одного знака}}
+		= M \left| \sum_{k=1}^n (b_k(x) - b_{k+1}(x)) \right| = M |b_1(x) - \underbrace{b_{n+1}(x)}_{\rra0}| \rra M |b_k(x)|
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Признак Абеля]
+	Если \nopagebreak[3]
+	\begin{enumerate}
+	\item
+		$\sum_{n=1}^\infty a_n(x)$ равномерно сходится на $E$.
+
+	\item
+		Для каждого $x$ функция $b_n(x)$ монотонна.
+
+	\item
+		$b_n$ равномерно ограниченна.
+	\end{enumerate}
+	Тогда $\sum_{n=1}^\infty a_n(x) b_n(x)$ равномерно сходится на $E$.
+\end{theorem}
+\begin{Exercise}
+	Доказать аналогично численному признаку Абеля.
+\end{Exercise}
+
+\begin{theorem}[Признак Лейбница]
+	$b_n(x) \ge 0$, $b_n \rra 0$, $b_n(x)$ убывают для каждого $x$.
+	Тогда $\sum_{n=1}^\infty (-1)^n b_n(x)$ равномерно сходится.
+\end{theorem}
+\begin{proof}
+	Возьмём $a_n(x) = (-1)^n$ и признак Дирихле.
+\end{proof}
+
+\section[Св-ва равномерно сход-ся посл-тей и рядов]{Свойства равномерно сходящихся последовательностей и рядов}
+
+\begin{theorem}
+	$u_n\colon E \ra \R$, $u_n$ непрерывно в $a \in E$, ряд $\sum_{n=1}^\infty u_n(x)$ равномерно сходится.
+	Тогда $S(x) = \sum_{n=1}^\infty u_n(x)$ непрерывна в $a$.
+\end{theorem}
+\begin{proof}
+	$S_n(x) = \sum_{k=1}^n u_k(x)$ непрерывна в $a$.
+	Отсюда по аналогичной теореме про последовательности $S$ непрерывна в $a$.
+\end{proof}
+
+\begin{theorem}
+	$f_n \in C[a,b]$, $c \in [a,b]$, $f_n \rra f$ на $[a, b]$.
+	Тогда
+	\[ \lim_{n \ra \infty} \int\limits_c^x f_n(t) \d t = \int\limits_c^x f(t) \d t \]
+	Более того,
+	\[ \inf\limits_c^x f_n(t) \d t \rra \int\limits_c^x f(t) \d t \]
+\end{theorem}
+\begin{proof}
+	Мы знаем, что $f$ непрерывна, значит её интеграл корректен.
+	\begin{gather*}
+		F_n(x) \lra \int\limits_c^x f_n(t) \d t \quad F(x) \lra \int\limits_c^x f(t) \d t \\
+		\left| F_n(x) - F(x) \right|
+		= \left| \int\limits_c^x (f_n(t) - f(t)) \d t \right|
+		\le \int\limits_c^x |f_n(t) - f(t)| \d t \le \\
+		\le |x - c| \max_{t \in [c,x]} |f_n(t) - f(t)|
+		\le (b - a) \max_{t \in [a,b]} \underbrace{|f_n(t) - f(t)|}_{\ra 0} \\
+		\Ra |F_n - F| \rra 0
+		\Ra F_n \rra F
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$u_n \in C[a,b]$, $c \in [a, b]$, $\sum_{n=1}^\infty u_n(x)$ равномерно сходится на $[a,b]$.
+	Тогда
+	\[ \int\limits_c^x \sum_{n=1}^\infty u_n(t) \d t = \sum_{n=1}^\infty \int\limits_c^x u_n(t) \d t \]
+\end{conseq}
+\begin{proof}
+	$f_n(t) = \sum_{k=1}^n u_n(t)$:
+	\begin{gather*}
+		\lim_{n \ra \infty} \int\limits_c^x f_n(t) \d t
+		= \int\limits_c^x \lim_{n \ra \infty} f_n(t) \d t
+		= \int\limits_c^x \sum_{n=1}^\infty u_n(t) \d t \\
+		\lim_{n \ra \infty} \int\limits_c^x \sum_{k=1}^n u_n(t) \d t
+		= \lim_{n \ra \infty} \sum_{k=1}^n \int\limits_c^x u_n(t) \d t
+		= \sum_{k=1}^\infty \int\limits_c^x u_n(t) \d t
+	\end{gather*}
+\end{proof}
+
+\begin{exmp}
+	Важна равномерная непрерывность.
+	\begin{gather*}
+		f_n\colon [0,1] \ra \R \quad f_n(x) = nxe^{-nx^2} \\
+		\forall x \in [0, 1], \lim_{n \ra \infty} f_n(x) = 0 \\
+		\int\limits_0^1 f_n(t) \d t = \int\limits_0^1 nte^{-nt^2} \d t = -\frac{e^{-nt^2}}2\biggr|_{t=0}^1 = \frac{1-e^{-n}}2 \ra \frac12 \\
+		\lim_{n \ra \infty} \int\limits_0^1 f_n(t) \d t
+		= \frac12
+		\ne 0
+		= \int\limits_0^1 0 \d t
+		= \int\limits_0^1 \lim_{n \ra \infty} f_n(t) \d t
+	\end{gather*}
+\end{exmp}
