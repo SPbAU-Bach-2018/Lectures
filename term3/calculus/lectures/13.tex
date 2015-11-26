@@ -1,0 +1,269 @@
+\section{Аналитические функции}
+
+\begin{Def}
+	$f$ аналитическая в точке $x_0$, если в некоторой окрестности $x_0$
+	\[ f(x) = \sum_{n=0}^\infty a_n(x - x_0)^n \]
+\end{Def}
+
+\begin{Rem}
+	Сумма, линейная комбинация и произведение аналитических функций "--- аналитические.
+\end{Rem}
+
+\begin{lemma}
+	Следующие ряды имеют один и тот же радиус сходимости:
+	\[ \sum_{n=0}^\infty a_n x^n \quad \sum_{n=1}^\infty na_nx^{n-1} \quad \sum_{n=0}^\infty a_n \frac{x^{n+1}}{n+1} \]
+\end{lemma}
+\begin{proof}
+	Как мы уже знаем,
+	\[ R = \frac1{\varlimsup \sqrt[n]{|a_n|}} \quad \varlimsup \sqrt[n]{|a_n|} = \frac1R \]
+	Проверим, что верхний предел у трёх рядов один и тот же:
+	\begin{gather*}
+		\varlimsup \sqrt[n]{n|a_n|} = \lim \sqrt[n]n \cdot \varlimsup \sqrt[n]{|a_n|} = \frac1R \\
+		\varlimsup \sqrt[n]{\frac{|a_n|}{n+1}} = \lim \frac1{\sqrt[n]{n+1}} \cdot \varlimsup \sqrt[n]{|a_n|} = \frac1R
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	$f(x) = \sum_{n=0}^\infty a_n(x-x_0)^n$, $R$ "--- радиус сходимости.
+	Тогда
+	\begin{enumerate}
+	\item
+		$f$ бесконечно дифференцируема на $(x_0 - R, x_0 + R)$.
+
+	\item
+		Для $x \in (x_0 - R, x_0 + R)$
+		\[
+			\int\limits_{x_0}^x f(t) \d t
+			= \sum_{n=0}^\infty \int\limits_{x_0}^x a_n(t-x_0)^n \d t
+			= \sum_{n=0}^\infty a_n \frac{(x-x_0)^{n+1}}{(n+1)}
+		\]
+
+	\item
+		Радиусы сходимости рядов из пунктов 1 и 2 равен $R$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+	\item
+		\[ y \in (x_0 - R, x_0 + R) \Ra \exists \delta > 0\colon [y-\delta, y+\delta] \subset (x_0 - R, x_0 + R) \]
+		Значит на $[y-\delta, y+\delta]$ ряд сходится.
+		Более того, ряд $\sum_{n=1}^\infty a_n n (x-x_0)^{n-1}$ также сходится на $(x_0 - R, x_0 + R)$,
+		а на $[y-\delta, y+\delta]$ сходится равномерно.
+		Отсюда по теореме о равномерной сходимости производных
+		\[ f'(x) = \sum_{n=1}^\infty a_n n (x-x_0)^{n-1} \]
+		на $[y-\delta, y+\delta]$, в том числе в точке $y$.
+
+	\item
+		\[ y \in (x_0 - R, x_0 + R) \Ra [x_0, y] \subset (x_0 - R, x_0 + R) \]
+		Значит на $[x_0, y]$ ряд сходится равномерно, и
+		\[
+			\int\limits_{x_0}^y f(x) \d x
+			= \sum_{n=0}^\infty \int\limits_{x_0}^y a_n(x-x_0)^n \d x
+			= \sum_{n=0}^\infty a_n \frac{(x-x_0)^{n+1}}{n+1}
+		\]
+
+	\item
+		Следует из леммы.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	$f(x) = \sum_{n=0}^\infty a_n(x-x_0)^n$.
+	Тогда
+	\[ a_n = \frac{f^{(n)}(x_0)}{n!} \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		f^{(n)}(x) = \sum_{n=0}^\infty a_n \left( (x-x_0)^n \right)^{(n)} \\
+		f^{(n)}(x_0) = \sum_{n=0}^\infty a_n \left( (x-x_0)^n \right)^{(n)} \biggr|_{x=x_0} = a_k k!
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	Ряд аналитичен в $x_0$ тогда и только тогда, когда в некоторой окрестности $x_0$ он есть сумма своего ряда Тейлора, взятого для точки $x_0$.
+\end{conseq}
+
+\begin{exmp}
+	Наличие ряда Тейлора не гарантирует аналитичность.
+	\begin{gather*}
+		f(x) = \begin{cases}
+			e^{-\frac1{x^2}} & x > 0 \\
+			0 & x \le 0
+		\end{cases}
+	\end{gather*}
+	У этой функции производные для $x>0$ выглядят как $R(x)e^{-\frac1{x^2}}$, где $R$ "--- некоторая рациональная функция.
+	Далее,
+	\[
+		f^{(n)}(0) = \lim_{x \ra 0+} \frac{R(x)e^{-\frac1{x^2}} - 0}{x - 0} = 0
+	\]
+	так как экспонента убывает быстрее $R$.
+	Тогда ряд Тейлора в нуле состоит из нулей.
+	Но функция в любом $x > 0$ совсем не ноль.
+\end{exmp}
+
+\begin{Rem}
+	Бесконечноая дифференцируемость ещё не даёт аналитичности.
+\end{Rem}
+
+Разложим в ряды элементарные функции.
+Ровно год назад было:
+\begin{align*}
+	e^x &= \sum_{n=0}^\infty \frac{x^n}{n!} \\
+	\sin x &= \sum_{n=0}^\infty \frac{(-1)^n x^{2n+1}}{(2n+1)!} \\
+	\cos x &= \sum_{n=0}^\infty \frac{(-1)^n x^{2n}}{(2n)!}
+\end{align*}
+Из радиусы сходимости бесконечны (проверить сходимость для любого $x$ можно по Даламберу).
+А значит эти суммы верны в $\C$:
+\begin{Def}
+	$z \in C$.
+	\[
+		e^z \eqDef \sum_{n=0}^\infty \frac{z^n}{n!} \quad
+		\sin z \eqDef \sum_{n=0}^\infty \frac{(-1)^n z^{2n+1}}{(2n+1)!} \quad
+		\cos z \eqDef \sum_{n=0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}
+	\]
+\end{Def}
+Это, кстати, первое честное определение синуса.
+
+Свойства:
+\begin{enumerate}
+\item
+	\[ e^{iz} = \cos z + i\sin z \]
+	\begin{proof}
+		\[
+			\sum_{n=0}^\infty \frac{(iz)^n}{n!}
+			= \sum_{n=0}^\infty \frac{(iz)^{2n}}{(2n)!} + \sum_{n=0}^\infty \frac{(iz)^{2n}}{(2n)!}
+			= \sum_{n=0}^\infty \frac{(-1)^n z^{2n}}{(2n)!} + i \sum_{n=0}^\infty \frac{(-1)^n z^{2n+1}}{(2n+1)!}
+		\]
+	\end{proof}
+
+\item
+	Формула Эйлера:
+	\[ \forall \phi \in \R, e^{i\phi} = \cos \phi + i \sin \phi \]
+
+\item
+	\[ \cos z = \frac{e^{iz} + e^{-iz}}2 \quad \sin z = \frac{e^{iz} - e^{-iz}}{2i} \]
+
+\item
+	\[ e^{z+w} = e^z e^w \]
+	Отсюда следует вообще вся тригинометрия.
+	\begin{proof}
+		\begin{gather*}
+			e^z e^w
+			= \sum_{n=0}^\infty \frac{z^n}{n!} \sum_{k=0}^\infty \frac{w^k}{k!}
+			= \sum_{n=0}^\infty \sum_{k=0}^n \frac{z^k}{k!} \cdot \frac{w^{n-k}}{(n-k)!}
+			= \sum_{n=0}^\infty \sum_{k=0}^n \frac{\Choose{n}{k} z^k w^{n-k}}{n!}
+			= \sum_{n=0}^\infty \frac{(z+w)^n}{n!}
+		\end{gather*}
+	\end{proof}
+\end{enumerate}
+
+Логарифм:
+\[
+	\ln (1+x) = \sum_{n=1}^\infty \frac{(-1)^{n-1} x^n}n
+\]
+Сходится при $|x| < 1$.
+\begin{proof}
+	\[ \frac1{1+x} = \sum_{n=0}^\infty (-1)^nx^n \]
+	Проинтегрируем почленно:
+	\begin{gather*}
+		\ln (1+x)
+		= \ln(1+t) \biggr|_{t=0}^x
+		= \int\limits_0^x \frac{\d t}{t + 1}
+		= \sum_{n=0}^\infty (-1)^n \int\limits_0^x t^n \d t = \\
+		= \sum_{n=0}^\infty (-1)^n \frac{x^{n+1}}{n+1}
+		= \sum_{n=1}^\infty \frac{(-1)^{n-1} x^n}n
+	\end{gather*}
+\end{proof}
+
+Арктангенс:
+\[
+	\arctg x = \sum_{n=0}^\infty \frac{(-1)^n x^{2n+1}}{2n+1}
+\]
+Сходимость при $|x| < 1$.
+\begin{proof}
+	\[ \frac1{1+x^2} = \sum_{n=0}^\infty (-1)^nx^{2n} \]
+	Проинтегрируем почленно:
+	\[
+		\arctg x
+		= \int\limits_0^x \frac{\d t}{1 + t^2}
+		= \sum_{n=0}^\infty (-1)^n \int\limits_0^x t^{2n} \d t = \\
+		= \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{2n+1}
+	\]
+\end{proof}
+
+Степень:
+\[
+	(1+x)^p = 1 + \sum_{n=1}^\infty \frac{p(p-1)(p-2)\dots(p-n+1)}{n!}x^n
+\]
+Сходимость при $|x| < 1$.
+\begin{proof}
+	Ряд Тейлора в интегральной форме:
+	\begin{gather*}
+		(1+x)^p
+		= \underbrace{1 + \sum_{k=1}^n \frac{p(p-1)\dots(p-k+1)}{k!}x^k}_{\lrh T_n(x)}
+			+ \frac1{n!}\int\limits_0^x f^{(n+1)}(t) (x-t)^n \d t = \\
+		= T_n(x) + \frac1{n!} \int\limits_0^1 f^{(n+1)}(xs)(x-xs)^n x \d s
+		= T_n(x) + \frac{x^{n+1}}{n!} \int\limits_0^1 f^{(n+1)}(xs)(1-s)^n \d s
+		= \cdots \\
+		f^{n+1} (t) = p(p-1)\dots(p-n)(1+t)^{p-n-1} \\
+		\cdots
+		= T_n(x) + \frac{x^{n+1}}{n!} \int\limits_0^1 p(p-1)\dots(p-n)(1+xs)^{p-n-1} (1-s)^n \d s = \\
+		= T_n(x) + \underbrace{\frac{p(p-1)(p-2)\dots(p-n)}{n!}x^{n+1} \int\limits_0^1 (1+xs)^{p-1} \left(\frac{1-s}{1+xs}\right)^n \d s}_{\lrh R_n(x)}
+	\end{gather*}
+	Если $p \ge 1$, то $\int \le 2^{p-1}$, а при $p \le 1$ имеет место $\left(\frac1{1-|x|}\right)^{1-p}$.
+	Это следует из того, что вторая скобка не больше 1, тогда оцениваем первую сверху (при $p \ge 1$) или снизу (при $p \le 1$).
+	\[
+		|R_n(x)| \le \frac{p(p-1)(p-2)\dots(p-n)}{n!}x^{n+1} \max \left\{2^{p-1}, \left(\frac1{1-|x|}\right)^{1-p}\right\}
+	\]
+	Хотим
+	\[ \frac{p(p-1)(p-2)\dots(p-n)}{n!}x^{n+1} \ra 0 \]
+	Для этого скажем, что по признаку Даламбера сходится ряд
+	\begin{gather*}
+		\sum_{n=0}^\infty \frac{p(p-1)(p-2)\dots(p-n)}{n!}x^{n+1} \\
+		\frac{a_{n+1}}{a_n}
+		= \frac{p(p-1)\dots(p-n)(p-n-1)x^{n+2}}{(n+1)!} \frac{n!}{p(p-1)\dots(p-n)x^{n+1}}
+		= \frac{p-n-1}{n+1} x \ra -x \\
+		\left|\frac{a_{n+1}}{a_n}\right| \ra |x| < 1
+	\end{gather*}
+	Отсюда элеметны ряда сходятся к нулю, откуда оценка хвоста правильная.
+\end{proof}
+
+Арксинус:
+\[
+	\arcsin x = \sum_{n=0}^\infty \frac{(2n)!}{4^n(n!)^2} \frac{x^{2n+1}}{2n+1}
+\]
+Сходимость при $|x| < 1$.
+\begin{proof}
+	$p = \frac12$, $x = -x^2$:
+	\begin{gather*}
+		\frac1{\sqrt{1-x^2}}
+		= 1 + \sum_{n=1}^\infty \frac{\left(-\frac12\right)\left(-\frac12-1\right)\dots\left(-\frac12-n+1\right)}{n!} x^{2n} (-1)^n = \\
+		= 1 + \sum_{n=1}^\infty \frac{1 \cdot 3 \cdot 5 \cdot \dots \cdot (2n-1)}{2^n n!}{x^2n}
+		= 1 + \sum \frac{(2n)!}{4^n (n!)^2} x^{2n}
+	\end{gather*}
+\end{proof}
+
+\chapter{Поверхностные интегралы}
+
+\section{Определение поверхности}
+
+\begin{Def}
+	$G \subset \R^2$ "--- измеримая область (открытое линейно связное ограниченное множество),
+	$\vec r\colon \cl G \ra \R^3$ непрерывна.
+	Тогда поверхностью называется образ $S = \vec r(\cl G)$, а $\vec r$ "--- её параметризация.
+\end{Def}
+
+\begin{Def}
+	$\vec r\colon \cl G \ra \R^3$ непрерывно дифференцируема, $S = \vec r(\cl G)$.
+	Если в точке $(u_0, g_0) \in G$ вектора $\vec r_u'(u_0, v_0)$ и $\vec r_v'(u_0, v_0)$ коллинеарны, то
+	$(u_0, v_0)$ "--- особая точка.
+\end{Def}
+
+\begin{Def}
+	$S$ "--- гладкая поверхность, если её можно задать непрерывно дифференцируемой параметризацией без особых точек.
+\end{Def}
+
+\begin{Def}
+	$S$ "--- простая гладкая поверхность, параметризация ещё и биективна.
+\end{Def}
+
