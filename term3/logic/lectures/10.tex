@@ -24,10 +24,13 @@
 	Также аналогичным образом вводим диаграммы, но в этот раз в диаграмму включаем только корни многочленов (потому что никаких <<промежуточных значений>> нет),
 	состояния клеток "--- <<равно нулю>> и <<не равно нулю>>.
 	Корни теперь можно записывать в любом порядке.
-	\TODO
+	Более того, мы для любого многочлена знаем, сколько корней нужно добавить: ровно его степень минус количество уже существующих.
 \end{proof}
 
 \section{Гильбертовское исчисление высказываний и предикатов}
+Смысл происходящего: сейчас хотим чисто синтаксическими преобразованиями научиться выводить все истинные формулы.
+Сначала "--- предикатные, но это при желании расширается.
+
 \begin{Def}
 	Предикатная формула называется \textsl{тавтологией}, если она истинна в любой интерпретации.
 \end{Def}
@@ -100,7 +103,7 @@
 	тоже является тавтологий (опять же, рассмотрим таблицу истинности), что и требовалось.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{aToA}
 	$\mcA \to \mcA$ выводима
 \end{lemma}
 \begin{proof}
@@ -114,4 +117,115 @@
 	Применяем modus ponens еще раз:
 	\[ \mcA \to \mcA \]
 \end{proof}
-\TODO
+
+\subsection{Натуральный вывод}
+Пусть $\Gamma$ "--- список пропозициональных формул.
+\begin{Def}
+	Говорим, что $\Gamma \vdash \phi$ (\textsl{$\phi$ выводима из $\Gamma$}), если
+	есть конечная последовательность формул $C_1, \dots, C_k$ такая, что $C_k=\phi$ и каждое $C_i$ получено одним из способов:
+	\begin{itemize}
+		\item $C_i \in \Gamma$
+		\item $C_i$ получается из аксиом произвольной подстановкой
+		\item $C_i$ получается по modus ponens из каких-то предыдущих $C_j, C_k$ ($j, k < i$).
+	\end{itemize}
+\end{Def}
+
+\begin{lemma}[о дедукции]
+	$\Gamma \vdash (A \to B) \iff \Gamma, A \vdash B$
+\end{lemma}
+\begin{proof}
+	\begin{description}
+		\item[$\Ra$:]
+			Пусть у нас есть $\Gamma, A$.
+			Выведем $(A \to B)$, используя только $\Gamma$ (так можно сделать "--- это левая часть леммы).
+			Теперь у нас есть $A$ и $A \to B$, применим modus ponens, получим $B$.
+		\item[$\La$:]
+			Рассмотрим вывод $B$ и $\Gamma, A$ "--- это какие-то $C_1$, $C_2$, \dots, $C_k=B$.
+			Рассмотрим следующую последовательность:
+			\[ (A \to C_1); (A \to C_2); \dots; (A \to C_k) = (A \to B) \]
+			Это очень похоже на вывод формулы $A \to B$, в частности, последний элемент является тем, чем надо.
+			Давайте разберёмся с остальными индукцией по $k$, нам надо для каждого элемента $A \to C_i$ показать, что надо добавить
+			перед ним, чтобы получить корректный вывод в $\Gamma$.
+			\begin{itemize}
+				\item Если $C_i = A$, то формула $A \to A$ просто является тавтологией, её мы выводить умеем по лемме \ref{aToA}
+				\item Если $C_i \in \Gamma$, то мы можем вывести $A \to C_i$:
+					\[
+					\begin{array}{cc}
+						C_i \in \Gamma  & \\
+						C_i \to (A \to (C_i)) & \text{аксиома 1} \\
+						A \to C_i & \text{modus ponens} \\
+					\end{array}
+					\]
+				\item Если $C_i$ "--- аксиома, то можно поступить аналогично предыдущему пункту
+				\item
+					Если $C_i$ "--- modus ponens от $C_x$ и $C_y$ ($x, y < i$).
+					Переобозначим: $C_x = E \to C_i$, $C_y = E$ (вид именно такой, так как мы применили modus ponens).
+					И теперь выведем:
+					\[
+					\begin{array}{cc}
+						A \to (E \to C_i) & \text{выведено раньше} \\
+						A \to E & \text{выведено раньше} \\
+						(A \to (E \to C_i)) \to ((A \to E) \to (A \to C_i)) & \text{аксиома 2 с подстановкой} \\
+						(A \to E) \to (A \to C_i) & \text{modus ponens} \\
+						A \to C_i & \text{modus ponens} \\
+					\end{array}
+					\]
+			\end{itemize}
+	\end{description}
+\end{proof}
+
+\TODO здесь должно быть какое-то переписывание аксиом через лемму о дедукции
+
+\begin{lemma}[снятие двойного отрицания]
+	$\vdash \lnot\lnot \mcA \to \mcA$ (следует из <<ничего>>, то есть из аксиом)
+\end{lemma}
+\begin{proof}
+	Будем преобразовывать:
+	\begin{gather*}
+		\vdash \lnot\lnot \mcA \to \mcA
+		\iff
+		\lnot\lnot \mcA \vdash \mcA \\
+		\Updownarrow \text{~добавили аксиому 11 с подстановкой}
+		\lnot\lnot \mcA, \mcA \lor \lnot\mcA \vdash \mcA
+		\iff
+		\lnot\lnot \mcA \vdash (\mcA \lor \lnot\mcA) \to \mcA
+		\iff
+		\lnot\lnot \mcA \vdash (\mcA \to \mcA) \land (\lnot\mcA \to \mcA)
+		\iff
+		\begin{cases}
+			\lnot\lnot \mcA, \mcA \vdash \mcA & \text{очевидно} \\
+			\lnot\lnot \mcA, \lnot\mcA \vdash \mcA & \text{верно, так как слева есть и $\lnot\mcA$, и его отрицание, т.е. выводится что угодно} \\
+		\end{cases}
+	\end{gather*}
+\end{proof}
+
+\begin{exmp}
+	Докажем $(A \to B) \to (\lnot B \to \lnot A)$.
+	Перепишем: $(A \to B) \vdash (\lnot B \to \lnot A) \iff A \to B, \lnot B \vdash \lnot A$.
+	Доказательство от противного: пусть $\lnot A$ не выводимо, тогда выводимо $A$ (\TODO почему?).
+	Тогда по modus ponens можно вывести $B$, то есть выводимы и $B$, и $\lnot B$, противоречие.
+\end{exmp}
+\begin{Rem}
+	Что-то мы тут бодро разбрасываемся логикой, не заменили ли мы случайно формальные синтаксические преобразования логикой?
+\end{Rem}
+
+\begin{Def}
+	Список формул $\Gamma$ противоречив, если $\Gamma \vdash B, \lnot B$ для всех $B$.
+\end{Def}
+
+\begin{Def}
+	Список формул $\Gamma$ совместен, если есть значения переменных, которые выполнит все формулы из $\Gamma$.
+\end{Def}
+
+\begin{theorem}[теорема о корректности и полноте в сильной форме]\label{correct_full_strong}
+	$\Gamma$ совместно $\iff$ $\Gamma$ непротиворечиво.
+\end{theorem}
+\begin{Rem}
+	Стрелка $\Ra$ очевидна.
+\end{Rem}
+\begin{conseq}
+	Если $\phi$ "--- тавтология, то из пустого списка можно вывести $\phi$.
+\end{conseq}
+\begin{proof}
+	\TODO
+\end{proof}
