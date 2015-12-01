@@ -1,0 +1,34 @@
+﻿\section{Вторая теорема о гомоморфизме}
+$G$ "--- группа, $H \unlhd G, K \le G$\\
+$HK = KH \le G$\\
+$H = H1 = 1H \le HK, \le KH$\\
+
+$H \le HK \le G$\\
+$\forall g \in G, gHg^{-1} \in H$\\
+$\forall g \in HK, gHg^{-1} = H$\\
+$H \unlhd KH$\\
+\begin{theorem}
+$H \unlhd G, K \le G \Ra H \le KH$ и $KH\setminus H \cong K \setminus (K \cap H)$\\
+\end{theorem}
+\begin{proof}
+$\psi \colon K \to KH \setminus H$\\
+$\psi(k) = kH$\\
+$\psi(k_1)\psi(k_2) = k_1Hk_2H = k_1k_2H = \psi(k_1k_2)$\\
+
+Класс смежности в $KH$ по $H$.\\
+$khH = k(hH) = kH$\\
+$khH = \psi(k), \psi$ "--- сюръективный гомоморфизм.\\
+
+$k \in ker \psi$\\
+$\psi(k) = 1_{KH \setminus H} = H$\\
+$kH = H \Ra k \in H$\\
+$k \in K$\\
+$\Ra k \in  K \cap H$\\
+
+$\ker \psi \subset K \cap H$\\
+$K \cap H, \psi(k) = kH = H1 \Ra k \in \ker \psi$\\
+$\Ra k \cap H \subset \ker \psi$\\
+$\ker \psi = K \cap H$\\
+
+$K \setminus K \cap H = K \setminus \ker \psi \cong \psi(K) = KH\setminus H$
+\end{proof}

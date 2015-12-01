@@ -1,0 +1,74 @@
+﻿\section{Третья теорема о гомоморфизме}
+\begin{theorem}
+$\psi_1 \colon G \twoheadrightarrow G_1$ \\
+$\psi_2 \colon G \twoheadrightarrow G_2$ \\
+$\psi_1, \psi_2$ "--- гомоморфизмы\\
+$\ker \psi_1 \subset \ker \psi_2$\\
+$\exists \sigma \colon G_1 \twoheadrightarrow G_2$, такое, что $\sigma \circ \psi_1 = \psi_2$\\
+\end{theorem}
+\begin{proof}
+$b \in G_1, \exists g \colon \psi_1(g) = b$\\
+$\sigma (b) = \psi_2(g)$\\
+
+\begin{enumerate}
+\item Корректность.
+
+Пусть $g, g_1 \colon \psi_1(g) = \psi(g_1) = b$\\
+$\psi_1(g_1^{-1}g) = b^{-1}b = 1_G$\\
+$g_1^{-1}g \in \ker \psi_1 \subset \ker \psi_2$\\
+$\psi_2(g_1^{-1}g) = 1_G \Ra \psi_2(g) = \psi_2(g_1)$\\
+
+$\psi_2(g) = \sigma(\psi_1(g)) = \psi_2(g)$\\
+для всех $g \in G_1$\\
+$\sigma \circ \psi_1 = \psi_2$\\
+$\psi_2$ "--- сюръективный $\Ra \sigma$ "--- сюръективный\\
+
+$\sigma$ "--- гомоморфизм\\
+$b_1 = \psi_1(g_1)$\\
+$b_2 = \psi_1(g_2)$\\
+$b_1b_2 = \psi_1(g_1g_2)$\\
+
+$\sigma(b_1) = \psi_2(g_1), \sigma(b_2) = \psi_2(g_2)$\\
+$\sigma(b_1)\sigma(b_2) = \psi_2(g_1) \psi_2(g_2) = \psi_2(g_1g_2) = \sigma(b1b2)$\\
+\end{enumerate}
+\end{proof}
+\begin{Rem}
+$H\subset K \subset G$\\
+$\{1_{G\setminus H}\subset L \subset G \setminus H$ \\
+$L = K \setminus H$\\
+$L = \{kH\}, k \in K$\\
+$L \to k = \{g \in G \colon gH \in L\}$\\
+\end{Rem}
+
+\begin{theorem}
+$G, H_1 \unlhd G, H_2 \unlhd G$\\
+$H_1 \le H_2$\\
+$G\setminus H_1, H_2 \setminus H_1$\\
+$H_2 \setminus H_1$  "--- нормальная в $G \setminus H_1$\\
+$(G \setminus H_1)\setminus(H_2 \setminus H_1) \cong G \setminus H_2$\\
+\end{theorem}
+\begin{proof}
+$\phi_1 \colon G \to G \setminus H_1$\\
+$\phi_2 \colon G \to G \setminus H_2$\\
+$\ker \phi_1 = H_1$\\
+$\ker \phi_2 = H_2$\\
+$\ker \phi_1 \subset \ker \phi_2$\\
+$\exists \sigma \colon G \setminus H_1 \to G \setminus H_2$(по третей теореме о гомоморфизме)
+$\sigma \circ \phi_1 = \phi_2$\\
+$\sigma(gH_1) = 1_{G \setminus H_2}$\\
+$gH_2 = \sigma(gH_1) = H_2 \Ra g \in H_2$\\
+
+$gH_1 \in \ker \sigma \Ra g \in H_2$\\
+$gH_1 \in H_2 \setminus H_1$\\
+$\ker \sigma \setminus H_2 \setminus H_1$\\
+
+$g \in H_2, gH_1$\\
+$\sigma(gH_1) = \phi_2(g) = gH_2 = H_2 = 1_{G\setminus H_2}$\\
+$gH_1$, где $g \in H_2$, лежит в $\ker \sigma$\\
+$H_2 \setminus H_1 \subset \ker \sigma$\\
+$H_2 \setminus H_1 = \ker \sigma$\\
+
+По первой теореме о гомоморфизме 
+$G \setminus H_2 = \sigma (G \setminus H_1) \cong (G \setminus H_1)\setminus \ker \sigma = (G\setminus H_1)\setminus(H_2 \setminus H_1)$
+
+\end{proof}

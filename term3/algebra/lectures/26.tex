@@ -1,0 +1,49 @@
+﻿\section{Произведение подгрупп}
+$G; A, B \le G$\\
+\begin{theorem}
+$A, B \le G$. Следующие условия равносильны.\\
+    \begin{enumerate}
+    \item $AB \le G$\\
+    \item $AB = BA$
+    $\{ab | a \in  A, b \in B\} = \{b_1a_1 | b_1 \in B, a_1 \in A\}$\\
+    \end{enumerate}
+\end{theorem}
+\begin{Rem}
+$AB = BA$ не влечет, что $A$ и $B$ коммутируют по элементам.
+\end{Rem}
+\begin{proof}
+$2 \Ra 1$\\
+$(AB)(AB) = A(BA)B = A(AB)B = (AA)(BB) = AB$\\
+$AB$ замкнуто относительно умножения\\
+$x \in AB, x = ab, a\in A, b \in B$\\
+$x^{-1} = b^{-1}a^{-1} \in BA = AB$\\
+$\Ra x^{-1} \in AB$\\
+
+$AB$ замкнуто относительно взятия обратных.\\
+$AB \ne 0$\\
+$1 = 11 \in AB$
+$1 \Ra 2$\\
+$BA \subset AB, b \in B, a \in A$\\
+$ba = (a^{-1}b^{-1})^{-1}$\\
+$a^{-1}b^{-1} \in AB \Ra (a^{-1}b^{-1}) \in AB \Ra ba \in AB$\\
+
+$AB \subset BA$\\
+$(BA) \subset AB$\\
+$(BA)^{-1} \subset (AB)^{-1}$\\
+$AB = A^{-1}B^{-1} \subset B^{-1}A^{-1} = BA$\\
+$\Ra AB = BA$\\
+
+$(BA)^{-1} = \{g = (ba)^{-1}|b \in B, a \in A\}$\\
+$(AB)^{-1} = \{g = (ab)^{-1}|a \in A, b \in B\}$\\
+\end{proof}
+\begin{conseq}
+$G$ "--- группа, $A \unlhd G, B \le G \Ra AB \le G$ \\
+\end{conseq}
+\begin{proof}
+$\forall g \in G gA = AG$\\
+$\forall b \in B bA = Ab$\\
+
+$BA = \cup_b bA$\\
+$AB = \cup_b Ab$\\
+$\Ra BA = AB$ по теореме $AB \le G$\\
+\end{proof}

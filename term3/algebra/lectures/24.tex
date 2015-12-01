@@ -1,0 +1,68 @@
+﻿\section{Факторгруппы}
+$G, H \unlhd G$\\
+$X$ "--- множество (левых) смежных классов по $H$.\\
+Определим операцию умножения. 
+$g_1H g_2H = g_1g_2H$
+\begin{theorem}
+Множество $X$ с так введенной операцией является группой. 
+\end{theorem}
+\begin{proof}
+\begin{description}
+\item[Шаг1:]
+Корректность. 
+
+Пусть $g_1H = g_1'H, g_2H = g_2'H$\\
+Нужно проверить, что $g_1g_2H = g_1'g_2'H$\\
+
+$(g_1g_2)^{-1}g_1'g_2' \in H$\\
+$(g_1g_2)^{-1}g_1'g_2' = g_2^{-1}g_1^{-1}g_1'g_2' = \underbrace{g_2^{-1}g_2'}_{\in U} \underbrace{(g_2')^{-1} \underbrace{g_1^{-1}g_1'}_{\in H}g_2'}_{\in H, H \unlhd G} \in H$\\
+\item [Шаг2:]
+Проверим ассоциативность.
+
+Еще одна интерпритация умножения:
+$g_1Hg_2H = g_1(Hg_2)H = g_1(g_2H)H = g_1g_2(HH) = g_1g_2H$
+
+
+Ассоциативность умножения в $X$ следует  из ассоциативности умножения по Минковскому\\
+\item [Шаг 3:]
+Нейтральный элемент. 
+$1_X = H = 1_GH$\\
+$HgH = gHH = gH$\\
+$gHH = H$\\
+\item [Шаг 4:]
+Для любого смежного класса найдется обратный. 
+$(gH)^{-1} = g^{-1}H$\\
+$gHg^{-1}H = gg^{-1}HH = 1H = H$\\
+$g^{-1}HgH = g^{-1}gHH = 1H = H$\\
+\end{description}
+\end{proof}
+\begin{Def}
+Группа, построенная в предыдущей теореме называется факторгруппой $G$ по нормальной подгруппе $H$.
+
+$G \setminus H$\\
+\end{Def}
+
+\begin{theorem}
+$G$ "--- группа, $H \unlhd G$\\
+$\phi \colon G \to G \setminus H$\\
+$\phi(g) = gH$ \\
+
+Тогда $\phi$ гомоморфизм групп и  $\ker \phi = H$\\
+\end{theorem}
+\begin{proof}
+$\phi(g_1)\phi(g_2) = g_1Hg_2H = g_1g_2H = \phi(g_1g_2)$\\
+сюръективность очевидна. 
+
+$h \in H$\\
+$\phi(h) = hH =  H = 1_{G}\setminus H$\\
+$\Ra H \subset \ker \phi$\\
+$h \in \ker \phi$\\
+$hH = \phi(h) = 1_g\setminus H = H$ \\
+$\Ra h1 \in H, h \in H$\\
+$\ker \phi \subset H$\\
+
+\end{proof}
+
+\begin{conseq}
+Нормальные подгруппы "--- это в точности ядра гомоморфизмов.
+\end{conseq}

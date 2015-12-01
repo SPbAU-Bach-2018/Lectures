@@ -1,0 +1,25 @@
+﻿\section{Внешнее прямое произведение}
+$H_1, \cdots, H_n$ "--- группы.\\
+$G = H_1 \times \cdots \times H_n$ (как множество).
+Зададим умножение на $G$.
+$(h_1,\cdots, h_n)(g_1, \cdots, g_n) = (h_1g_1, h_2g_2, \cdots, h_ng_n)$\\
+Упражнение $G$ с такой операцией "--- это группа.
+$1_G = (1_{H_1}, \cdots, 1_{H_n})$\\
+$(h_1, \cdots, h_n)^{-1} = (h_1^{-1}, \cdots, h_n^{-1})$\\
+
+\begin{Def}
+ $G$ с так введенной операцией называется прямым произведением групп $H_1, \cdots, H_n$\\
+ $H_1 \times \cdots \times H_n$\\
+ $\sigma \colon H_i \to G$\\
+ $h_i \to (1, \cdots,  h, \cdots, 1)$\\
+ $\sigma$ "--- инъективный гомоморфизм из $H_i$ в $G$\\
+ $\widetilde{H_i} = \sigma_i(H_i)$
+ $(1, \cdot, H_i, 1, \cdots, 1)$\\
+\end{Def}
+\begin{conseq}
+\begin{enumerate}
+    \item $i \ne j \Ra \widetilde{H_i}, \widetilde{H_j}$ коммутируют поэлементно\\
+    \item $\widetilde{H_i} \unlhd G$\\
+    \item $\widetilde{H_i} \cap (\widetilde{H_1}, \cdots \widetilde{H_{i - 1}} \widetilde{H_{i + 1}} \cdots \widetilde{H_n}) = \{1_G\}$
+\end{enumerate}
+\end{conseq}

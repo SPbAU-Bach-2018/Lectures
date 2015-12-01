@@ -37,3 +37,28 @@ $$T = \sum {T_{k_1, \cdots, k_p}^{l_1, \cdots, l_q}}'{e^{k_1}}' \otimes \cdots \
 $$= \sum_{k,l}T'^{l_1, \cdots, l_q}_{k_1, \cdots, k_p}((\sum_{i_1}B_{i_1}^{k_1}e^{i_1}) \otimes \cdots \otimes (\sum A_{l_q}^{j}e_{j_q}))$$
 
 $$\sum_{i, \cdots, i_p, j,\cdots, j_n} (\sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q})e^{i_1} \otimes \cdots \otimes e_{j_q}$$
+
+
+\subsection{Свертка тензоров}
+$$T_{p}^{q}(V) \to T^{q - 1}_{p - 1}(V), p, q \ge 1$$
+$$T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q}$$
+Фиксируем $i_k, j_l$\\
+\begin{Def}
+$\widetilde{T_{i_1, \cdots, i_{k - 1}, i_{k + 1}, \cdots, i_p}^{j_1, \cdots, j_{l - 1}, j_{l + 1}, \cdots, j_q}} = \sum_{i = 1}^{n}T_{i_1, \cdots, i_{k - 1}, i, i_{k + 1}, \cdots, i_p}^{j_1\cdots, j_{l - 1}, i, \cdots, j_{q}}$
+свертка тензора по паре индексов $i_k, j_l$\\
+\end{Def}
+
+\begin{exmp}
+\begin{enumerate}
+\item
+$T \in T_{1}^{1}$\\
+$\widetilde{T} = \sum_{i}T_{i}^{i} = tr(T)$  
+\item
+$T, S \in T_{1}^{1}(V)$\\
+$A = T \otimes S \in T^2_2$
+$A^{jl}_{ik} = T_i^jS_k^l$
+Свертка по $j$ и $k$: $\sum_{r = 1}^{n}T_i^rS^l_r \in T^{1}_1(V)$
+Произведение матриц $T$ и $S$.
+
+\end{enumerate}
+\end{exmp}
