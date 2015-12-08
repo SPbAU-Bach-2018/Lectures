@@ -13,13 +13,62 @@ $(h_1, \cdots, h_n)^{-1} = (h_1^{-1}, \cdots, h_n^{-1})$\\
  $\sigma \colon H_i \to G$\\
  $h_i \to (1, \cdots,  h, \cdots, 1)$\\
  $\sigma$ "--- инъективный гомоморфизм из $H_i$ в $G$\\
- $\widetilde{H_i} = \sigma_i(H_i)$
+ $\widetilde{H_i} = \sigma_i(H_i) = $
  $(1, \cdot, H_i, 1, \cdots, 1)$\\
 \end{Def}
 \begin{conseq}
 \begin{enumerate}
     \item $i \ne j \Ra \widetilde{H_i}, \widetilde{H_j}$ коммутируют поэлементно\\
+    \begin{proof}
+    $(1, \cdots, h_i, 1, \cdots)(1, \cdots, h_j, \cdots, 1) = (1, \cdots, h_i, 1 \cdots, h_j, \cdots, 1)$\\
+    $(1, \cdots, h_j, 1, \cdots)(1, \cdots, h_i, \cdots, 1) = (1, \cdots, h_i, 1 \cdots, h_j, \cdots, 1)$\\
+
+    В частности, раз они коммутируют поэлментно, то $\widetilde{H_i}\widetilde{H_j} = \widetilde{H_j}\widetilde{H_i}$
+    \end{proof}
     \item $\widetilde{H_i} \unlhd G$\\
-    \item $\widetilde{H_i} \cap (\widetilde{H_1}, \cdots \widetilde{H_{i - 1}} \widetilde{H_{i + 1}} \cdots \widetilde{H_n}) = \{1_G\}$
+    \begin{proof}
+    $g \in G$\\
+    $g = (h_1, \cdots, h_n)$\\
+    $f \in \widetilde{H_i} $\\
+    $f = (1, \cdots, f_i,\cdots, 1) \in \widetilde{H_i}$\\
+    $gfg^{-1} = (h_11h_1^{-1}, \cdots, h_if_ih_i^{-1}, \cdots, h_n1h_n^{-1}) = (1, \cdots, h_if_ih_i^{-1}, \cdots, 1)$\\
+    $h_if_ih_i^{-1} \in H_i$\\
+    Это доказывает нормальность. 
+    \end{proof}
+    \item $\widetilde{H_i} \cap (\widetilde{H_1} \cdots \widetilde{H_{i - 1}} \widetilde{H_{i + 1}} \cdots \widetilde{H_n}) = \{1_G\}$
+    \begin{proof}
+    $g = (1, \cdots, h_i, 1, \cdots, 1) \in \widetilde{H_i}$\\
+    $g = (h_1, \cdots, h_{i - 1}, 1, \cdots, h_n) \in (\widetilde{H_1} \cdots \widetilde{H_{i - 1}} \widetilde{H_{i + 1}} \cdots \widetilde{H_n})$\\
+    Если g попал в обе группы, то это возможно только, когда $h_i = 1_H$, то есть пересечение тривиально. 
+    \end{proof}
 \end{enumerate}
 \end{conseq}
+\begin{Rem}
+Справедлив следующий результат. 
+$G, H_1, \cdots, H_n \le G$\\
+Причем   
+\begin{enumerate}
+\item $\forall i \ne j H_i$ и $H_j$ поэлментно коммутируют. 
+\item $\forall i \colon H_i \unlhd G$\\
+\item $\forall i \colon H_i \cap (H_1 \cdots H_{i - 1}H_{i + 1} \cdots H_n) = \{1_G\}$\\
+\item $H_1 \cdots H_n = G$\\
+\end{enumerate}
+Тогда $G \cong H_1 \times \cdots \times H_n$
+
+Упражнение на практику. 
+\end{Rem}
+
+\begin{exmp}
+Пример использования замечания.\\
+Рассмотрим цикличискую группу $(\Z / 6 \Z)^{+}$  порядка 6.
+${\bar 0, \bar 1, \bar 2, \bar 3, \bar 4, \bar 5}$\\
+$H_1 = \{\bar 0, \bar 3\} \cong (\Z/2\Z)^{+}$\\
+$H_2 = \{\bar 0, \bar 2, \bar 4\} \cong (\Z/3\Z)^{+}$\\
+Это сумма по Минковскому, так как $H_1$ и $H_2$ подгруппы $G$ и операция была записана аддетивно. 
+$G = H_1 + H_2$ \\
+$\Ra (\Z / 6\Z)^{+} \cong (\Z/2\Z)^{+} \times (\Z/3\Z)^{+}$
+
+Более того, можем обобщить для любых взаимно простых n и m\\
+$(\Z/mn\Z)^{+} \cong (\Z/m\Z)^{+} \times (\Z/n\Z)^{+}$
+\end{exmp}
+
