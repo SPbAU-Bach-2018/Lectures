@@ -1,0 +1,78 @@
+﻿\section{Теорема об орбитах и стабилизаторах}
+$G$ действует на X (то есть $X$ "--- G-операторное множество)\\
+\begin{Def}
+$G$ "--- группа, X, X' "--- два G-операторных множества. 
+$X$ изоморфно $X'$ как G-операторное множество, если 
+$\exists$ биекция $\psi \colon X \to X'$\\
+$\forall g \in G \forall x \in X \colon \psi(gx) = g \psi(x)$\\
+$G$ действует на $X$\\
+\end{Def}
+\begin{theorem}
+Орбита $Ga$ как $G$-операторное множество изоморфна
+множеству левых классов смежности группы $G$ на подгруппе $St_a$
+\end{theorem}
+\begin{proof}
+$St_a = \{g \in G \colon ga = a\}$\\
+$Ga$ орбита точки из $X$\\
+$X' = \{gSt_a | g \in G\}$\\
+$\psi \colon Ga \to X'$\\
+$ga \to g St_a$\\
+
+Коррестность $g_1a  = g_2 a \Ra g_2^{-1}g_1 = a \Ra g_2^{-1}g_1 \in St_a$\\
+$\Ra g_2^{-1}g_1 St_a = St_a \Ra g_1 St_a = g_2 St_a$\\
+
+Инъективность:\\
+$\psi (g_1 a) = \psi (g_2a)$\\
+$g_1St_a = g_2St_a$\\
+$g_2^{-1}g_1St_a = St_a$\\
+$g_2^{-1}g_1 \in St_a$\\
+$g_2^{-1}g_1a = a$\\
+$g_1a = g_2a$\\
+
+Сюръективность:\\
+класс $gSt_a$ есть $\psi(ga)$\\
+$h \in G$ $ga \in Ga$\\
+$\psi(hga) = h \psi(ga)$\\
+$\psi(hga) = \psi((hg)a) = hgSt_a$\\
+$ = h(gSt_a) = h \psi(ga)$\\
+\end{proof}
+\begin{conseq}
+\begin{enumerate}
+\item (Orbit Stabilizer theorem)\\
+$G$ "--- как группа действует на $X$\\
+$|Ga| = \frac{|G|}{|St_a|}$\\
+$|Ga||St_a| = |G|$\\
+\begin{proof}
+$Ga$ "--- множество левых смежных классов на $St_a$ изоморыно, как $G$-оператор
+множества.
+$|Ga|$ = число левых классов смежности по $St_a$ на $H$
+$= [G \colon St_a] = \frac{|G|}{|St_a|}$ по теореме Лагранжа.
+\end{proof}
+\begin{Rem}
+для бесконечных $G$\\
+$|Ga| = [G \colon St_a]$\\
+\end{Rem}
+\item
+$G$ "--- как группа $|St_a|$ делит $|G|$\\
+                    $|Ga|$ делит $|G|$\\
+\end{enumerate}
+\end{conseq}
+\begin{exmp}
+$G$ "--- группа самосовмещений куба и $H$ "--- подгруппа собственных самосовмещений куба.
+
+$|H| = 24$, $|G| = 48$\\
+
+$x$ "--- вершина куба $G$ и $H$ действуют транзитивно на множестве вершин.\\
+$|G| = |Gx||St_x|$\\
+$|Gx| = 8$\\
+$St_x$ "--- стабилизатор в $G$.\\
+\\
+$St_x$ действует на $(a, b, c)$\\
+$|St_x^{G}| = |St_x^{G}\cdot a||St_{x, a}^{G}|$\\
+$|St_x \cdot a| = 3$\\
+$St_{x, a}^{G}$ действует транзитивно на $\{b, c\}$\\
+$|St_{x, a}^{G}| = |St_{x, a}^{G}\cdot b||St_{x, a, b}| = 2$\\
+
+$G = 8 \cdot 3 \cdot 2 = 48$\\
+$H = |Hx||St_x^{H}| = |Hx||St_x^{H}\cdot a||St_{x,a}^{H}| = 24$\\
+\end{exmp}

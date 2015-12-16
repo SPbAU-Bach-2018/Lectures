@@ -1,0 +1,50 @@
+﻿\section{Центр p-группы}
+\begin{Def}
+$G$-группа\\
+$Z(G) = \{a \in G \colon ag = ga \forall g \in G \}$\\
+"--- центр группы.
+
+В честности $Z(G) \unlhd G$\\
+$(\forall a \in Z(G) \forall g \in G, gag^{-1} = a)$ \\
+\end{Def}
+\begin{Def}
+p-простое числою\\
+Кононическая группа G порядок которой 
+есть $p^{k}$ называется p-группой $(k \in \N)$\\
+\end{Def}
+\begin{exmp}
+$\Z/{p^{k}\Z}$  "--- циклическая p-группа.
+$\Z/(p^{k_1}\Z) \times \cdots \times \Z/(p^{k_s}\Z)$   абелева $p$-группа 
+(но не циклическая, если $s \ge 2$)
+
+ToDo
+\end{exmp}
+\begin{theorem}
+$G$ "--- p-группа $\Ra |Z(G)| > 1$\\
+\end{theorem}
+\begin{proof}
+Рассмотри действие $G$ на $G$ сопряжением.\\
+$G \times G \to G$\\
+$g, x \to g \times g^{-1}$\\
+
+Орбита x состоит из 1 элемента $\Lra \forall g g \times g^{-1} = x$\\
+$\Lra \forall g, gx = xg \Lra x \in Z(G)$\\
+$p^{k} = |G| = \sum_{A - \text{класс сопряженности}}|A| = \sum_{|A| = 1}|A| + \sum_{|A| > 1}|A| = \\
+ = |Z(G)| + \sum_{|A| > 1}|A|$\\
+
+Класс сопряженности = орбита в действие $G$ на $G$ сопряжением. 
+$|A| | |G|$  \\
+$|G| = p^{k}$\\
+$|A| > 1$ \\
+$p | |A|$\\
+$|Z(G)| = p^{k} - \sum_{|A| > 1}|A|$\\
+$|Z(G)| \vdots p$\\
+$1_{G} \in Z(G)$ \\
+$|Z(G)| > 0$\\
+$\Ra |Z(G)| > 1$\\
+\end{proof}
+
+Упражнение toDo.
+
+Можно показать, что группа $|G| = p^2$ абелева группа. \\
+$G \cong \Z/(p^2\Z)$ или $\Z/(pZ) \times (\Z/(p\Z))$ \\
