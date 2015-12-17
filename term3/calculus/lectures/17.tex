@@ -1,0 +1,173 @@
+\section{Формулы Стокса и Гаусса-Остроградского}
+
+\begin{theorem}[Формула Гаусса-Остроградского]
+	$K$ "--- компакт в $\R^3$, граница которого "--- кусочно-гладкая поверхность с нормалью наружу.
+	$P$, $Q$ и $R$ "--- гладкие функции на $K$.
+	Тогда
+	\[
+		\int\limits_K \left(\partd Px + \partd Qy + \partd Rz\right) \d x \d y \d z
+		= \int\limits_{\partial K} P \d y \wedge \d z + Q \d z \wedge \d x + R \d x \wedge \d y
+	\]
+\end{theorem}
+\begin{Def}
+	Если $\vec F = (P, Q, R)$ "--- векторное поле, то дивергенцией называют
+	\[ \Div \vec F = \left<\nabla, \vec F\right> \eqDef \partd Px + \partd Qy + \partd Rz \]
+\end{Def}
+\begin{Rem}
+	Формула Гаусса-Остроградского:
+	\[
+		\int\limits_K \Div \vec F \d x \d y \d z = \int\limits_{\partial K} \left<\vec F, \vec n\right> \d S
+	\]
+\end{Rem}
+
+\begin{proof}\begin{description}
+\item[$\vec F = (P, 0, 0)$, $K$ "--- цилиндр:]
+	Пусть есть цилиндр, чья ось направлена по оси $\vec x$, полученный следующим образом:
+	взяли множество $G \subset \R^2$, умножили на $\R$, ограничили двумя донышками "--- графиками функций $\phi, \psi\colon G \ra \R$,
+	которые мы обозначим $S_l$ и $S_h$ соотвественно.
+	Тогда
+	\begin{gather*}
+		\int\limits_K \partd Px \d x \d y \d z
+		= \int\limits_G \left( \int\limits_{\phi(y,z)}^{\psi(y,z)} \partd Px \d x\right) \d y \d z
+		= \int\limits_G \left( P(\psi(y,z), y, z) - P(\phi(y,z), y, z) \right) \d y \d z = \\
+		= \int\limits_G P(\psi(y,z), y, z) \d y \d z - \int\limits_G P(\phi(y,z), y, z) \d y \d z = \\
+		= \int\limits_{S_l} P(\psi(y,z), y, z) \d y \d z - \int\limits_{S_h} P(\phi(y,z), y, z) \d y \d z =
+	\end{gather*}
+	У $S_l$ нормаль вниз, а у $S_h$ "--- вверх.
+	\begin{gather*}
+		= \int\limits_{S_l} P \d y \wedge \d z + \int\limits_{S_h} P \d y \wedge \d z
+	\end{gather*}
+	Теперь на донышках интеграл сошёлся с тем, что надо.
+	Осталось показать, что боковая поверхность даёт нулевой вклад
+	\[ \int\limits_{S_s} P \d y \wedge \d z = 0 \]
+	Это можно понять так: мы уже знаем, что
+	\[ \int\limits_{S_s} P \d y \wedge \d z = \int\limits_{S_s} \left<\vec F, \vec n\right> \d S \]
+	А у нас боковая поверхность цилиндра перпендикулярна полю.
+
+\item[Если взяли несколько сонаправленных цилинров, то их склейка тоже разобрана]
+	У них встречные нормальные на стенках, всё хорошо.
+
+\item[$\vec F = (P, 0, 0)$, $K$ режется на цилиндры вдоль каждой оси:]
+	Имеется в виду, что весь $K$ целиком режется на цилиндры вдоль любой выбранной оси.
+	Большинство реальных множеств такие.
+	Разложим $\vec F = (P, 0, 0) + (0, Q, 0) + (0, 0, R)$, линейно разложим интегралы, смотрим предыдущие шаги.
+
+\item[Любой компакт:]
+	На самом деле, так можно резать любой (как мы делали в формуле Гринна: мы там доказали только в случае конечного числа экстремумов границы),
+	но это очень странные тела и не понадобятся.
+\end{description}\end{proof}
+
+\begin{theorem}[Формула Стокса]
+	\begin{Rem}
+		Отношения Стокс к ней не имеет ни малейшего.
+		Он её где-то вычитал, дал на выпускном экзамене какому-то молодому известному физику, ему понравилось,
+		когда тот спросил, кто её дал, сказали "--- Стокс.
+	\end{Rem}
+	$S$ "--- согласованно ориентированная, компактная, кусочно гладкая поверхность в $\R^3$,
+	$P, Q, R\colon S \ra \R$ "--- гладкие.
+	Тогда
+	\[
+		\int\limits_{\partial S} P \d x + Q \d y + R \d z
+		= \int\limits_S \left(\partd Ry - \partd Qz\right) \d y \wedge \d z + \left(\partd Pz - \partd Rx\right) \d z \wedge \d x + \left(\partd Qx - \partd Py\right) \d x \wedge \d y
+	\]
+\end{theorem}
+\begin{proof}\begin{description}
+\item[$S$ "--- простая, только $P$:]
+	Возьмём гладкую параметризацию кривой $\partial G$
+	\[ \gamma \colon [a, b] \ra \R^2 \]
+	перетащили в $\partial S$
+	\[ \vec r \circ \gamma\colon [a, b] \ra \R^3 \]
+	Тогда
+	\begin{gather*}
+		\int\limits_{\partial S} P \d x
+		= \int\limits_a^b P(\vec r(\gamma(t))) (x(\gamma(t)))' \d t
+		= \int\limits_a^b (P \circ \vec r \circ \gamma) \cdot (x_u' u_t' + x_v' v_t') \d t = \\
+		= \int\limits_{\partial G} (P \circ \vec r) (x_u' \d u + x_v' \d v)
+		= \int\limits_{\partial G} P(x(u, v), y(u, v), z(u, v)) (x_u' \d u + x_v' \d v) = \\
+		= \int\limits_{\partial G} P(\dots) x_u' \d u + P(\dots) x_v' \d v = 
+	\end{gather*}
+	А теперь вспомним Гринна ещё раз! Далее, параметры у $R$ не стоят, слишком много будет.
+	\begin{gather*}
+		= \int\limits_G \left( \partd{P x_v'}u - \partd{P x_u'}v\right) = \dots \\
+		\partd{P x_v'}u = P x_{uv}'' + (P_x' x_u' + P_y' y_u' + P_z' z_u') x_v' \\
+		\partd{P x_v'}u = P x_{uv}'' + (P_x' x_v' + P_y' y_v' + P_z' z_v') x_u' \\
+		\dots
+		= \int\limits_G P_y' \underbrace{(y_u' x_v' - y_v' x_u')}_{=-\d x \wedge \d y}
+		              + P_z' \underbrace{(z_u' x_v' - z_v' x_u')}_{= \d z \wedge \d x} \d u \d v
+		= \int\limits_S P_z' \d z \wedge \d x - P_y' \d x \wedge \d y
+	\end{gather*}
+
+\item[Общий случай:]
+	Поле разложится в сумму, как в предыдущей теореме, поэтому осталось проверить, что происходит с ингералом при склейке.
+	На любой кривой склейки мы посчитаем интеграл дважды, но в разные стороны, всё хорошо.
+\end{description}\end{proof}
+
+\begin{Rem}
+	По дороге использовалась 2-гладкость, ну и ладно.
+\end{Rem}
+
+\begin{Def}
+	Ротор векторного поля:
+	\[ \rot \vec F = \nabla \times \vec F \eqDef = \left(\partd Ry - \partd Qz, \partd Pz - \partd Rx, \partd Qx - \partd Py\right) \]
+	Запомнить можно через такую запись:
+	\[ \rot \vec F = \begin{vmatrix} i & j & k \\ \partd{}x & \partd{}y & \partd{}z \\ P & Q & R \end{vmatrix} \]
+\end{Def}
+
+\begin{Rem}
+	Формула Стокса:
+	\[ \int\limits_{\partial S} P \d x + Q \d y + R \d z = \int\limits_S \left< \rot \vec F, \vec n\right> \d S \]
+\end{Rem}
+
+Вообще говоря, все три формулы "--- частные случаи следующего:
+\begin{Def}
+	Дифферениал формы:
+	\[
+		\d \left( \sum a_{i_1,i_2,\dots,i_k}^{(x)} \d x_{i_1} \wedge \d x_{i_2} \wedge \dots \wedge \d x_{i_k} \right)
+		\eqDef \sum \d a_{i_1,i_2,\dots,i_k} \wedge \d x_{i_1} \wedge \d x_{i_2} \wedge \dots \wedge \d x_{i_k}
+	\]
+\end{Def}
+
+\begin{theorem}[Общая формула Стокса]
+	Пусть есть $\omega$ "--- $k$-форма, а $S$ "--- $k+1$-мерная поверхность.
+	\[
+		\int\limits_S \d \omega = \int\limits_{\delta S} \omega
+	\]
+	Тут все ориентации согласованы.
+\end{theorem}
+
+Частные случаи:
+\begin{description}
+\item[Формула Гринна: $k = 1$, $n = 2$:]
+	\begin{gather*}
+		\omega = P \d x + Q \d y \\
+		\d \omega
+		= \d P \wedge \d x + \d Q \wedge \d y
+		= (P_x' \d x + P_y' \d y) \wedge \d x
+		+ (Q_x' \d x + Q_y' \d y) \wedge \d y = \\
+		= P_y' \d y \wedge \d x + Q_x' \d x \wedge \d y
+		= (Q_x' - P_y') \d x \wedge \d y
+	\end{gather*}
+
+\item[Формула Гаусса-Остроградского: $k = 2$, $n = 3$:]
+	\begin{gather*}
+		\omega = P \d y \wedge \d z + Q \d z \wedge \d x + R \d x \wedge \d y \\
+		\d \omega
+		= \d P \wedge \d y \wedge \d z + \d Q \wedge \d z \wedge \d x + \d R \wedge \d x \wedge \d y = \\
+		= (P_x' \d x + P_y' \d y + P_z' \d z) \wedge \d y \wedge \d z + \dots = \\
+		= P_x' \d x \wedge \d y \wedge \d z + Q_y' \d y \wedge \d z \wedge \d x + R_z' \d z \wedge \d x \wedge \d y
+		= (P_x' + Q_y' + R_z') \d x \wedge \d y \wedge \d z
+	\end{gather*}
+
+\item[Формула Стокса: $k=1$, $n=3$:]
+	\begin{gather*}
+		\omega = P \d x + Q \d y + R \d z \\
+		\d \omega = \text{развлекайтесь}
+	\end{gather*}
+\end{description}
+
+\newpage
+
+Нас ждёт простой параграф про 1-формы на плоскости.
+А оттуда уже в Теорию Функций Комплексных Переменных.
+Это больше полезно программистам, чем физикам (у физиков уже используются более продвинутые подходы),
+После этого будет немного интегралов с параметром и ряды Фурье.
