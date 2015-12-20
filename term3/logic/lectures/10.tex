@@ -174,7 +174,59 @@
 	\end{description}
 \end{proof}
 
-\TODO здесь должно быть какое-то переписывание аксиом через лемму о дедукции
+Заметим, что мы в процессе доказательства леммы пользовались только аксиомами 1 и 2.
+Вообще говоря, лемма о дедукции намного удобнее этих аксиом.
+\begin{exmp}
+	Аксиомы 1 и 2 можно вывести из леммы о дедукции.
+\end{exmp}
+\begin{proof}
+	\begin{enumerate}
+		\item
+			Пусть есть конкретные формулы $A$ и $B$, докажем аксиому 1 через лемму о дедукции:
+			\[ \Gamma \vdash (A \to (B \to A)) \iff \Gamma, A \vdash B \to A \iff \Gamma, A, B \vdash A\]
+		\item
+			Пусть есть конкретные формулы $A$, $B$ и $C$, докажем аксиому 1 через лемму о дедукции:
+			\begin{gather*}
+				\Gamma \vdash (A \to (B \to C)) \to ((A \to B) \to (A \to C)) \\
+				\Updownarrow \\
+				\Gamma, (A \to (B \to C)) \vdash ((A \to B) \to (A \to C)) \\
+				\Updownarrow \\
+				\Gamma, (A \to (B \to C)), (A \to B) \vdash (A \to C) \\
+				\Updownarrow \\
+				\Gamma, (A \to (B \to C)), (A \to B), A \vdash C
+			\end{gather*}
+			Применяем modus ponens в последней строчке (с посылкой $A$), получаем сначала $B \to C$, потом $B$, потом modus ponens к ним и получаем $C$.
+	\end{enumerate}
+\end{proof}
+
+Теперь мы хотим аналогичным образом написать какие-то более удобные правила для доказательств, аналогичные оставшимся аксиомам.
+\begin{center}
+	\begin{tabular}{|c|cc|}
+		\hline
+		№ & Аксиома & Правило вывода \\\hline
+		3 & $(A \land B) \to A$ & Если $\Gamma, (A \land B)$, то $\Gamma \vdash A$ \\
+		4 & $(A \land B) \to B$ & Если $\Gamma, (A \land B)$, то $\Gamma \vdash B$ \\
+		5 & $(A \to (B \to (A \land B)) \to B$ & Если $\Gamma \vdash A$ и $\Gamma \vdash B$, то $\Gamma \vdash (A \land B)$ \\
+		\hline
+		6 & $(A \to (B \lor A))$ & Если $\Gamma \vdash A$, то $\Gamma \vdash (B \lor A)$ \\
+		7 & $(A \to (B \lor A))$ & Если $\Gamma \vdash B$, то $\Gamma \vdash (B \lor A)$ \\
+		8 & $(A \to C) \to ((B \to C) \to ((A \lor B) \to C))$ & Если $\Gamma, A \vdash C$ и $\Gamma, B \vdash C$, то $\Gamma, (A \lor B) \vdash C$ \\
+		\hline
+		9 & $\lnot A \to (A \to B)$ & Если $\Gamma \vdash A$ и $\Gamma \vdash \lnot A$, то $\Gamma \vdash B$ \\
+		10 & $(A \to B) \to ((A \to \lnot B) \to \lnot A)$ & Если $\Gamma, A \vdash B$ и $\Gamma, A \vdash \lnot B$, то $\Gamma \vdash \lnot A$ \\
+		11 & $(A \lor \lnot A)$ & Если $\Gamma, A \vdash B$ и $\Gamma, \lnot A \vdash B$, то $\Gamma \vdash B$ \\
+		\hline
+	\end{tabular}
+\end{center}
+Теперь правило у аксиомы 10 показывает, что рассуждение <<от противного>> работает и в Гильбертовском исчислении: если хотим показать $\Gamma \vdash \lnot X$,
+то надо предположить $X$ и вывести из $\Gamma, X$ два утверждения: $B$ и $\lnot B$, тогда по правилу 10 получим $X$,
+
+А правило для аксиомы 11 требует некоторых пояснений:
+\begin{proof}
+	Пусть $\Gamma, A \vdash B$ и $\Gamma, \lnot A \vdash B$.
+	Тогда по правилу для восьмой аксиомы получаем, что $\Gamma, (A \lor \lnot A) \vdash B$.
+	А вот $A \lor \lnot A$ "--- это как раз аксиома, то есть её можно из левой части убрать, получить $\Gamma \vdash B$.
+\end{proof}
 
 \begin{lemma}[снятие двойного отрицания]
 	$\vdash \lnot\lnot \mcA \to \mcA$ (следует из <<ничего>>, то есть из аксиом)
@@ -190,24 +242,41 @@
 		\iff
 		\lnot\lnot \mcA \vdash (\mcA \lor \lnot\mcA) \to \mcA
 		\iff
-		\lnot\lnot \mcA \vdash (\mcA \to \mcA) \land (\lnot\mcA \to \mcA) \\
-		\iff
+		\lnot\lnot \mcA \vdash (\mcA \to \mcA) \land (\lnot\mcA \to \mcA)
+		\iff \\ \iff
 		\begin{cases}
 			\lnot\lnot \mcA, \mcA \vdash \mcA & \text{очевидно} \\
-			\lnot\lnot \mcA, \lnot\mcA \vdash \mcA & \text{верно, так как слева есть и $\lnot\mcA$, и его отрицание, т.е. выводится что угодно} \\
+			\lnot\lnot \mcA, \lnot\mcA \vdash \mcA & \parbox{25em}{верно, так как слева есть и $\lnot\mcA$, и его отрицание, т.е. выводится что угодно} \\
 		\end{cases}
 	\end{gather*}
 \end{proof}
 
-\begin{exmp}
-	Докажем $(A \to B) \to (\lnot B \to \lnot A)$.
-	Перепишем: $(A \to B) \vdash (\lnot B \to \lnot A) \iff A \to B, \lnot B \vdash \lnot A$.
-	Доказательство от противного: пусть $\lnot A$ не выводимо, тогда выводимо $A$ (\TODO почему?).
-	Тогда по modus ponens можно вывести $B$, то есть выводимы и $B$, и $\lnot B$, противоречие.
-\end{exmp}
 \begin{Rem}
-	Что-то мы тут бодро разбрасываемся логикой, не заменили ли мы случайно формальные синтаксические преобразования логикой?
+	Теперь рассуждение <<от противного>> действительно рассуждение <<от противного>>: предполагаем $\lnot X$, выводим противоречие,
+	делаем вывод $X$ (нам для этого нужно снятие двоного отрицания).
 \end{Rem}
+
+\begin{exmp}\label{exmp_contradicto}
+	Докажем $(A \to B) \to (\lnot B \to \lnot A)$.
+	\begin{proof}
+		Перепишем по лемме о дедукции:
+		\begin{gather*}
+			(A \to B) \stackrel{?}{\vdash} (\lnot B \to \lnot A) \\
+			\Updownarrow \\
+			A \to B, \lnot B \stackrel{?}{\vdash} \lnot A
+		\end{gather*}
+		Рассуждаем от противного (по переформулировке аксиомы 10).
+		Добавляем $A$ к предпосылкам и выводим $B$ и $\lnot B$:
+		\begin{gather*}
+			A \to B, \lnot B, \lnot \lnot A \\
+			\text{применяем снятие двойного отрицания} \\
+			A \to B, \lnot B, \lnot \lnot A, A \\
+			\text{применяем modus ponens} \\
+			A \to B, \lnot B, \lnot \lnot A, B \\
+		\end{gather*}
+		Успех: вывели и $\lnot B$, и $B$.
+	\end{proof}
+\end{exmp}
 
 \begin{Def}
 	Список формул $\Gamma$ противоречив, если $\Gamma \vdash B, \lnot B$ для всех $B$.
@@ -221,11 +290,19 @@
 	$\Gamma$ совместно $\iff$ $\Gamma$ непротиворечиво.
 \end{theorem}
 \begin{Rem}
-	Стрелка $\Ra$ очевидна.
+	Стрелка $\Ra$ очевидна: если это не так, что при некоторых значениях формул верны все формулы из $\Gamma$ и все, которые можно вывести,
+	то есть $B$ и $\lnot B$, но они одновременно верны быть не могут.
 \end{Rem}
 \begin{conseq}
 	Если $\phi$ "--- тавтология, то из пустого списка можно вывести $\phi$.
 \end{conseq}
 \begin{proof}
-	\TODO
+	Доказательство от противного (пример \ref{exmp_contradicto}).
+	Предположим $\lnot \phi$ и выведем два утверждения: $B$ и $\lnot B$ (т.е. покажем $\lnot \phi \vdash B$ и $\lnot \phi \vdash \lnot B$.
+
+	Так как $\phi$ "--- тавтология, то нет значений переменных, при которых $\lnot \phi$ верна.
+	То есть список $\Gamma=\{ \lnot \phi \}$ не является совместным.
+	Тогда по теореме $\Gamma$ противоречив, то есть можно вывести и $B$, и $\lnot B$.
+
+	Таким образом получаем $\vdash \lnot \lnot \phi$, а снимать двойное отрицание мы уже умеем и получим $\vdash \phi$.
 \end{proof}
