@@ -30,8 +30,8 @@
 
 	Доказательство для несчётного $\Gamma$ пока оставляется \hyperref[zorn_lemma_exmp_list_full]{на конец курса} "--- нам потребуется аксиома выбора/лемма Цорна.
 \end{proof}
-Теперь доказываем теорему \ref{correct_full_strong}.
-Был $\Gamma$, расширили до $\Gamma'$, для любой переменной $x$ выводится либо $x$, либо $\lnot x$.
+Теперь доказываем теорему \ref{correct_full_strong} (стрелку $\La$).
+Был непротиворечивый $\Gamma$, расширили до полного непротиворечивого $\Gamma'$, теперь для любой переменной $x$ выводится либо $x$, либо $\lnot x$.
 Теперь подставим значения: $x=1$, если выводится $x$, и $x=0$, если выводится $\lnot x$.
 \begin{assertion}
 	Все выводимые формулы в такой подстановке истинны, а все невыводимые "--- ложны.
@@ -42,16 +42,22 @@
 	Для перехода надо разобраться со связками:
 	\begin{itemize}
 		\item
-			Так как $\Gamma'$ непротиворечиво (оба быть выводимы не могут) и полно (хотя бы одно выводится): $\Gamma' \vdash \lnot \phi \iff \Gamma' \nvdash \phi$
+			Отрицание.
+			Пусть знаем для $\phi$ что её выводимость из $\Gamma'$ эквивалентна истинности в подстановке ($\Gamma' \vdash \phi \iff \phi = 1$).
+			Теперь рассмотрим формулу $\lnot \phi$.
+			Так как $\Gamma'$ непротиворечиво (обе быть выводимы не могут) и полно (хотя бы одно выводится): $\Gamma' \vdash \lnot \phi \iff \Gamma' \nvdash \phi \iff \phi = 0 \iff \lnot \phi = 1$.
 		\item
-			$\Gamma' \vdash \phi \land \psi \iff (\Gamma' \vdash \phi) \land (\Gamma' \vdash \psi)$ "--- если докажем, то доказали соответствующий переход.
+			Конъюнкция.
+			Для доказательства перехода надо доказать:
+			$\Gamma' \vdash \phi \land \psi \iff (\Gamma' \vdash \phi) \land (\Gamma' \vdash \psi)$.
 			\begin{description}
 			\item[$\Ra$:]
 				Очевидно, так как есть две аксиомы.
 			\item[$\La$:]
-				Тоже вроде было какое-то правило.
+				Было правило, переформулированное из аксиомы 3.
 			\end{description}
 		\item
+			Дизъюнкция.
 			Надо доказать, что:
 			\[
 				\Gamma' \vdash \phi \lor \psi \iff
@@ -64,20 +70,22 @@
 			\]
 			\begin{description}
 			\item[$\La$:]
-				Вроде было две аксиомы.
+				Были аксиомы.
 			\item[$\Ra$:]
 				Доказательство от противного, интересный случай:
-				$\phi \lor \psi$ выводится, а вот $\phi$ и $\psi$ "--- нет.
-				Давайте покажем противоречивость $\Gamma', \phi \lor \psi$: выведем из неё $\phi$ и $\lnot \phi$,
-				второе просто выводится по предположению.
-				Есть правило для дизъюнкции, т.е. надо проверить, что $\phi$ выводится в двух случаях:
+				$\phi \lor \psi$ выводится, а вот $\phi$ и $\psi$ "--- нет (т.е. по полноте $\Gamma$ выводятся $\lnot \phi$ и $\lnot \psi$).
+				Давайте покажем противоречивость $\Gamma', \phi \lor \psi$: выведем из неё $\phi$ и $\lnot \phi$.
+				Из них $\lnot \phi$ выводится по предположению.
+				А дальше есть правило для дизъюнкции, т.е. надо проверить, что $\phi$ выводится в двух случаях:
 				\begin{itemize}
 					\item $\Gamma', \phi$ "--- берёт и выводится сразу
 					\item $\Gamma', \psi$ "--- из $\Gamma'$ выводится $\lnot \psi$, т.е. $\Gamma', \psi$ противоречиво и можно вывести что угодно, в том числе $\phi$.
 				\end{itemize}
-				Таким образом, $\Gamma', \phi \lor \psi$ противоречиво, противоречие.
+				Таким образом, $\Gamma', \phi \lor \psi$ противоречиво, что и требовалось.
+				Значит, $\phi \lor \psi$ выводится.
 			\end{description}
 		\item
+			Импликация.
 			\begin{Exercise}
 				\[
 				\Gamma' \vdash (\phi \to \psi) \iff
@@ -93,7 +101,7 @@
 \end{proof}
 
 \subsection{Исчисление предикатов}
-% кажется, что-то похожее уже было на прошлой лекции
+Кажется, что-то похожее уже было на прошлой лекции, но всё равно повторим определение:
 \begin{Def}
 	Предикатная формула называется \textsl{общезначной} (или, реже, \textsl{тавтологией}),
 	если она истина во всех интерпретациях и во всех оценках свободных переменных.
@@ -102,23 +110,49 @@
 (для кванторов, иначе бы у нас кванторы навечно прилепились к атомарным формулам, что неинтересно,
 вывелось бы не всё, что хочется):
 \begin{enumerate}
-	\item $\forall x \colon \phi(x) \to \phi(t \mid x)$
-	\item $\phi(t \mid x) \to \exists x \colon \phi(x)$
+	\setcounter{enumi}{11}
+	\item $(\forall x \colon \phi(x)) \to \phi(t|x)$
+	\item $\phi(t|x) \to (\exists x \colon \phi(x))$
 \end{enumerate}
-Здесь $\phi(t \mid x)$ "--- замена всех вхождений переменной $x$ на терм $t$, свободный для
-подстановки (то есть свободные переменные терма $t$ не попадают в область действия кванторов $\phi$,
+Здесь $\phi(t|x)$ "--- замена всех вхождений переменной $x$ (разумеется, если какой-то квантор $x$ не перекрыл)
+на терм $t$, свободный для подстановки (то есть свободные переменные терма $t$ не попадают в область действия кванторов $\phi$,
 куда бы мы не подставили $t$).
 \begin{exmp}
 	\[ \forall y \colon (P(x, y) \to Q(x, y)) \]
-	Подстановка $y \mid x$ (вместо $x$ подставляем $y$) "--- не свободная.
+	Подстановка $y|x$ (вместо $x$ подставляем $y$) "--- не свободная, потому что $y$ "--- свободная переменная, а в выражении есть
+	квантор по $y$.
+\end{exmp}
+\begin{exmp}
+	\begin{gather*}
+		R(x) \land (\forall x \colon (P(x, y) \to Q(x, y))) \\
+		\downarrow (y\lor z)|x
+		R(y \lor z) \land (\forall x \colon (P(x, y) \to Q(x, y))) \\
+	\end{gather*}
+	Внутрь квантора по $x$ мы не залезаем.
 \end{exmp}
 \begin{exmp}
 	Всегда можно подставлять $t=x$, а также $t=c$, где $c$ "--- новая константа в смысле <<функциональный символ арности ноль>>.
 \end{exmp}
 Два новых правила вывода (modus ponens остаётся), правила Бернайса:
 \begin{enumerate}
-	\item $\frac{\phi \to \psi}{\phi \to \forall x \colon \psi}$, если $x$ не входит в свободные переменные $\phi$.
-	\item $\frac{\phi \to \psi}{\phi \to \exists x \colon \phi \to \psi}$, если $x$ не входит в свободные переменные $\psi$.
+	\item
+		$\frac{\phi \to \psi}{\phi \to \forall x \colon \psi}$, если $x$ не входит в свободные переменные $\phi$.
+
+		Смысл такой: если у $\psi$ есть параметр $x$, а $\phi \to \phi$ верно независимо от этого параметра, то
+		если $\phi$, то $\psi$ тоже верно независимо от этого параметра.
+		\begin{exmp}
+			Из формулы $(y \lor z) \to (x \land y)$ можно вывести $(y \lor z) \to (\forall x \colon (x \land y))$.
+		\end{exmp}
+
+	\item
+		$\frac{\phi \to \psi}{(\exists x \colon \phi) \to \psi}$, если $x$ не входит в свободные переменные $\psi$.
+
+		Смысл такой: если у $\phi$ есть параметр $x$, а у $\psi$ его нет и при этом из $\phi$ всегда следует $\psi$,
+		то если $\phi$ верна хоть при каком-то параметре, то $\psi$ тоже верна.
+		\begin{exmp}
+			Из формулы $(x \land y) \to (y \lor z)$ можно вывести $(\exists x \colon (x \land y)) \to (y \lor z)$.
+			То есть если хоть при каком-то $x$ будет верно $x \land y$, то $y \lor z$ тоже будет верно.
+		\end{exmp}
 \end{enumerate}
 
 \begin{Def}
@@ -136,14 +170,17 @@
 	$\phi$ выводима $\Ra$ $\phi$ общезначна.
 \end{theorem}
 \begin{proof}
-	Для аксиом 1--11 общезначность мы знали, надо проверить для двух новых:
+	Для аксиом 1--11 общезначность мы знали, надо проверить для двух новых.
+	Это упражнение.
+	И еще надо проверить для правил Бернайса:
 	\begin{enumerate}
 		\item
 			Так как $x$ не входит в левую часть и формула сверху общезначна,
 			то независимо от значения $x$ верно $\phi \to \psi$, при этом $\phi$ от $x$ вообще не зависит,
 			т.е. $\phi \to \forall x \colon \psi$.
 		\item
-			Аналогично. \TODO
+			Аналогично: надо посмотреть на случай, когда $\phi \to \psi$ и $\exists x \colon \phi$.
+			Берём этот конкретный $x$, подставляем в $\phi$, отсюда немедленно получаем корректность $\psi$.
 	\end{enumerate}
 \end{proof}
 
@@ -161,27 +198,44 @@
 				Была пропозициональная тавтология $(\phi \to \psi) \to ((\psi \to \tau) \to (\phi \to \tau))$,
 				применяем два раза modus ponens
 			\end{proof}
-		\item $\forall x \colon \phi(x) \to \exists x \colon \phi(x)$
+		\item $(\forall x \colon \phi(x)) \to (\exists x \colon \phi(x))$
 			\begin{proof}
-				Есть аксиома $\forall x \colon \phi(x) \to \phi(x)$,
-				есть аксиома $\phi(x) \to \exists x \colon \phi(x)$,
+				Есть аксиома $(\forall x \colon \phi(x)) \to \phi(x)$,
+				есть аксиома $\phi(x) \to (\exists x \colon \phi(x))$,
 				дальше по пункту 3.
 			\end{proof}
-		\item $\exists y \colon \forall x \colon \phi \to \forall x \colon \exists y \colon \phi$
+		\item $(\exists y \colon \forall x \colon \phi) \to (\forall x \colon \exists y \colon \phi)$
 			\begin{proof}
-				Есть аксиома $\forall x \colon \phi \to \phi$,
-				есть аксиома $\phi \to \exists y \colon \phi$,
-				по пункту 3 получаем $\forall x \colon \phi \to \exists y \colon \phi$.
+				Есть аксиома $(\forall x \colon \phi) \to \phi$,
+				есть аксиома $\phi \to (\exists y \colon \phi)$,
+				по пункту 3 собираем $(\forall x \colon \phi) \to (\exists y \colon \phi)$.
 
-				Теперь применяем правило Бернайса: $\exists y \colon \forall x \colon \phi \to \exists y \colon \phi$.
-				И еще раз: $\exists y \colon \forall x \colon \phi \to \forall x \colon \exists y \colon \phi$.
+				Теперь применяем правила Бернайса:
+				\begin{gather*}
+				    \underbrace{(\forall x \colon \phi)} \to \underbrace{(\exists y \colon \phi)} \\
+				    \text{второе правило Бернайса для переменной $y$} \\
+					(\exists y \colon \overbrace{\forall x \colon \phi}) \to \overbrace{(\exists y \colon \phi)} \\
+					\underbrace{(\exists y \colon \forall x \colon \phi)} \to \underbrace{(\exists y \colon \phi)} \\
+				    \text{первое правило Бернайса для переменной $x$} \\
+					\overbrace{(\exists y \colon \forall x \colon \phi)} \to \forall x \colon \overbrace{(\exists y \colon \phi)} \\
+				\end{gather*}
+				Что и требовалось.
 			\end{proof}
-		\item $\lnot \forall x \colon \phi(x) \to \exists \lnot \phi(x)$.
+		\item $\lnot (\forall x \colon \phi(x)) \to (\exists \lnot \phi(x))$.
 			\begin{proof}
 				Воспользуемся контрпозицией.
-				Достаточно вывести $\lnot \exists x \colon \lnot \phi(x) \to \forall x \colon \phi(x)$.
-				Для этого достаточно вывести без квантора всеобщности справа (потому что правило Бернайса).
-				Еще раз контрпозицию: $\lnot \phi(x) \to \exists x \colon \lnot \phi(x)$ "--- а вот это уже аксиома.
+				Достаточно вывести:
+				\[
+					\lnot (\exists x \colon \lnot \phi(x)) \to (\forall x \colon \phi(x))
+				\]
+				Для этого достаточно вывести без квантора $\forall x$ справа "--- его всегда можно добавить при
+				помощи первого правила Бернайса (так как $x$ не входит в свободные переменные левой части).
+				\begin{gather*}
+					\lnot (\exists x \colon \lnot \phi(x)) \to \phi(x) \\
+					\Updownarrow \text{применяем контрпозицию} \\
+					\lnot \phi(x) \to \left(\exists x \colon \lnot \phi(x)\right)
+				\end{gather*}
+				А это уже аксиома, получили требуемое доказательство.
 			\end{proof}
 	\end{enumerate}
 \end{exmp}
