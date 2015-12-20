@@ -38,12 +38,12 @@
 
 			Переход: надо разобраться со значками (доказательство аналогично какой-то прошлой теореме,
   			там мы пользовались только полнотой, даже экзистенциальность не нужна):
-  			\begin{itemize}
-   				\item $\Gamma' \vdash (\phi \land \psi) \iff \Gamma' \vdash \phi$ и $\Gamma' \vdash\psi$
-   				\item $\Gamma' \vdash (\phi \lor \psi) \iff \Gamma' \vdash \phi$ или $\Gamma' \vdash\psi$
-   				\item $\Gamma' \vdash \phi \iff \Gamma' \not\vdash \phi$
-   				\item $\Gamma' \vdash (\phi \to \psi) \iff \Gamma' \not\vdash \phi$ или $\Gamma' \vdash \psi$
-  			\end{itemize}
+			\begin{itemize}
+				\item $\Gamma' \vdash (\phi \land \psi) \iff \Gamma' \vdash \phi$ и $\Gamma' \vdash\psi$
+				\item $\Gamma' \vdash (\phi \lor \psi) \iff \Gamma' \vdash \phi$ или $\Gamma' \vdash\psi$
+				\item $\Gamma' \vdash \phi \iff \Gamma' \nvdash \phi$
+				\item $\Gamma' \vdash (\phi \to \psi) \iff \Gamma' \nvdash \phi$ или $\Gamma' \vdash \psi$
+			\end{itemize}
 
 			Остались кванторы.
   			\begin{description}
@@ -70,8 +70,8 @@
 				то есть $\phi(t\mid x)$ истинна, откуда $\forall x \colon \phi(x)$ истинна.
 
 				В обратную сторону: пусть $\forall x \colon \phi(x)$ истинна в $I$.
-				Доказательство от противного: пусть $\Gamma' \not \vdash \forall x \colon \phi(x)$,
-				тогда $\Gamma' \not \vdash \lnot \forall x \colon \phi(x)$.
+				Доказательство от противного: пусть $\Gamma' \nvdash \forall x \colon \phi(x)$,
+				тогда $\Gamma' \nvdash \lnot \forall x \colon \phi(x)$.
 				Мы уже проверяли, что выводима формула $\lnot \forall x \colon \phi(x) \to \exists x \colon \lnot \phi(x)$.
 				По modus ponens выводим $\exists x \colon \lnot \phi(x)$.
 				Теперь по предыдущему пункту доказательства можем снять $\exists$ и обнаружить,

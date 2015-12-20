@@ -12,7 +12,7 @@
 \end{lemma}
 \begin{proof}
 	\begin{assertion}
-		Пусть $\Gamma$ непротиворечив и $\Gamma \not \vdash \lnot \phi$, тогда
+		Пусть $\Gamma$ непротиворечив и $\Gamma \nvdash \lnot \phi$, тогда
 		$\Gamma, \phi$ непротиворечив.
 	\end{assertion}
 	\begin{proof}
@@ -42,7 +42,7 @@
 	Для перехода надо разобраться со связками:
 	\begin{itemize}
 		\item
-			Так как $\Gamma'$ непротиворечиво (оба быть выводимы не могут) и полно (хотя бы одно выводится): $\Gamma' \vdash \lnot \phi \iff \Gamma' \not\vdash \phi$
+			Так как $\Gamma'$ непротиворечиво (оба быть выводимы не могут) и полно (хотя бы одно выводится): $\Gamma' \vdash \lnot \phi \iff \Gamma' \nvdash \phi$
 		\item
 			$\Gamma' \vdash \phi \land \psi \iff (\Gamma' \vdash \phi) \land (\Gamma' \vdash \psi)$ "--- если докажем, то доказали соответствующий переход.
 			\begin{description}
@@ -83,7 +83,7 @@
 				\Gamma' \vdash (\phi \to \psi) \iff
 				\left[
 					\begin{array}{l}
-					\Gamma' \not\vdash \phi \\
+					\Gamma' \nvdash \phi \\
 					\Gamma' \vdash \psi
 					\end{array}
 				\right.
