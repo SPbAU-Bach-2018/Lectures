@@ -1,0 +1,41 @@
+\begin{itemize}
+\item
+	\textbf{\java"optional"} -- потому что нет указателей
+	Optional<String> o = ...
+	String t = o.orElse("test");
+
+	аналогичнго
+
+	String t;
+	if(x == null) {
+		t = "test";
+	} else {
+		t = x;
+	}
+
+\item
+	\textbf{Сравнения}
+	.thenComparing
+
+	аналогично
+
+	(Student o1, Student o2) {
+		if(o1.getAge() == o2.getAge()) {
+			return o1.getName().compareTo(o2.getName());
+		}
+		if(... > ...) {
+			return 1;
+		}
+		return -1;
+	}
+
+\section{Stream}
+	Это \java"generic"-классы. "Стримы".
+	
+	Операции порождающие(конвейерные: порождают поток),
+	завершающие(выдают значение, а не поток; почти все промеж операции -- ленивые. вычисляют ровно столько элементов потока, сколько от них попросит след операция
+
+если мы хотим findFirst, то все предыдущие сделают ровно столько, сколько ей, последней, потребуется)
+
+	
+\end{itemize}
