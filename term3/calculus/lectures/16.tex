@@ -1,0 +1,159 @@
+Поговорим о 3-формах в $\R^3$. Значение формы однозначно задано её значением $\omega(e_1, e_2, e_3)$.
+Тогда размерность пространства таких форм один, и главного представителя обозначим $\d x \wedge \d y \wedge \d z$.
+
+\begin{Def}[Перенос формы]
+	Есть множества $U$ и $V$, а также гладкое отображение $\phi\colon U \ra V$.
+	На $V$ есть дифференциальная форма из $\Sigma(V)$ "--- $\omega(x; \xi_1, \dots, \xi_n)$ (взяли в точке $x \in V$).
+	Тогда перенос формы $\phi^*$ из $V$ в $U$:
+	\[ \phi^*(\omega)(t;\eta_1,\dots,\eta_k) \eqDef \omega(\phi(t); \d phi_t(\eta_1), \dots, \d \phi_t(\eta_k)) \]
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item
+	$\phi^*$ линейно (как оператор над формой):
+	\[ \phi^*(a\alpha + b\beta) = a\phi^*(\alpha) + b\phi^*(\beta) \]
+
+\item
+	Пусть есть множества $U$, $V$ и $W$ с переносами $\phi^*\colon \Omega(V) \ra \Omega(U)$ и $\psi^*\colon \Omega(W) \ra \Omega(V)$.
+	Тогда
+	\[ \phi^* \circ \psi^* = (\psi \circ \phi)^* \]
+
+\item
+	Для $f\colon V \ra \R$
+	\[ \phi^*(f \cdot \omega) = (f \circ \phi) \cdot \phi^*(\omega) \]
+	\begin{Rem}
+		В реальной жизни это означает, что при переносе формы вида $P \d x + Q \d y + R \d z$ почленно домножить коэффициенты на $f$.
+	\end{Rem}
+	\begin{proof}
+		\[
+			\phi^* (f \cdot \omega)(t;\eta_1, \dots, \eta_n)
+			= (f \cdot \omega)(\phi(t); \d phi_t(\eta_1), \dots, \d \phi_t(\eta_k))
+			= f(\phi(t)) \cdot \omega (\phi(t); \d phi_t(\eta_1), \dots, \d \phi_t(\eta_k))
+			= (f \circ \phi) \cdot \phi^*(\omega)
+		\]
+	\end{proof}
+
+\item
+	$\omega_1$, $\omega_2$ "--- 1-формы.
+	\[ \phi^*(\omega_1 \wedge \omega_2) = (\phi^* \omega_1) \wedge (\phi^* \omega_2) \]
+	\begin{proof}
+		\begin{align*}
+			(\phi^* \omega_1) (t; \xi_1) &= \omega_1(\phi(t); \d \phi_t(\xi_1)) \\
+			(\phi^* \omega_2) (t; \xi_2) &= \omega_1(\phi(t); \d \phi_t(\xi_2)) \\
+			(\phi^* (\omega_1 \wedge \omega_2)) (t; \xi_1, \xi_2) &= (\omega_1 \wedge \omega_2)(\phi(t); \d \phi_t(\xi_1), \d \phi_t(\xi_2))
+		\end{align*}
+	\end{proof}
+\end{enumerate}
+
+\begin{exmp}
+	Возьмём понятную форму $P \d x + Q \d y$, живущую в $V$ по переменных $(x,y)$,
+	возьмём отображение $\phi$ из $U$ на переменных $(u,v)$.
+	\begin{gather*}
+		\phi \begin{pmatrix} u \\ v \end{pmatrix} = \begin{pmatrix} v \\ u \end{pmatrix} \\
+		\d \phi = \begin{pmatrix} x_u' & x_v' \\ y_u' & y_v' \end{pmatrix} \\
+		\eta = \begin{pmatrix} a \\ b \end{pmatrix} \\
+		(\phi^* \omega) (u, v; \eta)
+		= \omega(\phi(u, v); \d \phi(\eta))
+		= P(x(u, v), y(u, v)) (x_u' a + x_v' b)
+		+ Q(x(u, v), y(u, v)) (y_u' a + y_v' b)
+		= P(x(u, v), y(u, v)) (x_u' \d u(\eta) + x_v' \d v(\eta))
+		+ Q(x(u, v), y(u, v)) (y_u' \d u(\eta) + y_v' \d v(\eta)) \\
+		\phi^* (P \d x + Q \d y) = P(x_u' \d u + x_v' \d v) + Q(y_u' \d u + y_v' \d v)
+	\end{gather*}
+	Но мы уже знаем эту запись, это замена переменной!
+	\begin{gather*}
+		\gamma\colon [a, b] \ra \R^2 \quad \d x = \gamma_1'(t) \d t \quad \d y = \gamma_2'(t) \d t
+	\end{gather*}
+\end{exmp}
+
+\begin{Def}[Поверхностный интеграл от формы (поверхностный интеграл II рода)]
+	Возьмём 2-форму $\omega$, простую поверхность $S = \vec r(\cl G)$.
+	\begin{description}
+	\item[$S \subset \R^2$:]
+		$\omega = f \cdot \d x \wedge \d y$, и тогда
+		\[ \int\limits_S \omega = \pm\int\limits_S f \d x \d y \]
+		Знак определяется направлением нормали: если нормаль вверх, то плюс.
+
+	\item[$S \subset \R^3$:]
+		\[ \int\limits_S \omega = \int\limits_G \vec r^* \omega \]
+		При этом ориентация переносится согласованно:
+		возьмём тройку из базисных векторов и нормали в $S$, перенесём её по прообразам в $G$, и теперь смотрим на знак интеграла в $\R^2$.
+	\end{description}
+\end{Def}
+
+\begin{Rem}
+	Теперь нам придётся проверять корректность "--- мы могли брать разные допустимые $\vec r$ и получать очень разные знаки и значения.
+\end{Rem}
+
+\begin{theorem}[Корректность определения]
+	\begin{enumerate}
+	\item
+		$\phi\colon G \subset \R^2 \ra \Omega \subset \$^2$.
+		То есть мы взяли кусок плоскости как повехность.
+		Хотим показать, что
+		\[ \int\limits_\Omega \omega = \int\limits_\phi^* \omega\]
+		Для этого
+		\begin{gather*}
+			\int\limits_\Omega f \d x \d y = \int\limits_\Omega \omega \quad
+			\int\limits_\phi^* \omega = \pm^1 \int\limits_G (f \circ \phi) J_\phi \d u \d v \\
+			\phi^* \omega = f \circ \phi \cdot \phi^*(\d x) \wedge \phi^*(\d y)
+			= f \circ \phi \cdot (x_u' \d u + x_v' \d v) \wedge (y_u' \d u + y_v' \d v)
+			= f \circ \phi \cdot (x_u' y_v' - x_v' y_u') \d u \d v
+			= f \circ \phi \cdot J_\phi \d u \wedge \d v
+		\end{gather*}
+		Мы в $1$ написали как будто якобиан положителен.
+		Если он отрицателен, то вылезет минус, но тогда нормаль не в ту сторону, и мы поставим минус второй раз.
+
+	\item
+		Теперь хотим показать, что для допустимой параметризации $\vec R = \vec r \circ w$ всё хорошо:
+		\[ \int\limits_G \vec r^* \omega =? \int\limits_\Omega \vec R^* \omega \]
+		\begin{gather*}
+			\vec R^* = (\vec r \circ w)^* = w^* \vec r^* \\
+			\tilde \omega \lrh \vec r^* \omega \\
+			\int\limits_G \vec r^* \omega = \int\limits_\Omega \vec R^* \omega \Lra
+			\int\limits_G \tilde \omega = \int\limits_\Omega w^* \tilde \omega
+		\end{gather*}
+		А это уже предыдущий пункт.
+	\end{enumerate}
+\end{theorem}
+
+\begin{Def}[Интеграл дифференциальной формы по кусочно-гладкой поверхности]
+	Взяли простые куски $S_i$ (их конечное число), задали согласованную с $S$ ориентацию, взяли сумму интегралов.
+\end{Def}
+
+\begin{Def}
+	$\vec F$ "--- векторное поле, если в каждой точке свой вектор той же размерности, что и пространство.
+\end{Def}
+
+\begin{Def}
+	$\omega = P \d y \wedge \d z + Q \d z \wedge \d x + R \d x \wedge \d y$ "--- форма потока поля $\vec F$.
+\end{Def}
+
+\begin{Def}
+	Поток поля через поверхность "--- интеграл
+	\[ \int\limits_S \omega \]
+\end{Def}
+
+\begin{theorem}
+	$\vec F = (P, Q, R)$ "--- поле.
+	\[ \int\limits_S P \d y \wedge \d z + Q \d z \wedge \d x + R \d x \wedge \d y = \int\limits_S \left<\vec F, \vec n\right> \d S \]
+\end{theorem}
+\begin{proof}
+	Достаточно доказать для простой поверхности $S = \vec r(\cl G)$.
+	\begin{gather*}
+		\left<\vec F, \vec h\right>
+		= \frac1{\|\vec r_u' \times \vec r_v'\|} \left<\vec F, \vec r_u' \times \vec r_v'\right>
+		= \frac1{\|\vec r_u' \times \vec r_v'\|} \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \\
+		\int\limits_S \left<\vec F, \vec h\right>
+		= \int\limits_G \frac1{\|\vec r_u' \times \vec r_v'\|} \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \sqrt{EG-F^2} \d u \d v
+		= \int\limits_G \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \d u \d v = \\
+		= \int\limits_G P\underbrace{(y_u' z_v' - y_v' z_u')}_{\d y \wedge \d x} + Q\underbrace{(z_u' x_v' - z_v' x_u')}_{\d z \wedge \d x} + R\underbrace{(x_u' y_v' - x_v' y_u')}_{\d x \wedge \d y} \d u \d v = \\
+		\begin{aligned}
+			\d x &= x_u' \d u + x_v' \d v \\
+			\d y &= y_u' \d u + y_v' \d v \\
+			\d z &= z_u' \d u + z_v' \d v
+		\end{aligned} \\
+		= \int\limits_S R \d y \wedge \d z + Q \d z \wedge \d x + R \d x \wedge \d y
+	\end{gather*}
+\end{proof}
