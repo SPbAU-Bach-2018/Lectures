@@ -1,0 +1,224 @@
+\begin{Def}
+	$S = \vec r(\cl G)$. Тогда край $S$
+	\[ \partial S = \vec r(\partial G) = \vec r(\cl G \setminus G) \]
+\end{Def}
+
+\begin{Def}
+	Кусочно-гладкая поверхность "--- объединение простых гладких поверхностей, пересекающихся только по краям.
+\end{Def}
+
+\begin{exmp}
+	Поверхность куба.
+\end{exmp}
+
+\begin{Def}
+	Край кусочно-гладкой поверхности "--- объединение тех краёв, которые принадлежали ровно простой поверхности.
+\end{Def}
+
+\begin{Def}
+	Пусть есть простая градкая поверхность $S = \vec r(\cl G)$.
+	Касательная поверхность $\mathcal{Lin}(\vec r_u, \vec r_v)$ "--- такая плоскость \TODO я ничего не понял
+\end{Def}
+
+\TODO Нормаль
+
+\begin{Def}
+	Простая градкая поверхность $S = \vec r(\cl G)$.
+	Допустимая параметризация "--- такая параметризация $S = \vec R(\cl \Sigma)$,
+	что $\vec R = \vec r \circ w$, а $w\colon \cl \Sigma \ra \cl G$ непрерывно дифференцируема, и $J_w \ne 0$.
+\end{Def}
+
+\begin{theorem}
+	Касательная плоскость и нормаль к простой гладкой поверхности не зависят от параметризации.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		\vec R_\xi'
+		= (\vec r(u(\xi,\eta),v(\xi,\eta)))_\xi'
+		= \vec r_u' \circ \vec u_\xi'  + \vec r_v' \circ v_\xi'  \\
+		\vec R_\eta'
+		= (\vec r(u(\xi,\eta),v(\xi,\eta)))_\eta'
+		= \vec r_u' \circ \vec u_\eta' + \vec r_v' \circ v_\eta' \\
+		\vec R_\xi' \times \vec R_\eta'
+		= (\vec r_u' \circ \vec u_\xi'  + \vec r_v' \circ v_\xi' ) \times (\vec r_u' \circ \vec u_\eta' + \vec r_v' \circ v_\eta')
+		= (\vec r_u' \times \vec r_v') \cdot (u_\xi' \cdot v_\eta' - u_\eta' \cdot v_\xi')
+		= J_w(\vec r_u' \times \vec r_v') \ne 0
+	\end{gather*}
+\end{proof}
+
+\begin{Def}
+	Гладкая поверхность называется ориентируемой, если в каждой точке сущесвует нормаль, непрерывно зависящая от точки.
+\end{Def}
+
+\begin{Rem}
+	Если есть одна ориентация, то есть две (возьмём с минусом).
+\end{Rem}
+
+\begin{Rem}
+	Простая гладкая поверхность всегда ориентируема:
+	\[ \vec n = \pm \frac{\vec r_v' \times \vec r_u'}{\|\vec r_v' \times \vec r_u'\|} \]
+\end{Rem}
+
+\begin{Rem}
+	Лента Мёбиуса не ориентируема.
+	Берём нормаль в какой-то точке и потащим её по непрерывности вдоль ленты.
+	Когда вернёмся в исходную точку, мы перейдём на другую сторону ленты, а нормаль не должна была поменяться.
+
+	На самом деле можно показать, что если поверхность неориентируема, то из неё можно вырезать ленту Мёбиуса.
+\end{Rem}
+
+\begin{Def}
+	Возьмём гладкую простую поверхность $S = \vec r(\cl G)$.
+	Обойдём $\partial G$ как у нас принято (чтобы от $u$ к $v$ угол рос).
+	Ориентируем поверхность
+	\[ \vec n = \frac{\vec r_v' \times \vec r_u'}{\|\vec r_v' \times \vec r_u'\|} \]
+	А также возьмём обход края, перетащенного с $\partial G$.
+	Такая ориентация называется согласованной.
+
+	Проще говоря, направление ориентации и обход края связаны правилом правой руки.
+\end{Def}
+
+Теперь ориентируем кусочно-гладкие поверхности.
+
+\begin{Def}
+	Ориентация кусочно-гладкое поверхности согасована, если на каждом куске ориентация согласована,
+	а также пересечения кусков, происходящих только по кривым, имеют встречные направления обхода кусков.
+\end{Def}
+
+Тут не очень ясно, что делать с плохими пересечениями (например, по точкам).
+Можно просто потребовать, чтобы пересечения были только по кривым, и там всё хорошо.
+
+\section{Поверхностный интеграл I рода}
+
+\begin{Def}
+	$S = \vec r(\cl G)$ "--- простая гладкая поверхность, $G = \bigcup_{i=1}^n G_i$, пересекаются только по множествам нулевой меры.
+	В каждом $G_i$ выберем $\xi_i = (u_i, v_i)$.
+	Возьмём линейное приближение
+	\[ \vec r_i(u, v) = \vec r(u, v) + \vec r_u' (u_i, v_i)(u - u_i) + \vec r_v'(u_i, v_i)(v - v_i) \]
+	Теперь возьмём $S_i = \vec r_i(\cl G_i)$ "--- кусок касательной плоскости, <<чешуйка>>.
+	Далее, мы автоматически получим возможность считать меру $\mu S_i$.
+	Далее, посчитаем отношение площадей:
+	\[ \frac{\mu S_i}{\mu G_i} = \|\vec r_u' \times \vec r_v' \| \]
+	Тогда $\Sigma$ "--- площадь поверхности $S$, если
+	\[
+		\forall \epsilon > 0, \exists \delta > 0\colon \forall \{G_i\}_{i=1}^n\colon \bigcup_{i=1}^n G_i = G\colon
+		\diam G_i < \delta, \left| \sum_{i=1}^n \mu S_i - \sigma \right| < \epsilon
+	\]
+\end{Def}
+
+\begin{theorem}
+	$S = \vec r(\cl G)$ "--- простая гладкая поверхность.
+	Тогда
+	\[ \sigma(S) = \int\limits_{G} \|\vec r_u'(u, v) \times \vec r_v'(u, v)\| \d u \d v \]
+\end{theorem}
+\begin{proof}
+	$g(u, v) = \|\vec r_u'(u, v) \times \vec r_v'(u, v)\|$ "--- непрерына на $\cl G$.
+	Сумма Римана
+	\[
+		\sigma(g, \tau, \xi) = \sum_{i=1}^n g(u_i, v_i) \mu G_i = \sum_{i=1}^n \mu S_i
+	\]
+	Тогда по определению интеграла
+	\[ \sigma(S) = \int\limits_{G} \|\vec r_u'(u, v) \times \vec r_v'(u, v)\| \d u \d v \]
+\end{proof}
+
+\begin{Def}
+	Первая квадратичная форма поверхности.
+	Возьмём какой-нибудь вектор в касательной плоскости:
+	\[ \alpha \vec r_u' + \beta \vec r_v' \]
+	Возьмём квадрат его длины:
+	\begin{gather*}
+		I = \|\alpha \vec r_u' + \beta \vec r_v'\|^2
+		= \left<\alpha \vec r_u' + \beta \vec r_v',\alpha \vec r_u' + \beta \vec r_v'\right> = \\
+		= \alpha^2 \left<\vec r_u', \vec r_u'\right> + 2\alpha\beta \left<\vec r_u', \vec r_v'\right> + \beta^2 \left<\vec r_v', \vec r_v'\right>
+		= \alpha^2 E + 2\alpha\beta F + \beta^2 G \\
+		I(\alpha, \beta)
+		= \begin{pmatrix} \alpha & \beta \end{pmatrix} \begin{pmatrix} E & F \\ F & G \end{pmatrix} \begin{pmatrix} \alpha\\\beta \end{pmatrix}
+	\end{gather*}
+\end{Def}
+
+Свойства:
+\begin{enumerate}
+\item
+	Это положительно определённая квадратичная форма.
+
+\item
+	\[ EG - F^2 > 0 \]
+
+\item
+	\[ \|\vec r_u' \times \vec r_v' \|^2 = EG - F^2 \]
+	\begin{proof}
+		\begin{gather*}
+			\vec r_u' \times \vec r_v'
+			= \begin{vmatrix} \TODO \end{vmatrix}
+			= (y_u' z_v' - z_u' y_v', z_u' x_v' - x_u' z_v', x_u' y_v' - y_u' x_v') \\
+			 \|\vec r_u' \times \vec r_v' \|^2
+			= (y_u' z_v' - z_u' y_v')^2 + (z_u' x_v' - x_u' z_v')^2 + (x_u' y_v' - y_u' x_v')^2 \\
+			EG - F = (x_u'^2 + y_u'^2 + z_u'^2)(x_v'^2 + y_v'^2 + z_v'^2) - (x_u'x_v' + y_u'y_v' + z_u'z_v')^2
+		\end{gather*}
+		Они равны, проверьте.
+	\end{proof}
+
+\item
+	Если $S$ "--- график функции $z(x,y)$, то
+	\[ EG - F^2 = 1 + z_u'^2 + z_v'^2 \]
+	\begin{proof}
+		\begin{gather*}
+			\vec r(x, y) = \begin{pmatrix} x \\ y \\ z(x, y) \end{pmatrix} \quad
+			\vec r_x'(x, y) = \begin{pmatrix} 1 \\ 0 \\ z_x' \end{pmatrix} \quad
+			\vec r_y'(x, y) = \begin{pmatrix} x \\ y \\ z_y' \end{pmatrix} \\
+			E = \left< r_x', r_x' \right> = 1 + z_x'^2 \quad
+			F = \left< r_x', r_y' \right> = z_x'z_y' \quad
+			G = \left< r_y', r_y' \right> = 1 + z_y'^2
+		\end{gather*}
+	\end{proof}
+\end{enumerate}
+
+\begin{conseq}
+	\[
+		\sigma(S) = \int\limits_G \sqrt{EG - F^2} \d u \d v
+	\]
+\end{conseq}
+
+\begin{conseq}
+	$S$ "--- график функции $z(x, y)$, то
+	\[
+		\sigma(S) = \int\limits_G \sqrt{1 + z_x'^2(x, y) + z_y'^2(x, y)} \d x \d y
+	\]
+\end{conseq}
+
+\begin{Def}
+	$S = \vec r(\cl G)$ "--- простая гладкая поверхность, $f\colon S \ra \R$ непрерывна.
+	Тогда
+	\[
+		\int\limits_S f \d S \eqDef \int\limits_G f(\vec r(u, v)) \| \vec r_u'^2 \times \vec r_v'^2 \| \d u \d v
+	\]
+\end{Def}
+
+\begin{theorem}
+	Итнеграл не зависит от параметризации.
+\end{theorem}
+\begin{proof}
+	Возьмём допустимую параметризацию. Тогда мы уже знаем, что
+	\begin{gather*}
+		\|\vec R_\xi' \times \vec R_\eta'\| = \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \\
+		\int\limits_\Omega f(\vec R(\xi, \eta)) \| \vec R_\xi'^2 \times \vec R_\eta'^2 \| \d u \d v
+		= \int\limits_\Omega f(\vec R(\xi, \eta)) \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \d u \d v
+		= \int\limits_G f(\vec r(u, v)) \| \vec r_u'^2 \times \vec r_v'^2 \| \d u \d v
+	\end{gather*}
+	Мы специально так определяли допустимую параметризацию, чтобы формула замены переменной работала.
+\end{proof}
+
+\begin{Rem}
+	$S$ "--- график функции, то
+	\[ \int\limits_S f \d S = \int\limits_G f(x, y, z(x, y)) \sqrt{1 + z_x'^2(x, y) + z_y'^2(x, y)} \d x \d y \]
+\end{Rem}
+
+\begin{Def}
+	Пусть $S$ "--- кусочно-гладкая поверхность.
+	\[ \int\limits_S f \d s = \sum_{i=1}^n \int\limits_{S_i} f \d S \]
+	где $S_i$ "--- простые куски.
+\end{Def}
+
+\begin{Rem}
+	Интеграл не зависит от нарезки.
+\end{Rem}

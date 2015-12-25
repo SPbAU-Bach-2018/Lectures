@@ -1,0 +1,152 @@
+Свойства:
+\begin{enumerate}
+\item
+	Интеграл не зависит от ориентации, так как ориентации в определении просто нет.
+
+\item
+	Линейность по функции.
+	\[ \int\limits_M (\alpha f + \beta g) \d S = \alpha \int\limits_M f \d S + \beta \int\limits_M g \d S \]
+
+\item
+	Линейность по поверхности: $M = M_1 \sqcup M_2$
+	\[ \int\limits_M f \d S = \int\limits_{M_1} f \d S + \int\limits_{M_2} f \d S \]
+
+\item
+	$f \ge 0$
+	\[ \int\limits_M f \d S \ge 0 \]
+\end{enumerate}
+
+\begin{exmp}[Сферические координаты]
+	\begin{gather*}
+		x = К \cos u \cos v \quad y = К \sin u \cos v \quad z = К \sin v \\
+		u \in [0, 2\pi] \quad v \in \left[-\frac\pi2,\frac\pi2\right]
+	\end{gather*}
+	Биекция сходу не получится, разрежем сферу на две полусферы.
+	Теперь проблема в полюсах, мы выкинем полярные шапки, и устремим их размер к нулю, интеграл там будет нулевой, так что в конце всё хорошо.
+
+	Посчитаем что-нибдуь:
+	\begin{gather*}
+		\vec r_u' = (R \sin u \cos v, R \cos u \cos v, 0) \\
+		\vec r_v' = (-R \cos u \sin v, -R \sin u \sin v, R \cos v) \\
+		E = \left<\vec r_u', \vec r_u'\right> = R^2 \cos^2 v \\
+		F = \left<\vec r_u', \vec r_v'\right> = 0 \\
+		G = \left<\vec r_v', \vec r_v'\right> = R^2 \\
+		\sqrt{EG-F^2} = R^2 \cos v \\
+		\int\limits_{x^2+y^2+z^2=R^2} f(x, y, z) \d S
+		= \int\limits_{\substack{u \in [0, 2\pi] \\ v \in \left[-\frac\pi2,\frac\pi2\right]}} f(R \cos u \cos v, R \sin u \cos v, R \sin v) R^2 \cos v \d u \d v
+	\end{gather*}
+\end{exmp}
+
+\section{Дифференциальные формы}
+
+\begin{Def}
+	Внешняя форма $\omega\colon \underbrace{\R^n \times \R^n \times \dots \times \R^n}_{k} \ra \R$
+	линейна по каждой координате и антисимметричка:
+	\[ \omega(\xi_1, \dots, \xi_i, \dots, \xi_j \dots, \xi_n) = -\omega(\xi_1, \dots, \xi_j, \dots, \xi_i \dots, \xi_n) \]
+\end{Def}
+
+\begin{exmp}\begin{description}
+	\item[0-форма:] константа
+	\item[1-форма:] линейное отображение
+	\item[2-форма:] билинейная антисимметричная форма
+\end{description}\end{exmp}
+
+\begin{Rem}
+	\[ \omega(\xi, \xi) = 0 \]
+\end{Rem}
+
+Пусть $n=k=2$, $\omega\colon \R^2 \times \R^2 \ra \R$.
+\begin{gather*}
+	A = (\xi_1, \xi_2) = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} \\
+	\omega(\xi_1, \xi_2)
+	= \omega(a_{11} e_1 + a_{21} e_2, a_{12} e_1 + a_{22} e_2)
+	= a_{11} a_{12} \omega(e_1, e_1)
+	+ a_{11} a_{22} \omega(e_1, e_2)
+	+ a_{21} a_{12} \omega(e_2, e_1)
+	+ a_{21} a_{22} \omega(e_2, e_2)
+	= (a_{11} a_{22} - a_{21} a_{12}) \omega(e_1, e_2) \\
+	\omega(\xi_1, \xi_2) = \det A \omega(e_1, e_2)
+\end{gather*}
+
+\begin{Def}
+	У открытого $G \subset \R^n$ дифференциальная форма "--- сопоставление каждой точке $G$ некоторой внешей формы.
+	$\Omega(G)$ "--- множество дифференциальных форм в $G$.
+\end{Def}
+\begin{exmp}\begin{description}
+\item[0-форма:]
+	У каждой точки константа, то есть целиком "--- функция,
+
+\item[1-форма:]
+	У каждой точки линейное отображение, то есть целиком "--- дифференциалы скалярозначной функций.
+	Например, посмотрим на:
+	\begin{gather*}
+		f(x) = x_i \\
+		x_i + h_i = f(x + h) = f(x) + \d f_x(h) + o(h) \\
+		\d f_x = f = (x \mapsto x_i)
+	\end{gather*}
+	Обозначим $\d x_i$ "--- отображение, оставляющее от вектора заданную координату.
+	Тогда можно, оказывается, записать:
+	\[ \d f = \partd{f}{x_1} \d x_1 + \dots + \partd{f}{x_n} \d x_n \]
+	Общий вид 1-формы:
+	\[ \omega = P_1 \d x_1 + \dots + P_n \d x_n \]
+	Это даже точно соотвествует тому смыслу, что означали $\d x_i$ в криволинейных интегралах II рода!
+\end{description}\end{exmp}
+
+\begin{Def}
+	Внешнее произведение двух 1-форм "--- 2-форма с свойствами
+	\begin{enumerate}
+	\item
+		\[ \omega_1 \wedge \omega_2 = - \omega_2 \wedge \omega_1 \]
+	
+	\item
+		Если взяли $\xi_1, \xi_2$ такие что $\omega_i(\xi_j) = \delta_{ij} = (int) i == j$, 
+		то $(\omega_1 \wedge \omega_2)(\xi_1, \xi_2) = 1$
+	\end{enumerate}
+	Операция, к тому же, линейна по каждому аргументу (это можно вывести, но мы возьмём в определение).
+\end{Def}
+
+\begin{theorem}
+	\[ (\omega_1 \wedge \omega_2)(\xi_1, \xi_2) = \begin{vmatrix} a_11 & a_12 \\ a_21 & a_22 \end{vmatrix} \]
+	где $a_ij = \omega_i(\xi_j)$
+\end{theorem}
+\begin{proof}
+	Если $\omega \ne 0$ и $\xi$ линейно независимы, то найдутся 1-формы $\beta_i(\xi_j) = \delta_ij$.
+	Откуда?
+	Давайте построем $\beta_1$: возьмём функцию, равную проекции вектора на нормаль к $\xi_2$.
+	Теперь в $\xi_2$ эта функция точно ноль, а в $\xi_1$ не ноль, можно нормировать.
+
+	Тогда
+	\begin{gather*}
+		\omega_1 = a_11 \beta_1 + a_12 \beta_2 \quad \omega_2 = a_21 \beta_1 + a_22 \beta_2
+		\omega_1 \wedge \omega_2
+		= a_11 a_12 (\beta_1 \wedge \beta_1)
+		+ a_11 a_22 (\beta_1 \wedge \beta_2)
+		+ a_21 a_12 (\beta_2 \wedge \beta_1)
+		+ a_21 a_22 (\beta_2 \wedge \beta_2)
+		= (a_11 a_22 - a_21 a_12) (\beta_1 \wedge \beta_2) \\
+		(\omega_1 \wedge \omega_2) (\xi_1, \xi_2)
+		= \begin{vmatrix} a_11 & a_12 \\ a_21 & a_22 \end{vmatrix} \underbrace{(\beta_1 \wedge \beta_2) (\xi_1, \xi_2)}_{=1}
+	\end{gather*}
+
+	Если форма ноль или $\xi_i$ линейно зависимы, то слева и справа написан ноль.
+\end{proof}
+
+\begin{Rem}
+	Возьмём 2-формs.
+	Вообще говоря, размерность их пространства $n^2$ (надо выбрать по значению на базисе $(e_i, e_j)$).
+	Но из-за антисимметричности, размерность их пространства $\frac{n(n-1)}2$.
+\end{Rem}
+
+\begin{theorem}
+	2-формы в $\R^n$ "--- линейные комбинации $\d x_i \wedge \d x_j$ (коэффициенты зависят от точки).
+\end{theorem}
+\begin{proof}
+	$\d x_i \wedge \d x_j$ линейно независимы, так как подставляем $(e_i, e_j)$, у каждого есть пара, на котором только он единичен.
+	А их ещё $\frac{n(n-1)}2$.
+	Значит это базис.
+\end{proof}
+
+\begin{conseq}
+	Все 2-формы в $\R^3$ выглядят
+	\[ P \d y \d z + Q \d z \d x + R \d x \d y \]
+\end{conseq}

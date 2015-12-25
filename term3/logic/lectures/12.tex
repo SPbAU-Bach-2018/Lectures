@@ -25,7 +25,7 @@
 				0, &\text{если } \Gamma' \vdash \lnot p^{(k)}(t_1, \dots, t_n) \\
 			\end{cases}
 		\]
-		Так как $\Gamma'$ экзистенциально полон, то все значения определены.
+		Так как $\Gamma'$ полон, то все значения определены.
 
 		Получили некоторую интерпретацию $I$: носитель и формулы.
 		\begin{assertion}
@@ -36,14 +36,14 @@
 			Индукция по числу логических операций в $\phi$ ($\land, \lor, \lnot, \to, \exists, \forall$).
 			База: атомарные формулы. Для них мы просто по определению $I$ всё корректно задали.
 
-			Переход: надо разобраться со значками (доказательство аналогично какой-то прошлой теореме,
+			Переход: надо разобраться со значками (доказательство аналогично утверждению \ref{interpret_eq_derivability_non_pred},
   			там мы пользовались только полнотой, даже экзистенциальность не нужна):
-  			\begin{itemize}
-   				\item $\Gamma' \vdash (\phi \land \psi) \iff \Gamma' \vdash \phi$ и $\Gamma' \vdash\psi$
-   				\item $\Gamma' \vdash (\phi \lor \psi) \iff \Gamma' \vdash \phi$ или $\Gamma' \vdash\psi$
-   				\item $\Gamma' \vdash \phi \iff \Gamma' \not\vdash \phi$
-   				\item $\Gamma' \vdash (\phi \to \psi) \iff \Gamma' \not\vdash \phi$ или $\Gamma' \vdash \psi$
-  			\end{itemize}
+			\begin{itemize}
+				\item $\Gamma' \vdash (\phi \land \psi) \iff \Gamma' \vdash \phi$ и $\Gamma' \vdash\psi$
+				\item $\Gamma' \vdash (\phi \lor \psi) \iff \Gamma' \vdash \phi$ или $\Gamma' \vdash\psi$
+				\item $\Gamma' \vdash \phi \iff \Gamma' \nvdash \phi$
+				\item $\Gamma' \vdash (\phi \to \psi) \iff \Gamma' \nvdash \phi$ или $\Gamma' \vdash \psi$
+			\end{itemize}
 
 			Остались кванторы.
   			\begin{description}
@@ -51,32 +51,32 @@
    			Допустим, что $\Gamma' \vdash \exists \colon \phi(x)$.
 			Надо доказать, что эта формула истинна в нашей интерпретации.
 				Мы знаем, что имеется экзистенциальная полнота $\Gamma'$, то есть
-				имеется такой замкнутый терм $t$ такой, что $\Gamma \vdash \phi(t \mid x)$.
-				По предположению индукции $\phi(t \mid x)$ истинна (так как квантор сняли,
+				имеется такой замкнутый терм $t$ такой, что $\Gamma \vdash \phi(t|x)$.
+				По предположению индукции $\phi(t|x)$ истинна (так как квантор сняли,
 				а никаких новых связок не добавили), что и требовалось.
 
 				Теперь в обратную сторону: пусть $\exists x \colon \phi(x)$ истинна в интерпретации
 				$I$, тогда существует некоторое значение $x$ (назовём его термом $t$) такой, что
-				$\phi(t \mid x)$ истинна.
-				То есть $\Gamma' \vdash \phi(t \mid x)$.
-				Есть аксиома: $\phi(t\mid x) \to \exists x \colon \phi(x)$,
-				По modus ponens аксиомы с $\phi(t\mid x)$ получаем $\Gamma' \vdash \exists x \colon \phi(x)$,
+				$\phi(t|x)$ истинна.
+				То есть $\Gamma' \vdash \phi(t|x)$.
+				Есть аксиома: $\phi(t|x) \to \exists x \colon \phi(x)$,
+				По modus ponens аксиомы с $\phi(t|x)$ получаем $\Gamma' \vdash \exists x \colon \phi(x)$,
 				что и требовалось.
 
 			\item[$\forall$]
-				Пусть $\Gamma' \vdash \forall x \colon \phi(x)$.
-				Есть аксиома: $\forall x \colon \phi(x) \to \phi(t \mid x)$.
-				То есть для любого терма $t$ верно: $\Gamma' \vdash \phi(t \mid x)$,
-				то есть $\phi(t\mid x)$ истинна, откуда $\forall x \colon \phi(x)$ истинна.
+				Пусть $\Gamma' \vdash (\forall x \colon \phi(x))$.
+				Есть аксиома: $(\forall x \colon \phi(x)) \to \phi(t|x)$.
+				То есть для любого терма $t$ верно: $\Gamma' \vdash \phi(t|x)$ (по modus ponens),
+				то есть $\phi(t|x)$ истинна, откуда $\forall x \colon \phi(x)$ истинна.
 
 				В обратную сторону: пусть $\forall x \colon \phi(x)$ истинна в $I$.
-				Доказательство от противного: пусть $\Gamma' \not \vdash \forall x \colon \phi(x)$,
-				тогда $\Gamma' \not \vdash \lnot \forall x \colon \phi(x)$.
-				Мы уже проверяли, что выводима формула $\lnot \forall x \colon \phi(x) \to \exists x \colon \lnot \phi(x)$.
+				Доказательство от противного: пусть $\Gamma' \nvdash (\forall x \colon \phi(x))$,
+				тогда $\Gamma' \vdash \lnot (\forall x \colon \phi(x))$.
+				Мы уже проверяли, что выводима формула $\lnot (\forall x \colon \phi(x)) \to (\exists x \colon \lnot \phi(x))$.
 				По modus ponens выводим $\exists x \colon \lnot \phi(x)$.
 				Теперь по предыдущему пункту доказательства можем снять $\exists$ и обнаружить,
-				что существует такой замкнутый терм $t$, что $\lnot \phi(t \mid x)$ истинна,
-				то есть $\phi(t \mid x)$ ложна.
+				что существует такой замкнутый терм $t$, что $\lnot \phi(t|x)$ истинна,
+				то есть $\phi(t|x)$ ложна.
 				Отсюда $\forall x \colon \phi(x)$ ложно (так как существует терм $x$, для
 				которого подстановка ложна), противоречие.
 			\end{description} 
@@ -100,7 +100,7 @@
 			\lnot \tilde \phi \vdash \lnot A
 		\end{cases}
 	\]
-	У нас было правило вывода для рассмотрение от противного: если из $x$ выводится
+	У нас было правило вывода для рассмотрения от противного: если из $x$ выводится
 	и $A$, и $\lnot A$, то из пустого выводится $\lnot x$.
 	Еще было правило снятия двойного отрицания:
 	\[
@@ -133,7 +133,7 @@
 	Противоречие.
 \end{proof}
 \begin{Rem}
-	Это некоторый удобный способ доказывать существования моделей у список формул.
+	Это некоторый удобный способ доказывать существования моделей у списков формул.
 \end{Rem}
 
 \begin{Rem}
@@ -151,13 +151,14 @@
 С кванторами хуже.
 Давайте сначала приведём формулу в предварённую (предварённую нормальную) форму, когда
 все кванторы идут в начале.
-Формулы классифицируют по количеству \textsl{смен} кванторов, как в исчислениях, например:
-$
+
+Формулы классифицируют по количеству \textsl{смен} кванторов, как в арифметической иерархии, например:
+\begin{gather*}
 	(\exists \dots \exists \colon \phi) \in \Sigma_1 \\
 	(\forall \dots \forall \colon \phi) \in \Pi_1 \\
 	(\exists \dots \exists \forall \dots \forall \colon \phi) \in \Sigma_2 \\
 	(\forall \dots \forall \exists \dots \exists \colon \phi) \in \Pi_2 \\
-$
+\end{gather*}
 
 \begin{assertion}
 	\[
@@ -165,6 +166,9 @@ $
 	\]
 	Эта формула общезначна тогда и только тогда, когда общезначна $\phi$.
 \end{assertion}
+\begin{proof}
+	Очевидно, наверное.
+\end{proof}
 
 \begin{theorem}
 	Бескванторная формула $\phi$ общезначна $\iff$ $\phi$ "--- частный случай

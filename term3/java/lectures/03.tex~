@@ -184,7 +184,7 @@ class Fruit {}
 
 class Apple extends Fruit{}
 
-class Antonovka extends Apple {}
+class Antonovka extands Apple {}
 
 public class Main {
 	public static void foo(ArrayList<? extends Apple> l) {

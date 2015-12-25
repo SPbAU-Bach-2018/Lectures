@@ -11,11 +11,5 @@
 \input{04.tex}
 \input{05.tex}
 \input{06.tex}
-\input{07.tex}
-\input{08.tex}
-\input{09.tex}
-\input{10.tex}
-\input{11.tex}
-\input{12.tex}
-\input{13.tex}
+
 \end{document}
