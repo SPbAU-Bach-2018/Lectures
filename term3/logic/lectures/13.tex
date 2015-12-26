@@ -71,9 +71,10 @@
 \begin{enumerate}
 	\item $\forall x \colon \exists y \colon S(y)=x$ ($S$ сюръективна)
 	\item $\forall x \colon \forall y \colon S(x) = S(y) \Ra x = y$ ($S$ инъективна)
-	\item $\forall x \colon S(x) \lnot x$
-	\item $\forall x \colon S(S(x)) \lnot x$
-	\item $\forall x \colon S(\dots S(x) \dots) \lnot x$
+	\item $\forall x \colon S(x) \ne x$
+	\item $\forall x \colon S(S(x)) \ne x$
+	\item $\cdots$
+	\item $\forall x \colon S(\dots S(x) \dots) \ne x$
 \end{enumerate}
 Оказывается, что этого достаточно для существования элиминации кванторов.
 \begin{Exercise}
