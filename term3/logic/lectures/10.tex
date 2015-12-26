@@ -204,12 +204,12 @@
 	\begin{tabular}{|c|cc|}
 		\hline
 		№ & Аксиома & Правило вывода \\\hline
-		3 & $(A \land B) \to A$ & Если $\Gamma, (A \land B)$, то $\Gamma \vdash A$ \\
-		4 & $(A \land B) \to B$ & Если $\Gamma, (A \land B)$, то $\Gamma \vdash B$ \\
+		3 & $(A \land B) \to A$ & $\Gamma, (A \land B) \vdash A$ \\
+		4 & $(A \land B) \to B$ & $\Gamma, (A \land B) \vdash B$ \\
 		5 & $(A \to (B \to (A \land B)) \to B$ & Если $\Gamma \vdash A$ и $\Gamma \vdash B$, то $\Gamma \vdash (A \land B)$ \\
 		\hline
-		6 & $(A \to (B \lor A))$ & Если $\Gamma \vdash A$, то $\Gamma \vdash (B \lor A)$ \\
-		7 & $(A \to (B \lor A))$ & Если $\Gamma \vdash B$, то $\Gamma \vdash (B \lor A)$ \\
+		6 & $(A \to (B \lor A))$ & $\Gamma, A \vdash (B \lor A)$ \\
+		7 & $(A \to (B \lor A))$ & $\Gamma, B \vdash (B \lor A)$ \\
 		8 & $(A \to C) \to ((B \to C) \to ((A \lor B) \to C))$ & Если $\Gamma, A \vdash C$ и $\Gamma, B \vdash C$, то $\Gamma, (A \lor B) \vdash C$ \\
 		\hline
 		9 & $\lnot A \to (A \to B)$ & Если $\Gamma \vdash A$ и $\Gamma \vdash \lnot A$, то $\Gamma \vdash B$ \\
