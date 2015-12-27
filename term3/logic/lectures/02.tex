@@ -157,13 +157,13 @@
 	Можно выразить все <<естественные>> операции из языков программирования:
 	\begin{enumerate}
 		\item Присваивание переменной нулю: \t{z := 0}.
-		\begin{cppcode}
+		\begin{abstractcode}
 if z > 0 then goto 2 else goto 4
 z--
 goto 1
-stop    \end{cppcode}
+stop    \end{abstractcode}
 		\item \t{a := b}
-		\begin{cppcode}
+		\begin{abstractcode}
 a := 0
 c := 0
 while (b > 0)
@@ -172,15 +172,15 @@ while (b > 0)
 	c++
 while (c > 0)
 	c--
-	b++ \end{cppcode}
+	b++ \end{abstractcode}
 	\item \t{a := b + c}
-	\begin{cppcode}
+	\begin{abstractcode}
 a := b
 d := c
 while (d > 0)
 	d--
 	a++ 
-	\end{cppcode}
+	\end{abstractcode}
 	\item \t{a := bc}
 	\item Возведение в степень
 	\item Деление с остатком
