@@ -238,11 +238,11 @@
 		\iff
 		\lnot\lnot \mcA \vdash \mcA \\
 		\Updownarrow \text{~добавили аксиому 11 с подстановкой} \\
-		\lnot\lnot \mcA, \mcA \lor \lnot\mcA \vdash \mcA
-		\iff
-		\lnot\lnot \mcA \vdash (\mcA \lor \lnot\mcA) \to \mcA
-		\iff
-		\lnot\lnot \mcA \vdash (\mcA \to \mcA) \land (\lnot\mcA \to \mcA)
+		\lnot\lnot \mcA, \mcA \lor \lnot\mcA \vdash \mcA \\
+		\Updownarrow \\
+		\lnot\lnot \mcA \vdash (\mcA \lor \lnot\mcA) \to \mcA \\
+		\Uparrow \text{~по аксиоме 8} \\
+		\lnot\lnot \mcA \vdash (\mcA \to \mcA), (\lnot\mcA \to \mcA)
 		\iff \\ \iff
 		\begin{cases}
 			\lnot\lnot \mcA, \mcA \vdash \mcA & \text{очевидно} \\
