@@ -1,57 +1,56 @@
 ﻿\chapter{Полилинейная алгебра и тензоры}
+
 \section{Факторпространство}
-$K$ "--- поле, $V$ "--- векторное поле над $K$, $U < V$.
 
-$v_1, v_2 \in V \colon v_1 \sim v_2$, если $v_1 - v_2 \in U$. 
+\begin{Def}
+	$K$ "--- поле, $V$ "--- векторное поле над $K$, $U < V$.
+	Введём отношение для $v_1, v_2 \in V$:
+	\[ v_1 \sim v_2 \Lra v_1 - v_2 \in U \]
+\end{Def}
+\textbf{Упражнение:} Это отношение эквивалентности.
 
-\textbf{Упражнение:} Это отношение эквивалентности. 
-
-$[v] = v + U = \{v + u\colon u \in U\}$"--- линейное многообразие. 
-
-$$(v_1 + U) + (v_2 + U) = (v_1 + v_2) + U$$
-$$\alpha(v_1 + U) = \alpha v_1 + U$$
-
+\begin{Def}
+	$[v] = v + U = \{v + u\colon u \in U\}$ "--- линейное многообразие.
+	\begin{gather*}
+		(v_1 + U) + (v_2 + U) = (v_1 + v_2) + U \\
+		\alpha(v_1 + U) = \alpha v_1 + U
+	\end{gather*}
+\end{Def}
 \textbf{Упражнение:} докажите что определение корректно(независимость от выбора представителей в классаx)
 
-$V/\sim$
-
+Рассмотрим фактормножество $V/\sim$.
 \textbf{Упражнение:} операции сложения классов и умножение классов на скаляр удовлетворяет аксиомам векторного пространства.
 
-$V/\sim$ с операциями + и $\cdot$ называется факторпространством $V$ по подпространству $U$. Обозначение: $V/U$ 
-
-Что значит, что $\{v_i + U\}_{i \in I}$ базис $V/U$.
-$\forall v + U \in V/U
-\exists$ и единственный набор $\alpha_i \in K$, почти все $\alpha_i = 0$
-
-$$v + U = \sum_{i \in I}\alpha_i(v_i + U) = (\sum_{i \in I}\alpha_i v_i) + U $$
-
-
+\begin{Def}
+	$V/\sim$ с операциями + и $\cdot$ называется факторпространством $V$ по подпространству $U$.
+	Обозначение: $V/U$.
+\end{Def}
+Что значит, что $\{v_i + U\}_{i \in I}$ "--- базис $V/U$?
+\begin{gather*}
+	\forall v + U \in V/U, \exists! \{\alpha_i\} \subset K\colon \text{почти все $\alpha_i$ равны 0}\colon \\
+	v + U = \sum_{i \in I}\alpha_i(v_i + U) = \left(\sum_{i \in I}\alpha_i v_i\right) + U
+\end{gather*}
 \textbf{Упражнение:}
-$\{v_i + U\}_{i \in I}$  "--- базис $V/U$
-$\Lra \{v_i\}_{i \in I}$ "--- относительный базис V относительно U.
+$\{v_i + U\}_{i \in I}$  "--- базис $V/U$ тогда и только тогда, когда
+$\{v_i\}_{i \in I}$ "--- относительный базис $V$ относительно $U$.
 
 \subsection{Отображение, индуцированное на факторпространстве}
-    $V, W$ "--- векторные пространства над $K$, $U < V$.
 
-    $ f \colon V \to W$ линейная. 
-    
-    \textbf{Вопроc:} когда можно построить естественное линейное индуцированное отображение $\bar f \colon  V / U \to W$
+$V, W$ "--- векторные пространства над $K$, $U < V$.
+$f \colon V \to W$ линейная.
+\textbf{Вопроc:} когда можно построить естественное линейное индуцированное отображение $\bar f\colon V/U \to W$?
 
-    \textbf{Предложение:} Если $U \subset \ker f$, то такое индуцированное отображение можно построить. 
-
-    $$\bar f \colon V/U \to W$$
-    $$v + U \in V/U$$
-    $$\bar f(v + U) = f(v)$$
-
-    Корректность: 
-    $$v + U = v' + U \Ra \bar f(v + U) = \bar f (v' + U)$$
-    $$v - v' \in U, f(v) = f(v')$$
-    $$f(v) - f(v') = f(v - v' ) = 0$$
-    $$v - v' \in U \subset \ker f $$
-
-    $$\bar f(\alpha_1(v_1 + U) + \alpha_2(v_2 + U)) = \bar f(\alpha_1 v_1 + \alpha_2 v_2 + U) = $$
-    $$= f(\alpha_1 v_1 + \alpha_2 v_2) = \alpha_1 f(v_1) + \alpha_2 f(v_2) = \alpha_1 \bar f(v_1 + U) + \alpha_2\bar f(v_2 + U) $$
-
-    $$\bar f \in \mathcal{L}(V/U, W)$$
-
-
+\textbf{Предложение:} Если $U \subset \ker f$, то такое индуцированное отображение можно построить.
+\begin{gather*}
+	\bar f \colon V/U \to W \\
+	v + U \in V/U\colon \bar f(v + U) = f(v)
+\end{gather*}
+Корректность:
+\begin{gather*}
+	v + U = v' + U \Ra \bar f(v + U) = \bar f (v' + U) \\
+	v - v' \in U \subset \ker f \\
+	v - v' \in U \Ra f(v) = f(v')\colon f(v) - f(v') = f(v - v') = 0 \\
+	\bar f\left(\alpha_1(v_1 + U) + \alpha_2(v_2 + U)\right) = \bar f\left(\alpha_1 v_1 + \alpha_2 v_2 + U\right) = \\
+	= f(\alpha_1 v_1 + \alpha_2 v_2) = \alpha_1 f(v_1) + \alpha_2 f(v_2) = \alpha_1 \bar f(v_1 + U) + \alpha_2\bar f(v_2 + U) \\
+	\bar f \in \mathcal{L}(V/U, W)
+\end{gather*}
