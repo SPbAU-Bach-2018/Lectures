@@ -1,239 +1,235 @@
 ﻿\section{Тензорное произведение пространств}
 
-$V_1, \cdots, V_n, W$ "--- векторное пространство над $K$.
+Возьмём $V_1, \dots, V_n$, $W$ "--- векторные пространства над $K$.
+Рассмотрим полилинейные отображения $V_1 \times \dots \times V_n$ в $W$,
+то есть отображения, линейные по каждому из аргументов.
 
-Полилинейные отображения $V_1 \times \cdots \times V_n$ в $W$,
-то есть отображение линейное по каждому из аргументов. 
-
-Построим новое пространство (тензорное пространство $V_1, \cdots, V_n \colon V_1 \otimes \cdots \otimes V_n$)  
-и каноническое отображение из $V_1 \times \cdots \times V_n$ в $V_1 \otimes \cdots \otimes V_n$
+Построим новое, тензорное пространство $V_1 \otimes \dots \otimes V_n$
+и каноническое отображение из $V_1 \times \dots \times V_n$ в $V_1 \otimes \dots \otimes V_n$
 
 \begin{description}
-    \item[Шаг 1:]
-    Построим $V_1 \otimes \cdots \otimes V_n$
-    
-    $$V_1 \times \cdots \times V_n = \{(v_1, \cdots, v_n)\colon v_i \in V_i\}$$
+\item[Шаг 1:]
+	Построим $V_1 \otimes \dots \otimes V_n$
+	\[ V_1 \times \dots \times V_n = \{(v_1, \dots, v_n)\colon v_i \in V_i\} \]
+	Возьмём $M$ "--- пространство всех финитных отображений из $V_1 \times \dots \times V_n$ в $K$
+	(финитное значит, что отображение почти всюду равно 0).
+	\begin{gather*}
+		f, g \in M \\
+		(f + g)(v_1, \dots, v_n) = f(v_1, \dots, v_n) + g(v_1, \dots, v_n) \\
+		(\alpha f)(v_1 \dots v_n) = \alpha f(v_1, \dots, v_n)
+	\end{gather*}
+	\textbf{Упражнение:} $M$ "--- векторное пространство над $K$.
+	Теперь рассмотрим набор финитных отображений $\delta_{(v_1,\dots, v_n)}$:
+	\[
+		\delta_{(v_1,\dots, v_n)}(u_1, \dots, u_n) = \begin{cases}
+			1 & u_1 = v_1 \land \dots \land u_n = v_n \\
+			0 & \text{иначе}
+		\end{cases}
+	\]
+	Для любой $f$:
+	\[ f = \sum_{(v_1, \dots, v_n)} f(v_1, \dots, v_n)\delta_{(v_1, \dots, v_n)} \]
+	Если $f$ финитная, то сумма конечна.
+	Тогда набор $\delta$-функций порождает $M$.
+	\[ \sum \alpha_{(v_1, \dots, v_n)} \delta_{(v_1, \dots, v_n)} = 0 \Lra \alpha_{(v_1, \dots, v_n)} = 0 \]
+	$\alpha_{v_1, \dots, v_n} \in K$, значит $\delta$-функции линейно независимы.
 
-    $M$ "--- пространство всех линейных финитных отображений из $V_1 \times \cdots \times V_n$ в $K$
-    (каждое отображение почти всюду равно 0).
+	$\delta$-функции "--- базис $M$.
+	Если поле $K$ бесконечно и хотя бы одно из $V_i$ не нульмерно, то $M$ "--- бесконечномерное.
 
-    $$f, g \in M$$
-    $$(f + g)(v_1, \cdots, v_n) = f(v_1, \cdots, v_n) + g(v_1, \cdots, v_n)$$
-    $$(\alpha f)(v_1 \cdots v_n) = \alpha f(v_1, \cdots, v_n)$$
+	Далее символ $\delta$ будем опускать, будем просто писать $(v_1, \dots, v_n)$.
+	\TODO в конспекте ещё не везде хватает скобок, чтобы это обозначение было видно.
 
-   \textbf{Упражнение:} $M$ "--- векторное пространство над $K$.
+	$\sum \alpha_{v_1, \dots, v_n}(v_1, \dots, v_n)$ "--- такие формальные суммы образуют $M$.
 
-    $\delta_{(v_1,\cdots, v_n)}(u_1, \cdots, u_n) = \left\{
-    \begin{aligned}
-    1,  u_1 = v_1, \cdots, u_n = v_n\\
-    0, \texttt{otherwise}\\ 
-    \end{aligned}
-    \right.$
+	Теперь рассмотрим формальные финитные линейные комбинации элементов $V_1 \times \dots \times V_n$:
+	\begin{gather*}
+		\sum \alpha_{v_1, \dots, v_n}(v_1, \dots, v_n) = \sum \beta_{v_1, \dots, v_n}(v_1, \dots, v_n) \Lra \\
+		\Lra \forall v_1, \dots, v_n \colon \alpha_{(v_1, \dots,  v_n)} = \beta_{(v_1, \dots, v_n)}
+	\end{gather*}
 
-    $f = \sum_{(v_1, \cdots, v_n)} f(v_1, \cdots, v_n)\delta_{(v_1, \cdots, v_n)}$ 
-    (так как f финитная, то сумма конечна). 
+	Возьмем подпространство, порожденное следующим набором векторов.
+	\begin{align*}
+		M_0=& \left< (v_1, \dots, v_i + v_i', \dots, v_n) - (v_1, \dots, v_i, \dots, v_n) - (v_1, \dots, v_i', \dots, v_n), \right.\\
+			& (v_1, \dots, \alpha v_i, \dots, v_n) - \alpha(v_1,\dots, v_i, \dots, v_n) \\
+			& \mid \left. \forall i = 1..n, v_i, v_i' \in V_i, \alpha \in K \right>
+	\end{align*}
+	Что же такое $M_0$? Это те самые разности, которые не позволяют нам работать с $\delta$-ми линейно по их параметрам.
+	Нам бы хотелось, чтобы все $M_0$ были на самом деле нулями в новом пространстве.
+	Давайте возьмём факторпространство:
+	\[ V_1 \otimes \dots \otimes V_n \coloneqq M/M_0 \]
 
-    $\delta$ "--- функция порождает $M$.
+	\begin{Rem}
+	$$(v_1, \dots, v_i + v_i', \dots, v_n) + M_0 = (v_1, \dots, v_i, \dots, v_n) + (v_1, \dots, v_i',\dots, v_n) + M_0$$
+	$$(v_1, \dots, \alpha v_i, \dots, v_n) + M_0 = \alpha(v_1,\dots, v_i, \dots, v_n) + M_0$$
+	\end{Rem}
 
-    $\sum \alpha_{(v_1, \cdots, v_n)} \delta_{(v_1, \cdots, v_n)} = 0 \Lra$  все $\alpha_{(v_1, \cdots, v_n)} = 0$ 
+	\begin{Def}
+		$V_1 \otimes \dots \otimes V_n$ "--- тензорное произведение пространств.
+		Элементы тензорного произведения "--- тензоры.
+		Так как  $(v_1, \dots, v_n)$ порождают $M$,
+		то $(v_1,\dots, v_n) + M_0$ порождают $M/M_0 = V_1 \otimes \dots \otimes V_n$.
+		$v_1 \otimes \dots \otimes v_n$ "--- разложимый тензор.
+	\end{Def}
+	\begin{exmp}
+		$(v_1, \dots, v_n) + (u_1, \dots, u_n) + M_0$ "--- не разложимый тензор.
+	\end{exmp}
+	Предостережение: разложимые тензоры порождают $V_1 \otimes \dots \otimes V_n$, но не являются базисом:
+	\[ v_1 \otimes \dots \otimes (v_i + v'_i) \dots \otimes v_n - v_1 \otimes \dots v_i \dots \otimes v_n - v_1 \otimes \dots \otimes v_n = 0 \]
 
-    $\alpha_{v_1, \cdots, v_n} \in K \Ra \delta$-функция линейно независима. 
+\item[Шаг 2:]
+	Построение полилинейного отображения из $V_1 \times \dots \times V_n$ в $V_1 \otimes \dots \otimes V_n$.
+	\begin{gather*}
+		\underbrace{(v_1, \dots, v_n)}_{\text{это не $\delta$}} \to v_1 \otimes \dots \otimes v_n = \underbrace{(v_1, \dots, v_n)}_{\text{а это $\delta$}} + M_0 \\
+		\phi((v_1, \dots, v_i + v_i', \dots, v_n))
+		= v_1 \otimes \dots \otimes (v_i + v_i') \otimes \dots v_n = \\
+		= v_1 \otimes \dots v_i \otimes \dots v_n + v_1 \otimes \dots v_i' \otimes \dots \otimes v_n
+		= \phi ((v_1, \dots, v_n)) + \phi((v_1, \dots, v_i', \dots, v_n)) \\
+		\phi((v_1, \dots, \alpha v_i, \dots, v_n))
+		= v_1 \otimes \dots \alpha v_i \otimes \dots v_n
+		= \alpha v_1 \otimes \dots \otimes v_n
+		= \alpha \phi((v_1, \dots, v_n))
+	\end{gather*}
+	Получили, что $\phi$ "--- полилинейно.
+	\begin{gather*}
+		((v_1, \dots, v_i + v_i', \dots, v_n) + M_0) - ((v_1, \dots, v_i, \dots, v_n) + M_0) - ((v_1,\dots, v_n) + M_0) = \\
+		= (v_1, \dots, v_i + v_i',  \dots, v_n) - (v_1, \dots, v_i, \dots, v_n) -  (v_1, \dots, v_i', \dots, v_0) + M_0 = 0 + M_0
+	\end{gather*}
 
-    $\delta$-функция "--- базис $M$.
-    Если поле $K$ бесконечно и хотя бы одно из $V_i$ не нульмерно, то 
-    $M$ "--- бесконечномерное. 
-    
-    Далее символ $\delta$ будем опускать $\sum \alpha_{v_1, \cdots, v_n}(v_1, \cdots, v_n)$ "--- такие формальные суммы образуют $M$.
+\item[Шаг 3:] Универсальность тензорного произведения.
+	У нас уже есть $V_1 \times \dots \times V_n \to V_1 \otimes \dots \otimes V_n$, а также $V_1 \times \dots \times V_n \to W$.
+	\begin{theorem}
+		Для любых $W$ и полилинейного отображения $\alpha \colon V_1 \times \dots \times V_n \to W$,
+		существует единственное полилинейное отображение $\beta \colon V_1 \otimes \dots \otimes V_n \to W$,
+		что $\alpha = \beta \circ \phi$.
+	\end{theorem}
+	\begin{proof}\begin{description}
+	\item[Единственность:]
+		Пусть $\beta \in \mathscr{L}(V_1 \otimes \dots \otimes V_n, W)$  существует.
+		Достаточно проверить, что $\beta$ однозначно определено на семействе образующих, то есть на разложимых тензорах:
+		\[ \beta((v_1\otimes \dots \otimes v_n)) = \beta (\phi(v_1, \dots, v_n)) = \alpha (v_1, \dots, v_n) \]
+		Значит действительно существует не более одного отображения $\beta$.
 
-    Формальные финитные линейные комбинации элементов $V_1 \times \cdots \times V_n$.
+	\item[Существование:]
+		\begin{gather*}
+			\tilde \beta\colon M \to W \\
+			\tilde \beta((v_1, \dots, v_n)) = \alpha(v_1, \dots, v_n)
+		\end{gather*}
+		по линейности достраиваем до линейного отображения из $M$ в $W$.
+		\[ \tilde \beta\left(\sum a_{v_1 \dots, v_n}(v_1, \dots, v_n)\right) = \sum a_{v_1, \dots, v_n} \tilde \beta((v_1, \dots, v_n)) = \sum a_{v_1, \dots, v_n} \alpha(v_1, \dots, v_n) \]
+		$\tilde \beta$ "--- линейное отображение.
+		Теперь хотим линейное $\beta\colon M/M_0 \to W$.
+		Это можно сделать, если $M_0 \subset \ker \tilde \beta$:
+		\begin{gather*}
+			\tilde \beta((v_1, \dots, v_i + v_i', \dots, v_n)) - (v_1, \dots, v_i, \dots, v_n) - (v_1, \dots, v_i', \dots, v_n)) = \\
+			= \tilde \beta((v_1, \dots, v_i + v_i', \dots, v_n)) - \tilde \beta(v_1, \dots, v_i, \dots, v_n)
+			- \tilde \beta((v_1, \dots,v_i', \dots v_n)) = \\
+			= \alpha(v_1, \dots, v_i + v_i', \dots, v_n) - \alpha(v_1, \dots, v_i, \dots, v_n) - \alpha(v_1, \dots,v_i', \dots,  v_n)
+			= 0 \\
+			\tilde \beta((v_1, \dots, a v_i,\dots, v_n)) - a(v_1, \dots, v_n)
+			= \tilde \beta((v_1, \dots, a v_i, \dots, v_n)) - a \tilde \beta((v_1, \dots, v_i,\dots, v_n)) = \\
+			= \alpha(v_1, \dots, a v_i, \dots v_n) - a\alpha(v_1, \dots, v_i, \dots, v_n)
+			= 0
+		\end{gather*}
+		$\tilde \beta$ принимет значение 0 на порождающих подпространствах $M_0$.
+		Таким образом, $M_0 \subset \ker \tilde \beta$.
+		\begin{gather*}
+			\beta(m + M_0) = \tilde \beta(m) \\
+			\beta \colon V_1 \otimes \dots \otimes V_n \to W
+		\end{gather*}
+		Последнее, что осталось проверить: $\alpha = \beta \circ \phi$
+		\begin{gather*}
+			(v_1, \dots, v_n) \in V_1 \times \dots \times V_n \\
+			\phi((v_1, \dots, v_n)) = v_1 \otimes \dots \otimes v_n = (v_1, \dots, v_n) + M_0 \\
+			(\beta \circ \phi)(v_1, \dots, v_n) = \beta((v_1, \dots, v_n) + M_0)
+			= \tilde \beta(v_1, \dots, v_n) = \alpha(v_1, \dots, v_n) \\
+			\beta \circ \phi = \alpha
+		\end{gather*}
+	\end{description}\end{proof}
+	$\mathcal L(V, W)$ "--- множество линейных отображений.
+	$V_1, \dots, V_n$, $W$ "--- векторные пространства над $K$.
+	$\mathcal L(V_1, \dots, V_n, W)$ "--- пространство полилинейных отображений из $V_1 \times \dots \times V_n$ в $W$.
 
-    $$\sum \alpha_{v_1, \cdots, v_n}(v_1, \cdots, v_n) = \sum \beta_{v_1, \cdots, v_n}(v_1, \cdots, v_n)$$ 
-    $$\Lra \forall v_1, \cdots, v_n \colon \alpha_{(v_1, \cdots,  v_n)} = \beta_{(v_1, \cdots, v_n)}$$
+	$\mathcal L(V_1, \dots, V_n, W)$ "--- векторное пространство над $K$.
+	Сложение и умножение на скаляр определяется поточечно.
+	Надо проверить, что $f+g, \alpha f$ вновь полилинейные и
+	что $\mathcal L(V_1, \dots, V_n, W)$ является векторным пространством над $K$.
+	\begin{gather*}
+		\alpha = \beta \circ \phi \\
+		\alpha \in \mathcal L(V_1, \dots, V_n, W) \quad
+		\beta \in \mathcal L(V_1 \otimes \dots,\otimes V_n, W) \\
+		\alpha \to \beta \\
+		\mathcal L(V_1, \dots, V_n, W) \to \mathcal L(V_1 \otimes \dots \otimes V_n, W) \\
+		\alpha + \alpha' = \beta + \beta' \\
+		\tilde \beta((v_1, \dots, v_n)) = \alpha(v_1, \dots, v_n) \\
+		\tilde \beta'((\dots)) = \alpha'(\dots) \\
+		\tilde \beta + \tilde{\beta'} = (\alpha + \alpha')(\dots)
+	\end{gather*}
+	Аналогично для умножения на скаляр.
 
-    Возьмем подпространство, порожденное следующим набором векторов. 
-    $$M_0 = <(v_1, \cdots, v_i + v_i', \cdots, v_n) - (v_1, \cdots, v_i, \cdots, v_n) - (v_1, \cdots, v_i', \cdots, v_n), $$
-    $$       (v_1, \cdots, \alpha v_i, \cdots, v_n) - \alpha(v_1,\cdots, v_i, \cdots, v_n)\colon  $$
-    $$ i = 1, \cdots, n \colon v_i, v_i' \in V_i, \alpha \in K>$$
+	Отображение $(\alpha \to \beta)$ построенное в теореме является линейным отображением из
+	$\mathcal L(V_1, \dots, V_n, W)$  в $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$.
 
-    $$V_1 \otimes \cdots \otimes V_n \coloneqq M/M_0$$
-    
-    \begin{Rem}
-    $$(v_1, \cdots, v_i + v_i', \cdots, v_n) + M_0 = (v_1, \cdots, v_i, \cdots, v_n) + (v_1, \cdots, v_i',\cdots, v_n) + M_0$$
-    $$(v_1, \cdots, \alpha v_i, \cdots, v_n) + M_0 = \alpha(v_1,\cdots, v_i, \cdots, v_n) + M_0$$
-    \end{Rem}
-    \begin{Def}
-    $V_1 \otimes \cdots \otimes V_n$ "--- тензорное произведение пространств. 
+	Это линейное отображение сюръективно:
+	возьмем произвольное линейное $\beta$, $\alpha = \beta \circ \phi$.
+	$\beta$ "--- линейное, $\phi$ "--- полилинейное, значит $\alpha$ "--- полилинейное.
+	В силу части единственности в теореме отображение действительно переводит в $\beta$.
+	\[ \alpha \mapsto \beta_1 \colon \alpha = \beta_1 \circ \phi \Ra \beta = \beta_1 \]
 
-    Элементы тензорного произведения "--- тензоры. 
+	Это линейное отображение инъективно:
+	достаточно поверить, что только нулевое переходит в 0.
+	(так как для линейных отображений инъективность равносильно тривиальности ядра).
+	\begin{gather*}
+		\alpha \mapsto \beta = 0 \\
+		\alpha = \beta \circ \phi = 0 \Ra \alpha = 0
+	\end{gather*}
 
-    Так как  $(v_1, \cdots, v_n)$ порождают $M$,
-    то $(v_1,\cdots, v_n) + M_0$ порождают $M/M_0 = V_1 \otimes \cdots \otimes V_n$
-    
-    $v_1 \otimes \cdots \otimes v_n$ "--- разложимый тензор. 
-    \end{Def}
-   
-    $(v_1, \cdots, v_n) + (u_1, \cdots, u_n) + M_0$ "--- не разложимый тензор. 
-
-    Предостережение: разложимые тензоры порождают $V_1 \otimes \cdots \otimes V_n$ 
-    но не являются базисом.
-
-    $$v_1 \otimes \cdots \otimes (v_i + v'_i) \cdots \otimes v_n - v_1 \otimes \cdots v_i \cdots \otimes v_n - v_1 \otimes \cdots \otimes v_n = 0$$
-    \item[Шаг 2:] Построение полилинейного отображения из $V_1 \times \cdots \times V_n$ в $V_1 \otimes \cdots \otimes V_n$
-
-    $$(v_1, \cdots, v_n) \to v_1 \otimes \cdots \otimes v_n = (v_1, \cdots, v_n) + M_0$$
-
-    $$\phi((v_1, \cdots, v_i + v_i', \cdots, v_n)) = v_1 \otimes \cdots \otimes (v_i + v_i') \otimes \cdots v_n =$$
-    $$= v_1 \otimes \cdots v_i \otimes \cdots v_n + v_1 \otimes \cdots v_i' \otimes \cdots \otimes v_n  = $$
-    $$ = \phi ((v_1, \cdots, v_n)) + \phi((v_1, \cdots, v_i', \cdots, v_n))$$
-
-    $$\phi((v_1, \cdots, \alpha v_i, \cdots, v_n)) = v_1 \otimes \cdots \alpha v_i \otimes \cdots v_n = \alpha v_1 \otimes \cdots \otimes v_n = $$
-    $$= \alpha \phi((v_1, \cdots, v_n))$$
-    $\Ra \phi$ "--- полилинейно. 
-
-    $$(v_1, \cdots, v_i + v_i', \cdots, v_n) + M_0 - ((v_1, \cdots, v_i, \cdots, v_n) + M_0) - ((v_1,\cdots, v_n) + M_0) =$$
-    $$= (v_1, \cdots, v_i + v_i',  \cdots, v_n) - (v_1, \cdots, v_i, \cdots, v_n) -  (v_1, \cdots, v_i', \cdots, v_0) + M_0 = 0 + M_0$$
-    \item[Шаг 3:] Универсальность тензорного произведения. 
-    $$V_1 \times \cdots \times V_n \to  V_1 \otimes \cdots \otimes V_n$$
-    $$V_1 \times \cdots \times V_n \to W $$
-    \begin{theorem}
-    $\forall W$ и $\forall$ полилинейного отображения $\alpha \colon V_1 \times \cdots \times V_n \to W$
-    $\exists ! \beta \colon V_1 \otimes \cdots \otimes V_n \to W$, полилинейное такое,что $\alpha = \beta \circ \phi$
-    \end{theorem}
-    \begin{proof}
-    \begin{enumerate}
-    \item Единственность. 
-    Пусть $\beta \in \mathscr{L}(V_1 \otimes \cdots \otimes V_n, W)$  существует. 
-                              
-    Достаточно проверить, что $\beta$ однозначно определено на семействе образующих. 
-
-    $$\beta((v_1\otimes \cdots \otimes v_n)) = \beta (\phi(v_1, \cdots, v_n)) = \alpha (v_1, \cdots, v_n)$$
-    $\Ra$ существует не более одного отображения $\beta$.
-    \item Существование. 
-         $$\tilde{\beta} \colon M \to W$$
-         $$\tilde{\beta} ((v_1, \cdots, v_n)) = \alpha(v_1, \cdots, v_n)$$
-
-         по линейности достраиваем до линейного отображения из $M$ в $W$.
-
-         $$\tilde{\beta}(\sum a_{v_1 \cdots, v_n}(v_1, \cdots, v_n)) = \sum a_{v_1, \cdots, v_n} \tilde{\beta}(v_1, \cdots, v_n) = \sum a_{v_1, \cdots, v_n}\alpha(v_1, \cdots, v_n)$$
-
-         $\tilde{\beta}$ "--- линейное отображение. 
-         $$\beta\colon M/M_0 \to W$$
-         Это можно сделать, если $M_0 \subset \ker \tilde{\beta}$
-
-         $$\tilde{\beta}((v_1, \cdots, v_i + v_i', \cdots, v_n)) - (v_1, \cdots, v_i, \cdots, v_n) - (v_1, \cdots, v_i', \cdots, v_n)) =$$
-         $$= \tilde{\beta}((v_1, \cdots, v_i + v_i', \cdots, v_n)) - \tilde{\beta}(v_1, \cdots, v_i, \cdots, v_n) - 
-         \tilde{\beta}((v_1, \cdots,v_i', \cdots v_n))$$
-         $$= \alpha(v_1, \cdots, v_i + v_i', \cdots, v_n) - \alpha(v_1, \cdots, v_i, \cdots, v_n) - \alpha(v_1, \cdots,v_i', \cdots,  v_n) = 0$$
-
-         $$\tilde{\beta}((v_1, \cdots, a v_i,\cdots, v_n)) - a(v_1, \cdots, v_n) = $$
-         $$= \tilde{\beta}((v_1, \cdots, a v_i, \cdots, v_n)) - a \tilde{\beta}((v_1, \cdots, v_i,\cdots, v_n)) = $$
-         $$= \alpha(v_1, \cdots, a v_i, \cdots v_n) - a\alpha(v_1, \cdots, v_i, \cdots, v_n) = 0$$
-
-         $\tilde{\beta}$ принимет значение 0 на порождающих подпространствах $M_0$
-         $$M_0 \subset \ker \tilde{\beta}$$
-
-         $$\beta(m + M_0) = \tilde{\beta}(m)$$
-         $$\beta \colon V_1 \otimes \cdots \otimes V_n \to W$$
-
-         Последнее, что осталось проверить: $\alpha = \beta \circ \phi$
-
-         $$(v_1, \cdots, v_n) \in V_1 \times \cdots \times V_n$$
-         $$\phi((v_1, \cdots, v_n)) = v_1 \otimes \cdots \otimes v_n = (v_1, \cdots, v_n) + M_0$$
-
-         $$(\beta \circ \phi)(v_1, \cdots, v_n) = \beta((v_1, \cdots, v_n) + M_0) = $$
-         $$= \title{\beta}(v_1, \cdots, v_n) = \alpha(v_1, \cdots, v_n)$$
-
-         $$\beta \circ \phi = \alpha$$
-    \end{enumerate}
-    \end{proof}
-        $\mathcal{L}(V, W)$  "--- множество линейных отображений. 
-       
-        $V_1, \cdots, V_n, W$   "--- векторное пространство над K.
-        $\mathcal{L}(V_1, \cdots, V_n, W)$ "--- пространство полилинейных отображений из
-        $V_1 \times \cdots \times V_n$ в $W$.  
-        
-        $\mathcal{L}(V_1, \cdots, V_n, W)$ "--- векторное пространство над K.
-        Сложение и умножение на скаляр определяется поточечно. 
-       
-        Надо проверить, что $f+g, \alpha f$ вновь полилинейные и 
-        что $\mathcal{L}(V_1, \cdots, V_n, W)$ является векторным пространством над $K$.
-
-        $$\alpha = \beta \circ \phi$$
-        $$\alpha \in \mathcal{L}(V_1, \cdots, V_n, W)$$
-        $$\beta \in \mathcal{L}(V_1 \otimes \cdots,\otimes V_n, W)$$
-        $$\alpha \to \beta$$
-        $$\mathcal{L}(V_1, \cdots, V_n, W) \to \mathcal{L}(V_1 \otimes \cdots \otimes V_n, W)$$
-        $$\alpha + \alpha' = \beta + \beta'$$
-        $$\tilde{\beta}((v_1, \cdots, v_n)) = \alpha(v_1, \cdots, v_n)$$
-        $$\tilde{\beta'}(()) = \alpha'(\cdots)$$
-        $$\tilde{\beta} + \tilde{\beta'} = (\alpha + \alpha')(\cdots)$$
-        Аналогично для умножения на скаляр. 
-
-        Отображение $(\alpha \to \beta')$ построенное в теореме является
-        линейным отображением из $\mathcal{L}(V_1, \cdots, V_n, W)$  в $\mathcal{L}(V_1 \otimes \cdots \otimes V_n, W)$.
-
-        Это линейное отображение сюръективно. 
-        
-        Возьмем $\alpha = \beta \circ \phi$. $\beta$ "--- линейное, $\phi$ "--- полилинейное
-        $\Ra \alpha$ "--- полилинейное. 
-
-        В силу чатси  единственности в теореме отображение действительно переводит в $\beta$.
-        $$\alpha \to \beta_1 \colon \alpha = \beta_1 \circ \phi \Ra \beta = \beta_1$$
-
-        Это линейное отображение инъективно. 
-        
-        Достаточно поверить, что только нулевое переходит в 0.
-        (так как для линейных отображений инъективность равносильно тривиальности ядра).
-        $$\alpha \to \beta = 0$$  
-        $$\alpha = \beta \circ \phi = 0 \Ra \alpha = 0$$ 
-
-    \begin{conseq}
-    Пространства $\mathcal{L}(V_1, \cdots, V_n, W)$ и 
-    $\mathcal{\alpha}(V_1 \otimes \cdots \otimes V_n, W)$ "--- изоморфны. 
-    \end{conseq}
+	\begin{conseq}
+		Пространства $\mathcal L(V_1, \dots, V_n, W)$ и $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$ изоморфны.
+		\[ \mathcal L(V_1, \dots, V_n, W) \cong \mathcal L(V_1 \otimes \dots \otimes V_n, W) \]
+	\end{conseq}
 \end{description}
 
 \begin{exmp}
-    \begin{enumerate}
-    \item Многочлены
-     $$\N \cup \{0\}$$
+	\begin{enumerate}
+	\item Многочлены
+	 $$\N \cup \{0\}$$
 
-     Последовательности = отображения из $\N \cup \{0\}$ в K, K "--- поле. 
+	 Последовательности = отображения из $\N \cup \{0\}$ в K, K "--- поле.
 
-     Нам нужны только финитные последовательности. 
-     
-     \textbf{Базис} пространства финитных последовательностей $\{(0,\cdots, 0, 1, 0, \cdots)\} = \delta_i$
-     
-     $$\delta_i\colon \N\cup\{0\} \to K$$
-     $$\delta_i(i) = 1, \delta_i(j) = 0(j \ne i)$$
+	 Нам нужны только финитные последовательности.
 
-     $$x^i = (0, \cdots, 1, \cdots, 0)$$
+	 \textbf{Базис} пространства финитных последовательностей $\{(0,\dots, 0, 1, 0, \dots)\} = \delta_i$
 
-     f "--- многочлен. 
-     $$f = a_nx^n + \cdots + a_0x^0$$
-     $$g = b_nx^n + \cdots + b_0x^0$$
+	 $$\delta_i\colon \N\cup\{0\} \to K$$
+	 $$\delta_i(i) = 1, \delta_i(j) = 0(j \ne i)$$
 
-     $$f + g = (a_n + b_n)x^n + \cdots +(a_0 + b_0)x^0$$
-     $f = 0 \Lra$ все коэффициенты = 0. 
+	 $$x^i = (0, \dots, 1, \dots, 0)$$
 
-    \item Конструкция пространства M.
-    $$v_1 \times \cdots \times V_n$$
+	 f "--- многочлен.
+	 $$f = a_nx^n + \dots + a_0x^0$$
+	 $$g = b_nx^n + \dots + b_0x^0$$
 
-    Финитные отображения из $V_1 \cdots V_n$ в $K$.
+	 $$f + g = (a_n + b_n)x^n + \dots +(a_0 + b_0)x^0$$
+	 $f = 0 \Lra$ все коэффициенты = 0.
 
-    $\delta_{(v_1, \cdots, v_n)}$ "--- базис пространства. 
-    
-    $\delta_{(v_1, \cdots, v_n)}(v_1, \cdots, v_n) = 1$
-    
-    $\delta_{(v_1, \cdots, v_n)}(u_1, \cdots, u_n) = 0$ если $\exists v_i \ne u_i$.
+	\item Конструкция пространства M.
+	$$v_1 \times \dots \times V_n$$
 
-    $$(v_1, \cdots, v_n) = \delta_{(v_1, \cdots, v_n)}$$
-    
-    $$f(.) = \sum_{(v_1, \cdots, v_n), f(v_1, \cdots, v_n) \ne 0} f(v_1, \cdots, v_n)\delta_{v_1, \cdots, v_n}(.)$$ 
+	Финитные отображения из $V_1 \dots V_n$ в $K$.
 
-    $$f = \sum_{v_1, \cdots, v_n}\alpha_{v_1, \cdots, v_n}(v_1, \cdots, v_n)$$
-    $$g = \sum_{v_1, \cdots, v_n}\beta_{v_1, \cdots, v_n}(v_1, \cdots, v_n)$$
-    $$(f + g) = (\alpha_{v_1 \cdots, v_n} + \beta_{v_1 \cdots v_n})(v_1, \cdots, v_n)$$
-    $f = 0 \Lra$  все $\alpha_{v_1, \cdots, v_n}$  равны 0.
-    \end{enumerate}
+	$\delta_{(v_1, \dots, v_n)}$ "--- базис пространства.
+
+	$\delta_{(v_1, \dots, v_n)}(v_1, \dots, v_n) = 1$
+
+	$\delta_{(v_1, \dots, v_n)}(u_1, \dots, u_n) = 0$ если $\exists v_i \ne u_i$.
+
+	$$(v_1, \dots, v_n) = \delta_{(v_1, \dots, v_n)}$$
+
+	$$f(.) = \sum_{(v_1, \dots, v_n), f(v_1, \dots, v_n) \ne 0} f(v_1, \dots, v_n)\delta_{v_1, \dots, v_n}(.)$$
+
+	$$f = \sum_{v_1, \dots, v_n}\alpha_{v_1, \dots, v_n}(v_1, \dots, v_n)$$
+	$$g = \sum_{v_1, \dots, v_n}\beta_{v_1, \dots, v_n}(v_1, \dots, v_n)$$
+	$$(f + g) = (\alpha_{v_1 \dots, v_n} + \beta_{v_1 \dots v_n})(v_1, \dots, v_n)$$
+	$f = 0 \Lra$  все $\alpha_{v_1, \dots, v_n}$  равны 0.
+	\end{enumerate}
 \end{exmp}
