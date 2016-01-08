@@ -1,7 +1,7 @@
 ﻿\section{Лемма Бернсайда}
 $G$ действует на $X$\\
 $g \in G$\\
-$X^{g} = \{x \in X \colon gx = x\}$\\
+$X^{g} = \{x \in X \mid gx = x\}$\\
 
 $X/G$ "--- множество орбит.
 \begin{theorem} (лемма Бернсайда)
@@ -11,7 +11,7 @@ $|X/G| = \frac{\sum_{g \in G}|X^g|}{|G|}$\\
 
 \end{theorem}
 \begin{proof}
-$\sum_{g \in G}|X^g| = \sum_{g \in G} \sum_{a \in X} \{(g, a) \colon ga = a\} 1 = \\
+$\sum_{g \in G}|X^g| = \sum_{g \in G} \sum_{a \in X} \{(g, a) \mid ga = a\} 1 = \\
  = \sum_{a \in X}(\sum_{g \colon ga = a}1) = \sum_{a \in X} |St_a| = \sum_{a \in X}\sum\frac{|G|}{|G_a|} = \\
 = \sum_{A \in X/G}\sum_{a \in A}\frac{|G|}{|G_a|} = \sum_{A \in X/G}\sum_{a \in A}\frac{|G|}{|A|} = \sum_{A \in X/G}\frac{|G|}{|A|} \sum_{a \in A}1 =\\
 = \sum_{A \in X/G} \frac{|G|}{|A|}|A| = 
