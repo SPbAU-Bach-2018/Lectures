@@ -39,12 +39,12 @@ $g^{-1}HgH = g^{-1}gHH = 1H = H$\\
 \begin{Def}
 Группа, построенная в предыдущей теореме называется факторгруппой $G$ по нормальной подгруппе $H$.
 
-Обозначение: $G \setminus H$\\
+Обозначение: $G / H$\\
 \end{Def}
 
 \begin{theorem}
 $G$ "--- группа, $H \unlhd G$\\
-$\phi \colon G \to G \setminus H$\\
+$\phi \colon G \to G / H$\\
 $\phi(g) = gH$ \\
 
 Тогда $\phi$ гомоморфизм групп и  $\ker \phi = H$\\
@@ -56,14 +56,14 @@ $\phi(g_1)\phi(g_2) = g_1Hg_2H = g_1g_2H = \phi(g_1g_2)$\\
 Проверяем $\ker \phi = H$.
 Одно включение:\\
 $h \in H$\\
-$\phi(h) = hH =  H = 1_{G}\setminus H$\\
+$\phi(h) = hH =  H = 1_{G/H}$\\
 $\Ra H \subset \ker \phi$\\
 
 Другое включение:\\
 $h \in \ker \phi$\\
-$hH = \phi(h) = 1_g\setminus H = H$ \\
-$\Ra h1 \in H, h \in H$\\
-$\ker \phi \subset H$\\
+$hH = \phi(h) = 1_{G/H} = H$ \\
+$\Ra h\cdot1 \in H \Ra h \in H$\\
+$\Ra \ker \phi \subset H$\\
 
 \end{proof}
 

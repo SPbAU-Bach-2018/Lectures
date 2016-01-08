@@ -1,14 +1,15 @@
 ﻿\section{Первая теорема о гомоморфизме}
 \begin{theorem}
 $\psi \colon G \to G_1$, $H = \ker \psi$\\
-Тогда $G \setminus H \cong \psi(G)$\\
+Тогда $G / H \cong \psi(G)$\\
 \end{theorem}
 \begin{proof}
 $\psi(G)$"--- подгруппа в $G_1$ (группа)\\
 $\psi(G) \le G_1$\\
-$\phi(G) = G \setminus H$\\
-Хотим построить изоморфизм $\sigma\colon \psi(G) \to G \setminus H$\\
+$\phi(G) = G / H$ (тут $\phi$ "--- эпиморфизм, задающий $G/H$)\\
+Хотим построить изоморфизм $\sigma\colon \psi(G) \to G / H$\\
 
+Зададим на элементе $b$:
 $b \in \psi(G) \Ra \exists g \in G, \psi(g) = b$\\
 $\sigma(b) = \phi(g) = gH$\\
 \begin{enumerate}
@@ -24,9 +25,9 @@ $b_1b_2 = \psi(g_1g_2)$\\
 $\sigma(b_1b_2) = g_1g_2H$\\
 $\sigma(b_1)\sigma(b_2) = g_1Hg_2H = g_1g_2HH = g_1g_2H$\\
 $\Ra \sigma(b_1b_2) = \sigma(b_1)\sigma(b_2)$\\
-$\sigma$ "--- сюръективно.\\
+\item $\sigma$ "--- сюръективно.\\
 $gH = \sigma(\psi(g))$\\
-$\sigma$"--- инъективно.\\
+\item $\sigma$"--- инъективно.\\
 $b_1, b_2 \in \psi(G), \sigma(b_1) = \sigma(b_2)$\\
 $b_1 = \psi(g_1), b_2 = \psi(g_2)$\\
 $\sigma(b_1) = g_1H$\\
@@ -44,27 +45,27 @@ $\sigma \circ \psi = \phi$\\
 \item
 $(\R, +)$\\
 $(\Z, +)$\\
-$\R \setminus \Z \cong S = \{z \in \C, |z| = 1\}$ \\
+$\R / \Z \cong S = \{z \in \C, |z| = 1\}$ \\
 $\psi\colon \R \to S$\\
 $x \to e^{2\pi i x} = \cos(2\pi x) + i \sin(2\pi x)$\\
-$\psi(\R = S)$\\
+$\psi(\R) = S$\\
 $\ker \psi = \Z$\\
-$S = \psi(\R) \cong \R \setminus \ker \psi = \R \setminus \Z$\\
+$S = \psi(\R) \cong \R / \ker \psi = \R / \Z$\\
 \item
 $S = \{z \in \C \colon |z| = 1\}$\\
 $U_n = \{z \in S, z^n = 1\} = \{\cos \frac{2\pi k}{n} + i \sin\frac{2\pi k}{n}| k = 0, \cdots, n - 1\}$\\
-$S \setminus U_n \cong S$\\
+$S / U_n \cong S$\\
 $\psi\colon S \to S$\\
 $z \to z^{n}$\\
 $\psi(S) = S$\\
 $\ker \psi = U_n$\\
-$S = \psi(S) \cong S \setminus \ker \psi = S \setminus U_n$\\
+$S = \psi(S) \cong S / \ker \psi = S / U_n$\\
 \item
 $SL_2(\Z), SL_n(\Z)$\\
 $n \ge 5$
 Какая из двух групп больше? 
 С одной стороны можем всегда $SL_2$ вложить в $SL_n$.
 $\phi \colon SL_2(\Z) \to SL_n(\Z)$\\
-При $n \ge 5 \exists H \unlhd SL_2(\Z), SL_2(\Z) \setminus \H \cong SL_n(\Z)$
+При $n \ge 5 \exists H \unlhd SL_2(\Z), SL_2(\Z) / \H \cong SL_n(\Z)$
 \end{enumerate}
 \end{exmp}
