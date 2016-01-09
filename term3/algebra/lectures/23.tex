@@ -1,147 +1,162 @@
 ﻿\chapter{Теория групп (продолжение)}
-\begin{Rem}
-$G$ "--- группа, $H \le G$, $H$ "--- подгруппа G\\
 
-$0 \ne A, B \le G$\\
-Произведение по Минковскому:\\
-$A \cdot B = \{ab \mid a \in A, b \in B\}$
+\section{Вступление}
 
-Если $A = \{a\}$, будем писать $aB$ или $Ba$ вместо $\{a\}B$, $B\{a\}$
+\begin{Def}
+	$G$ "--- группа, $H \le G$, $H$ "--- подгруппа G, $\emptyset \ne A, B \le G$.
+	Произведение по Минковскому:
+	\[ A \cdot B = \{ab \mid a \in A, b \in B\} \]
 
-В частности, если $B \le G$\\
-    $aB$ "--- левый класс смежности по B\\
-    $Ba$ "--- правый класс смежности по B\\
-\end{Rem}
+	Если $A = \{a\}$, будем писать $aB$ или $Ba$ вместо $\{a\}B$, $B\{a\}$.
+	В частности, если $B \le G$,
+	$aB$ "--- левый класс смежности по $B$,
+	$Ba$ "--- правый класс смежности по $B$.
+\end{Def}
 
 \begin{conseq}\hfill
-\begin{enumerate}
-\item$(AB)C = A(BC) = \{abc \mid a \in A, b \in B, c \in C\}$\\
-\item
-Если $H \le G$, то $H \cdot H = H$\\
-   $H \cdot H \le H$(замкнуто относительно умножения)\\
-   $H = 1 H \le H \cdot H$\\
-\end{enumerate}
+	\begin{enumerate}
+	\item
+		\[ (AB)C = A(BC) = \{abc \mid a \in A, b \in B, c \in C\} \]
+
+	\item
+		Если $H \le G$, то $H \cdot H = H$:
+		$H \cdot H \le H$ (замкнуто относительно умножения), $H = 1H \le H \cdot H$.
+	\end{enumerate}
 \end{conseq}
+
 \begin{Def}
-$0 \ne A \le G$\\
-$A^{-1} = \{a^{-1} \mid a \in A\}$\\
-$H \le G, H^{-1} = H$\\
+	$0 \ne A \le G$.
+	\[ A^{-1} = \{a^{-1} \mid a \in A\} \]
+	$H \le G \Ra H^{-1} = H$.
 \end{Def}
+
 \begin{Rem}
-Чаще всего будем использвать мультипликативную запись.\\
-Нейтральный элемент $G$ "--- $1_{G} = 1$
-Если будет  встречаться аддитивная запись, то нейтральный элемент $0$.
+	Чаще всего будем использвать мультипликативную запись.
+	Нейтральный элемент $G$ "--- $1_{G} = 1$.
+	Если будет встречаться аддитивная запись, то нейтральный элемент "--- $0$.
 \end{Rem}
 
 \begin{Def}
-$G, G_1$ "--- группа\\
-$\phi \colon G \to G_1$ называется гомоморфизмом групп. 
+	$G$, $G_1$ "--- группы.
+	$\phi \colon G \to G_1$ называется гомоморфизмом групп, если
+	\[ \forall a, b \in G, \phi(ab) = \phi(a) \phi(b) \]
+	В частности $\phi(1_G) = 1_{G_1}, \phi(a^{-1}) = \phi(a)^{-1}$.
 
-если $\forall a, b \in G, \phi(ab) = \phi(a) \phi(b)$
-
-В частности $\phi(1_G) = 1_{G_1}, \phi(a^{-1}) = \phi(a)^{-1}$\\
-
-Изоморфизм $\phi \colon G \to G_1$ это биекция и гомоморфизм \\
+	Изоморфизм $\phi\colon G \to G_1$ "--- это биекция и гомоморфизм.
 \end{Def}
-    
 
 \section{Нормальные подгруппы}
+
 \begin{theorem}
- Пусть $H \le G$, тогда следующие условия равносильны:
- \begin{enumerate}
- \item $\forall g \in G gHg^{-1} \le H$\\
- \item $\forall g \in G gHg^{-1} = H$ \\
- \item $\forall g \in G gH = Hg$\\
- \end{enumerate}
-\end{theorem}   
-\begin{proof}
-$2 \Ra 1$ очевидно\\
-$1 \Ra 2$ В силу произвольности g:\\
-$gHg^{-1} \le H$\\
-$g^{-1}Hg \le H \Ra H \le gHg^{-1} \Ra H = gHg^{-1}$\\
-$2 \Ra 3$ домножаем $gHg^{-1} = H$ на g справа\\
-$3 \Ra 2$ домножаем $gH = Hg$ домножаем на $g^{-1}$ слева\\
-\end{proof}
+	Пусть $H \le G$, тогда следующие условия равносильны:
+	\begin{enumerate}
+		\item $\forall g \in G, gHg^{-1} \le H$
+		\item $\forall g \in G, gHg^{-1} = H$
+		\item $\forall g \in G, gH = Hg$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\begin{description}
+\item[$2 \Ra 1$:]
+	Очевидно.
+
+\item[$1 \Ra 2$:]
+	В силу произвольности $g$:
+	\begin{gather*}
+		gHg^{-1} \le H \\
+		g^{-1}Hg \le H \Ra H \le gHg^{-1} \Ra H = gHg^{-1}
+	\end{gather*}
+
+\item[$2 \Ra 3$:]
+	Домножаем $gHg^{-1} = H$ на $g$ справа.
+
+\item[$3 \Ra 2$:]
+	Домножаем $gH = Hg$ домножаем на $g^{-1}$ слева.
+\end{description}\end{proof}
 
 \begin{Def}
-Подгруппа $H \le G$, удовлетворяющий любому из свойств, 
-перечисленных в теореме 1, называется нормальной подгруппой.
-
-Обозначение: $H \unlhd G$\\
+	Подгруппа $H \le G$, удовлетворяющий любому из свойств, перечисленных в теореме 1, называется нормальной подгруппой.
+	Обозначение: $H \unlhd G$.
 \end{Def}
 
 \begin{conseq}
-$H \unlhd G$, то левые классы смежности по $H$ совпадают с правыми классами смежности
+	Если $H \unlhd G$, то левые классы смежности по $H$ совпадают с правыми классами смежности.
 \end{conseq}
-\begin{exmp}\hfill
-\begin{enumerate}
-    \item $\{1\} \unlhd G, G \unlhd G$ \\
-    $g\{1\} = \{g\} = \{1\}g$\\
-    \item $G = S_3$\\
-    $<(123)> \unlhd S_3$\\
-    $<(12)> \ntrianglelefteq S_3$\\
-    \item $SL(n, K) \unlhd GL(n, K)$\\
-    $GL(n, K)$ все матрицы $n \times n$ над $K$.
-    $SL(n, K) = \{g \in GL(n, K)\colon\det(g) = 1\}$
-    \item 
-    $[G:H] = 2 \Ra H \unlhd G$
-    индекс подгруппы H в G.
+\begin{exmp}\hfill\begin{enumerate}
+\item
+	$\{1\} \unlhd G$, $G \unlhd G$:
+	\[ g\{1\} = \{g\} = \{1\}g \]
 
-    Классы смежности $H, G \setminus H$
+\item
+	$G = S_3$:
+	\begin{align*}
+		\left<(123)\right> &\unlhd S_3 \\
+		\left<(12)\right> &\ntrianglelefteq S_3
+	\end{align*}
 
-    $G = \cup gH$\\
-    Если $g \in H$, то $gH = H = Hg$\\
-    Если $g \ne H$, то $gH = G\setminus H = Hg$\\
+\item
+	\[ SL(n, K) \unlhd GL(n, K) \]
+	$GL(n, K)$ "--- все матрицы $n \times n$ над $K$,
+	$SL(n, K) = \{g \in GL(n, K) \mid \det g = 1 \}$.
 
-    $g_1H = g_2H \Lra g_2^{-1}g_1 \in H$ \\
-    Возьмите $g_2 = 1$\\
-    $g_1H = H \Lra g_1 \in H$\\
-\end{enumerate}
-\end{exmp}
+\item
+	\[ [G:H] = 2 \Ra H \unlhd G \]
+	$[G:H]$ "--- индекс подгруппы $H$ в $G$.
+	Классов смежности два, $H$ и $G \setminus H$:
+	\[ G = \cup gH \]
+	Если $g \in H$, то $gH = H = Hg$.\\
+	Если $g \ne H$, то $gH = G \setminus H = Hg$\\
+	\[ g_1H = g_2H \Lra g_2^{-1}g_1 \in H \]
+	Возьмите $g_2 = 1$:
+	\[ g_1H = H \Lra g_1 \in H \]
+\end{enumerate}\end{exmp}
 
 \begin{theorem}
-Пусть $\phi\colon G \to G_1$, $\phi$ "--- гомоморфизм\\
-$\ker \phi = \phi^{-1}(\{1_{G_1}\}) = \{g \in G \colon \phi(g) = 1_{G_1}\}$ \\
-Тогда $\ker \phi \unlhd G$\\
+	Пусть $\phi\colon G \to G_1$, $\phi$ "--- гомоморфизм,
+	\[ \ker \phi = \phi^{-1}(\{1_{G_1}\}) = \{g \in G \mid \phi(g) = 1_{G_1}\} \]
+	Тогда $\ker \phi \unlhd G$.
 \end{theorem}
 \begin{proof}
-$\ker \phi \le G$ "--- упражнение\\
-$g \in G, h \in \ker \phi$\\
-$ghg^{-1} \in \ker \phi$\\
-$\phi(ghg^{-1}) = \phi(g)\phi(h)\phi(g^{-1}) = \phi(g)1_{G_1}\phi(g^{-1}) = \phi(g)\phi(g^{-1}) = \phi(gg^{-1}) = \phi(1) = 1_{G_1}$\\
-\end{proof}
-\begin{exmp}\hfill
-\begin{enumerate} 
-\item
-$A_n \unlhd S_n$"--- группа четных перестановок\\
-$\phi \colon S_n \to \{\pm 1\}$\\
-$\phi(\sigma) = (-1)^{\#\sigma}$ \\
-Ядро это четные перестановки.
-$\ker \phi  = A_n$
+	$\ker \phi \le G$ "--- упражнение.
 
-\item 
-$\phi \colon GL(n,K) \to K^*$\\
-$\phi(g) = \det g$\\
-$\ker(\phi) = SL(n, K) \unlhd GL(n, K)$\\
-\end{enumerate}
-\end{exmp}
+	$g \in G$, $h \in \ker \phi$.
+	Покажем, что $ghg^{-1} \in \ker \phi$:
+	\[
+		\phi(ghg^{-1}) = \phi(g)\phi(h)\phi(g^{-1}) = \phi(g)1_{G_1}\phi(g^{-1}) = \phi(g)\phi(g^{-1}) = \phi(gg^{-1}) = \phi(1) = 1_{G_1}
+	\]
+\end{proof}
+
+\begin{exmp}\hfill\begin{enumerate}
+\item
+	$A_n \unlhd S_n$"--- группа чётных перестановок.
+	\[ \phi\colon S_n \to \{\pm 1\} \quad \phi(\sigma) = (-1)^{\#\sigma} \]
+	Ядро "--- это чётные перестановки.
+	\[ \ker \phi = A_n \]
+
+\item
+	\begin{gather*}
+		\phi\colon GL(n,K) \to K^* \quad \phi(g) = \det g \\
+		\ker \phi = SL(n, K) \unlhd GL(n, K)
+	\end{gather*}
+\end{enumerate}\end{exmp}
 
 \begin{lemma}
-$\phi\colon G \to G_1$ "--- гомоморфизм\\
-$H = \ker \phi \Ra$ смежные классы по $H$ "--- это в точности $\phi^{-1}(\{b\})$, где $b \in \phi(G)$\\
+	$\phi\colon G \to G_1$ "--- гомоморфизм.
+	Если $H = \ker \phi$, то смежные классы по $H$ "--- это в точности $\phi^{-1}(\{b\})$, где $b \in \phi(G)$.
 \end{lemma}
 \begin{proof}
-$gH = \phi^{-1}(\{\phi(g)\})$\\
-$\subset$\\
-$g_1 \in gH$\\
-$g_1 = gh$\\
-$\phi(g_1) = \phi(g)\phi(h) = \phi(g)1$ \\
-$\Ra g_1 \in \phi^{-1}(\{\phi(g)\})$\\
-$\supset$\\
-$g_1 \in \phi^{-1}(\{\phi(g)\})$ \\
-$\phi(g_1) = \phi(g)$\\
-$\phi(g^{-1}g_1) = 1 \Ra g^{-1}g_1 \in \ker \phi = H$\\
-$g_1 = gg^{-1}g_1 \in gH$
-\end{proof}
+	Покажем, что $gH = \phi^{-1}(\{\phi(g)\})$ ($b = \phi(g)$):
+	\begin{description}
+	\item[$\subset$:]
+		$g_1 \in gH$, $g_1 = gh$:
+		\[ \phi(g_1) = \phi(g)\phi(h) = \phi(g) \Ra g_1 \in \phi^{-1}(\{\phi(g)\}) \]
 
+	\item[$\supset$:]
+		$g_1 \in \phi^{-1}(\{\phi(g)\})$:
+		\begin{gather*}
+			\phi(g_1) = \phi(g) \\
+			\phi(g^{-1}g_1) = 1 \Ra g^{-1}g_1 \in \ker \phi = H \\
+			g_1 = gg^{-1}g_1 \in gH
+		\end{gather*}
+	\end{description}
+\end{proof}
 
