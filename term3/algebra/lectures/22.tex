@@ -1,10 +1,13 @@
 ﻿\section{Классическое определение тензоров}
-$$V\colon e_1, \cdots, e_n$$
-$$V^* \colon e^1, \cdots, e^n$$ 
+$V$ "--- конечномерное векторное пространство. 
+$e_1, \cdots, e_n$"--- его базис.
+$V^*$ "--- двойственное к V пространство. 
+$e^1, \cdots, e^n$ "--- базис двойственного пространства, такой что $e^i(e_j) = 0$  если $i \ne j$, 1 если равны. 
 
 $$T \in T_{p}^q(V)$$
-
-$$T = \sum_{i_1, \cdots i_p, j_1, \cdots, j_q} T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} e^{i_1} \otimes \cdots \otimes e^{j_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$$ 
+$$T = \sum_{i_1, \cdots i_p, j_1, \cdots, j_q} T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$$ 
+$e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$ "--- это базис.\\
+$T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} \in K$\\
 
 $e_i'$ "--- базис $V$\\
 $(e^i)'$ "--- базис $V^*$\\
@@ -35,9 +38,9 @@ $$(A_i^k)(B_k^j) = E$$
 $$T = \sum T_{i_1 \cdots i_p}^{j_1, \cdots, j_q}e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \cdots \otimes e_{j_q}$$
 $$T = \sum {T_{k_1, \cdots, k_p}^{l_1, \cdots, l_q}}'{e^{k_1}}' \otimes \cdots \otimes {e^{k_p}}' \otimes {e_{l_1}}' \cdots \otimes {e_{l_q}}' = $$
 $$= \sum_{k,l}T'^{l_1, \cdots, l_q}_{k_1, \cdots, k_p}((\sum_{i_1}B_{i_1}^{k_1}e^{i_1}) \otimes \cdots \otimes (\sum A_{l_q}^{j}e_{j_q}))$$
+$$=\sum_{i, \cdots, i_p, j,\cdots, j_n} (\sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q})e^{i_1} \otimes \cdots \otimes e_{j_q}$$
 
-$$\sum_{i, \cdots, i_p, j,\cdots, j_n} (\sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q})e^{i_1} \otimes \cdots \otimes e_{j_q}$$
-
+$\Ra  T_{i_1 \cdots i_p}^{j_1, \cdots, j_q} = \sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q}$
 
 \subsection{Свертка тензоров}
 $$T_{p}^{q}(V) \to T^{q - 1}_{p - 1}(V), p, q \ge 1$$
