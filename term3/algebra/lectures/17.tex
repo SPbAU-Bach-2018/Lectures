@@ -5,9 +5,8 @@
 то $V_1 \otimes \cdots \otimes V_n$  также нульмерно. 
 \end{lemma}
 \begin{proof}
-    $$V_i = \{0\}$$
-    $$V_1 \times \cdots \times V_i \cdots \times V_n \to K$$
-    $$\alpha \in \mathcal{L}(V_1, \cdots, V_i, \cdots, V_n, K)$$
+    Пусть $V_i = \{0\}$. Рассмотрим полилинейное отображение 
+    $\alpha \in \mathcal{L}(V_1, \cdots, V_i, \cdots, V_n, K)$\\
     Зафиксируем все элементы кроме i-ого: $\alpha(V_1, \cdots, ., \cdots, V_n) \colon V_i \to K$
     $V_i = \{0\}$ линейные отображения 0-мерного пространства только 0-мерное отображение. 
     $$\Ra \alpha(V_1, \cdots, 0, \cdots, V_n) = 0 \Ra \alpha = 0$$
@@ -30,10 +29,14 @@
     \begin{enumerate}
     \item $\exists i, \dim V_i = 0$ очевидно по лемме.
     \item Все $d_i \ne 0$
-    $$\mathcal{L}(V_1, \cdots, V_n, K)$$
+    Размерность $V_1 \otimes \cdots \otimes V_n$ совпадает
+    с размерностью двойственного пространства $\mathcal{L}(V_1 \otimes \cdots \otimes V_n)$, который
+    в свою очередь изоморфен $\mathcal{L}(V_1, \cdots, V_n, K)$. Это пространство и будем рассматривать.
+  
     $e_1^{j}, \cdots, e_{d_j}^j$  "--- базис $V_j$
     $(e_i^j)^*$ "--- элементы двойственного базиса (базиса в $V_j^*$)
     $$(e_i^j)^*(e_{k}^j) =  1, i = k; 0, i \ne k$$
+   
     Рассмотрим все такие произведения:
     $$(e^{(1)}_{i_1})^* \cdots (e_{i_n}^{(n)})^* \colon V_1 \times \cdots \times V_n \to K$$
     $$(e_{i_1}^{(1)})^* \cdots (e^{(n)}_{i_n})^*((v_1, \cdots, v_n)) = (e_{i_1}^{(1)})^*(v_1) \cdots (e_{i_n}^{(n)})^*(v_n)$$
