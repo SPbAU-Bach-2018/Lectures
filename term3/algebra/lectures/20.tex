@@ -3,18 +3,20 @@
 Рассмотрим ещё одну интерпретацию тензорного произведения:
 
 \begin{theorem}
-    $U$, $V$ "--- конечномерные пр-ва над $K$, тогда
+    $U$, $V$ "--- конечномерные векторные пространства над $K$, тогда
 	\[ U^* \otimes_{K} V \cong \mathcal{L}(U, V) \cong M(\dim V, \dim U, K) \]
 \end{theorem}
 \begin{proof}
-    Рисуем коммутатвную диаграмму универсального свойства:
-    \begin{gather*}
-        U^* \times V \ra^{\phi} U^* \otimes V \\
-        U^* \times V \ra^{\alpha} \mathcal{L}(U, V) \\
-        U^* \otimes V \ra^{\beta} \mathcal{L}(U, V) \\
-    \end{gather*}
+    $$
+    \begin{matrix}
+    U^* \times V  & \overset{\phi}{\rightarrow}& U^* \otimes V\\
+    &\overset{\alpha}{\searrow}&\overset{\beta}{\downarrow}\\
+    &&\mathcal{L}(U, V)\\
+    \end{matrix}
+    $$
 
-    Теперь расписываем: $\alpha(u^*, v)^{\in \mathcal{L}(U,V)}(x \in U) = u^*(x)\cdot v$
+    Теперь расписываем: $\alpha(u^*, v)(x) = u^*(x)\cdot v$\\
+    $\alpha(u^*, v) \in \mathcal{L}(U,V)}, x \in U, u^* \in U^*, v \in V$\\
     \begin{enumerate}
         \item $\alpha(u^*, v)$  линейно по $x$
         \item $\alpha$ "--- полилинейное отображение из $U^* \times V$
@@ -31,28 +33,29 @@
 
     $\epsilon_1, \cdots, \epsilon_n$ "--- базис $V$
 
-    $e_1 \cdots, em$ "--- базис $U$
+    $e_1 \cdots, e_m$ "--- базис $U$
 
     $e_1^*, \cdots, e_m^*$ "--- базис $U^*$ двойственный к $e_1 \cdots, e_m$
 
     \begin{gather*}
         \beta(e_i^* \otimes \epsilon_j)(e_i) = 1 \cdot \epsilon_j = \epsilon_j \\
-        \beta(e_1^* \otimes \epsilon_j)(e_k) = 0 \cdot \epsilon_j = 0, k \neq j \\
+        \beta(e_i^* \otimes \epsilon_j)(e_k) = 0 \cdot \epsilon_j = 0, k \neq j \\
         U_{e_1, \cdots, e_n} \ra V_{\epsilon_1, \cdots, \epsilon_n} \\
-        [\beta(e_i^* \otimes \epsilon_j)] = j
+        [\beta(e_i^* \otimes \epsilon_j)] = 
         \begin{pmatrix}
         0 & \cdots & 0 \\
         \vdots & 1 & \vdots \\
         0 & \cdots & 0 \\
-        \end{pmatrix} \text{в позиции $(j, j$ стоит единичка}
+        \end{pmatrix} \text{в позиции $(j, i$ стоит единичка}
     \end{gather*}
 
-    Что то ещё что я не успел записать
+    Так как такие матрицы образуют базис $\mathcal{L}(U, V)$, построенное 
+    отображение переводит базис в базис и является изоморфизмом.
 \end{proof}
 
 \begin{Rem} про обозначения:
 
-    $\beta(e^i \otimes \epsilon_j) = j \begin{pmatrix}
+    $\beta(e^i \otimes \epsilon_j) = \begin{pmatrix}
         0 & \cdots & 0 \\
         \vdots & 1 & \vdots \\
         0 & \cdots & 0 \\
