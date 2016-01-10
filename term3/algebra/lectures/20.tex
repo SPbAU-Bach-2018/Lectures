@@ -1,42 +1,4 @@
 \setauthor{Глеб Валин}
-
-\begin{gather*}
-    f_{\sigma} : V_1 \otimes \cdots \oplus V_n \ra V_\sigma(1) \otimes \cdots \otimes V_{\sigma(n)} \\
-    f_{\sigma, \lambda}: V_{\lambda(i)} \otimes \cdots \otimes V_{\lambda(n)} \ra V_{\sigma\lambda(1)} \otimes \cdots \otimes V_{\sigma\
-    lambda(1)}
-\end{gather*}
-
-\begin{theorem} (О двойственности)
-    $$    \dim V_i < \infty \Ra V_1^* \otimes \cdots \otimes V_n^* \cong (V_1 \otimes \cdots \otimes V_n)^* $$ % заменить на знак изоморфности
-\end{theorem}
-
-\begin{proof}
-    \begin{gather*} 
-        \text{коммутативная диаграмма универсального свойства:} \\
-        V_1^* \times \cdots \times V_n^* \ra^{\phi} V_1^* \otimes \cdots \otimes V_n^* \\
-        V_1^* \times \cdots \times V_n^* \ra^{\alpha} \mathcal{L}(V_1, \cdots, V_n, K) \\
-        (v^*_1, \cdots, v^*_n) \mapsto \alpha(v_1^*, \cdots, v^*_n) \\
-        \alpha(v_1^*, \cdots, v_n^*)(u_1, \cdots, u_n) = v_1^*(u_1)  \cdots v_n^*(u_n) \\
-        \text{$\alpha$ каноническое отображение из $V_1^* \times \cdots \times V_n^*$} \\
-        \beta: V_1^* \otimes \cdots \otimes V_n^* \ra \mathcal{L}(V_1, \cdots, V_n, K) \cong \mathcal{L}(V_1 \otimes \cdots \otimes V_n, K) = (V_1 \otimes \cdots \otimes V_n)^* \\
-        \beta(v^*_1 \otimes \cdots \otimes v^*_n)(u_1, \cdots, u_n) = v_1^*(u_1) \cdots v_n^*(u_n) \\
-        \text{$\beta$ "--- является ли изоморфизмом? } \\
-        \text{т.к. всё конечномерно, то можем написать:} \\
-        \dim (V_1^* \otimes \cdots \otimes V_n^*) = \Pi(\dim V_i^*) = \Pi (\dim V_i) \\
-        \dim (V_1 \otimes \cdots \otimes V_n)^* = \dim (V_1 \otimes \cdots \otimes V_n) = \Pi (\dim V_i)
-	\end{gather*}
-    т.к. размерности совпадают, то для доказательства биективности достаточно проверить сюрективность (по теореме о размерности ядра будет следовать инъективность, т.к. размерность ядра равно нулю)
-	\begin{gather*}
-        f \in \mathcal{L}(V_1, \cdots, V_n, K) \\
-        \text{$\{e_i^{(j)}\}$ "--- базис $V_i$} \Ra \\
-		\TODO
-        ДОПИСАТЬ
-		\TODO \\
-        \beta(e_{i_1}^{(i)*} \otimes \cdots \otimes e_{i_n}^{(n)*}) = e_{i_1}^{(1)*} \cdot \cdots \cdot e_{i_n}^{(n)*} \\
-        \Ra \mathcal{L}(V_1, \cdots, V_n, K) \subseteq \Im \beta
-    \end{gather*}
-\end{proof}
-
 \section{Тензорное произведение и линейные отображения}
 Рассмотрим ещё одну интерпретацию тензорного произведения:
 
