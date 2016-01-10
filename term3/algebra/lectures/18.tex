@@ -1,48 +1,57 @@
 ﻿\section{Примеры}
 \begin{enumerate}
     \item Пространства функций на декартовых произведениях. 
-    $S_1, \cdots S_n$ "--- конечные множества, $K$ "--- поле. 
-    $F(S_i)$ множества отображений из $S_i$ в $K$.
-    $\dim_k F(S_i) = (S_i)$ "--- базис $\delta$ функций (характеристические функции одноэлементных подмножеств).
-    $$x \in S_i, \delta_{x}^{(i)} \colon \to K$$
+    $S_1, \cdots S_n$ "--- конечные множества, $K$ "--- поле.\\ 
+    $F(S_i)$ множества отображений из $S_i$ в $K$.\\
+    
+    Существует каноническое отождествление 
+    $F(S_1 \times \cdots \times S_n) = F(S_1) \otimes \cdots \otimes F(S_n)$
+
+    $\dim_k F(S_i) = |S_i|$ "--- базис $\delta$ функций (характеристические функции одноэлементных подмножеств).
+    $$x \in S_i, \delta_{x}^{(i)} \colon S_i \to K$$
     $$\delta_{x}(x) = 1$$
     $$\delta_{x}(y) = 0, y \ne x$$
 
-    $$F(S_1 \times \cdots \times S_n) = F(S_1) \otimes \cdots \otimes F(S_n)$$
-    $$\dim(F(S_1 \times \cdots \times S_n)) = |S_1 \times \cdots \times S_n| = $$
-    $$|S_1| \times \cdots \times |S_n| = $$
-    $$= \dim F(S_1) \times \cdots \times \dim F(S_n) = $$
-    $$= \dim (F(S_1) \otimes \cdots \otimes F(S_n))$$
+     Размерности обоих пространств совпадают: 
+    \begin{gather*}
+    \dim(F(S_1 \times \cdots \times S_n)) = |S_1 \times \cdots \times S_n| = 
+    |S_1| \times \cdots \times |S_n| = \\
+    = \dim F(S_1) \times \cdots \times \dim F(S_n) = 
+    = \dim (F(S_1) \otimes \cdots \otimes F(S_n))
+    \end{gather*}
 
-    Базис $F(S_1 \times \cdots \times S_n)$
+    Базис $F(S_1 \times \cdots \times S_n)$:\\
+    $\delta_{x_1, \cdots, x_n} = \delta_{x_1} \cdot \cdots \cdot \delta_{x_n}$ \\
+    $\delta_{x_1, \cdots, x_n}(y_1 \cdots, y_n) = \delta_{x_1}(y_1) \cdot \cdots \cdot \delta_{x_n}(y_n)$
 
-    $\delta_{x_1, \cdots, x_n} = \delta_{x_1} \cdots \delta_{x_n}$
-
-    $\delta_{x_1, \cdots, x_n}(y_1 \cdots, y_n) = \delta_{x_1}(y_1) \cdots \delta_{x_n}(y_n)$
-
-    $\{\delta_{x_1} \cdots \delta_{x_n}| x_i \in S_i\}$ 
+    Базис $F(S_1 \otimes \cdots \otimes S_n)$:\\
+    $\{\delta_{x_1}, \cdots, \delta_{x_n}| x_i \in S_i\}$, 
     $\delta_{x_1} \otimes \cdots \otimes \delta_{x_n}$.
+
+    Изоморфизм сопоставляет $\delta_{x_1, \cdots, x_n}$ $\delta_{x_1} \otimes \cdots \otimes \delta_{x_n}$, 
 \item
 Подъем поля скаляров.\\
-$K \subset L$ "--- поле\\
+Пусть $K \subset L$ "--- поле\\
 $V$ "--- векторное пространство над $K$\\
+Рассмотрим $L$ как веуторное пространтсво над $K$.\\
 $\{e_i\}$ "--- базис $V$ над $K$\\
 Построим новое векторное пространство $V_L$ над $L$\\
 $$V_L = L \otimes_{K} V = < l \otimes v | l \in L, v \in V >$$
 Зададим на $V_L$ структуру векторного пространства над $L$.
 $$a(l \otimes v) = (al) \otimes v \colon a \in L $$
 
+Проверим корректность определения.
 $$M = <(l, v)>$$
 $$a \in L, a(l,v) = (al, v)$$
 $M$ приобретает структуру векторного пространства над $L$.
-$(kl, v) - k(l, v) \in M_0$ при $k \in K$ $\Lra$ новое умножение 
+$\delta(kl, v) - k\delta(l, v) \in M_0$ при $k \in K$ $\Lra$ новое умножение 
 по модулю $M_0$ согласовано с умножением на скаляр из $K$.
 
 \begin{gather*}
-M_0 = <(l_1 + l_2, v) - (l_1, v) - (l_2, v), \\
-         (l, v_1 + v_2) - (l, v_1) - (l, v_2), \\
-         (kl_1, v) - k(l, v),\\ 
-         (l, kv) - k(l, v) | l \in L, k \in K, v_i \in V>
+M_0 = <\delta(l_1 + l_2, v) - \delta(l_1, v) - \delta(l_2, v), \\
+         \delta(l, v_1 + v_2) - \delta(l, v_1) - \delta(l, v_2), \\
+         \delta(kl_1, v) - k\delta(l, v),\\ 
+         \delta(l, kv) - k\delta(l, v) | l \in L, k \in K, v_i \in V>
 \end{gather*}
 
 $$a \in L$$
