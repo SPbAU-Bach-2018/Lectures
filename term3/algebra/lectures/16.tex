@@ -164,30 +164,42 @@
 		\end{gather*}
 	\end{description}
 	\end{proof}
-	$\mathcal L(V, W)$ "--- множество линейных отображений.\\
+        \begin{description}
+        \item[Обозначения:]
+        $\mathcal L(V, W)$ "--- множество линейных отображений.\\
 	$V_1, \dots, V_n$, $W$ "--- векторные пространства над $K$.\\
 	$\mathcal L(V_1, \dots, V_n, W)$ "--- пространство полилинейных отображений из $V_1 \times \dots \times V_n$ в $W$. \\
-
+        \end{description}
+        \begin{conseq}
+		Пространства $\mathcal L(V_1, \dots, V_n, W)$ и $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$ изоморфны.
+		\[ \mathcal L(V_1, \dots, V_n, W) \cong \mathcal L(V_1 \otimes \dots \otimes V_n, W) \]
+	\end{conseq}
+	\begin{proof}
 	$\mathcal L(V_1, \dots, V_n, W)$ "--- векторное пространство над $K$.
 	Сложение и умножение на скаляр определяется поточечно. \\
 
 	Надо проверить, что $f+g, \alpha f$ вновь полилинейные и
 	что $\mathcal L(V_1, \dots, V_n, W)$ является векторным пространством над $K$.
+	
+	
+	Отображение $(\alpha \to \beta)$ построенное в теореме является линейным отображением из
+	$\mathcal L(V_1, \dots, V_n, W)$  в $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$.
+
 	\begin{gather*}
 		\alpha = \beta \circ \phi \\
 		\alpha \in \mathcal L(V_1, \dots, V_n, W) \quad
 		\beta \in \mathcal L(V_1 \otimes \dots,\otimes V_n, W) \\
-		\alpha \to \beta \\
+		\psi \colon \alpha \to \beta \\
 		\mathcal L(V_1, \dots, V_n, W) \to \mathcal L(V_1 \otimes \dots \otimes V_n, W) \\
-		\alpha + \alpha' = \beta + \beta' \\
-		\tilde \beta((v_1, \dots, v_n)) = \alpha(v_1, \dots, v_n) \\
+       \end{gather*}
+       Докажем, что отображение является гомоморфизмом. 
+       \begin{gather*}	
+		\psi(\alpha + \alpha') = \beta + \beta' \\
+		\tilde \beta(\delta(v_1, \dots, v_n)) = \alpha(v_1, \dots, v_n) \\
 		\tilde \beta'((\dots)) = \alpha'(\dots) \\
-		\tilde \beta + \tilde{\beta'} = (\alpha + \alpha')(\dots)
+		\tilde \beta(\dots) + \tilde{\beta'}(\dots) = (\alpha + \alpha')(\dots)
 	\end{gather*}
 	Аналогично для умножения на скаляр.
-
-	Отображение $(\alpha \to \beta)$ построенное в теореме является линейным отображением из
-	$\mathcal L(V_1, \dots, V_n, W)$  в $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$.
 
 	Это линейное отображение сюръективно:
 	возьмем произвольное линейное $\beta$, $\alpha = \beta \circ \phi$.
@@ -202,11 +214,7 @@
 		\alpha \mapsto \beta = 0 \\
 		\alpha = \beta \circ \phi = 0 \Ra \alpha = 0
 	\end{gather*}
-
-	\begin{conseq}
-		Пространства $\mathcal L(V_1, \dots, V_n, W)$ и $\mathcal L(V_1 \otimes \dots \otimes V_n, W)$ изоморфны.
-		\[ \mathcal L(V_1, \dots, V_n, W) \cong \mathcal L(V_1 \otimes \dots \otimes V_n, W) \]
-	\end{conseq}
+	\end{proof}
 \end{description}
 
 \begin{exmp}\hfill
