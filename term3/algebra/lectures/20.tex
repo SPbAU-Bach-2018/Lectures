@@ -54,7 +54,7 @@
 \end{proof}
 
 \begin{Rem} про обозначения:
-
+    Базис $U^* = e_i^* = e^i$\\
     $\beta(e^i \otimes \epsilon_j) = \begin{pmatrix}
         0 & \cdots & 0 \\
         \vdots & 1 & \vdots \\
@@ -67,9 +67,9 @@
 
     $U^* \otimes V$, где 
 
-    $V = \sum^n_{j=1} a^j \epsilon_j$ (индекс вверху значит, сумирование по нему (уточнить???))
+    $V = \sum^n_{j=1} a^j \epsilon_j$
 
-    $U^* = \sum^n_{i=1}b_ie^i$
+    $U^* = \sum^m_{i=1}b_ie^i$
 
 	\begin{gather*}\beta(u^*\otimes v) = 
             \beta((\sum_i b_i e^i)\otimes(\sum_j a^j \epsilon_j)) = 
@@ -83,9 +83,7 @@
 	\end{gather*}
 
     $\rang(\beta(u^* \otimes v)) = 1$
-
     и наоборот, всякая матрица ранга $1$ есть столбец на строку
-
     $\Ra$ всякая матрица ранга $1$ "--- образ разложимого тензора
 
     $U^* \otimes V \cong M(n,m, K)$
@@ -99,10 +97,11 @@
 
 $n = 2$: $U^* \otimes V \cong M_2(\dim U, K)$
 
+\begin{Def}
 Тензорный ранг матрицы равен $r$, если у отвечающего ей при этом изоморфизме тензора тензорный ранг равен $r$
 
 Тензорный ранг матрицы $A$ равен наименьшему $r$, что $A$ сумма $r$ матриц ранга $1$
-
+\end{Def}
 \begin{theorem}
     Тензорный ранг матрицы совпадает с обычным рангом
 \end{theorem}
@@ -110,21 +109,18 @@ $n = 2$: $U^* \otimes V \cong M_2(\dim U, K)$
 \begin{proof}
     \begin{enumerate}
         \item Тензорный ранг не больше обычного ранга
-        \item $\rang A = r$ $\Ra$ $\exists$ обратимые матрицы $C$ и $D$, что:
+            $\rang A = r$ $\Ra$ $\exists$ обратимые матрицы $C$ и $D$, что:
             $C^-1AD = 
             \begin{pmatrix}
                  E_r & 0 \\
                  0 & 0 
             \end{pmatrix} == \sum_{i = 1}^r e_i^i$
 
-            тогда $A = \sum_{i=1}^n C(e_i^i)D{-1}$, где ранг каждого слагаемого $1$
+            тогда $A = \sum_{i=1}^n C(e_i^i)D{-1}$, где ранг каждого слагаемого $1$, так как
+             $\rang (F G) \leq \min (\rang F, \rang G) \Ra$ тензорный ранг $\leq r$
 
-            $\rang (F G) \leq \min (\rang F, \rang G) \Ra$ тензорный ранг $\leq r$
-
-            $\rang A \leq $ тензорный ранг $A$
-
+        \item $\rang A \leq $ тензорный ранг $A$
             $\rang(F + G) \leq \rang(F) + \rang(G)$
-
             $A = A_1 + \cdots + A_r$, тогда $\rang A \leq 1 + \cdot + 1 = r$
     \end{enumerate}
 \end{proof}
