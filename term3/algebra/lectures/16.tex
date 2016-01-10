@@ -12,14 +12,15 @@
 	Построим $V_1 \otimes \dots \otimes V_n$
 	\[ V_1 \times \dots \times V_n = \{(v_1, \dots, v_n)\colon v_i \in V_i\} \]
 	Возьмём $M$ "--- пространство всех финитных отображений из $V_1 \times \dots \times V_n$ в $K$
-	(финитное значит, что отображение почти всюду равно 0).
+	(финитное значит, что отображение почти всюду равно 0). 
 	\begin{gather*}
 		f, g \in M \\
 		(f + g)(v_1, \dots, v_n) = f(v_1, \dots, v_n) + g(v_1, \dots, v_n) \\
 		(\alpha f)(v_1 \dots v_n) = \alpha f(v_1, \dots, v_n)
 	\end{gather*}
-	\textbf{Упражнение:} $M$ "--- векторное пространство над $K$.
-	Теперь рассмотрим набор финитных отображений $\delta_{(v_1,\dots, v_n)}$:
+	\textbf{Упражнение:} $M$ с операциями поточечного сложения и умножения на скаляр "--- векторное пространство над $K$.
+	
+	Теперь рассмотрим набор финитных отображений $\delta_{(v_1,\dots, v_n)}$ и убедимся, что он является базисом $M$:
 	\[
 		\delta_{(v_1,\dots, v_n)}(u_1, \dots, u_n) = \begin{cases}
 			1 & u_1 = v_1 \land \dots \land u_n = v_n \\
@@ -73,15 +74,24 @@
 	\begin{exmp}
 		$(v_1, \dots, v_n) + (u_1, \dots, u_n) + M_0$ "--- не разложимый тензор.
 	\end{exmp}
-	Предостережение: разложимые тензоры порождают $V_1 \otimes \dots \otimes V_n$, но не являются базисом:
+	\textbf{Предостережение:} разложимые тензоры порождают $V_1 \otimes \dots \otimes V_n$, но не являются базисом:
 	\[ v_1 \otimes \dots \otimes (v_i + v'_i) \dots \otimes v_n - v_1 \otimes \dots v_i \dots \otimes v_n - v_1 \otimes \dots \otimes v_n = 0 \]
 
 \item[Шаг 2:]
 	Построение полилинейного отображения из $V_1 \times \dots \times V_n$ в $V_1 \otimes \dots \otimes V_n$.
+	\begin{theorem}
 	\begin{gather*}
 		\underbrace{(v_1, \dots, v_n)}_{\text{это не $\delta$}} \to v_1 \otimes \dots \otimes v_n = \underbrace{(v_1, \dots, v_n)}_{\text{а это $\delta$}} + M_0 \\
+	\end{gather*}
+	Такое каноническое отображение является полилинейным.
+	\end{theorem}
+	\begin{proof}
+	\begin{gather*}
 		\phi((v_1, \dots, v_i + v_i', \dots, v_n))
 		= v_1 \otimes \dots \otimes (v_i + v_i') \otimes \dots v_n = \\
+		= ((v_1, \dots, v_i + v_i', \dots, v_n) + M_0) = \\
+		=  (v_1, \dots, v_i, \dots, v_n) + (v_1, \dots, v_n) + M_0 = \\
+		= ((v_1, \dots, v_i, \dots, v_n) + M_0) + ((v_1,\dots, v_n) + M_0) = \\
 		= v_1 \otimes \dots v_i \otimes \dots v_n + v_1 \otimes \dots v_i' \otimes \dots \otimes v_n
 		= \phi ((v_1, \dots, v_n)) + \phi((v_1, \dots, v_i', \dots, v_n)) \\
 		\phi((v_1, \dots, \alpha v_i, \dots, v_n))
@@ -90,35 +100,43 @@
 		= \alpha \phi((v_1, \dots, v_n))
 	\end{gather*}
 	Получили, что $\phi$ "--- полилинейно.
-	\begin{gather*}
-		((v_1, \dots, v_i + v_i', \dots, v_n) + M_0) - ((v_1, \dots, v_i, \dots, v_n) + M_0) - ((v_1,\dots, v_n) + M_0) = \\
-		= (v_1, \dots, v_i + v_i',  \dots, v_n) - (v_1, \dots, v_i, \dots, v_n) -  (v_1, \dots, v_i', \dots, v_0) + M_0 = 0 + M_0
-	\end{gather*}
+	\end{proof}  
 
 \item[Шаг 3:] Универсальность тензорного произведения.
 	У нас уже есть $V_1 \times \dots \times V_n \to V_1 \otimes \dots \otimes V_n$, а также $V_1 \times \dots \times V_n \to W$.
+	$$
+        \begin{matrix}
+        V_1 \times \dots \times V_n  & \overset{\phi}{\rightarrow}& V_1 \otimes \dots \otimes V_n\\
+        &\overset{\alpha}{\searrow}&\overset{\beta}{\downarrow}\\
+        &&W\\
+        \end{matrix}
+        $$
 	\begin{theorem}
 		Для любых $W$ и полилинейного отображения $\alpha \colon V_1 \times \dots \times V_n \to W$,
 		существует единственное полилинейное отображение $\beta \colon V_1 \otimes \dots \otimes V_n \to W$,
 		что $\alpha = \beta \circ \phi$.
 	\end{theorem}
-	\begin{proof}\begin{description}
-	\item[Единственность:]
+	\begin{proof}
+	\begin{description}
+	\item[Единственность:] \hfill
 		Пусть $\beta \in \mathscr{L}(V_1 \otimes \dots \otimes V_n, W)$  существует.
 		Достаточно проверить, что $\beta$ однозначно определено на семействе образующих, то есть на разложимых тензорах:
 		\[ \beta((v_1\otimes \dots \otimes v_n)) = \beta (\phi(v_1, \dots, v_n)) = \alpha (v_1, \dots, v_n) \]
 		Значит действительно существует не более одного отображения $\beta$.
 
 	\item[Существование:]
+		Рассмотрим линейное отображение $\tilde \beta$ из $M$ в $W$, которая на базисных элементах 
+		определяется следующим образом:
 		\begin{gather*}
-			\tilde \beta\colon M \to W \\
 			\tilde \beta((v_1, \dots, v_n)) = \alpha(v_1, \dots, v_n)
 		\end{gather*}
-		по линейности достраиваем до линейного отображения из $M$ в $W$.
+		По линейности достраиваем до линейного отображения из $M$ в $W$.
 		\[ \tilde \beta\left(\sum a_{v_1 \dots, v_n}(v_1, \dots, v_n)\right) = \sum a_{v_1, \dots, v_n} \tilde \beta((v_1, \dots, v_n)) = \sum a_{v_1, \dots, v_n} \alpha(v_1, \dots, v_n) \]
 		$\tilde \beta$ "--- линейное отображение.
+		
 		Теперь хотим линейное $\beta\colon M/M_0 \to W$.
-		Это можно сделать, если $M_0 \subset \ker \tilde \beta$:
+		
+		Это можно сделать, если $M_0 \le \ker \tilde \beta$:
 		\begin{gather*}
 			\tilde \beta((v_1, \dots, v_i + v_i', \dots, v_n)) - (v_1, \dots, v_i, \dots, v_n) - (v_1, \dots, v_i', \dots, v_n)) = \\
 			= \tilde \beta((v_1, \dots, v_i + v_i', \dots, v_n)) - \tilde \beta(v_1, \dots, v_i, \dots, v_n)
@@ -131,7 +149,7 @@
 			= 0
 		\end{gather*}
 		$\tilde \beta$ принимет значение 0 на порождающих подпространствах $M_0$.
-		Таким образом, $M_0 \subset \ker \tilde \beta$.
+		Таким образом, $M_0 \le \ker \tilde \beta$.
 		\begin{gather*}
 			\beta(m + M_0) = \tilde \beta(m) \\
 			\beta \colon V_1 \otimes \dots \otimes V_n \to W
@@ -144,13 +162,15 @@
 			= \tilde \beta(v_1, \dots, v_n) = \alpha(v_1, \dots, v_n) \\
 			\beta \circ \phi = \alpha
 		\end{gather*}
-	\end{description}\end{proof}
-	$\mathcal L(V, W)$ "--- множество линейных отображений.
-	$V_1, \dots, V_n$, $W$ "--- векторные пространства над $K$.
-	$\mathcal L(V_1, \dots, V_n, W)$ "--- пространство полилинейных отображений из $V_1 \times \dots \times V_n$ в $W$.
+	\end{description}
+	\end{proof}
+	$\mathcal L(V, W)$ "--- множество линейных отображений.\\
+	$V_1, \dots, V_n$, $W$ "--- векторные пространства над $K$.\\
+	$\mathcal L(V_1, \dots, V_n, W)$ "--- пространство полилинейных отображений из $V_1 \times \dots \times V_n$ в $W$. \\
 
 	$\mathcal L(V_1, \dots, V_n, W)$ "--- векторное пространство над $K$.
-	Сложение и умножение на скаляр определяется поточечно.
+	Сложение и умножение на скаляр определяется поточечно. \\
+
 	Надо проверить, что $f+g, \alpha f$ вновь полилинейные и
 	что $\mathcal L(V_1, \dots, V_n, W)$ является векторным пространством над $K$.
 	\begin{gather*}
