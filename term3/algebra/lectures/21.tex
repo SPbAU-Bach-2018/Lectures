@@ -5,7 +5,7 @@ $V$ "--- векторное пространство над $K$. $(\dim_{K}V < \
 Рассмотрим $T_p^q = \underbrace{V^*\otimes \cdots \otimes V^*}_{p} \otimes \underbrace{V \otimes \cdots \otimes V}_{q}$\\
 Элементы $T_{p}^q(V)$ "--- тензоры на V типа $(p, q)$ и валентности (или ранга) $p + q$. ($p$ раз ковариантные, $q$ раз контрвариантные)
 \end{Def}
-\begin{exmp}
+\begin{exmp} \hfill
 \begin{enumerate}
 \item Удобно положить $T_0^0(V)= K$, то есть скаляры это тензоры ранга 0.
 \item $T_0^1(V) = V$ (элементы $T_0^1$ "--- векторы)
@@ -28,12 +28,12 @@ $T_2^0(V) = V^*\otimes V^* \cong (V \otimes V)^* = \mathcal{L}(V \otimes V, K) \
 
 $$+ \colon A \times A \to A$$
 $$\cdot \colon K \times A \to A$$
-$$\cdot \colon A \times A \to A$$
+$$\circ \colon A \times A \to A$$
 
 \end{Def}
-\begin{Def}
-    Ассоциативная алгеьра: $\cdot$ "--- ассоциативна и $(A, +, \cdot)$ "--- кольцо.\\ 
-    $\forall a_1, a_2 \in A, \forall k \in K \colon (ka_1)a_2 = a_1(ka_2) = k(a_1 \cdot a_2)$\\
+\begin{Def}  \hfill
+    Ассоциативная алгеьра: $\circ$ "--- ассоциативна и $(A, +, \cdot)$ "--- кольцо.\\ 
+    $\forall a_1, a_2 \in A, \forall k \in K \colon (k \cdot a_1) \circ a_2 = a_1 \circ (k \cdot a_2) = k \cdot (a_1 \circ a_2)$\\
 \end{Def}
 \begin{exmp}\hfill
     \begin{enumerate}
@@ -44,7 +44,7 @@ $$\cdot \colon A \times A \to A$$
     \item
     $\H$ "--- 4-мерная алгебра над $\R$\\
     \item
-    $\C$ "--- 2-мерная алгебра над $\C$\\
+    $\C$ "--- 2-мерная алгебра над $\R$\\
     \begin{Rem}
     $\H$ "--- веторное пространство над $\C$, но не алгебра. 
 
@@ -69,12 +69,11 @@ $$\cdot \colon A \times A \to A$$
 $A$  "--- алгебра.\\
 $\circ \colon A \times A \to A$(билинейное отображение)\\
 $$\mathcal{L}(A, A, A) \cong \mathcal{L}(A \otimes A, A) \cong (A \otimes A)^* \otimes A \cong A^* \otimes A^* \otimes A$$
-
 Билинейное умножение на алгебре $A$  соответствует тензорам $T_2^1(A)$.
 
 $\{e_i\}$ "--- базис $A$
 $$a = \sum_{i} a^i e_i$$
-$$b = \sum_{i} b^i e_j$$
+$$b = \sum_{j} b^j e_j$$
 
 $a^i$ "--- коэффицент $a$ в базисе $e_i$
 
@@ -98,16 +97,16 @@ $\{\gamma_{ij}^k\}$ "--- структурные константы алгебр�
 
 
 Вернемся  к общему случаю $T_p^q(V)$
-$$T_0^0 \cong K$$
+\begin{Def}
 $$T(V) = \oplus_{p,q}T_{p}^{q}(V)$$
+Тензорная алгебра пространства V.
+\end{Def}
 
 $$\otimes \colon T(V) \times T(V) \to T(V)$$
-$$\otimes T_{p}^{q}(V) \times T_{p'}^{q'}(V) = T_{p + p'}^{q + q'}(V)$$
+$$\otimes \colon T_{p}^{q}(V) \times T_{p'}^{q'}(V) = T_{p + p'}^{q + q'}(V)$$
 
 $$T_{p}^{q} = V^* \otimes \cdots \otimes V^* \otimes V \cdots \otimes V \cong \mathcal{L}(V^*, \cdots, V^*, V, \cdots, V, K)$$
 $$\alpha\colon V^* \times \cdots \times V^* \times V \times \cdots \times V \to K$$
-
-$$\beta \in T_{p'}^{q'}$$
 $$\beta \colon V^* \times \cdots V^* \times V \times \cdots \times V \to K$$ 
 
 Хотим построить полилинейное отображение 
@@ -116,7 +115,10 @@ $$(\alpha, \beta)\colon V^* \times \cdots V^* \times V \cdots \times V \to K$$
 
 На первых p действует как $\alpha$, на вторых p' как $\beta$, для q аналогично. 
 
-$$(\alpha, \beta) \colon (v_1^*, \cdots, v_{p + q}^*, v_1, \cdots, v_{q + q'}) = \alpha(v_1^*, \cdots, v_p^*, v_1, \cdots, v_q)\beta(v_{p + 1}^*, \cdots, v_{p + p'}^*, v_{q + 1}, \cdots, v^*_{q + q'})$$
+$$(\alpha, \beta) (v_1^*, \cdots, v_{p + q}^*, v_1, \cdots, v_{q + q'}) = \alpha(v_1^*, \cdots, v_p^*, v_1, \cdots, v_q)\beta(v_{p + 1}^*, \cdots, v_{p + p'}^*, v_{q + 1}, \cdots, v^*_{q + q'})$$
+
+То есть мы определили $\otimes$ для двух полилинейных отображений. Из данного
+определения видно, что $\otimes$ является билинейным и ассоциативным.
 
 На самом деле можно все это получить пользуясь уже известными изоморфизмами:
     $$T_{p}^q(V) \otimes T_{p'}^{q'}(V) \cong T_{p + p'}^{q + q'}(V)$$
