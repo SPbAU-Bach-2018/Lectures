@@ -10,18 +10,31 @@
 \end{theorem}
 \begin{proof}
 Для любых пространств ограничемся первым случаем. 
-$$\phi \colon V_1 \times V_2 \times V_3 \to V_1 \otimes V_2 \otimes V_3$$
-$$\alpha \colon V_1 \times V_2 \times V_3 \to (V_1 \otimes V_2) \otimes V_3$$
-$$\beta\colon V_1 \otimes V_2 \otimes V_3 \to (V_1 \otimes V_2)\otimes V_3$$
-$\beta$ "--- линейное отображение. $\alpha = \beta \circ \phi$
+$$
+\begin{matrix}
+V_1 \times V_2 \times V_3& \overset{\phi}{\rightarrow}& V_1 \otimes V_2 \otimes V_3\\
+&\overset{\alpha}{\searrow}&\overset{\beta}{\downarrow}\\
+&&(V_1 \otimes V_2) \otimes V_3\\
+\end{matrix}
+$$
+
+$\alpha = \beta \circ \phi$ \\
+Необходимо показать, что $\alpha$ полилинейное отображение.\\ 
 
 $$V_1 \times V_2 \to V_1 \otimes V_2$$
-$$(v_1, v_2) \to V_1 \otimes V_2$$
+$$(v_1, v_2) \to v_1 \otimes v_2$$
+Данное отоброжение билинейное. 
 $$\alpha \colon V_1 \times V_2 \times V_3 \to (V_1 \otimes V_2) \otimes V_3$$
-$$(v_1, v_2, v_3) \to  (V_1 \otimes V_2) \otimes V_3$$
-$$\beta(V_1 \otimes V_2 \otimes V_3) = \alpha(V_1, V_2, V_3) = (V_1 \otimes V_2) \otimes V_3$$
+$$(v_1, v_2, v_3) \to  (v_1 \otimes v_2) \otimes v_3$$
+Значит отображение $\alpha$ полилинейное.
 
-$\{e_i\}$ "--- базис $V_1$\\
+Из этого следует, что существует единственное полилинейное отображение $\beta$, которое по самой
+конструкции  действует следующим образом:
+$$\beta(v_1 \otimes v_2 \otimes v_3) = \alpha(v_1, v_2, v_3) = (v_1 \otimes v_2) \otimes v_3$$
+
+Теперь выберем базис у двух конструкций. Проверим, что базис переходит 
+в базис и из этого будет следовать, что наше отображение изоморфизм.\\ 
+$\{e_i\}$ "--- базис $V_1$\\             
 $\{f_j\}$ "--- базис $V_2$\\
 $\{h_k\}$ "--- базис $V_3$\\
 $$\beta(e_i \otimes f_j \otimes h_k) = (e_i \otimes f_j) \otimes h_k$$
@@ -30,35 +43,41 @@ $\beta$ переводит базис в базис $\Ra$ изоморфизм.
 Второй способ:
 
 $(e_i \otimes f_j) \otimes h_k$ "--- базис $(V_1 \otimes V_2) \otimes V_3$
-и лежит в базисе $\beta \Ra \beta$ сюръективно.
+и лежит в образе $\beta \Ra \beta$ сюръективно.
 \begin{gather*}
 \dim(V_1 \otimes V_2 \otimes V_3) = \dim V_1 \cdot \dim V_2 \cdot \dim V_3 =\\
 =\dim(V_1 \otimes V_2) \cdot \dim V_3 = \dim((V_1 \otimes V_2) \otimes V_3)
 \end{gather*}
-$\Ra \beta$ "--- инъективно. 
+$\Ra \beta$ "--- инъективно.
+$\Ra$так как $\beta$ биекция и полилинейно, значит $\beta$ изоморфизм.
 \end{proof}
-\begin{theorem}
-$V_1, \cdots, V_n$\\
-$\sigma \in S_n$\\
+
+\begin{theorem}{Коммутативность} \hfill
+$V_1, \cdots, V_n$ "--- векторные пространства над полем $K$\\
+$\sigma \in S_n$ "--- любая перестановка чисел от 1 до $n$\\
 Существует изоморфизм $f_{\sigma}\colon V_1 \otimes \cdots \otimes V_n \to V_{\sigma(1)} \otimes \cdots V_{\sigma(n)}$
 и при этом  $f_{\sigma \tau} = f_{\sigma} \circ f_{\tau}$
 \end{theorem}
 \begin{proof}
-$$\phi \colon V_1 \times \cdots V_n \to V_1 \otimes \cdots \otimes V_n$$
-$$\alpha \colon V_1 \times \cdots \times V_n \to V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$$
-$$\beta \colon V_1 \otimes \cdots \otimes V_n \to V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$$
+$$
+\begin{matrix}
+V_1 \times \cdots \times V_n& \overset{\phi}{\rightarrow}& V_1 \otimes \cdots \otimes V_n\\
+&\overset{\alpha}{\searrow}&\overset{\beta}{\downarrow}\\
+&&V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}\\
+\end{matrix}
+$$
 
 $\alpha$ "--- полилинейная \\
-$\beta(V_1 \otimes \cdots \otimes V_n) = V_{\sigma(1)} \otimes \cdots \otimes V_{\sigma(n)}$\\
-$\beta$ переводит тензорный базис в тензорный базис $\Ra$ изоморфизм.
+$\beta(v_1 \otimes \cdots \otimes v_n) = v_{\sigma(1)} \otimes \cdots \otimes v_{\sigma(n)}$\\
+$\beta$ переводит тензорный базис в тензорный базис $\Ra$ изоморфизм.\\
+
+$$f_{\sigma \tau}(v_1 \otimes \cdots \otimes v_n) = v_{\sigma\tau(1)} \otimes \cdots \otimes v_{\sigma \tau(n)}$$
+$$f_{\tau}(v_1 \otimes \cdots \otimes v_n) = v_{\tau(1)} \otimes \cdots \otimes v_{\tau(n)} $$
+$$f_{\sigma}\cdot f_{\tau}(v_1 \otimes \cdots \otimes v_n) = f_{\sigma}(v_{\tau(1) \otimes \cdots \otimes v_{\tau(n)}}) =$$
+$$= v_{\sigma\tau(1)} \otimes \cdots \otimes v_{\sigma \tau(n)}$$
 \end{proof}
 
-$$f_{\sigma \tau}(V_1 \otimes \cdots \otimes V_n) = V_{\sigma\tau(1)} \otimes \cdots \otimes V_{\sigma \tau(n)}$$
-$$f_{\tau}(V_1 \otimes \cdots \otimes V_n) = V_{\tau(1)} \otimes \cdots \otimes V_{\tau(n)} $$
-$$f_{\sigma}\cdot f_{\tau}(V_1 \otimes \cdots \otimes V_n) = f_{\sigma}(V_{\tau(1) \otimes \cdots \otimes V_{\tau(n)}}) =$$
-$$= V_{\sigma\tau(1)} \otimes \cdots \otimes V_{\sigma \tau(n)}$$
-
-\begin{theorem}{двойственность}
+\begin{theorem}{Двойственность}\hfill
 
 $$(V_1 \otimes \cdots \otimes V_n)^* \cong V_1^* \times \cdots \times V_n^*$$
 
