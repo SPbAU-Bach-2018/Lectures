@@ -3,14 +3,14 @@
 \section{Вступление}
 
 \begin{Def}
-	$G$ "--- группа, $H \le G$, $H$ "--- подгруппа G, $\emptyset \ne A, B \le G$.
+	$G$ "--- группа, $H \le G$, $H$ "--- подгруппа G, $\emptyset \ne A, B \subset G$.
 	Произведение по Минковскому:
 	\[ A \cdot B = \{ab \mid a \in A, b \in B\} \]
 
-	Если $A = \{a\}$, будем писать $aB$ или $Ba$ вместо $\{a\}B$, $B\{a\}$.
-	В частности, если $B \le G$,
-	$aB$ "--- левый класс смежности по $B$,
-	$Ba$ "--- правый класс смежности по $B$.
+	Если $A = \{a\}$, будем писать $aB$ или $Ba$ вместо $\{a\}B$, $B\{a\}$.\\
+	В частности, если $B \le G$,\\
+	$aB$ "--- левый класс смежности по $B$,\\
+	$Ba$ "--- правый класс смежности по $B$.\\
 \end{Def}
 
 \begin{conseq}\hfill
@@ -25,9 +25,9 @@
 \end{conseq}
 
 \begin{Def}
-	$0 \ne A \le G$.
+	$\emptyset \ne A \le G$.
 	\[ A^{-1} = \{a^{-1} \mid a \in A\} \]
-	$H \le G \Ra H^{-1} = H$.
+	Если $H \le G \Ra H^{-1} = H$.
 \end{Def}
 
 \begin{Rem}
@@ -50,26 +50,26 @@
 \begin{theorem}
 	Пусть $H \le G$, тогда следующие условия равносильны:
 	\begin{enumerate}
-		\item $\forall g \in G, gHg^{-1} \le H$
-		\item $\forall g \in G, gHg^{-1} = H$
-		\item $\forall g \in G, gH = Hg$
+		\item $\forall g \in G \colon gHg^{-1} \le H$
+		\item $\forall g \in G \colon gHg^{-1} = H$
+		\item $\forall g \in G \colon gH = Hg$
 	\end{enumerate}
 \end{theorem}
 \begin{proof}\begin{description}
-\item[$2 \Ra 1$:]
+\item[$2 \Ra 1$:] \hfill
 	Очевидно.
 
-\item[$1 \Ra 2$:]
+\item[$1 \Ra 2$:] \hfill
 	В силу произвольности $g$:
 	\begin{gather*}
 		gHg^{-1} \le H \\
 		g^{-1}Hg \le H \Ra H \le gHg^{-1} \Ra H = gHg^{-1}
 	\end{gather*}
 
-\item[$2 \Ra 3$:]
+\item[$2 \Ra 3$:] \hfill
 	Домножаем $gHg^{-1} = H$ на $g$ справа.
 
-\item[$3 \Ra 2$:]
+\item[$3 \Ra 2$:] \hfill
 	Домножаем $gH = Hg$ домножаем на $g^{-1}$ слева.
 \end{description}\end{proof}
 
@@ -95,12 +95,13 @@
 
 \item
 	\[ SL(n, K) \unlhd GL(n, K) \]
-	$GL(n, K)$ "--- все матрицы $n \times n$ над $K$,
+	$GL(n, K)$ "--- все обратимые матрицы $n \times n$ над $K$,
 	$SL(n, K) = \{g \in GL(n, K) \mid \det g = 1 \}$.
 
 \item
 	\[ [G:H] = 2 \Ra H \unlhd G \]
-	$[G:H]$ "--- индекс подгруппы $H$ в $G$.
+	$[G:H]$ "--- индекс подгруппы $H$ в $G$.\\
+	индекс подгруппы "--- количество классов смежности.\\
 	Классов смежности два, $H$ и $G \setminus H$:
 	\[ G = \bigcup gH \]
 	\begin{itemize}
@@ -139,6 +140,7 @@
 		\phi\colon GL(n,K) \to K^* \quad \phi(g) = \det g \\
 		\ker \phi = SL(n, K) \unlhd GL(n, K)
 	\end{gather*}
+	$K^*$ "--- обратимые элементы, то естьв данном случае K без 0.
 \end{enumerate}\end{exmp}
 
 \begin{lemma}
