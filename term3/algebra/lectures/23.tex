@@ -113,10 +113,13 @@
 	\[ g_1H = H \Lra g_1 \in H \]
 \end{enumerate}\end{exmp}
 
+\begin{Def}
+\[ \ker \phi = \phi^{-1}(\{1_{G_1}\}) = \{g \in G \mid \phi(g) = 1_{G_1}\} \]
+\end{Def}
+
 \begin{theorem}
 	Пусть $\phi\colon G \to G_1$, $\phi$ "--- гомоморфизм,
-	\[ \ker \phi = \phi^{-1}(\{1_{G_1}\}) = \{g \in G \mid \phi(g) = 1_{G_1}\} \]
-	Тогда $\ker \phi \unlhd G$.
+	тогда $\ker \phi \unlhd G$.
 \end{theorem}
 \begin{proof}
 	$\ker \phi \le G$ "--- упражнение.
@@ -144,17 +147,19 @@
 \end{enumerate}\end{exmp}
 
 \begin{lemma}
-	$\phi\colon G \to G_1$ "--- гомоморфизм.
+	$\phi\colon G \to G_1$ "--- гомоморфизм.\\
 	Если $H = \ker \phi$, то смежные классы по $H$ "--- это в точности $\phi^{-1}(\{b\})$, где $b \in \phi(G)$.
+        
+        Другими словами,$\forall g \in G \colon gH = \{\phi^{-1}(\phi(g))\}$\\
 \end{lemma}
 \begin{proof}
 	Покажем, что $gH = \phi^{-1}(\{\phi(g)\})$ ($b = \phi(g)$):
 	\begin{description}
-	\item[$\subset$:]
+	\item[$\subset$:] \hfill \\
 		$g_1 \in gH$, $g_1 = gh$:
-		\[ \phi(g_1) = \phi(g)\phi(h) = \phi(g) \Ra g_1 \in \phi^{-1}(\{\phi(g)\}) \]
+		\[ \phi(g_1) = \phi(g)\phi(h) = \phi(g) \Ra \\ g_1 \in \phi^{-1}(\{\phi(g)\}) \]
 
-	\item[$\supset$:]
+	\item[$\supset$:]\hfill \\
 		$g_1 \in \phi^{-1}(\{\phi(g)\})$:
 		\begin{gather*}
 			\phi(g_1) = \phi(g) \\

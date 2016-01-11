@@ -44,22 +44,25 @@ $X$ "--- множество (левых) смежных классов по $H$.
 \end{Def}
 
 \begin{theorem}
-	$G$ "--- группа, $H \unlhd G$,
-	$\phi \colon G \to G / H$,
-	$\phi(g) = gH$.
+	$G$ "--- группа, $H \unlhd G$,\\
+	$\phi \colon G \to G / H$, \\
+	$\phi(g) = gH$.\\
 	Тогда $\phi$ сюръективный гомоморфизм групп и $\ker \phi = H$.
 \end{theorem}
 \begin{proof}
+        \begin{description}
+        \item [Гомоморфизм:] \hfill \\
 	\[ \phi(g_1)\phi(g_2) = g_1Hg_2H = g_1g_2H = \phi(g_1g_2) \]
-	Сюръективность очевидна. 
+	\item [Сюръективность] \hfill \\
+	 очевидна. 
 
-	Проверяем $\ker \phi = H$.
+	\item [Проверяем $\ker \phi = H$.] \hfill \\
 	\begin{description}
-	\item[$\supset$:]
+	\item[$\supset$:] \hfill \\
 		$h \in H$
 		\[ \phi(h) = hH =  H = 1_{G/H} \Ra H \subset \ker \phi \]
 
-	\item[$\subset$:]
+	\item[$\subset$:] \hfill \\
 		$h \in \ker \phi$
 		\begin{gather*}
 			hH = \phi(h) = 1_{G/H} = H \\
