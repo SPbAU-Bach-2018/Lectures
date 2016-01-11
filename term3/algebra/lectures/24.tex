@@ -1,72 +1,74 @@
 ﻿\section{Факторгруппы}
-$G, H \unlhd G$\\
-$X$ "--- множество (левых) смежных классов по $H$.\\
+
+$G, H \unlhd G$.
+$X$ "--- множество (левых) смежных классов по $H$.
 Определим операцию умножения. 
-$g_1H g_2H = g_1g_2H$
+\[ g_1H g_2H = g_1g_2H \]
 \begin{theorem}
-Множество $X$ с так введенной операцией является группой. 
+	Множество $X$ с так введенной операцией является группой. 
 \end{theorem}
-\begin{proof}
-\begin{description}
-\item[Шаг1:]
-Корректность. 
+\begin{proof}\begin{description}
+\item[Шаг 1: Корректность.]
+	Пусть $g_1H = g_1'H, g_2H = g_2'H$
+	Нужно проверить, что $g_1g_2H = g_1'g_2'H$.
+	\begin{gather*}
+		(g_1g_2)^{-1}g_1'g_2' \in H \\
+		(g_1g_2)^{-1}g_1'g_2'
+		= g_2^{-1}g_1^{-1}g_1'g_2'
+		= \underbrace{g_2^{-1}g_2'}_{\in H} \underbrace{(g_2')^{-1} \underbrace{g_1^{-1}g_1'}_{\in H}g_2'}_{\in H, H \unlhd G} \in H
+	\end{gather*}
 
-Пусть $g_1H = g_1'H, g_2H = g_2'H$\\
-Нужно проверить, что $g_1g_2H = g_1'g_2'H$\\
+\item[Шаг 2: Проверим ассоциативность.]
+	Еще одна интерпритация умножения:
+	\[ g_1Hg_2H = g_1(Hg_2)H = g_1(g_2H)H = g_1g_2(HH) = g_1g_2H \]
+	Ассоциативность умножения в $X$ следует из ассоциативности умножения по Минковскому.
 
-$(g_1g_2)^{-1}g_1'g_2' \in H$\\
-$(g_1g_2)^{-1}g_1'g_2' = g_2^{-1}g_1^{-1}g_1'g_2' = \underbrace{g_2^{-1}g_2'}_{\in H} \underbrace{(g_2')^{-1} \underbrace{g_1^{-1}g_1'}_{\in H}g_2'}_{\in H, H \unlhd G} \in H$\\
-\item [Шаг2:]
-Проверим ассоциативность.
+\item[Шаг 3: Нейтральный элемент.]
+	\begin{gather*}
+		1_X = H = 1_GH \\
+		HgH = gHH = gH \\
+		gHH = gH
+	\end{gather*}
 
-Еще одна интерпритация умножения:
-$g_1Hg_2H = g_1(Hg_2)H = g_1(g_2H)H = g_1g_2(HH) = g_1g_2H$
+\item [Шаг 4: Для любого смежного класса найдется обратный.]
+	\begin{gather*}
+		(gH)^{-1} = g^{-1}H \\
+		gHg^{-1}H = gg^{-1}HH = 1H = H \\
+		g^{-1}HgH = g^{-1}gHH = 1H = H
+	\end{gather*}
+\end{description}\end{proof}
 
-
-Ассоциативность умножения в $X$ следует  из ассоциативности умножения по Минковскому\\
-\item [Шаг 3:]
-Нейтральный элемент. 
-$1_X = H = 1_GH$\\
-$HgH = gHH = gH$\\
-$gHH = gH$\\
-\item [Шаг 4:]
-Для любого смежного класса найдется обратный. 
-$(gH)^{-1} = g^{-1}H$\\
-$gHg^{-1}H = gg^{-1}HH = 1H = H$\\
-$g^{-1}HgH = g^{-1}gHH = 1H = H$\\
-\end{description}
-\end{proof}
 \begin{Def}
-Группа, построенная в предыдущей теореме называется факторгруппой $G$ по нормальной подгруппе $H$.
-
-Обозначение: $G / H$\\
+	Группа, построенная в предыдущей теореме называется факторгруппой $G$ по нормальной подгруппе $H$.
+	Обозначение: $G / H$.
 \end{Def}
 
 \begin{theorem}
-$G$ "--- группа, $H \unlhd G$\\
-$\phi \colon G \to G / H$\\
-$\phi(g) = gH$ \\
-
-Тогда $\phi$ сюръективный гомоморфизм групп и  $\ker \phi = H$\\
+	$G$ "--- группа, $H \unlhd G$,
+	$\phi \colon G \to G / H$,
+	$\phi(g) = gH$.
+	Тогда $\phi$ сюръективный гомоморфизм групп и $\ker \phi = H$.
 \end{theorem}
 \begin{proof}
-$\phi(g_1)\phi(g_2) = g_1Hg_2H = g_1g_2H = \phi(g_1g_2)$\\
-сюръективность очевидна. 
+	\[ \phi(g_1)\phi(g_2) = g_1Hg_2H = g_1g_2H = \phi(g_1g_2) \]
+	Сюръективность очевидна. 
 
-Проверяем $\ker \phi = H$.
-Одно включение:\\
-$h \in H$\\
-$\phi(h) = hH =  H = 1_{G/H}$\\
-$\Ra H \subset \ker \phi$\\
+	Проверяем $\ker \phi = H$.
+	\begin{description}
+	\item[$\supset$:]
+		$h \in H$
+		\[ \phi(h) = hH =  H = 1_{G/H} \Ra H \subset \ker \phi \]
 
-Другое включение:\\
-$h \in \ker \phi$\\
-$hH = \phi(h) = 1_{G/H} = H$ \\
-$\Ra h\cdot1 \in H \Ra h \in H$\\
-$\Ra \ker \phi \subset H$\\
-
+	\item[$\subset$:]
+		$h \in \ker \phi$
+		\begin{gather*}
+			hH = \phi(h) = 1_{G/H} = H \\
+			\Ra h\cdot1 \in H \Ra h \in H \\
+			\Ra \ker \phi \subset H
+		\end{gather*}
+	\end{description}
 \end{proof}
 
 \begin{conseq}
-Нормальные подгруппы "--- это в точности ядра гомоморфизмов.
+	Нормальные подгруппы "--- это в точности ядра гомоморфизмов.
 \end{conseq}
