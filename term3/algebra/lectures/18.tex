@@ -1,19 +1,28 @@
 ﻿\section{Примеры}
-\begin{enumerate}
-    \item Пространства функций на декартовых произведениях.\\ 
+\begin{description}
+\item [Пространства функций на декартовых произведениях] 
+    \begin{Def}
     $S_1, \cdots S_n$ "--- конечные множества, $K$ "--- поле.\\ 
     $F(S_i)$ множества отображений из $S_i$ в $K$.\\
-    
-    Рассмотрим множество функций $F(S_1 \times \cdots \times S_n)$ со значениями в поле $K$.
+   
     На этом множестве вводится естественное векторное пространство c + и $\cdot$:
     \begin{enumerate}
     \item $(f + g)(x) = f(x) + g(x)$\\
     \item $(\alpha g)(x) = \alpha g(x)$\\ 
     \end{enumerate}
 
+    Мы определили пространство функций.
+    \end{Def}
+     
+    Рассмотрим множество функций $F(S_1 \times \cdots \times S_n)$ со значениями в поле $K$.
+   
+    \begin{lemma}
     Существует каноническое отождествление 
     $F(S_1 \times \cdots \times S_n) = F(S_1) \otimes \cdots \otimes F(S_n)$
-
+    \end{lemma}
+    \begin{proof}
+    \begin{description}
+    \item[Базис и размерность $F(S_i)$:] \hfill \\
     $\dim_k F(S_i) = |S_i|$ "--- базис $\delta$ функций (характеристические функции одноэлементных подмножеств).
     $$x \in S_i, \delta_{x}^{(i)} \colon S_i \to K$$
     $$\delta_{x}(x) = 1$$
@@ -22,6 +31,7 @@
     Так же дельта функции линейно независимые $\sum \alpha_i \delta_i(x) = 0$.
     Подставим вместо x все возможные $x_i$, получаем, что каждая конкретная $\alpha_i = 0$.                                         
 
+    \item[Совпадение размерностей двух пространств:] \hfill \\
      Размерности обоих пространств совпадают: 
     \begin{gather*}
     \dim(F(S_1 \times \cdots \times S_n)) = |S_1 \times \cdots \times S_n| = 
@@ -30,21 +40,24 @@
     = \dim (F(S_1) \otimes \cdots \otimes F(S_n))
     \end{gather*}
 
-    Базис $F(S_1 \times \cdots \times S_n)$:\\
+    \item[Базисы двух пространств:]\hfill
+    \begin{description}
+    \item [Базис $F(S_1 \times \cdots \times S_n)$:] \hfill  \\
     $\delta_{x_1, \cdots, x_n} = \delta_{x_1} \cdot \cdots \cdot \delta_{x_n}$ \\
     $\delta_{x_1, \cdots, x_n}(y_1 \cdots, y_n) = \delta_{x_1}(y_1) \cdot \cdots \cdot \delta_{x_n}(y_n)$
 
-    Базис $F(S_1 \otimes \cdots \otimes S_n)$:\\
+    \item [Базис $F(S_1 \otimes \cdots \otimes S_n)$:]\hfill  \\
     $\{\delta_{x_1}^1, \cdots, \delta_{x_n}^n| x_i \in S_i\}$, 
     $\delta_{x_1}^{1} \otimes \cdots \otimes \delta_{x_n}^n$.
-
-    Изоморфизм сопоставляет $\delta_{x_1} \otimes \cdots \otimes \delta_{x_n}$, $\delta_{x_1, \cdots, x_n}$. 
+    \end{description}
+    \item[Построение изоморфизма:] \hfill \\
+    Изоморфизм сопоставляет: $\delta_{x_1} \otimes \cdots \otimes \delta_{x_n} \to \delta_{x_1, \cdots, x_n}$.\\ 
     $(\delta_{x_1} \otimes \cdots \otimes \delta_{x_n})(x_{j_1}, \cdots, x_{j_n}) := \delta_{x_1}(x_{j_1}) \cdot \cdots \cdot \delta_{x_n}(x_{j_n}) \\
     = \delta_{x_1, \cdots, x_n}(x_{j_1}, \cdots, x_{j_n})$\\
 
     Продолжаем по линейности на все тензоры. 
     
-    Вопрос: что будет образом разложимых тензоров при таком изоморфизме?
+    \item [Вопрос: что будет образом разложимых тензоров при таком изоморфизме?] \hfill \\
     $f_1, \cdots, f_n, f_i \in F(S_i)$\\
     $f_1 \otimes \cdots \otimes f_n \to f_1(.) \cdot f_2(.) \cdots f_n(.)$\\
     Образом является функция с разделяющимися переменными
@@ -64,8 +77,9 @@
 
     И наоборот, можено просто прочитать цепочку в другую сторону.
     \end{proof}
-\item
-Подъем поля скаляров.\\
+    \end{description}
+    \end{proof}
+\item [Подъем поля скаляров]
 Пусть $K \subset L$ "--- поле\\
 $V_K$ "--- векторное пространство над $K$\\
 
@@ -226,4 +240,4 @@ $$x - x' \in M_0 \Lra \mathcal{A}(x - x') \in M_0$$
 $$V_{\R} \to V_{\C} = \C \otimes_{\R} V$$
 
   
-\end{enumerate}
+\end{description}
