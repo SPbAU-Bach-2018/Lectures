@@ -12,29 +12,29 @@ $\phi(G) = G / H$ (тут $\phi$ "--- эпиморфизм, задающий $G/
 Зададим на элементе $b$:
 $b \in \psi(G) \Ra \exists g \in G, \psi(g) = b$\\
 $\sigma(b) = \phi(g) = gH$\\
-\begin{enumerate}
-\item корректность\\
+\begin{description}
+\item[Корректность] \hfill \\
 $g_1, g_2 \in \psi^{-1}(\{b\})$\\
 $\psi(g_1) = \psi(g_2) \Ra \psi(g_2^{-1}g_1) = 1_{G_1}$\\
 $g_2^{-1}g_1 \in \ker\psi = H$\\
 $\Ra g_1H = g_2H \Ra \sigma$ не зависит от выбора конкретного элемента в $\psi^{-1}(\{b\})$\\
-\item $\sigma$ "--- гомоморфизм\\
+\item [$\sigma$ "--- гомоморфизм]\hfill \\
 $b_1, b_2 \in \psi(G)$ \\
 $b_i = \psi(g_i), i = 1,2$\\
 $b_1b_2 = \psi(g_1)\psi(g_2) = \psi(g_1g_2)$\\
 $\sigma(b_1b_2) = g_1g_2H$\\
 $\sigma(b_1)\sigma(b_2) = g_1Hg_2H = g_1g_2HH = g_1g_2H$\\
 $\Ra \sigma(b_1b_2) = \sigma(b_1)\sigma(b_2)$\\
-\item $\sigma$ "--- сюръективно.\\
+\item [$\sigma$ "--- сюръективно]\hfill \\
 $gH = \sigma(\psi(g))$\\
-\item $\sigma$"--- инъективно.\\
+\item [$\sigma$"--- инъективно]\hfill \\
 $b_1, b_2 \in \psi(G), \sigma(b_1) = \sigma(b_2)$\\
 $b_1 = \psi(g_1), b_2 = \psi(g_2)$\\
 $\sigma(b_1) = g_1H$\\
 $\sigma(b_2) = g_2H$\\
 $\Ra g_2^{-1}g_1 \in H = \ker \psi$\\
 $\psi(g_2^{-1}g_1 = 1) \Ra \psi(g_2) = \psi(g_1) \Ra b_2 = b_1$\\
-\end{enumerate}
+\end{description}
 \end{proof}
 \begin{Rem}
 $\sigma(\psi(g)) = Gh = \phi(g)$ \\
