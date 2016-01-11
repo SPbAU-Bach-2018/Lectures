@@ -5,9 +5,13 @@ $V^*$ "--- двойственное к V пространство.
 $e^1, \cdots, e^n$ "--- базис двойственного пространства, такой что $e^i(e_j) = 0$  если $i \ne j$, 1 если равны. 
 
 $$T \in T_{p}^q(V)$$
-$$T = \sum_{i_1, \cdots i_p, j_1, \cdots, j_q} T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$$ 
+$$T = \sum_{i_1, \cdots i_p, j_1, \cdots, j_q} T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q}
+ e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$$ 
 $e^{i_1} \otimes \cdots \otimes e^{i_p} \otimes e_{j_1} \otimes \cdots \otimes e_{j_q}$ "--- это базис.\\
 $T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q} \in K$\\
+
+Исторически, тензоры определяли как набор коэфициентов, который меняется по определенному правилу, 
+при замени базисе. То есть тензоры это некоторое обобщение вектора.
 
 $e_i'$ "--- базис $V$\\
 $(e^i)'$ "--- базис $V^*$\\
@@ -43,12 +47,16 @@ $$=\sum_{i, \cdots, i_p, j,\cdots, j_n} (\sum_{k_1,\cdots, k_p, l_1, \cdots, l_p
 $\Ra  T_{i_1 \cdots i_p}^{j_1, \cdots, j_q} = \sum_{k_1,\cdots, k_p, l_1, \cdots, l_p}T'_{k_1, \cdots, k_p, l_1, \cdots, l_n}B_{i_1}^{k_1} \cdots B_{i_p}^{k_p}A_{l_1}^{j_1} \cdots A_{l_q}^{j_q}$
 
 \subsection{Свертка тензоров}
-$$T_{p}^{q}(V) \to T^{q - 1}_{p - 1}(V), p, q \ge 1$$
-$$T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q}$$
+Хотим построить линейное отображение.
+$T_{p}^{q}(V) \to T^{q - 1}_{p - 1}(V), p, q \ge 1$
+
+Если тензор задан в классическом виде, то нам просто нужно задать координаты.
+$T_{i_1, \cdots, i_p}^{j_1, \cdots, j_q}$\\
 Фиксируем $i_k, j_l$\\
 \begin{Def}
 $\widetilde{T_{i_1, \cdots, i_{k - 1}, i_{k + 1}, \cdots, i_p}^{j_1, \cdots, j_{l - 1}, j_{l + 1}, \cdots, j_q}} = \sum_{i = 1}^{n}T_{i_1, \cdots, i_{k - 1}, i, i_{k + 1}, \cdots, i_p}^{j_1\cdots, j_{l - 1}, i, \cdots, j_{q}}$
 свертка тензора по паре индексов $i_k, j_l$\\
+$n = \dim V$\\
 \end{Def}
 
 \begin{exmp}\hfill
