@@ -111,12 +111,12 @@ $V_L  = \{\sum \beta_ie_i\}, \beta_i \in L$\\
 Рассмотрим $L$ как векторное пространтсво над $K$ и зафиксируем базис $l_j$.\\
 
 Рассмотрим тензорное произведение над полем $K$ и обоазначим это множество как $V_L$:
-$V_L = L \otimes_{K} V_K = < l \otimes v | l \in L, v \in V >$\\
+$V_L = L \otimes_{K} V_K = < l \otimes v | l \in L, v \in V_K >$\\
 
 Тогда базис $V_L$ над полем $K$:$\{l_j \otimes e_i\}$\\
 
    \item[Проверка первого требования:]\hfill \\
-Проверим выполнение первого условия: $V_K \cong K \otimes V_K \subset L \otimes V_L$\\
+Проверим выполнение первого условия: $V_K \cong K \otimes V_K \subset L \otimes V_K$\\
 Объясним, почему выполняется первый изоморфизм:\\
 $\{1\}$ "--- базис $K$ над $K$.\\
 $\{1 \otimes e_i\}$ "--- базис $K \otimes V_K$ над K.\\
@@ -134,7 +134,7 @@ $$a(l \otimes v) = (al) \otimes v | a \in L $$
 Сейчас этим и займемся.
 
     \item[Доопределение:] \hfill \\
-$v \in L \otimes_K V_k \Ra v = \sum_{i = 1}^{S}\alpha_i (l_i \otimes v_i)$\\
+$v \in L \otimes_K V_K \Ra v = \sum_{i = 1}^{S}\alpha_i (l_i \otimes v_i)$\\
 Теперь умножим произвольный вектор на $\beta:$\\
 $\beta (\sum_{i = 1}^{S}\alpha_i(l_i \otimes v_i)) = \sum \alpha_i \beta(l_i \otimes v_i) = $
 $= \sum \alpha_i(\beta l_i \otimes v_i)$.
@@ -164,11 +164,11 @@ $= \alpha \beta(l \otimes v) = (\alpha \beta)(l \otimes v) = \beta \alpha (l \ot
 $\beta(l_1 + l_2)\otimes v = (\beta(l_1 + l_2) \otimes v) = (\beta l_1 + \beta l_2)\otimes v = \\
 (\beta l_1) \otimes v + (\beta l_2) \otimes v = \beta(l_1 \otimes v)+ \beta(l_2 \otimes v) = \beta((l_1 \otimes v) + (l_2 \otimes v))$                                       
 
-\item[Проверка, что мы получили векторное пространство:]
+\item[Проверка, что мы получили векторное пространство:]  \hfill \\
 Теперь нужно проверить,что то, что мы определили дает структуру векторного пространства.\\ 
 $L \times V_L \to V_L$\\
-Нужно проверить 4 аксиомы, давай-те проверим какую-нибудь одну. 
-$\forall v \in V, 1_L V = V$\\
+Нужно проверить 4 аксиомы, давай-те проверим какую-нибудь одну.\\ 
+$\forall v \in V_L, 1_L\cdot V_L = V_L$\\
 $1_L = 1_K$\\
 Для $1_K$ это верно, значит и для $1_L$\\
 
@@ -180,15 +180,15 @@ $1v = 1\sum \alpha_i(l_i \otimes v_i) = \\
     \end{description}
     \item[Базис $V_L$ для векторного пространтсва над полем $L$:] \hfill \\
 Если $\{e_i\}$ "--- базис $V_K$ над $K$, то
-$\{1_L \otimes e_i\}$ "--- базис $L \otimes V$ над $L$.
+$\{1_L \otimes e_i\}$ "--- базис $L \otimes V_K$ над $L$.
      \begin{description}
-     \item[Семейство образующих:]
+     \item[Семейство образующих:] \hfill \\
 Как это увидеть. 
 $v \in V_L$\\
 $v = \sum \alpha_i(l_i \otimes v_i) = \sum \alpha_i(l_i \otimes \sum_{j}\beta_{ij}e_j) = \\
  = \sum_{i}\sum_{j}\alpha_i \beta_{ij} (l_i \otimes e_j) = \sum_{i}\sum_{j}\alpha_i \beta_{ij}l_i(1 \otimes e_i)$\\
 
-     \item[Линейная независимость:]
+     \item[Линейная независимость:] \hfill \\
 Теперь надо понять, почему они линейно независимы над $L$.
 $\sum \beta_{j}(1 \otimes e_j) = 0$\\
 $\{l_i\}$ "--- базис $L$ над $K$\\
