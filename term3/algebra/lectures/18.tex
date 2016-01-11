@@ -53,11 +53,13 @@
     $\exists f_1, \cdots, f_n| f_i \in F(S_i) \colon \forall x_1, \cdots x_n g(x_1, \cdots, x_n)  = f_1(x_1)\cdot \cdots \cdot f_n(x_n)$.
     \end{Def}
     \begin{proof}
-    $f_i = \sum_{j = 1}^{|S_i|}\alpha_j^{i}\delta_j^{i}$\\
-    $f_1 \otimes \cdots \otimes f_n = \otimes(\sum_{j = 1}^{|S_i|}\alpha_j^{i}\delta_{j}^i) = \\
-    = \sum_{j_1, \cdots j_n}_{1\le j_i \le |S_i|}\alpha_{j_1}\cdtos \alpha_{j_n}\delta_{j_1} \otimes \cdots \otimes \delta_{j_n}^n \to \\
-    \sum \alpha__{j_1}\cdots \alpha_{j_n} \delta_{j_1}^1 \cdots \delta_{j_n}^n = \prod_{i = 1^n}(\sum_{j = 1}^{|S_i|}\alpha_j^i\delta_j^i) =\\
-    \prod_{i = 1}^{n}f_i(.)$
+		\begin{gather*}
+			f_i = \sum_{j = 1}^{|S_i|}\alpha_j^i\delta_j^i \\
+			f_1 \otimes \cdots \otimes f_n = \otimes(\sum_{j = 1}^{|S_i|}\alpha_j^i\delta_j^i) = \\
+			= \sum_{\substack{j_1, \cdots j_n \\ 1\le j_i \le |S_i|}}\alpha_{j_1}\cdots \alpha_{j_n}\delta_{j_1} \otimes \cdots \otimes \delta_{j_n}^n \to \\
+    \sum \alpha_{j_1}\cdots \alpha_{j_n} \delta_{j_1}^1 \cdots \delta_{j_n}^n = \prod_{i = 1^n}(\sum_{j = 1}^{|S_i|}\alpha_j^i\delta_j^i) =\\
+    	\prod_{i = 1}^{n}f_i(.)
+	\end{gather*}
     Вот и получилась функция с разделяющимеся переменными.
 
     И наоборот, можено просто прочитать цепочку в другую сторону.
