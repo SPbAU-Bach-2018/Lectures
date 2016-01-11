@@ -1,10 +1,9 @@
 ﻿\section{Произведение подгрупп}
-$G$ "--- группа $A, B \le G$\\
-\begin{theorem}
+begin{theorem}
 $A, B \le G$. Следующие условия равносильны.\\
     \begin{enumerate}
     \item $AB \le G$\\
-    \item $AB = BA$
+    \item $AB = BA$\\
     $\{ab \mid a \in  A, b \in B\} = \{b_1a_1 \mid b_1 \in B, a_1 \in A\}$\\
     \end{enumerate}
 \end{theorem}
@@ -24,12 +23,13 @@ $AB \ne 0$\\
 $1 = 1\cdot1 \in AB$\\
 
 \item[$1 \Ra 2$]
-Первое включение: показываем, что
+\begin{description}
+\item[Первое включение:] показываем, что\\
 $BA \subset AB, b \in B, a \in A$\\
 $ba = (a^{-1}b^{-1})^{-1}$\\
 $a^{-1}b^{-1} \in AB \Ra (a^{-1}b^{-1}) \in AB \Ra ba \in AB$\\
 
-Второе включение, показываем, что
+\item[Второе включение:] показываем, что\\
 $AB \subset BA$\\
 Знаем $(BA) \subset AB$\\
 $(BA)^{-1} \subset (AB)^{-1}$\\
@@ -38,6 +38,7 @@ $\Ra AB = BA$\\
 
 $(BA)^{-1} = \{g = (ba)^{-1}\mid b \in B, a \in A\}$\\
 $(AB)^{-1} = \{g = (ab)^{-1}\mid a \in A, b \in B\}$\\
+\end{description}
 \end{description}
 \end{proof}
 \begin{conseq}
