@@ -81,7 +81,7 @@
 	Построение полилинейного отображения из $V_1 \times \dots \times V_n$ в $V_1 \otimes \dots \otimes V_n$.
 	\begin{theorem}
 	\begin{gather*}
-		\underbrace{(v_1, \dots, v_n)}_{\text{это не $\delta$}} \to v_1 \otimes \dots \otimes v_n = \underbrace{(v_1, \dots, v_n)}_{\text{а это $\delta$}} + M_0 \\
+		\phi(\underbrace{(v_1, \dots, v_n)}_{\text{это не $\delta$}}) = v_1 \otimes \dots \otimes v_n = \underbrace{\delta(v_1, \dots, v_n)}_{\text{а это $\delta$}} + M_0 \\
 	\end{gather*}
 	Такое каноническое отображение является полилинейным.
 	\end{theorem}
@@ -89,9 +89,9 @@
 	\begin{gather*}
 		\phi((v_1, \dots, v_i + v_i', \dots, v_n))
 		= v_1 \otimes \dots \otimes (v_i + v_i') \otimes \dots v_n = \\
-		= ((v_1, \dots, v_i + v_i', \dots, v_n) + M_0) = \\
-		=  (v_1, \dots, v_i, \dots, v_n) + (v_1, \dots, v_n) + M_0 = \\
-		= ((v_1, \dots, v_i, \dots, v_n) + M_0) + ((v_1,\dots, v_n) + M_0) = \\
+		= (\delta(v_1, \dots, v_i + v_i', \dots, v_n) + M_0) = \\
+		=  \delta(v_1, \dots, v_i, \dots, v_n) + \delta(v_1, \dots, v_n) + M_0 = \\
+		= (\delta(v_1, \dots, v_i, \dots, v_n) + M_0) + (\delta(v_1,\dots, v_i', \dots v_n) + M_0) = \\
 		= v_1 \otimes \dots v_i \otimes \dots v_n + v_1 \otimes \dots v_i' \otimes \dots \otimes v_n
 		= \phi ((v_1, \dots, v_n)) + \phi((v_1, \dots, v_i', \dots, v_n)) \\
 		\phi((v_1, \dots, \alpha v_i, \dots, v_n))
