@@ -27,14 +27,55 @@ Traversable "--- Functor и Foldable, есть \t{sequenceA :: Applicative f => 
 Представители: \t{Maybe}, списки, реализация похожа на Functor, только добавились \t{pure}, \t{<\$>} и \t{<*>} между вызовами.
 
 \section{} % 2.15
+Монады: либо хранят состояние, либо несколько результатов вычисления, либо что-то еще.
+Извлекать значения нельзя.
+В теории был бы \t{Pointed} плюс \t{join}, но в реальности есть \t{return} (\t{pure}),
+есть \t{>>= : m a -> (a -> m b) -> m b} (bind), есть \t{fail :: String -> m a} (по умолчанию кидает exception).
+Есть \t{>>} (\t{>>=}, игнорирующий текущий результат), приоритеты у всех маленькие.
+Законы: \t{return a >>= k $\equiv$ k a}, \t{m >>= return $\equiv$ m} (тривиальность \t{return}), \t{(m >>= k) >>= k' $\equiv$ m >>= (\\x -> k x >>= k')}
+(ассоциативность эффектов монады).
+
+do-нотация: \t{do \{e1; e2\}} $\iff$ \t{e1 >> e2}; \t{do \{p<-e1; e2\}} $\iff$ \t{e1 >>= \\p -> e2} (если не сопоставилось "--- вызывается \t{fail}); \t{do \{let v = e1; e2\}} $\iff$ обычный \t{let}.
+Монада может менять ход вычислений и свою структуру по ходу дела, аппликатив не может (пример: все пары $1 \le a \le b \le 3$ в do).
 
 \section{} % 2.16
+\t{Maybe} "--- либо результат, либо ошибка в любой момент вычислений.
+Список "--- как аппликатив, пример с \t{True <- return (x /= y)}.
 
 \section{} % 2.17
+\t{newtype IO a = IO (RealWorld -> (RealWorld, a))} (почти так), всё очень магическое,
+гарантии: побочные эффекты происходят ровно один раз и в заданном порядке.
+Есть \t{getChar}, \t{getLine}, \t{getContents}, \t{putChar}, \t{putStr}, \t{putStrLn}, \t{print a},
+\t{interact :: (String -> String) -> IO ()}.
+Есть шаблон свёртки: \t{sequence\_ :: [m a] -> m() = foldr (>>) (return ())} (можно заставить считать конечное значение).
+Есть \t{mapM f = sequence . map f}.
+Через них можно выразить всякие \t{putStr}.
+
+Файлы: \t{openFile :: FilePath -> IOMode -> IO Handle} (строка, \t{WriteMode}),
+потом можно \t{hPutChar :: Handle -> Char -> IO ()} (а также \t{Str}, \t{StrLn}, \t{hPrint}),
+также \t{hGetContents}, \t{hClose} (осторожно с ленивостью, а то прочитает после закрытия файла, надо \t{seq}),
+лучше использовать \t{withFile :: FilePath -> IOMode -> (Handle -> IO r) -> IO r}.
 
 \section{} % 2.18
+\t{Reader = Monad ((->) r)}, можно читать из некоторого окружения, \t{>>=} сначала выполняет первое, потом передаёт окружение во второе.
+\t{newtype Reader r a = Reader \{runReader :: (r -> a)\}}, т.е. сначала накапливаем хвост из вычислений, а уже потом
+делаем \t{runReader env}.
+Функция \t{ask :: Reader r r} возвращает окружение, \t{asks :: (r -> a) -> Reader r a} запускает над ним чистую функцию,
+\t{local :: (r -> r) -> Reader r a -> Reader r a} модифицирует окружение локально (меняет первым, запускает второй аргумент, подсовывает
+результат в конец, окружение глобально не меняет).
+
+\t{newtype Writer w a = Writer \{runWriter :: (a, w)\}}, если есть \t{Monoid w}, то есть instance (как будто пишем в лог $w$).
+Есть функция \t{tell :: w -> Writer w ()} (пишет в лог), можно подслушивать промежуточные вычисления при помощи
+\t{listen :: Writer w a -> Writer w (a, w)} или \t{listens :: (w -> b) -> Writer w a -> Write w (a, b)} (добился map $w \to b$).
+Можно модифицировать лог \t{censor :: (w -> w) -> Writer w a -> Writer w a}.
 
 \section{} % 2.19
+\t{newtype State s a = State \{runState::s->(a,s)\}}, можно \t{execState} для получения конечного состояния,
+можно \t{evalState} для получения конечного значения.
+Есть \t{get::State s s}, \t{put::s -> State s()}, \t{modify::(s->s)->State s ()} и \t{gets} (get + map).
+Есть \t{replicateM n = sequence . replicate n} (повторить $n$ раз монаду).
+Есть монада \t{ST} для реально изменяемого состояния, там есть \t{STRef} (локальный, с хитрой гарантией), \t{IORef} (без локальности и безопасности),
+их можно создавать и менять.
 
 \section{} % 2.20
 
