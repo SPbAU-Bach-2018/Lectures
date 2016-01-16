@@ -61,7 +61,7 @@
 \AtBeginDocument{\let\Im\relax}
 \AtBeginDocument{\newcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}}
 \newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
-\newcommand{\Choose}[2]{{\left(#1 \atop #2\right)}}
+\renewcommand{\binom}[2]{{\left(#1 \atop #2\right)}} % We do not like how \binom works in display mode
 
 \newcommand{\partd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\partdd}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}

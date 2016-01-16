@@ -151,7 +151,7 @@
 			e^z e^w
 			= \sum_{n=0}^\infty \frac{z^n}{n!} \sum_{k=0}^\infty \frac{w^k}{k!}
 			= \sum_{n=0}^\infty \sum_{k=0}^n \frac{z^k}{k!} \cdot \frac{w^{n-k}}{(n-k)!}
-			= \sum_{n=0}^\infty \sum_{k=0}^n \frac{\Choose{n}{k} z^k w^{n-k}}{n!}
+			= \sum_{n=0}^\infty \sum_{k=0}^n \frac{\binom{n}{k} z^k w^{n-k}}{n!}
 			= \sum_{n=0}^\infty \frac{(z+w)^n}{n!}
 		\end{gather*}
 	\end{proof}
