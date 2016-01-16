@@ -62,6 +62,7 @@
 \AtBeginDocument{\newcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}}
 \newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
 \renewcommand{\binom}[2]{\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)} % We do not like how \binom and \genfrac work in display mode
+\newcommand{\repbinom}[2]{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}
 
 \newcommand{\partd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\partdd}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
