@@ -1,2 +1,2 @@
 #!/bin/bash
-bash ../../../template/build.sh abstract
+bash ../../../../template/build.sh abstract
