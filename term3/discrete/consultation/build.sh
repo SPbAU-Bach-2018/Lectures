@@ -1,2 +1,2 @@
 #!/bin/bash
-bash ../../../../template/build.sh consultation
+bash ../../../template/build.sh consultation

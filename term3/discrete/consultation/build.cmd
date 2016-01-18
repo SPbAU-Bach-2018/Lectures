@@ -1,2 +1,2 @@
 @echo off
-call ..\..\..\..\template\build.cmd consultation
+call ..\..\..\template\build.cmd consultation
