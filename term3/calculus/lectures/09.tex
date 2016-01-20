@@ -149,7 +149,7 @@
 \begin{proof}
 	Существует предел $\lim b_n = b \in \R$.
 	\begin{gather*}
-		\sum_{n=1}^\infty a_n b_b = \sum_{n=1}^\infty a_n (b_n - b) + b \sum_{i=1}^\infty
+		\sum_{n=1}^\infty a_n b_b = \sum_{n=1}^\infty a_n (b_n - b) + b \sum_{i=1}^\infty a_n
 	\end{gather*}
 	Второе слагаемое сходится, а первое попадает под условие Дирихле: $b_n - b$ монотонно сходится к нулю.
 \end{proof}
@@ -161,7 +161,7 @@
 \begin{proof}
 	\begin{description}
 	\item[Простое доказательство:]
-		$a_n = (-1)^{n-1}$, смотрим на принцип Дирихле.
+		$a_n = (-1)^{n-1}$, смотрим на признак Дирихле.
 
 	\item[Прямое доказательство:]
 		Мы, вообще говоря, знаем, что $b_n$ убывает.
@@ -228,7 +228,7 @@
 		S_n = \sum_{k=1}^n a_k \quad \bar S_n = \sum_{k=1}^n a_{\phi(n)} \\
 		\forall n\, \exists m\colon \bar S_n \le S_m \quad m = \max\{\phi(1), \phi(2), \dots, \phi(n)\} \\
 		\bar S_n \le \lim_{n\ra\infty} S_m = S \\
-		\bar S = \lim{n\ra\infty} \bar S_n \le \lim_{n\ra\infty} S_m = S \\
+		\bar S = \lim_{n\ra\infty} \bar S_n \le \lim_{n\ra\infty} S_m = S \\
 		\bar S \le S
 	\end{gather*}
 	Применив обратную перестановку, получим $\bar S \ge S$.
