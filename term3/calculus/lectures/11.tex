@@ -56,11 +56,11 @@
 
 \begin{Def}
 	Если ряд $\sum_{n=1}^\infty u_n(x)$ сходится поточечно, то остатком (хвостом) называют
-	\[ r_n(x) = \sum_{k=n+1}^\infty u_n(x) \]
+	\[ r_n(x) = \sum_{k=n+1}^\infty u_k(x) \]
 \end{Def}
 
 \begin{theorem}
-	Ряд $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$ тогда и только тогда, когда его остаток стремится к нулю на $E$.
+	Ряд $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$ тогда и только тогда, когда его остаток равномерно стремится к нулю на $E$.
 \end{theorem}
 \begin{proof}
 	\begin{gather*}
@@ -71,7 +71,7 @@
 \end{proof}
 
 \begin{conseq}
-	Если $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$, то $u_n \\ra 0$.
+	Если $\sum_{n=1}^\infty u_n(x)$ сходится равномерно на $E$, то $u_n \rra 0$.
 \end{conseq}
 \begin{proof}
 	\[ u_n = r_{n+1} - r_n \rra 0 - 0 = 0 \]
