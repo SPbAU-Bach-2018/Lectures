@@ -102,7 +102,7 @@
 
 \begin{theorem}[Признак сравнения]
 	$\forall x \in E, |u_n(x)| \le v_n(x)$.
-	Если ряд $\sum_{n=1}^\infty v_n(x)$ равномерно сходится, то сходится и $\sum_{n=1}^\infty u_n(x)$.
+	Если ряд $\sum_{n=1}^\infty v_n(x)$ равномерно сходится, то равномерно сходится и $\sum_{n=1}^\infty u_n(x)$.
 \end{theorem}
 \begin{proof}
 	\begin{gather*}
@@ -114,15 +114,15 @@
 \end{proof}
 
 \begin{conseq}[Признак Вейерштрасса]
-	$\forall x \in E, |u_n(x)| \le c_n$, $c_n$ сходится.
-	Если $\sum_{n=1}^\infty c_n$ сходится, то сходится и $\sum_{n=1}^\infty u_n(x)$.
+	Пусть $\forall x \in E, |u_n(x)| \le c_n$.
+	Если $\sum_{n=1}^\infty c_n$ сходится, то $\sum_{n=1}^\infty u_n(x)$ равномерно сходится.
 \end{conseq}
 \begin{proof}
 	$v_n(x) = c_n$. Для численных рядов поточечная и равномерная сходимость "--- одно и то же, так как от $x$ ничего не зависит.
 \end{proof}
 
 \begin{conseq}
-	Если $\sum_{n=1}^\infty |u_n(x)|$ сходтися равномерно на $E$, то $\sum_{n=1}^\infty u_n(x)$ тоже сходится равномерно.
+	Если $\sum_{n=1}^\infty |u_n(x)|$ сходится равномерно на $E$, то $\sum_{n=1}^\infty u_n(x)$ тоже сходится равномерно.
 \end{conseq}
 \begin{proof}
 	$v_n(x) = |u_n(x)|$.
