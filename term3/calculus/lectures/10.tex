@@ -202,15 +202,15 @@
 \end{proof}
 
 \begin{Def}
-	$f_k$ раномерно ограниченны $M$, если $f_n(x) \le M$ при всех $n \in \N$ и $x \in E$.
+	$f_k$ равномерно ограничены $M$, если $|f_n(x)| \le M$ при всех $n \in \N$ и $x \in E$.
 \end{Def}
 
 \begin{theorem}
 	$f_n$ равномерно ограниченно на $E$, $g_n \rra 0$ на $E$.
-	Тогда $f_ng_n \\ra 0$.
+	Тогда $f_ng_n \rra 0$.
 \end{theorem}
 \begin{proof}
-	\[ \sup_{x \in E} |f_n(x)g_n(x) - f(x)g(x)| \le M \sup_{x \in E} |f_n(x) - f(x)| \]
+	\[ \sup_{x \in E} |f_n(x)g_n(x) - 0| \le M \sup_{x \in E} |g_n(x)| \]
 \end{proof}
 
 \begin{theorem}[Критерий Коши]
