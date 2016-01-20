@@ -30,7 +30,7 @@
 \end{proof}
 
 \begin{conseq}
-	$u_n \in C^1[a, b]$, $c \in [a, b]$, $\sum_{k=1}^n u_k'(x)$ равномерно сходится на $[a, b]$, $\sum_{n=1}^\infty u(n)$ сходится.
+	$u_n \in C^1[a, b]$, $c \in [a, b]$, $\sum_{k=1}^n u_k'(x)$ равномерно сходится на $[a, b]$, $\sum_{n=1}^\infty u_n(c)$ сходится.
 	Тогда
 	\begin{enumerate}
 		\item $\sum_{k=1}^n u_k(x)$ равномерно сходится к дифференцируемой функции.
@@ -40,9 +40,9 @@
 \begin{proof}
 	\begin{gather*}
 		f_n(x) = \sum_{k=1}^n u_k(x) \\
-		f_n'(x) = \sum_{k=1}^n u_k'(x) \rra \sum_{n=1}^\infty u_n'(x) \lra g(x) \Ra f_n' \rra g_n
+		f_n'(x) = \sum_{k=1}^n u_k'(x) \rra \sum_{n=1}^\infty u_n'(x) \lra g(x) \Ra f_n' \rra g
 	\end{gather*}
-	$f_n(x)$ имеет конечный предел.
+	$f_n(c)$ имеет конечный предел, теперь все условия теоремы выполнены:
 	\begin{gather*}
 		\left( \sum_{n=1}^\infty u_n(x) \right)'
 		= \left( \lim_{n \ra \infty} f_n(x) \right)'
