@@ -2,8 +2,8 @@
 	$f_n \in C^1[a, b]$, $c \in [a, b]$, $f_n' \rra g$ на $[a, b]$, $\lim_{n \ra \infty} f_n(c)$ существует и конечен.
 	Тогда
 	\begin{enumerate}
-		\item $f_h \rra h$ на $[a, b]$.
-		\item $h$ дифференцируема функция, и $h' = g$
+		\item $f_n \rra h$ на $[a, b]$.
+		\item $h$ "--- дифференцируемая функция, и $h' = g$
 	\end{enumerate}
 	То есть
 	\[ \left(\underbrace{\lim_{n \ra \infty} f_n(x)}_{h(x)}\right)' = \underbrace{\lim_{n \ra \infty} f_n'(x)}_{g(x)} \]
@@ -11,11 +11,11 @@
 \begin{proof}
 	\begin{gather*}
 		\int\limits_c^x g(t) \d t = \int\limits_c^x \lim_{n \ra \infty} f_n'(t) \d t = \lim_{n \ra \infty} \int\limits_c^x f_n'(x) \d x = \\
-		= \int\limits_c^x (f_n(x) - f_n(c)) = \lim_{n \ra \infty} f_n(x) - \lim_{n \ra \infty} f_n(c)
+		= \lim_{n \ra \infty} (f_n(x) - f_n(c)) = \lim_{n \ra \infty} f_n(x) - \lim_{n \ra \infty} f_n(c)
 	\end{gather*}
 	Отсюда $\lim_{n \ra \infty} f_n(x)$ существует и конечен.
 	Но из предыдущей теоремы мы также знаем, что
-	\[ f_n(x) - f_n(c) = \int\limits_c^x f_n'(t) \d t \rra \inf\limits_c g(t) \d t \]
+	\[ f_n(x) - f_n(c) = \int\limits_c^x f_n'(t) \d t \rra \int\limits_c g(t) \d t \]
 	откуда $f_n(x) - f_n(c)$ равномерно сходится на $[a, b]$, а так как $f_n(c)$ равномерно сходится (потому что от $x$ не зависит), то
 	$f_n(x)$ равномерно сходится на $[a, b]$.
 
