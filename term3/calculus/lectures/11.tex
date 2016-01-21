@@ -1,19 +1,42 @@
 \begin{conseq}
-	$f_n\colon E \ra \R$, $f_n$ равномерно сходятся на $E$, $a$ "--- предельная точка $E$ и предел $\lim_{x \ra a} f_n(x)$ существует.
-	Тогда
+	$f_n\colon E \ra \R$, $f_n$ равномерно сходятся на $E$, $a$ "--- предельная точка $E$ и предел $\lim_{x \ra a} f_n(x)$ существует и конечен.
+	Тогда оба предела ниже существуют, конечны и равны:
 	\[ \lim_{n \ra \infty} \lim_{x \ra a} f_n(x) = \lim_{x \ra a} \lim_{n \ra \infty} f_n(x) \]
 \end{conseq}
 \begin{proof}
-	Переопределим:
-	\[ f_n(a) \coloneqq \lim_{x \ra a} f_n(x) \]
-	Такая функция уже непрерывна в $a$.
-	По предыдущей теоремы их равномерный предел $f$ также непрерывен в $a$.
+	Определим функции $g_n$:
 	\[
-		\lim_{x \ra a} \lim_{n \ra \infty} f_n(x)
-		= \lim_{x \ra a} f(x)
-		= f(a)
-		= \lim_{n \ra \infty} f_n(a)
-		= \lim_{n \ra \infty} \lim_{x \ra a} f_n(x)
+		g_n(x) =
+		\begin{cases}
+			f_n(x), &x \neq a \\
+			\lim\limits_{t \to a} f_n(t), &x = a
+		\end{cases}
+	\]
+	Все они непрерывны в точке $a$.
+
+	Покажем, что $g_n(x)$ имеют равномерный предел по критерию Коши.
+	Очевидно, в $E \setminus \{a\}$ они равномерный предел имеют (так как его имеют $f_n$):
+	\[
+		\forall \epsilon > 0,\ 
+		\exists N \colon
+		\forall n, m > N,\ 
+		\forall x \in E \setminus \{ a \},\ 
+		|g_n(x) - g_m(x)| < \frac{\epsilon}{2}
+	\]
+	Так как $|g_n(x)-g_m(x)|$ непрерывна в точке $a$, то значение $|g_n(a)-g_m(a)|$ можно
+	приблизить точкой $x \in E \setminus \{ a \}$ с точностью $\frac{\epsilon}{2}$, т.о.
+	критерий Коши автоматически выполняется и для всего $E$.
+	Значит, $g_n(x)$ сходятся равномерно, пусть $g_n \rra g$.
+	Тогда по теореме знаем, что $g$ непрерывна в точке $a$, т.е.:
+	\[
+		g(a) = \lim_{x \to a} g(x)
+		= \lim_{x \to a} \lim_{n \to \infty} g_n(x)
+		= \lim_{x \to a} \lim_{n \to \infty} f_n(x)
+	\]
+	При этом из равномерной сходимости следует поточечная:
+	\[
+		g(a) = \lim_{n\to\infty} g_n(a)
+		= \lim_{n\to\infty} \lim_{x\to\infty} f_n(x)
 	\]
 \end{proof}
 
