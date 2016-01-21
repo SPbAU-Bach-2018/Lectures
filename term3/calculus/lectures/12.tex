@@ -13,7 +13,8 @@
 		\int\limits_c^x g(t) \d t = \int\limits_c^x \lim_{n \ra \infty} f_n'(t) \d t = \lim_{n \ra \infty} \int\limits_c^x f_n'(x) \d x = \\
 		= \lim_{n \ra \infty} (f_n(x) - f_n(c)) = \lim_{n \ra \infty} f_n(x) - \lim_{n \ra \infty} f_n(c)
 	\end{gather*}
-	Отсюда $\lim_{n \ra \infty} f_n(x)$ существует и конечен.
+	Отсюда $\lim_{n \ra \infty} f_n(x)$ существует и конечен
+	(на самом деле, этим фактом мы дальше не пользуемся "--- сразу доказываем равномерную сходимость).
 	Но из предыдущей теоремы мы также знаем, что
 	\[ f_n(x) - f_n(c) = \int\limits_c^x f_n'(t) \d t \rra \int\limits_c^x g(t) \d t \]
 	откуда $f_n(x) - f_n(c)$ равномерно сходится на $[a, b]$, а так как $f_n(c)$ равномерно сходится (потому что от $x$ не зависит), то
