@@ -114,8 +114,8 @@
 \end{Def}
 
 \begin{theorem}
-	\[ (\omega_1 \wedge \omega_2)(\xi_1, \xi_2) = \begin{vmatrix} a_11 & a_12 \\ a_21 & a_22 \end{vmatrix} \]
-	где $a_ij = \omega_i(\xi_j)$
+	\[ (\omega_1 \wedge \omega_2)(\xi_1, \xi_2) = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} \]
+	где $a_{ij} = \omega_i(\xi_j)$
 \end{theorem}
 \begin{proof}
 	Если $\omega \ne 0$ и $\xi$ линейно независимы, то найдутся 1-формы $\beta_i(\xi_j) = \delta_ij$.
@@ -125,15 +125,15 @@
 
 	Тогда
 	\begin{gather*}
-		\omega_1 = a_11 \beta_1 + a_12 \beta_2 \quad \omega_2 = a_21 \beta_1 + a_22 \beta_2 \\
+		\omega_1 = a_{11} \beta_1 + a_{12} \beta_2 \quad \omega_2 = a_{21} \beta_1 + a_{22} \beta_2 \\
 		\omega_1 \wedge \omega_2
-		= a_11 a_12 (\beta_1 \wedge \beta_1)
-		+ a_11 a_22 (\beta_1 \wedge \beta_2)
-		+ a_21 a_12 (\beta_2 \wedge \beta_1)
-		+ a_21 a_22 (\beta_2 \wedge \beta_2) = \\
-		= (a_11 a_22 - a_21 a_12) (\beta_1 \wedge \beta_2) \\
+		= a_{11} a_{12} (\beta_1 \wedge \beta_1)
+		+ a_{11} a_{22} (\beta_1 \wedge \beta_2)
+		+ a_{21} a_{12} (\beta_2 \wedge \beta_1)
+		+ a_{21} a_{22} (\beta_2 \wedge \beta_2) = \\
+		= (a_{11} a_{22} - a_{21} a_{12}) (\beta_1 \wedge \beta_2) \\
 		(\omega_1 \wedge \omega_2) (\xi_1, \xi_2)
-		= \begin{vmatrix} a_11 & a_12 \\ a_21 & a_22 \end{vmatrix} \underbrace{(\beta_1 \wedge \beta_2) (\xi_1, \xi_2)}_{=1}
+		= \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} \underbrace{(\beta_1 \wedge \beta_2) (\xi_1, \xi_2)}_{=1}
 	\end{gather*}
 
 	Если форма ноль или $\xi_i$ линейно зависимы, то слева и справа написан ноль.
