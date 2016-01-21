@@ -270,9 +270,17 @@
 		\forall x \in [0, 1], \lim_{n \ra \infty} f_n(x) = 0 \\
 		\int\limits_0^1 f_n(t) \d t = \int\limits_0^1 nte^{-nt^2} \d t = -\frac{e^{-nt^2}}2\biggr|_{t=0}^1 = \frac{1-e^{-n}}2 \ra \frac12 \\
 		\lim_{n \ra \infty} \int\limits_0^1 f_n(t) \d t
-		= \frac12
-		\ne 0
+		= \frac12 \\
+		\int\limits_0^1 \lim_{n \ra \infty} f_n(t) \d t
 		= \int\limits_0^1 0 \d t
-		= \int\limits_0^1 \lim_{n \ra \infty} f_n(t) \d t
+		= 0\\
+		\frac 1 2 \neq 0
+	\end{gather*}
+	Можно дополнительно удостовериться, что $f_n(x)=nxe^{-nx^2}$ действительно не сходятся равномерно на $[0,1]$, взяв последовательность:
+	\begin{gather*}
+		x_n \coloneq \frac{1}{\sqrt n} \\
+		f_n(x_n) = \frac{\sqrt n}{e} \to +\infty
+		\Ra
+		\sup_{[0, 1]} |f_n(x) - f(x)| \to +\infty
 	\end{gather*}
 \end{exmp}
