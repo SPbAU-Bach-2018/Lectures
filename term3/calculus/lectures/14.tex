@@ -195,20 +195,20 @@
 	$S = \vec r(\cl G)$ "--- простая гладкая поверхность, $f\colon S \ra \R$ непрерывна.
 	Тогда
 	\[
-		\int\limits_S f \d S \eqDef \int\limits_G f(\vec r(u, v)) \| \vec r_u'^2 \times \vec r_v'^2 \| \d u \d v
+		\int\limits_S f \d S \eqDef \int\limits_G f(\vec r(u, v)) \| \vec r_u' \times \vec r_v' \| \d u \d v
 	\]
 \end{Def}
 
 \begin{theorem}
-	Итнеграл не зависит от параметризации.
+	Интеграл не зависит от параметризации.
 \end{theorem}
 \begin{proof}
 	Возьмём допустимую параметризацию. Тогда мы уже знаем, что
 	\begin{gather*}
 		\|\vec R_\xi' \times \vec R_\eta'\| = \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \\
-		\int\limits_\Omega f(\vec R(\xi, \eta)) \| \vec R_\xi'^2 \times \vec R_\eta'^2 \| \d u \d v
-		= \int\limits_\Omega f(\vec R(\xi, \eta)) \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \d u \d v
-		= \int\limits_G f(\vec r(u, v)) \| \vec r_u'^2 \times \vec r_v'^2 \| \d u \d v
+		\int\limits_\Omega f(\vec R(\xi, \eta)) \| \vec R_\xi' \times \vec R_\eta' \| \d\xi \d \eta
+		= \int\limits_G f(\vec R(\xi, \eta)) \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \d u \d v
+		= \int\limits_G f(\vec r(u, v)) \| \vec r_u' \times \vec r_v' \| \d u \d v
 	\end{gather*}
 	Мы специально так определяли допустимую параметризацию, чтобы формула замены переменной работала.
 \end{proof}
