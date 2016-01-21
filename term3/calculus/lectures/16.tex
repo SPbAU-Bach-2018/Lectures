@@ -56,7 +56,7 @@
 		(\phi^* \omega) (u, v; \eta)
 		= \omega(\phi(u, v); \d \phi(\eta))
 		= P(x(u, v), y(u, v)) (x_u' a + x_v' b)
-		+ Q(x(u, v), y(u, v)) (y_u' a + y_v' b)
+		+ Q(x(u, v), y(u, v)) (y_u' a + y_v' b) = \\
 		= P(x(u, v), y(u, v)) (x_u' \d u(\eta) + x_v' \d v(\eta))
 		+ Q(x(u, v), y(u, v)) (y_u' \d u(\eta) + y_v' \d v(\eta)) \\
 		\phi^* (P \d x + Q \d y) = P(x_u' \d u + x_v' \d v) + Q(y_u' \d u + y_v' \d v)
@@ -97,8 +97,9 @@
 		\begin{gather*}
 			\int\limits_\Omega f \d x \d y = \int\limits_\Omega \omega \quad
 			\int\limits_\phi^* \omega = \pm^1 \int\limits_G (f \circ \phi) J_\phi \d u \d v \\
-			\phi^* \omega = f \circ \phi \cdot \phi^*(\d x) \wedge \phi^*(\d y)
-			= f \circ \phi \cdot (x_u' \d u + x_v' \d v) \wedge (y_u' \d u + y_v' \d v)
+			\phi^* \omega
+			= f \circ \phi \cdot \phi^*(\d x) \wedge \phi^*(\d y)
+			= f \circ \phi \cdot (x_u' \d u + x_v' \d v) \wedge (y_u' \d u + y_v' \d v) = \\
 			= f \circ \phi \cdot (x_u' y_v' - x_v' y_u') \d u \d v
 			= f \circ \phi \cdot J_\phi \d u \wedge \d v
 		\end{gather*}
