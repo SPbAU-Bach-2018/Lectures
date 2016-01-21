@@ -40,12 +40,12 @@
 	\begin{gather*}
 		\vec R_\xi'
 		= (\vec r(u(\xi,\eta),v(\xi,\eta)))_\xi'
-		= \vec r_u' \circ \vec u_\xi'  + \vec r_v' \circ v_\xi'  \\
+		= \vec r_u'\underbrace{(u(\xi, \eta), v(\xi, \eta))}_{\text{дальше опускаем}} \cdot \vec u_\xi'  + \vec r_v' \cdot v_\xi'  \\
 		\vec R_\eta'
 		= (\vec r(u(\xi,\eta),v(\xi,\eta)))_\eta'
-		= \vec r_u' \circ \vec u_\eta' + \vec r_v' \circ v_\eta' \\
+		= \vec r_u' \cdot \vec u_\eta' + \vec r_v' \cdot v_\eta' \\
 		\vec R_\xi' \times \vec R_\eta'
-		= (\vec r_u' \circ \vec u_\xi'  + \vec r_v' \circ v_\xi' ) \times (\vec r_u' \circ \vec u_\eta' + \vec r_v' \circ v_\eta')
+		= (\vec r_u' \cdot \vec u_\xi'  + \vec r_v' \cdot v_\xi' ) \times (\vec r_u' \cdot \vec u_\eta' + \vec r_v' \cdot v_\eta')
 		= (\vec r_u' \times \vec r_v') \cdot (u_\xi' \cdot v_\eta' - u_\eta' \cdot v_\xi')
 		= (\vec r_u' \times \vec r_v') \cdot J_w \ne 0
 	\end{gather*}
