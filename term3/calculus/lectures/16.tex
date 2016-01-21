@@ -97,14 +97,14 @@
 \begin{theorem}[Корректность определения]
 	\begin{enumerate}
 	\item
-		$\phi\colon G \subset \R^2 \ra \Omega \subset \$^2$.
+		$\phi\colon G \subset \R^2 \ra \Omega \subset \R^2$.
 		То есть мы взяли кусок плоскости как повехность.
 		Хотим показать, что
-		\[ \int\limits_\Omega \omega = \int\limits_\phi^* \omega\]
+		\[ \int\limits_\Omega \omega = \int\limits_G \phi^* \omega\]
 		Для этого
 		\begin{gather*}
 			\int\limits_\Omega f \d x \d y = \int\limits_\Omega \omega \quad
-			\int\limits_\phi^* \omega = \pm^1 \int\limits_G (f \circ \phi) J_\phi \d u \d v \\
+			\int\limits_G \phi^* \omega = \pm^1 \int\limits_G (f \circ \phi) J_\phi \d u \d v \\
 			\phi^* \omega
 			= f \circ \phi \cdot \phi^*(\d x) \wedge \phi^*(\d y)
 			= f \circ \phi \cdot (x_u' \d u + x_v' \d v) \wedge (y_u' \d u + y_v' \d v) = \\
