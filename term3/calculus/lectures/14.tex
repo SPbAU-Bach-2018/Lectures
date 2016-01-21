@@ -33,7 +33,7 @@
 	что $\vec R = \vec r \circ w$, а $w\colon \cl \Sigma \ra \cl G$ непрерывно дифференцируема, и $J_w \ne 0$.
 \end{Def}
 
-\begin{theorem}
+\begin{theorem}\label{tangent_norm_param_eq}
 	Касательная плоскость и нормаль к простой гладкой поверхности не зависят от параметризации.
 \end{theorem}
 \begin{proof}
@@ -73,6 +73,7 @@
 \end{Rem}
 
 \begin{Def}
+	Вводим согласованную ориентацию поверхности.
 	Возьмём гладкую простую поверхность $S = \vec r(\cl G)$.
 	Обойдём $\partial G$ как у нас принято (чтобы от $u$ к $v$ угол рос).
 	Ориентируем поверхность
@@ -203,14 +204,26 @@
 	Интеграл не зависит от параметризации.
 \end{theorem}
 \begin{proof}
-	Возьмём допустимую параметризацию. Тогда мы уже знаем, что
-	\begin{gather*}
+	Пусть была поверхность $S = \vec r(\cl D)$, и была её допустимая параметризация
+	$S = \vec r(w(\cl G)) = \vec R(\cl G)$.
+	Будем обозначать точки в $\cl D$ координатами $(u, v)$, а в $\cl G$ "--- $(\xi, \eta)$.
+	Соответственно, если смотреть с точки зрения допустимой параметризации, $u$ и $v$ на самом деле являются функциями от двух аргументов: $\xi$ и $\eta$.
+	Уже считали (в теореме \ref{tangent_norm_param_eq}) частные производные $\vec R$ по $\xi$ и $\eta$ и даже считали норму их векторного произведения:
+	\[
 		\|\vec R_\xi' \times \vec R_\eta'\| = \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \\
-		\int\limits_\Omega f(\vec R(\xi, \eta)) \| \vec R_\xi' \times \vec R_\eta' \| \d\xi \d \eta
-		= \int\limits_G f(\vec R(\xi, \eta)) \|\vec r_u' \times \vec r_v'\| \cdot |J_w| \d u \d v
-		= \int\limits_G f(\vec r(u, v)) \| \vec r_u' \times \vec r_v' \| \d u \d v
-	\end{gather*}
-	Мы специально так определяли допустимую параметризацию, чтобы формула замены переменной работала.
+	\]
+	Теперь пишем по определению интеграл через первую параметризацию (из области $D$):
+	\[
+		\int\limits_S f \d S = \int\limits_D f(\vec r(u, v)) \|\vec r_u' \times \vec r_v'\| \d u \d v \\
+	\]
+	И через вторую:
+	\begin{align*}
+		\int\limits_S f \d S
+		&= \int\limits_G f(\vec R(\xi, \eta)) \|\vec R_\xi' \times \vec R_\eta'\| \d \xi \d \eta \\
+		&= \int\limits_G f(\vec R(\xi, \eta)) \|\vec r_u' \times \vec r_v'\| |J_w| \d \xi \d \eta \\
+		&= \int\limits_G f(\vec r(u, v)) \|\vec r_u' \times \vec r_v'\| |J_w| \d \xi \d \eta
+	\end{align*}
+	Замечаем, что получившиеся интегралы равны по формуле замены переменной преобразованием $w \colon \cl G \to \cl D$ (теорема \ref{mult_var_subst}).
 \end{proof}
 
 \begin{Rem}
