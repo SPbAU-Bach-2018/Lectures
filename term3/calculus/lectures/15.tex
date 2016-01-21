@@ -19,15 +19,16 @@
 
 \begin{exmp}[Сферические координаты]
 	\begin{gather*}
-		x = К \cos u \cos v \quad y = К \sin u \cos v \quad z = К \sin v \\
+		x = R \cos u \cos v \quad y = R \sin u \cos v \quad z = R \sin v \\
 		u \in [0, 2\pi] \quad v \in \left[-\frac\pi2,\frac\pi2\right]
 	\end{gather*}
 	Биекция сходу не получится, разрежем сферу на две полусферы.
 	Теперь проблема в полюсах, мы выкинем полярные шапки, и устремим их размер к нулю, интеграл там будет нулевой, так что в конце всё хорошо.
+	Это рукомахательство, но нас устроит.
 
 	Посчитаем что-нибдуь:
 	\begin{gather*}
-		\vec r_u' = (R \sin u \cos v, R \cos u \cos v, 0) \\
+		\vec r_u' = (-R \sin u \cos v, R \cos u \cos v, 0) \\
 		\vec r_v' = (-R \cos u \sin v, -R \sin u \sin v, R \cos v) \\
 		E = \left<\vec r_u', \vec r_u'\right> = R^2 \cos^2 v \\
 		F = \left<\vec r_u', \vec r_v'\right> = 0 \\
