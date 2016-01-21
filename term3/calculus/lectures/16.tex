@@ -26,12 +26,12 @@
 		В реальной жизни это означает, что при переносе формы вида $P \d x + Q \d y + R \d z$ почленно домножить коэффициенты на $f$.
 	\end{Rem}
 	\begin{proof}
-		\[
+		\begin{gather*}
 			\phi^* (f \cdot \omega)(t;\eta_1, \dots, \eta_n)
-			= (f \cdot \omega)(\phi(t); \d phi_t(\eta_1), \dots, \d \phi_t(\eta_k))
-			= f(\phi(t)) \cdot \omega (\phi(t); \d phi_t(\eta_1), \dots, \d \phi_t(\eta_k))
+			= (f \cdot \omega)(\phi(t); \d \phi_t(\eta_1), \dots, \d \phi_t(\eta_k)) = \\
+			= f(\phi(t)) \cdot \omega (\phi(t); \d \phi_t(\eta_1), \dots, \d \phi_t(\eta_k))
 			= (f \circ \phi) \cdot \phi^*(\omega)
-		\]
+		\end{gather*}
 	\end{proof}
 
 \item
