@@ -183,10 +183,10 @@
 \begin{proof}
 	Достаточно доказать для простой поверхности $S = \vec r(\cl G)$.
 	\begin{gather*}
-		\left<\vec F, \vec h\right>
+		\left<\vec F, \vec n\right>
 		= \frac1{\|\vec r_u' \times \vec r_v'\|} \left<\vec F, \vec r_u' \times \vec r_v'\right>
 		= \frac1{\|\vec r_u' \times \vec r_v'\|} \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \\
-		\int\limits_S \left<\vec F, \vec h\right>
+		\int\limits_S \left<\vec F, \vec n\right>
 		= \int\limits_G \frac1{\|\vec r_u' \times \vec r_v'\|} \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \sqrt{EG-F^2} \d u \d v
 		= \int\limits_G \begin{vmatrix} P & Q & R \\ x_u' & y_u' & z_u' \\ x_v' & y_v' & z_v' \end{vmatrix} \d u \d v = \\
 		= \int\limits_G P\underbrace{(y_u' z_v' - y_v' z_u')}_{\d y \wedge \d x} + Q\underbrace{(z_u' x_v' - z_v' x_u')}_{\d z \wedge \d x} + R\underbrace{(x_u' y_v' - x_v' y_u')}_{\d x \wedge \d y} \d u \d v = \\
