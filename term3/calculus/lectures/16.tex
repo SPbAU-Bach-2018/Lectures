@@ -48,13 +48,30 @@
 	\end{proof}
 
 \item
-	$\omega_1$, $\omega_2$ "--- 1-формы.
+	$\omega_1$, $\omega_2$ "--- внешние 1-формы.
+	Их можно естесственно преобразовать в дифференциальную форму, не зависяющую от точки $t$.
+	Тогда:
 	\[ \phi^*(\omega_1 \wedge \omega_2) = (\phi^* \omega_1) \wedge (\phi^* \omega_2) \]
 	\begin{proof}
 		\begin{align*}
-			(\phi^* \omega_1) (t; \xi_1) &= \omega_1(\phi(t); \d \phi_t(\xi_1)) \\
-			(\phi^* \omega_2) (t; \xi_2) &= \omega_1(\phi(t); \d \phi_t(\xi_2)) \\
-			(\phi^* (\omega_1 \wedge \omega_2)) (t; \xi_1, \xi_2) &= (\omega_1 \wedge \omega_2)(\phi(t); \d \phi_t(\xi_1), \d \phi_t(\xi_2))
+			(\phi^* \omega_1) (t; \xi) &= \omega_1(\phi(t); \d \phi_t(\xi)) \\
+			(\phi^* \omega_2) (t; \xi) &= \omega_2(\phi(t); \d \phi_t(\xi)) \\
+			((\phi^* \omega_1) \wedge (\phi^* \omega_2)) (t; \xi_1, \xi_2)
+			&= ((\phi^* \omega_1)(t) \wedge (\phi^* \omega_2)(t)) (\xi_1, \xi_2) = \\
+			&= \begin{vmatrix}
+				(\phi^* \omega_1)(t; \xi_1) & (\phi^* \omega_1)(t; \xi_2) \\
+				(\phi^* \omega_2)(t; \xi_1) & (\phi^* \omega_2)(t; \xi_2) \\
+			\end{vmatrix}
+			= \begin{vmatrix}
+				\omega_1(\d \phi_t(\xi_1)) & \omega_1(\d \phi_t(\xi_2)) \\
+				\omega_2(\d \phi_t(\xi_1)) & \omega_2(\d \phi_t(\xi_2)) \\
+			\end{vmatrix} \\
+			(\phi^* (\omega_1 \wedge \omega_2)) (t; \xi_1, \xi_2)
+			&= (\omega_1 \wedge \omega_2)(\phi(t); \d \phi_t(\xi_1), \d \phi_t(\xi_2)) = \\
+			&= \begin{vmatrix}
+				\omega_1(\d \phi_t(\xi_1)) & \omega_1(\d \phi_t(\xi_2)) \\
+				\omega_2(\d \phi_t(\xi_1)) & \omega_2(\d \phi_t(\xi_2)) \\
+			\end{vmatrix}
 		\end{align*}
 	\end{proof}
 \end{enumerate}
