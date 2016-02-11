@@ -1,0 +1,162 @@
+\setauthor{Егор Суворов}
+
+\chapter{11.02.2016}
+
+\section{Организационное}
+Преподаватель: Злотников Илья Константинович.
+Лучше звать без отчества.
+
+Email: \href{mailto:zlotnikk@rambler.ru}{zlotnikk@rambler.ru}.
+
+Система получения зачёта: раз в две недели задаётся обязательная домашняя работа.
+По ней можно набирать баллы, надо набрать необходимый минимум по каждому дз.
+25\% от баллов за домашнее ставятся за то, что оно оформлено в \TeX (а не от руки).
+Если не набрать минимум "--- в конце семестра будет дополнительное дз (отдельное на каждую тему),
+которое поможет добрать не хватающих баллов.
+Сдавать написанное от руки лучше лично, по электронной почте можно сдавать только при болезни.
+Если написано в \TeX "--- то стоит сдавать по почте.
+
+Также надо писать общие контрольные: если пишем с первого раза, то достаточно решить все задачи кроме одной,
+если со второго раза "--- надо решать все задачи.
+
+По ТФКП было мало лекций, поэтому пока что займёмся подсчётом поверхностных интегралов.
+
+\section{Напоминание интегралов I рода}
+Пусть $S$ "--- поверхность в $\R^3$, задана функциями $x(u, v)$, $y(u, v)$, $z(u, v)$
+(это просто отображение из $D$ в $\R^3$).
+Мы вводили интеграл функции $f$ по поверхности следующим образом:
+\begin{equation}\label{int_surf_I}
+	\int_{S} f(x, y, z) \d S =
+	\int\int f(x(u, v), y(u, v), z(u, v)) \sqrt{EG-F^2} \d u \d v
+\end{equation}
+При этом $E$, $F$, $G$ "--- некоторая характеристика поверхности:
+\begin{gather*}
+	E=\left(\partd{x}{u}\right)^2 + \left(\partd{y}{u}\right)^2 + \left(\partd{z}{u}\right)^2 \\
+	G=\left(\partd{x}{v}\right)^2 + \left(\partd{y}{v}\right)^2 + \left(\partd{z}{v}\right)^2 \\
+	F=\partd{x}{u} \cdot \partd{x}{v} + \partd{y}{u} \cdot \partd{y}{v} + \partd{z}{u} \cdot \partd{z}{v}
+\end{gather*}
+
+Например, полезный частный случай: у нас поверхность является графиком функции $z(x, y)$.
+Тогда можно взять отображение $(u, v) \to (u, v, z(u, v))$.
+Из формулы \ref{int_surf_I} можно вывести следующую:
+\begin{equation}\label{int_surf_I_graph}
+	\int_{S} f(x, y, z) \d S = \int_D f(x, y, z(x, y)) \sqrt{\left(\partd z x\right)^2+\left(\partd z y\right)^2+1}\d x \d y
+\end{equation}
+
+Считаем массу гладкой поверхности (если знаем плотность $\rho(x, y, z)$ в каждой точке):
+\[ M = \int_S \rho(x, y, z) \d S \]
+Если у нас поверхность не гладкая, то начинаются проблемы с частными производными.
+Если поверхность кусочно-гладкая, то её стоит разбить на несколько кусочков, посчитать интеграл отдельно
+по кускам и сложить "--- получим интеграл по всех кусочно-гладкой поверхности.
+
+\section{Задача 1}
+\begin{gather*}
+	\int_S \frac{\d S}{\sqrt{x^2+y^2+z^2}} \\
+	S \eqcolon
+		\begin{cases}
+			x = r \cos u \\
+			y = r \sin u \\
+			z = v
+		\end{cases} \\
+	0 \le u \le 2 \pi \\
+	0 \le v \le H
+\end{gather*}
+Воспользуемся другой формулой с лекций: пусть $\vec r(u, v) = (x, y, z)$. Тогда:
+\begin{equation}\label{int_surf_I_dot}
+	E = \|\vec r'_u\|^2;
+	\quad
+	G = \|\vec r'_v\|^2;
+	\quad
+	F = \vec r'_u \cdot r'_v
+\end{equation}
+Теперь считаем $\vec r$ и его производные:
+\begin{align*}
+	\vec r(u, v) &= (x(u, v), y(u, v), z(u, v)) = (r \cos u, r \sin u, v) \\
+	\vec r'_u &= (-r \sin u, -r \sin v, 0) \\
+	\vec r'_v &= (0, 0, 1) \\
+	E = r^2 \\
+	G = 1 \\
+	F = 0 \\
+	\sqrt{EG-F^2}=r
+\end{align*}
+Считаем интеграл по поверхности:
+\begin{gather*}
+	\int_S \frac{\d S}{\sqrt{x^2+y^2+z^2}} =
+	\int_0^{2\pi} \int_0^H \frac{r \d v \d u}{\sqrt{r^2+v^2}} =
+	\int_0^{2\pi} \left(\int_0^H \frac{\d v}{\sqrt{r^2+v^2}}\right)r \d u = \\
+	= 2 \pi r \int_0^H \frac{\d v}{\sqrt{r^2+v^2}} =
+	2 \pi r \left( \ln \left| v + \sqrt{v^2 + r^2} \right| \right)_0^H =
+	2 \pi r \left( \ln \left| H + \sqrt{H^2 + r^2} \right| - \ln r \right) = \\
+	= 2 \pi r \ln \frac{H + \sqrt{H^2 + r^2}}{r} =
+\end{gather*}
+
+\section{Задача 2}
+Пусть есть сфера $x^2+y^2+z^2=R^2$, плотность поверхности есть $\rho = \rho_0 \sqrt{x^2+y^2}$.
+Хотим найти массу.
+Для этого надо взять интеграл по поверхности:
+\[ \int_S \rho(x, y, z) \d S \]
+
+\subsection{Способ 1}
+\TODO перенести с двух фотографий, в одном месте взяли по частям, в конце сказали <<это просто площадь четвертинки>>
+
+\subsection{Способ 2 (сферическая замена)}
+$\alpha$ "--- широта ($-\sfrac \pi 2 \le \alpha \le \sfrac \pi 2$), $\beta$ "--- долгота ($0 \le \beta \le 2\pi$):
+\begin{gather*}
+	x = R \cos \alpha \cos \beta \\
+	y = R \cos \alpha \sin \beta \\
+	z = R \sin \alpha \\
+	\vec r'_\alpha = (-R \sin \alpha \cos \beta, -R \sin\alpha \sin\beta, R \cos \alpha) \\
+	\vec r'_\beta  = (-R \cos \alpha \sin \beta, R \cos\alpha \cos\beta, 0) \\
+	E = \|\vec r'_\alpha\|^2 = R^2(\sin^2\alpha(\cos^2\beta + \sin^2\beta)+\cos^2\alpha) = R^2\\
+	G = \|\vec r'_\beta\|^2 = R^2(\cos^2\alpha(\sin^2\beta+\cos^2\beta)) = R^2\cos^2\alpha \\
+	F = \vec r'_\alpha \cdot \vec r'_\beta = R^2 \cdot 0 + 0 = 0 \\
+	\sqrt{EG-F^2} = \sqrt{R^4\cos^2\alpha} = R^2\sqrt{\cos^2\alpha}
+\end{gather*}
+Считаем интеграл:
+\begin{gather*}
+	\int_S \rho_0 \underbrace{\sqrt{x^2+y^2}}_{R^2\cos^2\alpha} \d S =
+	\rho_0 \int_0^{2\pi} \int_{-\sfrac \pi 2}^{\sfrac \pi 2} \sqrt{R^2\cos^2\alpha} R^2 \sqrt{\cos^2\alpha} \d \alpha \d \beta = \\
+	= 2\pi \rho_0 R^3 \int_{-\sfrac \pi 2}^{\sfrac \pi 2} \cos^2\alpha \d \alpha =
+	2\pi \rho_0 R^3 \int_{-\sfrac \pi 2}^{\sfrac \pi 2} \frac{1 + \cos 2\alpha}{2 \cdot 2} \d (2 \alpha) =
+	\frac{\pi}{2} \rho_0 R^3 \int_{-\pi}^{\pi} (1 + \cos t) \d t = \\
+	= \frac{\pi}{2} \rho_0 R^3 \left( \underbrace{\int_{-\pi}^{\pi} \d t}_{2\pi} + \underbrace{\int_{-\pi}^{\pi} \cos t \d t}_{0} \right) =
+	\frac{\pi}{2} \rho_0 R^3 \cdot 2\pi =
+	\rho_0 \pi^2 R^3
+\end{gather*}
+
+\section{Задача 3}
+Поверхность $S$ задаётся как граница следующей области:
+\[ 0 \le \sqrt{x^2+y^2} \le z \le 2 \]
+Хотим посчитать интеграл:
+\[ \int_S z^2 \d S \]
+
+\subsection{Введение}
+Это поверхность конуса, растущего из начала координат и ограниченного плоскостью $z=2$.
+Это кусочно-гладкая поверхность.
+Надо отдельно посчитать для верхнего кружочка и отдельно посчитать для внешней поверхности конуса.
+
+\subsection{Верхний кружочек}
+\begin{gather*}
+	\int_{\substack{x^2+y^2 \le 4\\ z = 2}} z^2 \d S = 4\cdot \pi \cdot 4 = 16 \pi
+\end{gather*}
+
+\subsection{Внешняя поверхность}
+Считаем по формуле \ref{int_surf_I_graph}.
+Для этого надо сказать, что поверхность "--- график функции $z(x, y)$ на круге $\sqrt{x^2+y^2}\le 2$.
+\begin{gather*}
+	\int_S z^2 \d S =
+	\int_{x^2+y^2\le 4} z^2\sqrt{1+\frac{x^2}{x^2+y^2}+\frac{y^2}{x^2+y^2}} \d x \d y =
+	\sqrt 2 \int_{x^2+y^2\le 4} (x^2+y^2) \d x \d y = \\
+	\text{переходим в полярные координаты} \\
+	= \sqrt 2 \int_0^{2\pi} \int_0^2 r^2 \cdot \underbrace{r}_{J} \d r \d \phi =
+	2 \sqrt 2 \pi \int_0^2 r^3 \d r =
+	2 \sqrt 2 \pi \left(\frac{r^4}{4}\right)|_0^2 =
+	8 \sqrt 2 \pi
+\end{gather*}
+
+\subsection{Итоговый ответ}
+\[ 8\sqrt 2 \pi + 16 \pi \]
+
+\section{Окончание занятия}
+К следующему занятию стоит вспомнить, как считать поверхностные интеграла второго рода (от формы).
+Также стоит вспомнить формулу Стокса.
