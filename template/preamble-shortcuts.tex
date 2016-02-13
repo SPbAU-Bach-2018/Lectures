@@ -102,3 +102,11 @@
 }
 
 \newcommand{\TODO}[1][]{\quad\textbf{\textcolor{red}{TODO} #1 \quad}}
+
+% http://tex.stackexchange.com/a/123926/98293
+\newcommand\circled[1]{%
+  \tikz[baseline=(X.base)]
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+\newcommand\circleeq{%
+  \tikz[baseline=(X.base)+0.5em]
+    \node (X) [draw, shape=circle, inner sep=-0.2em] {\strut =};}
