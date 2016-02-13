@@ -17,3 +17,5 @@ _minted*
 
 *.mpx
 *.ps
+
+*.dot
