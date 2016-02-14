@@ -37,3 +37,7 @@ do
 	fi
 	old_hash=$new_hash
 done
+
+if ! [ -z "$COPY_TO_OUTPUT_PDF" ]; then
+    cp $ROOT_FILE.pdf __output__.pdf
+fi
