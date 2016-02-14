@@ -102,4 +102,13 @@
 
 \newcommand{\setauthor}[1]{\gdef\currentauthor{#1}}
 
+% http://tex.stackexchange.com/a/292796/98293
+\makeatletter
+\begingroup
+\def\temp\begingroup#1\@nil{%
+  \endgroup\def\@digraph{\begingroup\shorthandoff{"}#1}%
+}
+\expandafter\temp\@digraph\@nil
+\makeatother
+
 \input{preamble-shortcuts}
