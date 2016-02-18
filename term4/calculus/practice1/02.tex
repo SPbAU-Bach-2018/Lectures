@@ -1,0 +1,175 @@
+\chapter{18.02.2016}
+
+\section{Поверхностные интегралы II рода}
+
+\subsection{Определение}
+Есть поверхность:
+\[ S=\vec r(D)=(x(u, v), y(u, v), z(u, v)) \]
+\begin{Def}
+	Нормаль $\vec N$ к поверхности:
+	\[ \vec N = \frac{\vec r'_u \times \vec r'_v}{\|\vec r'_u \times \vec r'_v\|} \]
+\end{Def}
+
+\begin{Def}
+	Определение интеграла II рода через интеграл I рода (в конспекте за III семестр
+	называлось теоремой 7.3.4):
+	\begin{equation}\label{int_surf_II_def}
+		\iint\limits_S P \d y \d z + Q\d z \d x + R\d x \d y = \iint\limits_S \left( (P, Q, R) \cdot \vec N \right) \d S = \iint\limits_S \left(P N_x + Q N_y + R N_z\right) \d S
+	\end{equation}
+\end{Def}
+Также есть полезное следствие из этого определения (оно возникало в процессе доказательства теоремы 7.3.4 на лекциях).
+Тут надо быть осторожно с ориентацией (пока что мы на паре не научились определять, какая ориентация, поэтому пока
+что считаем по этой формуле с точностью до ориентации):
+\begin{equation}\label{int_surf_II_coords}
+	\iint\limits_S P \d y \d z + Q\d z \d x + R\d x \d y =
+	\iint\limits_D
+	\begin{vmatrix}
+		P & Q & R \\
+		x'_u & y'_u & z'_u \\
+		x'_v & y'_v & z'_v \\
+	\end{vmatrix}
+	\d u \d v
+\end{equation}
+
+\subsection{Формула Стокса}
+Пусть у нас есть поверхность $S$, а её граница "--- некоторая кривая $L$.
+Тогда верно следующее:
+\begin{equation}
+	\int\limits_L P \d x + Q \d y + R \d z =
+	\iint\limits_S
+	\left(\partd Ry - \partd Qz\right) \d y \d z +
+	\left(\partd Pz - \partd Rx\right) \d z \d x +
+	\left(\partd Qx - \partd Py\right) \d x \d y
+\end{equation}
+
+\subsection{Домашнее задание}
+Имеется четыре темы, на каждую тему по две задачи:
+\begin{enumerate}
+	\setcounter{enumi}{-1}
+	\item Поверхностные интегралы I рода
+	\item Поверхностные интегралы II рода
+	\item Формула Гаусса-Остроградского
+	\item Формула Стокса
+\end{enumerate}
+Если решаешь задачу на соответствующую тему в классе, дома её делать не надо.
+
+ДЗ будет прислано в субботу, в нём будут темы, которые мы успели на паре: 0, 1, 3.
+Гаусса-Остроградского мы совсем не успели.
+
+\section{Задача 1}
+	Пусть $S$ "--- часть эллипсоида (на ориентацию нормали забили):
+	\begin{align*}
+		x &= a \cos u \cos v & u \in \left[\frac \pi 4; \frac \pi 3 \right]\\
+		y &= b \sin u \cos v & v \in \left[\frac \pi 6; \frac \pi 4 \right]\\
+		z &= c \sin v
+	\end{align*}
+	\TODO картинка
+
+	Считаем интеграл:
+	\[ \iint\limits_S \frac{\d y \d z}{x} + {\d z \d x}{y} + \frac{\d x \d y}{z} \]
+
+	Пользуемся формулой \ref{int_surf_II_coords}.
+	Для этого сначала посчитаем производные:
+	\begin{align*}
+		x'_u &= -a \sin u \cos v & x'_v &= -a \cos u \sin v \\
+		y'_u &=  b \cos u \cos v & y'_v &= -b \sin u \sin v \\
+		z'_u &= 0 & z'_v &= c \cos v \\
+	\end{align*}
+	Поверхность есть образ $D=[\frac \pi 4; \frac \pi 3] \times [\frac \pi 6; \frac \pi 4]$.
+	Пишем формулу:
+	\begin{gather*}
+		\iint\limits_S \frac{\d y \d z}{x} + {\d z \d x}{y} + \frac{\d x \d y}{z} =
+		\iint\limits_D \begin{vmatrix}
+			P & Q & R \\
+			x'_u & y'_u & z'_u \\
+			x'_v & y'_v & z'_v \\
+		\end{vmatrix} \d u \d v = \\
+		= \iint\limits_D \begin{vmatrix}
+			\frac{1}{a \cos u \cos v} & \frac{1}{b\sin u\cos v} & \frac{1}{c\sin v} \\
+			-a \sin u \cos v & b \cos u \cos v & 0 \\
+			-a \cos u \sin v & -b \sin u \sin v & c \cos v
+		\end{vmatrix} \d u \d v = \\
+		= \iint\limits_D \left(
+			\frac{bc \cos u \cos^2 v}{a \cos u \cos v}
+			- \frac{-ac \sin u \cos^2 v}{b\sin u\cos v} 
+			+ \frac{ab\sin^2 u \cos v \sin v - (-ab)\cos^2 u \sin v \cos v}{c\sin v}
+		\right) \d u \d v = \\
+		= \iint\limits_D \left(
+			\frac{bc}{a} \cos v
+			+ \frac{ac}{b} \cos v
+			+ \frac{ab(\sin^2 u + \cos^2 u)}{c} \cos v
+		\right) \d u \d v = \\
+		= \iint\limits_D \left(
+			\frac{bc}{a} \cos v
+			+ \frac{ac}{b} \cos v
+			+ \frac{ab}{c} \cos v
+		\right) \d u \d v = \\
+		= \underbrace{\left(\frac{bc}{a} + \frac{ac}{b} + \frac{ab}{c}\right)}_{C}
+		\int\limits_{\sfrac{\pi}{4}}^{\sfrac{\pi}{3}}
+		\int\limits_{\sfrac{\pi}{6}}^{\sfrac{\pi}{4}}
+			\cos v \d v \d u =
+		C \cdot \left(\frac{\pi}{3} - \frac{\pi}{4}\right) \cdot \left.\left(\sin v\right)\right|_{\sfrac{\pi}{6}}^{\sfrac{\pi}{4}} =
+		\frac{\pi C}{12} \cdot \left(\frac{1}{\sqrt 2} - \frac 12\right) =
+		\frac{\pi C}{12} \cdot \frac{\sqrt 2 - 1}{2}
+	\end{gather*}
+
+\section{Задача 2}
+	$S$ "--- часть параболоида, на ориентацию нормали забили:
+	\[
+		\begin{cases}
+			z = x^2 + y^2; \\
+			0 \le z \le 2
+		\end{cases}
+	\]
+	Хотим посчитать
+	\[ \iint_S y \d z \d x \]
+
+	У нас есть поверхность $(x, y) \to (x, y, x^2+y^2)$.
+	Тут $(x, y)$ берётся из круга радиуса $\sqrt 2$ с центром в начале координат.
+	Пользуемся формулой \ref{int_surf_II_coords}:
+	\begin{gather*}
+		\iint\limits_S y \d z \d x =
+		\iint\limits_D \begin{vmatrix}
+			0 & y & 0 \\
+			1 & 0 & 2x \\
+			0 & 1 & 2y \\
+		\end{vmatrix} \d x \d y = \\
+		= \iint\limits_D -y(1\cdot 2y - 2x \cdot 0) \d x \d y =
+		\iint\limits_D -2y^2 \d x \d y =
+		-2 \int\limits_{-\sqrt 2}^{\sqrt 2} y^2 \left(\int\limits_{-\sqrt{2-y^2}}^{\sqrt{2-y^2}} \d x \right) \d y = \\
+		= -2 \int\limits_{-\sqrt 2}^{\sqrt 2} y^2 \cdot 2\sqrt{2-y^2} \d y =
+		-2 \int\limits_{-\sqrt 2}^{\sqrt 2} 2y\sqrt{2y^2-y^4} \d y \circleeq \\
+		\text{делаем замену $t=y^2$ и считаем интеграл при $y \ge 0$} \\
+		\d t = 2 y \d y \\
+		\d y = \frac{\d t}{2y} \\
+		\circleeq -4 \int\limits_0^2 \sqrt{2t-t^2} \d t =
+		-4 \int\limits_0^2 \sqrt{1-(t-1)^2} \d t \circleeq \\
+		\text{интеграл "--- площадь полукруга радиуса 1 с центром в $(1, 0)$} \\
+		% \TODO картинка
+		\circleeq -4 \cdot \frac{\pi\cdot 1^2}{2} = -2\pi
+	\end{gather*}
+
+\section{Задача 3}
+	Хотим посчитать криволинейный интеграл:
+	\[
+		\int\limits_{OA} y z \d x + 3 x z \d x + 2 x y \d z \\
+	\]
+	Кривая вот такая:
+	\[
+		\begin{cases}
+			x = t \cos t \\
+			y = t \sin t \\
+			z = t^2 = x^2=y^2 \\
+			0 \le t \le 2 \pi \\
+			O(0, 0, 0) \\
+			A(2\pi, 0, 4\pi^2)
+		\end{cases}
+	\]
+	Это вот такая незамкнутая кривая, навёрнутая на параболоид, делает один поворот вокруг центра координат.
+	Если её замкнуть, добавив отрезок $AO$, то мы вырежем на параболоиде один конечный кусок (второй кусок будет бесконечный).
+	\TODO картинка
+	Давайте воспользуемся формулой Стокса.
+	У нас на паре не получилось :(
+
+	Но, говорят, считается через криволинейные интегралы II рода.
+	Эту задачу разбираем в следующий раз.
