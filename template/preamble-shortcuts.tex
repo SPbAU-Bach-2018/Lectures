@@ -19,7 +19,7 @@
 \def\i{\mathbb{i}}
 \def\j{\mathbb{j}}
 \def\k{\mathbb{k}}
-\def\t{\texttt}
+\renewcommand{\t}[1]{\ifmmode{\mathtt{#1}}\else{\texttt{#1}}\fi}
 
 \def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
 \def\eqDef{\stackrel{\mathrm{Def}}{=}}
