@@ -1,0 +1,185 @@
+\section{Голоморфные функции}
+
+\begin{Def}
+	$f\colon \Omega \ra \C$, $z_0 \in \Omega$, $\Omega$ открытая и связная.
+	$f$ называется голоморфной в $z_0$, если существует предел
+	\[ \lim_{z \ra z_0} \frac{f(z) - f(z_0)}{z - z_0} \in C \]
+\end{Def}
+
+\begin{Rem}
+	Равносильное условие: сущесвтует такой $k \in \C$, что
+	\[ f(z) = f(z_0) + k(z - z_0) + o(|z - z_0|) \]
+\end{Rem}
+
+\begin{Rem}
+	Это очень похоже на частную производную, если подходить к $z_0$ только по горизонтали или вертикали.
+	\begin{gather*}
+		f = \begin{pmatrix} g \\ h \end{pmatrix}\colon \Omega \subset \R^2 \ra \R^2 \\
+		\begin{pmatrix} g(x, y) \\ h(x, y) \end{pmatrix}
+		= \begin{pmatrix} g(x_0, y_0) \\ h(x_0, y_0) \end{pmatrix}
+		+ A \begin{pmatrix} x - x_0 \\ y - y_0 \end{pmatrix}
+		+ o(\sqrt{(x - x_0)^2 + (y - y_0)^2})
+	\end{gather*}
+	В чём же разница?
+	\begin{gather*}
+		f(z) = g(z) + ih(z) \quad z = x + iy \quad k = l + im \\
+		(l + im)((x - x_0) + i(y - y_0))
+		= (l(x - x_0) - m(y - y_0)) + i(m(x - x_0) + l(y - y_0)) \\
+		\begin{pmatrix}
+			l(x - x_0) - m(y - y_0) \\
+			m(x - x_0) + l(y - y_0)
+		\end{pmatrix}
+	\end{gather*}
+	Как видно, в качестве матрицы $A$ должны быть только матрицы вида
+	\[\begin{pmatrix}
+		l & -m \\
+		m & l
+	\end{pmatrix}\]
+	Запишем эти условия:
+	\begin{gather*}
+		A = \begin{pmatrix}
+			\partd gx & \partd gy \\
+			\partd hx & \partd hy
+		\end{pmatrix} \\
+		\partd gx = \partd hy \quad \partd gy = -\partd hx
+	\end{gather*}
+	Вывод: $f$ голоморфна в $z_0$ тогда и только тогда, когда она вещественно дифференцируема и выполняется равенство выше.
+\end{Rem}
+
+\begin{assertion}[Условие Коши---Римана (Эйлера---Даламбера)]
+	Если функция голоморфна в $z_0$, то
+	\[ \partd fx = -i \partd fy \]
+\end{assertion}
+
+Поравзлекаемся с дифференицалами:
+\begin{gather*}
+	\d f = \partd fx \d x + \partd fy \d y \\
+	z = x + iy \quad \bar z = x - iy\\
+	\d z = \d x + i \d y \quad \d \bar z = \d x - i \d y \\
+	\d f = A \d z + B \d \bar z \\
+	A + B = \partd fx \quad iA - iB = \partd fy \\
+	\d f
+	= \underbrace{\frac12 \left( \partd fx - i \partd fy \right)}_{=\partd fz} \d z
+	+ \underbrace{\frac12 \left( \partd fx + i \partd fy \right)}_{=\partd f{\bar z}} \d \bar z
+\end{gather*}
+Условие Коши-Римана можно тогда переписать:
+\[ \partd f{\bar z} = 0 \]
+и тогда если $f$ голоморфна, то
+\[ \d f = \partd fz \]
+
+\begin{conseq*}
+	$f$ голоморфная на $\Omega$ и $\Re f = const$.
+	Тогда $f = const$.
+\end{conseq*}
+\begin{proof}
+	$f = g + ih$, $g = const$.
+	\begin{gather*}
+		0 = \partd gx = \partd hy \quad 0 = \partd gy = -\partd hx \\
+		\Ra \partd hx = \partd hy = 0 \Ra h = const \Ra f = const
+	\end{gather*}
+\end{proof}
+
+\begin{conseq*}
+	$f$ голоморфна и дважды дифференуируема.
+	Тогда
+	\begin{gather*}
+		\partD gx + \partD gy = 0 \\
+		\partD hx + \partD hy = 0 \\
+	\end{gather*}
+	Тажке, такая функиця называется гармонической.
+\end{conseq*}
+\begin{proof}
+	\begin{gather*}
+		\partD gx = \partd{}x\left( \partd gx \right) = \partd{}x\left( \partd hy \right) = \partdd hxy \\
+		\partD gy = \partd{}x\left( \partd gy \right) = \partd{}x\left( -\partd hx \right) = -\partdd hyx
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	$g\colon \Omega \subset \C \ra \R$ гармноническая функция.
+	Тогда существует гармоническая $h\colon \Omega \ra \R$, что $f = g + ih$ голоморфная и единственная с точностью до прибавления константы.
+	Такие $g$ и $h$ называют гармонически сопряжёнными.
+\end{Rem}
+
+\begin{theorem}[Коши]
+	$f\colon \Omega \ra \C$ голоморфная ($f \in H(\Omega)$).
+	Тогда форма
+	\[ f(z) \d z \]
+	замкнута.
+\end{theorem}
+\begin{proof}
+	\textbf{Первое доказательство}.
+	Возьмём любую точку, из её окрестности возьмём прямоугольник $G$ c правильно ориентированным контуром $\partial G$.
+	Если $\partd fx$ и $\partd fy$ непрерывны, то доказательство очень простое:
+	\begin{gather*}
+		\int\limits_{\partial G} f(z) \d z
+		= \int\limits_{\partial G} (g(z) + ih(z))(\d x + i \d y)
+		= \int\limits_{\partial G} (g(z) \d x - h(z) \d y)
+		+i\int\limits_{\partial G} (h(z) \d x + g(z) \d y) = \cdots
+	\end{gather*}
+	Формула Грина!
+	\begin{gather*}
+		\cdots = \int\limits_G \left( \left( -\partd hx - \partd gy \right) + i\left( \partd gx - \partd hy \right)\right)
+	\end{gather*}
+	Оба коэффициенты по условию Коши---Римана нули.
+\end{proof}
+\begin{Rem}
+	$f\colon \Omega \ra \C$ "--- произвольная вещественно дифференцируемая.
+	Тогда
+	\[ \ointctrclockwise\limits_{\partial G} f(z) \d z = 2i \int\limits_G \partd f{\bar z} \d x \d y \]
+\end{Rem}
+\begin{proof}
+\[
+	\partd f{\bar z}
+	= \frac12 \left( \partd fx + i\partd fy \right)
+	= \frac12 \left( \partd gx + i\partd hx + i\partd gy - \partd hy\right) \]
+\end{proof}
+
+\begin{proof}
+	\textbf{Второе доказательство}.
+	Теперь честное доказательство теоремы, без непрерывности.
+	Обозначим
+	\[ \alpha(P) \lrh \int\limits_P f(z) \d z \]
+	Берём наш прямоугольник $P$ и предположим, что на нём $\alpha(P) \ne 0$.
+	Разрежем наш прямоугольник на 4 подпрямоугольника
+	%OH GOD WHYYY
+	\newcommand{\tildes}[2]{%
+		\ifnumgreater{#1}{0}%
+			{\tilde{\tildes{\number\numexpr#1-1\relax}{#2}}}%
+			{#2}%
+	}
+	$\tildes1P$, $\tildes2P$, $\tildes3P$ и $\tildes4P$.
+	\[ \alpha(P) = \alpha(\tildes1P) + \alpha(\tildes2P) + \alpha(\tildes3P) + \alpha(\tildes4P) \]
+	Не умаляя общности,
+	\[ |\alpha(\tildes1P)| \ge \frac14 |\alpha(P)| \]
+	Тогда $P_1 \lrh \tildes1P$. Повторим процесс рекурсивно.
+	\[ P \supset P_1 \supset P_2 \supset P_3 \supset \dots \]
+	Выберем общую точку $z_0$.
+	\[ f(z) = f(z_0) + k(z - z_0) + \beta(z-z_0) \quad \beta(z-z_0) = o(z - z_0)\]
+	\TODO Я здесь кусок потерял, будет \TODO
+	Оценим
+	\begin{gather*}
+		\left| \int\limits_{P_n} \beta(z) \d z\right|
+		\le perimeter(P_n) \cdot \max |\beta(z)|
+		= \frac{perimeter(P)}{2^n} \max |\beta(z)|i = \\
+		= \frac{perimeter(P)}{2^n} |z - z_0| \cdot o(1)
+		\le \left(\frac{perimter(P)}{2^n}\right)^2 o(1) \\
+		\frac1{4^n} |\alpha(P)|
+		\le |\alpha(P)|
+		\le \frac{perimeter(P)^2}{4^n} o(1)
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$f \in H(\Omega)$, $\gamma$ "--- стягиваемая петля.
+	\[ \int\limits_\gamma f(z) \d z = 0 \]
+\end{conseq}
+
+\begin{conseq}
+	$f \in H(\Omega)$.
+	Тогда у $f$ есть локальная первообразная, которая голомофрная.
+\end{conseq}
+\begin{proof}
+	$f(z) \d z$ замкнута, значит в окрестности точки есть первообразная $d F = f(z) \d z$, откуда
+	$F' = \partd Fz = f$.
+\end{proof}

@@ -1,0 +1,167 @@
+\begin{theorem}
+	$f\colon \Omega \ra \C$, $f \in C(\Omega)$, но $f \in H(\Omega \setminus \Delta)$, где $\Delta$ "--- фрагмент горизонтальной прямой.
+	Тогда $f(z) \d z$ всё равно замкнута.
+\end{theorem}
+\begin{proof}
+	Режем на прямоугольнкики. Если прямая не задела "--- смотри на предыдущий случай.
+	Если задела "--- разрежем по прямой. Для каждого такого прямоугольника отступим на прямой на $\epsilon$.
+	Для таких прямоугольников всё доказано, а дальше по непрерывности хотим показать, что интегралы сойдутся.
+	\[
+		\int\limits_P - \int\limits_{P_\epsilon} = \int\limits_{\text{боковые фрагменты}} + \int\limits_{\text{сторона по прямой}} (f(z) - f(z - i\epsilon))
+	\]
+	Первое можно оценить как $2\epsilon \max |f|$, а второе как $\delta \cdot \text{длина стороны}$
+\end{proof}
+
+\begin{conseq}
+	Если $f$ голоморфна в $\Omega$ за исклчением некоторого количества точек, не имеющих предела,
+	то тоже форма замнута.
+\end{conseq}
+\begin{proof}
+	Раз нет предельной точки, то либо можно выбрать окрестность без них, либо она совпадает с центром окрестности.
+	Во втором случае вырежем целый диаметр, и смотри предыдущую теорему.
+\end{proof}
+
+\begin{Def}
+	$\gamma\colon [b, c] \ra \C$ замкнута кривая, $a$ не лежит на $\gamma$.
+	Возьмём полярное отображение кривой в полярные координаты из точки $a$ в виде $(r(t), \phi(t))$.
+	Теперь назовём индексом кривой относительно $a$
+	\[ \Ind (\gamma, a) = \frac{\phi(c) - \phi(b)}{2\pi} \in \Z \]
+	В силу замкнутости, $\phi(c) - \phi(b)$ делится нацело на $2\pi$.
+	Неформально "--- сколько оборотов вокруг точки делает кривая.
+
+	Альтернативно, можно считать индекс так (не доказываем, что это так):
+	проводим луч из точки, каждый раз, когда кривая проходит через луч справа налево, прибавляем 1, когда слева направо, вычитаем 1.
+\end{Def}
+
+\begin{theorem}
+	$\gamma$ "--- замкнутая кривая, не проходящая через 0. Тогда
+	\[　\int\limits_\gamma \frac{d z}z = 2\pi i \Ind(\gamma, 0) \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		z = re^{i\phi} \quad \d z = (r'(t) e^{i\phi(t)} + i\phi'(t)r(t)e^{i\phi(t)}) \d t \\
+		\frac{d z}z = \left(\frac{r'(t)}{r(t)} + i\phi'(t)\right) \d t \\
+		\int\limits_\gamma \frac{\d z}z = \int\limits_\gamma \left(\frac{r'(t)}{r(t)} + i\phi'(t) \right)\d t
+		= \left(\ln r(t) + i\phi(t)\right)\biggr|_{t=b}^c
+		= 2\pi i\Ind(\gamma, a)
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	\[ \Ind(\gamma, a) = \frac1{2\pi i} \int\limits_\gamma \frac{\d z}{z-a} \]
+\end{conseq}
+
+\begin{theorem}[Интегральная теорема Коши]
+	$f \in H(\Omega)$, $a \in \Omega$, $\gamma$ стягивается и не проходит через $a$.
+	Тогда
+	\[ \int\limits_\gamma \frac{f(z)}{z-a} \d z = 2\pi i f(a) \Ind(\gamma, a) \]
+\end{theorem}
+\begin{proof}
+	\[ g(z) = \begin{cases} \frac{f(z) - f(a)}{z-a} & z \ne a \\ f'(a) & z = a \end{cases} \]
+	$g \in C(\Omega)$, $g \in H(\Omega \setminus \{a\})$.
+	Тогда $f(z) \d z$ замнутая и
+	\begin{gather*}
+		0 = \int\limits_\gamma g(z) \d z
+		= \int\limits_\gamma \frac{f(z) - f(a)}{z - a} \d z
+		= \int\limits_\gamma \frac{f(z)}{z-a} \d z - f(a) \int\limits_\gamma \frac{f(a)}{z - a}
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$f$ "--- голоморфная в окрестности единичного круга.
+	\[
+		\int\limits_{\mathbb T} \frac{f(z)}{z - a} \d z = \begin{cases}
+			2\pi i f(a) & a \in \mathbb D \\
+			0 & a \notin \bar {\mathbb D}
+		\end{cases}
+	\]
+\end{conseq}
+
+\begin{theorem}
+	$f \in H(r\mathbb D)$.
+	Тогда $f$ аналитична в $r\mathbb D$.
+\end{theorem}
+
+\begin{proof}
+	$0 < r_1 < r_2 < r$, $|\zeta| = r_2$, $|z| < r_2$.
+	\begin{gather*}
+		f(z) = \frac1{2\pi i} \int\limits_{r_2\mathbb T} f(\zeta){\zeta - z} \d \zeta = \dots \\
+		\frac1{\zeta - z} = \frac1\zeta \cdot \frac1{1- \frac z\zeta} = \sum_{i=0}^\infty \frac{z^n}{\zeta^{n+1}}
+		\dots = \frac1{2\pi i} \int\limits_{r_2 \mathbb T} f(\zeta) \sum_{i=0}^\infty \frac{z^n}{\zeta^{n+1}} \d \zeta = \dots
+	\end{gather*}
+	Равномерно сходится: мажорируется рядом $\sum_{n=0}^\infty \max |f| \left(\frac{r_1}{r_2}\right)^n$
+	\begin{gather*}
+		\dots = \frac1{2\pi i} \sum_{n=0}^\infty \int\limits_{r_2 \mathbb T} \frac{f(\zeta)}{\zeta^{n+1}} \d \zeta \cdot z^n \\
+		a_n = \frac1{2\pi i} \int\limits_{r_2 \mathbb T} \frac{f(\zeta)}{\zeta^{n+1}} \d \zeta
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$f$ толоморфна тогда и только тогда, когда она аналитична.
+\end{conseq}
+\begin{proof}
+	Берём окрестность точки, берём в ней круг, там теорема.
+\end{proof}
+
+\begin{conseq}
+	Если $f$ голоморфна, то она бесконечно дифференцируема.
+\end{conseq}
+
+\begin{conseq}
+	$f \in H(\Omega) \Ra f' \in H(\Omega)$.
+\end{conseq}
+
+\begin{conseq}
+	Если $f \in H(\Omega)$, то $\Re f$ и $\Im f$ гармонические.
+\end{conseq}
+
+\begin{theorem}[Морера]
+	$f\colon \Omega \ra \C$, $f(z) \d z$ замкнута.
+	Тогда $f$ голомофрна.
+\end{theorem}
+\begin{proof}
+	$z_0 \in \Omega$, $B$ "--- круг с центром в $z_0$, в котороем есть первообразная.
+	$F$ "--- первообразная, значит $F$ голоморфна в $B$, значит по 3 следствию производная тоже голоморфна, а это $F' = f$.
+\end{proof}
+
+\begin{conseq}
+	$f \in C(\Omega) \land f \in H(\Omega \setminus \Delta) \Ra f \in (\Omega)$.
+\end{conseq}
+
+\begin{conseq}
+	$f \in C(\Omega)$, $f$ голоморфна, кроме некоторого набора точек без предельной.
+	Тогда $f$ голоморфна на всей $\Omega$.
+\end{conseq}
+
+\begin{theorem}[Интегральная теорема Коши, вторая версия]
+	$f \in H(\Omega)$, $K \subset \Omega$ "--- компакт с кусочно гладной границей.
+	Тогда
+	\[
+		\int\limits_{\partial K} \frac{f(z)}{z - a} \d z = \begin{cases}
+			2\pi i f(a) & a \in \Int K \\
+			0 & a \notin K
+		\end{cases}
+	\]
+\end{theorem}
+\begin{proof}
+	Пусть $a \notin K$.
+	\begin{gather*}
+		\frac{f(z)}{z-a} \in H(B_\epsilon(K))
+		\Ra \partd{}{\bar z} \left( \frac{f(z)}{z-a} \right) = 0 \\
+		\int\limits_{\partial K} \frac{f(z)}{z-a} \d z = 2i \int\limits_K \partd{}{\bar z} \left(\frac{f(z)}{z-a}\right)\d x\d y = 0
+	\end{gather*}
+
+	Пусть $a \in \Int K$.
+	Рассмотрим $\tilde K = K \setminus \bar B_r(a)$.
+	Мы уже знаем, что
+	\[ \int\limits_{\partial \tilde k} \frac{f(z)}{z-a} \d z = 0 \]
+	но
+	\begin{gather*}
+		\int\limits_{\partial \tilde k} \frac{f(z)}{z-a} \d z
+		= \int\limits_{\partial K} \frac{f(z)}{z-a} \d z
+		- \underbrace{\ointctrclockwise\limits \frac{f(z)}{z-a}}_{=2\pi i f(a)}
+	\end{gather*}
+\end{proof}
+
+\textbf{Упражнение.}
+\TODO
