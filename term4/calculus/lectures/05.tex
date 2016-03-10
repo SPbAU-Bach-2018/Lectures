@@ -1,0 +1,170 @@
+\section{Ряд Лорана}
+
+\begin{theorem}[Неравенство Коши]
+	$f \in H(R\mathbb D)$, $r < R$, $f(z) = \sum_{i=0}^\infty a_nz^n$.
+	Тогда
+	\[ |a_n| \le \frac{\max_{|z| = r} |f(z)|}{r^n} \]
+\end{theorem}
+
+Обозначим
+\[ M(r) \coloneqq \max_{|z| = r} |f(z)| \]
+\begin{proof}
+	\begin{gather*}
+		a_n = \frac1{2\pi i} \int\limits_{|z| = r} \frac{f(z)}{z^{n+1}} \d z \\
+		|a_n|
+		\le \frac1{2\pi} \left| \int\limits_{|z| = r}{z^{n+1}} \d z\right|
+		\le \frac1{2\pi} \max_{|z| = r} \left| \frac{f(z)}{z^{n+1}}\right| \cdot 2\pi r = \frac{M(r)}{r^n}
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	Если $a_n = \frac1{2\pi i} \int\limits_{|z| = r} \frac{f(z)}{z^{n+1}}$, то $|a_n| \le \frac{M(r)}{r^n}$.
+\end{Rem}
+
+\begin{Def}
+	Функция называется целой, если она голотопна на $\C$.
+\end{Def}
+
+\begin{theorem}[Лиувилля]
+	$f \in H(\C)$, $|f| \le M$.
+	Тогда $f = const$.
+\end{theorem}
+\begin{proof}
+	Покажем, что в ряде Тейлора все коэффициенты, кроме нулевого, нули:
+	\[ |a_n| \le \frac{M(r)}{r^n} \le \frac M{r^n} \xlongrightarrow{r \ra \infty} 0 \Ra |a_n| = 0 \]
+\end{proof}
+
+\begin{theorem}[Основная теорема алгебры]
+	$P \in \C[x]$, $P \ne const$.
+	Тогда $P$ имеет корень.
+\end{theorem}
+\begin{proof}
+	Пусть $\forall z \in \C, P(z) \ne 0$.
+	Расмотрим $f(z) = \frac1{P(z)}$. $f \in H(\C)$.
+	Докажем, что она ограничена.
+	Для этого покажем, что $|P(z)| \ge \delta > 0$.
+	Найдём круг $R\mathbb D$, вне которого $P(z) \ge 1$.
+	\begin{gather*}
+		P(z) = z^n + a_{n-1} z^{n-1} + \dots + a_0 \\
+		R = 1 + |a_{n-1}| + \dots + |a_0|
+	\end{gather*}
+	Возьмём $|z| > R > 1$:
+	\begin{gather*}
+		|P(z)| = |z^n + a_{n-1} z^{n-1} + \dots + a_0|
+		\ge |z^n| - |a_{n-1} z^{n-1} + \dots + a_0| \ge \\
+		\ge |z^n| - |a_{n-1} z^{n-1}| - |a_{n-2} z^{n-2}| - \dots - |a_0|
+		\ge |z^n| - |a_{n-1} z^{n-1}| - |a_{n-2} z^{n-1}| - \dots - |a_0 z^{n-1}| \ge \\
+		= |z^{n-1}| (|z| - |a_{n-1}| - |a_{n-2}| - \dots - |a_0|) > |z|^{n-1} \ge 1
+	\end{gather*}
+	Ура, нашли такой круг. Вне него $f$ ограничена.
+	Посмотрим внутри круга.
+	$|P(z)|$ "--- непрерывна на компакте $R\bar{\mathbb D}$,
+	значит достигает минимального значения в некоторой точке $z_0$, и оно больше нуля (по предположению).
+	Откуда $|P(z)| \ge \delta = \min\{1, |P(z_0)|\}$.
+
+	Раз $f$ целая и ограниченная, то она костанта, значит $P$ константа.
+\end{proof}
+
+\begin{theorem}[О среднем]
+	$f \in H(\Omega)$, $a + r\bar{\mathbb D} \subset \Omega$
+	\footnote{Тут написано: круг радиуса $r$ c центром в точке $a$, что логично с точки зрения прибавления ко всем точкам круга положения центра}.
+	Тогда
+	\[ f(a) = \frac1{2\pi} \int\limits_0^{2\pi} f(a + re^{i\phi}) \d \phi \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		f(a)
+		= \frac1{2\pi i} \int\limits_{|z - a| = r} \frac{f(a)}{z - a} \d z = \\
+		z = a + re^{i\phi} \quad \d z = r \d e^{i\phi} = zie^{i\phi} \d \phi \\
+		= \frac1{2\pi i}\int\limits_0^{2\pi} \frac{f(a + re^{i\phi})}{re^{i\phi}} rie^{i\phi} \d \phi
+		= \int\limits_0^{2\pi} f(a + re^{i\phi})
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	При тех же условиях
+	\[ f(a) = \frac1{\pi r^2}\int\limits_{|z - a| \le r} f(a) \d x \d y \]
+\end{conseq}
+\begin{proof}
+	Не умаляя общности, пусть $a = 0$.
+	\begin{gather*}
+		\frac1{\pi r^2} \int\limits_{|z| = r} f(z) \d x \d y
+		= \frac1{\pi r^2} \int\limits_{\rho=0}^r \underbrace{\int\limits_{\phi=0}^{2\pi} f(ge^{i\phi})}_{2\pi f(0)} \rho \d \phi \d \rho
+		= \frac1{\pi r^2} \int\limits_0^r 2\pi f(0) \rho \d \rho
+		= f(0)
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Принип максимума]
+	Пусть $|f(a)| \ge |f(z)|$ при всех $z$ из некоторой окрестности точки $a$.
+	Тогда в этой окрестности $f = const$.
+\end{theorem}
+\begin{Rem}
+	На самом деле отслюда следует, что функция константа вообще (докажем позже).
+\end{Rem}
+\begin{Rem}
+	Утверждение верно для любой функции, подходящей в теорему о среднем.
+\end{Rem}
+\begin{proof}
+	Случай $f(a) = 0$ тривиален. Не умаляя общности, пусть $f(a) > 0$.
+	Тогда $f(a) \ge |f(z)|$.
+	\begin{gather*}
+		f(a) = \frac1{\pi r^2} \int\limits_{|z - a| \le r} f(z) \d x \d y \\
+		f(a) = |f(a)| \le \frac1{\pi r^2} \int\limits_{|z - a| \le r} |f(z)| \d x \d y
+		\le \frac1{\pi r^2} \int\limits_{|z - a| \le r} f(a) \d x \d y
+		= f(a)
+	\end{gather*}
+	Значит, везде во второй строчке равенства, откуда
+	\begin{gather*}
+		\frac1{\pi r^2} \int\limits_{|z - a| \le r} |f(z)| \d x \d y \le \frac1{\pi r^2} \int\limits_{|z - a| \le r} f(a) \d x \d y \\
+		|f(z)| = f(a)
+	\end{gather*}
+	Теперь покажем вещественные части, этого хватит
+	\begin{gather*}
+		f(a) = \Re f(a)
+		= \frac1{\pi r^2} \int\limits_{|z - a| \le r} \Re f(z) \d x \d y
+		\le \frac1{\pi r^2} \int\limits_{|z - a| \le r} |f(z)| \d x \d y
+		= \frac1{\pi r^2} \int\limits_{|z - a| \le r} f(a) \d x \d y = f(a)
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$f \in C(\cl \Omega) \cap H(\Omega)$, $M = \max_{z \in \partial \Omega} |f(z)|$, $\Omega$ ограничена.
+	Тогда
+	\[ \forall z \in \Omega, |f(z)| \le M \]
+	и
+	\[ (\exists z_0 \in \Omega \colon |f(z_0) = M|) \Ra f = const \]
+\end{conseq}
+\begin{proof}
+	$\cl \Omega$ "--- компакт, значит есть $z_0 \in \cl Omega$, где достигается максимум $|f(z)|$.
+	Если хоть одна эта точка на границе "--- первый пункт доказан автоматически.
+	Осталось разобрать случай, когда максимум достигается в $z_0 \in \Omega$.
+	Тогда есть окрестность ($\Omega$ открытое), на котором функция постоянна.
+	Теперь возьмём произвольную $z_1 \in \Omega$ и покажем, что $f(z_0) = f(z_1)$.
+	Для этого будем идти по ломаной, их связывающей, и для каждой точки понимать, что раз значение в ней равно $f(z_0)$,
+	то она больше или равна своей окрестности, и на этой окретсности тоже константа.
+	Для этого итеративно движемся: взяли круг вокруг $z_0$ наибольшего радиуса, помещающегося в $\Omega$, взяли точку на ломаной, продолжили.
+	Это корректно, так как у каждой точки есть положительное расстояние до границы, и на ломаной (как на компакте) есть минимум.
+	Тогда конечную длину кривой мы покроем конечным количеством шагов.
+\end{proof}
+
+\begin{lemma}[Шварца]
+	$f\colon \mathbb D \ra \mathbb D$, $f \in H(\mathbb D)$, $f(0) = 0$.
+	Тогда $|f(z)| \le z$ и если достигается равенство, то
+	\[ f(z) = e^{i\phi}z \]
+\end{lemma}
+\begin{proof}
+	\begin{gather*}
+		g(z) = \begin{cases} \frac{f(z)}z & z \ne 0 \\ f'(0) & z = 0 \end{cases} \\
+		g \in H(\mathbb D \setminus \{0\}) \land g \in C(\mathbb D) \Ra g \in H(\mathbb D) \\
+		\forall z \in r\mathbb T, |g(z)| \le \frac1r \quad 0 < r < 1
+	\end{gather*}
+	По принципу максимума
+	\begin{gather*}
+		\forall z \in r\mathbb D, |g(z)| \le \frac1r \\
+		r \ra 1 \\
+		\forall z \in \mathbb D, |g(z)| \le 1
+	\end{gather*}
+	Первый пункт проверили.
+	Далее, если где-то достигается максимум, то $g = const$ и $|g| = 1$, то есть $g=e^{i\phi}$.
+\end{proof}
