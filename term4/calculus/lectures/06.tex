@@ -1,0 +1,181 @@
+\begin{Def}
+	Ряд Лорана "--- формально $\sum_{n=-\infty}^{+\infty} a_n z^n$.
+\end{Def}
+Это почти обычный ряд, но бесконечный в две стороны.
+Теперь хочется понять, в каком смысле мы понимаем его сходимость.
+Для начала рассмотрим ряд $\sum_{n=0}^\infty a_nz^n$ "--- это обычный степенной ряд,
+у него есть круг сходимости $|z| < R_2$ ($R_2 \in [0; +\infty]$), что происходит на границе нас не интересует.
+А потом рассмотрим ряд $\sum_{n=1}^\infty a_{-n}\left(\frac1z\right)$ (называется \textit{главной частью ряда Лорана}) "---
+он тоже обычный степенной ряд, но относительно $\left(\frac1z\right)$.
+У него есть круг сходимости $\left|\frac1z\right| < \frac1{R_1}$ ($R_1 \in [0; +\infty]$).
+Тогда считаем, что ряд Лорана сходится в полосе $R_1 < |z| < R_2$.
+Соответственно, если $R_1 \ge R_2$, то ряд не сходится, но такие нас интересовать не будут.
+
+\begin{enumerate}
+\item
+	Из свойств обычных степенных рядов мы можем понять, что если $R_1 < r_1 < r_2 < R_2$,
+	то при $r_1 \le |Z| \le r_2$ имеется равномерная сходимость: это мы просто отступили от границ
+	кругов сходимости.
+\item
+	Следовательно, ряд Лорана можно почленно интегрировать и дифференцировать в его кольце сходимости.
+\end{enumerate}
+
+\begin{theorem}
+	Пусть $f$ голоморфна в полосе $R_1<|z|<R_2$.
+	Тогда если в этой полосе $f(z)=\sum_{n=-\infty}^\infty a_nz^n$, то коэффициенты $z_n$ определяются однозначно
+	и формула для их вычисления вот такая (как в формуле Тейлора):
+	\[ a_n = \frac1{2\pi i} \int\limits_{r\mathbb T} \frac{f(\zeta)}{\zeta^{n+1}} \d \zeta \]
+	Здесь $R_1 < r < R_2$.
+\end{theorem}
+\begin{proof}
+	$\zeta = re^{i\phi}$:
+	\begin{gather*}
+		f(re^{i\phi}) = \sum_{i=-\infty}^{+\infty} \\
+		\int\limits_{r\mathbb T} \frac{f(\zeta)}{\zeta^{n+1}} \d \zeta
+		= \int\limits_0^{2\pi} r^{-n-1}e^{-(n+1)i\phi} \sum_{k=-\infty}^{+\infty} a_k r^k e^{ik\phi}ire^{i\phi} \d \phi
+		= \sum_{k=-\infty}^{+\infty} ir^{k-n} a_k \int\limits_0^{2\pi} e^{i(k-n)\phi} \d \phi = 2\pi ia_n
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	Неравенство Коши
+	\[ |a_n| \le \frac{M(r)}{r^n} \quad n \in \Z \]
+	справедливо и для коэффициентов ряда Лорана.
+\end{Rem}
+
+\begin{theorem}[Лорана]
+	Если $f$ голоморфна в кольце $R_1 \le |z| \le R_2$, то
+	\[ f(z) = \sum_{n=-\infty}^{+\infty} \]
+	сходящемуся при $R_1 \le |z| \le R_2$.
+\end{theorem}
+\begin{proof}
+	Будем действовать очень похожим на ряд Тейлора методом, но отличия будут.
+	Возьмём $R_1 < \bar r_1 < r_1 < r_2 < \bar r_2 < R_2$.
+	$f$ голоморфна в кольце $K \lrh \bar r_1 \le |z| \le \bar r_2$, напишем на границе формулу Коши
+	\[
+		f(z)
+		= \frac1{2\pi i} \int\limits_{\partial K} \frac{f(\zeta)}{\zeta - z} \d z =
+	\]
+	Граница этого компакта "--- две окружности, причём внутренная ориентирована по, а внешняя "--- против часовой стрелки.
+	\begin{gather*}
+		= \frac1{2\pi i} \left(
+			  \int\limits_{\bar r_2 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta
+			- \int\limits_{\bar r_1 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta
+		\right) \\
+		\int\limits_{\bar r_2 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta = \cdots \\
+		|\zeta| = \bar r_2 > r_2 \ge |z| \\
+		\frac{\zeta - z} = \frac1\zeta \frac1{1-\frac z\zeta}
+		= \frac1\zeta \sum{n=0}^\infty \frac{z^n}{\zeta^n}
+		= \sum_{n=0}^\infty \frac{z^n}{\zeta^{n+1}} \text{ "--- равномерно сходится} \\
+		\cdots
+		= \frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} \sum_{n=0}^\infty \frac{z^n}{\zeta^{n+1}} f(\zeta) \d \zeta
+		= \sum_{n=0}^\infty z^n \underbrace{\frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} \frac{f(\zeta)}{\zeta^{n+1}} \d \zeta}_{\lrh a_n} \\
+%
+		-\int\limits_{\bar r_1 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta = \cdots \\
+		|\zeta| = \bar r_1 < r_1 \le |z| \\
+		\frac{\zeta - z} = -\frac1\zeta \frac1{1-\frac\zeta z}
+		= -\frac1\zeta \sum{n=0}^\infty \frac{\zeta^n}{z^n}
+		= -\sum_{n=0}^\infty \frac{\zeta^n}{z^{n+1}} \text{ "--- равномерно сходится} \\
+		\cdots
+		= \frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} \sum_{n=0}^\infty \frac{\zeta^n}{z^{n+1}} f(\zeta) \d \zeta
+		= \sum_{n=0}^\infty z^{-n-1} \underbrace{\frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} f(\zeta) \zeta^n \d \zeta}_{\lrh a_{-n-1}}
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	Если $f$ голоморфна в кольце $R_2 < |z| < R_2$, то $f$ можно разложить в $f = f_1 + f_2$,
+	где
+	\[ f_1 \in H(R_2 \mathbb D) \quad f_2 \in H(\C \setminus R_1 \mathbb D) \]
+	и при этом
+	\[ \lim_{|z| \ra \infty} |f_2(z)| = 0 \]
+	причём такое разложение единственно.
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		f(z) &= \sum_{n=-\infty}^{+\infty} \\
+		f_1(z) &\lrh \sum_{n=0}^\infty a_n z^n \text{ голоморфна как ряд Тейлора} \\
+		f_2(z) &\lrh \sum_{n=1}^\infty a_{-n} z^{-n} \text{ голоморфна как ряд Тейлора для $\frac1z$}
+	\end{align*}
+	$f_2$
+	Единственность: пусть $f = g_1 + g_2$.
+	\begin{gather*}
+		h \lrh \underbrace{f_1 - g_1}_{\in H(R_2 \mathbb D)} = \underbrace{g_2 - f_2}_{\in H(\C \setminus R_1 \mathbb D)} \in H(\C) \\
+		\lim_{|z| \ra \infty} |g_2(z) - f_2(z)| = 0
+	\end{gather*}
+	Делаем вывод, что с какого-то $R$ для $|z| \ge R$ имеет место $|h| \le 1$, далее на $|z| in [r, R]$ $h$ ограничена как непрерывная на компакте,
+	а также $h$ ограничена при $|z| \le r$ как непрерывная $f_1 - g_1$.
+	Итого, $h$ стремящаяся к нулю константа, то есть 0.
+\end{proof}
+
+\begin{Def}
+	$a$ "--- изолированная особая точка функции $f$, если она голоморфна в некоторой окрестности этой точки, но не в самой точке.
+\end{Def}
+
+\begin{Def}
+	$a$ "--- изолированная особая точка.
+	Если
+	\begin{enumerate}
+		\item $\lim\limits_{z \ra a} f(z)$ существует и конечен, то $a$ "--- устранимая особенность.
+		\item $\lim\limits_{z \ra a} f(z)$ существует и бесконечен (это означает, что $\lim\limits_{z \ra a} |f(z)| = +\infty$), то $a$ "--- полюс.
+		\item $\lim\limits_{z \ra a} f(z)$ не сходится, то $a$ "--- существенная особая точка.
+	\end{enumerate}
+\end{Def}
+
+\begin{theorem}
+	$a$ "--- изолированная особая точка.
+	Тогда следующее равносильно:
+	\begin{enumerate}
+		\item $a$ "--- устранимая особенность.
+		\item $f$ можно доопределить до голоморфной в окрестности $a$
+		\item В ряде Лорана $f$ отсуствует главная часть
+		\item $f$ ограничена в окрестности $a$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\begin{description}
+\item[$2 \Ra 3$:]
+	Если можно доопределить, то раскладывается в Тейлора, то есть Лорана без главной части.
+
+\item[$3 \Ra 1$:]
+	Подставим в ряд Тейлора $a$ и доопределим этим значением.
+
+\item[$1 \Ra 4$:]
+	Функция имеет конечный предел, значит ограничена.
+
+\item[$4 \Ra 2$:]
+	Пусть $f(z) \le M$ при $0 < |z - a| < \epsilon$, тогда
+	\[ |a_n| \le \frac{M(r)}{r^n} \le M r^{-n} \xlongrightarrow{n < 0, r \ra 0} 0 \]
+	eТогда
+	\[ f(z) = \sum_{n=-\infty}^{+\infty} a_n (z-a)^n = \sum_{n=0}^{+\infty} a_n (z-a)^n \]
+	Скажем, что $f(a) = a_0$.
+\end{description}\end{proof}
+
+\section{Теорема о единственности и нули голоморфной функции}
+
+\begin{theorem}[Первая версия теоремы о единственности]
+	$f \in H(\Omega)$, $a \in \Omega$.
+	Тогда следующее равносильно:
+	\begin{enumerate}
+		\item $\forall n \in \N, f^{(n)}(a) = 0$
+		\item $f\bigr|_{B_r(a)} \equiv 0$
+		\item $f \equiv 0$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\begin{description}
+\item[$1 \Ra 2$:]
+	$f$ голоморфна в окрестности $a$, значит она раскладывается в ряд Тейлора, но там нулевые коэффициенты.
+
+\item[$2 \Ra 1$:]
+	Очевидно.
+
+\item[$3 \Ra 1$:]
+	Ещё очевиднее.
+
+\item[$2 \Ra 3$:]
+	$\bar \Omega \subset \Omega$ "--- множество точек, в окрестности которых $f \equiv 0$.
+	Там точно живёт $a$.
+	А ещё $\bar \Omega$ открытое "--- каждая точка лежит с окрестностью.
+	А ещё $\bar \Omega$ замкнуто в $\Omega$: пусть $z_k \in \bar \Omega$, тогда $\forall n,k \in \N, f^{(n)}(z_k) = 0$,
+	но все производные непрерывны, значит если $z_k \ra z$, то $0 = f^{(n)}(z_k) \ra f^{(n)}(z)$, и $z \in \bar \Omega$.
+
+	Теперь просто по линейной связности $\Omega$ можно понять, что любая точка $\Omega$ лежит в $\bar \Omega$.
+\end{description}\end{proof}
