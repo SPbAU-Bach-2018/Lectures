@@ -169,9 +169,40 @@ digraph G {
 \begin{exmp}
 Научимся парсить арифметические выражения, единиц и знаков <<плюс>>
 
-$S \Ra 1|S+S$. Например, $S \Ra S + S \Ra S + S + S \Ra 1 + S + S \Ra 1 + S + 1 \Ra 1 + 1 + 1$. %TODO: дерево
+$S \Ra 1|S+S$. Например, $S \Ra S + S \Ra S + S + S \Ra 1 + S + S \Ra 1 + S + 1 \Ra 1 + 1 + 1$.
 
+\begin{dot2tex}[tikz,scale=.55,options=-t math]
+digraph G {
+    ranksep="0.0";
+    mindist="0";
+    S0[label="S"];
+    S11[label="S"];
+    S12[label="S"];
+    S21[label="S"];
+    S22[label="S"];
+    S23[label="S"];
+    13[label="1"];
+    S32[label="S"];
+    S33[label="S"];
+    141[label="1"];
+    S41[label="S"];
+    143[label="1"];
+    151[label="1"];
+    152[label="1"];
+    153[label="1"];
+    S0 -> S11;
+    S0 -> S12;
+    S12 -> S22;
+    S12 -> S23;
+    S22 -> 
+    S22 -> S;
+    S2 -> S3;
+    S2 -> 02;
+    S3 -> 13;
+}
+\end{dot2tex}
 Заметим, что то же самое можно было получить другим порядком применения продукций. Например, $S \Ra S + S \Ra S + S + S \Ra 1 + S + S \Ra 1 + 1 + S \Ra 1 + 1 + 1$ %TODO: дерево
+
 \end{exmp}
 
 \begin{Def}
