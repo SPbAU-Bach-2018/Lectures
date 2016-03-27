@@ -24,12 +24,12 @@ function get_md5cmd() {
 MD5CMD=$(get_md5cmd)
 
 function get_hash() {
-  if [ -e $ROOT_FILE.aux ]; then
-    $MD5CMD $ROOT_FILE.aux
-  fi
-  if [ -e $ROOT_FILE.idx ]; then
-    $MD5CMD $ROOT_FILE.idx
-  fi
+  for ext in .aux .idx .ind; do
+    f=$ROOT_FILE$ext
+    if [ -e $f ]; then
+      $MD5CMD $f
+    fi
+  done
 }
 
 old_hash=$(get_hash)
