@@ -23,15 +23,25 @@ function get_md5cmd() {
 
 MD5CMD=$(get_md5cmd)
 
-if [ -e $ROOT_FILE.aux ]; then
-  old_hash=`$MD5CMD $ROOT_FILE.aux`
-fi
+function get_hash() {
+  if [ -e $ROOT_FILE.aux ]; then
+    $MD5CMD $ROOT_FILE.aux
+  fi
+  if [ -e $ROOT_FILE.idx ]; then
+    $MD5CMD $ROOT_FILE.idx
+  fi
+}
+
+old_hash=$(get_hash)
 
 while true;
 do
 	echo -e "\n\e[33m ========== Running XeLaTeX ========== \e[0m"
 	xelatex -halt-on-error -8bit -shell-escape $ROOT_FILE.tex || exit 1
-	new_hash=`$MD5CMD $ROOT_FILE.aux`
+	if [ -e $ROOT_FILE.idx ]; then
+	  makeindex $ROOT_FILE.idx
+	fi
+	new_hash=$(get_hash)
 	if [ "$old_hash" == "$new_hash" ]; then
 	  break;
 	fi
