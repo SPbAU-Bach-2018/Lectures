@@ -100,10 +100,10 @@
 			\PH &= \Sigma_0^P \cup \Sigma_1^P \cup \dots \\
 			\Sigma_k^P &= \NP^{\Pi_{i-1}^P} \\
 			\Sigma_k^P
-				&= \NP^{\co\NP^{\NP^{\dots^{\Sigma_0^P}}}} \\
-				&= \NP^{\co\NP^{\NP^{\dots^{\P}}}} \\
+				&= \NP^{(\co\NP)^{\NP^{\dots^{\Sigma_0^P}}}} \\
+				&= \NP^{(\co\NP)^{\NP^{\dots^{\P}}}} \\
 			\left(\Sigma_k^P\right)^A
-				&= \NP^{\co\NP^{\NP^{\dots^{\P^A}}}}
+				&= \NP^{(\co\NP)^{\NP^{\dots^{\P^A}}}}
 		\end{align*}
 		То есть мы отдельно добавляем оракула в каждый из классов $\Sigma_k^P$, а при добавлении в класс мы пишем не
 		что-то вроде $\NP^{\{A\}\cup \Pi_{i-1}^P}$, а добавляем оракула в самый внутренний уровень.
