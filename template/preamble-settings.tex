@@ -83,6 +83,11 @@
     \clearpage
 }}
 
+\ifdefined\UseIndex%
+\makeindex
+\AtEndDocument{\printindex}
+\fi
+
 \setlength{\headheight}{15pt}
 \pagestyle{fancyplain}
 \fancyhf{}
