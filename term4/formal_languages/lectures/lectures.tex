@@ -2,9 +2,14 @@
 \usepackage{epsfig}
 \usepackage{dot2texi}
 \usepackage{tikz}
+\usepackage{stackengine}
 \usetikzlibrary{shapes,arrows}
 
 \def\O{\mathcal{O}}
+
+\newcommand\letvdash[1]{\mathrel{
+  \stackengine{1ex}{\vdash}{\;\;\scriptscriptstyle#1}{O}{c}{F}{T}{L}}}
+\stackMath
 
 \begin{document}
 \BigHeader
@@ -18,4 +23,5 @@
 \input{04}
 \input{05}
 \input{06}
+\input{07}
 \end{document}
