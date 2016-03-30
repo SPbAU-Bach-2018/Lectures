@@ -3,6 +3,9 @@
 *.aux
 *.toc
 *.log
+*.idx
+*.ilg
+*.ind
 
 *.jpg
 *.jpeg
