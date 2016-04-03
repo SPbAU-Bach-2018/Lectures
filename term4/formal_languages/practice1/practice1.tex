@@ -1,6 +1,10 @@
+\newcommand{\UseIndex}{}
 \input{preamble}
 
 \newcommand{\somealpha}[1]{\underbrace{\alpha\dots\alpha}_{#1}}
+
+\newcommand{\problem}[1]{\subsection{Задача #1}\index{#1@Задача #1}\label{prob#1}}
+\newcommand{\subproblem}[2]{\subsection{Задача #1#2}\index{#1@Задача #1!#2}\label{prob#1#2}}
 
 \begin{document}
 \BigHeader
