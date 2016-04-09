@@ -22,6 +22,10 @@
 \usepackage{xfrac}
 \usepackage{enumitem}
 \usepackage[pdf]{graphviz}
+\ifdefined\UseIndex%
+\usepackage{makeidx}%
+\usepackage[totoc]{idxlayout}
+\fi
 \ifdefined\GeometryForAbstract%
 \usepackage[top=0.5cm,bottom=0.5cm,left=1cm,right=1cm,marginparwidth=0.5cm,marginparsep=0cm,headsep=0cm,includehead,includefoot]{geometry}%
 \else%

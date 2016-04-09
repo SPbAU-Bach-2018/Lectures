@@ -80,7 +80,7 @@ $s \xLongrightarrow{*} t$, если $\exists s_0\dots s_n \colon s_0 = s, s_n = 
 \end{Def}
 
 \begin{Def}
-$L(G) = \{w \in \Sigma^*: s \xLongrightarrow{*} w\}$
+$L(G) = \{w \in \Sigma^*: S \xLongrightarrow{*} w\}$
 \end{Def}
 
 \begin{exmp}
@@ -93,7 +93,7 @@ $S \Ra 1S1 \Ra 10S01 \Ra 10101 \in \Sigma^*$
 
 $L(G)$ "--- язык палиндромов над $\Sigma = \{0, 1\}$.
 
-формальными грамматиками, как видно, неплохо описываются всякие штуки, которые можно определить рекурсивно.
+Формальными грамматиками, как видно, неплохо описываются всякие штуки, которые можно определить рекурсивно.
 \end{exmp}
 \begin{Rem}
 Палиндромы не являются регулярным языком по лемме о накачке.
@@ -171,6 +171,7 @@ digraph G {
 
 $S \Ra 1|S+S$. Например, $S \Ra S + S \Ra S + S + S \Ra 1 + S + S \Ra 1 + S + 1 \Ra 1 + 1 + 1$.
 
+\ifx true false
 \begin{dot2tex}[tikz,scale=.55,options=-t math]
 digraph G {
     ranksep="0.0";
@@ -201,6 +202,8 @@ digraph G {
     S3 -> 13;
 }
 \end{dot2tex}
+\fi
+\TODO картинки с деревьями разбора
 Заметим, что то же самое можно было получить другим порядком применения продукций. Например, $S \Ra S + S \Ra S + S + S \Ra 1 + S + S \Ra 1 + 1 + S \Ra 1 + 1 + 1$ %TODO: дерево
 
 \end{exmp}

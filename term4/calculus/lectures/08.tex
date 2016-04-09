@@ -1,0 +1,204 @@
+\begin{theorem}
+	Если $f$ меломорфна, то $f'$ тоже меломорфна.
+	Полюса у $f$ и $f'$ в одних и тех же точках.
+	Если у $f$ полюс $r_0$ порядка $n$, то у $f'$ он порядка $n+1$.
+\end{theorem}
+\begin{proof}
+	Если $f$ голоморфна на открытом множестве, то $f'$ там тоже голоморфна, значит множество особых точек $f'$ содержится в множестве таковых у $f$.
+	Пусть $z_0$ "--- особая точка $f$.
+	Если это полюс порядка $n$, то в окрестности есть рахложение
+	\begin{gather*}
+		f(z)
+		= \sum_{k=-n}^{+\infty} c_k(z-z_0)^k
+		= \frac{c_{-n}}{(z-z_0)^n} + \frac{c_{-n+1}}{(z-z_0)^{n-1}} + \dots +  \frac{c_{-1}}{z - z_0} + \sum_{k=0}^{+\infty} c_k (z-z_0)^k \\
+		f'(z)
+		= \frac{-nc_{-n}}{(z-z_0)^{n+1}} + \dots + \frac{-c_{-1}}{(z-z_0)^2} + \sum_{k=0}^{+\infty} kc_k (z-z_0)^{k-1}
+	\end{gather*}
+	Значит $z_0$ "--- полюс $f'$ порядка $n+1$.
+\end{proof}
+
+\begin{exmp}
+	\[ \frac{\sin z}z \quad \frac{\cos z - 1}{z^2} \]
+	0 "--- устранимая особая точка.
+	\[ \frac{e^z}z \quad \frac{\sin z}z \]
+	0 "--- полюс 10-го и 4-го порядка.
+	\[ e^{\sfrac1z} \quad \sin\frac1z \quad \cos\frac1z \]
+	0 "--- существенная особая точка.
+\end{exmp}
+
+\section{Вычеты}
+
+\begin{Def}[Бесконечный предел]
+	\[\lim_{n \ra +\infty} z_n = \infty \]
+	если $\lim_{n \ra +\infty} |z_n| = +\infty$.
+\end{Def}
+
+\begin{enumerate}
+	\item $\lim_{n \ra +\infty} z_n = \infty \Ra \lim_{n \ra +\infty} \frac1{z_n} = 0$
+	\item $\lim_{n \ra +\infty} z_n = \infty \land |w_k| \ge \delta > 0 \Ra \lim_{n \ra +\infty} z_nw_n = \infty$
+	\item $\lim_{n \ra +\infty} z_n \land \text{$w_k$ ограничена} \Ra \lim_{n \ra +\infty} (z_n \pm w_n) = \infty$
+	\item $\lim_{n \ra +\infty} z_n \land \text{$w_k$ ограничена} \Ra \lim_{n \ra +\infty} \frac{w_n}{z_n} = 0$
+\end{enumerate}
+
+\begin{Def}
+	Предел $\lim_{n \ra +\infty} z_n = A$ можно определить по Коши или по Гейне.
+\end{Def}
+
+\begin{Rem}
+	$\bar \C = \C \cup \{\infty\}$
+\end{Rem}
+
+Сфера Римана: давайте поставим на 0 комплексной плоскости сферу диаметра 1:
+\[ u^2 + v^2 + \left(w - \frac12\right)^2 = \frac14 \]
+Построим отображение $\C$ на эту сферу: проводим в точку $x$ на плоскости луч из северного полюса, смотрим точку пересечения сферы.
+Сам северный полюс отображается на $\infty$.
+
+\begin{theorem}
+	При отображении выше точка $z = x + iy$ отображается в
+	\[ u = \frac x{1+|z|^2} \quad v = \frac y{1+|z|^2} \quad w = \frac{|z|^2}{1 + |z|^2} \]
+\end{theorem}
+Доказать: упражнение, вспомнить 11 класс.
+
+\begin{conseq}
+	$z, \tilde z \in \C$.
+	Расстояние между ними на сфере
+	\[ \frac{|z - \tilde z|}{\sqrt{1+|z|^2}\sqrt{1+|\tilde z|^2}} \]
+\end{conseq}
+\begin{proof}
+	Тупо раскрываем скобочки.
+\end{proof}
+
+\begin{conseq}
+	Расстояние между $z \in \C$ и бесконечностью на сфере:
+	\[ \frac1{\sqrt{1+|z|^2}} \]
+\end{conseq}
+\begin{proof}
+	\[
+		u^2 + v^2 + (w-1)^2
+		= \frac{x^2}{(1+|z|^2)^2} + \frac{y^2}{(1+|z|^2)^2} + \frac1{(1+|z|^2)^2}
+		= \frac1{1+|z|^2}
+	\]
+\end{proof}
+
+\begin{conseq}
+	Cходимость в $\bar \C$ равносильна сходимости на сфере Римана.
+\end{conseq}
+\begin{proof}
+	Если $z_n \ra z_0$ в $\bar C$, то видно, что формулы выше стремятся к нулю.
+
+	Обратно: пусть $|z_n - z| \nrightarrow 0$, но $A \lrh \frac{|z - \tilde z|}{\sqrt{1+|z|^2}\sqrt{1+|\tilde z|^2}}$.
+	Тогда $|z_{n_k} - z_0| \ge \epsilon > 0$, и
+	\[ \sqrt{1+|z_{n_k}|^2} \ra +\infty \Ra z_{n_k} \ra \infty \ra A \ra 1 \ne 0\]
+	Если возьмём $\frac1{\sqrt{1+|z|^2}} \ra 0$, то очевидно $z_n \ra \infty$.
+\end{proof}
+
+\begin{conseq}
+	$\bar \C$ компакт.
+\end{conseq}
+
+\begin{Def}
+	Пусть $f$ голомофрна в окрестности $\infty$.
+	Тогда $\infty$:
+	\begin{description}
+		\item[устранимая особая точка] если есть конечный предел,
+		\item[полюс] если есть бесконечный предел,
+		\item[существенная особая точка] если предела нет.
+	\end{description}
+\end{Def}
+
+\begin{Rem}
+	Если $f$ голоморвна вне круга радиуса $R$, то она расскладывается там в ряд Лорана,
+	и $g = \sfrac1f$ раскладывается в ряд Лорана в круге радиуса $\sfrac1R$ без центра.
+\end{Rem}
+
+\begin{theorem}\begin{enumerate}
+\item
+	Следующее равносильно:
+	$\infty$ "--- устранимая особая точка $f$,
+	$f$ ограничена в окрестности $\infty$,
+	$f$ в ряде Лорана не имеет членов с положительными степенями.
+
+\item
+	$\infty$ полюс тогда и только тогда, когда в ряде Лорана коенчное число ненулевых членов с полодительными степенями,
+	и наибольшая такая степень равна порядку полюса.
+
+\item
+	$\infty$ существенная особая тока тогда и только тогда, когда в ряде Лорана бесконечно много ненулывых членов с положительной степенью.
+\end{enumerate}\end{theorem}
+
+\begin{Def}
+	$f$ голоморна в $\infty$, если она голоморфна в окрестности $\infty$ и $\infty$ "--- устранимая особая точка.
+\end{Def}
+
+Теперь можно много предыдущих теорем переписать для $\bar \C$.
+Например:
+
+\begin{theorem}[Лиувилля]
+	$f \in H(\bar \C) \Ra f \equiv const$
+\end{theorem}
+\begin{Def}
+	\[ f \in H(\bar C) \Ra f() \in H(\C) \land f \in C(\C) \]
+	Непрерына на компакте, значит ограничена, и ссылаемся на старую теорему.
+\end{Def}
+
+\begin{Def}
+	$f$, $z_0 \ne \infty$ "--- изолированная особая точка $f$.
+	Вычетом функции $f$ в точке $z_0$ называется
+	\[ \res_{z = z_0} f \eqDef c_{-1} \]
+	где
+	\[ f(z) = \sum_{n=-\infty}^{+\infty} c_n(z-z_0)^n \]
+\end{Def}
+Иногда так писать неудобно, потому что функция всегда одна и та же, а точки разные, и пишут наоборот "--- точку справа, функцию внизу.
+
+\begin{Def}
+	\[ \res_{z = \infty} f \eqDef -c_{-1}\]
+\end{Def}
+
+\begin{theorem}[Коши о вычетах]
+	Пусть $f$ голомофрна в $\Omega$ без какого-то конечного числа особых точек $a_j$,
+	$K \subset \Omega$ "--- компакт, и особые точки не лежат на его границе.
+	Тогда, внезапно,
+	\[ \int\limits_{\partial K} f(z) \d z = 2\pi i\sum_{a_j \in \Int K} \res_{z=a_j} f \]
+	То есть посчитать интеграл можно просто сложив несколько вычетов.
+\end{theorem}
+
+\begin{lemma}
+	$f(z) = \sum_{n=-\infty}^{+\infty} c_n z^n$ сходится в кольце $R_1 < |z| < R_2$.
+	Пусть $R_1 < r < R_2$.
+	Тогда
+	\[ \int\limits_{|z| = r} f(z) \d z = 2\pi i c_{-1} = 2\pi i\res_{z=0} f \]
+\end{lemma}
+\begin{proof}
+	На окружности сходится равномерно,
+	\begin{gather*}
+		\int\limits_{|z| = r} f(z)\d z
+		= \sum_{n=-\infty}^{+\infty} \int\limits_{|z|=r} z^n \d z \\
+		\int\limits_{|z| = r} z^n \d z
+		= \int\limits_0^{2\pi} rie^{i\phi}r^nr^{in\phi} \d \phi
+		= ir^{n+1} \int\limits_0^{2\pi} e^{i(n+1)\phi} \d \phi
+		= \begin{cases} 2\pi i & n = -1 \\ 0 & n \ne -1 \end{cases}
+	\end{gather*}
+\end{proof}
+
+\begin{proof}
+	Возьмём компакт $\bar K$, равный $K$ без окрестностей особых точек $B_j$.
+	Ориентируем его границу так, чтобы область всегда была слева по обходу
+	Внутри него вообще нет особых точек, и интеграл по его границе 0.
+	\begin{gather*}
+		\int\limits_K f(z) \d z
+		= \int\limits_{\bar K} f(z) \d z + \sum_{a_j \in \Int K} \int\limits_{|z-a_j|=r_j} f(z) \d z
+		= 0 + \sum_{a_j \in \Int K} 2\pi ic_j
+	\end{gather*}
+\end{proof}
+
+\begin{conseq}
+	$f$ голомофрна в $\C$, кроеме конечного числа особых точек.
+	Тогда сумма вычетов $f$ в этих точках и на бесконечности равна нулю.
+\end{conseq}
+\begin{proof}
+	Возьмём достаточно большой круг.
+	Теорема нам говорит, что интергал по границе круга равен сумме вычетов всех особых точек.
+	С другой стороны, по лемме этот же интеграл равен коэффициенту при $z^{-1}$ в разложении
+	\[ f(z) = \sum_{n=-\infty}^{+\infty} c_n z^n \]
+	и он по определению равен $-\res_{z=\infty} f$.
+\end{proof}
