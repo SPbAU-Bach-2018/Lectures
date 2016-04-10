@@ -5,7 +5,6 @@ unitsize(0.7cm);
 pair bl=(-1.5, -3.5);
 pair ur=(6.5, 3.5);
 
-add("nnehatch", hatch(N+NE, grey));
 add("holehatch", hatch(2mm, grey));
 
 path ca = circle((0, 0), 1);
@@ -52,7 +51,7 @@ pair f(pair x) {
 pair w3 = f(z[3]), w4 = f(z[4]);
 
 draw(bl ^^ ur, invisible);
-fill(w4 * -10 -- (0, 0) -- w3 * -10 -- cycle, pattern("nnehatch"));
+fill(w4 * -10 -- (0, 0) -- w3 * -10 -- cycle, pattern("hatch"));
 draw(w4 * 10 -- w4 * -10, red + linewidth(2bp));
 draw(w3 * 10 -- w3 * -10, magenta + linewidth(2bp));
 for (int i = 1; i < z.length; ++i) {
