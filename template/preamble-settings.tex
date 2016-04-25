@@ -83,6 +83,11 @@
     \clearpage
 }}
 
+\ifdefined\UseIndex%
+\makeindex
+\AtEndDocument{\printindex}
+\fi
+
 \setlength{\headheight}{15pt}
 \pagestyle{fancyplain}
 \fancyhf{}
@@ -110,5 +115,9 @@
 }
 \expandafter\temp\@digraph\@nil
 \makeatother
+
+% http://kostyrka.ru/blog/archives/686
+\AddEnumerateCounter{\Asbuk}{\@Asbuk}{\CYRM}
+\AddEnumerateCounter{\asbuk}{\@asbuk}{\cyrm}
 
 \input{preamble-shortcuts}

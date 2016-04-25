@@ -31,6 +31,7 @@
 
 \newcommand{\Lor}{\bigvee}
 \newcommand{\Land}{\bigwedge}
+\renewcommand{\O}{\mathcal O}
 
 \newcommand{\mcA}{\mathcal A}
 \newcommand{\mcB}{\mathcal B}
@@ -57,6 +58,21 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator*{\res}{res}
+\newcommand{\co}{\text{co\,-}}
+\renewcommand{\P}{\mathsf{P}}
+\newcommand{\NP}{\mathsf{NP}}
+\newcommand{\EXP}{\mathsf{EXP}}
+\newcommand{\NEXP}{\mathsf{NEXP}}
+\newcommand{\PH}{\mathsf{PH}}
+\newcommand{\PSPACE}{\mathsf{PSPACE}}
+\newcommand{\NC}{\mathsf{NC}}
+\newcommand{\NL}{\mathsf{NL}}
+\newcommand{\MA}{\mathsf{MA}}
+\newcommand{\AM}{\mathsf{AM}}
+\newcommand{\RP}{\mathsf{RP}}
+\newcommand{\ZPP}{\mathsf{ZPP}}
+\newcommand{\BPP}{\mathsf{BPP}}
 \AtBeginDocument{\let\Re\relax}
 \AtBeginDocument{\newcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}}
 \AtBeginDocument{\let\Im\relax}
@@ -64,6 +80,7 @@
 \newcommand{\emod}[1]{\mathop{\equiv}\limits_{#1}}
 \renewcommand{\binom}[2]{\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)} % We do not like how \binom and \genfrac work in display mode
 \newcommand{\repbinom}[2]{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}
+\newcommand{\const}{\mathrm{const}}
 
 \newcommand{\partd}[2]{\frac{\partial #1}{\partial #2}}
 \newcommand{\partD}[2]{\frac{\partial^2 #1}{\partial #2^2}}
@@ -111,4 +128,4 @@
     \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
 \newcommand\circleeq{%
   \tikz[baseline=(X.base)+0.5em]
-    \node (X) [draw, shape=circle, inner sep=-0.2em] {\strut =};}
+    \node (X) [draw, shape=circle, inner sep=-0.2em] {\strut $=$};}

@@ -1,6 +1,11 @@
+\newcommand{\UseIndex}{}
 \input{preamble}
 
-\DeclareMathOperator{\Div}{\mathup{div}}
+\newcommand{\somealpha}[1]{\underbrace{\alpha\dots\alpha}_{#1}}
+
+\newcommand{\problem}[1]{\subsection{Задача #1}\index{#1@Задача #1}\label{prob#1}}
+\newcommand{\subproblem}[2]{\subsection{Задача #1#2}\index{#1@Задача #1!#2}\label{prob#1#2}}
+
 \begin{document}
 \BigHeader
     {Формальные языки, IV семестр\\Практика I подгруппы}{Весна 2016, семинарист: Карпов Николай}
@@ -8,5 +13,11 @@
 \gdef\LectureName{Формальные языки, IV семестр}
 
 \input{02}
+\input{04}
+\input{03}
+\input{05}
+\input{06}
+\input{07}
+\input{08}
 
 \end{document}
