@@ -143,7 +143,7 @@ $L = \{ww^R \colon w \in \Sigma^*\}$.
 
 $\Sigma = \{0, 1\}, \Gamma= \{0, 1, z_0\}$.
 
-\begin{dot2tex}[tikz,scale=.55,options=-t math]
+\begin{dot2tex}[options=-t math]
 digraph G {
     rankdir=LR;
     ranksep="0.0";
@@ -153,16 +153,17 @@ digraph G {
     node [shape = circle] 0 1;
     node [shape = doublecircle] 2;
     "" -> 0 [label=""];
-    0 -> 0 [label="0,z_0/0z_0 ; 1,z_0/1z_0;0,0/00;1,0/10;0,1/01;1,1/11"];
-    0 -> 1 [label="\\epsilon,1/1; \\epsilon,0/0 ;\\epsilon, z_0/z_0"]; 
-    1 -> 1 [label="0,0/\\epsilon ; 1,1/\\epsilon"];
+    0 -> 0 [headport=n,tailport=n,label="\\begin{matrix} \\t{0},z_0/\\t{0}z_0 \\\\ \\t{0},\\t{0}/\\t{00} \\\\ \\t{0},\\t{1}/\\t{01} \\end{matrix}"];
+    0 -> 0 [headport=s,tailport=s,label="\\begin{matrix} \\t{1},z_0/\\t{1}z_0 \\\\ \\t{1},\\t{0}/\\t{10} \\\\ \\t{1},\\t{1}/\\t{11} \\end{matrix}"];
+    0 -> 1 [label="\\epsilon,\\t{0}/\\t{0}"];
+    0 -> 1 [label="\\epsilon,\\t{1}/\\t{1}"];
+    0 -> 1 [label="\\epsilon,z_0/z_0"];
+    1 -> 1 [headport=n,tailport=n,label="\\t{0},\\t{0}/\\epsilon"];
+    1 -> 1 [headport=s,tailport=s,label="\\t{1},\\t{1}/\\epsilon"];
     1 -> 2 [label="\\epsilon,z_0/\\epsilon"];
 }
 
 \end{dot2tex}
-
-\textit{Автор конспекта приносит извинения за ужасные метки на ребрах, он не смог за адекватное время сделать красиво. Каждое ребро "--- на самом деле мультиребро, точка с запятой разделяет переходы.
-Возможно, когда-нибудь это станет красивее}
 
 Выглядит ужасно и формально, ничего не поделаешь. 
 Словами: мы хотим сначала все пихать на стек, потом доставать с него, при этом требование "--- чтобы то что достаем со стека совпадало с тем, что сейчас в строке.
