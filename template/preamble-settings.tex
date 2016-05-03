@@ -23,7 +23,10 @@
 
 \frenchspacing
 
+\ifdefined\UseArticleClass%
+\else%
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
+\fi%
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Теорема}[section]

@@ -1,7 +1,11 @@
 \ifdefined\GeometryForAbstract%
 \documentclass[10pt,a4paper,notitlepage]{report}
 \else%
+\ifdefined\UseArticleClass%
+\documentclass[12pt,a4paper,notitlepage]{article}
+\else%
 \documentclass[12pt,a4paper,notitlepage]{report}
+\fi
 \fi
 \usepackage{polyglossia}
 \usepackage{fontspec}
