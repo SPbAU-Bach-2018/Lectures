@@ -1,5 +1,46 @@
 \setcounter{section}{2}
 \section{Билет 3}
+	\begin{Def}
+		$f(n)$ \textit{конструктивна по времени}, если есть такая ДМТ, что она по входу $1^n$
+		может вывести $1^{f(n)}$ за время $\O(f(n))$.
+	\end{Def}
+	\begin{Rem}
+		В четырёх определениях ниже $f(n)$ должна быть конструктивна по времени и неубывать.
+	\end{Rem}
+	\begin{Def}
+		$\DTime[f(n)]$ "--- множество языков, разрешаемых на ДМТ за время $\O(f(n))$
+	\end{Def}
+	\begin{Def}
+		$\DSpace[f(n)]$ "--- множество языков, разрешаемых на ДМТ с использованием $\O(f(n))$ памяти (если памяти мало, то входная лента становится read-only)
+	\end{Def}
+	\begin{Def}
+		$\NTime[f(n)]$ "--- множество языков, разрешаемых на НМТ за время $\O(f(n))$
+	\end{Def}
+	\begin{Def}
+		$\NSpace[f(n)]$ "--- множество языков, разрешаемых на НМТ с использованием $\O(f(n))$ памяти (если памяти мало, то входная лента становится read-only)
+	\end{Def}
+
+	\begin{exmp}
+		\[ \P = \Cup_{poly(n)} = \DTime[poly(n)] = \bigcup\limits_{k=0}^{\infty} \DTime[n^k] \]
+	\end{exmp}
+	\begin{Def}
+		\[ \PSPACE = \bigcup\limits_{k=0}^\infty DSpace[n^k] \]
+	\end{Def}
+
+	\begin{theorem}
+		Если $f(n) \log f(n) = o(g(n))$ (а $f$ и $g$ конструктивны по времени), то $\DTime[f(n)] \subsetneq \DTime[g(n)]$
+	\end{theorem}
+	\begin{proof}
+		\TODO
+	\end{proof}
+
+	\begin{theorem}
+		Если $f(n)=o(g(n))$ и для достаточно больших $n$ верно, что $g(n) \ge \log n$, то $\DSpace[f(n)] \neq \DSpace[g(n)]$.
+	\end{theorem}
+	\begin{proof}
+		\TODO
+	\end{proof}
+
 	Это про строгую вложенность $\mathsf{DTime}[f(n)]$ (если функции отличаются на логарифм), $\mathsf{NTime}[f(n)]$ (если функции отличаются чуть-чуть асимптотически в $n+1$ и $n$),
 	$\mathsf{NSpace}[f(n)]$ и $\mathsf{DSpace}[f(n)]$ (если функции отличаются асимптотически)
 
