@@ -17,14 +17,21 @@
 		$\NTime[f(n)]$ "--- множество языков, разрешаемых на НМТ за время $\O(f(n))$
 	\end{Def}
 	\begin{Def}
-		$\NSpace[f(n)]$ "--- множество языков, разрешаемых на НМТ с использованием $\O(f(n))$ памяти (если памяти мало, то входная лента становится read-only)
+		$\NSpace[f(n)]$ "--- множество языков, разрешаемых на НМТ с использованием $\O(f(n))$ памяти (если памяти мало, то входна лента становится read-only).
 	\end{Def}
+	\begin{Rem}
+		Тут важно, что если мы используем определение НМТ с подсказкой, то ей запрещается читать старые биты подсказки: каждый
+		бит читается максимум один раз.
+	\end{Rem}
 
 	\begin{exmp}
 		\[ \P = \Cup_{poly(n)} = \DTime[poly(n)] = \bigcup\limits_{k=0}^{\infty} \DTime[n^k] \]
 	\end{exmp}
 	\begin{Def}
-		\[ \PSPACE = \bigcup\limits_{k=0}^\infty DSpace[n^k] \]
+		\[ \PSPACE = \bigcup\limits_{k=0}^\infty \DSpace[n^k] \]
+	\end{Def}
+	\begin{Def}
+		\[ \NPSPACE = \bigcup\limits_{k=0}^\infty \NSpace[n^k] \]
 	\end{Def}
 
 	\begin{theorem}
