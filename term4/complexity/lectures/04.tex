@@ -115,7 +115,7 @@
         формула F является выполнимой. 
 \end{proof}
 
-\subsection{Схемовая сложность $Sigma_2$}
+\subsection[Схемная сложность Sigma-2]{Схемная сложность $\Sigma_2$}
 \begin{theorem}
 	Существует булева функция $\{0, 1\}^{n} \to \{0, 1\}$, 
 	которая не вычисляется ни одной схемой размера $\frac{2^n}{10n}$
@@ -132,7 +132,7 @@
 
 
 \begin{theorem}
-	$\forall k \colon PH \ne \subset Size[n^k]$\\
+	\[ \forall k \colon \PH \not\subseteq Size[n^k] \]
 \end{theorem}
 \begin{proof}
 	Из предыдущей теоремы следует, что булевых функций схемной
@@ -141,31 +141,61 @@
 	булева функция, зависящая только от первых $(k + 1)\log n$ 
 	переменных, схемная сложность которой больше, чем $n^k$.
 
-	Такую функцию можно задать в виде таблицы истиности размера $O(n^{k + 1})$.
+	Такую функцию можно задать в виде таблицы истиности размера $\O(n^{k + 1})$.
 
 	Зададим язык L, который будет на входах каждой длины будет 
 	решаться самой первой функцией, зависящей только от первых $(k + 1)\log n$
 	переменных, чья схемная сложность строго больше $n^k$.
+	
+	\begin{gather*}
+		x \in L \\
+		\Updownarrow \\
+		\begin{array}{l}
+		\exists f \colon ( \qquad\textit{существует $f$, вычисляющая $L$ на входах длины $|x|$} \\
+		\qquad	(\forall C \colon ( \qquad \textit{она не вычисляется небольшими схемами} \\
+		\qquad	\qquad	(|C| \le n^k) \to (\exists y \in \{0, 1\}^n \colon C(y) \ne f(y)) \\
+		\qquad	)) \\
+		\qquad	\land (\forall g \colon ( \qquad \textit{любая меньшая функция вычисляется схемами} \\
+		\qquad	\qquad	(g < f) \to (\exists C \colon (|C| \le n^k) \to ( \\
+		\qquad	\qquad	\qquad	\forall y \in \{0, 1\}^n \colon C(y) = g(y) \\
+		\qquad	\qquad	)) \\
+		\qquad	)) \\
+		\qquad \to f(x) = 1 \qquad \textit{при этом $x$ принимается этой функцией} \\
+		)
+		\end{array}
+	\end{gather*}
+	\begin{Rem}
+		Самый внешний квантор можно заменить с $\exists$ на $\forall$, ничего не изменится,
+		так как функция $f$ единственна.
+	\end{Rem}
 
-	$x \in L \Lra \forall f(\forall C \colon |C| \le n^k \exists y \in \{0, 1\}^n C(x) \ne f(x)
-	\wedge \forall g((g \le f) \to \exists C|C| \le n^k \forall y \in \{0, 1\}^n C(y) = g(y)) \to f(x) = 1)$.
+	В этой формуле $f$ и $g$ выбираются среди функций из $\{0, 1\}^n \to \{0, 1\}$, которые
+	зависят от первых $(k + 1)\log n$ битов.
+	Представляются эти  функции с помощью таблицы истиности для первых $(k + 1)\log n$ переменных,
+	сравниваются лексикографически.
+	Значит, все переменные под кванторами полиномиального от $n$ размера.
+	В получившейся формуле все кванторы можно перенести в начало, получить
+	язык из какого-то уровня иерархии.
 
-	 В этой формуле f и g выбираются среди функций из $\{0, 1\}^n \to \{0, 1\}$, которые
-	 зависят от первых $(k + 1)\log n$ битов, представляются эти 
-	 функции с помощью таблицы истиности для первых $(k + 1)\log n$ переменных, 
-	 сравниваются лексикографически.
-
-	Таким образом, мы получили, что $L \in PH$.  
+	Таким образом, мы получили, что $L \in \PH$.
 \end{proof}
 
 \begin{conseq}
-	$\forall k \Sigma^2 P \cap \Pi^2P \ne \subset Size[n^k]$
+	Для любого $k$:
+	\[ \Sigma^2 \P \cap \Pi^2 \P \not\subseteq \mathsf{Size}[n^k] \]
 \end{conseq}
 \begin{proof}
-	$\Sigma^2P \cap \Pi^2P \subset Size[n^k] \Ra $\\
-	$NP \subset \Sigma^2P \cap \Pi^2 \subset P/poly \Ra$\\
-	$PH = \Sigma^2P \cap \Pi^2P \subset Size[n^k]$\\
-	Противоречие с предыдущей теоремой. 
+	От противного.
+	Пусть $\Sigma^2 \P \cap \Pi^2 \P \subseteq Size[n^k]$.
+	Мы знаем, что $Size[n^k] \subseteq \Ppoly$ и
+	что $\NP = \Sigma^1 \P \subseteq \Sigma^2 \P \cap \Pi^2 \P$.
+	Отсюда $\NP \subseteq \Ppoly$, отсюда по теореме Карла-Липтона происходит
+	коллапс $\PH = \Sigma^2 \P$.
+
+	\TODO дальше почему-то мы выясняем, что $\PH = \Pi^2 \P$.
+
+	Отсюда $\Sigma^2 \P \cap \Pi^2 \P = \PH \subseteq Size[n^k]$.
+	Получили противоречие с предыдущей теоремой.
 \end{proof}
 
 \section{Теорема Савича}
