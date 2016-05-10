@@ -58,6 +58,31 @@
 			\Pi_2 = \Pi^2 \P = \co\NP^{\NP} = \co\NP^{\co\NP}
 		\end{align*}
 	\end{exmp}
+	\begin{assertion}
+		\[ \PH = \co\PH \]
+	\end{assertion}
+	\begin{proof}
+		Включение $\co\PH \subseteq \PH$:
+		\begin{gather*}
+			\co\PH =
+				\co\bigcup_{i \ge 0} \Sigma_i \subseteq
+				\co\bigcup_{i \ge 0} \Pi_{i+1} =
+				\bigcup_{i \ge 1} \co\Pi_i =
+				\bigcup_{i \ge 1} \Sigma_i \subseteq
+				\bigcup_{i \ge 0} \Sigma_i =
+				\PH
+		\end{gather*}
+		Включение $\co\PH \supseteq \PH$:
+		\begin{gather*}
+			\co\PH =
+				\co\bigcup_{i \ge 0} \Sigma_i \supseteq
+				\co\bigcup_{i \ge 1} \Sigma_i \supseteq
+				\co\bigcup_{i \ge 1} \Pi_{i-1} =
+				\bigcup_{i \ge 0} \co\Pi_i =
+				\bigcup_{i \ge 0} \Sigma_i =
+				\PH
+		\end{gather*}
+	\end{proof}
 
 	\begin{theorem}
 		При $k \ge 1$:
@@ -159,8 +184,20 @@
 	\end{proof}
 
 \subsection{Коллапс}
+	\begin{assertion}
+		Если $\PH=\Sigma_k$, то $\PH=\Pi_k$
+	\end{assertion}
+	\begin{proof}
+		Мы знаем, что $\co\PH = \PH$.
+		\begin{align*}
+			\PH &= \Sigma_k \\
+			\co\PH &= \co\Sigma_k \\
+			\PH &= \Pi_k
+		\end{align*}
+	\end{proof}
+
 	\begin{theorem}
-		Если $\Sigma_k=\Pi_k$ (при $k>0$), то $\PH=\Sigma_k$ (иерархия коллапсирует до $\Sigma_k$)
+		Если $\Sigma_k=\Pi_k$ (при $k>0$), то $\PH=\Sigma_k=\Pi_k$ (иерархия коллапсирует до уровня $k$)
 	\end{theorem}
 	\begin{proof}
 		Сначала покажем, что $\Sigma_{k+1} = \Pi_k$.
@@ -199,9 +236,12 @@
 			\co\NP^{\Sigma_k} = \Pi_{k+1} = \co\Sigma_{k+1} = \co\Sigma_k = \Pi_k
 		\]
 	\end{proof}
+	\begin{conseq}
+		Как следствие, иерархия коллапсирует до уровня $k$, так как если $\PH=\Sigma_k$, то $\PH=\Pi_k$.
+	\end{conseq}
 
 	\begin{conseq}
-		Если есть $\Sigma_{k+1}$-полная задача, лежащая в $\Sigma_k$, то иерархия коллапсирует до $\Sigma_k$.
+		Если есть $\Sigma_{k+1}$-полная задача, лежащая в $\Sigma_k$, то иерархия коллапсирует до уровня $k$.
 	\end{conseq}
 	\begin{proof}
 		Так как любая задача из $\Sigma_{k+1}$ сводится к задаче из $\Sigma_k$, то $\Sigma_{k+1} \subseteq \Sigma_k$
