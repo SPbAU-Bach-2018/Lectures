@@ -1,0 +1,162 @@
+\subsection{Отступление про логарифм}
+
+\begin{theorem}
+	$\Omega$ "--- односвязная область, $f \in H(\Omega)$, $\forall z \in \Omega, f(z) \ne 0$.
+	Тогда
+	\[ \exists g \in H(\Omega)\colon e^g = f \]
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		f \in H(\Omega)
+		\Ra f' \in H(\Omega)
+		\Ra \frac{f'}f \in H(\Omega)
+		\Ra \text{$\frac{f'(z)}{f(z)}\d z$ "--- замкнута}
+		\xLongrightarrow{\text{$\Omega$ односвзяная}} \text{$\frac{f'(z)}{f(z)}\d z$ "--- точная}
+		\Ra \exists F \in H(\Omega)\colon F(z) = \frac{f'(z)}{f(z)}
+	\end{gather*}
+	Возьмём $g = F + c$. Хотим $e^g = f$.
+	\begin{gather*}
+		e^g = f
+		\La e^{-g}f = 1 \\
+		e^{-g}f = e^{-F}e^{-c}f
+	\end{gather*}
+	Достаточно показать, что $e^{-F}f = const \ne 0$.
+	\begin{gather*}
+		\left(e^{-F}f\right)'
+		= -F'e^{-F}f + e^{-F}f'
+		= e^{-F}\underbrace{(f' - Ff)}_{= 0}
+		= 0
+		g(z) = \ln |f(z)| + i \arg f(z) \in H(\Omega)
+	\end{gather*}
+	Подберём $c$ так, чтобы получить единицу.
+\end{proof}
+\begin{Rem}
+	Хотим понять, как же выглядит эта обратная функция.
+	\begin{gather*}
+		z = e^w = e^{u+iv} = e^u (\cos v + i\sin v) \\
+		|z| = e^u \Ra u = \ln |z| \\
+		v = \arg z \quad \text{(с точностью до $2\pi$)} \\
+		g(z) = \ln |f(z)| + i\arg f(z) \in H(\Omega)
+	\end{gather*}
+	Таким образом, $\arg f(z) \in H(\Omega)$, и в теореме можно выбрать такие углы, чтобы аргумент был непрерывен.
+\end{Rem}
+
+\begin{conseq}
+	Рассмотрим плоскость $\C$ без кривой из нуля, идущей на бесконечность.
+	На этой области существует логарифм $\log z$: хотим применить теорему выше, $f = z$ томоморфна и непрерывна.
+	\begin{Rem}
+		Есть формула $\log z = \ln |z| + i\arg z$, требующая непрерывность аргумента.
+		У нас она есть, так как выбор значения в одной точке однозначно продолжается по непрерывности на всю плоскость,
+		а бегать по кругу нам не даст кривая.
+	\end{Rem}
+	\begin{Rem}
+		По этой же причине все варианты непрерывной функции аргумента отличаются на $2\pi k$.
+	\end{Rem}
+\end{conseq}
+
+Обозначения:
+\begin{itemize}
+	\item $\ln x$ "--- логарифм положительных вещественных чисел.
+	\item $\log z$ "--- хоть какое-то значение логарифма комплексного числа.
+	\item $\arg z$ "--- хоть какой-то аргумент комплексного числа.
+	\item $\Ln z$ "--- голоморфный логарифм, определённый на односвязной области, не содержащей ноль.
+	\item $\Arg z$ "--- непрерывный аргумент, определённый на односвязной области, не содержащей ноль.
+		Определяется областью и значением в одной точке.
+\end{itemize}
+
+\begin{conseq}
+	$\Gamma$ "--- несамопересекающаяся кривая из 0 в бекснонечность.
+	В $\C \setminus \Gamma$ существует функция $z^p \in H(\C \setminus \Gamma)$:
+	\[ z^p = e^{p\Ln z} \]
+	\begin{enumerate}
+	\item
+		$p \in \R$: $|z^p| = |z|^p$
+		\begin{proof}
+			\[ |z^p| = |e^{p\Ln z}| = e^{\Re p\Ln z} = e^{p\ln z} = |z|^p \]
+		\end{proof}
+
+	\item
+		$p \in Z$: всё как раньше.
+		\begin{proof}
+			\[ z^n = e^{n\Ln z} = e^{n(\ln |z| + i\arg z)} = e^{n\log z} \underbrace{e^{2i\pi k}}_{=1} = (e^{\log z})^n \]
+		\end{proof}
+	\end{enumerate}
+
+	\begin{Rem}
+		Не всегда $\Ln z + \Ln w = \Ln zw$, $z^pw^p = (zw)^p$.
+		Если при этих соотношениях нигде нет прыжка через границу односвязной области, то нормально.
+	\end{Rem}
+\end{conseq}
+
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_{0}^{+\infty} \frac{t^{p+1}}{1+t}\d t = \cdots \quad 0 < p < 1 \quad t = x^2 \\
+		\cdots = 2\underbrace{\int\limits_{0}^{+\infty} \frac{x^{2p-1}}{1+x^2} \d x}_{\lrh I} \\
+		f(z) = \frac{e^{(2p-1)\Ln z}}{1+z^2} \quad \{z \mid \Im z \ge 0 \land z \ne 0\} \quad \Ln 1 = 0
+	\end{gather*}
+	Функция на изначальной области совпадает с нужной.
+
+	Начнём считать интеграл по области: полуокружность большого радиуса $c_R$ против часовой, от неё к нулю,
+	обходя его по окружности радиуса $c_{\epsilon}$.
+	Единственная особая точка "--- $i$.
+	\begin{gather*}
+		\int\limits_{\Gamma_{R,\epsilon}} f(z) \d z = 2\pi i \res_{z=i} f(z) \\
+		\res_{z=i} f(z)
+		= \frac{e^{(2p-1)\Ln z}}{(1+z^2)'}\biggr|_{z=i}
+		= \frac{e^{(2p-1)\Ln i}}{2i} \\
+		\Ln i = \ln |i| + i \Arg i = \frac{i\pi}2 \\
+		\int\limits_{\Gamma_{R,\epsilon}} f(z)\d z = \pi e^{(2p-1)\sfrac{i\pi}2} \\
+		\int\limits_{\Gamma_{R,\epsilon}}
+		= \int\limits_{c_R} + \int\limits_{c_\epsilon} + \underbrace{\int\limits_{\epsilon}^R}_{\ra I} + \int\limits_{-R}^{-\epsilon} \\
+		|1 - z^2| \ge |z^2| - 1 \ge 1 - |z^2|
+		\left| \int\limits_{c_R} \right|
+		\le \pi R \max_{|z| = R \land \Im z \ge 0} |f(z)|
+		\le \pi R \max \frac{|z|^{2p-1}}{|z|^2 - 1}
+		= \pi R \frac{R^{2p-1}}{R^2 - 1} \ra 0 \\
+		\left| \int\limits_{c_\epsilon} \right|
+		\le \pi \epsilon \max_{|z| = \epsilon \land \Im z \ge 0} |f(z)|
+		\le \pi \epsilon \max \frac{|z|^{2p-1}}{1 - |z|^2}
+		= \pi \epsilon \frac{\epsilon^{2p-1}}{1 - \epsilon^2} \ra 0
+	\end{gather*}
+	Остался последний фрагмент
+	\begin{gather*}
+		\int\limits_{-R}^{-\epsilon} \\
+		z = -x \quad \Ln z = \ln |z| + i\Arg z = \ln x + i \Arg (-x) = \ln x + \pi i \\
+		f(-x)
+		= \frac{e^{(2p-1)\Ln (-x)}}{1+(-x)^2}
+		= \frac{e^{(2p-1)(\ln x + \pi i)}}{1+x^2}
+		= \frac{x^{2p-1}e^{(2p-1)\pi i}}{1+x^2}
+		\int\limits_{-R}^{\epsilon} f(z) \d z = e^{(2p-1)\pi i}\int\limits_{\epsilon}^R \ra e^{(2p-1)\pi i} I \\
+		I \left(1 + e^{(2p-1)\pi i}\right) = e^{(2p-1)\sfrac{i\pi}2}\pi \\
+		I = \frac{\pi e^{(2p-1)\sfrac{i\pi}2}}{e^{(2p-1)\pi i} + 1}
+		= \dots = \frac{\pi}{2\cos{p\pi - \frac{\pi}2}}
+		= \frac{\pi}{2\sin(p\pi)}
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	\begin{gather*}
+		I = \int\limits_0^1 \frac{\ln(1-t)}t \d t
+		= 2 \int\limits_0^1 \frac{\ln(1-x^2}x \d x
+		= 2 \int\limits_0^1 \frac{\ln(1-x)}x \d x + 2\int\limits_0^1 \frac{\ln(1+x)}x \d x
+		= 2I - 2\int\limits_{-1}^0 \frac{\ln(1-x)}x \d x \\
+		\int\limits_{-1}^0 \frac{\ln(1-x)}x = \frac I2 \quad \int\limits_{-1}^1 \frac{\ln(1-x)}x = \frac{3I}2 \\
+		f(z) = \frac{\Ln(1 - z)}z \quad \Ln 1 = 0 \quad \{z \mid \Im z \ge 0 \land z \ne 1\}
+	\end{gather*}
+	Бегаем по контуру: радиус $R$ против часовой до $-1$, потом почти до 1, огибаем её на растоянии $\epsilon$.
+	Особых точек нет.
+	\begin{gather*}
+		\int\limits_{\Gamma_\epsilon} f(z) \d z = 0
+		= \underbrace{\int\limits_{-1}^{1-\epsilon}}_{\ra \frac{3I}2} + \int\limits_{c_\epsilon} + \int\limits_c \\
+		\left| \int\limits_{c_\epsilon} \right| \le \frac{\pi}2 \epsilon \max |f(z)| \le \frac{\pi\epsilon}2 \frac{|\ln \epsilon| + const}{\sfrac12} \ra 0 \\
+		z = e^{i\phi}
+		\int\limits_c = \int\limits_{\approx\epsilon}^\pi \frac{\ln |1-e^{i\phi}| i\Arg(1-e^{i\phi})}{e^{i\phi}} ie^{i\phi} \d \phi
+		= \int\limits_{\approx\epsilon}^\pi \left(-\Arg(1-e^{i\phi}) + i\ln|1-e^{i\phi}|\right)
+	\end{gather*}
+	Перейдём везде к вещественной части. \TODO очень нужна картинка про углы.
+	\begin{gather*}
+		\frac{3I}2 + o(1) - \int\limits_{\approx\epsilon}^\pi \Arg (1 - e^{i\phi}) \d \phi = 0 \\
+		\frac{3I}2 = \int\limits_{0}^\pi \Arg(1 - e^{i\phi}) \d \phi = \int\limits_0^\pi -\frac{\pi - \phi}2 \d \phi
+		= -\frac{\pi^2}4
+	\end{gather*}
+\end{exmp}

@@ -1,0 +1,192 @@
+Формулы для вычисления вычетов:
+\begin{enumerate}
+\item
+	$a$ "--- полюс первого порядка (простой полюс).
+	\[ \res_{z=a} f = \lim_{z\ra a} (z - a) f(a) \]
+	\begin{proof}
+		\[ f(z) = \frac{c_{-1}}{z-a} - \sum_{i=0}^{+\infty} c_n (z-a)^n\]
+	\end{proof}
+
+\item
+	$g$, $h$ "--- голоморфна в окрестности $a$, $g(a) \ne 0$, $h(a) = 0$, $h'(a) \ne 0$.
+	Тогда
+	\[ \res_{z=a} \frac gh = \lim_{z\ra a} \frac{g(a)}{h'(a)} \]
+	\begin{proof}
+		\[
+			\res_{z=a} \frac gh
+			= \lim_{z\ra a} \frac{g(z)(z - a)}{h(z)}
+			= \lim_{z \ra a} g(z) \frac{z - a}{h(z) - h(a)}
+			= \frac{g(a)}{h'(a)}
+		\]
+	\end{proof}
+
+\item
+	$a$ "--- полюс $k$-ого порядка.
+	\[ \res_{z=a} f = \frac1{(k-1)!} \lim_{z\ra a} \frac{\d^{k-1}}{d z^{k-1}} \left( (z-a)^k f(z) \right) \]
+	\begin{proof}
+		\begin{gather*}
+			f(z)
+			= \frac{c_{-k}}{(z-a)^k} + \dots + \frac{c_{-1}}{z-a} + \sum_{n=0}^{+\infty} c_n(z-a)^n \\
+			(z-a)^k f(z) = c_{-k} + c_{-k+1}(z-a) + \dots + c_{-2} (z-a)^{k-2} + c_{-1} (z-a)^{k-1} + \sum_{n=0}^{+\infty} c_n (z-a)^{n+k}
+		\end{gather*}
+		После дифференцирования останется только $(k-1)! c_{-1}$.
+	\end{proof}
+	\begin{Rem}
+		Если вы посчитаете, что порядок полюса больше, чем на самом деле, формула всё ещё работает "--- мы не пользовались $c_{-k} \ne 0$.
+	\end{Rem}
+
+\item
+	$\infty$ "--- устранимая особая точка.
+	\[ \res_{z=\infty} f = \lim_{z\ra\infty} z(f(\infty) - f(z)) \]
+	\begin{proof}
+		\begin{gather*}
+			f(z)
+			= \sum_{n=0}^{+\infty} \frac{c_{-n}}{z^n} = \frac{c_{-1}}z + \underbrace{c_0}_{=f(\infty)} + \sum_{n=2}^{+\infty} \frac{c_{-n}}{z^n} \\
+			z(f(\infty) - f(z)) = -c_{-1} - \sum_{n=2}^{+\infty} \frac{c_{-n}}{z^n} \ra -c_1 = \res_{z=\infty} f
+		\end{gather*}
+	\end{proof}
+
+\item
+	$\infty$ "--- устранимая особая точка, $f(z) = \phi\left(\sfrac1z\right)$, $\phi$ голоморфна в окрестности 0.
+	Тогда
+	\[ \res{z=\infty} f = -\phi'(0) \]
+	\begin{proof}
+		\[
+			\lim_{z\ra\infty} z(f(\infty) - f(z))
+			= \lim_{w\ra0} \frac1w(\phi(0) - \phi(w))
+			= -\phi'(0)
+		\]
+	\end{proof}
+
+\item
+	\[ \res_{z=\infty} f = -\res{z=0} \frac{f\left(\sfrac1z\right)}{z^2} \]
+	\begin{proof}
+		\begin{gather*}
+			f(z)
+			= \sum_{n=-\infty}^{+\infty} c_n z^n \\
+			h(z)
+			= \frac{f\left(\sfrac1z\right)}{z^2}
+			= \frac1{z^2} \sum_{n=-\infty}^{+\infty} c_n \frac1{z^n}
+			= \sum_{n=-\infty}^{+\infty} \frac{c_n}{z^{n+2}} \\
+			\frac{c_{-1}}{z^{-1+2}} = \frac{c_{-1}}{z^1}
+		\end{gather*}
+	\end{proof}
+
+\item
+	$f$ "--- чётная функция.
+	\[ \res_{z=0} f = \res{z=\infty} f = 0 \]
+	\begin{proof}
+		В ряде Лорана только чётные степени.
+	\end{proof}
+\end{enumerate}
+
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_{|z|=4} \frac{z^4}{e^z + 1} \d z
+		= 2\pi i \sum_{|x|<4} \res_{z=x} \frac{z^4}{e^z + 1}
+		= -4\pi^5 i \\
+		e^z + 1 = 0
+		\Lra -1 = e^{x+iy}
+		\Lra x = 1 \land y = \pi + 2\pi k \\
+		|z| < 4 \Ra z = \pm \pi i \\
+		\res_{z=\pm\pi i}
+		= \frac{z^4}{(e^z + 1)'} \biggr|_{z=\pm\pi i}
+		= -\pi^4
+	\end{gather*}
+\end{exmp}
+
+\begin{exmp}
+	\begin{gather*}
+		I = \int\limits_{-\infty}^{+\infty} \frac{\d x}{1 + x^{2n}}
+	\end{gather*}
+	Давайте считать на верхнем полукруге радиуса $R$.
+	\begin{gather*}
+		\int\limits_{T_r} \TODO \\ \TODO \TODO \\
+		\res_{z=e^{i\phi_k}} \frac1{1+z^{2n}}
+		= \frac1{(1+z^{2n})'} \biggr|_{z=e^{i\phi_k}}
+		= \frac1{2nz^{2n-1}} \biggr|_{z=e^{i\phi_k}}
+		= \frac1{2n} \frac z{z^{2n}} \biggr|_{z=e^{i\phi_k}}
+		= -\frac1{2n} e^{\frac{\pi i(1+2k)}{2n}} \\
+		I
+		= -2\pi i \cdot \frac1{2n} \sum_{k=0}^{n-1} e^{\pi i(1+2k)}{2n}
+		= \frac{-\pi i}n \frac{e^{\sfrac{\pi i}{2n}} \left(1 - e^{n \cdot \sfrac{\pi i}n}\right)}{1-e^{\sfrac{\pi i}n}}
+		= \frac{\pi}n \frac{2i \cdot e^{\sfrac{\pi i}{2n}}}{e^{\sfrac{\pi i}n} - 1}
+		= \frac{\pi}n \frac{2i}{e^{\sfrac{\pi i}{2n}} - e^{\sfrac{-\pi i}{2n}}}
+		= \frac\pi{n \sin \sfrac\pi{2n}}
+	\end{gather*}
+\end{exmp}
+
+\begin{lemma}[Жордана]
+	$C_{R_n} \subset \{z \in \C \mid |z| = R_n \land \Im z > -a\}$, $R_n \ra +\infty$, $\sup_{z \in C_{R_n}} |g(z)| = M_n \ra 0$, $\lambda > 0$.
+	Тогда
+	\[ \lim_{n\ra\infty} \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z = 0 \]
+\end{lemma}
+\begin{proof}
+	\[ \left| \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z \right| \]
+	Оценим нижние дужки, их угол $\alpha_n$:
+	\begin{gather*}
+		|e^{i\lambda z}| = |e^{i\lambda(x+iy)}| = e^{-\lambda y} \le e^{\lambda a} \\
+		|g(z)| \le M_n \\
+		\left| \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z \right| \le \alpha_n R_n \cdot \underbrace{M_n e^{\lambda a}}_{\ra 0} \\
+		\alpha_n R_n \sim \sim a_n R_n = a \Ra \text{$|\alpha_n R_n|$ ограничена}
+	\end{gather*}
+	четверть окружности из первого квадранта: $z = R_n e^{i\phi} = R_n(\cos\phi + i\sin\phi)$, $\sin \phi \ge \frac{2\pi}\pi$.
+	\begin{gather*}
+		|e^{i\lambda z}| = e^{-\lambda R_n\sin \phi} \le e^{-\lambda R_n \frac{2\phi}{\pi}}
+		\left| \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z \right|
+		= \left| \int\limits_0^{\frac\pi2} g(R_n e^{i\phi}) e^{i\lambda R_ne^\phi} \d (R_n e^{i\phi}) \right|
+		\le \int\limits_0^{\frac\pi2} \left| g(R_n e^{i\phi}) e^{i\lambda R_ne^\phi}  \d (R_n e^{i\phi}) \right|
+		\le \int\limits_0^{\frac\pi2} M_n e^{-\lambda R_n \frac{2\phi}n} R_n \d\phi
+		= M_nR_n\frac\pi{\lambda R_n} e^{-\lambda R_n \frac{2\phi}\pi} \biggr|_{\phi=\frac\pi2}^0
+		= \frac{M_n\pi}\lambda \left(1 - e^{-\lambda R_n}\right)
+		\le \frac{M_n\pi}\lambda \ra 0
+	\end{gather*}
+	Вторая четверть также
+\end{proof}
+
+\begin{lemma}[О полувычете]
+	$а$ "--- полюс 1 порядка $f$,
+	$c_\epsilon = \{z \in C \mid |z-a| = \epsilon \land \alpha \le \arg(z-a) \le \beta \}$.
+	Тогда
+	\[ \lim_{\epsilon\ra0+} \int\limits_{c_\epsilon} f(z) \d z = (\beta - \alpha) i \res_{z=a} f \]
+\end{lemma}
+\begin{proof}
+	\begin{gather*}
+		f(z) = \frac{c_{-1}}z + \sum_{n=0}^{+\infty} c_n(z-a)^n = \frac{c_{-1}}{z-a} + g(z) \quad \text{$g$ голоморфна}\\
+		\int\limits_{c_\epsilon} f(z) \d z = \int\limits_{c_\epsilon} \frac{c_{-1}}{z-a} + \int\limits_{c_\epsilon} g(z) \d z \\
+		\left| \int\limits_{c_\epsilon} \d z \right| \le M\epsilon(\beta - \alpha) \\
+		\int\limits_{c_\epsilon} \frac{c_{-1}}{z-a} \d z
+		= \int\limits_{\alpha}^{\beta} \frac{c_{-1}}{\epsilon e^{i\phi}} \epsilon i e^{i\phi} \d \phi
+		c_{-1} i(\beta-\alpha)
+	\end{gather*}
+\end{proof}
+
+\begin{Rem}
+	Главное значение интеграла: вспомним, как мы определяли сходимость интеграла на отрезке без точки.
+	Мы брали два интеграла "--- слева и справа, "--- отступив от точки на $\epsilon_1$ и $\epsilon_2$, и складывали.
+	Так мы говорили, что интеграл сходится, если сумма этих интегралов сходится при независимо стремящихся к нулю отступах.
+
+	Введём поянятие главного значения интеграла, как предела на \textit{симметричных} окрестностях.
+	\[
+		v.p. \int\limits_a^b f(x) \d x
+		= \lim_{\epsilon\ra0} \left( \int\limits_a^{c-\epsilon} f(x) \d x + \int\limits_{c+\epsilon}^b f(x) \d x \right)
+	\]
+	Например,
+	\[ v.p. \int\limits_{-1}^1 \frac{\d x}x = 0 \]
+	Свойства:
+	\begin{enumerate}
+		\item Если интеграл сходится, то главное значение сущесвтует и равно интегралу.
+		\item Линееню
+		\item Аддитивен, если разбиваем на две части не особой точкой.
+	\end{enumerate}
+\end{Rem}
+
+\begin{exmp}
+	\begin{gather*}
+		\int\limits_0^{+\infty} \frac{\sin x}x \d x
+		= \frac12 \int\limits_{-\infty}^{+\infty} \d x
+		= \frac12 v. p. \int\limits_{-\infty}^{+\infty} \frac{\Im e^{ix}}x \d x
+		= \frac12 \Im v.p.\int\limits_{-\infty} \frac{e^{ix}}x \d x \TODO why????
+	\end{gather*}
+	Параметризуем \TODO АААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААа
+\end{exmp}
