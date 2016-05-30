@@ -1,0 +1,59 @@
+\chapter{12.05.2016}
+
+\section{Лемма Жордана}
+	\begin{lemma}
+		Если $a\ge 0$ и $\lambda > 0$, а $C_r$ "--- полудуга (<<пузырёк>>):
+		\[
+			C_r = \{ |z| = R \land \Im z \ge -a \}
+		\]
+		При этом:
+		\[ \lim_{R\to\infty} \max_{C_r}|f(z)| = 0 \]
+		То тогда:
+		\[ \lim_{R\to\infty} \oint_{C_r} f(z) e^{i\lambda z} \d z = 0 \]
+	\end{lemma}
+	\begin{Rem}
+		Используется для оценки интегралов по контуру, когда мы считаем какие-то интегралы.
+		Например, если мы считаем вещественный интеграл, то нам будет нужно только $a=0$.
+	\end{Rem}
+
+\section{Задача 1}
+	\[ \int_{-\infty}^{\infty} \frac{x \sin x}{1 + x^2} \d x \]
+
+	Перепишем интеграл:
+	\begin{gather*}
+		A \coloneq \frac{e^{ix}-e^{-ix}}{2i} \\
+		\int_{-\infty}^{\infty} \frac{x \sin x}{1 + x^2} \d x =
+		\frac1{2i} \int_{-\infty}^{\infty} \frac{x}{1+x^2}\cdot e^{ix} - \frac{x}{1+x^2} \cdot e^{-ix} \d x \circleeq \\
+		\text{Разобьём интеграл на два в надежде, что оба сойдутся} \\
+		\circleeq \frac1{2i} \left(\int_{-\infty}^{\infty} \frac{x}{1+x^2}\cdot e^{ix} \d x - \int_{-\infty}^{\infty} \frac{x}{1+x^2} \cdot e^{-ix} \d x \right) = \\
+		= \frac1{2i} \left(\int_{-\infty}^{\infty} \frac{x}{1+x^2}\cdot e^{ix} \d x - \int_{\infty}^{-\infty} \frac{-x}{1+(-x)^2} \cdot e^{-i(-x)} \d (-x) \right) = \\
+		= \frac1{2i} \left(\int_{-\infty}^{\infty} \frac{x}{1+x^2}\cdot e^{ix} \d x - \int_{\infty}^{-\infty} \frac{x}{1+x^2} \cdot e^{ix} \d x \right) = \\
+		2 \cdot \underbrace{\frac1{2i} \int_{-\infty}^{\infty} \frac{x}{1+x^2}\cdot e^{ix} \d x}_{I}
+	\end{gather*}
+	Возьмём контур в виде полуокружности радиуса $R$.
+	Применим лемму Жордана для $a=0$, $\lambda=1$ и $f(z)=\frac{x}{1+x^2}$.
+	Условие для $f(z)$ выполнено, так как $|f(z)|$ стремится к нулю при $z \to \infty$.
+	Значит, интеграл по дуге окружности стремится к нулю при $R \to \infty$.
+	\begin{Rem}
+		Лемма Жордана "--- довольно тонкая штука, иначе бы мы не смогли оценить интеграл.
+		\TODO
+	\end{Rem}
+
+	\TODO
+	Получаем единственный вычет:
+	\[ ie{-1}/(-4) \]
+	Ответ тогда такой:
+	\[ 2I = \frac{\pi}{e} \]
+
+\section{Задача 2}
+	\[ \int_0^{\infty} \frac{\cos x}{x^2+a^2} \d x \]
+
+	Посмотрим на полюса 
+	Вычет в $x=ia$.
+
+	...
+	$\frac{2e^{-a}}{2\cdot2ia}$
+	...
+
+	Ответ такой:
+	\[ \frac{\pi}{e^a\cdot2a} \]
