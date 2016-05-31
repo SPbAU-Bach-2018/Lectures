@@ -11,7 +11,7 @@
 \ifstrempty{#2}{}{!#2}%
 \ifstrempty{#3}{}{!\arabic{probctr#1x#2}@#3}%
 }%
-\ifstrempty{#3}{\label{prob#1#2}}
+\ifstrempty{#3}{\label{prob#1#2}}{}
 }
 \newcommandx{\problem}[2][2]{\subproblem{#1}{}[#2]}
 
