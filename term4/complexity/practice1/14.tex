@@ -38,8 +38,9 @@
 	\]
 	Ура, получили алгоритм, которых с хорошей вероятностью по случайным битам считает определитель правильно.
 
-\problem{44}
+\subproblem{44}{в}[сложное решение]
 	Разбирал семинарист.
+	Решение ниже автором конспекта не понято и не дописано до конца.
 
 	Докажем что $\BPTime[n^{\log n}] \neq \BPTime[2^n]$ от противного (остальное показали раньше).
 	Тогда из пункта <<а>> мы знаем, что если $f(n)\ge n$, то:
@@ -72,6 +73,42 @@
 		\BPTime[2^{n'}] \not\supseteq \BPTime[2^{2^{8\log \log^2 n}}]
 	\end{gather*}
 	Но слева стоит функция больше, чем справа, противоречие.
+
+\subproblem{44}{в}[простое решение]
+	Решение спросили у Кнопа.
+
+	Опять же, будем доказывать только интересную часть: $\BPTime[n^{\log n}] \neq \BPTime[2^n]$.
+	Докажем методом от противного (остальное показали раньше).
+    
+    Раз $\BPTime[n^{\log n}] = \BPTime[2^n]$, то мы можем воспользоваться пунктом <<а>> со следующими функциями:
+    \begin{align*}
+    	f(n) &= n^{\log n} \\
+    	g(n) &= 2^n \\
+    	h(n) &= 2^{\sqrt n} \\
+    \end{align*}
+    Получаем:
+    \begin{align*}
+    	\BPTime[\left(2^{\sqrt n}\right)^{\log 2^{\sqrt n}}] &= \BPTime[2^{2^{\sqrt n}}] \\
+    	\BPTime[\left(2^{\sqrt n}\right)^{\sqrt n}] &= \BPTime[2^{2^{\sqrt n}}] \\
+    	\BPTime[2^{\sqrt n \cdot \sqrt n}] &= \BPTime[2^{2^{\sqrt n}}] \\
+    	\BPTime[2^n] &= \BPTime[2^{2^{\sqrt n}}]
+    \end{align*}
+    Можем применить пункт <<а>> с той же функций $h(n)$ ещё раз:
+    \begin{align*}
+    	\BPTime[2^{2^{\sqrt n}}] &= \BPTime[2^{2^{\sqrt{2^{\sqrt n}}}}] \\
+    	\BPTime[2^{2^{\sqrt n}}] &= \BPTime[2^{2^{2^{\sfrac{\sqrt n}{2}}}}] \\
+    \end{align*}
+    Отсюда получаем:
+    \[
+	    \BPTime[n^{\log n}] = \BPTime[2^n] = \BPTime[2^{2^{\sqrt n}}] &= \BPTime[2^{2^{2^{\sfrac{\sqrt n}{2}}}}]
+    \]
+    С другой стороны:
+    \begin{gather*}
+    	\DTime[2^{\O(n^{\log n})}] \supseteq \BPTime[n^{\log n}] =
+    	\BPTime[2^{2^{2^{\sfrac{\sqrt n}{2}}}}] \supseteq \DTime[2^{2^{2^{\sfrac{\sqrt n}{2}}}}] \\
+    	\DTime[2^{\O(n^{\log n})}] \supseteq \DTime[2^{2^{2^{\sfrac{\sqrt n}{2}}}}]
+    \end{gather*}
+    Что противоречит иерархии по времени.
 
 \problem{55}
 	Разбирал Дима Розплохас.
