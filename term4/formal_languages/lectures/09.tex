@@ -112,14 +112,14 @@ $\alpha B \gamma \to \alpha \beta \gamma, \alpha, \gamma \in (\Sigma \cup N)^*, 
 
 Для продукции $x_1 \dots x_n \to y_1 \dots y_m, m \geq n, x_i, y_i \in (N \cup \Sigma)$ создадим уникальные для этой продукции нетерминалы $Z_1 \dots Z_n$, добавим следующие продукции:
 $\\
-x_1 x_2 \dots x_n \to Z_1 x_2 \dots x_n \\
-Z_1 x_2 \dots x_n \to Z_1 Z_2 x_3 \dots x_n \\
-Z_1 \dots Z_{n - 1} x_n \to Z_1 \dots Z_n \\
+X_1 X_2 \dots X_n \to Z_1 X_2 \dots X_n \\
+Z_1 X_2 \dots X_n \to Z_1 Z_2 x_3 \dots X_n \\
+Z_1 \dots Z_{n - 1} X_n \to Z_1 \dots Z_n \\
 Z_1 \dots Z_n \to Y_1 Z_2 \dots Z_n \\
 \dots \\
 Y_1 \dots Y_{n - 1} Z_n \to Y_1 \dots Y_{n - 1} Y_n \dots Y_m$
 
-После применения первой продукции единственный способ избавиться от $z_i$, в силу их уникальности, только применить все остальные продукции, 
+После применения первой продукции единственный способ избавиться от $Z_i$, в силу их уникальности, только применить все остальные продукции, 
 тем самым переведя $X_1 \dots X_n$ в $Y_1 \dots Y_m$
 \end{description}
 \end{proof}
