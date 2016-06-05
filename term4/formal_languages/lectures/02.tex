@@ -122,7 +122,7 @@ $L_1 = L(A), L_2 = L(B)$
 \begin{Def}
 Пусть было два ДКА: $(\Sigma, Q, q_0, T, \delta)$ и $(\Sigma, Q', q_0', T', \delta')$.
 
-Их прямым произведением называют следующий автомат: $(\Sigma, Q \times Q', (q_0, q_0'), T \times T', \delta'')$, где $\delta''(p, q), a) = (\delta(p, a), \delta'(q, a))$.
+Их прямым произведением называют следующий автомат: $(\Sigma, Q \times Q', (q_0, q_0'), T \times T', \delta'')$, где $\delta''((p, q), a) = (\delta(p, a), \delta'(q, a))$.
 \end{Def}
 Несложно понять, что построенный таким образом автомат будет принимать ровно $L_1 \cap L_2$
 
@@ -156,7 +156,7 @@ $L_1 = L(A), L_2 = L(B)$
 $
     \begin{cases}
         a_{q, 0} = 0, q \neq q_0 \\
-        a_{q_0, 0} = 1, q = q_0
+        a_{q, 0} = 1, q = q_0
     \end{cases} 
 $
 
