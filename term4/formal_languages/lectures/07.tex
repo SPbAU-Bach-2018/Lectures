@@ -129,13 +129,13 @@ $\delta \colon Q \times (\Sigma \cup \{\epsilon\}) \times \Gamma \to 2^{Q \times
 \end{Def}
 
 \begin{Def}
-Рассмотрим два МО, имеющих следующий вид: $(q, aw, is)$ и $(p, w, \alpha s)$, $\alpha \in \Gamma^*, a \in (\Sigma \cup \{\epsilon\}$.
+Рассмотрим два МО, имеющих следующий вид: $(q, aw, is)$ и $(p, w, \alpha s)$, $\alpha \in \Gamma^*, a \in (\Sigma \cup \{\epsilon\})$.
 Говорят, что $(q, aw, is) \vdash (p, w, \alpha s)$ (читается <<состояние переходит за один шаг в>>,  если в $\delta$ есть элемент $(q, a, i) \to (p, \alpha)$.
 \end{Def}
 
 \begin{Def}
 Аналогично, определяют переход за несколько шагов. 
-Пусть есть два МО $M_1, M_2$, тогда говорят, что $M_1 \letvdash{*} M_2$ если есть последовательность МО $N_1 \dots N_k$ такая что ... $M_1 \vdash N_1, N_1 \vdash N_2 \dots N_{k-1} \vdash N_k, N_k \vdash M_2$.
+Пусть есть два МО $M_1, M_2$, тогда говорят, что $M_1 \letvdash{*} M_2$ если есть последовательность МО $N_1 \dots N_k$ такая что $\colon M_1 \vdash N_1, N_1 \vdash N_2 \dots N_{k-1} \vdash N_k, N_k \vdash M_2$.
 \end{Def}
 \begin{Def}
 МП-автомат $A$ принимает слово $w$ по терминальному состоянию, если $\exists q \in T, s \in \Gamma^* \colon (q_0, w, z_0) \letvdash{*} (q, \epsilon, s)$
