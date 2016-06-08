@@ -1,15 +1,20 @@
 \ifdefined\GeometryForAbstract%
 \documentclass[10pt,a4paper,notitlepage]{report}
 \else%
+\ifdefined\UseArticleClass%
+\documentclass[12pt,a4paper,notitlepage]{article}
+\else%
 \documentclass[12pt,a4paper,notitlepage]{report}
+\fi
 \fi
 \usepackage{polyglossia}
 \usepackage{fontspec}
 \usepackage{amsmath, amssymb, amsthm, extarrows, esint, tensor}
 \usepackage{xcolor}
-\usepackage[russian]{hyperref}
+\usepackage[russian,colorlinks,allcolors=blue]{hyperref}
 \usepackage{indentfirst}
 \usepackage{ifthen}
+\usepackage{etoolbox}
 \usepackage{mathtools}
 \usepackage{datetime}
 \usepackage{enumitem}
@@ -20,6 +25,7 @@
 \usepackage{wrapfig}
 \usepackage{array}
 \usepackage{xfrac}
+\usepackage{xargs}
 \usepackage{enumitem}
 \usepackage[pdf]{graphviz}
 \usepackage{dot2texi}

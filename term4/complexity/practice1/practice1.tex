@@ -1,7 +1,16 @@
 \newcommand{\UseIndex}{}
 \input{preamble}
 
-\newcommand{\problem}[1]{\subsection{Задача #1}\index{#1@Задача #1}}
+\newcommandx{\subproblem}[3][3]{%
+\ifltxcounter{probctr#1x#2}{}{\newcounter{probctr#1x#2}}%
+\stepcounter{probctr#1x#2}
+\subsection{Задача #1#2\ifstrempty{#3}{}{ (#3)}}%
+\index{#1@Задача #1%
+\ifstrempty{#2}{}{!#2}%
+\ifstrempty{#3}{}{!\arabic{probctr#1x#2}@#3}%
+}%
+}
+\newcommandx{\problem}[2][2]{\subproblem{#1}{}[#2]}
 
 \begin{document}
 \BigHeader
@@ -17,5 +26,11 @@
 \input{06}
 \input{07}
 \input{08}
+\input{09}
+\input{10}
+\input{11}
+\input{12}
+\input{13}
+\input{14}
 
 \end{document}

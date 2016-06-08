@@ -3,21 +3,35 @@
 
 \newcommand{\somealpha}[1]{\underbrace{\alpha\dots\alpha}_{#1}}
 
-\newcommand{\problem}[1]{\subsection{Задача #1}\index{#1@Задача #1}\label{prob#1}}
-\newcommand{\subproblem}[2]{\subsection{Задача #1#2}\index{#1@Задача #1!#2}\label{prob#1#2}}
+\newcommandx{\subproblem}[3][3]{%
+\ifltxcounter{probctr#1x#2}{}{\newcounter{probctr#1x#2}}%
+\stepcounter{probctr#1x#2}
+\subsection{Задача #1#2\ifstrempty{#3}{}{ (#3)}}%
+\index{#1@Задача #1%
+\ifstrempty{#2}{}{!#2}%
+\ifstrempty{#3}{}{!\arabic{probctr#1x#2}@#3}%
+}%
+\ifstrempty{#3}{\label{prob#1#2}}{}
+}
+\newcommandx{\problem}[2][2]{\subproblem{#1}{}[#2]}
 
 \begin{document}
 \BigHeader
     {Формальные языки, IV семестр\\Практика I подгруппы}{Весна 2016, семинарист: Карпов Николай}
-    {Автор: Егор~Суворов}
+    {Авторы: Егор~Суворов, Всеволод~Степанов}
 \gdef\LectureName{Формальные языки, IV семестр}
 
+\setauthor{Егор Суворов}
+
 \input{02}
-\input{04}
 \input{03}
+\input{04}
 \input{05}
 \input{06}
 \input{07}
 \input{08}
+\input{09}
+\input{10}
+\input{11}
 
 \end{document}

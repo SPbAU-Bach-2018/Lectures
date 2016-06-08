@@ -23,7 +23,10 @@
 
 \frenchspacing
 
+\ifdefined\UseArticleClass%
+\else%
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
+\fi%
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Теорема}[section]
@@ -101,9 +104,7 @@
 \rhead{\normalsize\rmfamily\fancyplain{}{\rightmark}}
 
 \cfoot{\normalsize\rmfamily\thepage~из~\pageref*{LastPage}}
-\makeatletter
-\rfoot{\normalsize\rmfamily\@ifundefined{currentauthor}{}{Автор: \currentauthor}}
-\makeatother
+\rfoot{\normalsize\rmfamily\ifdef{\currentauthor}{Автор: \currentauthor}{}}
 
 \newcommand{\setauthor}[1]{\gdef\currentauthor{#1}}
 

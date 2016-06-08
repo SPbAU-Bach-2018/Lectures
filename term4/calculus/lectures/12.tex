@@ -1,0 +1,117 @@
+\TODO кусок Глеба
+
+Вот есть замкнутый контур, выбираем на нём какую-то точку, потом делаем оборот.
+Смотрим на изменение аргумента.
+Тогда
+\[ N = \frac1{2\pi} \Delta_c \arg f(z) \]
+
+\begin{proof}
+	$\sfrac{f'}f$ имеет первообразную $\ln f$.
+	\begin{gather*}
+		\Ln f(z) = \ln |f(z)| + i \arg f(z)
+	\end{gather*}
+	За оборот первое слагаемое не изменится, а второе "--- ровно на нужную величину.
+	\begin{gather*}
+		\frac1{2\pi i} \int\limits_C \frac{f'(z)}{f(z)} \d z = \frac1{2\pi i} i \Delta_c \arg f(z)
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Руме]
+	$f, g \in H(\Omega)$, $C$ "--- стягиваемый контур, и $\forall z \in C, |g(z)| < |f(z)|$.
+	Тогда количество нулей с учётом кратности у $f$ и $f + g$ равны.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		N_f = \frac1{2\pi} \Delta_C \arg f \quad N_{f+g} = \frac1{2\pi} \Delta_C \arg(f+g) \\
+		\Delta_C \arg(f+g)
+		= \Delta_C \arg \left(f\cdot\left(1 + \sfrac gf\right)\right)
+		= \Delta_C \arg f + \Delta_C \arg \left(1 + \frac gf\right)
+	\end{gather*}
+	Осталось понять, что второе слагаемое ноль.
+	\begin{gather*}
+		\left|\frac gf\right| < 1 \Ra 1 + \frac gf \in \{|z - 1| < 1\}
+	\end{gather*}
+	Ой, раз кривая в таком круге, то она вокруг нуля вообще не проходит.
+\end{proof}
+
+\begin{exmp}
+	\[ z - e^{-z} = \lambda > 1 \]
+	Хотим понять, что в правой полуплоскости ровно один корень.
+	Будем смотреть на контур "--- границу правого полукруга радиуса $R$ с центром в нуле.
+	\begin{gather*}
+		f(z) = z - \lambda \quad g(z) = e^{-z}
+	\end{gather*}
+	$z = iy$:
+	\begin{gather*}
+		|f(iy)| = |iy - \lambda| = \sqrt{\lambda^2+y^2} \ge \lambda > 1 \\
+		|g(iy)| = 1
+	\end{gather*}
+	$z = Re^{i\phi}$:
+	\begin{gather*}
+		|f(Re^{i\phi})|^2
+		= |Re^{i\phi}|
+		= (R\cos \phi - \lambda)^2 + (R\sin \phi)^2
+		= R^2 - 2R\lambda \cos \phi + \lambda^2 \xLongrightarrow{R \ra +\infty} +\infty \\
+		|g(Re^{i\phi})|
+		= |e^{-Re^{i\phi}}|
+		= e^{-2R\cos \phi} \le 1
+	\end{gather*}
+	Можно применить теорему, а ведь у $f$ всего один корень.
+\end{exmp}
+
+\begin{conseq}[Основная теорема алгебры]
+	Если $P(z)$ "--- многочлен степени $n$, то он имеет ровно $n$ корней с учётом кратности.
+\end{conseq}
+\begin{proof}
+	\begin{gather*}
+		P(z) = z^n + c_{n-1}z^{n-1} + \dots + c_0 \\
+		f(z) = z^n \quad g(z) = c_{n-1}z^{n-1} + \dots + c_0
+	\end{gather*}
+	У $f(z)$ ровно $n$ корней, осталось найти контур, на котором выполнено неравенство.
+	Возьмём окружность радиуса $R \ge 1$.
+	\begin{gather*}
+		|f(z)| = R^n \quad
+		|g(z)| \le |c_{n-1}| R^{n-1} + \dots + |c_0| \le R^{n-1} \underbrace{(|c_{n-1}| + \dots + |c_0|)}_{\lrh R_0}
+	\end{gather*}
+	Возьмём $R > R_0$, получим, что внутри него $f$ и $P = f+g$ имеют равное число корней, то есть $n$.
+\end{proof}
+
+\begin{exmp}[Диагональная последовательность]
+	\begin{gather*}
+		C_n^k \quad C_{2n}^n \\
+		(z + w)^n = \sum_{k=0}^n C_n^k z^k w^{n-k} \\
+		\frac1{1-w-z} = \sum_{n=0}^{+\infty} (z+w)^n = \sum_{k=0}^{+\infty} \sum_{w=0}^{+\infty} C_n^k z^k w^{n-k} \\
+		f(z) = \sum_{n,k=0}^{+\infty} a_{nk} z^n w^k \\
+		\sum a_nn z^n \frac1{\zeta} \\
+		\frac1{\zeta} f(\zeta, \frac z{\zeta})
+	\end{gather*}\begin{gather*}
+		= \sum a_{nk} \zeta^n \frac{z^k}{\zeta^k} \frac1{\zeta} \\
+		\int\limits_{|\zeta=r|} \frac{f(\zeta, \sfrac z{\zeta})}{\zeta} \d \zeta
+		= \int\limits_{|\zeta=r|} \sum_{n,k=0}^{+\infty} a_nk \frac{z^k}{\zeta^{1+k-n}} \d \zeta
+	\end{gather*}\begin{gather*}
+		= \sum_{n,k=0}^{+\infty} a_{nk} z^k \int\limits_{|\zeta|=r} \frac{\d \zeta}{\zeta^{1+k-n}}
+		= \sum_{n,k=0}^{+\infty} a_nk z^k \begin{cases} 2\pi i & n = k \\ 0 & n \ne k \end{cases}
+		= 2\pi i \sum_{n=0}^{+\infty} a_nn z^n \\
+		\frac1{1-w-z} = \sum_{j=0}^{+\infty} \sum_{m=0}^{+\infty} C_{m+j}^j z^m w^j \\
+		\int\limits_{|\zeta|=r} \frac{\frac1{1-\zeta-\sfrac z{\zeta}}}{\zeta} = 2\pi i \sum_{n=0}^{+\infty} C_{2n}^n z^n = \\
+		= \int\limits_{|\zeta|=r} \frac{\d \zeta}{\zeta - \zeta^2 - z}
+		= \int \frac{\d \zeta}{\zeta^2 - \zeta + z}
+		= -2\pi i \res_{\zeta=\frac{1-\sqrt{1-4z}}2} \dots
+		= -2\pi i \frac1{2\zeta-1} \biggr|_{\zeta=\dots}
+		= 2\pi i \frac1{\sqrt{1-4z}}
+	\end{gather*}
+	Корень откинули, потому что чтобы всё сходилось $\zeta$ и $\sfrac z{\zeta}$ должны быть маленькими.
+	\TODO хрееееень.
+
+	Ещё произведение Адамара.
+	\begin{gather*}
+		A(z) = \sum_{n=0}^{+\infty} a_n z^n \quad B(z) = \sum_{n=0}^\infty b_n z^n \\
+		C(z) = \sum_{n=0}^{+\infty} a_n b_n z^n \\
+		f(z, w) = A(z) B(w) = \sum_{n,k=0}^{+\infty} a_n b_k z^n w^k
+	\end{gather*}
+	Сново нужна диагональ.
+
+	Ещё будет метод Дарбу.
+	Вот есть $f(z) = \sum a_n z^n$, мы явно знаем $f$.
+	Оказывается, можно относительно легко понять, как растут коэффекиенты $a_n$.
+\end{exmp}
