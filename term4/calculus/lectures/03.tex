@@ -149,14 +149,23 @@
 			{#2}%
 	}
 	$\tildes1P$, $\tildes2P$, $\tildes3P$ и $\tildes4P$.
-	\[ \alpha(P) = \alpha(\tildes1P) + \alpha(\tildes2P) + \alpha(\tildes3P) + \alpha(\tildes4P) \]
+	\[
+		\alpha(P)
+		= \alpha\left(\tildes1P\right) + \alpha\left(\tildes2P\right)
+		+ \alpha\left(\tildes3P\right) + \alpha\left(\tildes4P\right)
+	\]
 	Не умаляя общности,
 	\[ |\alpha(\tildes1P)| \ge \frac14 |\alpha(P)| \]
 	Тогда $P_1 \lrh \tildes1P$. Повторим процесс рекурсивно.
 	\[ P \supset P_1 \supset P_2 \supset P_3 \supset \dots \]
+	Последовательность этих вложенных прямоугольников стремится к нулю по размеру.
 	Выберем общую точку $z_0$.
-	\[ f(z) = f(z_0) + k(z - z_0) + \beta(z-z_0) \quad \beta(z-z_0) = o(z - z_0)\]
-	\TODO Я здесь кусок потерял, будет \TODO
+	\begin{align*}
+		f(z) &= f(z_0) + k(z - z_0) + \beta(z) \quad \beta(z-z_0) = o(z - z_0) \\
+		\int\limits_{P_n} f(z) \d z
+		&= \underbrace{\int\limits_{P_n} f(z_0) \d z}_{=0} + \underbrace{\int\limits_{P_n} k(z-z_0) \d z}_{=0}
+		+ \int\limits_{P_n} \beta(z) \d z
+	\end{align*}
 	Оценим
 	\begin{gather*}
 		\left| \int\limits_{P_n} \beta(z) \d z\right|
