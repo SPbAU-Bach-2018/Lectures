@@ -83,13 +83,13 @@
 
 \begin{conseq}
 	При тех же условиях
-	\[ f(a) = \frac1{\pi r^2}\int\limits_{|z - a| \le r} f(a) \d x \d y \]
+	\[ f(a) = \frac1{\pi r^2}\int\limits_{|z - a| \le r} f(z) \d x \d y \]
 \end{conseq}
 \begin{proof}
 	Не умаляя общности, пусть $a = 0$.
 	\begin{gather*}
-		\frac1{\pi r^2} \int\limits_{|z| = r} f(z) \d x \d y
-		= \frac1{\pi r^2} \int\limits_{\rho=0}^r \underbrace{\int\limits_{\phi=0}^{2\pi} f(ge^{i\phi})}_{2\pi f(0)} \rho \d \phi \d \rho
+		\frac1{\pi r^2} \int\limits_{|z| \le r} f(z) \d x \d y
+		= \frac1{\pi r^2} \int\limits_{\rho=0}^r \underbrace{\int\limits_{\phi=0}^{2\pi} f(\rho e^{i\phi}) \d \phi}_{2\pi f(0)} \rho \d \rho
 		= \frac1{\pi r^2} \int\limits_0^r 2\pi f(0) \rho \d \rho
 		= f(0)
 	\end{gather*}
