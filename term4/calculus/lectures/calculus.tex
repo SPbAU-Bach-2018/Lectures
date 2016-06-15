@@ -1,0 +1,180 @@
+\begin{theorem}
+\[ \sum_{n=1}^\infty \frac{1}{n^2} = \frac{n^2}{6} \]
+\end{theorem}
+
+\begin{proof}
+	\begin{gather*}
+		\phi(x) = \sum_{n=1}^\infty \frac{x^n}{n^2} \quad 0 \le x \le 1 \\
+		\phi'(x) = \sum_{n=1}^\infty \frac{x^{n-1}}{n} \quad 0 \le x < 1 \\
+		\phi'(x) = \sum_{n=1}^\infty \frac{x^{n-1}}{n} = -\frac{\ln(1-x)}{x} \quad \ln(1 + t) = \sum_{n=1}^\infty \frac{(-1)^{n-1}t^n}{n} \\
+		\phi(1) = \phi(0)^{=0} + \int_0^1 \phi'(x) \ dx = - \int_0^1 \frac{\ln(1-x)}{x} \ dx = \frac{\pi^2}{6} \text{последний интеграл вроде уже считали в прошлый раз} \\
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	Пусть:
+	\begin{itemize}
+		\item $f$ "--- мераморная
+		\item $a_1, a_2, \ldots, a_n$ "--- все её полюсы,
+		\item $\infty$ "--- либо устранимая особенность, либо полюс,
+		\item $G_k(z)$ "--- главная часть ряда Лорана в $a_k$
+		\item $G(z)$ "--- главная часть в $\infty$ (то есть $\sum_{n=1}^\infty c_n z^n$).
+	\end{itemize}
+	Тогда
+	\[ f(z) = c + G(z) + \sum_{k=1}^n G_k(z) \]
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим функцию:
+	\[ h(z) = f(z) - G(z) - \sum_{k-1}^n G_k(z) \]
+	У неё нет вообще полюсов (про бесконечность пока не говорим).
+	Она голоморфна в $\C$:
+
+	Распишем сумму:
+	\[ G_k(z) = \sum_{j=1}^{n_k} \frac{c_{k, j}}{(z-a_k)^j} \]
+	У $h(z)$ полюсы могли быть только в $a_k$, но посмотрим на конкретную точку $a_k$
+	$h(a_k)$, нет главной части, тогда либо нет проблем, либо устранимая особая точка,
+	тогда нужным образом чтобы устранить особенность.
+
+	Теперь разберёмся с бесконечностью.
+	На бесконечности ряд Лорана $f(z) - G(z)$ имеет неположительные степени,
+	поэтому есть конечный предел, тогда $h(z)$ имеет конечный предел на бесконечности.
+	Так как непрерывна и есть предел на бесконечности, то по теореме Лиувилля $h = const$.
+\end{proof}
+
+\begin{theorem}
+	$f$ "--- голоморфна, за исключением бесконечного числа точек $a_1, a_2, \dots$, 
+	являющихся полюсами, причём это изолированные точки.
+	Пусть $\exists R_n \ra +\infty$ такая, что $M_{R_n} = \max_{|z| = R_n} |f(z)| \ra 0$.
+	Тогда
+	\[ f(z) = \lim_{n\ra+\infty} \sum_{k=1}^n G_k(z) \]
+	$G_k$ как в предыдущей теореме.
+\end{theorem}
+
+\begin{proof}
+	\[ I_n(z) = \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \ d\zeta   \quad |z| < R_n \]
+	Оценим на бесконечности:
+	\[ I_n(z) \ra 0 \quad |I_n(z)| \leq \frac{1}{2\pi} 2\piR-n \frac{M_{R_n}}{R_n - |z|} \ra 0 \]
+	Смотрим, что даёт теорема о вычетах:
+	\[
+		I_n(z)
+		= \underbrace{\res_{\zeta=z} \frac{f(\zeta)}{\zeta - z}}_{ = f(z) }
+		+ \sum_{|a_k| < R_n} \res_{\zeta=a_k} \frac{f(\zeta)}{\zeta - z}
+	\]
+	Посчитаем вычет:
+	\[ \res_{\zeta = a_k} \frac{f(\zeta)}{\zeta - z} = \res_{\zeta = a_k} \frac{G_k(\zeta)}{\zeta - z} \]
+	объяснение:
+	$h(\zeta) = f(\zeta) - G_k(\zeta)$ "--- голоморфна в окрестности $a_k$,
+	$\frac{h(\zeta)}{\zeta - z}$ "--- голоморфная в окрестности $a_k$, значит
+	$\res_{\zeta = a_k} \frac{h(\zeta)}{\zeta - z} = 0$.
+
+	Возвращаемся к интегралу ($R$ выбираем так, что $|z| < R$ и $|a_k| < R$):
+	\begin{gather*}
+		\frac1{2\pi i} \int_{|\zeta| = R} \frac{G_k(\zeta)}{\zeta - z} \d \zeta
+		= \res_{\zeta = z} + \res_{\zeta = a_K} \\
+		\left| \frac{1}{2\pi i} \int_{|\zeta| = R} \frac{G_k}{\zeta - z} \ d\zeta \right|
+		\le \frac1{2\pi} 2 \pi R \frac{\max_{|\zeta| = R} |G_k(\zeta)}{R - |z|} \ra 0 \quad \text{при $R\ra\infty$}
+	\end{gather*}
+	Числитель стремится к нулю при $R\ra+\infty$, остальная штука ограничена.
+	Тогда, первое равенство ниже т.к. сумма = 0:
+	\begin{gather*} 
+		\res_{\zeta = a_k} \frac{G_k(\zeta)}{\zeta - z}
+		= -\res_{\zeta = z} \frac{G_k(\zeta)}{\zeta - z}
+		= -G_k(z) \\
+		I_n(z)
+		= f(z) - \sum_{a_k < R_n} G_k(z) \xlongrightarrow{n\ra+\infty} 0
+	\end{gather*}
+\end{proof}
+
+Теперь подставим что-нибудь интересное в теорему и посмотрим, что получится:
+Пример:
+$f(z) = \frac{\ctg z}{z}$ \quad полюсы $\pm \pi k$
+$R_n = \pi(n+\frac{1}{2})$
+Докажем, что на $|z| = R_n$ $\ctg z$ ограничен. Т.к. в знаменателе $f(z)$  ещё $z$, то получим, что 
+$\lim_{n\ra\infty} \max_{|z|=R_n} f(z) = 0$.
+TODO: РИСУНОК! (кружок, нарезанный вертикальными полосами ширины $pi$)
+
+$\ctg$ "--- периодическая функция. Сдвинеим кусочки окр-ти в полосу $0 \leq \Re z \leq \pi$
+Докажем, что при сдвигах части окружности точно не попадут в какой-то фиксированы круг вокруг нуля
+	и $\pi$ 
+
+	До последней полосы части точно не пересекают маленькие круги, и если мы возьмём вокруг $\pi$ окр-ть 
+	радиуса $<\frac{\pi}{2}$, то не заденем
+
+	$A = \{ z \in \C \colon 0 \leq \Re z \leq \pi, |z| \geq \frac{\pi}{4}, |z-\pi| \geq \frac{\pi}{4}$
+
+	Докажем, что $\ctg z$ ограничен в таком множестве
+
+	$$ 
+		|\ctg (x+iy)| = 
+		\left| \frac{\cos(x+iy)}{\sin(x+iy)} \right| = 
+		\left| \frac{e^{ix-y} + e^{-ix+y}}{e^{ix-y - e^{-ix+y}}} \right| \ra^{y\ra+\infty, y\ra-\infty} 1
+	$$
+
+	т.е. получается, вне $A$ вдалеке есть огранниченность, а внутри непрерывная функция на компакте, т.е. тоже ограничена
+
+	$M_{R_n} \ra 0 \Ra \frac{\ctg z}{z} = \lim_{n\ra\infty}{\sum_{k=-n}^n G_k(z)}$
+
+	Возьмём точку $\pi k$, $k \neq 0$ том полюс 1-го порядка
+	там $G_k(z) = \frac{res}{z - \pi k}$
+
+	$$ 
+		\res_{z = \pi k} \frac{\ctg z}{z} = 
+		\res_{z = \pi k} \frac{\frac{\cos z}{z}}{\sin z} = 
+		\frac{\frac{\cos z}{z}}{(\sin z)'} \bigg|_{z=\pi k} = 
+		\frac{1}{\pi k} 
+	$$
+
+	$G_0(z) = \frac{1}{z^2}$
+
+	$$ 
+		\frac{\ctg z}{z} = 
+		\frac{\cos z}{z \sin z} = 
+		\frac{1 - \frac{z^2}{2} + \ldots}}{z(z - \frac{z^3}{6} + \ldots)} = 
+		\frac{1 - \frac{z^2}{2} + \ldots}}{z^2(1 - \frac{z^2}{6} + \ldots)} =
+		\frac{1}{z^2}{1 + \underbrace{cz^2}_{\text{т.к. чётные степени}} +	\ldots}
+	$$
+
+	Тогда $c_0(z) = \frac{1}{z^2}$
+
+	$ \frac{\ctg z}{z} = \frac{1}{z^2} + \sum_{k=-\infty}^{+infty} \frac{1}{\pi k(z-\pi k)}$, 
+	при этом расширяется по $+$ и $-$ одновременно т.к. в теоерме предел по модулю, 
+	сгрупируем $-k$ и $k$ чтобы не париться
+
+	$$
+		G_k + G_{-k} = 
+		\frac{1}{\pi k (z - \pi k)} + \frac{1}{-\pi k(z + \pi k)} = 
+		\frac{1}{\pi k} \frac{(z + \pi k) - (z - \pi k)}{z^2 - \pi^2k^2} = 
+		\frac{2}{z^2 - \pi^2k^2}
+	$$
+
+	Итого: $\ctg z = \frac{1}{z} + \sum_{1}^{\infty} \frac{2z}{z^2 - \pi^2 k^2}$
+
+
+Пример:
+	\begin{gather*}
+		\ctg z = (\ln \sin z)' \\
+		\frac{\sin z}{z} = \int_0^z (\ctg w - \frac{1}{w}) \ dw \\
+		\ln \frac{\sin z}{z} = 
+		\int_0^{z} \sum_{k=1}^\infty \frac{2w}{(w^2  - \pi^2 k^2)} \ dw =
+		\int_0^{z} \sum_{k=1}^\infty (\frac{1}{w - \pi k} + \frac{1}{(w + \pi k)}) =
+		\sun_{k=1}^\infty \int_0^z (\frac{1}{w - \pi k} + \frac{1}{w + \pi k }) \ dw =
+		\sum_{k=1}^\infty (\ln(w - \pi k) + \ln(w + \pi k)) \bigg|_{w = 0}^{w = 2} = \\
+		\sum_{k=1}^{\infty} (\ln(z - \pi k) + \ln(z + \pi k) - \ln(\pi k) - \ln(-\pi k)) \\
+		\frac{\sin z}{z} = \prod_{k=1}^\infty -\frac{z^2 - \pi^2 k^2}{\pi^2 k^2} \\
+		\sin z = z\prod_{k=1}^\infty \frac{\pi^2k^2 - z^2}{\pi^2 k^2}
+	\end{gather*}
+
+	Обоснования:
+
+	если $|w| \leq r$, то $\left| \frac{2w}{w^2 - \pi^2 k^2} \right| \leq \frac{2r}{\pi^2 k^2 - r^2} = O(\frac{1}{k^2})$,
+	значит есть равномерная сходимость, поэтому можно было переставить сумму и интегрирование
+
+	$\ln\frac{\pi^2 k^2 - z^z}{\pi^2 k^2}$ TODO
+
+
+	\begin{gather*}
+		\ctg z = (\ln \sin z)' \\
+		\ln \frac{\sin z}{z} = \int_p^z (\ctg w - \frac{1}{w}) \ dw\\
+		\frac{\sin z}{z} = e^{\int_0^z (\ctg w - \frac{1}{w})} \ dw
+	\end{gather*}

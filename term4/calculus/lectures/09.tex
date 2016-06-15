@@ -101,7 +101,11 @@
 	\end{gather*}
 	Давайте считать на верхнем полукруге радиуса $R$.
 	\begin{gather*}
-		\int\limits_{T_r} \TODO \\ \TODO \TODO \\
+		\int\limits_{\mathbb T_r} f(z) \d z = 2\pi i \sum \res f \\
+		\int\limits_{\mathbb T_r} f(z) \d z = \int\limits_{-R}^R f(z) \d z + \int\limits_{c_R} f(z) \d z \\
+		\left| \int\limits_{c_R} f(z) \d z \right|
+		\le \pi R\max_{c_R} |f(z)|
+		\le \frac{\pi R}{R^{2n}-1} \ra 0 \\
 		\res_{z=e^{i\phi_k}} \frac1{1+z^{2n}}
 		= \frac1{(1+z^{2n})'} \biggr|_{z=e^{i\phi_k}}
 		= \frac1{2nz^{2n-1}} \biggr|_{z=e^{i\phi_k}}
@@ -128,20 +132,20 @@
 		|e^{i\lambda z}| = |e^{i\lambda(x+iy)}| = e^{-\lambda y} \le e^{\lambda a} \\
 		|g(z)| \le M_n \\
 		\left| \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z \right| \le \alpha_n R_n \cdot \underbrace{M_n e^{\lambda a}}_{\ra 0} \\
-		\alpha_n R_n \sim \sim a_n R_n = a \Ra \text{$|\alpha_n R_n|$ ограничена}
+		\alpha_n R_n \sim \sin a_n R_n = a \Ra \text{$|\alpha_n R_n|$ ограничена}
 	\end{gather*}
 	четверть окружности из первого квадранта: $z = R_n e^{i\phi} = R_n(\cos\phi + i\sin\phi)$, $\sin \phi \ge \frac{2\pi}\pi$.
 	\begin{gather*}
 		|e^{i\lambda z}| = e^{-\lambda R_n\sin \phi} \le e^{-\lambda R_n \frac{2\phi}{\pi}}
 		\left| \int\limits_{C_{R_n}} e^{i\lambda z} g(z) \d z \right|
-		= \left| \int\limits_0^{\frac\pi2} g(R_n e^{i\phi}) e^{i\lambda R_ne^\phi} \d (R_n e^{i\phi}) \right|
+		= \left| \int\limits_0^{\frac\pi2} g(R_n e^{i\phi}) e^{i\lambda R_ne^\phi} \d (R_n e^{i\phi}) \right| \le \\ 
 		\le \int\limits_0^{\frac\pi2} \left| g(R_n e^{i\phi}) e^{i\lambda R_ne^\phi}  \d (R_n e^{i\phi}) \right|
-		\le \int\limits_0^{\frac\pi2} M_n e^{-\lambda R_n \frac{2\phi}n} R_n \d\phi
+		\le \int\limits_0^{\frac\pi2} M_n e^{-\lambda R_n \frac{2\phi}n} R_n \d\phi = \\
 		= M_nR_n\frac\pi{\lambda R_n} e^{-\lambda R_n \frac{2\phi}\pi} \biggr|_{\phi=\frac\pi2}^0
 		= \frac{M_n\pi}\lambda \left(1 - e^{-\lambda R_n}\right)
 		\le \frac{M_n\pi}\lambda \ra 0
 	\end{gather*}
-	Вторая четверть также
+	Вторая четверть так же.
 \end{proof}
 
 \begin{lemma}[О полувычете]
@@ -176,7 +180,7 @@
 	Свойства:
 	\begin{enumerate}
 		\item Если интеграл сходится, то главное значение сущесвтует и равно интегралу.
-		\item Линееню
+		\item Линеен.
 		\item Аддитивен, если разбиваем на две части не особой точкой.
 	\end{enumerate}
 \end{Rem}

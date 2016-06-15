@@ -1,0 +1,85 @@
+\begin{theorem}
+	$f \in H(\Omega)$ и однолистна $\Ra$ $\forall z \in \Omega\colon f'(z) \neq 0$
+\end{theorem}
+
+\begin{conseq}
+	$f(z) = c_0 + \frac{c_1}{z} + \frac{c_2}{z^2} + \frac{c_3}{z^3} + \ldots$, 
+	$f$ -- голоморфна в окрестности $\inftyt$ и однолистна 
+	$\Ra$ 
+	$c_{-1} \neq 0$
+\end{conseq}
+
+\begin{proof}
+	$g(z) = f(1 / z)$ голоморфна в окрестности 0 и однолистна
+	$\Ra$ 
+	$g'(0) \neq 0$, $g(z) = c_0 + c_1 z + c_2 z^2 + \ldots$ и
+	$g'(0) = c_{-1}$
+\end{proof}
+
+\begin{conseq}
+	$f$ имеет полюс в (.) $a$ и однолстна в окрестности (.) $a$
+	$\Ra$ 
+	это полюс 1-го порядка
+\end{conseq}
+
+\begin{proof}
+	$g(z) = \frac{1}{g(z)}$ у $g(z)$ в (.) $a$ устранимая особая (.) 
+	$\Ra$
+	голоморфная и однолистная 
+	$\Ra$ 
+	$g'(a) \neq 0$
+
+	$f(z) = \frac{c_{-m}}{(z-a)^m} + \ldots + \frac{c_{-1}}{z - a} +  c_0 + \ldots$ф
+	$\Ra$
+	ноль порядка $m$
+\end{proof}
+
+
+\begin{proof}
+Доказывать существование не будем.
+Докажем единственность.
+
+1) $\Omega = \tilde{\Omega} = \mathbb{D}$ $z_0 = \tilde{z} = \alpha_0 = 0$
+	тода $f = z$
+	$f: D \ra D$, $f(0) = 0$ 
+	$\Ra$ (по лемме Шварца)
+	$|f(z)| \leq |z|$
+
+	$f^{-1}: \mathbb{D} \ra \mathbb{D}$
+	$f(0) = 0$
+	$\Ra$
+	$|f^{-1}(z)| < |z|$
+
+	Тогда 
+	$|f(z)| \leq |z|$
+	$|f^{-1}(z)| \leq |z|$
+	$\Ra$ ()
+	$|f(z)| \leq |z|$
+	$|z| \leq |f(z)|$
+	$\Ra$
+	$|f(z)| = |z|$
+	$\Ra$ (лемма Шварца)
+	$f(z) = e^{iz}z$
+
+	$f'(z) = e^{i\phi}$ но $\arg f'(0) = 0 \Ra e^{i\phi} = 1$
+
+2) $\Omega$ и $\tilde{\Omega}$ произвольные
+
+	$\phi: \D \ra \Omega$; $\phi(0) = z_0$ и $\phi'(0) > 0$
+
+	$\psi: \tilde{\Omega} \ra \D$; $\psi(\tilde{z_0}) = 0$ и $\arg \psi'(\tilde{z_0}) = -\alpha_0$
+
+	пусть $f_1$ и $f_2: \Omega \ra \tilde{\Omega}$,  конформные и $f_i(z_0) = \tilde{z_0}$ и $\arg f'_i(z_0) = \alpha_0$
+	$g_i(z) = \psi(f_i(\phi(z)))$, $g_i: \D \ra \D$ конформные
+
+	$\D \ra^\phi \Omega \ra^{f_i} \tilde{\Omega} \ra^{\psi} \D$
+
+	$g_i(0) = \psi(f_i(\phi(0))) = \psi(f_i(z_0)) = \psi(\tilde(z_0)) = 0$
+
+	$g_i'(0) = \psi'(f_i(\phi(0))) \cdot f'(\phi(0)) \cdot \phi'(0) = \psi(\tilde{z_0}) \cdot f'_i(z_0) \phi'(0)$ тут аргумент 0 
+	$\Ra$ 
+	$g_i(z) = z$
+	$\Ra f_1 \eqiv f_2$
+\end{proof}
+
+

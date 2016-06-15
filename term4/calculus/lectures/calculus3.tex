@@ -1,0 +1,32 @@
+\begin{exmp}
+Метод Дарбу:
+
+хотим понять скорость роста коэффицентов
+
+$\sum_{n = 0}^{\infty} a_nz^n$  сходится в круге $|z| < R$, тогда он сходится абсолютно в круге
+$|z| \leq r < R$ (отступили от границы), значит $a_nr^n \ra 0 \Ra a_n = o(r^{-n})$
+
+Пусть есть полюс:
+
+% картинка, взять фото у Юры Кравченко
+
+$g(z_0) = \frac{c_{-1}}{z - z_0} + \ldots + \frac{c_{-m}}{(z - z_0)^m}$
+
+$f(z) - g(z)$ будет сходиться в большом круге
+
+Явная формула для случая полюса??
+
+$\frac{1}{(z - a)^n} = \sum_{n = 0}^{\infty} С_{n + m - 1}^{m - 1} \left( \frac{z}{a} \right)^n \Ra C_{n + m - 1}^{n} \sim \frac{n^{m - 1}}{(m - 1)!}$ 
+
+Но проблемы могут быть не только из-за особой точки или полюса:
+
+\begin{gather*}
+	f(z) = \frac{\sqrt{1 - \alpha z}}{(1 - z)^2} \quad 0 < \alpha < 1 \\
+	g(z) = \frac{\sqrt{1 - \alpha}}{(1 - z)^2}
+	h(z) = f(z) - g(z) = 
+	\frac{1}{(1 - z)^2}(\sqrt{1 - \alpha z} - \sqrt{1 - \alpha}) = 
+	\frac{1}{(1 - z)^2} \frac{(1 - \alpha z)  - (1 - \alpha)}{\sqrt{1 - \alpha z} + \sqrt{1 - \alpha}} =
+	\frac{\alpha}{1 - z} \frac{1}{\sqrt{1 - \alpha z} + \sqrt{1 - \alpha}}
+\end{gather*}
+
+\end{exmp}
