@@ -10,7 +10,7 @@
 		f \in H(\Omega)
 		\Ra f' \in H(\Omega)
 		\Ra \frac{f'}f \in H(\Omega)
-		\Ra \text{$\frac{f'(z)}{f(z)}\d z$ "--- замкнута}
+		\Ra \text{$\frac{f'(z)}{f(z)}\d z$ "--- замкнута} \Ra \\
 		\xLongrightarrow{\text{$\Omega$ односвзяная}} \text{$\frac{f'(z)}{f(z)}\d z$ "--- точная}
 		\Ra \exists F \in H(\Omega)\colon F(z) = \frac{f'(z)}{f(z)}
 	\end{gather*}
@@ -43,7 +43,7 @@
 
 \begin{conseq}
 	Рассмотрим плоскость $\C$ без кривой из нуля, идущей на бесконечность.
-	На этой области существует логарифм $\log z$: хотим применить теорему выше, $f = z$ томоморфна и непрерывна.
+	На этой области существует логарифм $\log z$: хотим применить теорему выше, $f = z$ голоморфна и непрерывна.
 	\begin{Rem}
 		Есть формула $\log z = \ln |z| + i\arg z$, требующая непрерывность аргумента.
 		У нас она есть, так как выбор значения в одной точке однозначно продолжается по непрерывности на всю плоскость,
@@ -76,7 +76,7 @@
 		\end{proof}
 
 	\item
-		$p \in Z$: всё как раньше.
+		$p \in \Z$: всё как раньше.
 		\begin{proof}
 			\[ z^n = e^{n\Ln z} = e^{n(\ln |z| + i\arg z)} = e^{n\log z} \underbrace{e^{2i\pi k}}_{=1} = (e^{\log z})^n \]
 		\end{proof}
@@ -137,7 +137,7 @@
 \begin{exmp}
 	\begin{gather*}
 		I = \int\limits_0^1 \frac{\ln(1-t)}t \d t
-		= 2 \int\limits_0^1 \frac{\ln(1-x^2}x \d x
+		= 2 \int\limits_0^1 \frac{\ln(1-x^2)}x \d x
 		= 2 \int\limits_0^1 \frac{\ln(1-x)}x \d x + 2\int\limits_0^1 \frac{\ln(1+x)}x \d x
 		= 2I - 2\int\limits_{-1}^0 \frac{\ln(1-x)}x \d x \\
 		\int\limits_{-1}^0 \frac{\ln(1-x)}x = \frac I2 \quad \int\limits_{-1}^1 \frac{\ln(1-x)}x = \frac{3I}2 \\

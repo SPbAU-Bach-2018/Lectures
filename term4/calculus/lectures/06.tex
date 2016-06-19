@@ -45,7 +45,7 @@
 
 \begin{theorem}[Лорана]
 	Если $f$ голоморфна в кольце $R_1 \le |z| \le R_2$, то
-	\[ f(z) = \sum_{n=-\infty}^{+\infty} \]
+	\[ f(z) = \sum_{n=-\infty}^{+\infty} a_n z^n \]
 	сходящемуся при $R_1 \le |z| \le R_2$.
 \end{theorem}
 \begin{proof}
@@ -64,8 +64,8 @@
 		\right) \\
 		\int\limits_{\bar r_2 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta = \cdots \\
 		|\zeta| = \bar r_2 > r_2 \ge |z| \\
-		\frac{\zeta - z} = \frac1\zeta \frac1{1-\frac z\zeta}
-		= \frac1\zeta \sum{n=0}^\infty \frac{z^n}{\zeta^n}
+		\frac1{\zeta - z} = \frac1\zeta \cdot \frac1{1-\frac z\zeta}
+		= \frac1\zeta \sum_{n=0}^\infty \frac{z^n}{\zeta^n}
 		= \sum_{n=0}^\infty \frac{z^n}{\zeta^{n+1}} \text{ "--- равномерно сходится} \\
 		\cdots
 		= \frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} \sum_{n=0}^\infty \frac{z^n}{\zeta^{n+1}} f(\zeta) \d \zeta
@@ -73,8 +73,8 @@
 %
 		-\int\limits_{\bar r_1 \mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta = \cdots \\
 		|\zeta| = \bar r_1 < r_1 \le |z| \\
-		\frac{\zeta - z} = -\frac1\zeta \frac1{1-\frac\zeta z}
-		= -\frac1\zeta \sum{n=0}^\infty \frac{\zeta^n}{z^n}
+		\frac1{\zeta - z} = -\frac1\zeta \cdot \frac1{1-\frac\zeta z}
+		= -\frac1\zeta \sum_{n=0}^\infty \frac{\zeta^n}{z^n}
 		= -\sum_{n=0}^\infty \frac{\zeta^n}{z^{n+1}} \text{ "--- равномерно сходится} \\
 		\cdots
 		= \frac1{2\pi i} \int\limits_{\bar r_2 \mathbb T} \sum_{n=0}^\infty \frac{\zeta^n}{z^{n+1}} f(\zeta) \d \zeta
@@ -149,7 +149,7 @@
 	Скажем, что $f(a) = a_0$.
 \end{description}\end{proof}
 
-\section{Теорема о единственности и нули голоморфной функции}
+\section[Т-ма о единствнности, нули голоморной ф-ции]{Теорема о единственности и нули голоморфной функции}
 
 \begin{theorem}[Первая версия теоремы о единственности]
 	$f \in H(\Omega)$, $a \in \Omega$.

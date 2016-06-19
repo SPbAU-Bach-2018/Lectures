@@ -12,7 +12,7 @@
 	\begin{gather*}
 		a_n = \frac1{2\pi i} \int\limits_{|z| = r} \frac{f(z)}{z^{n+1}} \d z \\
 		|a_n|
-		\le \frac1{2\pi} \left| \int\limits_{|z| = r}{z^{n+1}} \d z\right|
+		\le \frac1{2\pi} \left| \int\limits_{|z| = r} \frac{f(z)}{z^{n+1}} \d z\right|
 		\le \frac1{2\pi} \max_{|z| = r} \left| \frac{f(z)}{z^{n+1}}\right| \cdot 2\pi r = \frac{M(r)}{r^n}
 	\end{gather*}
 \end{proof}
