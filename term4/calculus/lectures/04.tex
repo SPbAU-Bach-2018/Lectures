@@ -4,7 +4,7 @@
 \end{theorem}
 \begin{proof}
 	Режем на прямоугольнкики. Если прямая не задела "--- смотри на предыдущий случай.
-	Если задела "--- разрежем по прямой. Для каждого такого прямоугольника отступим на прямой на $\epsilon$.
+	Если задела "--- разрежем по прямой. Для каждого такого прямоугольника отступим от прямой на $\epsilon$.
 	Для таких прямоугольников всё доказано, а дальше по непрерывности хотим показать, что интегралы сойдутся.
 	\[
 		\int\limits_P - \int\limits_{P_\epsilon} = \int\limits_{\text{боковые фрагменты}} + \int\limits_{\text{сторона по прямой}} (f(z) - f(z - i\epsilon))
@@ -125,7 +125,7 @@
 \end{proof}
 
 \begin{conseq}
-	$f \in C(\Omega) \land f \in H(\Omega \setminus \Delta) \Ra f \in (\Omega)$.
+	$f \in C(\Omega) \land f \in H(\Omega \setminus \Delta) \Ra f \in H(\Omega)$.
 \end{conseq}
 
 \begin{conseq}
@@ -134,7 +134,7 @@
 \end{conseq}
 
 \begin{theorem}[Интегральная теорема Коши, вторая версия]
-	$f \in H(\Omega)$, $K \subset \Omega$ "--- компакт с кусочно гладной границей.
+	$f \in H(\Omega)$, $K \subset \Omega$ "--- компакт с кусочно-гладной границей.
 	Тогда
 	\[
 		\int\limits_{\partial K} \frac{f(z)}{z - a} \d z = \begin{cases}
