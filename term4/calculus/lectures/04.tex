@@ -63,7 +63,7 @@
 	\begin{gather*}
 		0 = \int\limits_\gamma g(z) \d z
 		= \int\limits_\gamma \frac{f(z) - f(a)}{z - a} \d z
-		= \int\limits_\gamma \frac{f(z)}{z-a} \d z - f(a) \int\limits_\gamma \frac{f(a)}{z - a}
+		= \int\limits_\gamma \frac{f(z)}{z-a} \d z - f(a) \int\limits_\gamma \frac{\d z}{z - a}
 	\end{gather*}
 \end{proof}
 
@@ -83,10 +83,10 @@
 \end{theorem}
 
 \begin{proof}
-	$0 < r_1 < r_2 < r$, $|\zeta| = r_2$, $|z| < r_2$.
+	$0 < r_1 < r_2 < r$, $|\zeta| = r_2$, $|z| < r_1$.
 	\begin{gather*}
-		f(z) = \frac1{2\pi i} \int\limits_{r_2\mathbb T} f(\zeta){\zeta - z} \d \zeta = \dots \\
-		\frac1{\zeta - z} = \frac1\zeta \cdot \frac1{1- \frac z\zeta} = \sum_{i=0}^\infty \frac{z^n}{\zeta^{n+1}}
+		f(z) = \frac1{2\pi i} \int\limits_{r_2\mathbb T} \frac{f(\zeta)}{\zeta - z} \d \zeta = \dots \\
+		\frac1{\zeta - z} = \frac1\zeta \cdot \frac1{1- \frac z\zeta} = \sum_{i=0}^\infty \frac{z^n}{\zeta^{n+1}} \\
 		\dots = \frac1{2\pi i} \int\limits_{r_2 \mathbb T} f(\zeta) \sum_{i=0}^\infty \frac{z^n}{\zeta^{n+1}} \d \zeta = \dots
 	\end{gather*}
 	Равномерно сходится: мажорируется рядом $\sum_{n=0}^\infty \max |f| \left(\frac{r_1}{r_2}\right)^n$

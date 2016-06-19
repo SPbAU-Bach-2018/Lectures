@@ -38,8 +38,9 @@
 	\]
 	Ура, получили алгоритм, которых с хорошей вероятностью по случайным битам считает определитель правильно.
 
-\problem{44}
+\subproblem{44}{в}[сложное решение]
 	Разбирал семинарист.
+	Решение ниже автором конспекта не понято и не дописано до конца.
 
 	Докажем что $\BPTime[n^{\log n}] \neq \BPTime[2^n]$ от противного (остальное показали раньше).
 	Тогда из пункта <<а>> мы знаем, что если $f(n)\ge n$, то:
@@ -72,6 +73,43 @@
 		\BPTime[2^{n'}] \not\supseteq \BPTime[2^{2^{8\log \log^2 n}}]
 	\end{gather*}
 	Но слева стоит функция больше, чем справа, противоречие.
+
+\subproblem{44}{в}[простое решение]
+	Решение спросили у Кнопа.
+
+	Опять же, будем доказывать только интересную часть: $\BPTime[n^{\log n}] \neq \BPTime[2^n]$.
+	Докажем методом от противного (остальное показали раньше).
+
+	Раз $\BPTime[n^{\log n}] = \BPTime[2^n]$, то мы можем воспользоваться пунктом <<а>> со следующими функциями:
+	\begin{align*}
+		f(n) &= n^{\log n} \\
+		g(n) &= 2^n \\
+		h(n) &= 2^{\sqrt n} \\
+	\end{align*}
+	Получаем:
+	\begin{align*}
+		\BPTime\left[\left(2^{\sqrt n}\right)^{\log 2^{\sqrt n}}\right] &= \BPTime\left[2^{2^{\sqrt n}}\right] \\
+		\BPTime\left[\left(2^{\sqrt n}\right)^{\sqrt n}\right] &= \BPTime\left[2^{2^{\sqrt n}}\right] \\
+		\BPTime\left[2^{\sqrt n \cdot \sqrt n}\right] &= \BPTime\left[2^{2^{\sqrt n}}\right] \\
+		\BPTime\left[2^n\right] &= \BPTime\left[2^{2^{\sqrt n}}\right]
+	\end{align*}
+	Можем применить пункт <<а>> с той же функций $h(n)$ ещё раз:
+	\begin{align*}
+		\BPTime\left[2^{2^{\sqrt n}}\right] &= \BPTime\left[2^{2^{\sqrt{2^{\sqrt n}}}}\right] \\
+		\BPTime\left[2^{2^{\sqrt n}}\right] &= \BPTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right]
+	\end{align*}
+	Отсюда получаем:
+	\[
+		\BPTime\left[n^{\log n}\right] = \BPTime\left[2^n\right] = \BPTime\left[2^{2^{\sqrt n}}\right] = \BPTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right]
+	\]
+	С другой стороны:
+	\begin{gather*}
+		\DTime\left[2^{\O(n^{\log n})}\right] \supseteq \BPTime\left[n^{\log n}\right] =
+		\BPTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right] \supseteq \DTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right] \\
+		\DTime\left[2^{\O(n^{\log n})}\right] \supseteq \DTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right] \\
+		\DTime\left[2^{\O(2^{\log^2 n})}\right] \supseteq \DTime\left[2^{2^{2^{\sfrac{\sqrt n}{2}}}}\right] \\
+	\end{gather*}
+	Что противоречит иерархии по времени, т.к. $\log^2 n$ сильно меньше $2^{\sfrac{\sqrt n}{2}}$.
 
 \problem{55}
 	Разбирал Дима Розплохас.

@@ -22,7 +22,7 @@
 \end{Rem}
 
 \begin{Def}
-	Функция называется целой, если она голотопна на $\C$.
+	Функция называется целой, если она голоморфна на $\C$.
 \end{Def}
 
 \begin{theorem}[Лиувилля]
@@ -75,21 +75,21 @@
 	\begin{gather*}
 		f(a)
 		= \frac1{2\pi i} \int\limits_{|z - a| = r} \frac{f(a)}{z - a} \d z = \\
-		z = a + re^{i\phi} \quad \d z = r \d e^{i\phi} = zie^{i\phi} \d \phi \\
+		z = a + re^{i\phi} \quad \d z = r \d e^{i\phi} = rie^{i\phi} \d \phi \\
 		= \frac1{2\pi i}\int\limits_0^{2\pi} \frac{f(a + re^{i\phi})}{re^{i\phi}} rie^{i\phi} \d \phi
-		= \int\limits_0^{2\pi} f(a + re^{i\phi})
+		= \frac1{2\pi} \int\limits_0^{2\pi} f(a + re^{i\phi})
 	\end{gather*}
 \end{proof}
 
 \begin{conseq}
 	При тех же условиях
-	\[ f(a) = \frac1{\pi r^2}\int\limits_{|z - a| \le r} f(a) \d x \d y \]
+	\[ f(a) = \frac1{\pi r^2}\int\limits_{|z - a| \le r} f(z) \d x \d y \]
 \end{conseq}
 \begin{proof}
 	Не умаляя общности, пусть $a = 0$.
 	\begin{gather*}
-		\frac1{\pi r^2} \int\limits_{|z| = r} f(z) \d x \d y
-		= \frac1{\pi r^2} \int\limits_{\rho=0}^r \underbrace{\int\limits_{\phi=0}^{2\pi} f(ge^{i\phi})}_{2\pi f(0)} \rho \d \phi \d \rho
+		\frac1{\pi r^2} \int\limits_{|z| \le r} f(z) \d x \d y
+		= \frac1{\pi r^2} \int\limits_{\rho=0}^r \underbrace{\int\limits_{\phi=0}^{2\pi} f(\rho e^{i\phi}) \d \phi}_{2\pi f(0)} \rho \d \rho
 		= \frac1{\pi r^2} \int\limits_0^r 2\pi f(0) \rho \d \rho
 		= f(0)
 	\end{gather*}
