@@ -284,6 +284,7 @@ void add(a) {
     Len[last] = len[p] + 1;
     while(p != 0 && Next[p][a] == 0) {
         next[p][a] = Last;
+        p = suf[p];
     }
     
     p = suf[p];
@@ -298,13 +299,14 @@ void add(a) {
             r = new Vertex
             suf[r] = suf[q];
             suf[q] = r;
-            suf[last] = r;
+            suf[last] = suf[q] = r;
             len[r] = len[p] + 1;
             next[r] = next[q]
             while (p != 0 && next[p][a] = q)  {
                 next[p][a] = r;
                 p = suf[p];
             }
+
         }
     }
 }
