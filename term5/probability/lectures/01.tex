@@ -113,5 +113,12 @@ $A_kA_j = \varnothing \Ra P(\bigcup\limits_k A_k) = \sum\limits_k P(A_k)$ -- $\s
     \end{proof}
 
     \item
-    $P(\bigcup\limits^{\infty} \leq \sum\limits^{\infty} P(A_k)$
+    $P(\bigcup\limits^{\infty}) \leq \sum\limits^{\infty} P(A_k)$
+    \begin{proof}
+        Знаем для конечного случая, перейдем к пределу. 
+        
+        Получим $\lim P(\bigcup\limits_{i=0}^n A_i) \leq \lim \sum\limits_{i=0}^{n} A_i = \sum\limits^{\infty} A_i$.
+        
+        По 4 свойству, левая часть равна $P(\lim \bigcup\limits_{i=0}^n A_i) = P(\bigcup\limits^{\infty} A_i)$, что и требовалось.
+    \end{proof}
 \end{enumerate}
