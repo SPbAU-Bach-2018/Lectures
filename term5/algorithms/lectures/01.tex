@@ -9,34 +9,34 @@ $\omega_n^j = e^{2 \pi i j/n} $
 
 2 задачи:
 \begin{itemize}
-	\item Экстерполяция(по многочлену - значения в точках).
-	
-	$P(x) \xrightarrow{FFT} P(\omega_n^0), P(\omega_n^1), \dots$
-	
-	$P \cdot Q (\omega_n^j) = P(\omega_n^j) \cdot Q(\omega_n^j)$ // $\O(n)$
-	
-	\item Интерполяция(по точкам - многочлен).
-	
-	$P(\omega_n^0), P(\omega_n^1), \dots \xrightarrow{FFT^{-1}} P(x)$
+    \item Экстерполяция(по многочлену - значения в точках).
+    
+    $P(x) \xrightarrow{FFT} P(\omega_n^0), P(\omega_n^1), \dots$
+    
+    $P \cdot Q (\omega_n^j) = P(\omega_n^j) \cdot Q(\omega_n^j)$ // $\O(n)$
+    
+    \item Интерполяция(по точкам - многочлен).
+    
+    $P(\omega_n^0), P(\omega_n^1), \dots \xrightarrow{FFT^{-1}} P(x)$
 \end{itemize}
 
 $FFT^{-1}$ =  \begin{enumerate}
-	\item FFT
-	\item reverse(a + 1, a + n). $a[0]$ остаётся на месте
-	\item $a[i] /= n$
+    \item FFT
+    \item reverse(a + 1, a + n). $a[0]$ остаётся на месте
+    \item $a[i] /= n$
 \end{enumerate}
 
 Псевдокод:
 \begin{cppcode}
 FFT(n, p) { // $n = 2^k, \omega_n^j - we want to count in this roots$
-	if (n == 1) { return p[0] }
-	// $P(x) = P_0(x^2) + xP_1(x^2) - divide degrees on even and odd
-	for i = 0..n - 1
-		A[i % 2].push_back(p[i])
-	F_0 = FFT(n/2, A[0])
-	F_1 = FFT(n/2, A[1])
-	for i = 0..n - 1
-		res[i] = F_0[i % (n/2)] + w_n^i \cdot F_1[i % (n/2)] // P_0(w_n^{2i}) = P_0(w_{n/2}^i)
+    if (n == 1) { return p[0] }
+    // $P(x) = P_0(x^2) + xP_1(x^2) - divide degrees on even and odd
+    for i = 0..n - 1
+        A[i % 2].push_back(p[i])
+    F_0 = FFT(n/2, A[0])
+    F_1 = FFT(n/2, A[1])
+    for i = 0..n - 1
+        res[i] = F_0[i % (n/2)] + w_n^i \cdot F_1[i % (n/2)] // P_0(w_n^{2i}) = P_0(w_{n/2}^i)
 \end{cppcode}
 
 $FFT = \theta(n \log n) \Ra Mul = \theta(n \log n)$
@@ -72,17 +72,17 @@ $10^1, 10^2, 10^3, \dots, 10^{2^k}$ - просто считаем втупую.
 
 Пусть $T(n) = aT(n/b) + n^c\log^d n = aT(n/b) + f(n)$.
 \begin{itemize}
-	\item $a < b^c \rightarrow T(n) = f(n)$
-	\item $a = b^c \rightarrow T(n) = f(n)\cdot\log n$
-	\item $a > b^c \rightarrow T(n) = a^{\log_b n} = n^{\log_a b}$
+    \item $a < b^c \rightarrow T(n) = f(n)$
+    \item $a = b^c \rightarrow T(n) = f(n)\cdot\log n$
+    \item $a > b^c \rightarrow T(n) = a^{\log_b n} = n^{\log_a b}$
 \end{itemize}
 
 Подсчёт времени на перевод:
 \begin{itemize}
-	\item Если MUL = FFT, то T(n) = ?. По теореме $T(n) = n\log^2 n$(a = 2, b = 2, c = d = 1)
-	\item Если MUL = Карацуба, то умножение занимает: $T(n) = 3T(n/2) + n = n^{1.58}$
-	
-	Таким образом, $T(n)$ для перевода: $T(n) = n^{1.58} = f(n)$ (a = 2, b = 2, c = 1.58)	
+    \item Если MUL = FFT, то T(n) = ?. По теореме $T(n) = n\log^2 n$(a = 2, b = 2, c = d = 1)
+    \item Если MUL = Карацуба, то умножение занимает: $T(n) = 3T(n/2) + n = n^{1.58}$
+    
+    Таким образом, $T(n)$ для перевода: $T(n) = n^{1.58} = f(n)$ (a = 2, b = 2, c = 1.58)   
 \end{itemize}
 
 На практике непонятно, что лучше. Чем больше n, тем FFT лучше. Например, при n = 100 000, FFT уже лучше.
@@ -117,41 +117,41 @@ x - количество старших коэффициентов у A и B, к
 
 \begin{cppcode}
 Div(n, A, B) {
-	if (n == 1): return A[0]/B[0]
-	C1 = Div(n/2, A[:n/2], B[:n/2])
-	A -= B*C_1 // Now first n/2 coefficients A is null. Here's FFT.
-	C2 = Div(n/2, A[n/2:], B[:n/2])
-	return [C1, C2] //concatenation 
+    if (n == 1): return A[0]/B[0]
+    C1 = Div(n/2, A[:n/2], B[:n/2])
+    A -= B*C_1 // Now first n/2 coefficients A is null. Here's FFT.
+    C2 = Div(n/2, A[n/2:], B[:n/2])
+    return [C1, C2] //concatenation 
 }
 \end{cppcode}
 
 Посчитаем время. T(n) = 2T(n/2) + $\left[ \begin{gathered} 
-										n \log n -- FFT \\
-										n^{1.58} -- \text{Карацуба}
-										\end{gathered}
-								\right.$
-								
+                                        n \log n -- FFT \\
+                                        n^{1.58} -- \text{Карацуба}
+                                        \end{gathered}
+                                \right.$
+                                
 \subsection{Экстраполяция(значения в точках)}
 
 $x_1, x_2, \dots, x_n$ - произвольные точки. Хотим посчитать значения в них.
 
 План действий:
 \begin{enumerate}
-	\item $P(x)$ mod $(x - x_1)(x - x_2)(x - x_3)\dots(x - x_n) =: Q(x)$
-	\item $Q(x_1, \dots, x_{n/2})$
-	\item $Q(x_{n/2 + 1}, \dots, x_n)$ 
-\end{enumerate}							
+    \item $P(x)$ mod $(x - x_1)(x - x_2)(x - x_3)\dots(x - x_n) =: Q(x)$
+    \item $Q(x_1, \dots, x_{n/2})$
+    \item $Q(x_{n/2 + 1}, \dots, x_n)$ 
+\end{enumerate}                         
 
 Псевдокод:
 \begin{cppcode}
 Calc(P, n, x1, x2, x3, .., xn) {
-	if (n == 1): return P(x1)
-	P %= (x - x1)(x - x2)..(x - xn) //after this, deg P < n
-	A1 = Calc(P, n/2, x1, x2, .., xn/2)
-	A2 = Calc(P, n/2, x(n/2 + 1), .., xn)
-	return A1 concat A2
+    if (n == 1): return P(x1)
+    P %= (x - x1)(x - x2)..(x - xn) //after this, deg P < n
+    A1 = Calc(P, n/2, x1, x2, .., xn/2)
+    A2 = Calc(P, n/2, x(n/2 + 1), .., xn)
+    return A1 concat A2
 }
-\end{cppcode}	
+\end{cppcode}   
 
 Остался единственный вопрос - как мы быстро находим многочлен $(x - x_1)(x - x_2)\dots(x - x_n)$?
 
@@ -170,10 +170,10 @@ Mod = $n^{1.58} \Ra n^{1.58} = T(n)$ - Карацуба
 \underline{Правильный разделяй и властвуй}:
 
 $\left[
-	\begin{gathered}
-	FFT -- n \ge 32 \\
-	\text{Карацуба} -- n \le 16
-	\end{gathered}
+    \begin{gathered}
+    FFT -- n \ge 32 \\
+    \text{Карацуба} -- n \le 16
+    \end{gathered}
 \right.$
 
 \subsection{Интерполяция}
@@ -185,11 +185,11 @@ $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n) \rightarrow P(x)$
 
 \begin{cppcode}
 Calc(n, x1, y1, x2, y2, ..)
-	P = Calc(n/2, x1, y1, x2, y2, ..)
-	z(x) = (x - x1)(x - x2)..(x - xn/2) // we can count this with help segment tree
-	yi` = (yi - P(yi))/z(yi) // for all i = n/2 + 1..n
-	Q = Calc(n/2, x(n/2 + 1), y`(n/2 + 1), .., xn, yn`)
-	Ans = P + z(x)Q
+    P = Calc(n/2, x1, y1, x2, y2, ..)
+    z(x) = (x - x1)(x - x2)..(x - xn/2) // we can count this with help segment tree
+    yi` = (yi - P(yi))/z(yi) // for all i = n/2 + 1..n
+    Q = Calc(n/2, x(n/2 + 1), y`(n/2 + 1), .., xn, yn`)
+    Ans = P + z(x)Q
 \end{cppcode}
 
 $T(n) = 2T(n/2) + Mul + \text{Экстраполяция(когда считали P(yi))}$, если считать всё в терминах FFT, то $T(n) = n \log^4 n$.
@@ -201,75 +201,74 @@ $T(n) = 2T(n/2) + Mul + \text{Экстраполяция(когда считал
 \section{Деление за \texorpdfstring{$n\log n$}{n log n}}
 
 \begin{itemize}
-	\item Деление чисел = метод Ньютона.
-	
-	$x_{i + 1} = x_i - \frac{f(x_i)}{f'(x_i)}$ Тогда, если в $x_i$ было k верных знаков, то в $x_{i + 1}$ примерно 2k верных знаков.
-	
-	Из матана мы знаем: $f(x) = f(0) + xf'(0) + 1/2x^2f''(\xi)$, для какой то $\xi \in [0, x]$. Если x - корень f, то уравнение получается таким: $0 = f(0) + xf'(0) + 1/2x^2f''(\xi)$, таким образом, $x = \frac{1/2x^2f''(\xi) + f(0)}{f'(0)}$.
-	
-	Таким образом, если изначальная разница была $x - 0 = x$, то после того, как мы сделали переход по правилу и получили новый $x'$, $x - x' = 1/2x^2\frac{f''(\xi)}{f'(0)}$. Если $M = \frac{max f''}{min f'}\frac{1}{2}$, то разница в $x$ переходит в разницу $Mx^2$. А если в терминах точных знаков, то $k$ точных знаков становятся $2k - \log M$ точных знаков. 
-	
-	Чтобы M ничего не портило, надо начинать с достаточно большого приближения.
-	
-	Но всё, что наверху относимо в общем к принципу Ньютона. Мы хотим научиться делить числа. Деление чисел = взятие обратного + умножение, так что научимся брать обратный. То есть $a \rightarrow a^{-1}$.
-	
-	Так как Фурье умеет работать только с целыми, то вещественные числа храним так: Integer number + Integer pos. При перемножении number перемножаются, а pos складываются.
-	
-	В методе Ньютона для наших целей $f(x) = \frac{1}{x} - a$. $x \rightarrow x - \frac{f(x)}{f'(x)} = x + \frac{1/x - a}{\frac{1}{x^2}} = 2x - ax^2$.
-	
-	Откуда начинаем? Начинаем со значения $x^{-1}$ в double. Там будут 15 точных знаков. Можно считать, что каждый раз количество точных знаков увеличивается в полтора раза, чтобы не оценивать M. Каждый раз отрубаем по количеству точных знаков.
-	
-	$T(n) = \sum\limits_{k} 1.5^k\log(1.5^k) = \theta(n \log n)$, где n - количество точных знаков, которые мы хотим получить.
-	
-	\item Многочлены.
-	
-	A(x) $\in \R[[x]]$ - формальный степенной ряд. Чтобы у него был обратный, $a_o \ne 0$.
-	
-	Обратим бесконечный ряд. $A(x) = a_0 + a_1x + \dots$, deg A = n. $\frac{1}{A(x)}$ может не иметь степени, поэтому надо заранее понимать, какое количество коэффициентов нам надо.
-	
-	Тупо, коэффициенты можно посчитать по формуле из Дискретки:
-	
-	$b_0 = \frac{1}{a_0}$
-	
-	$b_1 = -b_0a_1/a_0$  
-	
-	$b_2 = -(b_0a_2 + b_1a_1)/a_0$
-	
-	\dots
-	
-	$b_i = -\dots$
-	
-	Длина i-го уравнения - это i $\Ra$ Втупую работает за $n^2$.
-	
-	А теперь метод \underline{разделяй и властвуй}. Хотим $n\log n$.
-	
-	\begin{cppcode}
+    \item Деление чисел = метод Ньютона.
+    
+    $x_{i + 1} = x_i - \frac{f(x_i)}{f'(x_i)}$ Тогда, если в $x_i$ было k верных знаков, то в $x_{i + 1}$ примерно 2k верных знаков.
+    
+    Из матана мы знаем: $f(x) = f(0) + xf'(0) + 1/2x^2f''(\xi)$, для какой то $\xi \in [0, x]$. Если x - корень f, то уравнение получается таким: $0 = f(0) + xf'(0) + 1/2x^2f''(\xi)$, таким образом, $x = \frac{1/2x^2f''(\xi) + f(0)}{f'(0)}$.
+    
+    Таким образом, если изначальная разница была $x - 0 = x$, то после того, как мы сделали переход по правилу и получили новый $x'$, $x - x' = 1/2x^2\frac{f''(\xi)}{f'(0)}$. Если $M = \frac{max f''}{min f'}\frac{1}{2}$, то разница в $x$ переходит в разницу $Mx^2$. А если в терминах точных знаков, то $k$ точных знаков становятся $2k - \log M$ точных знаков. 
+    
+    Чтобы M ничего не портило, надо начинать с достаточно большого приближения.
+    
+    Но всё, что наверху относимо в общем к принципу Ньютона. Мы хотим научиться делить числа. Деление чисел = взятие обратного + умножение, так что научимся брать обратный. То есть $a \rightarrow a^{-1}$.
+    
+    Так как Фурье умеет работать только с целыми, то вещественные числа храним так: Integer number + Integer pos. При перемножении number перемножаются, а pos складываются.
+    
+    В методе Ньютона для наших целей $f(x) = \frac{1}{x} - a$. $x \rightarrow x - \frac{f(x)}{f'(x)} = x + \frac{1/x - a}{\frac{1}{x^2}} = 2x - ax^2$.
+    
+    Откуда начинаем? Начинаем со значения $x^{-1}$ в double. Там будут 15 точных знаков. Можно считать, что каждый раз количество точных знаков увеличивается в полтора раза, чтобы не оценивать M. Каждый раз отрубаем по количеству точных знаков.
+    
+    $T(n) = \sum\limits_{k} 1.5^k\log(1.5^k) = \theta(n \log n)$, где n - количество точных знаков, которые мы хотим получить.
+    
+    \item Многочлены.
+    
+    A(x) $\in \R[[x]]$ - формальный степенной ряд. Чтобы у него был обратный, $a_o \ne 0$.
+    
+    Обратим бесконечный ряд. $A(x) = a_0 + a_1x + \dots$, deg A = n. $\frac{1}{A(x)}$ может не иметь степени, поэтому надо заранее понимать, какое количество коэффициентов нам надо.
+    
+    Тупо, коэффициенты можно посчитать по формуле из Дискретки:
+    
+    $b_0 = \frac{1}{a_0}$
+    
+    $b_1 = -b_0a_1/a_0$  
+    
+    $b_2 = -(b_0a_2 + b_1a_1)/a_0$
+    
+    \dots
+    
+    $b_i = -\dots$
+    
+    Длина i-го уравнения - это i $\Ra$ Втупую работает за $n^2$.
+    
+    А теперь метод \underline{разделяй и властвуй}. Хотим $n\log n$.
+    
+    \begin{cppcode}
 Inv(A) {
-	if (n == 1): return {1/a[0]}
-	R = Inv(n/2, A)
-	Q = A*R(FFT) - 1 and shift
-	Ans = -Q*R
-}	
-	\end{cppcode}
-	
-	Объяснение:
-	
-	$A*R = 1 + x^{n/2}Q$
-	
-	$(R + C*x^{n/2})A = 1 + x^nT$ - нам надо найти ещё С.
-	
-	$1 + x^{n/2}Q + AC\cdot x^{n/2} = 1 + x^nT$
-	
-	$Q + AC = x^{n/2}T$
-	
-	$AC \approx -Q$
-	
-	$C = (-QR)$
-	
-	Время работы:
-	
-	$T(n) = T(n/2) + Mul = T(n/2) + n \log n = n \log n$
+    if (n == 1): return {1/a[0]}
+    R = Inv(n/2, A)
+    Q = A*R(FFT) - 1 and shift
+    Ans = -Q*R
+}   
+    \end{cppcode}
+    
+    Объяснение:
+    
+    $A*R = 1 + x^{n/2}Q$
+    
+    $(R + C*x^{n/2})A = 1 + x^nT$ - нам надо найти ещё С.
+    
+    $1 + x^{n/2}Q + AC\cdot x^{n/2} = 1 + x^nT$
+    
+    $Q + AC = x^{n/2}T$
+    
+    $AC \approx -Q$
+    
+    $C = (-QR)$
+    
+    Время работы:
+    
+    $T(n) = T(n/2) + Mul = T(n/2) + n \log n = n \log n$
 \end{itemize}
 
 
-\end{document}
