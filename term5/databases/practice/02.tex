@@ -1,0 +1,163 @@
+\chapter{Занятие 2}
+
+Домашнее задание выгладит примерно так.
+Их будет три варианта, каждой команде достанется случайный (две комманды могут получить одно задание).
+
+Белаем БД для управления полётами между планетами.
+Есть флот кораблей (характеризуется названием корабля и рангом).
+Рейсы ходят с Земли и обратно, на разные планеты. Планета характеризуется... \TODO есть в документе.
+
+\section{SQL}
+
+SQL описывается стандартами, нумеруемыми годами создания (последний SQL-2011).
+В каждом стандарте есть базовая часть, обязательная для выполнения.
+К сожалению, есть множество диалектов, по своему реализующих кучу деталей, практически не совместимы.
+
+Типы данных? Их бывает много, бывает очень много:
+\begin{itemize}
+\item Целые: \sql'INTEGER', \sql'BIGINT', \sql'SMALLINT';
+\item Фиксированная точка: \sql'NUMERIC', \sql'DECIMAL';
+\item Плавущая точка: \sql'FLOAT', \sql'REAL', \sql'DOUBLE PRECISION';
+\item Строковые: \sql'CHARACTER' (\sql'CHAR', фиксированная длина!!!), \sql'CHARACTER VARYING' (\sql'VARCHAR'), \sql'CLOB';
+\item \sql'DATE', \sql'TIME', \sql'TIMESTAMP';
+\item \sql'BOOLEAN'.
+\end{itemize}
+
+\subsection{Создание таблицы}
+Все полные синтаксисы есть в документации.
+SQL не чувствителен к регистру.
+\begin{sqlcode}
+CREATE TABLE Foo(); -- нет столбцов, но работает ;)
+DROP TABLE Foo; -- удалили
+CREATE TABLE Foo(INT); -- ошибка, нет названия столбца,
+-- но ответ об ошибке вам не сильно это подскажет
+DROP TABLE Foo;
+CREATE TABLE Foo(id INT, value FLOAT); -- OK, нельзя запятую лишнюю в конце!
+\end{sqlcode}
+Если хотите добавить столбик, то надо пересоздать таблицу. Не хотите терять данные "--- есть средства...
+Но традиционно пишут в скриптах пару \sql'DROP' - \sql'CREATE'.
+\begin{sqlcode}
+DROP TABLE Foo; CREATE TABLE Foo(id INT, value CHAR(8));
+INSERT INFO Foo(id, value) VALUES (1, 'qwe');
+-- дополнит пробелами. Когда-то считалось эффективнее!
+
+DROP TABLE Foo; CREATE TABLE Foo(id INT, value VARCHAR(8));
+INSERT INFO Foo(id, value) VALUES (1, 'qwe');
+-- не дополнит. Слишком длинное -- ошибка!
+\end{sqlcode}
+PostgreSQL рекомендует тип \sql'TEXT' вместо этого цирка.
+
+\subsection{Вставка}
+
+\begin{sqlcode}
+INSERT INTO Foo(id, value) VALUES (1, '100'), (3, 'qwe');
+\end{sqlcode}
+
+\subsection{Выборка}
+
+\begin{sqlcode}
+SELECT 5; -- 5
+SELECT 6 * 5; -- 30
+SELECT * FROM Foo; -- все столбцы и все значения
+SELECT * FROM Foo WHERE id = 1;
+SELECT * FROM Foo WHERE value='qwe';
+\end{sqlcode}
+В \sql'WHERE' кучу всего можно писать, важно: немножко Паскаля (одиночное равно, словами И-ИЛИ, хехехе!).
+
+\subsection{\texorpdfstring{\sql'NULL'}{NULL}}
+
+Особое униваерсальное значение, абсолютная пустота.
+Она ничему ни равна, ни \textit{не} равна.
+Правильно определять его "--- \sql'IS NULL' и \sql'NOT IS NULL' / \sql'IS NOT NULL'.
+
+\begin{sqlcode}
+SELECT NULL == NULL; -- f = false
+SELECT NULL != NULL; -- f = false
+SELECT NULL IS NULL; -- t = true! He-hey!
+\end{sqlcode}
+
+\section{Разработка БД}
+
+Есть некоторые инструменты, где можно рисовать объектную модель со связями, по которым генерируются БД.
+Но они дорогие... Без них живём!
+
+Нам надо выписать сущности, понять их атрибуты, выделить ключи, задать контрольные вопросы.
+
+Сущности у нас такие "--- корабль, планета, капитан, билет, пассажир. Если вам кажется, что экземпляр один (флот) "--- это не очень сущность.
+\begin{sqlcode}
+DROP TABLE Spacecraft;
+-- можно добавить в середину IF EXISTS, если хочется меньше сообщений об ошибках.
+CREATE TABLE Spacecraft (
+	name TEXT NOT NULL,
+	class INT CHECK(class BETWEEN 1 AND 3), -- весёлый оператор! Можно ещё IN (1, 2, 3)
+	capacity INT CKECK(capacity >= 0) -- больше контроля!
+);
+INSERT INTO Spacecraft (capacity) VALUES (-1); -- Error!
+\end{sqlcode}
+Можно ещё отдельный домен объявить со своими значениями!
+А вот если множество значений меняется, то надо по-другому.
+\begin{sqlcode}
+DROP TABLE Planet; CREATE TABLE Planet (
+	name TEXT,
+	distance REAL,
+	goverment TEXT CHECK(goverment IN ('democracy', 'communism', 'dictatorship'))
+);
+\end{sqlcode}
+Это немножко железобетонно! Если клерк захочет добавить \sql"'anarchy'", у него ни прав на удаление таблицы (а давать их, кхм, НЕ НАДО!), 
+ни навыков...
+
+Для этого есть паттерн "--- \textit{справочник}.
+Вспомогательная таблица со значениями:
+\begin{sqlcode}
+DROP TABLE Government(
+	id INT,
+	value TEXT
+);
+INSERT INTO Government(id, value) VALUES (1, 'comunism'); -- Очепятка!
+\end{sqlcode}
+Именно поэтому рекомендуется использовать айдишники)
+
+Кстати, PostgreSQL умеет в массивы.
+И структуры в качестве значений.
+Но думайте "--- не упутили ли вы сущность!
+
+\subsection{Ключи}
+
+Можно писать \sql'UNIQUE', можно \sql'PRIMARY KEY'.
+Второе цельно, быстрее ищется (создаёт индекс) и делает автоматически \sql'NOT NULL'; первое независимо.
+\begin{sqlcode}
+DROP TABLE IF EXISTS Stacecraft;
+CREATE TABLE Spacecraft (
+	name TEXT PRIMARY KEY,
+	class INT CHECK(class BETWEEN 1 AND 3),
+	capacity INT CHECK(capacity >= 0),
+	-- важно, после столбцов:
+	UNIQUE(class, capacity)
+	-- йохохо, нельзя двух кораблей, имеющих равные классы И вместимости!
+);
+\end{sqlcode}
+Все ограничения пожно писать и у столбца (действует только на него), и внизу (на что укажите).
+
+\subsection{Проверки!}
+\begin{sqlcode}
+DROP TABLE IF EXISTS Stacecraft;
+CREATE TABLE Spacecraft (
+	name TEXT,
+	class INT,
+	capacity INT,
+	planet TEXT, -- ?
+	goverment TEXT, -- ?!
+	capitan TEXT, -- ?
+	flight_date DATE -- ?
+);
+\end{sqlcode}
+Как-то плохо...
+Можно попробовать составить предложение---предикат. Получим информацию о полётах, но никак о кораблях!
+
+Тут помогут ключи!
+Ключ пока тут "--- \sql'PRIMARY KEY(name, date)', или ещё \\\sql'PRIMARY KEY(capitan, date)'.
+Какие атрибуты зависят от ключа? \sql'goverment' зависит, вообще говоря, не очень от ключа, а от \sql'planet'!
+\sql'capacity' и \sql'class' зависит от ключа не целиком, только от имени корабля!
+Это очень плохо (теоретическое обоснование на следующей лекции).
+
+Правильнее три таблицы "--- корабли, полёты, планеты. А ещё и справочник!
