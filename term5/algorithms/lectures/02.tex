@@ -1,8 +1,8 @@
 ﻿\date{September 15, 2016}
 \author{Chernikova Olga}
 
-\section{Суффиксный автомат}
-\subsection{Определение, связь с суффиксным деревом, единственность, конечные вершины}
+\chapter{Суффиксный автомат}
+\section{Определение, связь с суффиксным деревом, единственность, конечные вершины}
 \begin{description}
     \item[Суффиксное дерево:]
     Построем \textbf{несжатое} суффиксное дерево для строки \textbf{ababc}:
@@ -188,7 +188,7 @@
     
     Длину минимальной, если нам вдруг понадобится можно считать так: $len[suf[v]] + 1$.
     \end{description}
-\subsection{Онлайн алгроитм построения за $O(n)$}
+\section{Онлайн алгроитм построения за $O(n)$}
     \begin{description}
     \item[В каких случаях разделяется вершина:]
     Вершина это какой-то правый контекст $R_{S}(v)$. Теперь дописали символ $a$ и 
@@ -269,7 +269,7 @@
 
 
     \end{description}
-\subsection{Написание алгоритма}
+\section{Написание алгоритма}
 \begin{cppcode}
 int last, suf[maxn], len[maxn], next[maxn][alf];
 
@@ -308,7 +308,7 @@ void add(a) {
 }
 
 \end{cppcode}
-\subsection{Оценка размера автомата}
+\section{Оценка размера автомата}
 \begin{theorem}
 В автомате $\le 2n$ вершин и $\le 3n - 2$ ребра. 
 \end{theorem}
@@ -338,7 +338,7 @@ void add(a) {
 \end{enumerate}
 Значит всего ребер $\le 3n - 2$.
 \end{proof}
-\subsection{Оценка времени работы}
+\section{Оценка времени работы}
 \begin{theorem}
 Время построения автомата $O(n)$.
 \end{theorem}
