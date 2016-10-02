@@ -1,0 +1,138 @@
+\begin{theorem}[Муавра-Лапласа, интегральная]
+$p \in (0, 1)$. Тогда равномерно по $-\infty \leq a < b \leq \infty$:
+
+$$\sum P_{n, p}(k) \xrightarrow[n \to \infty]{} \int\limits_a^b \underbrace{\frac{1}{\sqrt{2 \pi}} e^{\frac{-t^2}{2}}}_{\phi(t)} \d t$$
+
+Погрешность при этом порядка $\frac{1}{\sqrt{npq}}$.
+\end{theorem}
+
+\begin{theorem}[Пуассон]
+$\pi_k = e^{-\lambda} \frac{\lambda^k}{k!}$, $\sum\limits_0^{\infty} \pi_k = 1, \lambda > 0$
+
+Если $p \xrightarrow[n \to \infty]{} \to 0$, $\lambda = np$, то $$P_{n, p}(k) - \pi_k \xrightarrow[n \to \infty]{} 0$$
+
+Погрешность: $|\sum\limits_{k \in A} (P_{n, p}(k) - \pi_k)| \leq np^2 \forall A \subset \{0, 1, \dots, n\}$
+
+\end{theorem}
+\begin{Rem}
+Все без доказательства. 
+Теорему Муавра докажем в будущем для всех распределений, а теорему Пуассона в чуть более слабой форме.
+\end{Rem}
+\begin{Rem}
+Можно либо честно считать погрешности, либо пользоваться эвристическим правилом: если $np$ меньше нескольких десятков, то используем Пуассона, иначе Лапласа.
+\end{Rem}
+
+\chapter{Случайные величины, их распределения}
+\begin{Def}
+Возьмем все открытые лучи в $\R$, которые идут из $-\infty$. 
+
+Тогда множество $\mathcal{B} = \sigma(\{(-\infty, x), x \in \R \})$ называется Борелевской $\sigma$-алгеброй.
+\end{Def}                    
+\begin{Rem}
+Чтобы привести пример не Борелевской алгебры, нужно сильно постараться. 
+В частности, для этого надо как-то использовать аксиому выбора. 
+На практике считаем, что нам такие множества не встретятся.
+\end{Rem}
+Упражнение: доказать, что $\mathcal{B}$ -- $\sigma$-алгебра, $\mathcal{B} = \sigma(\{ (x, y) \}) = \sigma(\{[x, y]\}) = \dots$
+
+\begin{Def}
+Случайная величина (с.в.) $\xi$ -- функция $\Omega \to \R$, если она $\mathcal{F}-\mathcal{B}$-измерима, 
+то есть, $\forall B \in \mathcal{B} \xi^{-1}(B) \in \mathcal{F}$.
+\end{Def}
+\begin{Rem}
+Смысл $\mathcal{F}-\mathcal{B}$-измеримости: хотим, чтобы высказывания вида ``$\xi$ принимает значение от 3 до 5'' и ему подобные были событиями.
+\end{Rem}
+\begin{exmp}
+Пусть $\Omega \in \R$
+\begin{enumerate}
+\item $\mathcal{F} = \{\varnothing, \Omega\}$, тогда $\xi$ может быть только константой.
+\item $\mathcal{F} = \sigma(\{[k, k + 1), k \in \Z\})$, тогда $\xi$ -- любая ступенчатая функция (длина ступеньки 1).
+\item $\mathcal{F} = \{A\colon A = -A = \{-x, x \in A\}\}$, тогда $\xi$ -- любая четная функция.
+\end{enumerate}
+\end{exmp}
+
+\begin{Def}
+$P_{\xi}\colon \mathcal{B} \to [0, 1]$ -- распределение случайной величины, $P_{\xi}(B) \eqDef P(\xi^{-1}(B))$.
+\end{Def}
+
+От тройки $(\Omega, \mathcal{F}, P)$ мы сейчас перешли перешли к тройке $(\R, \mathcal{B}, P_{\xi}$), это тоже вероятностное пространство.
+
+\begin{Def}
+$\mathcal{F}_{\xi} = \{ \xi^{-1}(B), B \in \mathcal{B} \} \subset \mathcal{F}$ -- $\sigma$-алгебра, порожденная $\xi$. 
+\end{Def}
+Упражнение: проверить, что это действительно $\sigma$-алгебра (просто по определению).
+\begin{Rem}
+В нее входят те и только те события, про которые можно сказать, зная только значение $\xi$.
+\end{Rem}
+\begin{exmp}
+Пусть у нас есть колода карт, из которой мы вытягиваем одну карту, $\xi$ -- достоинство вытянутой карты.
+
+Тогда $\mathcal{F}_{\xi}$ будет состоять только из событий вида (вытянута двойка / вытянута либо тройка, либо четверка, и так далее).
+При этом, событий вида (вытянута пиковая дама) в этом множестве лежать не будут, так как они не следуют только из значения $\xi$.
+\end{exmp}
+
+\begin{Def}
+Функция распределения (ф.р.) случайной величины $\xi$: $F_{\xi}(x) = P((-\infty, x)) = P(\xi < x)$
+\end{Def}
+\begin{Rem}
+Часто индекс $\xi$ у $F$ опускают.
+\end{Rem}
+
+Несложно заметить, что $F$ однозначно опреляет $P_{\xi}$ по теореме Каратеодори для набора полуоткрытых интервалов.
+
+\begin{theorem}[Свойства функции распределения]
+
+\begin{enumerate}
+
+\item $F(x) \nearrow$
+\item $F(x) \xrightarrow[x \to -\infty]{} 0$, $F(x) \xrightarrow[x \to \infty]{} 1$
+\item $F$ непрерывна слева
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1 -- из монотонности $P$.
+
+2, 3 -- из непрерывности $P$: рассмотрим $x_n = n$, последовательность лучей $(-\infty, n)$ возрастает и стремится к $\R$, тогда $P((-\infty, x_n) \xrightarrow[n \to \infty]{} P(\R) = 1$
+\end{proof}
+
+Если $x$ -- точка разрыва, то $P(\xi = x) = F(x + 0) - F(x)$.
+\begin{gather*}
+P_{\xi}([x, y)) = F(y) - F(x)\\
+P_{\xi}([x, y]) = F(y + 0) - F(x)\\
+P_{\xi}((x, y)) = F(y) - F(x + 0)\\
+P_{\xi}([x, y]) = F(y + 0) - F(x + 0)
+\end{gather*}
+
+\section{Классификация и примеры распределений}
+\begin{enumerate}[label=\Roman*.]
+    \item $\xi$ и ее распределение называются дискретным, если $\exists B\colon P_{\xi}(B) = 1$, $B$ не более чем счетное.
+    \begin{enumerate}[label=\arabic*.]
+    \item $\xi = C$ -- константа, тогда $F_{\xi}(x) = \begin{cases} 0, x < c \\ 1, x \geq c\end{cases}$
+    \begin{Rem}
+        Удобно записывать $F_{\xi}(x) = \mathbb{1}_(x \geq c)$, $\mathbb{1}_A (x)$ выдает 1, если $x \in A$, 0 иначе
+    \end{Rem}   
+    \item $\xi = \begin{cases} 1, \text{с вероятностью } p \\ 0, \text{с вероятностью } q = 1 - p\end{cases}$.
+
+    $F(x) = q \mathbb{1}_{(x \geq 0)} + p \mathbb{1}_{(x \geq 1)}$
+
+    В общем случае: $\{x_k\}, \{p_k\}$ -- ряд распределения, $p_k = P(\xi = x_k)$, $F_{\xi}(x) = \sum\limits_{k\colon x_k \in x} p_k$.
+
+    \item
+    $\xi \sim Bin(n, p)$, если $x_k = 0 \dots n, p_k = P_{n,p}(k)$
+
+    \item
+    $\xi \sim Poiss(x), x_k = 0, 1, 2, \dots, p_k = e^{-\lambda} \frac{\lambda^k}{k!}$
+    \end{enumerate}
+    \item $\xi$ и ее распределене называют непрерывным, если $F_{\xi}(x) \in C(\R)$; $F_{\xi}(x) =\int\limits_{-\infty}^{x} P_{\xi}(x) \d x$, $P_{\xi}(x)$ называют в таком случае плотностью распределения $\xi$
+    \begin{enumerate}[label=\arabic*.]
+    \item $\xi \sim U[a, b]$, если $F_{\xi} = \begin{cases} 0, x \leq a; \frac{x - a}{b - a}, a < x \leq b \\ 1, x > b\end{cases}$. 
+        $P_{\xi}(x) = \frac{\mathbb{1}_{[a, b]}(x)}{b - a}$
+
+    \item $\xi \sim N(a, b)$ - нормальное (Гауссово), если $P_{\xi}(x)= \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{-(x-a)^2}{2\sigma^2}}$.
+    График распределения -- ``колокол'', $\sigma$ отвечает за его ширину, $a$ -- за его вытянутость.
+
+    \end{enumerate}
+    
+    \item $\xi$ и ее распределение называют сингулярным, если $\xi$ непрерывна и $\exists B \in \mathcal{B}\colon P_{\xi}(B) = 1$, при этом $\mu(B) = 0$.
+    Пример: Канторова лестница
+\end{enumerate}

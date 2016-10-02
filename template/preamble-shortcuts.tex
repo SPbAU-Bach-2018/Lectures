@@ -23,6 +23,7 @@
 
 \def\LraDef{\stackrel{\mathrm{Def}}{\Lra}}
 \def\eqDef{\stackrel{\mathrm{Def}}{=}}
+\def\equivDef{\stackrel{\mathrm{Def}}{\equiv}}
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -106,36 +107,36 @@
 \newcommand{\linf}[1]{{#1}^{\mathup{lin}}}
 
 \newcommand{\img}[2]{%
-	\ifthenelse{\equal{#2}{}}{%
-		\includegraphics[width=0.5\linewidth]{#1}
-	}{%
-		\includegraphics[width=#2\linewidth]{#1}
-	}%
+    \ifthenelse{\equal{#2}{}}{%
+        \includegraphics[width=0.5\linewidth]{#1}
+    }{%
+        \includegraphics[width=#2\linewidth]{#1}
+    }%
 }
 \newcommand{\cautoimg}[1]{%
-	\begin{center}%
-		\includegraphics{#1}
-	\end{center}%
+    \begin{center}%
+        \includegraphics{#1}
+    \end{center}%
 }
 \newcommand{\cimg}[2]{%
-	\begin{center}%
-		\ifthenelse{\equal{#2}{}}{%
-			\includegraphics[width=0.75\linewidth]{#1}
-		}{%
-			\includegraphics[width=#2\linewidth]{#1}
-		}%
-	\end{center}%
+    \begin{center}%
+        \ifthenelse{\equal{#2}{}}{%
+            \includegraphics[width=0.75\linewidth]{#1}
+        }{%
+            \includegraphics[width=#2\linewidth]{#1}
+        }%
+    \end{center}%
 }
 \newcommand{\rimg}[2]{%
-	\ifthenelse{\equal{#2}{}}{%
-		\begin{wrapfigure}{r}{0.3\linewidth}
-			\includegraphics[width=1.0\linewidth]{#1}
-		\end{wrapfigure}
-	}{%
-		\begin{wrapfigure}{r}{#2\linewidth}
-			\includegraphics[width=1.0\linewidth]{#1}
-		\end{wrapfigure}
-	}
+    \ifthenelse{\equal{#2}{}}{%
+        \begin{wrapfigure}{r}{0.3\linewidth}
+            \includegraphics[width=1.0\linewidth]{#1}
+        \end{wrapfigure}
+    }{%
+        \begin{wrapfigure}{r}{#2\linewidth}
+            \includegraphics[width=1.0\linewidth]{#1}
+        \end{wrapfigure}
+    }
 }
 
 \newcommand{\TODO}[1][]{\quad\textbf{\textcolor{red}{TODO} #1 \quad}}

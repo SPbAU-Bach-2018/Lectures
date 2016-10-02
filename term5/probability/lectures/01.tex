@@ -1,0 +1,127 @@
+\chapter{Теория вероятностей}
+\section{Введение, аксиоматика}
+Принятые обозначения: 
+$\Omega$ -- множество исходов
+
+$\omega \in \Omega$ -- исход (обозначаем маленькой буквой)
+
+$A \subset \Omega$ -- событие (обозначаем большими буквами)
+
+$\mathcal{F}$ -- множество всех событий
+
+Часто мы будем сокращать и вместо $A \cap B$ будем писать просто $AB$.
+
+\begin{Rem}
+Не все множества исходов являются событиями, например, плохо, если нельзя измерить его объем.
+Может получиться парадокс Банаха-Тарского, когда мы берем, разрезаем один шар на несколько кусков и получаем два точно таких же шара.
+\end{Rem}
+
+$P: \mathcal{F} \to [0, 1]$ -- вероятность событий.
+
+\begin{Def}
+    $\Omega$ -- произвольное множество. $\mathcal{F}$ замкнуто относительно $\cap, \cup, \setminus$. Тогда $\mathcal{F}$ -- алгебра событий.
+\end{Def}
+\begin{Def}
+    $\mathcal{F}$ -- $\sigma$-алгебра, если $A_k \in \mathcal{F} \Ra \bigcup\limits_{k=1}^{\infty}, \bigcap\limits_{k=1}^{\infty} \in \mathcal{F}$.
+\end{Def}
+Упражнение: привести пример алгебры, не являющейся $\sigma$-алгеброй.
+\begin{exmp}
+$\{\varnothing, \Omega \}$ -- тривиальная $\sigma$-алгебра.
+\end{exmp}
+
+Пересечение $\sigma$-алгебр тоже $\sigma$-алгебра, а вот объединение -- нет 
+(например, в их объединении нет множеств, которые частично лежат в одном, а частично в другом, хотя они должны быть из-за замкнутости).
+
+\begin{Def}
+    $\sigma(\mathcal{A} \subset \mathcal{F}) = \bigcap\limits_x \mathcal{F}_x, \mathcal{A} \subset \mathcal{F}_x$ -- сигма-оболочка $\mathcal{A}$
+\end{Def}
+
+Множество $\sigma$-алгебр является решеткой: наибольшей нижней границей $A, B$ будет $A \cap B$, а наименьшей верхней будет $\sigma(A \cap B)$
+
+\begin{Def}
+    Тройка $(\Omega, \mathcal{F}, P)$ называется вероятностным пространством (или экспериментом), если $\mathcal{F}$ -- $\sigma$-алгебра и у $P$ выполняются две аксиомы вероятности:
+    \begin{enumerate}
+        \item $AB = \varnothing \Ra P(A \cup B) = P(A) + P(B)$ (аддитивность)
+        \item $P(\Omega) = 1$ (нормировка)
+    \end{enumerate}
+\end{Def}
+Так же есть более сильная аксиома $1^*$ для случая счетных или бесконечных множеств:
+
+$A_kA_j = \varnothing \Ra P(\bigcup\limits_k A_k) = \sum\limits_k P(A_k)$ -- $\sigma$-аддитивность.
+\begin{Rem}
+Функция $P$, удовлетворяющая аксиомам $1^*, 2$ называется $\sigma$-аддитивной.
+\end{Rem}
+
+Свойства:
+\begin{enumerate}
+    \item $P(\bar A) = 1 - P(A)$. В частности, $P(\varnothing) = 0$
+    \item Монотонность: $A \subset B \Ra P(A) \leq P(B)$
+    \begin{proof}
+        \begin{gather*} 
+            B = A \cup B\bar A \\
+            P(B) = P(A) + P(B\bar A) \geq P(A)
+        \end{gather*}
+    \end{proof}
+    \item $P(A \cup B) = P(A) + P(B) - p(AB)$. 
+    
+    Общий случай: $P(\bigcup\limits_k^n A_k) = \sum P(A_i) - \sum\limits_{i<j} P(A_iA_j) + \sum\limits_{i < j < k}P(A_iA_jA_k) - \dots$ -- просто формула включений-исключений.
+    \begin{proof}
+        Это у нас когда-то там было, когда говорили про множества.
+    \end{proof}
+    \begin{conseq}
+    $P(\bigcup\limits_1^n A_k) \leq \sum P(A_k)$
+    \end{conseq}
+
+    \item
+    $P(\lim A_n) = \lim P(A_n)$ (непрерывность $P$).
+
+    Под пределом в данном случае имеется следующее: 
+    
+    если $A_i \subset A_{i+1}$, то $\lim A_n = \bigcup\limits^{\infty} A_k$. 
+    
+    Если $A_{i+1} \subset A_{i}$, то $\lim A_n = \bigcap\limits^{\infty} A_k$. 
+
+    Доказательство будет следовать из
+
+    \begin{theorem}
+        $P$ удовлетворяет аксиомам 1 и 2. Тогда равносильны:
+        \begin{enumerate}
+            \item Аксиома $1^*$
+            \item Непрерывность $P$
+            \item Непрерывность $P$ в нуле: $B_k \searrow \varnothing \Ra P(B_k) \to 0$        
+        \end{enumerate}
+    \end{theorem}                                                                    
+    \begin{proof}
+    \begin{description}        
+        \item[$1 \Ra 2$]
+        Пусть $A_i \subset A_{i+1}$ (иначе перейдем к дополнениям). 
+        Рассмотрим следующее объединение: $A_n \cup A_{n_1} \bar A_n \cup A_{n+2} \bar A_{n+1} \cup \dots = A = \lim(A_n)$. 
+        Это объединение несовместных событий.
+        Тогда $P(A) = P(A_n) + \sum\limits_{k=n}^{\infty} P(A_{k+1} \bar A_k)$.
+        Устремим $n$ к бесконечности, второе слагаемое стремится к 0 как хвост сходящегося ряда
+        \item[$2 \Ra 3$] -- очевидно
+        \item[$3 \Ra 1$] 
+        Рассмотрим события $A_i$, $A_iA_j = \varnothing$.
+        Возьмем $B_n = \bigcup\limits_{k=n}^{\infty} A_k$, $B_1 = A = \bigcup\limits^{\infty} A_k$
+
+        $B_n$ убывают, у них есть предел $B$. Хотим доказать, что $B = \varnothing$. 
+        Пусть это не так, тогда в $B$ есть какой-то элемент $b \in B$, тогда $b \in B_1$, значит, $b \in A_l$ для какого-то $l$.
+
+        Тогда $b \notin A_k, k \neq l \Ra b \notin \bigcup\limits_{l+1}^{\infty} A_k = B_{l+1} \Ra b \notin \bigcap B_k = B$, противоречие.
+
+        Тогда $P(A) = \sum\limits^k P(A_i) + P(B_{k+1})$ -- применили 1-ю аксиому. 
+        Устремим $k$ к бесконечности, тогда $P(B_{k+1}) \to 0$ по непрерывности в нуле, получим $\sigma$-аддитивность.
+
+    \end{description}
+    \end{proof}
+
+    \item
+    $P(\bigcup\limits^{\infty}) \leq \sum\limits^{\infty} P(A_k)$
+    \begin{proof}
+        Знаем для конечного случая, перейдем к пределу. 
+        
+        Получим $\lim P(\bigcup\limits_{i=0}^n A_i) \leq \lim \sum\limits_{i=0}^{n} A_i = \sum\limits^{\infty} A_i$.
+        
+        По 4 свойству, левая часть равна $P(\lim \bigcup\limits_{i=0}^n A_i) = P(\bigcup\limits^{\infty} A_i)$, что и требовалось.
+    \end{proof}
+\end{enumerate}

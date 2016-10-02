@@ -152,6 +152,8 @@
     $V_A$ "--- отрезок суффиксов.
     %рисунок 
     \end{lemma}
+    \TODO Правда же, что имеется в виду, что если взять самую длинную строку в $V_A$, то остальные строки в $V_A$ будут ее суффиксами?
+    Кажется, что должно быть что-то такое, но это условие леммы говорит что-то другое :( \TODO
     \begin{exmp}
     Есть строчка ababa:
     $R(aba) = R(ba) \ne R(a)$.
@@ -282,6 +284,7 @@ void add(a) {
     Len[last] = len[p] + 1;
     while(p != 0 && Next[p][a] == 0) {
         next[p][a] = Last;
+        p = suf[p];
     }
     
     p = suf[p];
@@ -296,13 +299,14 @@ void add(a) {
             r = new Vertex
             suf[r] = suf[q];
             suf[q] = r;
-            suf[last] = r;
+            suf[last] = suf[q] = r;
             len[r] = len[p] + 1;
             next[r] = next[q]
             while (p != 0 && next[p][a] = q)  {
                 next[p][a] = r;
                 p = suf[p];
             }
+
         }
     }
 }
