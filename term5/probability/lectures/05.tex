@@ -1,0 +1,169 @@
+Пусть $(\xi, \eta)$ -- абсолютно непрерывный случайный вектор. Тогда
+$$F_{\eta}(y \mid \xi = x) = \lim\limits_{\epsilon \to 0} \frac{P(\eta < y, |\xi - x| < \epsilon}{P(|\xi - x| < \epsilon} = 
+\lim\limits_{\epsilon \to 0} \frac{\int\limits_{x - \epsilon}^{x + \epsilon} \d t \int\limits_{-\infty}^y p(\xi, y) (t, s) \d s}{\int\limits_{x - \epsilon}^{x + \epsilon} \int\limits_{-\infty}^{\infty}p \d t \d s}$$
+Применим правило Лопиталя, дифференцируем по $\epsilon$, получим
+$$\lim\limits_{\epsilon \to 0} = \frac{\int\limits_{-\infty}^y (p(x + \epsilon, s) + p(x - \epsilon, s)) \d s}{\int\limits_{-\infty}^{\infty} p\d s} = \frac{\int\limits_{-\infty}^y p(x, s) \d s}{\int\limits_{-\infty}^{\infty}p(x, s) \d s}$$
+Продифференцируем по $y$, получим
+$$p_{\eta}(y \mid \xi = x) = \frac{p_{\xi, \eta}(x, y)}{p_{\xi}(x)}$$
+Можно просто объяснить или вывести это, посмотрев на картинку. Там получится числитель \TODO, а знаменатель -- просто нормировка
+
+
+\section{Моменты случайных величин}
+\begin{Def}
+    Математическое ожидание (мат. ожидание, среднее значение) $E\xi = M\xi = \int\limits_{-\infty}^\infty x \d F_\xi(x)$
+
+    В дискретном случае этот интеграл превращается в $\sum\limits_k x_k p_k$.
+
+    В абсолютно непрерывном случае это превращается в Римановский интеграл $\int\limits{-\infty}^\infty xp_\xi(x) \d x$
+\end{Def}
+
+Упражнение: $E_\xi = \int\limits_0^\infty (1 - F(x)) \d x - \int\limits_{-\infty}^0 F_\xi(x) \d x$
+
+\begin{exmp}
+Рассмотрим распределение Коши: $p_\xi(x) = \frac{1}{\pi}\frac{1}{1 + x^2}$. Домножим на $x$, получим величину порядка $\frac{1}{x}$, интеграл которой расходится. 
+И матожидание для этого распределения не определено.
+\end{exmp}
+
+Свойства:
+\begin{enumerate}
+\item Линейность $E(a\xi + b\eta) = aE\xi + bE\eta$.
+\begin{proof}
+Пусть $a > 0$. Тогда $Ea\xi = \intx \d F_{a\xi}(x) = \int x \d P(a\xi < x) = a \int \frac{d}{a} \d P(\xi < \frac{x}{a}) = a \int y \d F_\xi(y)$.
+
+Во вторую часть придется поверить, так как доказывается она для интеграла Стилтьеса не очень легко, но там просто надо применить какой-то матанализ.
+В дискретном/абсолютно непрерывном случае там просто.
+\end{proof}
+\item $Eg(\xi) = \int g(x) \d F_\xi(x)$.
+\begin{Rem}
+Формула верна и для случайного вектора $\vec{\xi}$. Только интеграл будет многомерным.
+\end{Rem}
+
+\item Монотонность. Если $P(\xi \geq 0) = 1$ (обычно сокращают до ``$\xi \geq 0$ почти всегда (п. в)''). Тогда $E\xi \geq 0$.
+\begin{proof}
+$0 = P(\xi < 0) = F_\xi(0) \Ra E\xi = \int\limits_0^{\infty}x \d F_\xi \geq 0$.
+\end{proof}
+
+\item $\xi \geq 0$ почти всюду и $E\xi = 0$, тогда $\xi = 0$ почти всюду.
+\begin{proof}
+Пусть не так, тогда $F_\xi(x_0) < 1$ для некоторого $x_0 > 0$. 
+Ну а тогда $E\xi = \int\limits_0^{\infty} \geq \int\limits_{x_0}^\infty \geq  \int_{x_0}^\infty x_0 \d F = x_0 (F(\infty) - F(x_0)) > 0$
+\end{proof}
+
+\item $\xi, \eta$ независимы, тогда $E\xi\eta = E\xi E\eta$ (в записи считаем, что умножение имеет больший приоритет, чем взятие матожидания, поэтому скобки опускаем).
+\begin{proof}
+В дискретном случае: $E\xi\eta = \sum x_k y_k P(\xi = x_k, \eta = y_k) = \sum x_k y_k P(\xi = x_k) P(\eta = y_k) = \sum x_i P(\xi = x_i) \sum y_j P(\eta = y_j)$
+
+В непрерывном случае тоже легко, в общем -- сложно.
+\end{proof}
+
+\item Матожидание смеси: $F_\xi(x) \sum\limits_k \lambda_kF_k(x)$, тогда $E\xi = \int x \d F = \sum\limits_k \lambda_k \int x \d F_k(x) = \sum \lambda_k E_k$
+\end{enumerate}
+
+\begin{exmp}
+
+Играем против игроков А, В. Вероятнотсть выиграть против А равна $0.6$, против В -- $0.55$. 
+С игроком А мы играем по 5 долларов, с игроком В -- по 1.
+
+У нас есть всего лишь 10 долларов. Вопрос: с кем играть?
+Можно посчитать матожидания выигрыша за одну игру, и играть с тем, для кого матожидание больше.
+
+$E_a = 5 \cdot 0.6 - 5 \cdot 0.4 = 1$, $E_B = 1 \cdot 0.55 - 1 \cdot 0.45 = 0.1$, поэтому, казалось бы, лучше играть с А.
+
+Но есть еще следующая проблема: при игре с А есть больший шанс взять и проиграть все деньги в самом 
+начале. Оказывается, что если это учесть, то вероятность выиграть у А равна 0.555, у В -- 0.865.
+
+\end{exmp}
+
+\begin{exmp}
+
+Есть автобусы. Средний интервал между ними равен 10 минутам. Вопрос: сколько в среднем придется ждать автобуса, если придем в случайное время на остановку?
+
+Если автобусы идут равномерно, то ответ -- 5 минут. И это минимум.
+Но можно взять и рассмотреть следующий крайний случай: куча автобусов приходят почти в один момент времени, а следующий -- через очень большой интервал. 
+Тогда средний интервал будет все еще 10 минут, а среднее время ожидания -- очень большим.
+\end{exmp}
+
+Эти примеры показывают, что просто матожидания не достаточно, для этого вводят еще одну величину.
+
+\begin{Def}
+Дисперсия случайной величины $\xi$: $D\xi = E (\xi - E\xi)^2$.
+
+$\sigma_\xi = \sqrt{D\xi}$ -- среднеквадратическое отклонение.
+\end{Def}
+
+Свойства дисперсии:
+\begin{enumerate}
+\item $D\xi \geq 0$, $D \xi = 0 \Lra \xi = C$ почти всегда. 
+
+\item $D \xi = E (\xi ^2 - 2\xi E\xi + (E \xi) ^ 2) = E\xi^2 - 2E\xi E\xi + (E\xi) ^2 = E\xi^2 - (E\xi)^2$
+
+\item $D(c \xi) = c^2 D \xi$
+
+\item $\xi, \eta$ -- независимые, тогда $D(\xi + \eta) = D\xi + D\eta$
+\begin{proof}
+$D(\xi + \eta) = E\xi^2 + E\eta^2 + 2E\xi\eta - ((E\xi)^2 + (E\eta)^2+ 2E\xi E\eta) = D\xi + D\eta + 2(E\xi \eta - E \xi E\eta) = D\xi + D\eta$
+\end{proof}
+\begin{conseq}
+$D(\xi + C) = D\xi + DC = D\xi$
+\end{conseq}
+\end{enumerate}
+
+\begin{exmp}
+
+\begin{enumerate}
+
+\item $EC = C, DC = 0$
+\item $\xi = \mathbb{1}_A(\omega) = \begin{cases} 1, w \in A \\ 0, w \notin A \end{cases}$.
+
+$$E\xi = 1 P(A) + 0 P(\bar A) = P(A)$$
+$$D\xi = P(A) - P^2(A) = P(A) P(\bar A)$$
+\item $\xi \sim Bin(n, p)$. 
+
+$$E\xi = \sum\limits_{k=0}^n k P_{n, p}(k)$$. 
+Можно записать по-другому: $\xi = \sum\limits_1^n \mathbb{1}_{A_k}$, где $A_k$ -- успех на $k$-м шаге. Тогда $$E\xi = \sum\limits_1^n E \mathbb{1}_{A_k} = np$$.
+
+Заметим, что все броски независимы, тогда 
+$$D\xi = n p (1-p)$$
+
+\item $\xi \sim U[a, b]$. 
+
+$$E \xi = \int x p_\xi(x) \d x = \int\limits_a^b \frac{x}{b - a} \d x = \frac{a + b}{2}$$
+$$D \xi = E\xi^2 - (E\xi)^2 = \int\frac{x^2}{b-a}\d x - (\frac{a + b}{2})^2 = \frac{(b - a)^2}{12}$$
+
+\item
+$\xi \sim N(a, \sigma^2)$.
+
+$$E\xi = \int\limits_{-\infty}^{\infty} x \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x - a)^2}{2\sigma^2}} \d x = $$
+Сделаем замену $t = x - a$
+$$\int\limits_{-\infty}^\infty (t + a)\frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{t^2}{2\sigma^2}} \d t = 0 + a = a$$
+
+$D\xi = \sigma^2$ (упражнение)
+\end{enumerate}
+\end{exmp}
+
+Введем две операции: $\stackrel{0}{\xi} = \xi - E\xi$  -- центрирование и $\stackrel{\sim}{\xi} = \frac{\xi}{\sigma_\xi} = \frac{\xi}{\sqrt{D\xi}}$ -- нормировка.
+
+Эти операции часто используются на практике. Можно, например, посмотреть в теорему Муавра-Лапласа и их там увидеть.
+Операции полезны, например, тем, что после их применения гораздо легче проводить какие-либо сравнения распределений.
+
+\begin{Def}
+$E\xi^k$ -- момент $k$-го порядка (начальный)
+
+$E|\xi|^k$ -- абсолютный момент $k$-го порядка
+
+$E(\xi - E\xi)^k$ -- центральный момент $k$-го порядка
+
+$E|\xi - E\xi|^k$ -- абсолютный центральный момент $k$-го порядка
+\end{Def}
+\begin{Rem}
+$k$, вообще говоря, не обязательно целое число, хотя на практике такое редко встречается.
+\end{Rem}
+\begin{Rem}
+Дисперсия -- момент 2-го порядка.
+\end{Rem}
+\begin{Rem}
+$\frac{E(\xi - E\xi)^3}{\sigma^3}$ -- коэффициент асимметрии.
+\end{Rem}
+\begin{Rem}
+$\frac{E(\xi - E\xi)^4}{\sigma^4}$ -- эксцесс (степень остроты пика)
+\end{Rem}
