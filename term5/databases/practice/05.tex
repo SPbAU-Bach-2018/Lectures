@@ -1,0 +1,208 @@
+\chapter{Занятие 4}
+
+Теперь будем писать запросы к спроектированной базе данных.
+
+\section{Запросы}
+
+\begin{sqlcode}
+SELECT * FROM Planets;
+SELECT *
+	FROM Flight
+		JOIN Planet ON (Flight.planet_id = Planet.id);
+SELECT Planet.name, Flight.date 
+	FROM Flight
+		JOIN Planet ON (Flight.planet_id = Planet.id);
+\end{sqlcode}
+Полное форма \sql'JOIN' "--- \sql'INNER JOIN', внутреннее соединение.
+Каждая строчка будет иметь пару.
+\sql'NATURAL JOIN' "--- сама подбирает по одноимённым столбцам.
+Без соединения можно через декартого произведение:
+\begin{sqlcode}
+SELECT *
+	FROM Flight, Planet
+	WHERE Flight.planet_id = Planet.id;
+
+SELECT Planet.name
+	FROM Planet
+	WHERE id IN (1, 2, 10);
+\end{sqlcode}
+Можно не написать название таблицы, если и так понятно, откуда он.
+
+\section{Вложенные запросы}
+\begin{sqlcode}
+SELECT id, name
+	FROM Planet
+	WHERE id IN (
+		SELECT planet_id
+			FROM Flight
+			WHERE commander_id IN (
+				SELECT id
+					FROM Commander
+					WHERE name='Ким'
+			)
+	);
+\end{sqlcode}
+Это всё как-то громоздко.
+Ещё и номера рейсов к этим планетам не выяснить.
+А вот соединение справится:
+\begin{sqlcode}
+SELECT Flight.id, Planet.name
+	FROM Flight
+		JOIN Commander ON Flight.commander_id = Commander.id
+		JOIN Planet on Flight.planet_id = Planet.id
+	WHERE
+		Commander.name = 'Ким';
+\end{sqlcode}
+Порядок соединений не важен для внутренних соединений.
+
+Хотим планеты без рейсов.
+\begin{sqlcode}
+SELECT *
+	FROM Planet, Flight
+	WHERE Flight.planet_id <> Planet.id; -- это нагенерит кучу бреда.
+SELECT *
+	FROM Planet
+	WHERE Planet.id NOT IN (
+		SELECT planet_id
+			FROM Flight
+	);
+-- ВНЕЗАПНО, не работает
+SELECT * FROM Flight WHERE planet_id IS NULL;
+-- Ой, есть строчка! И её NULL валит проверку NOT IN
+\end{sqlcode}
+Ограничения "---  это полезно.
+\begin{sqlcode}
+SELECT *
+	FROM Planet
+	WHERE Planet.id NOT IN (
+		SELECT planet_id
+			FROM Flight
+			WHERE planet_id IS NOT NULL
+	);
+-- отстой
+SELECT *
+	FROM Planet
+	LEFT JOIN Flight ON Planet.id = Flight.planet_id;
+-- Планеты без полётов попадут с NULLами в вывод по одному разу.
+SELECT *
+	FROM Planet
+	LEFT JOIN Flight ON Planet.id = Flight.planet_id
+	WHERE Flight.planet_id IS NULL;
+\end{sqlcode}
+Ещё есть \sql'RIGHT JOIN'.
+
+Задолбало писать имена таблиц?
+Можно дать синонимы!
+\begin{sqlcode}
+SELECT *
+	FROM Planet p
+	LEFT JOIN Flight f ON p.id = f.planet_id;
+\end{sqlcode}
+
+Чтобы было читабельнее, не стоит делать преждевременные оптимизации.
+\begin{sqlcode}
+SELECT *
+	FROM Planet p
+	JOIN Flight f ON p.id = f.planet_id
+	JOIN (
+		SELECT name, id
+			FROM Commander
+			WHERE name = 'Ким'
+	) c ON f.commander_id = c.id;
+SELECT *
+	FROM Planet p
+	JOIN Flight f ON p.id = f.planet_id
+	JOIN Commander c ON (
+		f.commander_id = c.id
+		AND c.name = 'Ким'
+	);
+\end{sqlcode}
+СУБД сама оптимизирует запросы, пишите читабельно и правильно, без грязных хаков.
+А то вот:
+\begin{sqlcode}
+SELECT *
+	FROM Planet
+	LEFT JOIN Flight ON (Planet.id = Flight.planet_id AND Planet.government_id = 6)
+	WHERE Flight.planet_id IS NULL;
+\end{sqlcode}
+Вернёт больше одной планеты, так работает \sql'LEFT JOIN'.
+Хотите только планеты с дикатурой "--- используйте условие фильтрации в \sql'WHERE'.
+
+\section{Агрегатные функции}
+Позволяют что-то считать.
+На сколько планет были полёты?
+\begin{sqlcode}
+SELECT Count(Planet.id) -- всего полётов
+	FROM Planet p
+	JOIN Flight f ON f.planet_id = p.id;
+SELECT Count(DISTINCT Planet.id) -- различные планеты, уже лучше!
+	FROM Planet p
+	JOIN Flight f ON f.planet_id = p.id;
+SELECT Count(DISTINCT Planet.id, Commander.id)
+	FROM Planet p
+	JOIN Flight f ON f.planet_id = p.id
+	JOIN Commander c on c.id = f.commander_id;
+\end{sqlcode}
+Ещё есть \sql'MAX', \sql'MIN', \sql'AVG'.
+И можно веселться.
+\begin{sqlcode}
+SELECT SUM(2); -- Почему бы и не?
+\end{sqlcode}
+
+Количество полётов на планету?
+\begin{sqlcode}
+SELECT Planet.name, (
+		SELECT COUNT(*)
+			FROM Flight
+			WHERE planet_id = Planet.id
+	)
+	FROM Planet;
+\end{sqlcode}
+Что за жесть?
+\begin{sqlcode}
+SELECT Planet.name, COUNT(*)
+	FROM Planet
+	JOIN Flight ON Flight.planet_id = Planet.id
+	GROUP BY Planet.name;
+\end{sqlcode}
+Что происходит? Мы группируем агрегирующую функцию по названию планеты.
+Правда, планету без полётов не найдём... \sql'LEFT JOIN' найдёт её! Но одну, а не ноль.
+\begin{sqlcode}
+SELECT Planet.name, Planet.id, COUNT(*)
+	FROM Planet
+	JOIN Flight ON Flight.planet_id = Planet.id
+	GROUP BY Planet.name;
+\end{sqlcode}
+Эм... Ругается! Не очень ясно, какой id брать "--- нет группировки, а какой номер тогда брать?
+Некоторые старнные СУБД позволяют оставить случайное значение...
+
+PostgreSQL знает, что если идёт группировка по ключу (\sql'UNIQUE' / \sql'PRIMARY KEY'), то всё в порядке.
+Не стоит лишний раз это злоупотреблять.
+\begin{sqlcode}
+SELECT Planet.name, COUNT(*)
+	FROM Planet
+	JOIN Flight ON Flight.planet_id = Planet.id
+	GROUP BY Planet.id; -- OK
+\end{sqlcode}
+
+Если хотим применить фильтр к результату агрегации, то \sql'WHERE' неприменим.
+Нужно писать условия в \sql'HAVING'.
+\begin{sqlcode}
+SELECT Planet.name, COUNT(*)
+	FROM Planet
+	JOIN Flight ON Flight.planet_id = Planet.id
+	GROUP BY Planet.id
+	HAVING Count(*) > 20;
+\end{sqlcode}
+Среднее число полётов?
+Нужен подзапрос.
+\begin{sqlcode}
+SELECT ANG(cnt)
+FROM (
+	SELECT Planet.name, COUNT(*)
+		FROM Planet
+		JOIN Flight ON Flight.planet_id = Planet.id
+		GROUP BY Planet.id
+	) AS cnt;
+\end{sqlcode}
+
