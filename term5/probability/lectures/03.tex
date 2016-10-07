@@ -36,8 +36,10 @@ $\pi_k = e^{-\lambda} \frac{\lambda^k}{k!}$, $\sum\limits_0^{\infty} \pi_k = 1, 
 Упражнение: доказать, что $\mathcal{B}$ -- $\sigma$-алгебра, $\mathcal{B} = \sigma(\{ (x, y) \}) = \sigma(\{[x, y]\}) = \dots$
 
 \begin{Def}
-Случайная величина (с.в.) $\xi$ -- функция $\Omega \to \R$, если она $\mathcal{F}-\mathcal{B}$-измерима, 
-то есть, $\forall B \in \mathcal{B} \xi^{-1}(B) \in \mathcal{F}$.
+Случайная величина (с.в.) $\xi$ -- функция $\Omega \to \R$, если она $\mathcal{F}$-$\mathcal{B}$-измерима, 
+то есть:
+\[ \forall B \in \mathcal{B} \colon \xi^{-1}(B) \in \mathcal{F} \]
+Другими словами: если есть элемент Борелевской алгебры, то его $\xi$-прообраз есть элемент $\sigma$-алгебры вероятностного пространства.
 \end{Def}
 \begin{Rem}
 Смысл $\mathcal{F}-\mathcal{B}$-измеримости: хотим, чтобы высказывания вида ``$\xi$ принимает значение от 3 до 5'' и ему подобные были событиями.
