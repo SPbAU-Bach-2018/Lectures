@@ -33,7 +33,10 @@ $\{\varnothing, \Omega \}$ -- тривиальная $\sigma$-алгебра.
 (например, в их объединении нет множеств, которые частично лежат в одном, а частично в другом, хотя они должны быть из-за замкнутости).
 
 \begin{Def}
-    $\sigma(\mathcal{A} \subset \mathcal{F}) = \bigcap\limits_x \mathcal{F}_x, \mathcal{A} \subset \mathcal{F}_x$ -- сигма-оболочка $\mathcal{A}$
+	$\sigma$-оболочка $\mathcal A$ "--- это пересечение всех $\sigma$-алгебр, содержащих $\mathcal A$ (тоже $\sigma$-алгебра):
+	\[
+		\sigma(\mathcal A) = \bigcap\limits_{{\mathcal F}_x \supseteq \mathcal A} \mathcal F_x
+	\]
 \end{Def}
 
 Множество $\sigma$-алгебр является решеткой: наибольшей нижней границей $A, B$ будет $A \cap B$, а наименьшей верхней будет $\sigma(A \cap B)$
@@ -94,8 +97,8 @@ $A_kA_j = \varnothing \Ra P(\bigcup\limits_k A_k) = \sum\limits_k P(A_k)$ -- $\s
     \begin{proof}
     \begin{description}        
         \item[$1 \Ra 2$]
-        Пусть $A_i \subset A_{i+1}$ (иначе перейдем к дополнениям). 
-        Рассмотрим следующее объединение: $A_n \cup A_{n_1} \bar A_n \cup A_{n+2} \bar A_{n+1} \cup \dots = A = \lim(A_n)$. 
+        Пусть $A_i \subset A_{i+1}$ (иначе перейдем к дополнениям).
+        Рассмотрим следующее объединение: $A_n \cup A_{n+1} \bar A_n \cup A_{n+2} \bar A_{n+1} \cup \dots = \lim(A_n) \eqcolon A$.
         Это объединение несовместных событий.
         Тогда $P(A) = P(A_n) + \sum\limits_{k=n}^{\infty} P(A_{k+1} \bar A_k)$.
         Устремим $n$ к бесконечности, второе слагаемое стремится к 0 как хвост сходящегося ряда
