@@ -1,0 +1,231 @@
+\chapter{}
+
+Будем писать сложные запросы.
+
+Базовый запрос: количество людей на каждом рейсе.
+\begin{sqlcode}
+SELECT
+	F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(*) AS pax_cnt
+	FROM Flight F JOIN Booking B ON F.id = B.flight_id
+	GROUP BY F.id;
+\end{sqlcode}
+
+Колисество планет, куда летал капитан:
+\begin{sqlcode}
+SELECT
+	C.id, C.name, COUNT(planet_id) AS planet_count
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(*) AS pax_cnt
+			FROM Flight F JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+Мы пока считаем количество рейсов, имеющих хотя бы одного пассажира, куда летал капитан, если капитан летал хоть куда-нибудь.
+Чтобы починить дублирующиеся планеты, нужно починить.
+\begin{sqlcode}
+SELECT
+	C.id, C.name, COUNT(DISTINCT planet_id) AS planet_count
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(*) AS pax_cnt
+			FROM Flight F JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+Теперь рейсы без полётов: добавим \sql'LEFT JOIN'. Это вернёт полёты без пассажиров, но у них будет 1 пассажир, а не 0.
+Попробуем считать не все записи, а \sql'DISTINCT B.ref_num':
+\begin{sqlcode}
+SELECT
+	C.id, C.name, COUNT(DISTINCT planet_id) AS planet_count
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(DISTINCT B.ref_num) AS pax_cnt
+			FROM Flight F LEFT JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+Это, внезапно, работает! Но имелся в виду другой, или ваша СУБД так не может.
+Можно и по-другому, через сумму единичек:
+\begin{sqlcode}
+SELECT
+	C.id, C.name, COUNT(DISTINCT planet_id) AS planet_count
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id,
+			SUM(CASE B.flight_id IS NOT NULL WHEN true THEN 1 ELSE 0) AS pax_cnt
+			FROM Flight F LEFT JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+Этот трюк тоже работает.
+
+Ещё и коммандиры без рейсов! Повторяя трюк, у нас уже \sql'DISTINCT', добавим \sql'RIGHT JOIN':
+\begin{sqlcode}
+SELECT
+	C.id, C.name, COUNT(DISTINCT planet_id) AS planet_count
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(DISTINCT B.ref_num) AS pax_cnt
+			FROM Flight F LEFT JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	RIGHT JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+Теперь считаем среднее число пассажиров в рейсе на планету.
+Если бы мы скопипастили старую версию вложенного запроса, то было бы грустно.
+\begin{sqlcode}
+SELECT
+	P.id, P.name, AVG(pax_cnt)
+	FROM (
+		SELECT
+			F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(DISTINCT B.ref_num) AS pax_cnt
+			FROM Flight F LEFT JOIN Booking B ON F.id = B.flight_id
+			GROUP BY F.id;
+	) AS PaxFlight
+	RIGHT JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+
+Всё равно копипаст это зло.
+Хочется, чтобы запрос жил подольше.
+
+\section{Представления (\texorpdfstring{\tt VIEW}{VIEW})}
+
+\begin{sqlcode}
+CREATE VIEW PaxPerFlight AS
+	SELECT
+		F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(*) AS pax_cnt
+		FROM Flight F JOIN Booking B ON F.id = B.flight_id
+		GROUP BY F.id;
+SELECT
+	P.id, P.name, AVG(pax_cnt)
+	FROM PaxPerFlight
+	RIGHT JOIN Commander.C ON C.id = PaxFlight.commander_id
+	GROUP BY C.id;
+\end{sqlcode}
+
+Таким образом, если в представлении лажа, можно его заменить.
+\begin{sqlcode}
+-- можно и DROP IF EXISTS...
+CREATE OR REPLACE VIEW PaxPerFlight AS
+	SELECT
+		F.id, F.planet_id, F.spacecraft_id, F.commander_id, COUNT(DISTINCT B.ref_num) AS pax_cnt
+		FROM Flight F LEFT JOIN Booking B ON F.id = B.flight_id
+		GROUP BY F.id;
+\end{sqlcode}
+
+Почему это лучше отдельной таблицы?
+Это всегда живые данные, не надо их руками обновлять.
+Как оно устроено "--- скорее всего, знать не надо.
+Можно считать, что просто подставляется текст запроса.
+
+Представления входят в стандарт.
+Чаще всего, они только на запись, а вот вставлять-обновлять в них нельзя\footnote{Но иногда можно!}.
+
+Представления -- часть схемы, нужно иметь права на модифицирование схемы БД для их создания.
+Как бороться с просто большими запросами "--- позже.
+
+Продолжаем считать капитанов.
+Трёх лучших по количеству планет?
+\begin{sqlcode}
+SELECT
+	id, planet_count
+	FROM (
+	SELECT C.id, C.name, COUNT(DISTINCT planet_id) AS planet_count
+		FROM PaxPerFlight
+		RIGHT JOIN Commander C on C.id = PaxPerFlight.commander_id
+		GROUP BY C.id
+	) AS CmdPlanet
+	ORDER BY CmdPlanet.planet_count DESC
+	LIMIT 3; -- не стандарт, все умеют
+)
+\end{sqlcode}
+Предположим, что это "--- представление (без ограничения на 3, естественно) \sql'CommanderPlanetCount'.
+
+\begin{sqlcode}
+-- огромный запрос про крутость капитанов, с рейтингом элита, по дистанции и пассажирам.
+\end{sqlcode}
+
+Шалость: почему поменялся порядок записей? Мы же в представлении посортировали?
+Так вот: с тех пор в нашем запросе что-то могло обрабатываться в другом порядке.
+\begin{Rem}
+	Мнение Димы: сортировка в представлении "--- фишка PostgreSQL.
+\end{Rem}
+
+Хотим самых клёвых.
+Можно ещё раз посотрировать и отсечь, но... По-другому можно!
+\begin{sqlcode}
+SELECT *
+	FROM CommanderStats CS1
+	JOIN CommanderStats CS2
+	ON CS1.planet_count < CS2.planet_count
+		OR CS1.planet_count = CS2.planet_count AND CS1.pax_cnt < CS2.pax_cnt;
+\end{sqlcode}
+Победителя тут нет "--- нет никого его круче.
+\begin{sqlcode}
+SELECT
+	*
+	FROM CommanderStats CS1
+	LEFT JOIN CommanderStats CS2
+	ON CS1.planet_count < CS2.planet_count
+	Or CS1.planet_count = CS2.planet_count AND CS1.pax_cnt < CS2.pax_cnt
+	WHERE CS2.id IS NULL;
+\end{sqlcode}
+Остался только самый клёвый.
+Можно и просто считать, сколько выше данного человека.
+
+А если бы мы писали всё сразу в одно тело, то...
+\begin{sqlcode}
+-- 40 строк чистого удовольсвтвия!
+\end{sqlcode}
+Никак уже не догадаться, что это по делу.
+И что это работает.
+
+\section{Обощённые табличные выражения}
+\begin{sqlcode}
+WITH
+	FlightStats AS (
+		SELECT ...
+	),
+	CmdStats AS (
+		...
+	)
+	CmdOrdering AS (
+		...
+	)
+SELECT
+	...;
+\end{sqlcode}
+Так хоть как-то понятно.
+
+Теперь можно считать какой-то мегастатистический запрос.
+Старым методом "--- трёхзначное число строк?
+Новым же "--- читабельно, плюс можно магии добавить.
+\begin{sqlcode}
+WITH
+	FlightStats AS (
+	),
+	FlightStatsExt AS (
+	)
+SELECT
+	DISTINCT FSE.commander_name, FSE.planet_id,
+	SUM(pax_cnt) OVER (PARTITION BY commander_id) AS total_pax_per_commander,
+	...;
+\end{sqlcode}
+Мы тут написали оконную функцию "--- мы выделили часть строк и применили к ним.
+Ещё и работать может быстрее.
+
+Какую ещё магию?
+\begin{sqlcode}
+	ROW_NOMBER() OVER (ORDER BY)
+\end{sqlcode}
