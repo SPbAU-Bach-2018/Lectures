@@ -1,0 +1,119 @@
+\chapter{Занятие 10 ноября}
+
+Загадка. Простой запрос. Что-то поменяли, но не в БД или в запросе. Стало работать куда медленне "--- одновременно запросили 11 вкладок.
+Ответ "--- размер пула подключений.
+Когда сделали меньше, всем приходится тормозить. Когда больше "--- шустренько, но от сильного увеличения уже не сильно, так как БД тоже надо работать больше.
+
+Проанализируем простой запрос с помощью \sql'EXPLAIN ANALYSE':
+\begin{sqlcode}
+SELECT
+	id, (SELECT COUNT(*) FROM Booking WHERE flight_id = id) AS cnt
+	FROM Flight;
+\end{sqlcode}
+Увидим, что всё в лоб: подзапрос на каждую строку.
+Если же перепишем через `JOIN`:
+\begin{sqlcode}
+EXPLAIN ANALYZE SELECT
+	id, COUNT(*)
+	FROM Flight
+	JOIN Booking ON Booking.flight_id = Flight.id;
+\end{sqlcode}
+То увидим, что сканируются обе таблицы всего один раз.
+
+\begin{sqlcode}
+SELECT *
+	FROM Flight
+	WHERE (SELECT COUNT(*) FROM Booking WHERE flight_id = id) > 2;
+\end{sqlcode}
+Долга!
+\begin{sqlcode}
+SELECT *
+	FROM Flight
+	WHERE id IN (
+		SELECT flight_id
+		FROM Booking
+		GROUP BY Flight.id
+		HAVING COUNT(*) > 2);
+SELECT Flight.*
+	FROM Flight
+	JOIN Booking ON Booking.flight_id = Flight.id
+	GROUP BY Flight.id
+	HAVING COUNT(*) > 2;
+\end{sqlcode}
+Всё из-за коррелирующих подзапросов "--- позапросов, обращающихся к полям внешнего запроса.
+
+Структурное программирование предлагает такое:
+\begin{sqlcode}
+SELECT *
+	FROM Flight
+	WHERE GetBookedCount(id) > 2;
+\end{sqlcode}
+Клёво выглядит, тока не работает быстро.
+
+\begin{sqlcode}
+SELECT *
+	FROM Booking
+	WHERE flight_id = 2;
+\end{sqlcode}
+Просто скан и фильтр.
+\begin{sqlcode}
+SELECT *
+	FROM Flight 
+	WHERE id = 2;
+\end{sqlcode}
+Скан индекса, куда быстрее!
+К сожалению, индекса для внешнего ключа не создано.
+\begin{sqlcode}
+CREATE INDEX ON Booking(flight_id);
+\end{sqlcode}
+Это крайне короткий синтаксис. \sql'\d Booking' покажет его.
+
+А когда не поможет?
+\begin{sqlcode}
+SELECT
+	id
+	FROM Flight
+	JOIN Commander ON ...
+	WHERE Commander.rating = 'poor';
+\end{sqlcode}
+Скан капитанов, потом фильтр, потом хеш-таблица по полётам.
+Индекс по рейтингу тут не помогает. Почему? Попробуем заставить.
+\begin{sqlcode}
+SET enable_seqscan=OFF;
+\end{sqlcode}
+Стал выполняться больше, толку мало.
+Капитанов-то у нас 10, всё равно всех читать.
+
+Теперь считаем количество полётов с троллями.
+\begin{sqlcode}
+SELECT
+	COUNT(DISTINCT Flight.id)
+	FROM Flight
+	JOIN Booking
+	JOIN Pax
+	WHERE Pax.race = 'troll';
+\end{sqlcode}
+Почему сейчас не заиспользовался? 1000 пассажиров "--- довольно много.
+\begin{sqlcode}
+SELECT
+	COUNT(DISTINCT Flight.id)
+	FROM Flight
+	JOIN Booking
+	JOIN Pax
+	WHERE Pax.id = 1;
+\end{sqlcode}
+Тут индекс заюзали, и сразу кстати хеш-джойны заменился на вложенный цикл...
+Проблема в том, что рас мало. Количество записей довольно велико, и всё равно прочитаем почти всё.
+
+Вернёмся к 
+\begin{sqlcode}
+SELECT
+	id
+	FROM Flight
+	JOIN Commander ON ...
+	WHERE Commander.rating = 'poor';
+\end{sqlcode}
+Попробуем индекс для \sql'Flight.commander_id'.
+Что стало? Индекс заюзался!
+
+Если делается какой-то сложный запрос, то можно его обернуть в материализованное представление "--- его результат хранится на диске и поддерживается, но это ваш последний помощник, тем более, если есть изменения.
