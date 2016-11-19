@@ -20,12 +20,8 @@ $\omega_n^j = e^{2 \pi i j/n} $
     $P(\omega_n^0), P(\omega_n^1), \dots \xrightarrow{FFT^{-1}} P(x)$
 \end{itemize}
 
-<<<<<<< HEAD
 $FFT^{-1}$ =  
 \begin{enumerate}
-=======
-$FFT^{-1}$ =  \begin{enumerate}
->>>>>>> 875a5e078597c8ffdce6b84809c8582727455ff3
     \item FFT
     \item reverse(a + 1, a + n). $a[0]$ остаётся на месте
     \item $a[i] /= n$
@@ -35,11 +31,7 @@ $FFT^{-1}$ =  \begin{enumerate}
 \begin{cppcode}
 FFT(n, p) { // $n = 2^k, \omega_n^j - we want to count in this roots$
     if (n == 1) { return p[0] }
-<<<<<<< HEAD
     // $P(x) = P_0(x^2) + xP_1(x^2)$ - divide degrees on even and odd
-=======
-    // $P(x) = P_0(x^2) + xP_1(x^2) - divide degrees on even and odd
->>>>>>> 875a5e078597c8ffdce6b84809c8582727455ff3
     for i = 0..n - 1
         A[i % 2].push_back(p[i])
     F_0 = FFT(n/2, A[0])
@@ -279,8 +271,3 @@ Inv(A) {
     
     $T(n) = T(n/2) + Mul = T(n/2) + n \log n = n \log n$
 \end{itemize}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 875a5e078597c8ffdce6b84809c8582727455ff3
