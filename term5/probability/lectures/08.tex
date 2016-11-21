@@ -1,0 +1,168 @@
+\begin{theorem}[Бохнер, Хинчин]
+$f \in C(\R), f(0) = 1$
+
+Тогда ($f$ -- характеристическая функция $\Leftrightarrow$ $f$ неотрицательно определена, то есть, для любых $t_1, \dots, t_n \in \R$ и $c_1, \dots, c_n \in R$: 
+$\sum\limits_{j, l=1}^n c_j \bar c_l f(t_j - t_l \geq 0$)
+\end{theorem}
+\begin{proof}
+$\Ra$: $\sum c_j \bar c_l f(t_j - t_l) = E | \sum c_ke^{it_k\xi} |^2 = E(\sum \bar\sum$ 
+\end{proof}
+\begin{theorem}[Пойа]
+Если $f \in \R$ четная, $f(0) = 1$, непрерывная, $f \xrightarrow[t \to \infty]{} 0$, $f$ выпуклая вниз на $[0, +\infty)$, то $f$ -- характеристическая функция.
+\end{theorem}
+
+Задача: (сумма случайного числа независимых случайных величин):
+
+Пусть $\theta$ -- случайная величина с носителем $\Z_+$, $\xi_k$ -- iid (сокращение для независимо и одинаково распределенных величин).
+
+$\eta = \xi_1 + \xi_2 + \dots + \xi_\theta = ?$
+
+\begin{gather*}
+f_\eta(t) = \int e^{itx}\d P(\eta < x) = \int e^{itx} \d (\sum\limits_k P(\theta = k) P(\eta < x \mid \theta = k)) =\\
+= \sum\limits_k P(\theta =  k) \int e^{itx} \d \underbrace{F_{\xi_1 + \dots +  \xi_k}(x)}_{f_{\xi+1 + \dots + \xi+k}(t) = f_xi_1^k(t)} = \\
+= \sum P(\theta = k) f_{\xi_1}^k(t) = \phi_\theta(f_{\xi_1}(t))
+\end{gather*}
+
+\begin{exmp}
+Двое кидают монетку: первый человек кидает ее $n$ раз, второй -- столько раз, сколько гербов выпало у первого. 
+Надо найти распределение количества гербов у второго человека.
+
+Формально: $\xi \sim Bin(n, p_1)$, $(\eta \mid \xi = k) \mid Bin(k, p_2)$, $\eta \sim ?$
+
+Воспользуемся формулкой:
+\begin{gather*}
+f_\eta(t)  = (p_1( \dots ) + q_1)^n = \\
+\phi = pt + q, f = pe^{it} + q \\
+= (p_1p_2e^{it} + 1-p_1p_2)^n
+\end{gather*}
+Получили, внезапно, характеристическую функцию $Bin(n, p_1p_2)$.
+
+Можно то же самое посчитать и через формулу полной вероятности, но там вычислений будет прилично больше.
+\end{exmp}
+
+\chapter{Предельные теоремы ТВ}
+\section{Виды сходимостей последовательностей случайных величин}
+\begin{Def}
+$\xi_n \xrightarrow[n \to \infty]{P} \xi$ (сходимость по вероятности), если $P(|\xi_n - \xi| > \epsilon) \xrightarrow[n \to \infty]{} 0$ для любого $\epsilon > 0$
+
+$\xi_n \xrightarrow{\text{п.в.}} \xi$, если $P(\{\omega\colon \xi_n(\omega) \to \xi(\omega)\} \to 1$
+
+$\xi_n \xrightarrow{L^p} \xi$ (в среднем порядка $p$), если $E|\xi_n - \xi|^p \to 0$
+
+$\xi_n \xrightarrow{d} \xi$ (по распределению ``слабо''), если $F_{\xi_n}(x) \to F_\xi(x)$ в точках непрерывности предела
+\end{Def}
+\begin{Rem}
+    В последнем определении нам нигде не важно какая именно случайная величина, важно лишь ее распределение 
+    (это разные понятия, монетка и ``число на кубике по модулю 2'' имеют одинаковые распределения, но как величины отличаются, потому что разные множества событий).
+
+    Поэтому, часто пишут что-то вида $\xi_n \xrightarrow{d} N(0, 1)$, подразумевая, что в правой части стоит какая-то (не важно какая именно) случайная величина с нормальным распределением.
+\end{Rem}
+\begin{Rem}
+Часть определения про точки разрыва является существенной.
+Например, можно рассмотреть следующие три последовательности случайных величин:
+
+\begin{enumerate}
+
+\item $\xi \sim U[0, \frac1n]$, устремляем $n$ к бесконечности, $\xi$ устремляется к константе.
+
+\item $\xi \sim U[-\frac1n, 0]$, $\xi$ стремится к той же константе, только значение функции распределения в нуле равно единице (непрерывность не с той стороны получается).
+
+\TODO картинки
+
+\item $\xi \sim U[-\frac1n, \frac1n]$, тогда в нуле функция распределения будет равна $\frac12$. 
+\end{enumerate}
+Поэтому и нужна оговорка про точки непрерывности предела: вроде все эти величины стремятся к одному и тому же, а вот в точках разрыва какая-то беда.
+
+\end{Rem}
+Упражнение: $\xi_n \xrightarrow[\text{п.в.}] \xi \Leftrightarrow P(\sup\limits_{k\geq n} |\xi_k - \xi| > \epsilon) \xrightarrow[]{n \to \infty} 0 \forall \epsilon > 0$
+
+И еще упражнение: из п.в. сходимости следует $P$-сходимость, из $L^p$ -- тоже, а из $P$-сходимости следует $d$.
+
+\begin{exmp}
+Пусть пространство событий $\Omega = [0, 1]$ с равномерным распределением.
+
+Рассмотрим последовательность следующих случайных величинин: $\xi_1 = \mathbb{1}_{[0, \frac12]}, \xi_2 = \mathbb{1}_{[\frac12, 1]}, \xi_3 = \mathbb{1}_{[0, \frac14]}, \xi_4 = \mathbb{1}_{[\frac14, \frac12]}$ и так далее: 
+берем все половинки, потом все четверти, и так далее.
+
+Тогда $\xi_n \xrightarrow[P, L^p]{} \to 0$ (просто по определению, там получаются просто площади под графиком, которые сходятся к 0)
+
+Но п.в. сходимости -- нет, потому что $\xi_n(\omega)$ не стремится к нулю для любой точки $\omega$: каждая точка берет и встречается бесконечное количество раз. 
+\end{exmp}
+\begin{exmp}
+$\Omega = [0, 1]$.
+
+$\xi_n(x) = \mathbb{1}_{[0, \frac1n]}(x) \cdot (\frac1n - x)n$: равномерно убывает на отрезке $[0, \frac1n]$ от $n$ до $0$, справа -- 0.
+
+$E|\xi_n - 0| = \frac12$, не стремится к 0, $L^p$ сходимости опять нет.
+
+Поэтому следствия из упражнения не всегда обращаются.
+\end{exmp}
+
+\begin{theorem} (неравенства Чебышева)
+
+\begin{enumerate}
+
+\item $\xi \geq 0$ почти всегда, $E\xi < \infty$. Тогда $\forall \epsilon > 0\colon P(\xi \geq \epsilon) \leq \frac{E\xi}{\epsilon}$
+
+\item $P(|\xi - E\xi| \geq \epsilon) \leq \frac{D\xi}{\epsilon^2}$
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}                      
+\item $E\xi = \int\limits_0^\infty x\d F_\xi(x) \geq \int\limits_\epsilon^\infty \geq \int\limits_\epsilon^\infty \epsilon \d F_\xi(x) = \epsilon (1 - F_\xi(\epsilon)) = \epsilon P(\xi \geq \epsilon)$
+
+\item Применим 1 к $(\xi - E\xi)^2$ 
+\end{enumerate}
+\end{proof}
+\end{theorem}
+
+
+\begin{theorem}[неравенство Колмогорова]
+$\xi_k$ -- независимые. Тогда
+
+$$P(\sum\limits_{1\leq k \leq n} |\sum\limits_{j = 1}^k(\xi_d - E\xi_d)| \geq \epsilon) \leq \frac{1}{\epsilon^2}\sum\limits_{j=1}^n D_{\xi_j}$$
+\end{theorem}
+
+\begin{theorem} (Следствия из теоремы Хелли)
+
+\begin{enumerate}
+
+\item $\xi_n \xrightarrow[]{d} \xi$, $F(x)$ -- функция распределения $\xi$, то тогда $F_{\xi_n}(t) \to f_\xi(t)$
+\item $f_{\xi_n}(t) \xrightarrow[n \to \infty]{} f(t) \forall t \in \R$  и $f(t)$ непрерывна в нуле, 
+то она характеристическая и $\xi_n \xrightarrow[]{d} \xi$, где $F(\xi)$ -- характеристическая функция $\xi$, соответствующая $f(t)$
+
+\end{enumerate}
+
+
+\end{theorem}
+\section{Закон больших чисел}
+\begin{Def}
+Говорят, что для $\{f_n\}$ верен ЗБЧ, если $\eta = \frac1n \sum\limits_{k=1}^n (\xi_k - E\xi_k) \xrightarrow[]{P} 0$.
+\end{Def}
+
+\begin{theorem}[Марков]
+Если $\frac{1}{n^2} D (\sum \xi_k) \to 0$ (условие Маркова), то ЗБЧ.
+\end{theorem}
+\begin{proof}
+$P(\frac1n | \sum (\xi_k - E\xi_k) | \geq \epsilon) \leq \frac{Dn}{\epsilon^2} - \frac{1}{n^2 \epsilon^2} D(\sum \xi_k) \to 0$.
+\end{proof}
+
+\begin{theorem}[Чебышев]
+$\xi_n$ -- независимые и $p\xi_n \leq C \Ra$ ЗБЧ.
+\end{theorem}
+\begin{proof}
+В условии Маркова $\frac{nC}{n^2} = \frac{C}{n} \to 0$.
+\end{proof}
+
+\begin{theorem}[Хинчин]
+$\xi_k$ -- iid, $E\xi_1 = a, D\xi_1 = \sigma^2 < \infty$, тогда ЗБЧ: $\frac1n \sum \xi_k \to a$.
+\end{theorem}
+
+\begin{theorem}[Бернулли]
+$\xi_k = \begin{cases} 1, p \\ 0, q = 1 - p \end{cases}$, $\frac 1n\sum \xi_k \to E\xi_1 = p$.
+\end{theorem}
+
+Доказательство теоремы Хинчина без конечности $D\xi$:
+\begin{proof}
+    $F_{\frac1n(\xi_1 + \dots + \xi_n)} = F_{\xi_1}(t) = F_{\xi_1}^n(t/n) = (1 + \frac{iat}{n} + o(t/n))^n \xrightarrow[n \to \infty]{} e^{iat}$ -- характеристическая функция для $a$
+\end{proof}                                                                                                                                                                           
+

@@ -1,0 +1,125 @@
+\begin{theorem}
+Свойства условного матожидания:
+\begin{enumerate}
+\item $E(\xi \mid \mathbb{F}_\xi) = \xi$
+\item Пусть $\xi$ не зависит от $\sigma$-алгебры $\mathbb{A}$ (то есть $\xi^{-1}(B \in \mathbb{B})$ и $A \in \mathbb{A}$ независимы).
+Тогда $E(\xi \mid \mathbb{A}) = E\xi$ (потому что в силу независимости $\xi$ от $\mathbb{A}$ мы не получаем никакой информации от того, произошло ли какое-то событие $A$, или нет).
+\item Формула полного матожидания: $E(E(\xi \mid \mathbb{A})) = E\xi$
+\item $E(E(\xi \mid \mathbb{A}_1) \mid \mathbb{A}_2) = E(\xi \mid \mathbb{A}_1 \cap \mathbb{A}_2)$
+\item $\eta$ -- $\mathbb{A}$-измерима ($\mathbb{F}_\eta \subset \mathbb{A}$). Тогда $E(\xi\eta \mid \mathbb{A}) = \eta E(\xi \mid \mathbb{A})$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item  Просто по определению.
+\item  На пальцах: можно рассмотреть $E (\xi \mid A_1)$ и $E (\xi \mid A_2)$. 
+Если предположить, что они разные, то $A_1$ и $A_2$ оказывают влияние на $\xi$. 
+Это же противоречит независимости.
+
+Эти рассуждения при желании, видимо, можно формализовать.
+
+\item Частный случай 4 свойства.
+
+Остальные два -- без доказательства.
+\end{enumerate}
+\end{proof}
+
+Теперь докажем, что $g^*$ -- условное матожидание $\xi$ будет оптимальной функцией.
+Для этого надо доказать, что расстояние до произвольной функции хотя бы расстояние до $g^*$:
+
+$$E(\eta - g(\xi))^2 = E(\eta - g^* + g^* - g)^2 =E(\eta - g^*)^2 + \underbrace{E(g - g^*)^2}_{\geq 0} + 2E(\eta - g^*)(g^* - g) \stackrel{?}{\geq} E(\eta - g^*)^2$$
+
+
+По 3 свойству:
+$$E(\eta - g^*)(g^* - g) = E(E(\eta - g^*)(g^* - g) \mid \mathbb{F}_\xi) = $$
+
+По свойству 5 (потому что вторая скобка $\mathbb{F}_\xi$-измерима, так как обе функции зависят от $\xi$)
+$$= E(g^* - g) E(\eta - g^*(\xi) \mid \mathbb{F}_\xi)$$
+
+Правый множитель равен (по 1 свойству) 
+$$E(\eta \mid \mathbb{F}_\xi) - E(g^*(\xi) \mid \mathbb{F}_\xi) = g^*(\xi) - g^*(\xi) = 0$$
+
+\section{Характеристические производящие функции}
+\begin{Def}
+Характеристическая функция $f_\xi(t) = E e^{it\xi} = \int\limits_{-\infty}^\infty e^{itx} \d F_\xi(x)$.
+
+Для дискретных: $ = \sum\limits_k e^{itx_k} p_k$
+
+Для абсолютно непрерывных: $\int\limits_{-\infty}^\infty e^{itx}p_\xi(x) \d x$. (А еще это называется преобразованием Фурье для функции $p_\xi$)
+
+$f_\xi(t) \colon \R \to \C$.
+\end{Def}
+\begin{Rem}
+Взяли плотность, растянули ее в $t$ раз, после чего свернули в единичную окружность. Потом усреднили = взяли центр масс
+\end{Rem}
+
+\begin{Def}
+Если $\xi$ -- неотрицательная дискретная целочисленная случайная величина, то у нее есть производящая функция $\phi_\xi(t) = Et^\xi = \sum p_k t^k$
+\end{Def}
+\begin{Rem}
+$f_\xi(t) = \phi_\xi(e^{it})$. Свойства почти одинаковые, производящая функция удобна только тем, что она вещественная. В общем случае же пользуемся характеристической.
+\end{Rem}
+
+Основное свойство: если $\xi, \eta$ независимы, то $f_{\xi + \eta}(t) = Ee^{it(\xi + \eta)} = f_\xi(t)f_\eta(t)$. 
+Аналогично для производящих.
+
+$f_{a\xi + b}(t) = E e^{it(a\xi + b)} = e^{itb} Ee^{ita\xi} = e^{itb} f_\xi(ta)$
+
+\begin{exmp}
+$\xi = C$, $f_\xi(t) = e^{itc}$
+\end{exmp}
+\begin{exmp}
+$\xi = \begin{cases}1, p \\0, q\end{cases}$, $f_\xi(t) = pe^{it1} + q^{eit0} = p^{it} + q$; $\phi(t) = pt + q$
+\end{exmp}
+\begin{exmp}
+$\xi \sim Bin(n, p)$. $\xi = \sum\limits_{k=1}^n \mathbb{1}_{A_k}$, $f_\xi(t) = (pe^{it} + q)^n$
+\end{exmp}
+$\xi \sim N(0, 1)$ -- нормальное распределение. Тогда (упражнение): $f_\xi(t) = e^{-\frac{t^2}{2}}$.
+
+$\xi \sim N(a, \sigma^2)$, $\xi = \sigma \widetilde{\xi} + a$, где $\widetilde{\xi} \sim N(0, 1)$. Откуда $f_\xi(t) = e^{ita - \frac{t^2\sigma^2}{2}}$.
+
+\begin{theorem} (Формулы обращения)
+                                  
+\begin{enumerate}
+\item $a < b, F_\xi$ непрерывно в точках $a, b$. Тогда $F(b) - F(a) = \frac{1}{2\pi} v.p. \int\limits_{-\infty}^\infty \frac{e^{-ita} - e^{-itb}}{it}f_\xi(t) \d t$, ($v.p.$ -- главное значение интеграла)
+
+\item Если $\int\limits_\R |f_\xi(t)| \d t < +\infty$, то $\xi$ -- абсолютно непрерывна и $p_\xi(x) = \frac{1}{2\pi} \int\limits_{-\infty}^\infty e^{-itx}f_\xi(t) \d t$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Без доказательства. Вообще -- должно доказываться в матанализе как существование обратного преобразования Фурье
+\end{proof}
+Поэтому характеристической функции достаточно, чтобы описать распределение.
+
+\begin{theorem}[Свойства характеристической функции]
+
+Везде ниже $f = f_\xi$.
+
+\begin{enumerate}
+\item $|f(t)| \leq f(0) = 1$
+\item $f$ равномерно непрерывна на $\R$
+\item $f(-t) = \overline{f(t)}$
+\item $\forall t f(t) \in \R \Leftrightarrow \forall B \in \mathbb{B} P_\xi(B) = P_{-\xi}(B)$
+\item Если $E|\xi|^n < \infty$, то $\forall k \leq n \exists f^{(k)}(t) = \int (ix)^ke^{itx} dF_\xi(x)$. $f^{(k)}(0) = i^k E \xi^k$
+\item Если $\exists f^{(2n)}(0)$, то $E|\xi|^{2n} < \infty$
+\item $f(t) = \sum\limits_0^n \frac{i^k E\xi^k}{k!}t^k + o(t^n)$. Если радиус сходимости положителен ($\varlimsup \frac{(E|\xi|^n)^\frac1n}{n} = \frac1R < \infty$, то
+$f(t) = \sum\limits_{k=0}^\infty \dots$ при $|t| < R$. 
+
+Отсюда, в частности, следует теорема про моменты, когда они определяют распределение.
+\end{enumerate}
+\begin{proof}
+1 и 3 свойства очевидно следуют из определения.
+
+2:   
+\begin{gather*}
+|f(t + h) - f(t)| = |\int (e^{i(t + h)}x - e^{itx}) \d F| \leq \int \underbrace{|e^{itx}|}_{=1} |e^{ixh} - 1| \d F = \\
+\int\limits_{-T}^T + \int\limits_{\R \setminus [-T, T]}|e^{ixh} - 1| \d F(x)\\
+\text{Возьмем T такое, что } F(T) - F(-T) > 1 - \epsilon, \text{и } h\colon |e^{ihT}  -1| < \epsilon \\
+|e^{ihx} - 1| \leq 2 \Ra \int\limits_{\R \setminus [-T, T]} + \int\limits_{-T}^T \leq 2\epsilon + \epsilon = 3\epsilon \\
+\end{gather*}                                                                  
+
+4: $f(t) = \int \cos tx \d F(t) + i \int \sin tx \d F(t)$. Второе слагаемое равно 0 для симметричных распределений (синус нечетный).
+
+В обратную сторону: $f_\xi(-t) = \overline{f(t)} = f(t)$. С другой стороны, минус можно от $t$ перекинуть к $\xi$ и получить $f_\xi(-t) = f_{-\xi}(t)$
+\end{proof}
+\end{theorem}
