@@ -259,9 +259,9 @@ $$ ($\dim = 2$)
 
 Ниже решение за рандомизированное $O(n)$:
 
-\begin{rem}
+\begin{Rem}
     Живём в bound box
-\end{rem}
+\end{Rem}
 
 \begin{enumerate}
     \item random shuffle полуплоскостей
@@ -399,10 +399,10 @@ solve_4(x, y, z):
     \item если у какой-то пары одинаковая история, то говорим, что это 2-разрез
 \end{enumerate}
 
-Алгоритм с одосторонней ошибкой: $P[error \ (e1, e2)] = (\tfrak{1}{2})^k)$
+Алгоритм с одосторонней ошибкой: $P[error \ (e_1, e_2) ] = (\tfrac{1}{2})^k$
 
 Повторим столько раз, чтобы ошибка стала нулевой 
-$P[error] < E = \frac{m(m-1)}{2} (\tfrak{1}{2})^k) < \varepsilon$,
+$P[error] < E = \frac{m(m-1)}{2} (\tfrac{1}{2})^k) < \varepsilon$,
 т.е. $k \sim \log m$
 
 Итого, время $O(m \log m)$ вероятность ошибки $P < \frac{1}{2}$
