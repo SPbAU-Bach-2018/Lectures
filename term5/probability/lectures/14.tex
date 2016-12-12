@@ -68,19 +68,20 @@ $j$ --возвратное апериодическое состояние, то
 $P_{ij}(n) = \sum\limits_{k=1}^n f_{ij}(k) P_{jj}(n - k)$. Устремим $n \to \infty$, $\sum f_{ij}(k) = f_{ij} = 1$
 \end{proof}
 \begin{conseq}
-Если период $d > 1$, то $C = C_0 \cup C_1 \cup \dots \cup C_{d-1}$.
+Если период $d > 1$, то рассмотрим разбиение нашего класса $C$ на $C_0 \cup C_1 \cup \dots \cup C_{d-1}$.
+Возьмем состояния $i \in C_0, j \in C_a$. 
 
-Пусть $i \in C_0, j \in C_a$. Тогда $P_{i,j}(nd+a) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j}$.
+Тогда $P_{ij}(nd+a) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j}$.
 
 \end{conseq}
 \begin{proof}
 Рассмотрим цепь с матрицей перехода $\widetilde{P} = P^d$. Пусть $a = 0$
 
-%$k$ --число циклов, через которое ...
+$$P_{i,j}(nd) = \widetilde{P_{ij}}(n) \to \frac{1}{\sum k f_{ij}(kd)} = \frac{d}{\sum\limits_{k=1}^\infty kd f_{ij}(kd)} = \frac{d}{\mu_j}$$
 
-$P_{i,j}(nd) = \widetilde{P_{ij}}(n) \to \frac{1}{\sum k f_{ij}(kd)} = \frac{d}{\sum\limits_{k-1}^\infty kd f_{ij}(kd)} = \frac{1}{\mu_j}$
+Для $a = 1$: 
+$$P_{i,j}(nd + 1) = \sum\limits_{k \in C_1} P_{i,k} P_{kj}(nd) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j} \underbrace{\sum\limits_k P_{i, k}}_{=1}$$
 
-$a = 1$: $P_{i,j}(nd + 1) = \sum\limits_{k \in C_1} P_{i,k} P_{kj}(nd) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j} \underbrace{\sum\limits_k P_{i, k}}_{=1}$. 
 А дальше по индукции.
 \end{proof}
 \begin{Rem}
@@ -91,15 +92,17 @@ $P_{ij}(n + 1) = \sum\limits_k P_{i, k}(n) P_{k, j}$, устремляем $n \t
 \end{Rem}
 
 \begin{theorem}
-Неприводимая цепь $j \in \{0, 1, 2, \dots \}$ -- возвратные положительные апериодичные состояния.
+Пусть есть неприводимая цепь, ее состояния $j \in \{0, 1, 2, \dots \}$ -- возвратные, положительные и апериодичные.
 
 Тогда $\pi_j = \sum\limits_k P_{kj} \pi_k, \sum\limits_k \pi_k = 1$ и $\overrightarrow{\pi}$ однозначно определяется из этой системы.
 \end{theorem}
 \begin{proof}
+\TODO
+
 $1 = \sum\limits_{j=0}^\infty P_{ij}(n) \geq \sum\limits_{j=0}^M \pi_j$ (устремили $n \to \infty$). 
 А теперь $M \to \infty$, тогда $\sum\limits_0^\infty \pi_j \leq 1$.
 
-$P_{ij} (n + !) \geq \sum\limits_0^M P_{i,k}(n)P^{kj}$ $n \to \infty$, $\pi_j \geq \sum\limits_0^M \pi_k P^{k, j}$. Теперь $M \to \infty, \pi_j \geq \sum\limits_0^\infty \pi_k P_{kj}$
+$P_{ij} (n + 1) \geq \sum\limits_0^M P_{i,k}(n)P_{kj}$, устремили $n \to \infty$, $\pi_j \geq \sum\limits_0^M \pi_k P^{k, j}$. Теперь $M \to \infty, \pi_j \geq \sum\limits_0^\infty \pi_k P_{kj}$
 
 Умножим теперь на $P_{j,i}$ и суммируем по $j$
 
@@ -118,10 +121,12 @@ $\sum\limits_j \pi_j > \sum\limits_k  \underbrace{\sum\limits_j P_{kj}(n)}_{=1}$
 Пусть $(P^T - I) \overrightarrow{\alpha} = 0, \sum \alpha_k = 1$.
 $\alpha_k = \sum\alpha_j P_{jk}(n)$, устремляем $n \to \infty$, получаем $\alpha_k = \sum_j \alpha_j \pi_k = \pi_k$.
 Значит, наборы совпадают.
+
+\TODO
 \end{proof}
 
 \begin{conseq}
-В условиях этой теореым, при любом начальном распределении $P(\xi_n = j) \to \pi_j$.
+В условиях этой теоремы, при любом начальном распределении, $P(\xi_n = j) \to \pi_j$.
 
 Набор $\{\pi_j\}$ называется стационарным распределениям процесса. Пусть $P(\xi_0 = j) = \pi_j$. Тогда $P(\xi_1 = j) = \pi_j$, и так далее.
 \end{conseq}
@@ -130,8 +135,11 @@ $P(\xi_n = j) = \sum\limits_k P(\xi_0 = k) P_{kj}(n) \xrightarrow[n \to \infty]{
 \end{proof}
 
 
-Если несколько Эргодических классов, и мы в один уже попали, то для него справедлива эта теорема и \TODO
+Если несколько Эргодических классов, и мы в один уже попали, то для него справедлива эта теорема: 
+из класса мы не можем вылететь (выше описывали структуру разбиения на классы), поэтому его можно рассмотреть как отдельную цепь, для которой уже верны условия теоремы.
 
+
+\TODO про вычисление $f_{ic}$ \TODO
 
 \begin{exmp}[Задача про пьяницу]
 
