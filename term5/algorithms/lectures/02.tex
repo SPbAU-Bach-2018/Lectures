@@ -7,7 +7,7 @@
     \item[Суффиксное дерево:]
     Построем \textbf{несжатое} суффиксное дерево для строки \textbf{ababc}:
     
-    \includegraphics[width=0.75\linewidth]{suf_im1.png}
+    \includegraphics[width=0.25\linewidth]{suf_im1.png}
     
     У дерева есть вершины, в которых заканчиваются суффиксы, то есть
     терменальные вершины и есть корень, то есть стартовая вершина. 
@@ -27,16 +27,16 @@
     Отличие дерева от автомата, что в дереве очень много лишних вершин. 
     Например, следующие 4 вершины абсолютно одинаковые, их можно склеить:
    
-    \includegraphics[width=0.75\linewidth]{suf_im1.png}
+    \includegraphics[width=0.25\linewidth]{suf_im1.png}
 
     Есть еще пара вершин, которые совсем одинаковые, из ни выходит по одному ребру 
     с символом $c$ и оно ведет в терминальную вершину. Тоже сожмем:
     
-    \includegraphics[width=0.75\linewidth]{suf_im2.png}
+    \includegraphics[width=0.20\linewidth]{suf_im2.png}
 
     Ну и еще две вершины тоже равны, тоже можно склеить:
 
-    \includegraphics[width=0.75\linewidth]{suf_im3.png}
+    \includegraphics[width=0.10\linewidth]{suf_im3.png}
 
     Проверяем, что в получином автоматие есть все суффиксы и нет ничего лишнего. 
     Пока не понятно, почему этот автомат минимальный.  Это мы поймем чуть позже.
@@ -44,14 +44,14 @@
     
     Теперь построим дерево для строчки \textbf{ababb}, что бы понять важность терминальных вершин:
     
-    \includegraphics[width=0.75\linewidth]{suf_im4.png}
+    \includegraphics[width=0.25\linewidth]{suf_im4.png}
 
 
     Это дерево принципиально отличается тем, что есть терминальная вершина, которая не в листе.
 
     Здесь попробуем так же склеить.
     
-    \includegraphics[width=0.75\linewidth]{suf_im5.png}
+    \includegraphics[width=0.15\linewidth]{suf_im5.png}
 
     Заметим, что мы \textbf{не} можем склеить терминальную и не терминальную вершину. Поэтому в этом 
     автомате вершинок получилось чуть больше, чем раньше. 
