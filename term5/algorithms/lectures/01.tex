@@ -132,7 +132,7 @@ Div(n, A, B) {
                                         \end{gathered}
                                 \right.$
                                 
-\subsection{Экстраполяция(значения в точках)}
+\subsection{Значения в точках}
 
 $x_1, x_2, \dots, x_n$ - произвольные точки. Хотим посчитать значения в них.
 
@@ -270,4 +270,41 @@ Inv(A) {
     Время работы:
     
     $T(n) = T(n/2) + Mul = T(n/2) + n \log n = n \log n$
+    
+    \item Многочлены.
+    
+    Итак, для рядов мы умеем делать следующее:
+    
+    $A \in \R[[x]], a_0 \ne 0$
+    $\frac{1}{A} \tex{первые k цифр} \xrightarrow{\Theta(k\log k)} \frac{1}{A} \text{первые 2k цифр}$
+    
+    $\Leftrightarrow$ n цифр за $\Theta(n\log n)$.
+    
+    А теперь мы хотим научиться делить многочлены с остатком за $\Theta(n\log n)$.
+    
+    A(x) = B(x)Q(x) + R(x), deg R < deg B.
+    
+    A, B $\xrightarrow{хотим}$ Q, R
+    
+    $A^R$ - развернём A, как массив. $A(x) = x^nA^R(1/x)$.
+    
+    Тогда равенство можно переписать так:
+    
+    $x^nA^R(1/x) = x^nB^R(1/x)Q^R(1/x) + R^R(1/x)x^{m - 1}$ - мы считаем, что степень B равна m - 1,  иначе можно просто добить старшие коэффициенты 0, где n = deg A, m = deg B.
+    
+    $1/x = z$, равенство $*=$ $x^{-n}$.
+    
+    $A^R(z) = B^R(z)Q^R(z) + R^R(z)z^{n - m + 1}$
+    
+    $\Leftrightarrow A^R(z) \equiv B^R(z)Q^R(z)$, то есть последние n - m + 1 коэффициент у них одинаковые.
+    $\Leftrightarrow A^R(z)B^{{R}^{-1}}(z) \equiv (mod z^{n - m + 1}) Q^R(z)$ - мы умеем за $\theta(n - m + 1)\log(n - m + 1)$ высчитывать первые n - m + 1 коэффициент -1 степени. А затем умножение слева - Фурье за $\theta(n \log n)$.
+    
+    $B^R(z)[a_0] \ne 0$, так как $B(z)[\text{старший коэффициент}] \ne 0$.
+    
+    Алгоритм:
+    \begin{enumerate}
+    	\item $(B^R)^{-1}$
+    	\item $Q^R = A^R(B^R)^{-1}$ (первые n - m + 1), $n\log n$.
+    	\item $R = A - BQ$, $n \log n$.
+    \end{enumerate}
 \end{itemize}

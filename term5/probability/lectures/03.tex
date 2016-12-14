@@ -84,8 +84,9 @@ $\mathcal{F}_{\xi} = \{ \xi^{-1}(B), B \in \mathcal{B} \} \subset \mathcal{F}$ -
 
 \begin{theorem}[Свойства функции распределения]
 
-\begin{enumerate}
+Пусть $F$ -- функция распределения. Тогда:
 
+\begin{enumerate}
 \item $F(x) \nearrow$
 \item $F(x) \xrightarrow[x \to -\infty]{} 0$, $F(x) \xrightarrow[x \to \infty]{} 1$
 \item $F$ непрерывна слева
@@ -126,7 +127,7 @@ P_{\xi}((x, y]) = F(y + 0) - F(x + 0)
     $\xi \sim Poiss(x), x_k = 0, 1, 2, \dots, p_k = e^{-\lambda} \frac{\lambda^k}{k!}$
     \end{enumerate}
     \item
-   	\begin{Def}
+    \begin{Def}
     $\xi$ и ее распределене называют непрерывным, если $F_{\xi}(x) \in C(\R)$; 
     \end{Def}
     
@@ -137,12 +138,12 @@ P_{\xi}((x, y]) = F(y + 0) - F(x + 0)
 
     \begin{enumerate}[label=\arabic*.]
     \item
-    	$\xi \sim U[a, b]$, если
-    	$F_{\xi} = \begin{cases}
-    		0, x \leq a; \\
-    		\frac{x - a}{b - a}, a < x \leq b \\
-    		1, x > b\end{cases}$.
-		Это абсолютно непрерывное распределение:
+        $\xi \sim U[a, b]$, если
+        $F_{\xi} = \begin{cases}
+            0, x \leq a; \\
+            \frac{x - a}{b - a}, a < x \leq b \\
+            1, x > b\end{cases}$.
+        Это абсолютно непрерывное распределение:
         $p_{\xi}(x) = \frac{\mathbb{1}_{[a, b]}(x)}{b - a}$
 
     \item $\xi \sim N(a, b)$ - нормальное (Гауссово), если $p_{\xi}(x)= \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{-(x-a)^2}{2\sigma^2}}$.
@@ -152,8 +153,8 @@ P_{\xi}((x, y]) = F(y + 0) - F(x + 0)
     
     \item
     \begin{Def}
-    	$\xi$ и ее распределение называют сингулярным, если $\xi$ непрерывна и $\exists B \in \mathcal{B}\colon P_{\xi}(B) = 1$, при этом $\mu(B) = 0$.
-    	Другими словами, случайная величина попадает в множество меры ноль с вероятностью один.
-	\end{Def}
+        $\xi$ и ее распределение называют сингулярным, если $\xi$ непрерывна и $\exists B \in \mathcal{B}\colon P_{\xi}(B) = 1$, при этом $\mu(B) = 0$.
+        Другими словами, случайная величина попадает в множество меры ноль с вероятностью один.
+    \end{Def}
     Пример: Канторова лестница
 \end{enumerate}

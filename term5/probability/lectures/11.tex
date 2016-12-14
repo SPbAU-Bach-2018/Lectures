@@ -11,7 +11,7 @@ $\xi(t, w) = \xi_t(w) \colon T \times \Omega \to \R$ такая, что $\forall
 \item $T$ -- конечно, тогда это -- случайные векторы.
 \item $T$ -- счетно, тогда это процесс с дискретным времем.
 \item $T = \R^n, [a, b]$ и т.п., тогда это процесс с непрерывным временем.
-\end{enumerate}
+Е\end{enumerate}
 
 По значениям: 
 \begin{enumerate}
@@ -88,7 +88,10 @@ $E\xi = \int x \d F(x)$, выборочное среднее $\int x \d F_n(x) =
 Например, $\eta_k$ -- независимы, $\xi_n = \eta_1 + \dots + \eta_n$.
 
 \item Марковские процессы -- процессы, у которых выполняется Марковское свойство: 
-$\forall t_1 < t_2 < \dots < t_n, \forall B \in \mathbb{B}, \forall x_1, \dots, x_{n-1} \in \R \colon P(\xi_{t_n} \in B \mid \xi_{t_1} = x_1, \dots, \xi_{t_{n-1}} = x_{n-1}) = P(\xi_{t_n} \in B \mid \xi_{t_{n-1}} = x_{n-1})$
+    \begin{gather*}
+        \forall t_1 < t_2 < \dots < t_n, \forall B \in \mathbb{B}, \forall x_1, \dots, x_{n-1} \in \R \colon \\
+        P(\xi_{t_n} \in B \mid \xi_{t_1} = x_1, \dots, \xi_{t_{n-1}} = x_{n-1}) = P(\xi_{t_n} \in B \mid \xi_{t_{n-1}} = x_{n-1})
+    \end{gather*}
 На словах: не важно, какая была история у процесса, важно лишь последнее состояние.
 \begin{exmp}
 Температура, например, не является Марковским процессом: как правило, она каким-либо образом зависит от тренда, от того, как она менялась в последние дни.
@@ -113,6 +116,7 @@ $\forall t_1 < t_2 < \dots < t_n, \forall B \in \mathbb{B}, \forall x_1, \dots, 
 
 \end{enumerate}
 
+\subsection{Пуассоновский поток}
 \begin{Def}
 Пуассоновский поток -- случайный процесс со следующими свойствами:
 \begin{enumerate}
@@ -133,4 +137,4 @@ $\forall t_1 < t_2 < \dots < t_n, \forall B \in \mathbb{B}, \forall x_1, \dots, 
 Очень популярный процесс, например, в теории массового обслуживания: обработка всяких запросов, очереди, и все такое прекрасно им описываются.
 \end{Rem}
 
-Можно сделать $\labmda$ переменной от $t$, тогда \TODO \TODO
+Можно сделать $\lambda$ переменной от $t$, на маленьком приращении считать $\lambda$ константой, тогда $\pi_t \sim Poiss(\int\limits_0^t \lambda(t) \d t$

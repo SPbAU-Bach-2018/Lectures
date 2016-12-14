@@ -1,0 +1,160 @@
+\begin{exmp}
+Блуждание на прямой с вероятностью $p$ движения на 1 вправо и вероятностью $q = 1 - p$ влево.
+
+Тогда вероятность за $2n$ шагов вернуться в точку, откуда начали, будет равна $P_{jj}(2n) = {2n \choose n} p^n q^n$, что можно оценить по формуле Стирлинга:
+$\frac{(4pq)^n}{\sqrt{\pi n}}$. 
+
+Откуда видно, что $j$ возвратно тогда и только тогда, когда $p = q = \frac12$, иначе ряд, очевидно, сходится.
+\end{exmp}
+\begin{exmp}
+Теперь ходим по плоскости с вероятностью $p = \frac14$ по каждому из направлений.
+
+$P_{jj}(2n) = \frac{1}{4^{2n}} {2n \choose n} \underbrace{\sum\limits_k {n \choose k}^2}_{{2n \choose n}} = \frac{{2n \choose n}}{2^{2n}}^2 \sim \frac{1}{\pi n}$.
+
+Этот ряд тоже очевидно расходится.
+\end{exmp}
+\begin{exmp}
+В общем случае, в $\R^d, d \geq 3$
+
+\begin{gather*} 
+P_{jj}(2n) = \frac{1}{(2d)^{2n}} {2n \choose n} \sum\limits_{k_1 + \dots + k_d = n} (C_n^{k_1, \dots, k_d})^2 \leq \\
+\leq \frac{{2n \choose n}}{(2d)^{2n}} \max C_n^{k_1, \dots, k_d} \underbrace{\sum C_n^{k_1, \dots, k_d}}_{d^n} \leq \\
+\max C_n^{k_1, \dots, k_d} \leq A \max \frac{n^n \sqrt{n}}{k_1^{k_1} \dots k_d^{k_d} \sqrt{k_1 k_2 \dots k_d}} \stackrel{k_j = \frac{n}{d}}{=}  A d^n n^{-\frac{d-1}{2}} \\
+\leq \frac{A}{n^{\frac{d}{2}}}
+\end{gather*}
+
+Все блуждания для $d \geq 3$ являются невозвратными.
+Для $d=3$ вероятность вернуться примерно $0.35$
+\end{exmp}
+
+Общий случай случайного блуждания: $S_n = \xi_1 + \dots + \xi_n$, $\xi_j$ -- ``шаги'' $\in \Z^d$, $\xi_j$ -- iid.
+
+\begin{theorem}
+
+Случайное блуждание возврано тогда и только тогда, когда $\lim\limits_{\lambda \to 1} \int\limits_{[-\pi, \pi]} Re \frac{\d t}{1 - \lambda f(t)} = \infty$,
+где $f(t)$ -- характеристическая функция $\overrightarrow{\xi_j}$
+\end{theorem}
+\begin{proof}
+$$f(t) = \sum\limits_{\overrightarrow{k}} e^{i (t, k)} P(\overrightarrow{\xi} = \overrightarrow{k})$$
+$$f^n(t) = f_{S_n}(t) = \sum e^{i (t, k)} P(S_n = t)$$
+
+$$\int\limits_{[-\pi; \pi]^d} e^{i t_1 k_1} = 0 \Ra \int f^n(t) \d t = (2\pi)^d P(S_n = 0)$$
+
+Умножаем на $\lambda^n$ и суммируем по $n$: $\sum \lambda^n P(S_n = 0) = \frac{1}{(2\pi)^d} \int \frac{\d t}{1 - \lambda f(t)} = \frac{1}{(2\pi)^d} \int Re \frac{\d t}{1 - \lambda f(t)}$
+
+Слева стоит вероятность вернуться в точку старта за $n$ шагов в виде степенного ряда. Если подставить $\lambda = 1$, то получится в точности сумма из определения возвратности.
+
+Устремляем $\lambda \to 1 - 0$ и получаем что надо.
+\end{proof}
+\begin{Rem}
+С помощью этой теоремяы можно доказать, что в $\R^1$ и в $\R^2$ при $E |\xi_j|^2 < \infty$ блуждание возвратно тогда и только тогда, когда $E |\xi_j| = 0$.
+
+При $d=1$ надо расписать $f(t) = u(t) + iv(t)$, $u(t) = \int \cos tx \d F_\xi(x)$, разложить косинус по Тейлору: $= 1 - \frac{t^2}{2} E\xi_1^2 + o(t^2)$,
+$v(t) = \int \sin tx \d F_\xi(x) = t E\xi_1 + o(t^2)$. Потом надо честно расписать вещественную часть, подставить в интеграл.
+
+В двумерном случае так же, просто чуть больше возни.
+
+А при $d \geq 3$ любое блуждание невозвратно.
+\end{Rem}
+
+\begin{theorem}
+
+$j$ --возвратное апериодическое состояние, тогда $P_{jj}(n) \to \pi_j = \frac{1}{\mu_j}$, $\mu_j$ -- среднее время возвращения в 0
+\end{theorem}
+\begin{conseq}
+Если $i \leftrightarrow j$, то $P_{i,j}(n) \to \pi_j$.
+\end{conseq}
+\begin{proof}
+$P_{ij}(n) = \sum\limits_{k=1}^n f_{ij}(k) P_{jj}(n - k)$. Устремим $n \to \infty$, $\sum f_{ij}(k) = f_{ij} = 1$
+\end{proof}
+\begin{conseq}
+Если период $d > 1$, то рассмотрим разбиение нашего класса $C$ на $C_0 \cup C_1 \cup \dots \cup C_{d-1}$.
+Возьмем состояния $i \in C_0, j \in C_a$. 
+
+Тогда $P_{ij}(nd+a) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j}$.
+
+\end{conseq}
+\begin{proof}
+Рассмотрим цепь с матрицей перехода $\widetilde{P} = P^d$. Пусть $a = 0$
+
+$$P_{i,j}(nd) = \widetilde{P_{ij}}(n) \to \frac{1}{\sum k f_{ij}(kd)} = \frac{d}{\sum\limits_{k=1}^\infty kd f_{ij}(kd)} = \frac{d}{\mu_j}$$
+
+Для $a = 1$: 
+$$P_{i,j}(nd + 1) = \sum\limits_{k \in C_1} P_{i,k} P_{kj}(nd) \xrightarrow[n \to \infty]{} \frac{d}{\mu_j} \underbrace{\sum\limits_k P_{i, k}}_{=1}$$
+
+А дальше по индукции.
+\end{proof}
+\begin{Rem}
+$\pi_j$ можно находить, составив следующую систему:
+$P_{ij}(n + 1) = \sum\limits_k P_{i, k}(n) P_{k, j}$, устремляем $n \to \infty$ и получаем уравнения $\pi_j = \sum P_{k, j} \pi_k$
+
+В матричной форме: $(P^T - I) \overrightarrow{\pi} = 0$
+\end{Rem}
+
+\begin{theorem}
+Пусть есть неприводимая цепь, ее состояния $j \in \{0, 1, 2, \dots \}$ -- возвратные, положительные и апериодичные.
+
+Тогда $\pi_j = \sum\limits_k P_{kj} \pi_k, \sum\limits_k \pi_k = 1$ и $\overrightarrow{\pi}$ однозначно определяется из этой системы.
+\end{theorem}
+\begin{proof}
+\TODO
+
+$1 = \sum\limits_{j=0}^\infty P_{ij}(n) \geq \sum\limits_{j=0}^M \pi_j$ (устремили $n \to \infty$). 
+А теперь $M \to \infty$, тогда $\sum\limits_0^\infty \pi_j \leq 1$.
+
+$P_{ij} (n + 1) \geq \sum\limits_0^M P_{i,k}(n)P_{kj}$, устремили $n \to \infty$, $\pi_j \geq \sum\limits_0^M \pi_k P^{k, j}$. Теперь $M \to \infty, \pi_j \geq \sum\limits_0^\infty \pi_k P_{kj}$
+
+Умножим теперь на $P_{j,i}$ и суммируем по $j$
+
+$\pi_j \geq \sum\limits_{j=0}^\infty \pi_j P_{ji} \geq \sum\limits_j P_{ji} \sum\limits_{k=0}^\infty \pi_k P_{kj} = \sum\limits_k \pi_k P_{ki}(2)$
+
+По индукции, $\pi_j \geq \sum\limits_k \pi_k P_{kj}(n)$
+
+Если $\exists j_0 \colon \pi_{j_0} > \sum$, то суммируем по $j$ и получаем противоречие, откуда $\pi_j = \sum$.
+
+$\sum\limits_j \pi_j > \sum\limits_k  \underbrace{\sum\limits_j P_{kj}(n)}_{=1}$
+
+Устремляем $n \to \infty$, получаем $\pi_j = \sum\limits_k \pi_j \pi_k \Ra \sum \pi_k = 1$.
+
+
+Осталось понять, что решение единственное. 
+Пусть $(P^T - I) \overrightarrow{\alpha} = 0, \sum \alpha_k = 1$.
+$\alpha_k = \sum\alpha_j P_{jk}(n)$, устремляем $n \to \infty$, получаем $\alpha_k = \sum_j \alpha_j \pi_k = \pi_k$.
+Значит, наборы совпадают.
+
+\TODO
+\end{proof}
+
+\begin{conseq}
+В условиях этой теоремы, при любом начальном распределении, $P(\xi_n = j) \to \pi_j$.
+
+Набор $\{\pi_j\}$ называется стационарным распределениям процесса. Пусть $P(\xi_0 = j) = \pi_j$. Тогда $P(\xi_1 = j) = \pi_j$, и так далее.
+\end{conseq}
+\begin{proof}
+$P(\xi_n = j) = \sum\limits_k P(\xi_0 = k) P_{kj}(n) \xrightarrow[n \to \infty]{} \pi_j \underbrace{\sum P(\xi_0 = k)}_{=1}$.
+\end{proof}
+
+
+Если несколько Эргодических классов, и мы в один уже попали, то для него справедлива эта теорема: 
+из класса мы не можем вылететь (выше описывали структуру разбиения на классы), поэтому его можно рассмотреть как отдельную цепь, для которой уже верны условия теоремы.
+
+
+\TODO про вычисление $f_{ic}$ \TODO
+
+\begin{exmp}[Задача про пьяницу]
+
+Пьяница стоит в точке 1, в точке 0 пропасть, он ходит вправо с вероятностью $p$ и влево с вероятностью $q = 1 - p$
+
+$P = \begin{matrix} 
+1 & 0 & 0 & 0 & \dots \\
+q & 0 & p & 0 & \dots \\
+0 & q & 0 & p & \dots \\
+\dots
+\end{matrix}
+$
+
+0 -- существенное состояние, все остальные -- нет.
+
+А если в состоянии $N$ поместить вытрезвитель, в котором пьяница тоже заканчивает блуждание, тогда (если $q < p$)
+$f_{k,0} = \frac{(\frac{q}{p})^k - (\frac{q}{p})^N}{1 - (\frac{q}{p})^N} \xrightarrow[N \to \infty]{} (\frac{q}{p})^k$ -- вероятность упасть из точки $k$.
+\end{exmp}
