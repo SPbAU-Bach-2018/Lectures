@@ -1,0 +1,163 @@
+\chapter{}
+
+Транзакция "--- возможность группировки запросов, чтобы их эффект был атомарен: в случае ошибки мы получим БД в исходном состоянии, а не частично применённую.
+Мы можем её открыть, начать что-то делать и таки решить сохранить. Если по дороге данные, над которыми были изменения, изменились, или новые данные нарушают ограничения.
+Сегодня мы рассмотрим, как же транзакции взаимодействуют, и как они видят деятельность друг друга.
+
+Начнём транзакцию:
+\begin{sqlcode}
+BEGIN; -- BEGIN TRANSACTION ...
+INSERT INTO T(id, value) VALUES (1, 10);
+COMMIT; -- сохранить изменения.
+
+SELECT * FROM T; -- увидим строчку
+
+BEGIN; -- BEGIN TRANSACTION ...
+INSERT INTO T(id, value) VALUES (2, 10);
+ROLLBACK; -- отменить
+\end{sqlcode}
+
+Отдельные запросы вне транзакций считаются исполняемыми сразу.
+
+Вложенные транзакции умеют только high-tier СуБД.
+
+\begin{sqlcode}
+BEGIN;
+INSERT INTO T(id, value) VALUES (3, 10);
+SELECT * FROM T; -- мы свои изменения видим!
+COMMIT;
+
+CREATE TABLE S(id INT PRIMARY , value INT CHECK (value > 0));
+BEGIN;
+INSERT INTO S(1, 100); --ok
+COMMIT; BEGIN;
+INSERT INTO S(2, -50); --fail, Postgres заблокируется в состоянии ошибки, пока не введут ROLLBACK
+ROLLBACK;
+\end{sqlcode}
+Если транзакция была начата, то изменения не исчезнут сами по себе.
+
+Как же система ведёт себя при нескольких транзакциях на одних данных.
+\begin{sqlcode}
+-- 1
+BEGIN;
+UPDATE T SET value=1000 WHERE id = 1; -- ok
+
+--2
+BEGIN;
+UPDATE T SET value=10000 WHERE id = 1; -- blocks
+
+--1
+UPDATE T SET value=2000 WHERE id = 2;
+COMMIT;
+
+--2 - SUCCESS
+SELECT * FROM T; -- видит 10000 и 2000.
+COMMIT;
+\end{sqlcode}
+Конкретно Postgres блокировать отдельные строчки, что мы и видим.
+Программист может вообще выбирать, что блокировать.
+
+Неприятность:
+\begin{sqlcode}
+--1
+BEGIN;
+SELECT * FROM T WHERE id = 1; -- 1000
+
+--2
+BEGIN;
+SELECT * FROM T WHERE id = 1; -- 1000
+
+--1 +=100
+UPDATE T SET value = 1100 WHERE id = 1; -- ok
+
+--2 +=500
+UPDATE T SET value = 1500 WHERE id = 1; -- block
+
+--1
+COMMIT; --ok
+--2
+COMMIT; --ok
+
+SELECT * FROM T; -- 1500 =(
+\end{sqlcode}
+
+Надо было
+\begin{sqlcode}
+UPDATE T SET value = value + 100 WHERE id = 1;
+UPDATE T SET value = 1500 WHERE id = 1 AND value = 1000;
+\end{sqlcode}
+Можно ещё добавить столбик и писать туда, какой она версии, и проверять.
+Такой руками написанный Spin-lock.
+
+Какие же мы видем данные? Только закомиченные.
+Эта гарантия при создании транзакции называется \sql'READ COMMITED'.
+Ещё есть \sql'READ UNCOMMITED', некоторые его не дают (дают сразу сильнее).
+Ещё есть куда сильнее \sql'REPEATABLE READ': вы всегда видите данные, как в начале транзакции.
+\begin{sqlcode}
+-- 1, 2
+BEGIN ISOLATION LEVEL REPEATABLE READ;
+SELECT * FROM T;
+
+-- 1
+UPDATE T SET value = 1100 WHERE id = 2;
+-- 2 не видит
+-- 1
+COMMIT;
+-- 2 всё ещё не видит!
+ROLLBACK;
+
+-- 1,2
+BEGIN ISOLATION LEVEL REPEATABLE READ;
+-- 1
+UPDATE T SET value = 1200 WHERE id = 2;
+-- 2
+UPDATE T SET value = 1201 WHERE id = 2; -- blocks
+-- 1
+COMMIT;
+-- 2 -- failure: overwridden!
+ROLLBACK;
+\end{sqlcode}
+Что же будет, если попробуем применить два инкремента?
+Нас тоже пошлют, что может быть обидно.
+\begin{sqlcode}
+-- 1
+BEGIN;
+UPDATE T SET value = value + 100 WHERE value < 100;
+-- 2
+BEGIN;
+DELETE FROM T WHERE value < 100; -- такая есть, но блокируется
+-- 1
+COMMIT;
+-- 2 -- deleted 0.
+COMMIT;
+
+-- 1
+BEGIN;
+UPDATE T SET value = value + 100 WHERE value BETWEEN 200 AND 299;
+-- 2
+BEGIN;
+DELETE FROM T WHERE value BETWEEN 200 AND 299; -- такая есть, но блокируется
+-- 1
+COMMIT;
+-- 2 -- deleted 0.
+COMMIT;
+
+-- 1
+BEGIN;
+INSERT INTO T(id, value) VALUES (5, 9), (6, 10);
+UPDATE T SET value = value + 1 WHERE value < 100;
+-- 2
+BEGIN;
+DELETE FROM T WHERE value = 10; -- blocks
+-- 1
+COMMIT;
+-- 2 -- deleted 0 ?!?!?!
+COMMIT;
+\end{sqlcode}
+Что произошло? Вторая транзакция стала ждать какие-то строчки, дождалась доступа, перепроверила... А они не подходят.
+\sql'REPEATABLE READ' упадёт, естественно.
+
+Ещё есть уровень \sql'SERIALIZABLE', посильнее.
+Он гарантирует, что какая-то последовательность транзакций будет корректно произведена, как будто они друг другу не мешают.
+
+Мы будем писать на Java. Код будет
