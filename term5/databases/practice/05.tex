@@ -9,7 +9,7 @@ SELECT * FROM Planets;
 SELECT *
 	FROM Flight
 		JOIN Planet ON (Flight.planet_id = Planet.id);
-SELECT Planet.name, Flight.date 
+SELECT Planet.name, Flight.date
 	FROM Flight
 		JOIN Planet ON (Flight.planet_id = Planet.id);
 \end{sqlcode}
