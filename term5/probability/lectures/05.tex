@@ -4,7 +4,7 @@ $$F_{\eta}(y \mid \xi = x) = \lim\limits_{\epsilon \to 0} \frac{P(\eta < y, |\xi
 Раскроем условную вероятность по определению
 $$ = \lim\limits_{\epsilon \to 0} \frac{\int\limits_{x - \epsilon}^{x + \epsilon} \d t \int\limits_{-\infty}^y p_{\xi, \eta}(t, s) \d s}{\int\limits_{x - \epsilon}^{x + \epsilon} \int\limits_{-\infty}^{\infty}p_\xi(t, s) \d t \d s}$$
 Применим правило Лопиталя, дифференцируем по $\epsilon$, получим
-$$\lim\limits_{\epsilon \to 0} = \frac{\int\limits_{-\infty}^y (p_{\xi, \eta}(x + \epsilon, s) + p_{\xi, \eta}(x - \epsilon, s)) \d s}{\int\limits_{-\infty}^{\infty} p_\xi\d s} = \frac{\int\limits_{-\infty}^y p_{\xi, \eta}(x, s) \d s}{\int\limits_{-\infty}^{\infty}p_\xi(x + \epsilon, s) + p_\xi(x - \epsilon, s)\d s}$$
+$$\lim\limits_{\epsilon \to 0} = \frac{\int\limits_{-\infty}^y (p_{\xi, \eta}(x + \epsilon, s) + p_{\xi, \eta}(x - \epsilon, s)) \d s}{\int\limits_{-\infty}^{\infty}p_\xi(x + \epsilon, s) + p_\xi(x - \epsilon, s)\d s} = \frac{\int\limits_{-\infty}^y p_{\xi, \eta}(x, s) \d s}{\int\limits_{-\infty}^{\infty} p_\xi\d s}$$
 Продифференцируем по $y$, получим
 $$p_{\eta}(y \mid \xi = x) = \frac{p_{\xi, \eta}(x, y)}{p_{\xi}(x)}$$
 
