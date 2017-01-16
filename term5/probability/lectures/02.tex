@@ -55,8 +55,8 @@ $$ P(H_k | A) = \frac{P(H_k A)}{P(A)} = \frac{P(H_k A)}{\sum\limits_i P(H_i) P(A
 \end{enumerate}    
 \end{lemma}
 \begin{proof}
-	Построим событие $A$ явно: исход $w \in A$ тогда и только тогда,
-	когда он лежит в бесконечном количестве $A_k$ (то есть начиная с любого места в некотором $A_k$ встретится $w$):
+    Построим событие $A$ явно: исход $w \in A$ тогда и только тогда,
+    когда он лежит в бесконечном количестве $A_k$ (то есть начиная с любого места в некотором $A_k$ встретится $w$):
     \[ A = \varlimsup A_k \coloneq \bigcap\limits_{n=1}^{\infty} \underbrace{\bigcup\limits_{k=n}^{\infty} A_k}_{B_n} \]
     Тут $B_n$ "--- это те исходы, которые встречаются в каком-нибудь $A_{k}$ при $k \ge n$.
 
@@ -64,22 +64,22 @@ $$ P(H_k | A) = \frac{P(H_k A)}{P(A)} = \frac{P(H_k A)}{\sum\limits_i P(H_i) P(A
 
     Теперь доказываем пункты леммы:
     \begin{enumerate}
-	\item
-    	Так как $B_n$ есть объединение $A_k$ с некоторого места, то:
-    	\[ P(B_n) \leq \sum\limits_{k=n}^{\infty} P(A_k) \]
-    	А часть справа стремится к нулю, так как является хвостом сходящегося ряда из условия.
+    \item
+        Так как $B_n$ есть объединение $A_k$ с некоторого места, то:
+        \[ P(B_n) \leq \sum\limits_{k=n}^{\infty} P(A_k) \]
+        А часть справа стремится к нулю, так как является хвостом сходящегося ряда из условия.
 
-		При этом $P(A) = P\left(\lim\limits_{n \to \infty} B_n\right) = \lim\limits_{n \to \infty} P(B_n)$ (последнее равенство по непрерывности вероятности).
-		То есть $P(A) = 0$, что и требовалось. 
+        При этом $P(A) = P\left(\lim\limits_{n \to \infty} B_n\right) = \lim\limits_{n \to \infty} P(B_n)$ (последнее равенство по непрерывности вероятности).
+        То есть $P(A) = 0$, что и требовалось. 
 
     \item
     Перейдем к дополнениям: $\bar A = \bigcup\limits_{n=1}^{\infty} \bigcap\limits_{k=n}^{\infty} \bar A_k$
 
-    $P(\bigcup\limits_n^N \bar A_k) = \prod\limits_n^N P(\bar A_k)$, так как пересечение конечное, события независимы.
+    $P(\bigcap\limits_n^N \bar A_k) = \prod\limits_n^N P(\bar A_k)$, так как пересечение конечное, события независимы.
     Устремим $N$ к бесконечности, получим:
 
     \begin{gather*} 
-    P(\bigcup\limits_n^{\infty}) = \prod\limits_n^{\infty} P(\bar A_k)\\
+    P(\bigcap\limits_n^{\infty}) = \prod\limits_n^{\infty} P(\bar A_k)\\
     \ln P(\bigcup\limits_n^{\infty} \bar A_k) = \sum\limits_n^{\infty} \ln(1 - P(A_k)) < 
     \end{gather*}     
     Заметим, что $\ln(1 - x) < -x$ при $x \in (0; 1)$, тогда
