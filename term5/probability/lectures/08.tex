@@ -1,12 +1,9 @@
 \begin{theorem}[Бохнер, Хинчин]
 $f \in C(\R), f(0) = 1$
 
-Тогда ($f$ -- характеристическая функция $\Leftrightarrow$ $f$ неотрицательно определена, то есть, для любых $t_1, \dots, t_n \in \R$ и $c_1, \dots, c_n \in R$: 
-$\sum\limits_{j, l=1}^n c_j \bar c_l f(t_j - t_l \geq 0$)
+Тогда $f$ -- характеристическая функция $\Leftrightarrow$ $f$ неотрицательно определена, то есть, для любых $t_1, \dots, t_n \in \R$ и $c_1, \dots, c_n \in R$: 
+$\sum\limits_{j, l=1}^n c_j \bar c_l f(t_j - t_l) \geq 0$
 \end{theorem}
-\begin{proof}
-$\Ra$: $\sum c_j \bar c_l f(t_j - t_l) = E | \sum c_ke^{it_k\xi} |^2 = E(\sum \bar\sum$ 
-\end{proof}
 \begin{theorem}[Пойа]
 Если $f \in \R$ четная, $f(0) = 1$, непрерывная, $f \xrightarrow[t \to \infty]{} 0$, $f$ выпуклая вниз на $[0, +\infty)$, то $f$ -- характеристическая функция.
 \end{theorem}
@@ -27,7 +24,7 @@ f_\eta(t) = \int e^{itx}\d P(\eta < x) = \int e^{itx} \d (\sum\limits_k P(\theta
 Двое кидают монетку: первый человек кидает ее $n$ раз, второй -- столько раз, сколько гербов выпало у первого. 
 Надо найти распределение количества гербов у второго человека.
 
-Формально: $\xi \sim Bin(n, p_1)$, $(\eta \mid \xi = k) \mid Bin(k, p_2)$, $\eta \sim ?$
+Формально: $\xi \sim Bin(n, p_1)$, $(\eta \mid \xi = k) \sim Bin(k, p_2)$, $\eta \sim ?$
 
 Воспользуемся формулкой:
 \begin{gather*}
