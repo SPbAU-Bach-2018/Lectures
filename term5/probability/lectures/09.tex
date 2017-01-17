@@ -1,0 +1,133 @@
+\begin{theorem}[ЗБЧ для слабозависимых]
+
+Пусть $|\sigma_{ij}| = |cov(\xi_i, \xi_j)| \leq r(|i-j|), r(n) \xlongrightarrow[n\to \infty]{} 0$.
+Тогда ЗБЧ. 
+\end{theorem}
+\begin{proof}
+$$\frac{1}{n^2} D(\sum\limits_1^n \xi_i) = \frac{1}{n^2} \sum\limits_{i,j=1}^n \sigma_{ij} = $$.
+Тогда 
+$$\exists m\colon \forall n > m\colon r(n) < \epsilon$$. 
+Зафиксируем такое $m$, а $n$ будем увеличивать. Тогда все разделится на константную сумму и сумму малых величин:
+$$= \frac{1}{n^2}(\sum\limits_{|i-j|\leq m} + \sum\limits_{|i-j| > m}) < \frac{1}{n^2}(C(2m + 1)n + \epsilon n^2) \to \epsilon$$
+\end{proof}
+
+\begin{Def}
+УЗБЧ (усиленный ЗБЧ): как ЗБЧ, только $\eta_n \xlongrightarrow{\text{п. в.}} 0$
+\end{Def}
+\begin{theorem}[Колмогорова]
+
+Есть последовательность $\{\xi_n\}$ независимых случайных величин и $\sum \frac{D\xi_n}{n^2} < \infty$, то УЗБЧ
+\end{theorem}
+\begin{proof}
+Доказательство есть, но нам его не расскажут.
+\end{proof}
+\begin{Rem}
+В теореме Хинчина и Бернулли есть УЗБЧ.
+\end{Rem}
+
+\begin{exmp}
+ЗБЧ можно применять даже к задачам, где нет никаких вероятностей! Например, для доказательства теоремы Вейерштрасса: 
+$\forall f \in C[0, 1] \colon \exists B_n(t) \rightrightarrows f(t)$, $B_n(t)$ -- полиномы.
+
+Пусть $B_n(t) = \sum\limits_{k=0}^n f(\frac{k}{n}) {n \choose k}  t^k (1-t)^{n-k}$ - полином Бернштейна. 
+
+Поскольку
+$$\sum\limits_{k=0}^n {n \choose k}  t^k (1-t)^{n-k} = 1$$ 
+То 
+$$f(t) = \sum\limits_{k=0}^n f(t) {n \choose k}  t^k (1-t)^{n-k}$$
+Тогда (обозначив $P_{n, t}(k) = {n \choose k}  t^k (1-t)^{n-k}$)
+$$|f(t) - B_n(t)| = \sum\limits_{k=0}^n |f(\frac{k}{n}) - f(t)| P_{n, t}(k) = \sum\limits_{|\frac{k}{n} - t| < \delta} + \sum\limits_{|\frac{k}{n} - t| > \delta} < $$
+
+$\delta$ взяли такое, что $|x-y| < \delta \Ra |f(x) - f(y)| < \epsilon$
+
+$f$ равномерно непрерывна на отрезке, поэтому сверху ограничена какой-то константой $C$, тогда
+$$< \epsilon + 2C \sum\limits_{|\frac{k}{n} - t| > \delta} P_{n, t}(k)$$
+
+Во втором слагаемом, на самом деле, записано, что разница количеств орлов и решек хотя бы $\delta$ при бросании монетки $n$ раз, по ЗБЧ ее можно сделать меньше $\epsilon$.
+\end{exmp}
+
+\begin{exmp}
+Метод Монте-Карло: просто меняем неизвестную вероятность события на его частоту: взяли серию независимых экспериментов и посмотрели, сколько раз произошло в них событие.
+
+Например, можно приближенно считать интегралы по области: вместо $\int\limits_A h(t)\d t$ считаем 
+$$\frac{1}{N}\sum\limits_{k=1}^N h(t_k) \xlongrightarrow[N \to \infty]{\text{по ЗБЧ}} \frac{\int\limits_A h}{V(A)}$$
+Профит.
+\end{exmp}
+
+
+\section{Центральная предельная теорема}
+Напоминание: ЗБЧ это $\eta_n = \frac{\sum(\xi_k - E\xi_k)}{n} \to 0$
+
+\begin{Def}
+Для $\{\xi_n\}$ верна ЦПТ, если $\eta_n = \frac{\sum (\xi_k - E\xi_k)}{\sqrt{D\sum\xi_k}} \to N(0, 1)$
+\end{Def}
+
+Если $E\xi_k = a, D\xi_k = \sigma^2$ и $\sigma_{ij} = 0$, то $\eta_n = \frac{\sum\xi_k - na}{\sigma \sqrt{n}}$ %К чему это?
+
+Обозначим за $S_n$ сумму первых $n$ $\xi_k$.
+
+\begin{theorem}[Хинчин]
+$\xi_k$ - iid с $E\xi_k = a, D\xi_k = \sigma^2$. Тогда ЦПТ: $\frac{S_n - na}{\sigma \sqrt{n}} \xlongrightarrow[n \to \infty]{d} N(0, 1)$
+\end{theorem}
+\begin{proof}
+Характеристическая функция $f_{\xi_1-a}(t) = 1 + it \cdot 0 + \frac{(it)^2}{2!} E(\xi_1 - a)^2 + o(t^2) = 1 - \frac{t^2\sigma^2}{2} + o(t^2)$.
+
+(Это, если что, мы применили 7 свойство характеристических функций, что их можно раскладывать в такой вот степенной ряд с матожиданиями)
+
+$f_{\frac{S_n - na}{\sigma \sqrt{n}}}(t) = f_{\xi_1 - a}^n(\frac{t}{\sigma \sqrt{n}}) = (1 - \frac{t^2}{2n} + o(\frac{t^2}{n})^n \xlongrightarrow[n \to \infty]{} e^{-\frac{t^2}{2}}$ -- характеристическая функция $N(0, 1)$
+\end{proof}
+
+Упражнение: $\frac{S_n - na}{\sigma n^\alpha} \to 0$ при $\alpha > \frac12$ и нет предела при $\alpha < \frac12$.
+
+\begin{Rem}
+Интегральная теорема Муавра-Лапласа, которая у нас была в начале, это частный случай ЦПТ для монетки.
+\end{Rem}
+
+\begin{theorem}[Линдеберг, Леви]
+
+$\xi_n$ независимы, $a_k = E\xi_k, \sigma_k^2 = D\xi_k$, обозначим $D_n^2 = \sum \sigma_k^2 $.
+
+Если $\forall \epsilon > 0 \colon \frac{1}{D^2_n} \sum\limits_{k=1}^n \underbrace{\int\limits_{|\frac{x-a_k}{D_n}| \geq \epsilon} (x - a_k)^2 \d F_{\xi_k}(x) }_{\text{Если бы интеграл был бы по всем числам, было бы определение дисперсии}}  \xlongrightarrow[n \to \infty]{} 0$, то ЦПТ.
+
+Это условие называется условием Линдеберга, иногда будет сокращаться как ``если (L)''
+\end{theorem}
+\begin{proof}
+Опустим доказательство этого замечательного факта.
+\end{proof}
+\begin{theorem}[Ляпунов]
+
+$\xi_n$ -- независимы и существует $\delta > 0$, что $\frac{1}{D_n^{2 + \delta}} \sum\limits_1^n E|\xi_k - a_k|^{2+\delta} \to 0$, то ЦПТ.
+\end{theorem}
+\begin{proof}
+$\sum\limits_1^n \int\limits_\R |x - a_k|^{2+\delta} \d F_{\xi_k}(x) \geq \sum \int\limits_{|x - a_k| \geq \epsilon D_n} \geq \epsilon^\delta D_n^\delta \int\limits_{|x-a^k| \geq \epsilon D}(x - a_k)^2 \d F_{\xi_k}(x)$
+
+Делим на $D_n^{2+\delta}$ и устремляем $n$ к бесконечности
+\end{proof}
+Последние две теоремы можно перевести на язык схемы серий:
+$\xi_{n, k} = \frac{\xi_k - a_k}{D_n}    , S_n = \xi_{n, 1} + \dots + \xi_{n, n}$.
+
+При таких условиях, $E \xi_{n, k} = 0 = E S_n, DS_n = 1$
+
+\begin{theorem}[Теорема Линдеберга на языке серий]
+(L)( $\sum\limits_1^n E \xi_{n,k}^2 \mathbb{1}_{|\xi_{n, k}| > \epsilon} \to 0 \Ra S_n \xlongrightarrow{d} N(0, 1)$.
+
+$\max\limits_{1 \leq k \leq n} E \xi_{n, k}^2 = \max (E \xi_{n, k}^2 \mathbb{1}_{|\xi_{n, k} \leq \epsilon}^2 + E \xi_{n, k}^2 \mathbb{1}_{|\xi_{n, k} > \epsilon})$.
+
+Первое слагаемое не больше $\epsilon^2$, второе стремится к 0 по условию Лендеберга.
+\end{theorem}
+\begin{theorem}[Теорема Ляпунова на языке серий]
+Если $\max E \xi_{n, k}^2 \to 0$, то (L) $\Leftrightarrow$ ЦПТ.
+\end{theorem}
+
+
+Докажем теорему Пуассона (к ЦПТ отношения не имеет), в чуть более слабой форме
+\begin{theorem}
+Если $np \xlongrightarrow[n \to \infty]{} \lambda$, то $P_{n,p}(k) \xlongrightarrow[n \to \infty]{} \pi_k = e^{-\lambda}\frac{\lambda^k}{k!}$.
+
+Тут $p$ может меняться от серии к серии.
+\end{theorem}
+\begin{proof}
+    $f_{s_n}(t) = (p_n e^{it} + (1 - p_n))^n = (1 + (e^{it} - 1)\frac{np_n}{n})^n \to e^{\lambda(e^{it} - 1)}$
+
+    Получили характеристическую функцию Пуассона.
+\end{proof}                             
