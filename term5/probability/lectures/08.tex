@@ -42,7 +42,7 @@ f_\eta(t)  = (p_1( \dots ) + q_1)^n = \\
 \begin{Def}
 $\xi_n \xrightarrow[n \to \infty]{P} \xi$ (сходимость по вероятности), если $P(|\xi_n - \xi| > \epsilon) \xrightarrow[n \to \infty]{} 0$ для любого $\epsilon > 0$
 
-$\xi_n \xrightarrow{\text{п.в.}} \xi$, если $P(\{\omega\colon \xi_n(\omega) \to \xi(\omega)\} \to 1$
+$\xi_n \xrightarrow[]{\text{п.в.}} \xi$, если $P(\{\omega\colon \xi_n(\omega) \to \xi(\omega)\} \to 1$
 
 $\xi_n \xrightarrow{L^p} \xi$ (в среднем порядка $p$), если $E|\xi_n - \xi|^p \to 0$
 
@@ -71,17 +71,17 @@ $\xi_n \xrightarrow{d} \xi$ (по распределению ``слабо''), е
 Поэтому и нужна оговорка про точки непрерывности предела: вроде все эти величины стремятся к одному и тому же, а вот в точках разрыва какая-то беда.
 
 \end{Rem}
-Упражнение: $\xi_n \xrightarrow[\text{п.в.}] \xi \Leftrightarrow P(\sup\limits_{k\geq n} |\xi_k - \xi| > \epsilon) \xrightarrow[]{n \to \infty} 0 \forall \epsilon > 0$
+Упражнение: $\xi_n \xrightarrow[]{\text{п.в.}}[] \Leftrightarrow \forall \epsilon > 0 \colon P(\sup\limits_{k\geq n} |\xi_k - \xi| > \epsilon) \xrightarrow[]{n \to \infty} 0$
 
 И еще упражнение: из п.в. сходимости следует $P$-сходимость, из $L^p$ -- тоже, а из $P$-сходимости следует $d$.
 
 \begin{exmp}
-Пусть пространство событий $\Omega = [0, 1]$ с равномерным распределением.
+Возьмем пространство событий $\Omega = [0, 1]$ с равномерным распределением на нем.
 
 Рассмотрим последовательность следующих случайных величинин: $\xi_1 = \mathbb{1}_{[0, \frac12]}, \xi_2 = \mathbb{1}_{[\frac12, 1]}, \xi_3 = \mathbb{1}_{[0, \frac14]}, \xi_4 = \mathbb{1}_{[\frac14, \frac12]}$ и так далее: 
 берем все половинки, потом все четверти, и так далее.
 
-Тогда $\xi_n \xrightarrow[P, L^p]{} \to 0$ (просто по определению, там получаются просто площади под графиком, которые сходятся к 0)
+Тогда $\xi_n \xrightarrow[]{P, L^p} 0$ (просто по определению, там получаются просто площади под графиком, которые сходятся к 0)
 
 Но п.в. сходимости -- нет, потому что $\xi_n(\omega)$ не стремится к нулю для любой точки $\omega$: каждая точка берет и встречается бесконечное количество раз. 
 \end{exmp}
@@ -123,8 +123,8 @@ $$P(\sum\limits_{1\leq k \leq n} |\sum\limits_{j = 1}^k(\xi_d - E\xi_d)| \geq \e
 
 \begin{enumerate}
 
-\item $\xi_n \xrightarrow[]{d} \xi$, $F(x)$ -- функция распределения $\xi$, то тогда $F_{\xi_n}(t) \to f_\xi(t)$
-\item $f_{\xi_n}(t) \xrightarrow[n \to \infty]{} f(t) \forall t \in \R$  и $f(t)$ непрерывна в нуле, 
+\item $\xi_n \xrightarrow[]{d} \xi$, $F(x)$ -- функция распределения $\xi$, то тогда $\forall t \in R \colon f_{\xi_n}(t) \to f_\xi(t)$
+\item $\forall t \in \R \colon f_{\xi_n}(t) \xrightarrow[n \to \infty]{} f(t)$  и $f(t)$ непрерывна в нуле, 
 то она характеристическая и $\xi_n \xrightarrow[]{d} \xi$, где $F(\xi)$ -- характеристическая функция $\xi$, соответствующая $f(t)$
 
 \end{enumerate}
@@ -140,11 +140,11 @@ $$P(\sum\limits_{1\leq k \leq n} |\sum\limits_{j = 1}^k(\xi_d - E\xi_d)| \geq \e
 Если $\frac{1}{n^2} D (\sum \xi_k) \to 0$ (условие Маркова), то ЗБЧ.
 \end{theorem}
 \begin{proof}
-$P(\frac1n | \sum (\xi_k - E\xi_k) | \geq \epsilon) \leq \frac{Dn}{\epsilon^2} - \frac{1}{n^2 \epsilon^2} D(\sum \xi_k) \to 0$.
+$P(\frac1n | \sum (\xi_k - E\xi_k) | \geq \epsilon) \leq \frac{1}{n^2 \epsilon^2} D(\sum \xi_k) \to 0$ (применили неравенство Чебышева)
 \end{proof}
 
 \begin{theorem}[Чебышев]
-$\xi_n$ -- независимые и $p\xi_n \leq C \Ra$ ЗБЧ.
+$\xi_n$ -- независимые и $D\xi_n \leq C \Ra$ ЗБЧ.
 \end{theorem}
 \begin{proof}
 В условии Маркова $\frac{nC}{n^2} = \frac{C}{n} \to 0$.
@@ -160,6 +160,6 @@ $\xi_k = \begin{cases} 1, p \\ 0, q = 1 - p \end{cases}$, $\frac 1n\sum \xi_k \t
 
 Доказательство теоремы Хинчина без конечности $D\xi$:
 \begin{proof}
-    $F_{\frac1n(\xi_1 + \dots + \xi_n)} = F_{\xi_1}(t) = F_{\xi_1}^n(t/n) = (1 + \frac{iat}{n} + o(t/n))^n \xrightarrow[n \to \infty]{} e^{iat}$ -- характеристическая функция для $a$
+    $f_{\frac1n(\xi_1 + \dots + \xi_n)} = f_{\xi_1}(t) = f_{\xi_1}^n(t/n) = (1 + \frac{iat}{n} + o(t/n))^n \xrightarrow[n \to \infty]{} e^{iat}$ -- характеристическая функция для $a$
 \end{proof}                                                                                                                                                                           
 
