@@ -1,0 +1,70 @@
+\TODO еще пара процессов случайного блуждания (ничего важного вроде) \TODO
+
+\section{Марковские цепи с непрерывным временем}
+У нас по-прежнему есть матрица перехода, только она теперь не от шагов зависит, а от времени: $P_{ij}(t), t \in [0, +\infty)$.
+
+Свойства матрицы перехода:
+\begin{enumerate}
+\item $\sum\limits_j P_{ij}(t) = 1$
+\item $P(t+s) = P(t)P(s)$ -- формула полной вероятности, уравнение Чэмпена-Колмогорова
+\item Дополнительное соглашение (ниоткуда не выводится, но принимают за истину): $P_{ij}(t) \xlongrightarrow[t \to +0]{} \mathbb{1}_{i=j}$
+\end{enumerate}
+ 
+\begin{theorem}
+$P_{ij}(t)$ равномерно непрерывно на $[0, +\infty)$
+\end{theorem}
+\begin{proof}
+\begin{gather*}
+P_{ij}(t+h) = P_{ii}(h) P_{ij}(t) + \sum\limits_{k \neq i} P_{ik}(h) P_{kj}(t) \\
+1 - P_{ii}(h) = \sum\limits_{k \neq i} P_{ik}(h) \geq P_{ij}(t+h) - P_{ij}(t) = P_{ij}(t)(P_{ii}(h) - 1) + \sum\limits_{k \neq i} \dots \geq \\
+\geq P_{ii}(h) - 1 \Ra |P_{ij}(t+h) - P_{ij}(t)| \leq 1 - P_{ii}(h) \to 0
+\end{gather*}
+\end{proof}
+
+\begin{theorem}
+Существуют производные в нуле: 
+\begin{gather*}
+a_{jj} = \lim\limits_{h \to +0} \frac{P_{jj}(h) - 1}{h} \in (-\infty, 0] \\
+a_{ij} = \lim\limits_{h \to +0} \frac{P_{ij}(h)}{h} \in [0, +\infty)
+\end{gather*}
+\end{theorem}
+\begin{proof}
+Без доказательства.
+\end{proof}
+
+\subsection{Случай конечного числа состояний}
+
+\begin{Def}
+$A = (a_{ij})_{i,j=0}^N$ -- инфинитезимальная матрица (генератор процесса), если $\sum\limits_{j=0}^N a_{ij} = 0$ (консервативный процесс)
+\end{Def}
+
+$A = \lim\limits_{h \to +0} \frac{P(h) - E}{h} = P'(0)$
+
+$P'(t) = \frac{P(t+h) - P(t)}{h} = P(t) \frac{P(h) - E}{h} \xlongrightarrow[h \to +0]{} P(t) A$ -- прямые ДУ Колмогорова.
+
+Или же, можно вынести $P(t)$ с другой стороны, тогда получится $AP(t)$ -- обратные ДУ Колмогорова.
+
+Если состояний конечное число, то не очень важно, какие уравнения брать, результат будет одинаковым: 
+$$P(t) = e^{At} = \sum\limits_{k = 0}^\infty \frac{A^k}{k!}$$
+
+Таким образом, $A$ и начальное распределение $\xi_0$ задают Марковскую цепь: $P(\xi_t = j) = \sum\limits_{k=0}^N P(\xi_0 = k) P_{kj}(t)$
+
+\subsection{Бесконечное число состояний}
+В случае консервативного процесса справедливы обратные ДУ Колмогорова (а прямые нет).
+
+Если процесс не консервативен, то ни те ни другие неверны.
+
+\begin{exmp}
+Опять численность популяции: $\xi_t$ -- численность в момент времени $t$. $P_{j,j+1}(h) = \lambda_jh + o(h)$.
+
+$A = \begin{matrix}
+-\lambda_0 & \lambda_0 & 0 & 0 & \dots \\
+\mu_1 & (-\mu_1 - \lambda_1) & \lambda_1 & 0 & \dots \\
+0 & \mu_2 & (-\mu_2 - -\lambda_2) & 0 & \dots \\
+\dots
+\end{matrix}$
+
+Если $\lambda_n = \lambda n, \mu_n = \mu n$ -- линейный рост.
+
+Если $\lambda_n = \lambda n + a$ -- иммиграция.
+\end{exmp}
