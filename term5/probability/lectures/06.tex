@@ -24,7 +24,23 @@ $E |\xi|^n = \int\limits_{-\infty}^{+\infty} |x|^n \d F(x)$, он сходитс
 Пусть $g(x)$ выпукла вниз, тогда $g(E \xi) \leq E g(\xi)$
 \end{theorem}
 \begin{proof}
-    Через каждую точку графика $g$ можно провести прямую, которая ограничивает график снизу (это будет просто касательная) \TODO поясняющая картинка \TODO
+    Через каждую точку графика $g$ можно провести прямую, которая ограничивает график снизу (это будет просто касательная)
+\begin{tikzpicture}
+   \begin{axis}[
+            xtick = \empty,    ytick = \empty,
+           xlabel = {$x$},
+           x label style = {at={(1,0)},anchor=west},
+           ylabel = {$y$},
+           y label style = {at={(0,1)},rotate=-90,anchor=south},
+           axis lines=left,
+           enlargelimits=0.2,
+       ]
+       \addplot[color=black,smooth,thick,-] {(x)^2};
+       \addplot[mark=none, blue] coordinates {(6,20) (0,-4)};
+        \addplot[blue, mark=*, only marks, nodes near coords = {$x_0$}, nodes near coords align={right}] coordinates {(2, 4)};
+        %\draw[fill=blue] (6,20) circle (0.05); %node[right] {$x_0$};
+    \end{axis}
+\end{tikzpicture}    
     
     Возьмем точку $x_0 = E \xi$, через нее проходит прямая $ax + b$, ограничивающая график снизу: $ax + b \leq g(x), ax_0 + b = g(x_0)$.
 
@@ -64,8 +80,26 @@ $$E|\xi\eta| \leq (E |\xi|^p)^\frac1p (E |\eta|^q)^\frac1q$$
 Пусть $x, y, a, b > 0, a + b = 1$. Тогда верно $$x^ay^b \leq ax + by$$
 Прологарифмируем это, получим $$a \ln x + b \ln y \leq \ln (ax + by)$$.
 
-Можно нарисовать картиночку \TODO нарисовать \TODO, на которой левая часть это будет какая-то точка на отрезке, соединяющем точки $(x, \ln x)$ и $(y, \ln y)$, а правая часть -- точка на графике логарифма с той же координатой по $x$, поэтому неравенство выполнится.
+\begin{tikzpicture}
+   \begin{axis}[
+            xtick = \empty,    ytick = \empty,
+           xlabel = {$x$},
+           x label style = {at={(1,0)},anchor=west},
+           ylabel = {$y$},
+           y label style = {at={(0,1)},rotate=-90,anchor=south},
+           axis lines=left,
+           enlargelimits=0.2,
+       ]
+       \addplot[color=black,smooth,thick,-] {ln(x)};
+       \addplot[mark=none, blue] coordinates {(0.5,-0.69314718056) (5,1.60943791243)};
+        \addplot[blue, mark=*, only marks, nodes near coords = {$(x, \ln x)$}, nodes near coords align={right}] coordinates {(0.5,-0.69314718056)};
+        \addplot[blue, mark=*, only marks, nodes near coords = {$(y, \ln y)$}, nodes near coords align={right}] coordinates {(5,1.60943791243)};
+        \addplot[blue, mark=*, only marks, nodes near coords = {$a \ln x + b \ln y$}, nodes near coords align={right}] coordinates {(2.3,0.22788685663)};
+        \addplot[black, mark=*, only marks, nodes near coords = {$\ln (ax+by)$}, nodes near coords align={left}] coordinates {(2.3,0.83290912293)};
+   \end{axis}
+\end{tikzpicture}
 
+Вот эта картинка поясняет, почему неравенство действительно верно.
 Возьмем
 \begin{gather*}
 a = \frac1p, b = \frac1q\\

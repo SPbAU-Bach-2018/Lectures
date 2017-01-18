@@ -114,9 +114,11 @@ $f(t) = \sum\limits_{k=0}^\infty \dots$ при $|t| < R$.
 \begin{gather*}
 |f(t + h) - f(t)| = |\int (e^{i(t + h)}x - e^{itx}) \d F| \leq \int \underbrace{|e^{itx}|}_{=1} |e^{ixh} - 1| \d F = \\
 \int\limits_{-T}^T + \int\limits_{\R \setminus [-T, T]}|e^{ixh} - 1| \d F(x)\\
-\text{Возьмем T такое, что } F(T) - F(-T) > 1 - \epsilon, \text{и } h\colon |e^{ihT}  -1| < \epsilon \\
+\text{Возьмем T такое, что } P(R \setminus [-T, T]) < \epsilon, \text{и } h\colon \max (|e^{ihT}  -1|, |e^{ih-T}  -1|) < \epsilon \\
 |e^{ihx} - 1| \leq 2 \Ra \int\limits_{\R \setminus [-T, T]} + \int\limits_{-T}^T \leq 2\epsilon + \epsilon = 3\epsilon \\
-\end{gather*}                                                                  
+\end{gather*}
+Мы взяли настолько маленькое $h$, что получили какую-то маленькую окрестность $1$ на окружности, на обоих концах у нас модуль разности мелкий, тогда интеграл тоже будет мелким
+                                          
 
 4: $f(t) = \int \cos tx \d F(t) + i \int \sin tx \d F(t)$. Второе слагаемое равно 0 для симметричных распределений (синус нечетный).
 
