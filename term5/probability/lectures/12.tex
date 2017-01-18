@@ -1,6 +1,97 @@
+\subsection{Винеровский процесс (броуновское движение)}
+Делаем $n \in \Z$ шагов, с вероятностью $\frac12$ смещаемся на вектор $(h^2, h)$, иначе -- на вектор $(h^2, -h)$.
+
+Получим случайное блуждание, которое задаст какую-то ломаную. А теперь давайте одновременно устремим $n \to \infty, h \to 0$, сохраняя произведение $t = nh^2$ константным.
+Получим какую-то предельную ломаную $W_t$.
+
+$P(W_t(n) = x) = \frac{{n \choose m}}{2^n} = (n \to \infty, h \to 0) \frac{1}{\sqrt{2\pi t}} e^{-\frac{x^2}{2t}} \cdot h + o(h)$
+
+Таким образом, $W_t(n) \to W_t \sim N(0, t)$
+
+В общем случае, $W_t \sim N(y, bt), b > 0$
+
+Можно определить Винеровский процесс, как процесс со следующими свойствами:
+\begin{enumerate}
+\item $W_0 = 0$, с независимыми приращениями, $W_t - W_s \sim N(0, b(t - s))$, непрерывные траектории.
+
+\item $(W_{t_1}, \dots, W_{t_n})$, моделируется через $n$ независимых случайных величин с распределениями $N(0, t_1), N(0, t_2 - t_1), \dots, N(0, t_n - t_{n-1}$, и это будут приращения процесса. 
+
+\end{enumerate}
+
+Еще есть ряд следующих свойств:
+\begin{enumerate}
+    \item $W_t = W_{-t}$
+    \item $W_t = W_{t + s} - W_s$
+    \item $W_t = \sqrt{s}W_\frac{t}{s}$
+    \item $W_t = t W_{\frac1t}$
+\end{enumerate}
+Везде равенства по распределению, как в сходимости по распределению.
+
+\begin{theorem}[Колмогоров]
+
+Если $\exists p, q, K > 0 \colon E|\xi_t - \xi_s| ^p \leq K |t - s|^{1 + q}$, то $\exists$ модификация $\xi_t$ с непрерывными траекториями.
+
+\end{theorem}
+\begin{Rem}
+Это условие по сути является условием Гёльдера: $f$ удовлетворяет Гёльдеру поряка $\alpha$, если $|f(t) - f(s)| \leq K |t - s|^\alpha$.
+\end{Rem}
+
+Можно показать, что наше распределение попадает под условие теоремы Колмогорова: 
+$E |W_t - W_x|^4 = 3\sigma^4$ (несложное упражнение) $ = 3(t - s)^2$, поэтому можно все спокойно продолжать.
 
 
-\TODO Броуновский процесс \TODO
+\begin{Def}
+$f$ на $[a, b]$
+
+$Var_\alpha f = \varlimsup \sum\limits_{k=0}^{n-1} |f(t_{k+1}) - f(t_k)|^\alpha$
+\end{Def}
+
+\begin{theorem}
+На $[0, t]$: 
+\begin{enumerate}
+\item $Var_2 W_t = t$
+\item $Var_1 W_t = \infty$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item 
+$$\eta_n = \sum\limits_{k=0}^{n-1} (W_{t_{k+1}} - W_{t_k})^2; E\eta_n = \sum(t_{k+1}-t_k) = t$$
+                                                                                              
+$$D\eta_n = E(\eta_n - t)^2 = E(\sum \underbrace{(W_{t_{k+1}} - W_{t_k})^2 - (t_{k+1} - t_k))^2}_{\xi_k}$$
+
+$\xi_k$ независимы и 
+\begin{gather*}
+    E\xi_k = 0 \Ra E(\sum \xi_k)^2 = \sum E\xi_k^2 + \sum \underbrace{E\xi_i\xi_j}_{=E\xi_i E\xi_j = 0 \cdot 0 = 0} = \\
+    = \sum E(W_{t_{k+1}} - W_{t_k})^4 - 2(t_{k+1} - t_k) E () ^2 + (t_{k+1} - t_k)^2 = (3 - 2 + 1) \sum (t_{k+1} - t_k)^2 = 2 \sum (t_{k+1} - t_k)^2 \leq
+\end{gather*}
+Ранг дробления $\delta$ стремится к 0 по условию, 2 и $t$ -- константы, поэтому
+$$\leq 2 \max(t_{k+1} - t_k) \sum (t_{k+1} - t_k) = 2 \delta t \to 0$$
+
+Значит, $\eta_n \xrightarrow[n \to \infty]{L^2} t$
+
+\item
+$$\eta_n \leq \underbrace{\max |W_{t_{k + 1}} - W_{t_k}|}_{\to 0} \underbrace{\sum |W_{t_{k+1}} - W_{t_k}|}_{Var_1 W}$$
+
+При этом, $\eta_n \to t$. Откуда следует, что $Var_1 W \to \infty$.
+\end{enumerate}
+\end{proof}
+\begin{conseq}
+$W$ не удовлетворяет условию Гёльдера при $\alpha > \frac12$
+\end{conseq}
+\begin{proof}
+Пусть не так. Тогда $\eta_n \leq K^2 \sum (t_{k+1} - t_k)^{2\alpha} \leq K^2 \delta^{2\alpha - 1} t \to 0$.
+Противоречие, так как $\eta_n \to t$. 
+\end{proof}
+\begin{conseq}
+Траектории $W_t$ недифференцируемы.
+\end{conseq}
+
+Интеграл Ито: $\int \xi_t \d W_t$ \TODO
+
+\TODO Броуновский мост
+
+\TODO Процесс Орнштена-Уленбека
 
 
 \section{Марковские цепи}
