@@ -38,7 +38,12 @@
 \else%
 \usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}%
 \fi
-\usepackage[math-style=ISO,vargreek-shape=unicode]{unicode-math}
+\usepackage[math-style=ISO]{unicode-math}
+% https://github.com/wspr/unicode-math/issues/390
+\AtBeginDocument{
+  \renewcommand\phi{\mitvarphi}
+  \renewcommand\varphi{\mitphi}
+}
 
 \usepackage{ifplatform}
 \ifwindows
@@ -49,3 +54,4 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usepackage{pgfplots}
+\usepackage[all,cmtip]{xy}
