@@ -1,7 +1,7 @@
 \begin{lemma}
 	Числовое тождество в натуральных числах:
 	\[
-	d^l - 1 \mid d^n - 1 \iff l \mid n
+	a^l - 1 \mid a^n - 1 \iff l \mid n
 	\]
 \end{lemma}
 Доказывается для чисел методом <<поделить $n$ на $l$ с остатком>>.
@@ -36,7 +36,7 @@
 \end{Rem}
 
 \begin{lemma}
-	Любое конечное поле имеет вид $GF(l^p)$.
+	Любое конечное поле имеет вид $GF(p^l)$.
 	Например, не может быть поля из шести элементов.
 \end{lemma}
 
@@ -140,7 +140,7 @@ g_0 & g_1 & \dots & g_r
 \end{pmatrix}
 \times
 \begin{pmatrix}
-\gamma_i^0 \\ \gamma_i^1 \\ \dots & \gamma_i^r
+\gamma_i^0 \\ \gamma_i^1 \\ \dots \\ \gamma_i^r
 \end{pmatrix}
 \\
 \text{Можно нулей добавить до длины $n$:}
@@ -149,7 +149,7 @@ g_0 & g_1 & \dots & g_r & 0 & \dots & 0
 \end{pmatrix}
 \times
 \begin{pmatrix}
-\gamma_i^0 \\ \gamma_i^1 \\ \dots & \gamma_i^r & \gamma_i^{r+1} & \dots & \gamma_i^{n-1}
+\gamma_i^0 \\ \gamma_i^1 \\ \dots \\ \gamma_i^r \\ \gamma_i^{r+1} \\ \dots \\ \gamma_i^{n-1}
 \end{pmatrix}
 \end{gather*}
 Теперь можно записать интересную матрицу над расширенным полем $GF(q^m)$:
@@ -178,7 +178,7 @@ H_c = \begin{pmatrix}
 	\[
 	c(x) = q(x) \cdot g(x)
 	\]
-	ПОдставили:
+	Подставили:
 	\[
 	q(x) \cdot g(x) \cdot H_c^\top = q(x) \cdot (g(x) \cdot H_c^\top) = q(x) \cdot 0 = 0
 	\]
@@ -247,7 +247,7 @@ H_c = \begin{pmatrix}
 Будем строить $(7, 4, 3)$-код.
 Проверочная матрица для обычного кода Хэмминга:
 \[
-H_{\begin{pmatrix}
+H = {\begin{pmatrix}
 0 & \TODO \\
 0 & \\
 1 & \\
